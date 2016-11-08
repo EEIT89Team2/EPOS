@@ -38,7 +38,7 @@
 
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="login.html">Logout</a></li>
+					<li><a class="logout" href="LOGIN/logout.jsp">Logout ${LoginOK.emp_id}</a></li>
 				</ul>
 			</div>
 		</header>

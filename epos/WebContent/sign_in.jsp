@@ -18,23 +18,23 @@
               	
 	  			<div class="container">
 	  	
-				      <form class="form-login" action="index.html">
+				      <form class="form-login" action="login.do">
 				        <h2 class="form-login-heading">員工登入</h2>
 				        <div class="login-wrap">
 				        	<center>
 				        		<img alt="維修中" src="resources/img/head.png"  class="img-circle">
 				        	<center/>
 				        	<br>
-				            <input type="text" class="form-control" placeholder="User ID" autofocus>
+				            <input type="text" class="form-control" placeholder="User ID" autofocus name="emp_id">
 				            <br>
-				            <input type="password" class="form-control" placeholder="Password">
+				            <input type="password" class="form-control" placeholder="Password" name="emp_pwd">
 				            <label class="checkbox">
 				                <span class="pull-right">
 				                    <a data-toggle="modal" href="login.html#myModal"> 忘記密碼?</a>
 				
 				                </span>
 				            </label>
-				            <button class="btn btn-theme btn-block" ><i class="fa fa-lock"></i> SIGN IN</button>				           	           				
+				            <button class="btn btn-theme btn-block"  type="submit"><i class="fa fa-lock"></i> SIGN IN</button>				           	           				
 				        </div>
 				
 				          <!-- Modal -->

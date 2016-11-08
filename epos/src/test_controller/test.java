@@ -7,7 +7,7 @@ public class test {
 
 	public static void main(String[] args) {
 
-		String name = "R";
+		String name = "X";
 		String id = "R2016100300006";
 		String newID;
 

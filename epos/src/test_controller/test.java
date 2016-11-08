@@ -27,7 +27,7 @@ public class test {
 		// int nextval1 = Integer.parseInt(today);
 		// String emp_id=name+today+String.format("%05d", 1);
 
-//		System.out.println(newID);
+		System.out.println(newID);
 
 	}
 

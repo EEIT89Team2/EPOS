@@ -315,12 +315,24 @@ public class Employee_Controller {
 	
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/setPassCode.do")
-	public String setPassCode(ModelMap model,HttpServletRequest request,
+	@RequestMapping(method = RequestMethod.POST, value = {"/EMPLOYEE/setPassCode.do","/setPassCode.do"})
+	public String setPassCode(ModelMap model,HttpServletRequest request) {
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
-			@RequestParam("emp_id") String emp_id,
-		@RequestParam("pass_code") String pass_code) {
+	
 		
+		String emp_id=request.getParameter("emp_id") ;
+		String[] pass_codes = request.getParameterValues("pass_code");
+		
+		String pass_code="";
+		for(int i=0;i<pass_codes.length;i++){
+			if(i==pass_codes.length-1)
+				pass_code+=pass_codes[i];
+			else
+			pass_code=pass_code+pass_codes[i]+",";
+			
+		}
+		
+		System.out.println(pass_code);
 		/*************************** 2.永續層存取 ***************************************/
 //		EmpService empSrv = new EmpService();
 		empSrv.setPassCode(pass_code, emp_id);

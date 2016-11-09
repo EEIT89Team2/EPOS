@@ -146,7 +146,7 @@
 					<div class="container-fluid" style="float: right; left: -50%; position: relative;">
 						<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative;">
 							<li><a class="insertMem" href="addMem.jsp" method="post"><span class="insertMemText">新增會員</span></a></li>
-							<li><a class="selectAllMem" style="background-color: rgba(221, 15, 15, 0.8);"><span class="selectAllMemText" style="color: white;">查詢全部會員</span></a></li>
+							<li><a class="selectAllMem" style="background-color: rgba(221, 15, 15, 0.8);"><span class="selectAllMemText" style="color: white;">查詢會員</span></a></li>
 							<li><a class="selectMemId" href="selectMemId.jsp"><span class="selectMemIdText">依會員編號查詢</span></a></li>
 							<li><a class="selectManyMem" href="selectManyMem.jsp"><span class="selectManyMemText">查詢多筆會員</span></a></li>
 							<li><a class="selectMemName" href="selectMemName.jsp"><span class="selectMemNameText">依會員姓名查詢</span></a></li>

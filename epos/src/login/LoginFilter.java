@@ -29,10 +29,13 @@ public class LoginFilter implements Filter {
 			HttpServletRequest req = (HttpServletRequest) request;
 			HttpServletResponse resp = (HttpServletResponse) response;
 
-			System.out.println(req.getServletPath());
-			
+			servletPath=req.getServletPath();
+			boolean flag=false;
+			if(servletPath.substring(0, 10).equals("/resources")){
+				flag=true;
+			}
 
-			if (req.getServletPath().equals("/index.jsp")||req.getServletPath().equals("/login.do")||req.getServletPath().equals("/sign_in.jsp")) {
+			if (req.getServletPath().equals("/index.jsp")||req.getServletPath().equals("/login.do")||req.getServletPath().equals("/sign_in.jsp")||flag) {
 				chain.doFilter(request, response);
 
 			} else {

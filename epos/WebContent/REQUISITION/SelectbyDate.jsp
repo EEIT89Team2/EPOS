@@ -6,15 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查詢請購單</title>
-<link href="<c:url value="../resources/css/bootstrap.css" />" rel="stylesheet">
-	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-	!window.jQuery
-			&& document
-					.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
-</script>
+
+<link href="<c:url value="../resources/css/bootstrap.css" />"
+	rel="stylesheet">
+
 </head>
 <style>
 body {
@@ -23,47 +18,51 @@ body {
 </style>
 <body>
 	<section id="container"> <section class="wrapper">
-	<nav class="nav navbar-default">
-	<div class="container-fluid"
-		style="float: right; left: -50%; position: relative;">
-		<ul class="nav navbar-nav"
-			style="float: left; left: 50%; position: relative;">
-			<li><a id="req1" target="addReq.jsp">新增請購單</a></li>
-			<li><a id="req2" target="SelectReq.jsp">單筆查詢</a></li>
-			<li><a id="req3" target="getAllReq.do">全部查詢</a></li>
-			<li style="background-color: rgba(221, 15, 15, 0.8);"><a
-				style="color: white;">依日期查詢</a></li>
-			<li><a id="req5" target="selectOfN.do">審核</a></li>
-		</ul>
-	</div>
-	</nav>
-	<div
-		style="background-color: rgba(0, 0, 0, 0.2); position: relativve; height: 750px; overflow: auto;">
+	<div class="row mt">
+		<nav class="nav navbar-default">
+		<div class="container-fluid"
+			style="float: right; left: -50%; position: relative;">
+			<ul class="nav navbar-nav"
+				style="float: left; left: 50%; position: relative;">
+				<li><a id="req1" target="addReq.jsp">新增請購單</a></li>
+				<li><a id="req2" target="SelectReq.jsp">單筆查詢</a></li>
+				<li><a id="req3" target="getAllReq.do">全部查詢</a></li>
+				<li style="background-color: rgba(221, 15, 15, 0.8);"><a
+					style="color: white;">依日期查詢</a></li>
+				<li><a id="req5" target="selectOfN.do">審核</a></li>
+			</ul>
+		</div>
+		</nav>
+		<div
+			style="background-color: rgba(0, 0, 0, 0.2); position: relativve; height: 750px; overflow: auto;">
 
-		<div align=center>
-			<br> <br> <br>
-			<h3>請輸入查詢日期範圍</h3>
-			<br>
-			<form method="post" id="form1" action="getByReq_id.do">
-				<table border="0">
-					<tr>
-						<td>起&nbsp;&nbsp;</td>
-						<td><input type="date" name="begin_date"></td>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-						<td>訖&nbsp;&nbsp;</td>
-						<td><input type="date" name="end_date"></td>
-						<td><input type="button" id="sbt" value="查詢"></td>
-					</tr>
-				</table>
-<!-- 				<input type="hidden" name="action" value="getByReq_id"> -->
-			</form>
+			<div align=center>
+				<br> <br> <br>
+				<h3>請輸入查詢日期範圍</h3>
+				<br>
+				<form method="post" id="form1" action="getByReq_id.do">
+					<table border="0">
+						<tr>
+							<td>起&nbsp;&nbsp;</td>
+							<td><input type="date" name="begin_date"></td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td>訖&nbsp;&nbsp;</td>
+							<td><input type="date" name="end_date"></td>
+							<td><input type="button" id="sbt" value="查詢"></td>
+						</tr>
+					</table>
+					<!-- 				<input type="hidden" name="action" value="getByReq_id"> -->
+				</form>
+			</div>
 		</div>
 	</div>
+	</section></section>
 	<script>
 		$(function() {
 			$('#sbt').on('click', function() {
 
-				var url = "REQUISITION/findByDate.do";
+				var url = "findByDate.do";
+
 				$.ajax({
 					type : "POST",
 					url : url,

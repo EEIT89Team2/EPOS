@@ -6,15 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>修改請購單</title>
-<link href="<c:url value="../resources/css/bootstrap.css" />" rel="stylesheet">
-	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-	!window.jQuery
-			&& document
-					.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
-</script>
+
+<link href="<c:url value="../resources/css/bootstrap.css" />"
+	rel="stylesheet">
+
 </head>
 <style>
 body {
@@ -23,80 +18,84 @@ body {
 </style>
 <body>
 	<section id="container"> <section class="wrapper">
-	<nav class="nav navbar-default">
-	<div class="container-fluid"
-		style="float: right; left: -50%; position: relative;">
-		<ul class="nav navbar-nav"
-			style="float: left; left: 50%; position: relative;">
-			<li><a id="req1" target="addReq.jsp">新增請購單</a></li>
-			<li><a id="req2" target="SelectReq.jsp">單筆查詢</a></li>
-			<li><a id="req3" target="getAllReq.do">全部查詢</a></li>
-			<li><a id="req4" target="SelectbyDate.jsp">依日期查詢</a></li>
-			<li style="background-color: rgba(221, 15, 15, 0.8);"><a
-				style="color: white;">審核</a></li>
-		</ul>
-	</div>
-	</nav>
-	<div
-		style="background-color: rgba(0, 0, 0, 0.2); position: relativve; height: 750px; overflow: auto;">
-		<!-- 	<br> -->
-		<h1>修改請購單</h1>
-		<hr>
-
-		<form method="post" action="REQUISITION/insertReq.do" id="form1">
-
-			<table border="0">
-				<tr>
-					<td>&nbsp;&nbsp;請購單號：<input type="text" name="req_id"
-						id="req_id" value="${reqVO.req_id}" readonly="readonly" /></td>
-				</tr>
-				<tr>
-					<td>&nbsp;&nbsp;建檔人員：<input type="text" name="key_id"
-						value="${reqVO.key_id}" readonly="readonly" /></td>
-				</tr>
-				<tr>
-					<td>&nbsp;&nbsp;建檔日期：<input type="date" name="key_date"
-						value="${reqVO.key_date}" id="theDate" style="width: 174px;"
-						readonly="readonly" /></td>
-				</tr>
-				<tr>
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;狀&nbsp;&nbsp;&nbsp;態&nbsp;&nbsp;：<input
-						type="text" id="status" name="status" value="${reqVO.status }"
-						readonly="readonly" /><span style="font-size: 10px; color: gray">(N:未審核
-							Y:已審核 D:註銷)</span></td>
-				</tr>
-			</table>
+	<div class="row mt">
+		<nav class="nav navbar-default">
+		<div class="container-fluid"
+			style="float: right; left: -50%; position: relative;">
+			<ul class="nav navbar-nav"
+				style="float: left; left: 50%; position: relative;">
+				<li><a id="req1" target="addReq.jsp">新增請購單</a></li>
+				<li><a id="req2" target="SelectReq.jsp">單筆查詢</a></li>
+				<li><a id="req3" target="getAllReq.do">全部查詢</a></li>
+				<li><a id="req4" target="SelectbyDate.jsp">依日期查詢</a></li>
+				<li style="background-color: rgba(221, 15, 15, 0.8);"><a
+					style="color: white;">審核</a></li>
+			</ul>
+		</div>
+		</nav>
+		<div
+			style="background-color: rgba(0, 0, 0, 0.2); position: relativve; height: 750px; overflow: auto;">
+			<!-- 	<br> -->
+			<h1>修改請購單</h1>
 			<hr>
-			<!-- 			<hr> -->
-			<table border=0 class="table" id="detailtable">
-				<tr>
-					<td>#</td>
-					<td>商品名稱</td>
-					<td>商品數量</td>
-				</tr>
-				<c:forEach var="detailVO" items="${reqVO.reqDetails}"
-					varStatus="status">
+
+			<form method="post" action="insertReq.do" id="form1">
+
+				<table border="0">
 					<tr>
-						<td>${status.count}</td>
-						<td>${detailVO.prod_name }</td>
-						<td>${detailVO.prod_quantity }</td>
+						<td>&nbsp;&nbsp;請購單號：<input type="text" name="req_id"
+							id="req_id" value="${reqVO.req_id}" readonly="readonly" /></td>
 					</tr>
+					<tr>
+						<td>&nbsp;&nbsp;建檔人員：<input type="text" name="key_id"
+							value="${reqVO.key_id}" readonly="readonly" /></td>
+					</tr>
+					<tr>
+						<td>&nbsp;&nbsp;建檔日期：<input type="date" name="key_date"
+							value="${reqVO.key_date}" id="theDate" style="width: 174px;"
+							readonly="readonly" /></td>
+					</tr>
+					<tr>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;狀&nbsp;&nbsp;&nbsp;態&nbsp;&nbsp;：<input
+							type="text" id="status" name="status" value="${reqVO.status }"
+							readonly="readonly" /><span style="font-size: 10px; color: gray">(N:未審核
+								Y:已審核 D:註銷)</span></td>
+					</tr>
+				</table>
+				<hr>
+				<!-- 			<hr> -->
+				<table border=0 class="table" id="detailtable">
+					<tr>
+						<td>#</td>
+						<td>商品名稱</td>
+						<td>商品數量</td>
+					</tr>
+					<c:forEach var="detailVO" items="${reqVO.reqDetails}"
+						varStatus="status">
+						<tr>
+							<td>${status.count}</td>
+							<td>${detailVO.prod_name }</td>
+							<td>${detailVO.prod_quantity }</td>
+						</tr>
 
-				</c:forEach>
+					</c:forEach>
 
-			</table>
-			<div style="position: absolute; bottom: 30px; right: 40%;">
+				</table>
+				<div style="position: absolute; bottom: 30px; right: 40%;">
 
-				<input type="button" value="核准" id="authorize"
-					target="REQUISITION/updateReq2.do"> <input type="button"
-					id="writeoff" value="註銷" target="REQUISITION/updateReq2.do" /> <input
-					type="button" id="return" value="返回"
-					target="REQUISITION/selectOfN.do" />
-				<!-- 					<input type="hidden" name="action" value="insert"> -->
+					<input type="button" value="核准" id="authorize"
+						target="updateReq2.do"> <input type="button"
+						id="writeoff" value="註銷" target="updateReq2.do" /> <input
+						type="button" id="return" value="返回"
+						target="selectOfN.do" />
+					<!-- 					<input type="hidden" name="action" value="insert"> -->
 
-			</div>
-		</form>
+				</div>
+			</form>
+		</div>
 	</div>
+	</section></section>
+
 	<script>
 		$(function() {
 

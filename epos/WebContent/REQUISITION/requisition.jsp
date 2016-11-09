@@ -29,8 +29,9 @@ body {
 }
 </style>
 <body>
-	<section id="container"> <!--header start--> 
-	<header class="header black-bg">
+
+	<section id="container"> <!--header start--> <header
+		class="header black-bg">
 	<div class="sidebar-toggle-box">
 		<div class="fa fa-bars tooltips" data-placement="right"
 			data-original-title="Toggle Navigation"></div>
@@ -132,43 +133,42 @@ body {
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
-	</aside> <!--sidebar end--> <section id="main-content"> <section
-		class="wrapper">
-	<div id="add" class="main">
-		<!-- 	<div class="row mt"> -->
-		<!-- 錯誤表列 -->
-		<%-- <c:if test="${not empty param.message}"> --%>
-		<!-- 	<font color='red'>請修正以下錯誤: -->
-		<!-- 	<ul> -->
-		<%-- 		<c:forEach var="message" items="${param.message}"> --%>
-		<%-- 			<li>${message}</li> --%>
-		<%-- 		</c:forEach> --%>
-		<!-- 	</ul> -->
-		<!-- 	</font> -->
-		<%-- </c:if> --%>
-		<nav class="nav navbar-default">
-		<div class="container-fluid"
-			style="float: right; left: -50%; position: relative;">
-			<ul class="nav navbar-nav"
-				style="float: left; left: 50%; position: relative;">
-				<li><a id="req1" target="addReq.jsp">新增請購單</a></li>
-				<li><a id="req2" target="SelectReq.jsp">單筆查詢</a></li>
-				<li><a id="req3" target="getAllReq.do">全部查詢</a></li>
-				<li><a id="req4" target="SelectbyDate.jsp">依日期查詢</a></li>
-				<li><a id="req5" target="selectOfN.do">審核</a></li>
-			</ul>
+	</aside> <!--sidebar end--> <section id="main-content"> 
+	<section class="wrapper">
+	<div class="row mt">
+			<!-- 	<div class="row mt"> -->
+			<!-- 錯誤表列 -->
+			<%-- <c:if test="${not empty param.message}"> --%>
+			<!-- 	<font color='red'>請修正以下錯誤: -->
+			<!-- 	<ul> -->
+			<%-- 		<c:forEach var="message" items="${param.message}"> --%>
+			<%-- 			<li>${message}</li> --%>
+			<%-- 		</c:forEach> --%>
+			<!-- 	</ul> -->
+			<!-- 	</font> -->
+			<%-- </c:if> --%>
+			<nav class="nav navbar-default">
+			<div class="container-fluid"
+				style="float: right; left: -50%; position: relative;">
+				<ul class="nav navbar-nav"
+					style="float: left; left: 50%; position: relative;">
+					<li><a id="req1" target="addReq.jsp">新增請購單</a></li>
+					<li><a id="req2" target="SelectReq.jsp">單筆查詢</a></li>
+					<li><a id="req3" target="getAllReq.do">全部查詢</a></li>
+					<li><a id="req4" target="SelectbyDate.jsp">依日期查詢</a></li>
+					<li><a id="req5" target="selectOfN.do">審核</a></li>
+				</ul>
+			</div>
+			</nav>
 		</div>
-		</nav>
-	</div></section> </section> 
-	</section>
+	</section> </section> </section>
 
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
-		!window.jQuery
-				&& document
-						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
+		!window.jQuery&& document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
+
 	</script>
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>

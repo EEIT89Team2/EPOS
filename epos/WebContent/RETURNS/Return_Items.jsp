@@ -49,8 +49,8 @@
 
 <body>
 
-	<section id="container"> <!--header start--> <header
-		class="header black-bg">
+	<section id="container"> <!--header start--> 
+	<header class="header black-bg">
 	<div class="sidebar-toggle-box">
 		<div class="fa fa-bars tooltips" data-placement="right"
 			data-original-title="Toggle Navigation"></div>
@@ -325,7 +325,8 @@
 			           data: $("#itemsform").serialize(), 
 			           success: function(data)
 			           {
-			               
+			               location.reload()
+
 			           }
 			         });
 				})

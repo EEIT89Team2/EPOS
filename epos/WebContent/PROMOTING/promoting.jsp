@@ -130,6 +130,7 @@
 	</div>
 	</aside> <!--sidebar end--> <section id="main-content"> <section
 		class="wrapper"> <nav class="nav navbar-default">
+	<div class="row mt">
 	<ul class="nav navbar-nav">
 		<li><a data-toggle="tab" href="#search">搜尋</a></li>
 		<li><a data-toggle="tab" href="#new">新增</a></li>
@@ -137,7 +138,6 @@
 	</ul>
 	</nav>
 
-	<div class="row mt">
 		<div class="tab-content">
 			<div id="search" class="tab-pane fade">
 				<%-- 錯誤表列 --%>
@@ -150,15 +150,15 @@
 						</ul>
 					</font>
 				</c:if>
-				<%-- <c:if test="${not empty errorMsgs}"> --%>
-				<!-- 	<font color='red'>請修正以下錯誤: -->
-				<!-- 	<ul> -->
-				<%-- 		<c:forEach var="message" items="${errorMsgs}"> --%>
-				<%-- 			<li>${message}</li> --%>
-				<%-- 		</c:forEach> --%>
-				<!-- 	</ul> -->
-				<!-- 	</font> -->
-				<%-- </c:if> --%>
+				<c:if test="${not empty errorMsgs}">
+					<font color='red'>請修正以下錯誤:
+					<ul>
+						<c:forEach var="message" items="${errorMsgs}">
+							<li>${message}</li>
+						</c:forEach>
+					</ul>
+					</font>
+				</c:if>
 
 				<div class="col-lg-6">
 					<div class="form-panel">

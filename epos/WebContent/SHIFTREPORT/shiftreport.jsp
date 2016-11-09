@@ -115,6 +115,7 @@
 		<!--sidebar end--> 
 		<section id="main-content"> 
 		<section class="wrapper"> 
+	<div class="row mt">
 		<nav class="nav navbar-default">
 			<ul class="nav navbar-nav">
 				<li><a data-toggle="tab" href="#search">搜尋</a></li>
@@ -123,7 +124,6 @@
 			</ul>
 		</nav>
 
-	<div class="row mt">
 		<div class="tab-content">
 			<div id="search" class="tab-pane fade">
 				<%-- 錯誤表列 --%>

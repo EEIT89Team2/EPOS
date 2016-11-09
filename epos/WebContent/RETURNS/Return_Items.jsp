@@ -12,10 +12,23 @@
 %>
 <html>
 <head>
+<SCRIPT LANGUAGE="JavaScript">
+
+function varitext(text){
+text=document
+print(text)
+}
+
+</script>
+
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Bootstrap core CSS -->
+<!-- <link href="../resources/css/bootstrap.min.css" rel="stylesheet"> -->
+<!-- <link href="../resources/css/bootstrap-theme.min.css" rel="stylesheet"> -->
 <link href="<c:url value="../resources/css/bootstrap.css" />"
 	rel="stylesheet">
 <!--external css-->
@@ -49,8 +62,8 @@
 
 <body>
 
-	<section id="container"> <!--header start--> 
-	<header class="header black-bg">
+	<section id="container"> <!--header start--> <header
+		class="header black-bg">
 	<div class="sidebar-toggle-box">
 		<div class="fa fa-bars tooltips" data-placement="right"
 			data-original-title="Toggle Navigation"></div>
@@ -128,7 +141,7 @@
 					<li><a
 						href="<%=request.getContextPath()%>/RETURNS/Return_Items.jsp">退貨品管理</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/RETURNS/returns.jsp">退貨單管理</a></li>
+						href="<%=request.getContextPath()%>/RETURNS/ReturnList.jsp">退貨單管理</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/INVO/select_page.jsp">作廢發票管理</a></li>
 				</ul></li>
@@ -154,26 +167,18 @@
 	</div>
 	</aside> <!--sidebar end--> <section id="main-content"> <section
 		class="wrapper"> <!-- -----------------------------------------------------------查詢----------------------------------------------------------- -->
-<%-- 	<c:if test="${not empty errorMsgs}"> --%>
-<!-- <font color='red'>請修正以下錯誤: -->
-<!-- <ul> -->
-<%-- 	<c:forEach var="message" items="${errorMsgs}"> --%>
-<%-- 		<li>${message}</li> --%>
-<%-- 	</c:forEach> --%>
-<!-- </ul> -->
-<!-- </font> -->
-<%-- </c:if> --%>
 	
 	<div class="row mt">
+	<div class="col-sm-12">
 		<div id="add" class="main">
 			<div class="tab-content">
 				<nav class="alert alert-info">
 				<div>
-				<a href="#add"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
-		    	<a href="#" onclick="window.open('searchItem.jsp', 'Yahoo', config='height=500,width=500')"><span class="glyphicon glyphicon-search"></span>查詢</a>　　　
+				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
+		    	<a href="#" onclick="window.open('searchItem.jsp', 'Yahoo', config='height=500,width=850')"><span class="glyphicon glyphicon-search"></span>查詢</a>　　　
 		    	<a href="#"><span class="glyphicon glyphicon-pencil"></span>修改</a>　　　
 		    	<a href="#"><span class="glyphicon glyphicon-remove"></span>刪除</a>　　　
-		    	<a href="#"><span class="glyphicon glyphicon-print"></span>列印</a>　　　
+		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　　
 		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>　
 				</div>
 
@@ -181,20 +186,19 @@
 			</div>
 
 
-			<FORM id="itemsform" METHOD="post" ACTION="insert_Item.do"
-				class="form-inline">
+			<FORM id="itemsform" METHOD="post" ACTION="insert_Item.do" class="form-inline">
 				<div class="form-group">
-					<label for="exampleInputName2"> 商品名稱：</label> <input type="text"
+					<label for="exampleInputName2">　商品名稱：</label> <input type="text"
 						name="prod_name" class="form-control">
-				</div>
+				</div> 　　
 				<div class="form-group">
 					<label for="exampleInputName2">廠商代號：</label> <input type="text"
 						name="com_id" class="form-control" placeholder="C0001">
-				</div>
+				</div>　　
 				<div class="form-group">
 					<label for="exampleInputEmail2">退貨數量：</label> <input type="text"
 						name="re_quantity" class="form-control" placeholder="50">
-				</div>
+				</div>　　
 				<div class="form-group">
 					<label for="exampleInputName2">備註：</label> <input type="text"
 						name="remark" class="form-control">
@@ -202,35 +206,6 @@
 			</FORM>
 
 		</div>
-
-
-
-
-		<!--   <fieldset style='width:800px'> -->
-		<!-- 	<legend>查詢</legend> -->
-		<!-- 	<table> -->
-		<!-- 	 <tr> -->
-		<!-- 	 <form action="getName_Item.do" method="post"> -->
-		<!-- 	 	<td style="text-align:right;">商品名稱</td> -->
-		<!-- 	 	<td style="text-align:left;"> -->
-		<!-- 	 		<input type='text' name='prod_name'/> -->
-		<!-- 	 		<input type="submit" value="查詢"> -->
-		<!-- 	 		<input type="hidden" name="action" value="getName"> -->
-		<!-- 	 	</td> -->
-		<!-- 	 </form> -->
-		<!-- 	 <form action="getComId.do" method="post"> -->
-		<!-- 	 	<td style="text-align:right;">廠商代號</td> -->
-		<!-- 	 	<td style="text-align:left;"> -->
-		<!-- 	 		<input type='text' name='com_id'/> -->
-		<!-- 	 		<input type="submit" value="查詢"> -->
-		<!-- 	 		<input type="hidden" name="action" value="getComId"> -->
-		<!-- 	 	</td> -->
-		<!-- 	 </form> -->
-		<!-- 	 </tr> -->
-		<!-- 	</table> -->
-		<!--   </fieldset> -->
-
-
 		<!-- -----------------------------------------------------------表格----------------------------------------------------------- -->
 		<div>
 			<div class="titledetail">退貨品</div>
@@ -264,10 +239,10 @@
 							</FORM>
 						</td>
 						<td>
-							<FORM id="del" METHOD="post" ACTION="delete_Item.do">
+<!-- 							<FORM id="del" METHOD="post" ACTION="delete_Item.do"> -->
 			    <button type="submit" target="${RtnItemsVO.prod_name}" class="btn btn-danger"><i class="fa fa-trash-o "></i></button>
-			    <input type="hidden" name="prod_name" value="${RtnItemsVO.prod_name}">
-			    <input type="hidden" name="action"value="delete">
+<%-- 			    <input type="hidden" name="prod_name" value="${RtnItemsVO.prod_name}"> --%>
+<!-- 			    <input type="hidden" name="action"value="delete"> -->
 			  </FORM>
 						</td>
 					</tr>
@@ -276,6 +251,7 @@
 
 			</table>
 		</div>
+	</div>
 	</div>
 	</section> </section> </section>
 
@@ -289,9 +265,8 @@
 	</script>
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
-	<script class="include" type="text/javascript"
-		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
+	<script class="include" type="text/javascript" src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"
 		type="text/javascript"></script>
@@ -304,47 +279,46 @@
 	<script type="text/JavaScript">
 		 	$(function () {
 
-		//-------------------------------------新增---------------------------------------------
-		// 		$('#add').on('click',function(){
-		// 		var url = "Return_Items.jsp"; 
-		// 		    $.ajax({
-		// 		           type: "GET",
-		// 		           url: url,
-		// 		           success: function(data)
-		// 		           {
-		// 		               $("#main-content").html(data); 
-		// 		           }
-		// 		         });
-		// 			})	
+// <!----------------------------------------  新增         ------------------------------------>
+// 				$('#add').on('click',function(){
+// 				var url = "Return_Items.jsp"; 
+// 				    $.ajax({
+// 				           type: "GET",
+// 				           url: url,
+// 				           success: function(data)
+// 				           {
+// 				               location.reload(); 
+// 				           }
+// 				         });
+// 					})	
 
 				$('#sub').on('click',function(){
-			    var url = "insert_Item.do"; 
+			    var url = "../RETURNS/insert_Item.do"; 
 			    $.ajax({
 			           type: "POST",
 			           url: url,
 			           data: $("#itemsform").serialize(), 
 			           success: function(data)
 			           {
-			               location.reload()
-
+			        	   location.reload();
 			           }
 			         });
 				})
-		// //-------------------------------------刪除---------------------------------------------
-		// 		$('.btn-danger').on('click',function(){	
-		// 			var id = $(this).attr('target');
-		// 	    	var url = "delete_Item.do"; 
-		// 	    $.ajax({
-		// 	           type: "POST",
-		// 	           url: url,
-		// 	           data: {prod_name:id},
-		// 	           success: function(data)
-		// 	           {
-		// 	        	   $(".wrapper").html(data); 
-		// 	           }
-		// 	         });
-		// 		})
-
+//<!----------------------------------------刪除------------------------------------>
+				$('.btn-danger').on('click',function(){	
+					var id = $(this).attr('target');
+			    	var url = "delete_Item.do"; 
+			    $.ajax({
+			           type: "POST",
+			           url: url,
+			           data: {prod_name:id},
+			           success: function(data)
+			           {
+			        	   location.reload(); 
+			           }
+			         });
+				})
+//<!----------------------------------------  表格         ------------------------------------>
 		 		$('#table1').DataTable();
 
 		 	})

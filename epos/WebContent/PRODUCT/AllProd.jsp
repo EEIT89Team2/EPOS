@@ -12,8 +12,7 @@
 
 </head>
 <body>
-	<section id="container"> <section class="wrapper">
-	<div class="row mt">
+
 		<table border="2">
 		<tr>
 			<th>商品編號</th>
@@ -56,11 +55,6 @@
 </form>
 </c:forEach>
 	</table>
-	
-	<a href="/epos/index.jsp">回首頁</a>
-	</div>
-
-	</section> </section>
 
 </body>
 </html>

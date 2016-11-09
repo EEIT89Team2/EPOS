@@ -1,12 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="BIG5"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*"%>
+<%@ page import="com.returns.model.*"%>
+<%
+	ReturnListService rtnListSvc = new ReturnListService();
+    List<RtnListVO> list = rtnListSvc.getAll();
+    pageContext.setAttribute("list",list);
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="../resources/css/bootstrap.min.css">
 <link href="<c:url value="../resources/css/bootstrap.css" />"
 	rel="stylesheet">
 <!--external css-->
@@ -20,10 +28,29 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>returns</title>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
+
+
+<style type="text/css">
+	
+	.titlelist{
+			font-family: '·L³n¥¿¶ÂÅé';
+			font-weight: bold;
+			color: white;
+			height: 35px;
+			background: #f96b98;
+			font-size: 23px;
+			border-radius: 2px;
+	}
+
+</style>
+<title>°h³f³æ</title>
 </head>
+
+
 <body>
-	<section id="container"> <!--header start--> <header
+<section id="container"> <!--header start--> <header
 		class="header black-bg">
 	<div class="sidebar-toggle-box">
 		<div class="fa fa-bars tooltips" data-placement="right"
@@ -55,69 +82,69 @@
 			</a></li>
 
 			<li class="sub-menu"><a href="javascript:;"> <i
-					class="fa fa-desktop"></i> <span>åŸºæœ¬è³‡æ–™ç¶­è­·</span>
+					class="fa fa-desktop"></i> <span>°ò¥»¸ê®ÆºûÅ@</span>
 			</a>
 				<ul class="sub">
-					<li><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">æœƒå“¡è³‡æ–™ç¶­è­·</a></li>
+					<li><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">·|­û¸ê®ÆºûÅ@</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/EMPLOYEE/employee.jsp">å“¡å·¥è³‡æ–™ç¶­è­·</a></li>
+						href="<%=request.getContextPath()%>/EMPLOYEE/employee.jsp">­û¤u¸ê®ÆºûÅ@</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/COMPANY/company.jsp">å» å•†è³‡æ–™ç¶­è­·</a></li>
+						href="<%=request.getContextPath()%>/COMPANY/company.jsp">¼t°Ó¸ê®ÆºûÅ@</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
-					class="fa fa-edit"></i> <span>é€²è²¨ä½œæ¥­</span>
-			</a>
-				<ul class="sub">
-					<li><a
-						href="<%=request.getContextPath()%>/REQUISITION/requisition.jsp">è«‹è³¼å–®ç¶­è­·</a></li>
-					<li><a
-						href="<%=request.getContextPath()%>/QUOTATION/quotation.jsp">è©¢åƒ¹å–®ç¶­è­·</a></li>
-					<li><a href="<%=request.getContextPath()%>/PURCHASE/pur.jsp">æ¡è³¼å–®ç¶­è­·</a></li>
-					<li><a
-						href="<%=request.getContextPath()%>/BILL_OF_PURCHASE/bop.jsp">é€²è²¨å–®ç¶­è­·</a></li>
-				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i
-					class="glyphicon glyphicon-shopping-cart"></i> <span>éŠ·è²¨ç³»çµ±</span>
+					class="fa fa-edit"></i> <span>¶i³f§@·~</span>
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/VALUATION/valuation.jsp">å ±åƒ¹å–®ç¶­è­·</a></li>
-					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">è¨‚å–®ç¶­è­·</a></li>
+						href="<%=request.getContextPath()%>/REQUISITION/requisition.jsp">½ĞÁÊ³æºûÅ@</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/SHIPMENTS/shipments.jsp">å‡ºè²¨å–®ç¶­è­·</a></li>
+						href="<%=request.getContextPath()%>/QUOTATION/quotation.jsp">¸ß»ù³æºûÅ@</a></li>
+					<li><a href="<%=request.getContextPath()%>/PURCHASE/pur.jsp">±ÄÁÊ³æºûÅ@</a></li>
+					<li><a
+						href="<%=request.getContextPath()%>/BILL_OF_PURCHASE/bop.jsp">¶i³f³æºûÅ@</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
-					class="fa fa-book"></i> <span>å­˜è²¨ä½œæ¥­</span>
+					class="glyphicon glyphicon-shopping-cart"></i> <span>¾P³f¨t²Î</span>
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/PRODUCT/product.jsp">å•†å“ç®¡ç†</a></li>
+						href="<%=request.getContextPath()%>/VALUATION/valuation.jsp">³ø»ù³æºûÅ@</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">­q³æºûÅ@</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/PROMOTING/promoting.jsp">ä¿ƒéŠ·å•†å“ç®¡ç†</a></li>
+						href="<%=request.getContextPath()%>/SHIPMENTS/shipments.jsp">¥X³f³æºûÅ@</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
-					class="glyphicon glyphicon-log-out"></i> <span>é€€è²¨ä½œæ¥­</span>
+					class="fa fa-book"></i> <span>¦s³f§@·~</span>
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/RETURNS/Return_Items.jsp">é€€è²¨å“ç®¡ç†</a></li>
+						href="<%=request.getContextPath()%>/PRODUCT/product.jsp">°Ó«~ºŞ²z</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/RETURNS/returns.jsp">é€€è²¨å–®ç®¡ç†</a></li>
-					<li><a
-						href="<%=request.getContextPath()%>/INVO/select_page.jsp">ä½œå»¢ç™¼ç¥¨ç®¡ç†</a></li>
+						href="<%=request.getContextPath()%>/PROMOTING/promoting.jsp">«P¾P°Ó«~ºŞ²z</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
-					class="fa fa-usd"></i> <span>é‡‘æµç®¡ç†</span>
+					class="glyphicon glyphicon-log-out"></i> <span>°h³f§@·~</span>
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/SHIFTREPORT/shiftreport.jsp">ç­åˆ¥å ±è¡¨ç¶­è­·</a></li>
-					<li><a href="<%=request.getContextPath()%>/COUPON/coupon.jsp">æŠ˜åƒ¹åˆ¸</a></li>
+						href="<%=request.getContextPath()%>/RETURNS/Return_Items.jsp">°h³f«~ºŞ²z</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">æŠ˜æ‰£ç®¡ç†</a></li>
+						href="<%=request.getContextPath()%>/RETURNS/ReturnList.jsp">°h³f³æºŞ²z</a></li>
+					<li><a
+						href="<%=request.getContextPath()%>/INVO/select_page.jsp">§@¼oµo²¼ºŞ²z</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
-					class=" fa fa-bar-chart-o"></i> <span>å ±è¡¨åˆ†æ</span>
+					class="fa fa-usd"></i> <span>ª÷¬yºŞ²z</span>
+			</a>
+				<ul class="sub">
+					<li><a
+						href="<%=request.getContextPath()%>/SHIFTREPORT/shiftreport.jsp">¯Z§O³øªíºûÅ@</a></li>
+					<li><a href="<%=request.getContextPath()%>/COUPON/coupon.jsp">§é»ù¨é</a></li>
+					<li><a
+						href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">§é¦©ºŞ²z</a></li>
+				</ul></li>
+			<li class="sub-menu"><a href="javascript:;"> <i
+					class=" fa fa-bar-chart-o"></i> <span>³øªí¤ÀªR</span>
 			</a>
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
@@ -126,65 +153,166 @@
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
-	</aside> <!--sidebar end--> <section id="main-content"> <section
-		class="wrapper">
+	</aside> <!--sidebar end--> <section id="main-content"> <section class="wrapper">
+<!-- -----------------------------------------------------------¬d¸ß----------------------------------------------------------- -->
+<c:if test="${not empty errorMsgs}">
+<font color='red'>½Ğ­×¥¿¥H¤U¿ù»~:
+<ul>
+	<c:forEach var="message" items="${errorMsgs}">
+		<li>${message}</li>
+	</c:forEach>
+</ul>
+</font>
+</c:if>
+	
 	<div class="row mt">
-		<div class="main">
-			<div class="alert alert-info" role="alert">
+		<div class="col-sm-12">
+		<div id="add" class="main">
+			<div class="tab-content">
+				<nav class="alert alert-info">
 				<div>
-					<a href="#"><span class="glyphicon glyphicon-file"></span>æ–°å¢</a> <a
-						href="#"><span class="glyphicon glyphicon-search"></span>æŸ¥è©¢</a> <a
-						href="#"><span class="glyphicon glyphicon-pencil"></span>ä¿®æ”¹</a> <a
-						href="#"><span class="glyphicon glyphicon-remove"></span>åˆªé™¤</a> <a
-						href="#"><span class="glyphicon glyphicon-print"></span>åˆ—å°</a> <a
-						href="#"><span id="ok-sign"
-						class="glyphicon glyphicon-ok-sign">é€å‡º</span></a>
+				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>·s¼W</a>¡@¡@¡@
+		    	<a href="#" onclick="window.open('searchItem.jsp', 'Yahoo', config='height=500,width=850')"><span class="glyphicon glyphicon-search"></span>¬d¸ß</a>¡@¡@¡@
+		    	<a href="#"><span class="glyphicon glyphicon-pencil"></span>­×§ï</a>¡@¡@¡@
+		    	<a href="#"><span class="glyphicon glyphicon-remove"></span>§R°£</a>¡@¡@¡@
+		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>¦C¦L</a>¡@¡@¡@
+		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">°e¥X</span></a>¡@
 				</div>
+
+				</nav>
 			</div>
-			<FORM METHOD="post" ACTION="insert.do" name="form1">
-				<form class="form-inline">
-					<div class="form-group">
-						<label for="exampleInputName2"> é€€è²¨å–®ç·¨è™Ÿ</label> <input type="text"
-							class="form-control" id="exampleInputName2">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputName2">é€€è²¨æ—¥æœŸ</label> <input type="date"
-							class="form-control" id="exampleInputName2">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail2">å» å•†ç·¨è™Ÿ</label> <input type="text"
-							class="form-control" id="exampleInputEmail2" placeholder="C00001">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputName2">å» å•†åç¨±</label> <input type="text"
-							class="form-control" id="exampleInputName2" placeholder="å¾·å„€æ•¸ä½">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputName2">ä¿®æ”¹äººå“¡</label> <input type="text"
-							class="form-control" id="exampleInputName2" placeholder="E00001">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputName2">ä¿®æ”¹æ—¥æœŸ</label> <input type="date"
-							class="form-control" id="exampleInputName2">
-					</div>
-					</br>
-					<div class="mainspace">
-						<div class="form-group">
-							<label for="exampleInputName2"> å‚™ è¨»</label> <input type="text"
-								class="form-control" id="exampleInputName2" placeholder="E00003">
-						</div>
-						<div class="form-group">
-							<label for="exampleInputName2">ç‹€ æ…‹</label> <input type="text"
-								class="form-control" id="exampleInputName2" placeholder="ï¼¹">
-						</div>
-				</form>
+			
+			<FORM METHOD="post" ACTION="insert.do" name="form1" class="form-inline">
+				<div class="form-group">
+					<label for="exampleInputName2">¡@°h³f³æ½s¸¹¡G</label> 
+					<input type="text"¡@name="prod_name" class="form-control">
+				</div> ¡@¡@
+				<div class="form-group">
+					<label for="exampleInputName2">°h³f¤é´Á¡G</label> 
+					<input type="date"¡@name="com_id" class="form-control" placeholder="C0001">
+				</div>¡@¡@
+				<div class="form-group">
+					<label for="exampleInputEmail2">¼t°Ó½s¸¹¡G</label> 
+					<input type="text"¡@name="re_quantity" class="form-control" placeholder="50">
+				</div>¡@¡@
+				<div class="form-group">
+					<label for="exampleInputName2">¼t°Ó¦WºÙ¡G</label> 
+					<input type="text"¡@name="remark" class="form-control">
+				</div>¡@¡@
+				<div class="form-group">
+					<label for="exampleInputName2">­×§ï¤H­û¡G</label> 
+					<input type="text"¡@name="remark" class="form-control">
+				</div>
+				<div class="mainspace">
+				<div class="form-group">
+					<label for="exampleInputName2">¡@­×§ï¤é´Á¡G</label> 
+					<input type="date"¡@name="remark" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputName2">³Æµù¡G</label> 
+					<input type="text"¡@name="remark" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputName2">ª¬ºA¡G</label> 
+					<input type="text"¡@name="remark" class="form-control">
+				</div>
+				</div>
 			</FORM>
 		</div>
-	</div>
+		
 
-	</section> </section> </section>
+<!--  <fieldset> -->
+<!-- 	<legend>¬d¸ß</legend> -->
+<!-- 	<table> -->
+<!-- 	 <tr> -->
+<!-- 	 <form action="getOne.do" method="post"> -->
+<!-- 	 	<td style="text-align:right;">°h³f³æ½s¸¹</td> -->
+<!-- 	 	<td style="text-align:left;"> -->
+<!-- 	 		<input type='text' name='ret_id'/> -->
+<!-- 	 		<input type="submit" value="¬d¸ß"> -->
+<!-- 	 		<input type="hidden" name="action" value="getOne"> -->
+<!-- 	 	</td> -->
+<!-- 	 </form> -->
+<!-- 	 <form action="getDate.do" method="post"> -->
+<!-- 	 	<td style="text-align:right;">°h³f¤é´Á</td> -->
+<!-- 	 	<td style="text-align:left;"> -->
+<!-- 	 		<input type="date" name="ret_date"/> -->
+<!-- 	 		<input type="submit" value="¬d¸ß"> -->
+<!-- 	 		<input type="hidden" name="action" value="getDate"> -->
+<!-- 	 	</td> -->
+<!-- 	 </form> -->
+<!-- 	 <form action="getComName.do" method="post">	  -->
+<!-- 	 	<td style="text-align:right;">¼t°Ó¦WºÙ</td> -->
+<!-- 	 	<td style="text-align:left;"> -->
+<!-- 	 		<input type='text' name='com_name'/> -->
+<!-- 	 		<input type="submit" value="¬d¸ß"> -->
+<!-- 	 		<input type="hidden" name="action" value="getComName"> -->
+<!-- 	 	</td> -->
+<!-- 	 </form> -->
+<!-- 	</table> -->
+<!--  </fieldset> -->
 
-	<script
+<!-- -----------------------------------------------------------ªí®æ----------------------------------------------------------- -->
+<div>
+<div class="titlelist">°h³f³æ</div>
+<table id="tablelist"¡@class="table table-bordered table-striped table-hover">
+<thead>
+<tr>
+	<td align='center'>°h³f³æ½s¸¹</td>
+	<td align='center'>°h³f¤é´Á</td>
+	<td align='center'>¼t°Ó½s¸¹</td>
+	<td align='center'>¼t°Ó¦WºÙ</td>
+	<td align='center'>­×§ï¤H­û</td>
+	<td align='center'>­×§ï¤é´Á</td>
+	<td align='center'>³Æµù</td>
+	<td align='center'>ª¬ºA</td>
+	<td align='center'>¬d¸ß©ú²Ó</td>
+	<td align='center'>­×§ï</td>
+	<td align='center'>§R°£</td>
+</tr>
+</thead>
+
+<c:forEach var="list" items="${list}">
+		<tr align='center' valign='middle'>
+			<td>${list.ret_id}</td>
+			<td>${list.ret_date}</td>
+			<td>${list.com_id}</td>
+			<td>${list.com_name}</td>
+			<td>${list.key_id}</td>
+			<td>${list.key_date}</td>
+			<td>${list.remark}</td>
+			<td>${list.status}</td>
+		<td>
+			  <FORM METHOD="post" ACTION="getDetail.do">
+			     <input type="submit" value="¬d¸ß">
+			     <input type="hidden" name="ret_id" value="${list.ret_id}">
+			     <input type="hidden" name="action"	value="getDetail">
+			  </FORM>
+		</td>
+		<td>
+			  <FORM METHOD="post" ACTION="getOne_For_Update.do">
+			     <input type="submit" value="­×§ï">
+			     <input type="hidden" name="ret_id" value="${list.ret_id}">
+			     <input type="hidden" name="action"	value="getOne_For_Update">
+			  </FORM>
+		</td>
+		<td>
+			  <FORM METHOD="post" ACTION="delete.do">
+			    <input type="submit" value="§R°£">
+			    <input type="hidden" name="ret_id" value="${list.ret_id}">
+			    <input type="hidden" name="action"value="delete">
+			  </FORM>
+		</td>
+		</tr>
+	</c:forEach>
+	</table>
+</div>
+</div>
+</div>
+</section> </section> </section>
+
+
+<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
 		!window.jQuery
@@ -193,13 +321,31 @@
 	</script>
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
-	<script class="include" type="text/javascript"
-		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
+	<script class="include" type="text/javascript" src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"
 		type="text/javascript"></script>
 
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
+	<!------------------------------------------------ µ{¦¡ --------------------------------------------------------------->
+	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
+		type="text/javascript"></script>
+		
+		
+<script type="text/javascript">
+$(function () {
+	
+	$('#tablelist').DataTable();
+	
+})
+	
+</script>
+<!-- <ul> -->
+<!--   <li><a href='/RETURNS/addList.jsp'>·s¼W°h³f³æ</a></li> -->
+<!--   <li><a href='Index5.jsp'>¦^­º­¶</a></li> -->
+<!-- </ul> -->
+
 </body>
 </html>

@@ -97,7 +97,7 @@
 					</a>
 						<ul class="sub">
 							<li><a href="RETURNS/Return_Items.jsp">退貨品管理</a></li>
-							<li><a href="RETURNS/returns.jsp">退貨單管理</a></li>
+							<li><a href="RETURNS/ReturnList.jsp">退貨單管理</a></li>
 							<li><a href="INVO/select_page.jsp">作廢發票管理</a></li>
 						</ul></li>
 					<li class="sub-menu"><a href="javascript:;"> <i

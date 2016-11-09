@@ -115,17 +115,18 @@
 				<!-- sidebar menu end-->
 			</div>
 		</aside>
-		<!--sidebar end--> <section id="main-content"> <section
-		class="wrapper"> 
+		<!--sidebar end--> 
+		<section id="main-content"> <section class="wrapper"> 
+	<div class="row mt">
 	<nav class="nav navbar-default">
 		<ul class="nav navbar-nav">
-			<li><a data-toggle="tab" href="#search">搜尋</a></li>
+			<li id="search1"><a data-toggle="tab" href="#search">搜尋</a></li>
 			<li><a data-toggle="tab" href="#new">新增</a></li>
 			<li><a data-toggle="tab" href="#print" class="print">列印</a></li>
+			<li id="result"><a data-toggle="tab" href="#resolution">查詢結果</a></li>
 		</ul>
 	</nav>
 
-	<div class="row mt">
 		<div class="tab-content">
 			<div id="search" class="tab-pane fade">
 				<%-- 錯誤表列 --%>
@@ -192,8 +193,8 @@
 								</div>
 							</div>
 						</form>
-					</div>
 					<div class="sub-context"></div>
+					</div>
 				</div>
 
 			</div>
@@ -204,15 +205,15 @@
 							<i class="fa fa-angle-right"></i> 新增
 						</h4>
 						<!--錯誤表列 -->
-						<c:if test="${not empty errorMsgs}">
-							<font color='red'>請修正以下錯誤:
-								<ul>
-									<c:forEach var="message" items="${errorMsgs}">
-										<li>${message}</li>
-									</c:forEach>
-								</ul>
-							</font>
-						</c:if>
+<%-- 						<c:if test="${not empty errorMsgs}"> --%>
+<!-- 							<font color='red'>請修正以下錯誤: -->
+<!-- 								<ul> -->
+<%-- 									<c:forEach var="message" items="${errorMsgs}"> --%>
+<%-- 										<li>${message}</li> --%>
+<%-- 									</c:forEach> --%>
+<!-- 								</ul> -->
+<!-- 							</font> -->
+<%-- 						</c:if> --%>
 						<form class="form-inline" METHOD="post" ACTION="insertDisc.do"
 							id="insert">
 							<div class="form-group">
@@ -227,7 +228,15 @@
 						</form>
 					</div>
 				</div>
-				<div class="insert-context"></div>
+
+			</div>
+			<div id="resolution" class="tab-pane fade">
+				<div class="form-panel">
+					<h4 class="mb">
+						<i class="fa fa-angle-right"></i> 查詢結果
+					</h4>
+					<div class="result-context"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -260,7 +269,11 @@
 						"url" : all.attr("action"),
 						"data" : all.serialize(),
 						"success" : function(data) {
-							$(".sub-context").html(data)
+							$(".result-context").html(data);
+							$("#result").attr("class","active");
+							$("#search1").removeAttr("class");
+							$("#search").attr("class","tab-pane fade");
+							$("#resolution").attr("class","tab-pane active");
 						},
 					});
 				} else if ("以折扣%數查詢" == $(this).val()) {
@@ -270,7 +283,11 @@
 						"url" : pre.attr("action"),
 						"data" : pre.serialize(),
 						"success" : function(data) {
-							$(".sub-context").html(data)
+							$(".result-context").html(data)
+							$("#result").attr("class","active");
+							$("#search1").removeAttr("class");
+							$("#search").attr("class","tab-pane fade");
+							$("#resolution").attr("class","tab-pane active");
 						},
 					});
 				} else if ("以折扣身份查詢" == $(this).val()) {
@@ -280,20 +297,32 @@
 						"url" : count.attr("action"),
 						"data" : count.serialize(),
 						"success" : function(data) {
-							$(".sub-context").html(data)
+							$(".result-context").html(data)
+							$("#result").attr("class","active");
+							$("#search1").removeAttr("class");
+							$("#search").attr("class","tab-pane fade");
+							$("#resolution").attr("class","tab-pane active");
 						},
 					});
 				} else if ("送出新增" == $(this).val()) {
 					var insert = $("#insert");
-					alert(2);
 					$.ajax({
 						"type" : insert.attr("method"),
 						"url" : insert.attr("action"),
 						"data" : insert.serialize(),
 						"success" : function(data) {
-							alert(1);
-							alert(data);
-							$(".insert-context").html(data)
+// 							$.ajax({
+// 								"type" : "post",
+// 								"url" : "allDisc.do",
+// 								"data" : {},
+// 								"success" : function(data) {
+// 									$(".result-context").html(data);
+// 									$("#result").attr("class","active");
+// 									$("#search1").removeAttr("class");
+// 									$("#search").attr("class","tab-pane fade");
+// 									$("#resolution").attr("class","tab-pane active");
+// 								},
+// 							});
 						},
 					});
 				}

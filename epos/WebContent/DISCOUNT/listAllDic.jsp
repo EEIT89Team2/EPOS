@@ -11,19 +11,36 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+.table > thead:first-child > tr:first-child > td {
+	background:#575c67;
+	text-align: center;
+}
+
+</style>
 <script type="text/JavaScript">
 $(document).ready(function() {
-		$('input[value="刪除"]').click(function() {
-
+		$('.fa-trash-o').click(function() {
+		var id = $(this).attr("target");
  				$.ajax({
 					"type" : "post",
 					"url" : "deleteDisc.do",
-					"data" : $(this).serialize(),
+					"data" : {dis_id:id},
 					"success" : function(data) {
-						$("#sub-content").html(data)
+						$.ajax({
+							"type" : "post",
+							"url" : "allDisc.do",
+							"data" : {},
+							"success" : function(data) {
+								$(".result-context").html(data);
+								$("#result").attr("class","active");
+								$("#search1").removeAttr("class");
+								$("#search").attr("class","tab-pane fade");
+								$("#resolution").attr("class","tab-pane active");
+							},
+						});
 					},
 				});
-
 		})
 })
 </script>
@@ -32,8 +49,7 @@ $(document).ready(function() {
 <body>
 	<section id="container"> <section class="wrapper">
 	<div class="row mt">
-		<div class="col-lg-7">
-			<div class="showback">
+
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
 					<font color='red'>請修正以下錯誤:
@@ -46,14 +62,15 @@ $(document).ready(function() {
 				</c:if>
 
 				<table border='1' bordercolor='#CCCCFF' width='800'
-					class="table table-bordered table-condensed  table-hover">
+					class="table table-bordered table-striped  table-hover">
+					<thead>
 					<tr>
-						<th class="numeric">折扣身分</th>
-						<th class="numeric">折扣%數</th>
-						<th class="numeric">修改</th>
-						<th class="numeric">刪除</th>
+						<td class="numeric">折扣身分</td>
+						<td class="numeric">折扣%數</td>
+						<td class="numeric">修改</td>
+						<td class="numeric">刪除</td>
 					</tr>
-
+					</thead>
 					<c:forEach var="discVO" items="${list}">
 						<tr align='center' valign='middle'>
 							<td class="numeric">${discVO.dis_id}</td>
@@ -62,23 +79,20 @@ $(document).ready(function() {
 							<td class="numeric">
 								<form METHOD="post"
 									ACTION="allForUpdateDisc.do">
-									<input type="submit" value="修改"> 
-									<input type="hidden" name="dis_id" value="${discVO.dis_id}">
+<!-- 									<input type="submit" value="修改">  -->
+									<button type="button" class="btn btn-success"><i class="fa fa-pencil" target="${discVO.dis_id}"></i></button>
 								</form>
 							</td>
 							<td class="numeric">
 								<form METHOD="post" ACTION="deleteDisc.do" class="delete">
-									<input type="button" value="刪除" class="btn btn-primary btn-xs">
-<!--                                     <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>									 -->
-									<input type="hidden" name="dis_id" value="${discVO.dis_id}">
+                                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" target="${discVO.dis_id}"></i></button>									
 								</form>
 							</td>
 						</tr>
 					</c:forEach>
 				</table>
 			</div>
-		</div>
-	</div>
+
 	</section> </section>
 
 </body>

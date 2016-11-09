@@ -136,13 +136,13 @@
 	<!--sidebar end-->
 	<section id="main-content"> <section id="container">
 	<section class="wrapper"> <nav class="nav navbar-default">
+	<div class="row mt">
 	<ul class="nav navbar-nav">
 		<li><a data-toggle="tab" href="#search">搜尋</a></li>
 		<li><a data-toggle="tab" href="#new">新增</a></li>
 		<li><a data-toggle="tab" href="#print" class="print">列印</a></li>
 	</ul>
 	</nav>
-	<div class="row mt">
 
 		<div class="tab-content">
 			<div id="search" class="tab-pane fade">
@@ -191,14 +191,14 @@
 									<input type="text" class="form-control" name="prod_group"
 										id="prod_group">
 								</div>
-
 							</form>
+							<div id="input"></div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div id="new" class="tab-pane fade">
-				錯誤表列
+<!-- 				錯誤表列 -->
 				<c:if test="${not empty param.message}">
 					<font color='red'>請修正以下錯誤:
 						<ul>
@@ -260,7 +260,7 @@
 							action : "getAllProd.do"
 						},
 						"success" : function(data) {
-							$("#main-content").html(data)
+							$("#input").html(data)
 						},
 					});
 				} else if ("商品編號搜尋" == $(this).val()) {
@@ -272,7 +272,7 @@
 							prod_id : $("#prod_id").val()
 						},
 						"success" : function(data) {
-							$("#main-content").html(data)
+							$("#input").html(data)
 						},
 					});
 				} else if ("商品名稱關鍵字查詢" == $(this).val()) {
@@ -284,7 +284,7 @@
 							prod_name : $("#prod_name").val()
 						},
 						"success" : function(data) {
-							$("#main-content").html(data)
+							$("#input").html(data)
 						},
 					});
 				} else if ("商品分類關鍵字查詢" == $(this).val()) {
@@ -296,7 +296,7 @@
 							prod_group : $("#prod_group").val()
 						},
 						"success" : function(data) {
-							$("#main-content").html(data)
+							$("#input").html(data)
 						},
 					});
 				}

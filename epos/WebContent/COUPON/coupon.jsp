@@ -131,13 +131,13 @@
 	</div>
 	</aside> <!--sidebar end--> <section id="main-content"> <section
 		class="wrapper"> <nav class="nav navbar-default">
+	<div class="row mt">
 	<ul class="nav navbar-nav">
 		<li><a data-toggle="tab" href="#search">搜尋</a></li>
 		<li><a data-toggle="tab" href="#new">新增</a></li>
 		<li><a data-toggle="tab" href="#print">列印</a></li>
 	</ul>
 	</nav>
-	<div class="row mt">
 
 
 		<div class="tab-content">

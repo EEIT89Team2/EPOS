@@ -74,6 +74,8 @@ public class Order_Controller extends HttpServlet {
 			String remark = request.getParameter("remark");
 			String shift = request.getParameter("shift");
 			String key_id = request.getParameter("key_id");
+//			String weather = request.getParameter("weather");
+			
 			if (key_id == null || key_id.trim().length() == 0) {
 				errorMsgs.add("修改人員請勿空白");
 			}
@@ -108,6 +110,7 @@ public class Order_Controller extends HttpServlet {
 			ordVO.setRemark(remark);
 			ordVO.setShift(shift);
 			ordVO.setKey_id(key_id);
+//			ordVO.setWeather(weather);
 			ordVO.setKey_date(Date.valueOf(key_date));
 
 			// setOrd明細檔參數

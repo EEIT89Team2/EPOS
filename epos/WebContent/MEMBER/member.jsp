@@ -130,93 +130,30 @@
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
-	</aside> <!--sidebar end--> <section id="main-content"> <section
-		class="wrapper">
-	<div class="row mt">
-		<%-- 錯誤表列 --%>
-		<c:if test="${not empty errorMsgs}">
-			<font color='red'>請修正以下錯誤:
-				<ul>
-					<c:forEach var="message" items="${errorMsgs}">
-						<li>${message}</li>
-					</c:forEach>
-				</ul>
-			</font>
-		</c:if>
+	</aside> <!--sidebar end-->
+		 <section id="main-content"> 
+	 		<section class="wrapper">
+	 		<div class="row mt">
+				<nav class="nav navbar-default">
+					<div class="container-fluid" style="float: right; left: -50%; position: relative;">
+						<form name="submitForm" method="POST" action="allMemb.do">
+							<input type="hidden" name="param1" value="param1Value">
+							<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative;">
+								<li><a class="insertMem" href="addMem.jsp"><span class="insertMemText">新增會員</span></a></li>
+    							<li><a href="javascript:document.submitForm.submit()">查詢全部會員</A></li>    			
+								<li><a class="selectMemId" href="selectMemId.jsp"><span class="selectMemIdText">依會員編號查詢</span></a></li>
+								<li><a class="selectManyMem" href="selectManyMem.jsp"><span class="selectManyMemText">查詢多筆會員</span></a></li>
+								<li><a class="selectMemName" href="selectMemName.jsp"><span class="selectMemNameText">依會員姓名查詢</span></a></li>
+								<li><a class="selectMemDate" href="selectMemDate.jsp"><span class="selectMemDateText">依新增日期查詢</span></a></li>			
+							</ul>
+						</form>
+					</div>
+				</nav>
+				</div>
+			</section> 
+		</section>
+	</section>
 
-		<h3>查詢</h3>
-		<%-- 查詢單筆 --%>
-		<ul>
-			<jsp:useBean id="MemSvc" scope="page"
-				class="com.member.model.MemberService" />
-
-			<li>
-				<FORM METHOD="post" ACTION="Memb.do">
-					<b>選擇會員ID:</b> <select size="1" name="mem_id">
-						<c:forEach var="memVO" items="${MemSvc.all}">
-							<option value="${memVO.mem_id}">${memVO.mem_id}
-						</c:forEach>
-					</select> <input type="submit" value="送出"> <input type="hidden"
-						name="action" value="getOne_For_Display">
-				</FORM>
-			</li>
-			<p>
-			<li>
-				<FORM METHOD="post" ACTION="Memb.do">
-					<b>選擇會員姓名:</b> <select size="1" name="mem_id">
-						<c:forEach var="memVO" items="${MemSvc.all}">
-							<option value="${memVO.mem_id}">${memVO.mem_name}
-						</c:forEach>
-					</select> <input type="submit" value="送出"> <input type="hidden"
-						name="action" value="getOne_For_Display">
-				</FORM>
-			</li>
-			<%-- 查詢部分 --%>
-			<p>
-			<li>
-				<FORM METHOD="post" ACTION="idsMemb.do">
-					<b>查詢會員(多):</b> <select size="1" name="mem_id_1">
-						<c:forEach var="memVO" items="${MemSvc.all}">
-							<option value="${memVO.mem_id}">${memVO.mem_id}
-						</c:forEach>
-					</select> <select size="1" name="mem_id_2">
-						<c:forEach var="memVO" items="${MemSvc.all}">
-							<option value="${memVO.mem_id}">${memVO.mem_id}
-						</c:forEach>
-					</select> <input type="submit" value="送出">
-					<!-- 				<input type="hidden" name="action" value="getIds_For_Display"> -->
-				</FORM>
-			</li>
-			<p>
-			<li>
-				<FORM METHOD="post" ACTION="datesMem.do">
-					<b>查詢新增會員日期:</b> <input type="date" name="key_date_1"> <input
-						type="date" name="key_date_2"> <input type="submit"
-						value="送出">
-					<!-- 				<input type="hidden" name="action" value="getDates_For_Display"> -->
-				</FORM>
-			</li>
-		</ul>
-		<%-- 查詢全部 --%>
-
-		<FORM METHOD="post"
-			ACTION="<%=request.getContextPath()%>/MEMBER/allMemb.do">
-			<input type="submit" value="查詢全部">
-			<!-- 	<input type="hidden" name="action" value="getAll_For_Display"> -->
-		</FORM>
-
-		<%-- 新增資料 --%>
-		<h3>新增資料</h3>
-
-		<ul>
-			<li><a href='MEMBER/addMem.jsp'>新增資料</a></li>
-		</ul>
-
-	</div>
-
-	</section> </section> </section>
-
-	<
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
@@ -226,14 +163,11 @@
 	</script>
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
-	<script class="include" type="text/javascript"
-		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
+	<script class="include" type="text/javascript" src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
-	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"
-		type="text/javascript"></script>
+	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />" type="text/javascript"></script>
 
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
-
 </body>
 </html>

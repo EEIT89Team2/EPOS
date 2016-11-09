@@ -24,7 +24,7 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>修改會員資料</title>
+<title>新增會員</title>
 </head>
 <body>
 	<section id="container"> <!--header start--> 
@@ -159,85 +159,34 @@
 			</section> 
 		</section>
 	</section>
-	<h3>會員資料:</h3>
+<center>
 	<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font color='red'>請修正以下錯誤:
-			<ul>
-				<c:forEach var="message" items="${errorMsgs}">
-					<li>${message}</li>
-				</c:forEach>
-			</ul>
-		</font>
-	</c:if>
- <center>
-	<FORM METHOD="post" ACTION="updateMem.do" name="form2">
-		<table border="0">
+		<c:if test="${not empty errorMsgs}">
+			<font color='red'>請修正以下錯誤:
+				<ul>
+					<c:forEach var="message" items="${errorMsgs}">
+						<li>${message}</li>
+					</c:forEach>
+				</ul>
+			</font>
+		</c:if>
 
-			<tr>
-				<td>會員編號:</td>
-				<td><input type="text" name="mem_id" size="20"
-					value="${memVO.mem_id}" readonly="readonly" style="color: gray"/></td>
-			</tr>
-			<tr>
-				<td>密碼:</td>
-				<td><input type="text" name="mem_pwd" size="20"
-					value="${memVO.mem_pwd}" /></td>
-			</tr>
-			<tr>
-				<td>姓名:</td>
-				<td><input type="text" name="mem_name" size="20"
-					value="${memVO.mem_name}" /></td>
-			</tr>
-			<tr>
-				<td>身分證:</td>
-				<td><input type="text" name="mem_idnum" size="20"
-					value="${memVO.mem_idnum}" /></td>
-			</tr>
-			<tr>
-				<td>生日:</td>
-				<td><input type="date" name="mem_bday" size="20"
-					value="${memVO.mem_bday}" /></td>
-			</tr>
-			<tr>
-				<td>連絡電話:</td>
-				<td><input type="text" name="mem_phone" size="20"
-					value="${memVO.mem_phone}" /></td>
-			</tr>
-			<tr>
-				<td>地址:</td>
-				<td><input type="text" name="mem_addr" size="20"
-					value="${memVO.mem_addr}" /></td>
-			</tr>
-			<tr>
-				<td>e-mail:</td>
-				<td><input type="text" name="mem_mail" size="20"
-					value="${memVO.mem_mail}" /></td>
-			</tr>
-			<tr>
-				<td>會員到期日:</td>
-				<td><input type="date" name="mem_due" size="20"
-					value="${memVO.mem_due}" /></td>
-			</tr>
-			<tr>
-				<td>建檔人員:</td>
-				<td><input type="text" name="key_id" size="20"
-					value="${memVO.key_id}" /></td>
-			</tr>
-			<tr>
-				<td>統編:</td>
-				<td><input type="text" name="mem_um" size="20"
-					value="${memVO.mem_um}" /></td>
-			</tr>
-
-
-		</table>
-		<br> 
-<!-- 		<input type="hidden" name="action" value="update">  -->
-		<input type="submit" value="送出修改">
-	</FORM>
-	</center>
-		<script
+		<h3>查詢</h3>
+	<jsp:useBean id="MemSvc" scope="page" class="com.member.model.MemberService" />
+				<FORM METHOD="post" ACTION="idsMemb.do">
+					<b>查詢會員(多):</b> <select size="1" name="mem_id_1">
+						<c:forEach var="memVO" items="${MemSvc.all}">
+							<option value="${memVO.mem_id}">${memVO.mem_id}
+						</c:forEach>
+					</select> <select size="1" name="mem_id_2">
+						<c:forEach var="memVO" items="${MemSvc.all}">
+							<option value="${memVO.mem_id}">${memVO.mem_id}
+						</c:forEach>
+					</select> <input type="submit" value="送出">
+					<!-- 				<input type="hidden" name="action" value="getIds_For_Display"> -->
+				</FORM>
+</center>	
+	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
 		!window.jQuery
@@ -254,6 +203,5 @@
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
 
 	<jsp:include page="/COMMON/footer_mem.jsp" />
-
 </body>
 </html>

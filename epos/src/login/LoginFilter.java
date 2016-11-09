@@ -31,8 +31,10 @@ public class LoginFilter implements Filter {
 
 			servletPath=req.getServletPath();
 			boolean flag=false;
-			if(servletPath.substring(0, 10).equals("/resources")){
-				flag=true;
+			if (servletPath.length() > 10) {
+				if (servletPath.substring(0, 10).equals("/resources")) {
+					flag = true;
+				}
 			}
 
 			if (req.getServletPath().equals("/index.jsp")||req.getServletPath().equals("/login.do")||req.getServletPath().equals("/sign_in.jsp")||flag) {

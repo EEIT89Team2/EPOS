@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
 <title>全部詢價單資料</title>
+
 <link href="<c:url value="../resources/css/bootstrap.css" />"
 	rel="stylesheet">
 <script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
@@ -78,6 +79,7 @@ body {
 		$(function() {
 			$('.detail').on('click', function() {
 				var url = "getByReq_id.do";
+
 				var req_id = $(this).attr('target');
 				$.ajax({
 					type : "POST",

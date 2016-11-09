@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>修改請購單</title>
+
 <link href="<c:url value="../resources/css/bootstrap.css" />"
 	rel="stylesheet">
 
@@ -94,6 +95,7 @@ body {
 		</div>
 	</div>
 	</section></section>
+
 	<script>
 		$(function() {
 

@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
 <title>全部詢價單資料</title>
+
 <link href="<c:url value="../resources/css/bootstrap.css" />"
 	rel="stylesheet">
 
@@ -86,6 +87,7 @@ body {
 					data : {
 						"req_id" : req_id
 					},
+
 					success : function(data) {
 						$("#main-content").html(data);
 					}

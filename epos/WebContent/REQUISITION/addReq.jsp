@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增請購單</title>
+
 <link href="<c:url value="../resources/css/bootstrap.css" />"
 	rel="stylesheet">
 
@@ -171,5 +172,6 @@ input {
 	</script>
 	<a href="../index.jsp">回首頁</a>
 	<a href="javascript:" onclick="history.back(); ">回上頁</a>
+
 </body>
 </html>

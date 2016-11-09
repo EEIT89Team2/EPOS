@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查詢請購單</title>
+
 <link href="<c:url value="../resources/css/bootstrap.css" />"
 	rel="stylesheet">
 
@@ -61,6 +62,7 @@ body {
 			$('#sbt').on('click', function() {
 
 				var url = "findByDate.do";
+
 				$.ajax({
 					type : "POST",
 					url : url,

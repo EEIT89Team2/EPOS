@@ -16,10 +16,11 @@ import javax.servlet.http.HttpSession;
 import com.employee.model.EmpVO;
 
 
-//@WebFilter(urlPatterns = {
-//		"/REQUISITION/addReq.jsp",
-//		"/REQUISITION/SelectReq.jsp"					
-//})
+@WebFilter(urlPatterns = {
+		"/REQUISITION/addReq.jsp",
+		"/REQUISITION/SelectReq.jsp"					
+})
+//@WebFilter(urlPatterns = {"/*"})
 public class CheckPassCodeFilter implements Filter {
 
 	String requestURI;
@@ -71,6 +72,7 @@ public class CheckPassCodeFilter implements Filter {
 		String servletPath = req.getServletPath();		
 		servletPath = servletPath.substring(servletPath.lastIndexOf("/"));		
 		for(int i=0;i<=(passCode.length)-1;i++){
+//			System.out.println(passCode[i]);
 			if(passCode[i].equals(servletPath) || passCode[i].equals("ALL") ){
 				return true;
 			}				

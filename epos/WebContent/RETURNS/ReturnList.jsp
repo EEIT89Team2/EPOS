@@ -89,6 +89,10 @@ print(text)
 		border-color:#e86262;
 	}
 	
+	.btn-primary{
+		margin-top:60px;
+	}
+	
 	
 	
 
@@ -258,7 +262,7 @@ print(text)
 				
 				
 			</FORM>
-
+			<button type="button" id="addNewDetail" class="btn btn-primary">新增明細</button>
 		</div>
 		<!-- -----------------------------------------------------------表格----------------------------------------------------------- -->
 		<div>

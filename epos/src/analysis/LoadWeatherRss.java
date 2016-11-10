@@ -22,6 +22,14 @@ public class LoadWeatherRss {
 //			System.out.println("Key : "+ key.toString() + " Value : "+ map1.get(key));
 //		}
 //	}
+	public static void main(String[] args){
+		LoadWeatherRss testLoadXML = new LoadWeatherRss();
+		System.out.println("======"+testLoadXML.getNowWeather());
+		Map<String, String> map1 = testLoadXML.getWeekWeather();
+		for(String key : map1.keySet()){
+			System.out.println("Key : "+ key.toString() + " Value : "+ map1.get(key));
+		}
+	}
 	
 	public Map<String, String> getWeekWeather(){
 		return this.weekWeather;

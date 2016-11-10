@@ -1,11 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.*"%>
 <%@ page import="com.member.model.*"%>
 <%
-// 	MemberService MemSvc = new MemberService();
-// 	List<MemberVO> list =MemSvc.getAll();//除了錯誤訊息是用VO或List送來外,其餘的查詢結果都是用List送來
-	List<MemberVO> list=(List<MemberVO>) request.getAttribute("list");	
+	MemberVO memVO = (MemberVO) request.getAttribute("memVO");	//若輸入錯誤可以傳回包含錯誤的VO,有些對的就不用重打了
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -26,7 +24,7 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>會員清單</title>
+<title>新增會員</title>
 </head>
 <body>
 	<section id="container"> <!--header start--> 
@@ -144,85 +142,46 @@
 	 		<div class="row mt">
 				<nav class="nav navbar-default">
 					<div class="container-fluid" style="float: right; left: -50%; position: relative;">
-						<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative;">
-							<li><a class="insertMem" href="addMem.jsp" method="post"><span class="insertMemText">新增會員</span></a></li>
-							<li><a class="selectAllMem" style="background-color: rgba(221, 15, 15, 0.8);"><span class="selectAllMemText" style="color: white;">查詢會員</span></a></li>
-							<li><a class="selectMemId" href="selectMemId.jsp"><span class="selectMemIdText">依會員編號查詢</span></a></li>
-							<li><a class="selectManyMem" href="selectManyMem.jsp"><span class="selectManyMemText">查詢多筆會員</span></a></li>
-							<li><a class="selectMemName" href="selectMemName.jsp"><span class="selectMemNameText">依會員姓名查詢</span></a></li>
-							<li><a class="selectMemDate" href="selectMemDate.jsp"><span class="selectMemDateText">依新增日期查詢</span></a></li>
-						</ul>
+						<form name="submitForm" method="POST" action="allMemb.do">
+							<input type="hidden" name="param1" value="param1Value">
+							<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative;">
+								<li><a class="insertMem" href="addMem.jsp"><span class="insertMemText">新增會員</span></a></li>
+								<li><a href="javascript:document.submitForm.submit()">查詢會員</A></li>
+								<li><a class="selectMemId" style="background-color: rgba(221, 15, 15, 0.8);"><span class="selectMemIdText" style="color: white;">依會員編號查詢</span></a></li>
+								<li><a class="selectManyMem" href="selectManyMem.jsp"><span class="selectManyMemText">查詢多筆會員</span></a></li>
+								<li><a class="selectMemName" href="selectMemName.jsp"><span class="selectMemNameText">依會員姓名查詢</span></a></li>
+								<li><a class="selectMemDate" href="selectMemDate.jsp"><span class="selectMemDateText">依新增日期查詢</span></a></li>
+							</ul>
+						</form>
 					</div>
 				</nav>
-<center>
-<%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font color='red'>請修正以下錯誤:
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li>${message}</li>
-		</c:forEach>
-	</ul>
-	</font>
-</c:if>
- 
-<table border='1' bordercolor='#CCCCFF' width='1450'>
-	<tr>
-		<th>會員編號</th>
-		<th>密碼</th>
-		<th>姓名</th>
-		<th>身分證</th>
-		<th>生日</th>
-		<th>連絡電話</th>
-		<th>地址</th>
-		<th>e-mail</th>
-		<th>會員到期日</th>
-		<th>建檔人員</th>
-		<th>建檔日期</th>
-		<th>統編</th>
-		<th>修改</th>
-		<th>刪除</th>
-	</tr>
-	
-	<c:forEach var="memVO" items="${list}">	
-		<tr align='center' valign='middle'>
-			<td>${memVO.mem_id}</td>
-			<td>${memVO.mem_pwd}</td>
-			<td>${memVO.mem_name}</td>
-			<td>${memVO.mem_idnum}</td>
-			<td>${memVO.mem_bday}</td>
-			<td>${memVO.mem_phone}</td>
-			<td>${memVO.mem_addr}</td>
-			<td>${memVO.mem_mail}</td>
-			<td>${memVO.mem_due}</td>
-			<td>${memVO.key_id}</td>
-			<td>${memVO.key_date}</td>
-			<td>${memVO.mem_um}</td>
-
-        		<td>
-					<FORM METHOD="post"		ACTION="<%=request.getContextPath()%>/MEMBER/allForUpdateMem.do">
-						<input type="submit" value="修改"> 
-						<input type="hidden" name="mem_id" value="${memVO.mem_id}"> 
-<!-- 						<input type="hidden" name="action" value="getOne_For_Update"> -->
-					</FORM>
-				</td>
-				<td>
-					<FORM METHOD="post"		ACTION="<%=request.getContextPath()%>/MEMBER/deleteMem.do">
-						<input type="submit" value="刪除"> 
-						<input type="hidden" name="mem_id" value="${memVO.mem_id}"> 
-<!-- 						<input type="hidden" name="action" value="delete"> -->
-					</FORM>
-				</td>
-	 	</tr>
-	 </c:forEach>
-</table>
-</center>
-
 				</div>
 			</section> 
 		</section>
 	</section>
+<center>
+	<%-- 錯誤表列 --%>
+		<c:if test="${not empty errorMsgs}">
+			<font color='red'>請修正以下錯誤:
+				<ul>
+					<c:forEach var="message" items="${errorMsgs}">
+						<li>${message}</li>
+					</c:forEach>
+				</ul>
+			</font>
+		</c:if>
 
+		<h3>查詢</h3>
+	<jsp:useBean id="MemSvc" scope="page" class="com.member.model.MemberService" />
+	<FORM METHOD="post" ACTION="Memb.do">
+					<b>選擇會員ID:</b> <select size="1" name="mem_id">
+						<c:forEach var="memVO" items="${MemSvc.all}">
+							<option value="${memVO.mem_id}">${memVO.mem_id}
+						</c:forEach>
+					</select> <input type="submit" value="送出"> <input type="hidden"
+						name="action" value="getOne_For_Display">
+	</FORM>
+</center>	
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>

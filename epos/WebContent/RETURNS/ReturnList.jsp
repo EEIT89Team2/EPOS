@@ -44,8 +44,6 @@ print(text)
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
-<link rel="stylesheet" type="text/css" href="../resources/js/bootstrap-datepicker/css/datepicker.css" />
-<link rel="stylesheet" type="text/css" href="../resources/js/bootstrap-daterangepicker/daterangepicker.css" />
 <title>return-items</title>
 
 <style>
@@ -56,27 +54,42 @@ print(text)
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: #5baf9c;
+		background: #fb9292;
 		font-size: 23px;
 		border-radius: 2px;
 	}
 	
 	a{
-		color:#428bca;
+		color:#ab2222;
 	}
 	
 	.main{
 		height: 250px;
 		border-radius: 8px;
-		background: rgba(91, 175, 156, 0.12);
+		background: #fbe7e7;
 	}
 	
 	.table > thead:first-child > tr:first-child > td {
-  		background:#5baf9c;
+  		background:#fb9292;
   		color:white;
   		border-top: 0;
   		font-family: 微軟正黑體;
 }
+	.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th{
+		background-color:white;
+	}
+
+	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
+		border:1px solid #fdc0c0;
+		background:#f7e3e3;
+	}
+	
+	.alert-info{
+		background: #f7a2a2;
+		border-color:#e86262;
+	}
+	
+	
 	
 
 </style>
@@ -198,8 +211,8 @@ print(text)
 				<div>
 				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
 		    	<a href="#" onclick="window.open('searchItem.jsp', 'Yahoo', config='height=500,width=850')"><span class="glyphicon glyphicon-search"></span>查詢</a>　　　
-		    	<a href="#"><span class="glyphicon glyphicon-pencil"></span>修改</a>　　　
-		    	<a href="#"><span class="glyphicon glyphicon-remove"></span>刪除</a>　　　
+<!-- 		    	<a href="#"><span class="glyphicon glyphicon-pencil"></span>修改</a>　　　 -->
+<!-- 		    	<a href="#"><span class="glyphicon glyphicon-remove"></span>刪除</a>　　　 -->
 		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　　
 		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>　
 				</div>
@@ -208,41 +221,42 @@ print(text)
 			</div>
 
 
-			<FORM id="itemsform" METHOD="post" ACTION="insert_Item.do" class="form-inline">
+			<FORM id="listform" METHOD="post" ACTION="insert_Item.do" class="form-inline" name="form1">
+<!-- 				<div class="form-group"> -->
+<!-- 					<label for="exampleInputName2">　退貨單編號：</label>  -->
+<!-- 					<input type="text"　name="prod_name" class="form-control"> -->
+<!-- 				</div> 　　 -->
 				<div class="form-group">
-					<label for="exampleInputName2">　退貨單編號：</label> 
-					<input type="text"　name="prod_name" class="form-control">
-				</div> 　　
-				<div class="form-group">
-					<label for="exampleInputName2">退貨日期：</label> 
-					<input type="date"　name="com_id" class="form-control" placeholder="C0001">
+					<label for="exampleInputName2">　退貨日期：</label> 
+					<input type="date"　name="com_id" class="form-control" >
 				</div>　　
 				<div class="form-group">
 					<label for="exampleInputEmail2">廠商編號：</label> 
-					<input type="text"　name="re_quantity" class="form-control" placeholder="50">
+					<input type="text"　name="re_quantity" class="form-control" placeholder="C00001">
 				</div>　　
 				<div class="form-group">
 					<label for="exampleInputName2">廠商名稱：</label> 
-					<input type="text"　name="remark" class="form-control">
+					<input type="text"　name="com_name" class="form-control"　placeholder="神技科技">
 				</div>　　
 				<div class="form-group">
 					<label for="exampleInputName2">修改人員：</label> 
-					<input type="text"　name="remark" class="form-control">
-				</div>
-				<div class="mainspace">
-				<div class="form-group">
-					<label for="exampleInputName2">　修改日期：</label> 
-					<input type="date"　name="remark" class="form-control">
+					<input type="text"　name="key_id" class="form-control"　placeholder="E00001">
 				</div>
 				<div class="form-group">
-					<label for="exampleInputName2">備註：</label> 
-					<input type="text"　name="remark" class="form-control">
-				</div>
+					<label for="exampleInputName2">　修改日期：　</label> 
+					<input type="date"　name="key_date" class="form-control">
+				</div>　　
 				<div class="form-group">
-					<label for="exampleInputName2">狀態：</label> 
+					<label for="exampleInputName2">狀　態：</label> 
+					<input type="text"　name="status" class="form-control">
+				</div>
+				<div style="height: 10px;"></div>　
+				<div class="form-group">
+					<label for="exampleInputName2">備　註：</label> 
 					<input type="text"　name="remark" class="form-control">
-				</div>
-				</div>
+				</div>　　　
+				
+				
 			</FORM>
 
 		</div>
@@ -346,11 +360,11 @@ print(text)
 // 					})	
 
 				$('#sub').on('click',function(){
-			    var url = "../RETURNS/insert_Item.do"; 
+			    var url = "../RETURNS/insert.do"; 
 			    $.ajax({
 			           type: "POST",
 			           url: url,
-			           data: $("#itemsform").serialize(), 
+			           data: $("#listform").serialize(), 
 			           success: function(data)
 			           {
 			        	   location.reload();

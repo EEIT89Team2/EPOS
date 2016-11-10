@@ -25,6 +25,15 @@ public class OrderVO implements Serializable {
 	private String shift;
 	private String key_id;
 	private Date key_date;
+	private String weather;
+
+	public String getWeather() {
+		return weather;
+	}
+
+	public void setWeather(String weather) {
+		this.weather = weather;
+	}
 
 	// hibernate
 	private Set<Order_DetailVO> orderdetails = new HashSet<Order_DetailVO>();

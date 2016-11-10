@@ -193,7 +193,7 @@ print(text)
 				</div> 　　
 				<div class="form-group">
 					<label for="exampleInputName2">廠商代號：</label> <input type="text"
-						name="com_id" class="form-control" placeholder="C0001">
+						name="com_id" class="form-control" placeholder="C00001">
 				</div>　　
 				<div class="form-group">
 					<label for="exampleInputEmail2">退貨數量：</label> <input type="text"
@@ -293,7 +293,7 @@ print(text)
 // 					})	
 
 				$('#sub').on('click',function(){
-			    var url = "../RETURNS/insert_Item.do"; 
+			    var url = "insert_Item.do"; 
 			    $.ajax({
 			           type: "POST",
 			           url: url,

@@ -34,15 +34,46 @@
 
 
 <style type="text/css">
+	html{
+		background: white;
+	}
+	
 	.titledetail {
 		/*     	margin-top:auto; */
 		font-family: '微軟正黑體';
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: #2873bd;
+		background: #ffa9a9;
 		font-size: 23px;
 		border-radius: 2px;
+		text-align: center;
+	}
+	
+	body{
+		background: white;
+	}
+	
+	/* 	表格標題 */
+	.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{
+		background: #ff7d7d;
+		font-weight:bold;
+	}
+	
+	/* 	表格內容偶數 */
+	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
+		background:#ffe0e0;
+		border:1px solid #ff7d7d;
+		
+	}
+	/* 	表格內容單數 */
+	.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th{
+		background:white;
+	}
+	
+	/* 	表格偶數滑鼠指向 */
+	.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
+		background-color:#fdaeae;
 	}
 
 </style>

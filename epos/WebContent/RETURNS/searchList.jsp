@@ -42,56 +42,34 @@
 </c:if>
 	<div class="divser">查詢</div>
 	<div style="height: 20px"></div>
-	 <form action="getOne.do" method="post" class="form-inline">
-		 <div class="form-group">
-	 		<label style="font-family: 微軟正黑體; font-size: 20px;" for="exampleInputName2">退貨單編號</label>
-	 		<input style="width: 60%" type='text' name='ret_id' class="form-control"/>
+	
+		<form action="getOne.do" method="post" class="form-inline">
+		<div class="form-group">
+	 		<label style="font-family: 微軟正黑體; font-size: 20px;" for="exampleInputName2">退貨單編號：</label>
+	 		<input style="width: 50%" type='text' name='ret_id' class="form-control"/>
 	 	</div>
-	 	<input type="submit" value="查詢" class="btn btn-info">
-	 	<input type="hidden" name="action" value="getOne">
-	 </form>
+		 	<button type="submit" class="btn btn-danger">查詢</button>
+		 	<input type="hidden" name="action" value="getOne">
+		</form>
+	 	<div style="height: 20px;"></div>
 	 <form action="getDate.do" method="post" class="form-inline">
 	 	<div class="form-group">
-	 		<label style="font-family: 微軟正黑體; font-size: 20px;" for="exampleInputName2">退貨日期</label>
-	 		<input style="width: 60%" type='date' name='ret_date' class="form-control"/>
-	 	</div>
-	 	<input type="submit" value="查詢" class="btn btn-info">
+	 		<label style="font-family: 微軟正黑體; font-size: 20px;" for="exampleInputName2">退貨日期：</label>　　
+	 		<input style="width: 50%" type='date' name='ret_date' class="form-control"/>
+	 	</div>　 
+	 	<input type="submit" value="查詢" class="btn btn-danger">
 	 	<input type="hidden" name="action" value="getDate">
 	 </form>
+	 <div style="height: 20px;"></div>
 	 <form action="getComName.do" method="post" class="form-inline">
 	 	 <div class="form-group">	 
-	 		<label style="font-family: 微軟正黑體; font-size: 20px;" for="exampleInputName2">廠商名稱</label>
-	 		<input style="width: 60%" type='text' name='com_name' class="form-control"/>
+	 		<label style="font-family: 微軟正黑體; font-size: 20px;" for="exampleInputName2">廠商名稱：</label>　 
+	 		<input style="width: 50%" type='text' name='com_name' class="form-control"/>
 	 	</div>
-	 		<input type="submit" value="查詢" class="btn btn-info"> 
+	 		<input type="submit" value="查詢" class="btn btn-danger"> 
 	 		<input type="hidden" name="action" value="getComName">
 	 </form>
-	 
-	 <input id="all" type="submit" value="查詢全部" class="btn btn-info">
-	 
-	 
-<!------------------------------------------------- JS ------------------------------------------------------------------->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script>
-		!window.jQuery
-				&& document
-						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
-	</script>
 	
-	<script type="text/javascript">
-		$('#all').on('click',function(){
-	    	var url = "AllList.jsp"; 
-	    	$.ajax({
-	           type: "POST",
-	           url: url, 
-	           success: function(data)
-	           {
-	        	   location.href="AllList.jsp";
-	           }
-	         });
-		})
-	
-	</script>
 
 </body>
 </html>

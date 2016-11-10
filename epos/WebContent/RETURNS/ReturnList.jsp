@@ -222,33 +222,34 @@ print(text)
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
-	</aside> <!--sidebar end--> <section id="main-content"> <section
-		class="wrapper"> <!-- -----------------------------------------------------------查詢----------------------------------------------------------- -->
+	</aside> <!--sidebar end--> <section id="main-content"> <section class="wrapper">
+	 <!-- -----------------------------------------------------------查詢----------------------------------------------------------- -->
 	
 	<div class="row mt">
 	<div class="col-sm-12">
-	<FORM id="form1" METHOD="post" ACTION="insert.do" name="form1" class="form-inline">
+	
 		<div id="add" class="main">
 			<div class="tab-content">
 				<nav id="listinfo" class="alert alert-info">
 				<div>
 				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
-		    	<a href="#" onclick="window.open('searchList.jsp', 'Yahoo', config='height=500,width=850')"><span class="glyphicon glyphicon-search"></span>查詢</a>　　　
+		    	<a href="#" onclick="window.open('searchList.jsp', 'Yahoo', config='height=500,width=850')"><span class="glyphicon glyphicon-search"></span>單筆查詢</a>　　
+		    	<a id="allsearch"href="#" ><span class="glyphicon glyphicon-list-alt"></span>全部查詢</a>　　　
 		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　　
 		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>　
 				</div>
 
 				</nav>
 			</div>
-
+	<FORM id="form1" METHOD="post" ACTION="insert.do" name="form1" class="form-inline">
 	<table border="0">
 	<tr>
+<!-- 		<div class="form-group"> -->
+<!-- 			<label for="exampleInputName2">　退貨單編號：</label> -->
+<!-- 			<input type="TEXT" class="form-control" name="ret_id" disabled/> -->
+<!-- 		</div>　　 -->
 		<div class="form-group">
-			<label for="exampleInputName2">　退貨單編號：</label>
-			<input type="TEXT" class="form-control" name="ret_id" disabled/>
-		</div>　　
-		<div class="form-group">
-			<label for="exampleInputName2">退貨日期：</label>
+			<label for="exampleInputName2">　退貨日期：</label>
 			<input type="date" class="form-control" name="ret_date" />
 		</div>　　
 		<div class="form-group">
@@ -262,14 +263,14 @@ print(text)
 		<div class="form-group">
 			<label for="exampleInputName2">修改人員：</label>
 			<input type="TEXT" class="form-control" name="key_id" value="E00001" />
-		</div>
-		<div style="height: 10px;"></div>
+		</div>　　
 		<div class="form-group">
 			<label for="exampleInputName2">　修 改 日 期 ：</label>
 			<input type="Date" class="form-control" name="key_date" />
-		</div>　　　
-		<div class="form-group">
-			<label for="exampleInputName2">狀　態：</label>
+		</div>　
+		<div style="height: 10px;"></div>
+		<div class="form-group">　
+			<label for="exampleInputName2">狀　 態：</label>
 			<input type="TEXT" class="form-control" name="status" value="Y" />
 		</div>　　　
 		<div class="form-group">
@@ -338,7 +339,7 @@ print(text)
 				url: url,
 				success: function(data)
 				 {
-				     location.reload(); 
+				     
 				 }
 			});
 	})	
@@ -376,6 +377,20 @@ print(text)
 	           }
 	         });
 // 	    alert("2");
+		})
+
+//<!----------------------------------------  送出新增        ------------------------------------>
+		$('#allsearch').on('click',function(){
+			var url="AllList.jsp";
+		
+			$.ajax({
+				type:"POST",
+				url:url,
+				success:function()
+				{
+					window.open("AllList.jsp");
+				}
+			})
 		})
 
 	</script>

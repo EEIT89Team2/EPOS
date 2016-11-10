@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.discount.model.DiscountVO;
 import com.returns.model.ReturnDetailService;
 import com.returns.model.ReturnListService;
 import com.returns.model.RtnDetailVO;
@@ -30,6 +31,17 @@ public class RtnList_Controller extends HttpServlet {
 	
 	private final static ReturnListService rtnListSvc = new ReturnListService();
 	private final static ReturnDetailService rtnDetailSvc = new ReturnDetailService();
+	
+	//查詢全部	
+//	@RequestMapping(method = RequestMethod.POST, value = "/RtnListVO/allList.do")
+//	public String getAllList(ModelMap model) {	
+//
+//			List<RtnListVO> list = rtnListSvc.getAll();
+//			model.addAttribute("list", list);	
+//			return "/RETURNS/AllList";
+//		
+//		}
+	
 	
 	@RequestMapping(method = RequestMethod.POST, value = {"/getOne.do","/RETURNS/getOne.do"})
 	public String getOne(@RequestParam("ret_id") String ret_id, ModelMap model) {

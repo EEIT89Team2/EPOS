@@ -77,7 +77,6 @@ public class login_Servlet extends HttpServlet {
 				long nowD = new java.util.Date().getTime();
 				Date nowdate = new Date(nowD);
 				String x = (nowdate.toString().split(" "))[3].split(":")[0];
-
 				
 				if (Integer.parseInt(x) < 14) {
 

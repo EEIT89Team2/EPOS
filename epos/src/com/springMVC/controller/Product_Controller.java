@@ -281,7 +281,8 @@ System.out.println(u);
 			if(prodVO.getProd_stock()<=prodVO.getProd_q_safty()){
 				lessProdlist.add(prodVO);
 			}
-		}
+		} 
+//		request.getSession().setAttribute("lessProdlist", lessProdlist);
 		model.addAttribute("lessProdlist", lessProdlist);
 		return "/ANALYSIS/getLessProdDemo";
 	}

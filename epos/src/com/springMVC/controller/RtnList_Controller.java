@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.discount.model.DiscountVO;
 import com.returns.model.ReturnDetailService;
 import com.returns.model.ReturnListService;
 import com.returns.model.RtnDetailVO;
@@ -30,6 +31,17 @@ public class RtnList_Controller extends HttpServlet {
 	
 	private final static ReturnListService rtnListSvc = new ReturnListService();
 	private final static ReturnDetailService rtnDetailSvc = new ReturnDetailService();
+	
+	//查詢全部	
+//	@RequestMapping(method = RequestMethod.POST, value = "/RtnListVO/allList.do")
+//	public String getAllList(ModelMap model) {	
+//
+//			List<RtnListVO> list = rtnListSvc.getAll();
+//			model.addAttribute("list", list);	
+//			return "/RETURNS/AllList";
+//		
+//		}
+	
 	
 	@RequestMapping(method = RequestMethod.POST, value = {"/getOne.do","/RETURNS/getOne.do"})
 	public String getOne(@RequestParam("ret_id") String ret_id, ModelMap model) {
@@ -365,17 +377,17 @@ public class RtnList_Controller extends HttpServlet {
 	
 	@RequestMapping(method = RequestMethod.POST, value = {"/insert.do","/RETURNS/insert.do"})
 	public String insert(ModelMap model,HttpServletRequest req) {
-		
+System.out.println("-2");			
 		List<String> errorMsgs = new LinkedList<String>();
 		req.setAttribute("errorMsgs", errorMsgs);
 
 		try {
 			/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
-//			String ret_id = req.getParameter("ret_id");
-//			if (ret_id == null || ret_id.trim().length() == 0) {
-//				errorMsgs.add("退貨單編號: 請勿空白");
-//			}
-			
+			String ret_id = req.getParameter("ret_id");
+			if (ret_id == null || ret_id.trim().length() == 0) {
+				errorMsgs.add("退貨單編號: 請勿空白");
+			}
+
 			Date ret_date = null;
 			try {
 				ret_date = java.sql.Date.valueOf(req.getParameter("ret_date").trim());
@@ -428,7 +440,7 @@ public class RtnList_Controller extends HttpServlet {
 			if(!status.trim().matches(statusCK) ) { 
 				errorMsgs.add("狀態格式:N or Y");
             }
-
+System.out.println("-1");
 			RtnListVO rtnListVO = new RtnListVO();
 			//rtnListVO.setRet_id(ret_id);
 			rtnListVO.setRet_date(ret_date);
@@ -439,7 +451,7 @@ public class RtnList_Controller extends HttpServlet {
 			rtnListVO.setRemark(remark);
 			rtnListVO.setStatus(status);
 			
-			
+System.out.println("0");			
 			List<RtnDetailVO> list =new LinkedList<RtnDetailVO>();
 			Set<RtnDetailVO> setDetail =new LinkedHashSet<RtnDetailVO>();
 			Integer i=1;
@@ -461,7 +473,7 @@ public class RtnList_Controller extends HttpServlet {
 				
 				setDetail.add(rtnDetailVO);
 				i++;
-				
+System.out.println("1");				
 				}catch(Exception e){
 					if(i<100){
 						i++;
@@ -478,14 +490,15 @@ public class RtnList_Controller extends HttpServlet {
 			//ReturnListService rtnListSvc = new ReturnListService();
 			rtnListSvc.addRtnList(rtnListVO, list);
 			List<RtnListVO> all = rtnListSvc.getAll();
-			
+System.out.println("2");		
 			req.getSession().setAttribute("list", all);
 			req.setAttribute("list", list);
 			/***************************3.新增完成,準備轉交(Send the Success view)***********/
 //			String url = "/returns/ReturnList.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url); 
-//			successView.forward(req, res);				
-			return "/RETURNS/ReturnList";
+//			successView.forward(req, res);	
+System.out.println("3");
+			return "/RETURNS/AllList";
 			/***************************其他可能的錯誤處理**********************************/
 		} catch (Exception e) {
 			errorMsgs.add(e.getMessage());
@@ -517,7 +530,7 @@ public class RtnList_Controller extends HttpServlet {
 //			String url = "/returns/ReturnList.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
 //			successView.forward(req, res);
-			return "/RETURNS/ReturnList";
+			return "/RETURNS/AllList";
 			/**************************其他可能的錯誤處理***************************************/
 		} catch (Exception e) {
 			errorMsgs.add("刪除資料失敗:"+e.getMessage());

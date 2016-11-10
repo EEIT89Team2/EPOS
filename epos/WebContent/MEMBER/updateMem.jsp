@@ -148,7 +148,7 @@
 								<li><a class="insertMem" href="addMem.jsp"><span class="insertMemText">新增會員</span></a></li>
 								<li><a href="javascript:document.submitForm.submit()">查詢會員</A></li>
 								<li><a class="selectMemId" href="selectMemId.jsp"><span class="selectMemIdText">依會員編號查詢</span></a></li>
-								<li><a class="selectManyMem" style="background-color: rgba(221, 15, 15, 0.8);"><span class="selectManyMemText" style="color: white;">查詢多筆會員</span></a></li>
+								<li><a class="selectManyMem" style="background-color: rgba(224, 224, 224, 0.7);"><span class="selectManyMemText">查詢多筆會員</span></a></li>
 								<li><a class="selectMemName" href="selectMemName.jsp"><span class="selectMemNameText">依會員姓名查詢</span></a></li>
 								<li><a class="selectMemDate" href="selectMemDate.jsp"><span class="selectMemDateText">依新增日期查詢</span></a></li>
 							</ul>

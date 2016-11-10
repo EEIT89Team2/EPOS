@@ -149,7 +149,7 @@
 								<li><a href="javascript:document.submitForm.submit()">查詢會員</A></li>
 								<li><a class="selectMemId" href="selectMemId.jsp"><span class="selectMemIdText">依會員編號查詢</span></a></li>
 								<li><a class="selectManyMem" href="selectManyMem.jsp"><span class="selectManyMemText">查詢多筆會員</span></a></li>
-								<li><a class="selectMemName" style="background-color: rgba(221, 15, 15, 0.8);"><span class="selectMemNameText" style="color: white;">依會員姓名查詢</span></a></li>
+								<li><a class="selectMemName" style="background-color: rgba(224, 224, 224, 0.7);"><span class="selectMemNameText">依會員姓名查詢</span></a></li>
 								<li><a class="selectMemDate" href="selectMemDate.jsp"><span class="selectMemDateText">依新增日期查詢</span></a></li>
 							</ul>
 						</form>

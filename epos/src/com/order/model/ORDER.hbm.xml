@@ -22,6 +22,7 @@
 		<property name="shift" column="shift" />
 		<property name="key_id" column="key_id" />
 		<property name="key_date" column="key_date" />
+		<property name="weather" column="weather" />
 		
 		<set name="orderdetails" table="ORDER_DETAIL" lazy="false"
 		cascade="all" inverse="true" order-by="ord_id asc">

@@ -272,6 +272,19 @@ System.out.println(u);
 		return "redirect:/PRODUCT/AllProd.jsp";
 	}
 	
+	@RequestMapping(method = RequestMethod.POST, value = "/ANALYSIS/getLowStockProd")
+	public String GetLowStockProd(ModelMap model,HttpServletRequest request){
+		List<ProdVO> lessProdlist = new LinkedList<ProdVO>();
+		List<ProdVO> list = prodSrv.getAll();
+		
+		for(ProdVO prodVO : list){
+			if(prodVO.getProd_stock()<=prodVO.getProd_q_safty()){
+				lessProdlist.add(prodVO);
+			}
+		}
+		model.addAttribute("lessProdlist", lessProdlist);
+		return "/ANALYSIS/getLessProdDemo";
+	}
 }
 
 

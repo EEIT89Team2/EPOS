@@ -6,11 +6,12 @@ import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class LoadWeatherRss {
 
 	private String nowWeather;
-	private Map<String, String> weekWeather = new HashMap<String, String>();
+	private Map<String, String> weekWeather = new TreeMap<String, String>();
 
 
 //	public static void main(String[] args){

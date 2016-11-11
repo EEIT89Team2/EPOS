@@ -176,8 +176,8 @@ print(text)
 				<div>
 				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
 		    	<a href="#" onclick="window.open('searchItem.jsp', 'Yahoo', config='height=500,width=850')"><span class="glyphicon glyphicon-search"></span>查詢</a>　　　
-		    	<a href="#"><span class="glyphicon glyphicon-pencil"></span>修改</a>　　　
-		    	<a href="#"><span class="glyphicon glyphicon-remove"></span>刪除</a>　　　
+<!-- 		    	<a href="#"><span class="glyphicon glyphicon-pencil"></span>修改</a>　　　 -->
+<!-- 		    	<a href="#"><span class="glyphicon glyphicon-remove"></span>刪除</a>　　　 -->
 		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　　
 		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>　
 				</div>

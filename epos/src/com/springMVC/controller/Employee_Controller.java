@@ -51,7 +51,7 @@ public class Employee_Controller {
 //		return "/Index1";
 //	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/getOneEmp.do")
+	@RequestMapping(method = RequestMethod.POST, value = "/EMPLOYEE/getOneEmp.do")
 	public String getOneEmp(@RequestParam("emp_id") String emp_id, ModelMap model) {
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 		 List<String> errorMsgs = new LinkedList<String>();
@@ -61,7 +61,7 @@ public class Employee_Controller {
 		}
 		if (!errorMsgs.isEmpty()) {
 		model.addAttribute("message", errorMsgs);
-		return "redirect:index.jsp";
+		return "redirect:/EMPLOYEE/employee.jsp";
 		}
 		/*************************** 2.永續層存取 ***************************************/
 //		EmpService empSrv = new EmpService();
@@ -73,7 +73,7 @@ public class Employee_Controller {
 
 			if (empVO == null) {
 				model.addAttribute("message", "查無資料");
-				return "redirect:index.jsp";
+				return "redirect:/EMPLOYEE/employee.jsp";
 			}
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 			list.add(empVO);
@@ -86,7 +86,7 @@ public class Employee_Controller {
 		return "/EMPLOYEE/AllEmp";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/getAllEmp.do")
+	@RequestMapping(method = RequestMethod.POST, value = "/EMPLOYEE/getAllEmp.do")
 	public String getAllEmp(ModelMap model) {
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 
@@ -107,7 +107,7 @@ public class Employee_Controller {
 	}
 	
 
-	@RequestMapping(method = RequestMethod.POST,value = "/insertEmp.do")
+	@RequestMapping(method = RequestMethod.POST,value = "/EMPLOYEE/insertEmp.do")
 	public String insertEmp(ModelMap model,HttpServletRequest request) throws Exception, Exception {
 		
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
@@ -174,7 +174,7 @@ public class Employee_Controller {
 
 
 
-	@RequestMapping(method = RequestMethod.POST, value = "/getEmpByName.do")
+	@RequestMapping(method = RequestMethod.POST, value = "/EMPLOYEE/getEmpByName.do")
 	public String getEmpByName(ModelMap model,HttpServletRequest request,
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 		
@@ -186,7 +186,7 @@ public class Employee_Controller {
 		}
 		if (!errorMsgs.isEmpty()) {
 		model.addAttribute("message", errorMsgs);
-		return "redirect:index.jsp";
+		return "redirect:/EMPLOYEE/employee.jsp";
 		}
 		/*************************** 2.永續層存取 ***************************************/
 //		EmpService empSrv = new EmpService();
@@ -198,7 +198,7 @@ public class Employee_Controller {
 		// Send the use back to the form, if there were errors
 		if (!errorMsgs.isEmpty()) {
 			model.addAttribute("message", errorMsgs);
-			return "redirect:index.jsp";
+			return "redirect:/EMPLOYEE/employee.jsp";
 			}
 		
 		request.getSession().setAttribute("list", list);

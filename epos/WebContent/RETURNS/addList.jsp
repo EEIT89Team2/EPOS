@@ -58,7 +58,7 @@
 		<td><input type="TEXT" name="prod_name1" size="40" value="iphone 6 16G 黑色" /></td>
 		<td>退貨數量：</td>
 		<td><input type="TEXT" name="prod_quantity1" size="25" value="100" /></td>
-		<td>原因：</td>
+		<td>退貨原因：</td>
 		<td><input type="TEXT" name="ret_reason1" size="40" value="不能照相"/></td>
 		<td><input type='button' value='刪除' class='btn btn-danger'></input></td>
 		</tr>

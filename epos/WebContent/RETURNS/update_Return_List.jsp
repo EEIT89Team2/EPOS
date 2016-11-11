@@ -9,7 +9,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="<c:url value="../resources/css/bootstrap.css" />"
+	rel="stylesheet">
+<!--external css-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="../resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="../resources/css/bootstrap-theme.min.css" rel="stylesheet">
 <title>退貨單資料修改</title>
+
+
+<style type="text/css">
+	
+	legend{
+		background: #d47f9b;
+	}
+	
+ 	fieldset { 
+ 		background: lavenderblush; 
+ 	} 
+	
+/* 	body{ */
+/* 		background: lavenderblush; */
+/* 	} */
+
+
+</style>
 </head>
 <body>
 
@@ -24,50 +48,69 @@
 </c:if>
 
 <FORM METHOD="post" ACTION="update.do" name="form1">
-<fieldset style='width:30%'>
+<fieldset >
 	<legend>退貨單資料修改</legend>
-<table border="0">
-	<tr>
-		<td>退貨單編號:</td>
-		<td><input type="TEXT" name="ret_id" size="40" value="<%=rtnListVO.getRet_id()%>" /></td>
-	</tr>
-	<tr>
-		<td>退貨日期:</td>
-		<td><input type="date" name="ret_date" size="40" value="<%=rtnListVO.getRet_date()%>" /></td>
-	</tr>
-	<tr>
-		<td>廠商編號:</td>
-		<td><input type="TEXT" name="com_id" size="40" value="<%=rtnListVO.getCom_id()%>" /></td>
-	</tr>
-	<tr>
-		<td>廠商名稱:</td>
-		<td><input type="TEXT" name="com_name" size="40" value="<%=rtnListVO.getCom_name()%>" /></td>
-	</tr>
-	<tr>
-		<td>修改人員:</td>
-		<td><input type="TEXT" name="key_id" size="40" value="<%=rtnListVO.getKey_id()%>" /></td>
-	</tr>
-	<tr>
-		<td>修改日期:</td>
-		<td><input type="Date" name="key_date" size="40" value="<%=rtnListVO.getKey_id()%>" /></td>
-	</tr>
-	<tr>
-		<td>備註:</td>
-		<td><input type="TEXT" name="remark" size="40" value="<%=rtnListVO.getRemark()%>" /></td>
-	</tr>
-	<tr>
-		<td>狀態:</td>
-		<td><input type="TEXT" name="status" size="40" value="<%=rtnListVO.getStatus()%>" /></td>
-	</tr>
-</table>
+<from class="form-horizontal">
+	<div class="form-group">
+    	<label class="col-sm-4 control-label">退貨單編號:</label>
+    	<div class="col-sm-5">
+      		<input type="text" class="form-control" name="ret_id" value="<%=rtnListVO.getRet_id()%>"/>
+    	</div>
+  	</div>
+  	<div class="form-group">
+    	<label class="col-sm-4 control-label">退貨日期:</label>
+    	<div class="col-sm-5">
+      		<input type="date" class="form-control" name="ret_date" value="<%=rtnListVO.getRet_date()%>"/>
+    	</div>
+  	</div>
+  	<div class="form-group">
+    	<label class="col-sm-4 control-label">廠商編號:</label>
+    	<div class="col-sm-5">
+      		<input type="text" class="form-control" name="com_id" value="<%=rtnListVO.getCom_id()%>"/>
+    	</div>
+  	</div>
+  	<div class="form-group">
+    	<label class="col-sm-4 control-label">廠商名稱:</label>
+    	<div class="col-sm-5">
+      	<input type="text" class="form-control" name="com_name" value="<%=rtnListVO.getCom_name()%>"/>
+    	</div>
+  	</div>
+  	<div class="form-group">
+    	<label class="col-sm-4 control-label">修改人員:</label>
+    	<div class="col-sm-5">
+      		<input type="text" class="form-control" name="key_id" value="<%=rtnListVO.getKey_id()%>"/>
+   		 </div>
+  	</div>
+  	<div class="form-group">
+    	<label class="col-sm-4 control-label">修改日期:</label>
+    	<div class="col-sm-5">
+      		<input type="date" class="form-control" name="key_date" value="<%=rtnListVO.getKey_date()%>"/>
+    	</div>
+  	</div>
+  	<div class="form-group">
+    	<label class="col-sm-4 control-label">狀　　態:</label>
+    	<div class="col-sm-5">
+      		<input type="text" class="form-control" name="status" value="<%=rtnListVO.getStatus()%>"/>
+    	</div>
+  	</div>
+  	<div class="form-group">
+   		<label class="col-sm-4 control-label">備　　註:</label>
+    	<div class="col-sm-5">
+      		<input type="text" class="form-control" name="remark" value="<%=rtnListVO.getRemark()%>"/>
+    	</div>
+  	</div>
+  	<div class="form-group">
+    <div class="col-sm-offset-6">
+    　　　　<input type="hidden" name="action" value="update">
+      <button type="submit" class="btn btn-default">送　出</button>
+    </div>
+  </div>
+</from>
 </fieldset>
-<br>
-<input type="hidden" name="action" value="update">
-<%-- <input type="hidden" name="ret_id" value="<%=rtnListVO.getRet_id()%>"> --%>
-<input type="submit" value="送出修改"></FORM>
+  </FORM>
 
-	<a href="../index.jsp">回首頁</a>
-	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
+	<li><a href="../RETURNS/ReturnList.jsp"><i class="glyphicon glyphicon-th-list"></i>　退貨單</a></li>
+	<li><a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a> </li>
 
 </body>
 </html>

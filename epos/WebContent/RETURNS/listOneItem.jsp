@@ -28,7 +28,7 @@
 <title>退貨品</title>
 <style type="text/css">
 	.item{
-		background:#5bc0de; 
+		background:#2c77c1; 
 		font-size: 20px; 
 		font-family: 微軟正黑體;
 		text-align: center;
@@ -42,9 +42,11 @@
 <body>
 <div class="item">退貨品</div>
 <table border='1' bordercolor='#CCCCFF' width='800' class="table table-bordered table-striped table-hover">
+<thead>
 <tr>
 	<td align='center' >商品名稱</td><td align='center'>廠商代號</td><td align='center'>退貨數量</td><td td align='center'>備註</td><td align='center'>修改</td><td align='center'>刪除</td>
 </tr>
+</thead>
 		<c:forEach var="RtnItemsVO" items="${list}">
 		<tr align='center' valign='middle'>
 			<td>${RtnItemsVO.prod_name}</td>
@@ -71,7 +73,7 @@
 
 <ul>
 
-	<li><a href="javascript:" onclick="history.back(); ">回上頁</a> </li>
+	<li><a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a> </li>
 </ul>
 
 

@@ -1,35 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="BIG5"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ page import="java.util.*"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=BIG5">
-<title>¥ş³¡­û¤u°ò¥»¸ê®Æ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+.table > thead:first-child > tr:first-child > td {
+	background:#575c67;
+	text-align: center;
+}
+
+</style>
+<script type="text/JavaScript">
+$(document).ready(function() {
+		$('.fa-trash-o').click(function() {
+		var id = $(this).attr("target");
+ 				$.ajax({
+					"type" : "post",
+					"url" : "updateDeleteEmp.do",
+					"data" : {emp_id:id},
+					"success" : function(data) {
+						$.ajax({
+							"type" : "post",
+							"url" : "getAllEmp.do",
+							"data" : {},
+							"success" : function(data) {
+								$(".result-context").html(data);
+								$("#result").attr("class","active");
+								$("#search1").removeAttr("class");
+								$("#search").attr("class","tab-pane fade");
+								$("#resolution").attr("class","tab-pane active");
+							},
+						});
+					},
+				});
+		})
+})
+</script>
+<title>å…¨éƒ¨å“¡å·¥åŸºæœ¬è³‡æ–™</title>
 
 </head>
 <body>
+	<section id="container"> <section class="wrapper">
+	<div class="row mt">
 		<table border="2">
 		<tr>
-			<th>­û½s</th>
-			<th>±K½X</th>
-			<th>©m¦W</th>
-			<th>©Ê§O</th>
-			<th>¨­¤ÀÃÒ¦r¸¹</th>
-			<th>¦a§}</th>
-			<th>¹q¤l«H½c</th>
-			<th>¹q¸Ü</th>
-			<th>¥Í¤é</th>
-			<th>¨ìÂ¾¤é</th>
-			<th>Â÷Â¾¤é</th>
-			<th>·Ó¤ù</th>
-			<th>­×§ï¤H</th>
-			<th>­×§ï®É¶¡</th>
-			<th>Åv­­</th>
-			<th>­×§ï</th>
-			<th>§R°£</th>
+			<th>å“¡ç·¨</th>
+			<th>å¯†ç¢¼</th>
+			<th>å§“å</th>
+			<th>æ€§åˆ¥</th>
+			<th>èº«åˆ†è­‰å­—è™Ÿ</th>
+			<th>åœ°å€</th>
+			<th>é›»å­ä¿¡ç®±</th>
+			<th>é›»è©±</th>
+			<th>ç”Ÿæ—¥</th>
+			<th>åˆ°è·æ—¥</th>
+			<th>é›¢è·æ—¥</th>
+			<th>ç…§ç‰‡</th>
+			<th>ä¿®æ”¹äºº</th>
+			<th>ä¿®æ”¹æ™‚é–“</th>
+			<th>æ¬Šé™</th>
+			<th>ä¿®æ”¹</th>
+			<th>åˆªé™¤</th>
 		</tr>
 		
 <c:forEach var="list" items="${list}" varStatus="count">
@@ -46,7 +83,7 @@
 			<td>${list.emp_bday}</td>
 			<td>${list.emp_reg}</td>
 			<td>${list.emp_due}</td>
-			<td><img alt="©|µL¤jÀY·Ó" src="data:image/gif;base64,${list.picture}"></td>
+			<td><img alt="å°šç„¡å¤§é ­ç…§" src="data:image/gif;base64,${list.picture}"></td>
 			<td>${list.key_id}</td>
 			<td>${list.key_date}</td>
 			<td>${list.pass_code}</td>
@@ -59,9 +96,8 @@
 </form>
 </c:forEach>
 	</table>
-	
-	<a href="../index.jsp">¦^­º­¶</a>
-	<a href="javascript:" onclick="history.back(); ">¦^¤W­¶</a> 
+	</div>
+	</section> </section>
 
 </body>
 </html>

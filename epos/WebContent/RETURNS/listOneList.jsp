@@ -118,7 +118,7 @@
 </table>
 
 <ul>
- 	<li><a href="../index.jsp">回首頁</a></li><li><a href="javascript:" onclick="history.back(); ">回上頁</a> </li>
+ 	<li><a href="../RETURNS/ReturnList.jsp">回退貨單</a></li><li><a href="javascript:" onclick="history.back(); ">回上頁</a> </li>
 </ul>
 
 </body>

@@ -153,6 +153,11 @@
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
+	<script type="text/javascript">
+		
+// 		$('#table1').DataTable();
+	
+	</script>
 	
 </body>
 </html>

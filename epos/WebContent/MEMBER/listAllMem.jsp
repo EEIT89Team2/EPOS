@@ -142,6 +142,7 @@
 		 <section id="main-content"> 
 	 		<section class="wrapper">
 	 		<div class="row mt">
+	 		<div class="col-lg-12">
 				<nav class="nav navbar-default">
 					<div class="container-fluid" style="float: right; left: -50%; position: relative;">
 						<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative;">
@@ -152,7 +153,7 @@
 							<li><a class="selectMemName" href="selectMemName.jsp"><span class="selectMemNameText">依會員姓名查詢</span></a></li>
 							<li><a class="selectMemDate" href="selectMemDate.jsp"><span class="selectMemDateText">依新增日期查詢</span></a></li>
 						</ul>
-					</div>
+					</div></div>
 				</nav>
 <center>
 <%-- 錯誤表列 --%>

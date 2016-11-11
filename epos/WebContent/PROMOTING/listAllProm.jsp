@@ -32,7 +32,7 @@
 		<th>活動截止日</th>
 		<th>備註</th>
 		<th>修改</th>
-		<th>查詢</th>
+		<th>刪除</th>
 	</tr>
 	
 	<c:forEach var="PromVO" items="${list}">	

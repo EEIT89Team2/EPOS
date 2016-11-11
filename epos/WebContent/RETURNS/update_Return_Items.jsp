@@ -18,7 +18,11 @@
 	
 	body { 
  		background: aliceblue; 
- 	} 
+ 	}
+ 	
+ 	a{
+		margin-left: 30px;
+	} 
 
 
 </style>
@@ -76,8 +80,8 @@
    </fieldset>
  </form>
  
- 	<li><a href="../RETURNS/Return_Items.jsp"><i class="glyphicon glyphicon-th-list"></i>　退貨品</a></li>
-	<li><a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a> </li>
+ 	<a href="../RETURNS/Return_Items.jsp"><i class="glyphicon glyphicon-th-list"></i>　退貨品</a></br>
+	<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>
 	
 
 </body>

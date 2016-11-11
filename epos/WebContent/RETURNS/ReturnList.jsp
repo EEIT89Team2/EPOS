@@ -47,7 +47,7 @@ print(text)
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
-<title>return-items</title>
+<title>退貨單</title>
 
 <style>
 
@@ -234,7 +234,7 @@ print(text)
 				<nav id="listinfo" class="alert alert-info">
 				<div>
 				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
-		    	<a href="#" onclick="window.open('searchList.jsp', 'RetrunItem', config='height=500,width=850')"><span class="glyphicon glyphicon-search"></span>單筆查詢</a>　　
+		    	<a href="#" onclick="window.open('searchList.jsp', 'RetrunItem', config='height=500,width=1200')"><span class="glyphicon glyphicon-search"></span>單筆查詢</a>　　
 		    	<a href="#" onclick="window.open('AllList.jsp', 'RetrunList', config='height=1050,width=1680')"><span class="glyphicon glyphicon-list-alt"></span>全部查詢</a>　　　
 		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　　
 		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>　

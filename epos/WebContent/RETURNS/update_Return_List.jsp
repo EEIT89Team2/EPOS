@@ -24,9 +24,9 @@
 		background: #d47f9b;
 	}
 	
- 	fieldset { 
- 		background: lavenderblush; 
- 	} 
+	a{
+		margin-left: 30px;
+	}
 	
 /* 	body{ */
 /* 		background: lavenderblush; */
@@ -48,7 +48,7 @@
 </c:if>
 
 <FORM METHOD="post" ACTION="update.do" name="form1">
-<fieldset >
+<fieldset>
 	<legend>退貨單資料修改</legend>
 <from class="form-horizontal">
 	<div class="form-group">
@@ -109,8 +109,8 @@
 </fieldset>
   </FORM>
 
-	<li><a href="../RETURNS/ReturnList.jsp"><i class="glyphicon glyphicon-th-list"></i>　退貨單</a></li>
-	<li><a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a> </li>
+	<a href="../RETURNS/ReturnList.jsp"><i class="glyphicon glyphicon-th-list"></i>　退貨單</a></br>
+	<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>
 
 </body>
 </html>

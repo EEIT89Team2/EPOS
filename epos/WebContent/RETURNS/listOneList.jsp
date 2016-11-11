@@ -34,6 +34,10 @@
 		background: white;
 	}
 	
+	a{
+		margin-left: 30px;
+	}
+	
 	.titledetail {
 		/*     	margin-top:auto; */
 		font-family: '微軟正黑體';
@@ -117,9 +121,8 @@
 		</c:forEach>
 </table>
 
-<ul>
- 	<li><a href="../RETURNS/ReturnList.jsp">回退貨單</a></li><li><a href="javascript:" onclick="history.back(); ">回上頁</a> </li>
-</ul>
+	<a href="../RETURNS/ReturnList.jsp"><i class="glyphicon glyphicon-th-list"></i>　退貨單</a></br>
+	<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>
 
 </body>
 </html>

@@ -243,7 +243,7 @@ print(text)
 			    <button type="submit" target="${RtnItemsVO.prod_name}" class="btn btn-danger"><i class="fa fa-trash-o "></i></button>
 <%-- 			    <input type="hidden" name="prod_name" value="${RtnItemsVO.prod_name}"> --%>
 <!-- 			    <input type="hidden" name="action"value="delete"> -->
-			  </FORM>
+<!-- 			  </FORM> -->
 						</td>
 					</tr>
 

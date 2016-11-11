@@ -46,7 +46,7 @@
 	<div class="form-group">
     	<label class="col-sm-4 control-label">產品名稱:</label>
     	<div class="col-sm-5">
-      		<input type="text" class="form-control" name="prod_name" value="<%=rtnItemsVO.getProd_name()%>"/>
+      		<input type="text" class="form-control" name="prod_name" value="<%=rtnItemsVO.getProd_name()%>" disabled="disabled"/>
     	</div>
   	</div>
 	<div class="form-group">
@@ -69,6 +69,7 @@
             </div>
           </div>
     </div>
+    <!--   	送出   -->
   	<div class="form-group">
     	<div class="col-sm-offset-6">
     　　　　		<input type="hidden" name="action" value="update">

@@ -55,7 +55,7 @@
 	<div class="form-group">
     	<label class="col-sm-4 control-label">°h³f³æ½s¸¹:</label>
     	<div class="col-sm-5">
-      		<input type="text" class="form-control" name="ret_id" value="${list.rtnListVO.ret_id}"/>
+      		<input type="text" class="form-control" name="ret_id" value="${list.rtnListVO.ret_id}" disabled="disabled"/>
     	</div>
   	</div>
 	<div class="form-group">

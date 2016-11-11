@@ -54,7 +54,7 @@
 	<div class="form-group">
     	<label class="col-sm-4 control-label">°h³f³æ½s¸¹:</label>
     	<div class="col-sm-5">
-      		<input type="text" class="form-control" name="ret_id" value="<%=rtnListVO.getRet_id()%>"/>
+      		<input type="text" class="form-control" name="ret_id" value="<%=rtnListVO.getRet_id()%>" disabled="disabled"/>
     	</div>
   	</div>
   	<div class="form-group">
@@ -102,6 +102,7 @@
   	<div class="form-group">
     <div class="col-sm-offset-6">
     ¡@¡@¡@¡@<input type="hidden" name="action" value="update">
+      <input type="hidden" name="ret_id" value="<%=rtnListVO.getRet_id()%>">
       <button type="submit" class="btn btn-default">°e¡@¥X</button>
     </div>
   </div>

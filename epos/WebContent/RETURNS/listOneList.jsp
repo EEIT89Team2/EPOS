@@ -80,7 +80,7 @@
 </head>
 <body>
 <div class="titledetail">退貨單</div>
-<table border='1' bordercolor='#C4E1FF' class="table table-bordered table-striped table-hover">
+<table border='1' class="table table-bordered table-striped table-hover">
 <thead>
 <tr>
 	<td align='center'>退貨單編號</td><td align='center'>退貨日期</td><td align='center'>廠商編號</td><td align='center'>廠商名稱</td><td align='center'>修改人員</td><td align='center'>修改日期</td><td align='center'>備註</td><td align='center'>狀態</td><td align='center'>查詢明細</td><td align='center'>修改</td><td align='center'>刪除</td>

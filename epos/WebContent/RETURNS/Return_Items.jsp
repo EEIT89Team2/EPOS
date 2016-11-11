@@ -44,7 +44,7 @@ print(text)
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
-<title>return-items</title>
+<title>退貨品</title>
 
 <style>
 .titledetail {

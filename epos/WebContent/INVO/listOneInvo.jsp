@@ -125,7 +125,8 @@
 	$(function(){
 		
 	//<!----------------------------------------刪除------------------------------------>
-		$('.btn-danger').on('click',function(){	
+		$('.btn-danger').on('click',function(){
+			var delbtn = $(this).parent().parent();
 			var id = $(this).attr('target');
 			console.log(id);
 	    	var url = "deleteInvo.do";
@@ -135,7 +136,7 @@
 	           data: {invoice_id:id},
 	           success: function(data)
 	           {
-	        	   location.reload(); 
+	        	   delbtn.remove(); 
 	           }
 	         });
 		})

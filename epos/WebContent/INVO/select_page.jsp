@@ -208,6 +208,7 @@
 				<div>
 				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
 		    	<a href="#" onclick="window.open('searchinvo.jsp', 'Yahoo', config='height=500,width=850')"><span class="glyphicon glyphicon-search"></span>查詢</a>　　　
+		    	<a href="#" onclick="window.open('listAllInvo.jsp', 'RetrunList', config='height=800,width=1680')"><span class="glyphicon glyphicon-inbox"></span>全部查詢</a>　　
 		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　　
 		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>　
 				</div>

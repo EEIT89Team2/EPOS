@@ -60,15 +60,13 @@
     	<div class="col-sm-5">
       		<input type="text" class="form-control" name="re_quantity" value="<%=rtnItemsVO.getRe_quantity()%>"/>
     	</div>
-  	</div> 
-    <div class="form-group">
-          <label class="col-sm-4 control-label">³Æµù¡G</label>
-			<div class="col-sm-5">
-            <div class="textarea">
-                  <textarea name="remark"> </textarea>
-            </div>
-          </div>
-    </div>
+  	</div>
+  	<div class="form-group">
+    	<label class="col-sm-4 control-label">³Æµù:</label>
+    	<div class="col-sm-5">
+      		<input type="text" class="form-control" name="remark" value="<%=rtnItemsVO.getRemark()%>"/>
+    	</div>
+  	</div>  
     <!--   	°e¥X   -->
   	<div class="form-group">
     	<div class="col-sm-offset-6">

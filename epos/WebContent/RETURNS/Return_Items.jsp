@@ -225,18 +225,18 @@ print(text)
 					<tr class="table2" align='center' valign='middle'>
 						<td>${RtnItemsVO.prod_name}</td>
 						<td>${RtnItemsVO.com_id}</td>
-						<td>${RtnItemsVO.re_quantity}</td>
-						<td>${RtnItemsVO.remark}</td>
 						<td>
-
-							<FORM METHOD="post" ACTION="getOne_For_Update_Item.do">
-								<button type="submit" class="btn btn-success">
-									<i class="fa fa-pencil"></i>
-								</button>
-								<input type="hidden" name="prod_name"
-									value="${RtnItemsVO.prod_name}"> <input type="hidden"
-									name="action" value="getOne_For_Update">
-							</FORM>
+							<label>${RtnItemsVO.re_quantity}</label>
+							<input type="text" name="re_quantity" class="conftext">
+						</td>
+						<td>
+							<label>${RtnItemsVO.remark}</label>
+							<input type="text" name="remark" class="conftext">
+						</td>
+						<td>
+								<!-- getOne_For_Update_Item.do -->
+							<button type="button" class="btn btn-success" onclick="editbtn(this)" target="${RtnItemsVO.prod_name}"><i class="fa fa-pencil"></i></button>
+							<button type="button" class="btn btn-primary" onclick="confirmbtn(this)" ><i class="glyphicon glyphicon-ok"></i></button>
 						</td>
 						<td>
 <!-- 							<FORM id="del" METHOD="post" ACTION="delete_Item.do"> -->
@@ -277,6 +277,12 @@ print(text)
 	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
 		type="text/javascript"></script>
 	<script type="text/JavaScript">
+			$(document).ready(function(){
+				$(".conftext").hide();
+				$(".btn-primary").hide();
+			})
+	
+	
 		 	$(function () {
 
 // <!----------------------------------------  新增         ------------------------------------>
@@ -304,6 +310,7 @@ print(text)
 			           }
 			         });
 				})
+			
 //<!----------------------------------------刪除------------------------------------>
 				$('.btn-danger').on('click',function(){	
 					var id = $(this).attr('target');
@@ -322,6 +329,69 @@ print(text)
 		 		$('#table1').DataTable();
 
 		 	})
+		 	
+				
+//<!----------------------------------------  修改        ------------------------------------>
+				function editbtn(event){
+					
+					var quantity_label = $(event).parent().parent().find("td:eq(2) > label");
+					var quantity_input = $(event).parent().parent().find("td:eq(2) > input");
+					var remark_label = $(event).parent().parent().find("td:eq(3) > label");
+					var remark_input = $(event).parent().parent().find("td:eq(3) > input");
+					var confbtn = $(event).parent().parent().find("td:eq(4) > button:eq(1)");
+					var q_label = quantity_label.html();
+					var r_label = remark_label.html();
+					
+					
+					quantity_label.hide();
+					quantity_input.val(q_label);
+					quantity_input.show();
+					remark_label.hide();
+					remark_input.val(r_label);
+					remark_input.show();
+					$(event).hide();
+					confbtn.show();
+					
+				};
+				
+				
+				function confirmbtn(event){
+					
+					var quantity_label = $(event).parent().parent().find("td:eq(2) > label");
+					var quantity_input = $(event).parent().parent().find("td:eq(2) > input");
+					var quantity_val = quantity_input.val();
+					var remark_label = $(event).parent().parent().find("td:eq(3) > label");
+					var remark_input = $(event).parent().parent().find("td:eq(3) > input");
+					var remark_val = remark_input.val();
+					var editbtn = $(event).parent().parent().find("td:eq(4) > button:eq(0)");
+					
+					var prod_name = $(event).parent().parent().find("td:eq(0)").html();
+					var com_id = $(event).parent().parent().find("td:eq(1)").html();
+					
+					var url = "update_Item.do";
+					
+					$.ajax({
+						type:"POST",
+						url:url,
+						data:{
+							prod_name:prod_name,
+							com_id:com_id,
+							re_quantity:quantity_val,
+							remark:remark_val,
+						},
+						success:{}
+					})
+					
+					quantity_input.hide();
+					remark_input.hide();
+					quantity_label.html(quantity_val);
+					remark_label.html(remark_val);
+					quantity_label.show();
+					remark_label.show();
+					$(event).hide();
+					editbtn.show();
+					
+				};		 	
 	</script>
 </body>
 </html>

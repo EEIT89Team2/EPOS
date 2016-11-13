@@ -103,14 +103,17 @@ public class Invo_Controller {
 			if (ord_id == null || ord_id.length() == 0) {
 				errorMsgs.add("訂單編號不可為空值");
 			}
+			System.out.println("new_ord_id = " + ord_id);
 			String new_invoice_number = req.getParameter("new_invoice_number");
 			if (new_invoice_number == null || new_invoice_number.length() == 0) {
 				errorMsgs.add("新發票編號不可為空值");
 			}
+			System.out.println("new_ord_id = " + new_invoice_number);
 			String new_ord_id = req.getParameter("new_ord_id");
 			if (new_ord_id == null || new_ord_id.length() == 0) {
 				errorMsgs.add("新訂單編號不可為空值");
 			}
+			System.out.println("new_ord_id = " + new_ord_id);
 			InvoVO invoVO = new InvoVO();
 			invoVO.setInvoice_id(invoice_id);
 			invoVO.setOrd_id(ord_id);

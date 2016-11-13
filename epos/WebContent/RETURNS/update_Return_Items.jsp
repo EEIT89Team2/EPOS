@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="BIG5"%>
+    pageEncoding="UTF-8"%>
 <%@ page import="com.returns.model.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	    
 <% 
@@ -14,6 +14,7 @@
 <%-- <link href="<c:url value="../resources/css/bootstrap.css" />" rel="stylesheet"> --%>
 <link href="../resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="../resources/css/bootstrap-theme.min.css" rel="stylesheet">
+
 <style type="text/css">
 	
 	body { 
@@ -22,67 +23,99 @@
  	
  	a{
 		margin-left: 30px;
+	}
+	
+	span{
+		color: red;
+		font-family: å¾®è»Ÿæ­£é»‘é«”;
 	} 
 
 
 </style>
-<title>°h³f«~¸ê®Æ­×§ï</title>
+<title>é€€è²¨å“è³‡æ–™ä¿®æ”¹</title>
 </head>
 <body>
-<c:if test="${not empty errorMsgs}">
-	<font color='red'>½Ğ­×¥¿¥H¤U¿ù»~:
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li>${message}</li>
-		</c:forEach>
-	</ul>
-	</font>
-</c:if>
+<%-- <c:if test="${not empty errorMsgs}"> --%>
+<!-- 	<font color='red'>è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤: -->
+<!-- 	<ul> -->
+<%-- 		<c:forEach var="message" items="${errorMsgs}"> --%>
+<%-- 			<li>${message}</li> --%>
+<%-- 		</c:forEach> --%>
+<!-- 	</ul> -->
+<!-- 	</font> -->
+<%-- </c:if> --%>
 
 <form METHOD="post" ACTION="update_Item.do" name="form1">
     <fieldset style="height: 50%">
-        <legend>°h³f«~¸ê®Æ­×§ï</legend>
+        <legend>é€€è²¨å“è³‡æ–™ä¿®æ”¹</legend>
 <from class="form-horizontal">
 	<div class="form-group">
-    	<label class="col-sm-4 control-label">²£«~¦WºÙ:</label>
+    	<label class="col-sm-4 control-label">ç”¢å“åç¨±:</label>
     	<div class="col-sm-5">
       		<input type="text" class="form-control" name="prod_name" value="<%=rtnItemsVO.getProd_name()%>" disabled="disabled"/>
     	</div>
   	</div>
 	<div class="form-group">
-    	<label class="col-sm-4 control-label">¼t°Ó¥N¸¹:</label>
+    	<label class="col-sm-4 control-label">å» å•†ä»£è™Ÿ:</label>
     	<div class="col-sm-5">
-      		<input type="text" class="form-control" name="com_id" value="<%=rtnItemsVO.getCom_id()%>"/>
+      		<input type="text" class="form-control" name="com_id" value="<%=rtnItemsVO.getCom_id()%>" disabled="disabled"/>
     	</div>
   	</div>  	
 	<div class="form-group">
-    	<label class="col-sm-4 control-label">°h³f¼Æ¶q:</label>
+    	<label class="col-sm-4 control-label">é€€è²¨æ•¸é‡:</label>
     	<div class="col-sm-5">
-      		<input type="text" class="form-control" name="re_quantity" value="<%=rtnItemsVO.getRe_quantity()%>"/>
+      		<input type="text" id="quantity" class="form-control" name="re_quantity" value="<%=rtnItemsVO.getRe_quantity()%>"/>
+      		<span class="MsgError"></span>
     	</div>
-  	</div> 
-    <div class="form-group">
-          <label class="col-sm-4 control-label">³Æµù¡G</label>
-			<div class="col-sm-5">
-            <div class="textarea">
-                  <textarea name="remark"> </textarea>
-            </div>
-          </div>
-    </div>
-    <!--   	°e¥X   -->
+  	</div>
+  	<div class="form-group">
+    	<label class="col-sm-4 control-label">å‚™è¨»:</label>
+    	<div class="col-sm-5">
+      		<input type="text" class="form-control" name="remark" value="<%=rtnItemsVO.getRemark()%>"/>
+    	</div>
+  	</div>  
+    <!--   	é€å‡º   -->
   	<div class="form-group">
     	<div class="col-sm-offset-6">
-    ¡@¡@¡@¡@		<input type="hidden" name="action" value="update">
+    ã€€ã€€ã€€ã€€		<input type="hidden" name="action" value="update">
     		<input type="hidden" name="prod_name" value="<%=rtnItemsVO.getProd_name()%>">
-      		<button type="submit" class="btn btn-default">°e¡@¥X</button>
+    		<input type="hidden" name="com_id" value="<%=rtnItemsVO.getCom_id()%>">
+      		<button type="submit" class="btn btn-default">é€ã€€å‡º</button>
     	</div>
   	</div>
 	</from>
    </fieldset>
  </form>
  
- 	<a href="../RETURNS/Return_Items.jsp"><i class="glyphicon glyphicon-th-list"></i>¡@°h³f«~</a></br>
-	<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>¡@¦^¤W­¶</a>
+ 	<a href="../RETURNS/Return_Items.jsp"><i class="glyphicon glyphicon-th-list"></i>ã€€é€€è²¨å“</a></br>
+	<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>ã€€å›ä¸Šé </a>
+	
+	
+	
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+		!window.jQuery
+				&& document
+						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
+	</script>
+	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
+	<script type="text/javascript">
+	
+	$(document).ready(function(){
+
+            var rule = /^\d{1,3}$/;
+            $('#quantity').blur(function(){
+            	if(rule.test($(this).val())){
+                    $("span").text('')
+                    $(this).css("border-color","green")
+                }else{
+                    $("span").html('æ ¼å¼éŒ¯èª¤,è«‹é‡æ–°è¼¸å…¥')
+                    $(this).css("border-color","red")
+                }
+            })
+        })
+	</script>
 	
 
 </body>

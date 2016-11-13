@@ -208,6 +208,7 @@
 				<div>
 				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
 		    	<a href="#" onclick="window.open('searchinvo.jsp', 'Yahoo', config='height=500,width=850')"><span class="glyphicon glyphicon-search"></span>查詢</a>　　　
+		    	<a href="#" onclick="window.open('listAllInvo.jsp', 'RetrunList', config='height=800,width=1680')"><span class="glyphicon glyphicon-inbox"></span>全部查詢</a>　　
 		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　　
 		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>　
 				</div>
@@ -254,15 +255,13 @@
 						<td>${invoVO.invoice_id}</td>
 						<td>${invoVO.ord_id}</td>
 						<td>${invoVO.new_invoice_number}</td>
-						<td>${invoVO.new_ord_id}</td>
 						<td>
-
-							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/INVO/allForUpdate.do">
-								<button type="submit" class="btn btn-success">
-									<i class="fa fa-pencil"></i>
-								</button>
-								<input type="hidden" name="invoice_id" value="${invoVO.invoice_id}"> 
-							</FORM>
+							<label>${invoVO.new_ord_id}</label>
+							<input type="text" name="new_invoice_number" class="edittext">
+						</td>
+						<td>
+							<button type="button" class="btn btn-success" onclick="editdata(this)" target="${invoVO.invoice_id}"><i class="fa fa-pencil"></i></button>
+			     			<button type="button" class="btn btn-primary" onclick="confirm(this)" ><i class="glyphicon glyphicon-ok"></i></button>
 						</td>
 						<td>
 			    			<button type="submit" target="${invoVO.invoice_id}" class="btn btn-danger"><i class="fa fa-trash-o "></i></button>
@@ -324,6 +323,11 @@
 		type="text/javascript"></script>
 	<script type="text/JavaScript">
 	
+	$(document).ready(function(){
+		$(".btn-primary").hide();
+		$(".edittext").hide();
+	})	
+	
 		 $(function () {
 
 // <!----------------------------------------  新增         ------------------------------------>
@@ -359,6 +363,55 @@
 		 		$('#table1').DataTable();
 
 		 	})
+		 	
+//<!----------------------------------------  修改         ------------------------------------>	
+	
+	function editdata(event) {
+		var label = $(event).parent().parent().find("td:eq(3) > label");
+		var oldval = label.html();
+		console.log("oldval= "+oldval)
+		var edittext = $(event).parent().parent().find("td:eq(3) > input");
+		var confbtn = $(event).parent().parent().find("td:eq(4) > button:eq(1)");
+		edittext.val(oldval);
+		label.hide();
+		edittext.show();
+		$(event).hide();
+		confbtn.show();
+	}
+	
+	function confirm(event){
+		
+		var id = $(event).parent().parent().find("td:eq(0)").html();
+		var ord_id = $(event).parent().parent().find("td:eq(1)").html();
+		var new_invoice_number = $(event).parent().parent().find("td:eq(2)").html();
+		
+		var label = $(event).parent().parent().find("td:eq(3) > label");
+		var edittext = $(event).parent().parent().find("td:eq(3) > input").val();
+		var editbtn = $(event).parent().parent().find("td:eq(4) > button:eq(0)"); 
+		console.log("edittext="+edittext);
+		var url = "updateInvo.do";
+		
+		$.ajax({
+			type:"POST",
+			url:url,
+			data:{
+				invoice_id:id,
+				ord_id:ord_id,
+				new_invoice_number:new_invoice_number,
+				new_ord_id:edittext,
+				},
+			sucess:{}
+		})
+		
+		$(".edittext").hide();
+		label.html(edittext);
+		console.log("label="+label.html());
+		label.show();
+		$(event).hide();
+		editbtn.show();
+		
+	}
+	
 	</script>
 </body>
 </html>

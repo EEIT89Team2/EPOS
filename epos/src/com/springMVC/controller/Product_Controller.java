@@ -6,8 +6,6 @@ import java.io.PrintWriter;
 import java.util.Base64;
 import java.util.LinkedList;
 import java.util.List;
-
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
@@ -19,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.product.model.ProdService;
 import com.product.model.ProdVO;
 
-import gvjava.org.json.JSONArray;
-import gvjava.org.json.JSONException;
 import gvjava.org.json.JSONObject;
 
 /**
@@ -162,7 +158,7 @@ System.out.println(u);
 	}
 
 	
-	@RequestMapping(method = RequestMethod.POST,value ={"PRODUCT/updateDeleteProd.do","/PRODUCT/updateDeleteProd.do"})
+	@RequestMapping(method = RequestMethod.POST,value = "/PRODUCT/updateDeleteProd.do")
 	public String updateDeleteProd(ModelMap model,HttpServletRequest request,
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 			@RequestParam("action")String action,
@@ -175,7 +171,7 @@ System.out.println(u);
 				model.addAttribute("prodVO", prodVO);
 				return "/PRODUCT/UpdateProd";
 			}
-
+System.out.println(1);
 			if("delete".equals(action)){
 				
 				prodSrv.delete(prod_id);

@@ -26,7 +26,7 @@
 	</c:if>
 </center>
  
-	<FORM METHOD="post" ACTION="updateProm.do" name="form2">
+	<FORM METHOD="post" ACTION="updateProm.do" name="upProForm">
 		<table border="0">
 
 			<tr>
@@ -61,13 +61,32 @@
 
 		<br> 
 <!-- 	 <input type="hidden" name="action" value="update">  -->
-	 <input	type="submit" value="送出修改">
+	 <input	type="button" value="送出修改">
 	</FORM>
 </center>	
 	<jsp:include page="/COMMON/footer_prom.jsp" />
-	
-	<a href="../index.jsp">回首頁</a>
-	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
+
+	<script>
+		$(function() {
+			$(":button").on('click', function() {
+					$.ajax({
+						type : "POST",
+						url : "updateProm.do",
+						data : $("form[name='upProForm']").serialize(),
+						success : function(data) {
+							$.ajax({
+								"type" : "post",
+								"url" : "allProm.do",
+								"data" : {},
+								"success" : function(data) {
+									$(".result-context").html(data);
+								},
+							});
+						},
+					})	
+			})
+		})
+	</script>	
 	
 </body>
 </html>

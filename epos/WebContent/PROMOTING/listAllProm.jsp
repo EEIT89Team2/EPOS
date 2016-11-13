@@ -32,7 +32,7 @@
 		<th>活動截止日</th>
 		<th>備註</th>
 		<th>修改</th>
-		<th>刪除</th>
+		<th>查詢</th>
 	</tr>
 	
 	<c:forEach var="PromVO" items="${list}">	
@@ -44,20 +44,20 @@
 			<td>${PromVO.pro_neirong}</td>
 
         		<td>
-					<FORM METHOD="post"		ACTION="<%=request.getContextPath()%>/PROMOTING/allForUpdateProm.do">
-						<input type="submit" value="修改"> 
-						<input type="hidden" name="pro_prod_id" value="${PromVO.pro_prod_id}"> 
-						<input type="hidden" name="pro_begin" value="${PromVO.pro_begin}"> 
+<%-- 					<FORM METHOD="post"		ACTION="<%=request.getContextPath()%>/PROMOTING/allForUpdateProm.do"> --%>
+						<input type="button" value="修改"  target1="${PromVO.pro_prod_id}" target2="${PromVO.pro_begin}"> 
+<%-- 						<input type="hidden" name="pro_prod_id" value="${PromVO.pro_prod_id}">  --%>
+<%-- 						<input type="hidden" name="pro_begin" value="${PromVO.pro_begin}">  --%>
 <!-- 						<input type="hidden" name="action" value="getOne_For_Update"> -->
-					</FORM>
+<!-- 					</FORM> -->
 				</td>
 				<td>
-					<FORM METHOD="post"		ACTION="<%=request.getContextPath()%>/PROMOTING/deleteProm.do">
-						<input type="submit" value="刪除"> 
-						<input type="hidden" name="pro_prod_id" value="${PromVO.pro_prod_id}"> 
-						<input type="hidden" name="pro_begin" value="${PromVO.pro_begin}"> 
+<%-- 					<FORM METHOD="post"		ACTION="<%=request.getContextPath()%>/PROMOTING/deleteProm.do"> --%>
+						<input type="button" value="刪除" target1="${PromVO.pro_prod_id}" target2="${PromVO.pro_begin}"> 
+<%-- 						<input type="hidden" name="pro_prod_id" value="${PromVO.pro_prod_id}">  --%>
+<%-- 						<input type="hidden" name="pro_begin" value="${PromVO.pro_begin}">  --%>
 <!-- 						<input type="hidden" name="action" value="delete"> -->
-					</FORM>
+<!-- 					</FORM> -->
 				</td>
 	 	</tr>
 	 </c:forEach>
@@ -68,5 +68,37 @@
 	<a href="../index.jsp">回首頁</a>
 	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
 
+	<script type="text/JavaScript">
+	$(document).ready(function() {
+		$(":button").on('click',function(){
+			if($(this).val()=="刪除"){
+				$.ajax({
+					type : "post",
+					url : "deleteProm.do",
+					data : {
+						pro_prod_id:$(this).attr('target1'),
+						pro_begin:$(this).attr('target2')
+					},
+					success :function(data) {
+						$(".result-context").html(data);
+					}	
+				});
+			}else if($(this).val()=="修改"){
+				$.ajax({
+					type : "post",
+					url : "allForUpdateProm.do",
+					data : {
+						pro_prod_id:$(this).attr('target1'),
+						pro_begin:$(this).attr('target2')
+					},
+					success :function(data) {
+						$(".result-context").html(data);
+					}
+				});
+			}
+		});
+	});
+
+	</script>	
 </body>
 </html>

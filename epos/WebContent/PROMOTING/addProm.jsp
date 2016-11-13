@@ -11,62 +11,98 @@
 <title>新增促銷商品</title>
 </head>
 <body>
-<center>
+
 	<h3>促銷商品資料:</h3>
-	<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font color='red'>請修正以下錯誤:
-			<ul>
-				<c:forEach var="message" items="${errorMsgs}">
-					<li>${message}</li>
-				</c:forEach>
-			</ul>
-		</font>
-	</c:if>
- 
-	<FORM METHOD="post" ACTION="insertProm.do" name="form1">
-		<table border="0">
 
-			<tr>
-				<td>促銷商品編號:</td>
-				<td><input type="text" name="pro_prod_id" size="20"
-					value="<%=(promVO == null) ? "" : promVO.getPro_prod_id()%>" /></td>
-			</tr>
-			<tr>
-				<td>促銷商品名稱:</td>
-				<td><input type="text" name="pro_prod_name" size="20"
-					value="<%=(promVO == null) ? "" : promVO.getPro_prod_name()%>" /></td>
-			</tr>
+		<div class="col-lg-4">
+			<div class="form-panel">
+				<h4 class="mb">
+					<i class="fa fa-angle-right"></i> 新增
+				</h4>
+					<h3>促銷商品資料:</h3>
+					<%-- 錯誤表列 --%>
+					<c:if test="${not empty errorMsgs}">
+						<font color='red'>請修正以下錯誤:
+							<ul>
+								<c:forEach var="message" items="${errorMsgs}">
+									<li>${message}</li>
+								</c:forEach>
+							</ul>
+						</font>
+					</c:if>
+				 
+					<FORM METHOD="post" ACTION="insertProm.do" name="form1">
+						<table border="0">
+				
+							<tr>
+								<td>促銷商品編號:</td>
+								<td><input type="text" name="pro_prod_id" size="20"
+									value="<%=(promVO == null) ? "" : promVO.getPro_prod_id()%>" /></td>
+							</tr>
+							<tr>
+								<td>促銷商品名稱:</td>
+								<td><input type="text" name="pro_prod_name" size="20"
+									value="<%=(promVO == null) ? "" : promVO.getPro_prod_name()%>" /></td>
+							</tr>
+				
+							<tr>
+								<td>促銷商品起始日期:</td>
+								<td><input type="date" name="pro_begin" size="20"
+									value="<%=(promVO == null) ? "" : promVO.getPro_begin()%>" /></td>
+							</tr>
+				
+							<tr>
+								<td>促銷商品截止日:</td>
+								<td><input type="date" name="pro_end" size="20"
+									value="<%=(promVO == null) ? "" : promVO.getPro_end()%>" /></td>
+							</tr>
+							<tr>
+								<td>備註:</td>
+								<td>
+									<textarea name="pro_neirong" rows='7' cols="20" value="<%=(promVO == null) ? "" : promVO.getPro_neirong()%>" >
+									</textarea>
+								</td>
+							</tr>
+				
+						</table>
+				
+						<br> 
+				<!-- 		<input type="hidden" name="action" value="insert">  -->
+						<input type="button" value="送出新增" name="c_promoting">
+					</FORM>
+			</div>
+		</div>
 
-			<tr>
-				<td>促銷商品起始日期:</td>
-				<td><input type="date" name="pro_begin" size="20"
-					value="<%=(promVO == null) ? "" : promVO.getPro_begin()%>" /></td>
-			</tr>
 
-			<tr>
-				<td>促銷商品截止日:</td>
-				<td><input type="date" name="pro_end" size="20"
-					value="<%=(promVO == null) ? "" : promVO.getPro_end()%>" /></td>
-			</tr>
-			<tr>
-				<td>備註:</td>
-				<td>
-					<textarea name="pro_neirong" rows='7' cols="20" value="<%=(promVO == null) ? "" : promVO.getPro_neirong()%>" >
-					</textarea>
-				</td>
-			</tr>
 
-		</table>
+<script type="text/JavaScript">	
 
-		<br> 
-<!-- 		<input type="hidden" name="action" value="insert">  -->
-		<input type="submit" value="送出新增">
-	</FORM>
-</center>	
-	<jsp:include page="/COMMON/footer_prom.jsp" />
-	
-	<a href="../index.jsp">回首頁</a>
-	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
+	$(document).ready(function() {
+		//新增						
+		$(":button[name='c_promoting']").click(function() {
+			var insert = $("form[name='form1']");
+			$.ajax({
+				"type" : insert.attr("method"),
+				"url" : insert.attr("action"),
+				"data" : insert.serialize(),
+				"success" : function(data) {
+					$.ajax({
+						"type" : "post",
+						"url" : "allProm.do",
+						"data" : {},
+						"success" : function(data) {
+							$(".result-context").html(data);
+							$("#result_prom").attr("class", "active");
+							$("#insert_prom").removeAttr("class");
+							$("#new").attr("class", "tab-pane fade");
+							$("#result").attr("class", "tab-pane active");
+						},
+					});
+				},
+			});
+
+		})
+	})
+</script>
 </body>
 </html>

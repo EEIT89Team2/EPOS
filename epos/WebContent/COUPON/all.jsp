@@ -2,26 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.coupon.model.*"%>
-<%
-	List<CouponVO> list =(List<CouponVO>) request.getAttribute("list");	//除了錯誤訊息是用VO或List送來外,其餘的查詢結果都是用List送來
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>折價券清單</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>all</title>
 </head>
 <body>
+	<jsp:useBean id="copSvc" scope="page" class="com.coupon.model.CouponService" />
 <center>
-	<c:if test="${not empty errorMsgs}">
-		<font color='red'>請修正以下錯誤:
-			<ul>
-				<c:forEach var="message" items="${errorMsgs}">
-					<li>${message}</li>
-				</c:forEach>
-			</ul>
-		</font>
-	</c:if>
  
 	<table border='1' bordercolor='#CCCCFF' width='800'>
 		<tr>
@@ -35,8 +25,8 @@
 			<th>刪除</th>
 		</tr>
 	
-		<c:forEach var="copVO" items="${list}">
-<!-- 		<form method="post" action="updateAll.do"> -->
+		<c:forEach var="copVO" items="${copSvc.all}">
+
 			<tr align='center' valign='middle'>
 				<td>${copVO.cpon_id}</td>
 				<td>${copVO.cpon_name}</td>
@@ -45,26 +35,16 @@
 				<td>${copVO.cpon_dollar}</td>
 				<td>${copVO.status}</td>
 				<td>
-<%-- 					<FORM METHOD="post"		ACTION="<%=request.getContextPath()%>/COUPON/allForUpdateCpon.do"> --%>
-						<input type="button" value="修改" name='update' target="${copVO.cpon_id}"> 
-<%-- 						<input type="hidden" name="cpon_id" value="${copVO.cpon_id}">  --%>
-<!-- 						<input type="hidden" name="action" value="getOne_For_Update"> -->
-<!-- 					</FORM> -->
+					<input type="button" value="修改" name='update' target="${copVO.cpon_id}"> 
 				</td>
 				<td>
-<%-- 					<FORM METHOD="post"		ACTION="<%=request.getContextPath()%>/COUPON/deleteCpon.do"> --%>
-						<input type="button" value="刪除" name='delete' target="${copVO.cpon_id}"> 
-<%-- 						<input type="hidden" name="cpon_id" value="${copVO.cpon_id}">  --%>
-<!-- 						<input type="hidden" name="action" value="delete"> -->
-<!-- 					</FORM> -->
+					<input type="button" value="刪除" name='delete' target="${copVO.cpon_id}"> 
 				</td>
 			</tr>
-<!-- 			</form> -->
+
 		</c:forEach>
 	</table>
 	</center>
-<jsp:include page="/COMMON/footer_cpon.jsp" />
-
 	<script>
 		$(function() {
 			$(':button').on('click', function() {		
@@ -93,6 +73,6 @@
 				}	
 			})
 		})
-	</script>
+	</script>	
 </body>
 </html>

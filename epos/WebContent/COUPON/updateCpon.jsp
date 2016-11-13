@@ -55,12 +55,26 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO"); //若輸入錯誤可�
 	</tr>
 
 </table>
-
+</FORM>
 <br>
 <!-- <input type="hidden" name="action" value="update"> -->
-<input type="submit" value="送出修改"></FORM>
-<jsp:include page="/COMMON/footer_cpon.jsp" />
+<input type="button" value="送出修改" name="update">
 	<a href="../index.jsp">回首頁</a>
 	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
+	
+	<script>
+		$(function() {
+			$(":button[name='update']").on('click', function() {
+					$.ajax({
+						type : "POST",
+						url : "updateCpon.do",
+						data : $("form[name='form2']").serialize(),
+						success : function(data) {
+							$(".chg-content").html(data);
+						}
+					})	
+			})
+		})
+	</script>	
 </body>
 </html>

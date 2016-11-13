@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -20,13 +23,9 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-
-<title>member</title>
-
+<title>全部員工基本資料</title>
 </head>
-
 <body>
-
 	<section id="container"> <!--header start--> <header
 		class="header black-bg">
 	<div class="sidebar-toggle-box">
@@ -131,124 +130,93 @@
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
-	</aside> <!--sidebar end--> <section id="main-content"> <section
-		class="wrapper">
+	</aside> <!--sidebar end--> 
+	<section id="main-content"> <section class="wrapper">
 	<div class="row mt">
 		<nav class="nav navbar-default">
-		<div class="container-fluid"
-			style="float: right; left: -50%; position: relative;">
-			<ul class="nav navbar-nav"
-				style="float: left; left: 50%; position: relative;">
-				<li><a style="background-color: rgba(224, 224, 224, 0.7);">搜尋</A></li>
-				<li><a href="addMem.jsp">新增</a></li>
+		<div class="container-fluid" style="float: right; left: -40%; position: relative;">
+			<ul class="nav navbar-nav">
+				<li><a href="employee.jsp">搜尋</a></li>
+				<li><a style="background-color: rgba(224, 224, 224, 0.7);">新增</a></li>
+				<li><a href="SetPassCode.jsp">修改權限</a></li>
 				<li><a href="#">查詢結果</a></li>
 			</ul>
 		</div>
 		</nav>
-		<div class="col-lg-6"
-			style="float: right; left: -20%; position: relative;">
+		<div class="col-lg-4"
+			style="float: right; left: -30%; position: relative;">
 			<div class="form-panel">
-			<jsp:useBean id="MemSvc" scope="page" class="com.member.model.MemberService" />
 				<h4 class="mb">
-					<i class="fa fa-angle-right"></i> 查詢
+					<i class="fa fa-angle-right"></i> 新增
 				</h4>
-				<%-- 錯誤表列 --%>
-				<c:if test="${not empty param.message}">
+				<c:if test="${not empty errorMsgs}">
 					<font color='red'>請修正以下錯誤:
 						<ul>
-							<c:forEach var="message" items="${param.message}">
+							<c:forEach var="message" items="${errorMsgs}">
 								<li>${message}</li>
 							</c:forEach>
 						</ul>
 					</font>
 				</c:if>
 
-				<form method="post" action="Memb.do"
-					class="form-horizontal style-form">
-					<div class="form-group">
-						<label class="col-sm-5 col-sm-3 control-label">依會員編號搜尋</label>
-						<div class="col-sm-3">
-							<b>選擇會員ID:</b> 
-							<select size="1" name="mem_id">
-								<c:forEach var="memVO" items="${MemSvc.all}">
-									<option value="${memVO.mem_id}">${memVO.mem_id}
-								</c:forEach>
-							</select>
-						</div>
-						<div class="col-sm-4">
-							<input type="submit" value="依會員編號搜尋" class="btn btn-round btn-theme03"> 
-							<input type="hidden" name="action" value="getOne_For_Display">
-						</div>
-					</div>
-				</form>
-				<form method="post" action="Memb.do"
-					class="form-horizontal style-form">
-					<div class="form-group">
-						<label class="col-sm-5 col-sm-3 control-label">依會員姓名搜尋</label>
-						<div class="col-sm-3">
-							<b>選擇會員姓名:</b> 
-							<select size="1" name="mem_id">
-								<c:forEach var="memVO" items="${MemSvc.all}">
-									<option value="${memVO.mem_id}">${memVO.mem_name}
-								</c:forEach>
-							</select>
-						</div>
-						<div class="col-sm-4">
-							<input type="submit" value="依會員姓名搜尋" class="btn btn-round btn-theme03"> 
-							<input type="hidden" name="action" value="getOne_For_Display">
-						</div>
-					</div>
-				</form>
-				<form method="post" action="idsMemb.do"
-					class="form-horizontal style-form">
-					<div class="form-group">
-						<label class="col-sm-5 col-sm-3 control-label">搜尋多筆會員</label>
-						<div class="col-sm-3">
-							<b>查詢會員(多):</b> 
-							<select size="1" name="mem_id_1">
-								<c:forEach var="memVO" items="${MemSvc.all}">
-									<option value="${memVO.mem_id}">${memVO.mem_id}
-								</c:forEach>
-							</select> 
-							<select size="1" name="mem_id_2">
-								<c:forEach var="memVO" items="${MemSvc.all}">
-									<option value="${memVO.mem_id}">${memVO.mem_id}
-								</c:forEach>
-							</select>
-						</div>
-						<div class="col-sm-4">
-							<input type="submit" value="搜尋多筆會員" class="btn btn-round btn-theme03">
-						</div>
-					</div>
-				</form>
-				<form method="post" action="datesMem.do" class="form-horizontal style-form">
-					<div class="form-group">
-						<label class="col-sm-5 col-sm-3 control-label">依新增日期搜尋</label>
-						<div class="col-sm-3">
-							<b>查詢新增會員日期:</b> 
-							<input type="date" name="key_date_1"> 
-							<input type="date" name="key_date_2">
-						</div>
-						<div class="col-sm-4">
-							<input type="submit" value="依新增日期搜尋" class="btn btn-round btn-theme03">
-						</div>
-					</div>
-				</form>
-				<form method="post" action="allMemb.do"
-					class="form-horizontal style-form">
-					<div class="form-group">
-						<label class="col-sm-5 col-sm-3 control-label">查詢全部</label>
-						<div class="col-sm-3"></div>
-						<div class="col-sm-4">
-							<input type="submit" value="查詢全部" class="btn btn-round btn-theme03">
-						</div>
-					</div>
+				<form class="form-inline" METHOD="post" ACTION="insertEmp.do" enctype="multipart/form-data">
+					<table>
+					<tr>
+						<td>密碼:</td>
+						<td><input type="text" name="emp_pwd" value="3310"></td>
+					</tr>
+					<tr>
+						<td>姓名:</td>
+						<td><input type="text" name="emp_name" value="柯大中"></td>
+					</tr>
+					<tr>
+						<td>性別:</td>
+						<td><input type="text" name="emp_sex" value="男"></td>
+					</tr>					
+					<tr>
+						<td>身分證:</td>
+						<td><input type="text" name="emp_idnum" value="A132789952"></td> 
+					</tr>					
+					<tr>
+						<td>地址:</td>
+						<td><input type="text" name="emp_addr" value="台北市新生北路五段一號"></td>
+					</tr>					
+					<tr>
+						<td>電子信箱:</td>
+						<td><input type="text" name="emp_mail" value="dadaa@gmail.com"></td>
+					</tr>					
+					<tr>
+						<td>電話:</td>
+						<td><input type="text" name="emp_phone" value="0988456877"></td>
+					</tr>					
+					<tr>
+						<td>生日:</td>
+						<td><input type="date" name="emp_bday" value="1991-08-26"></td>
+					</tr>					
+					<tr>
+						<td>到職日:</td>
+						<td><input type="date" name="emp_reg" value="2016-09-30"></td>
+					</tr>					
+					<tr>
+						<td>離職日:</td>
+						<td><input type="date" name="emp_due"></td>
+					</tr>					
+					<tr>
+						<td>照片:</td>
+						<td><input type="file" name="picture"><br></td> 
+					</tr>					
+					<tr>
+						<td>修改人:</td>
+						<td><input type="text" name="key_id" value="E00005"></td> 
+					</tr>	
+					</table>				
+					<br>
+					<input type="submit" value="送出新增" class="btn btn-theme03">
 				</form>
 			</div>
 		</div>
 	</div>
-	</section> </section> </section>
-
+	</section> </section></section>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
@@ -258,6 +226,8 @@
 	</script>
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
+	<script type="text/javascript"
+		src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
 	<script class="include" type="text/javascript"
 		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
@@ -266,5 +236,8 @@
 
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
+	<!------------------------------------------------ 程式 --------------------------------------------------------------->
+	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
+		type="text/javascript"></script>
 </body>
 </html>

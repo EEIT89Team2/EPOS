@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=BIG5">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap core CSS -->
 <link href="<c:url value="../resources/css/bootstrap.css" />"
@@ -22,7 +21,7 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>å…¨éƒ¨å» å•†åŸºæœ¬è³‡æ–™</title>
+<title>­×§ï­û¤u¸ê®Æ</title>
 </head>
 <body>
 	<section id="container"> <!--header start--> <header
@@ -58,69 +57,69 @@
 			</a></li>
 
 			<li class="sub-menu"><a href="javascript:;"> <i
-					class="fa fa-desktop"></i> <span>åŸºæœ¬è³‡æ–™ç¶­è­·</span>
+					class="fa fa-desktop"></i> <span>°ò¥»¸ê®ÆºûÅ@</span>
 			</a>
 				<ul class="sub">
-					<li><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">æœƒå“¡è³‡æ–™ç¶­è­·</a></li>
+					<li><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">·|­û¸ê®ÆºûÅ@</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/EMPLOYEE/employee.jsp">å“¡å·¥è³‡æ–™ç¶­è­·</a></li>
+						href="<%=request.getContextPath()%>/EMPLOYEE/employee.jsp">­û¤u¸ê®ÆºûÅ@</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/COMPANY/company.jsp">å» å•†è³‡æ–™ç¶­è­·</a></li>
+						href="<%=request.getContextPath()%>/COMPANY/company.jsp">¼t°Ó¸ê®ÆºûÅ@</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
-					class="fa fa-edit"></i> <span>é€²è²¨ä½œæ¥­</span>
-			</a>
-				<ul class="sub">
-					<li><a
-						href="<%=request.getContextPath()%>/REQUISITION/requisition.jsp">è«‹è³¼å–®ç¶­è­·</a></li>
-					<li><a
-						href="<%=request.getContextPath()%>/QUOTATION/quotation.jsp">è©¢åƒ¹å–®ç¶­è­·</a></li>
-					<li><a href="<%=request.getContextPath()%>/PURCHASE/pur.jsp">æ¡è³¼å–®ç¶­è­·</a></li>
-					<li><a
-						href="<%=request.getContextPath()%>/BILL_OF_PURCHASE/bop.jsp">é€²è²¨å–®ç¶­è­·</a></li>
-				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i
-					class="glyphicon glyphicon-shopping-cart"></i> <span>éŠ·è²¨ç³»çµ±</span>
+					class="fa fa-edit"></i> <span>¶i³f§@·~</span>
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/VALUATION/valuation.jsp">å ±åƒ¹å–®ç¶­è­·</a></li>
-					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">è¨‚å–®ç¶­è­·</a></li>
+						href="<%=request.getContextPath()%>/REQUISITION/requisition.jsp">½ĞÁÊ³æºûÅ@</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/SHIPMENTS/shipments.jsp">å‡ºè²¨å–®ç¶­è­·</a></li>
+						href="<%=request.getContextPath()%>/QUOTATION/quotation.jsp">¸ß»ù³æºûÅ@</a></li>
+					<li><a href="<%=request.getContextPath()%>/PURCHASE/pur.jsp">±ÄÁÊ³æºûÅ@</a></li>
+					<li><a
+						href="<%=request.getContextPath()%>/BILL_OF_PURCHASE/bop.jsp">¶i³f³æºûÅ@</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
-					class="fa fa-book"></i> <span>å­˜è²¨ä½œæ¥­</span>
+					class="glyphicon glyphicon-shopping-cart"></i> <span>¾P³f¨t²Î</span>
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/PRODUCT/product.jsp">å•†å“ç®¡ç†</a></li>
+						href="<%=request.getContextPath()%>/VALUATION/valuation.jsp">³ø»ù³æºûÅ@</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">­q³æºûÅ@</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/PROMOTING/promoting.jsp">ä¿ƒéŠ·å•†å“ç®¡ç†</a></li>
+						href="<%=request.getContextPath()%>/SHIPMENTS/shipments.jsp">¥X³f³æºûÅ@</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
-					class="glyphicon glyphicon-log-out"></i> <span>é€€è²¨ä½œæ¥­</span>
+					class="fa fa-book"></i> <span>¦s³f§@·~</span>
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/RETURNS/Return_Items.jsp">é€€è²¨å“ç®¡ç†</a></li>
+						href="<%=request.getContextPath()%>/PRODUCT/product.jsp">°Ó«~ºŞ²z</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/RETURNS/returns.jsp">é€€è²¨å–®ç®¡ç†</a></li>
-					<li><a
-						href="<%=request.getContextPath()%>/INVO/select_page.jsp">ä½œå»¢ç™¼ç¥¨ç®¡ç†</a></li>
+						href="<%=request.getContextPath()%>/PROMOTING/promoting.jsp">«P¾P°Ó«~ºŞ²z</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
-					class="fa fa-usd"></i> <span>é‡‘æµç®¡ç†</span>
+					class="glyphicon glyphicon-log-out"></i> <span>°h³f§@·~</span>
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/SHIFTREPORT/shiftreport.jsp">ç­åˆ¥å ±è¡¨ç¶­è­·</a></li>
-					<li><a href="<%=request.getContextPath()%>/COUPON/coupon.jsp">æŠ˜åƒ¹åˆ¸</a></li>
+						href="<%=request.getContextPath()%>/RETURNS/Return_Items.jsp">°h³f«~ºŞ²z</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">æŠ˜æ‰£ç®¡ç†</a></li>
+						href="<%=request.getContextPath()%>/RETURNS/returns.jsp">°h³f³æºŞ²z</a></li>
+					<li><a
+						href="<%=request.getContextPath()%>/INVO/select_page.jsp">§@¼oµo²¼ºŞ²z</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
-					class=" fa fa-bar-chart-o"></i> <span>å ±è¡¨åˆ†æ</span>
+					class="fa fa-usd"></i> <span>ª÷¬yºŞ²z</span>
+			</a>
+				<ul class="sub">
+					<li><a
+						href="<%=request.getContextPath()%>/SHIFTREPORT/shiftreport.jsp">¯Z§O³øªíºûÅ@</a></li>
+					<li><a href="<%=request.getContextPath()%>/COUPON/coupon.jsp">§é»ù¨é</a></li>
+					<li><a
+						href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">§é¦©ºŞ²z</a></li>
+				</ul></li>
+			<li class="sub-menu"><a href="javascript:;"> <i
+					class=" fa fa-bar-chart-o"></i> <span>³øªí¤ÀªR</span>
 			</a>
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
@@ -137,54 +136,64 @@
 		<div class="container-fluid"
 			style="float: right; left: -45%; position: relative;">
 			<ul class="nav navbar-nav">
-				<li><a href="company.jsp">æœå°‹</a></li>
-				<li><a href="addCom.jsp">æ–°å¢</a></li>
-				<li><a style="background-color: rgba(224, 224, 224, 0.7);">æŸ¥è©¢çµæœ</a></li>
+				<li><a href="company.jsp">·j´M</a></li>
+				<li><a style="background-color: rgba(224, 224, 224, 0.7);">·s¼W</a></li>
+				<li><a href="#">¬d¸ßµ²ªG</a></li>
 			</ul>
 		</div>
 		</nav>
-		<center>
-			<table border="1">
-				<tr>
-					<th>å» å•†ç·¨è™Ÿ</th>
-					<th>å» å•†åç¨±</th>
-					<th>çµ±ä¸€ç·¨è™Ÿ</th>
-					<th>é›»è©±</th>
-					<th>åœ°å€</th>
-					<th>é›»å­ä¿¡ç®±</th>
-					<th>åç‰‡</th>
-					<th>ä¿®æ”¹äºº</th>
-					<th>ä¿®æ”¹æ™‚é–“</th>
-					<th>ä¿®æ”¹</th>
-					<th>åˆªé™¤</th>
-				</tr>
-
-				<c:forEach var="list" items="${list}" varStatus="count">
-					<form method="post" action="updateDeleteCom.do">
-						<tr>
-							<td>${list.com_id}</td>
-							<td>${list.com_name}</td>
-							<td>${list.com_um}</td>
-							<td>${list.com_phone}</td>
-							<td>${list.com_addr}</td>
-							<td>${list.com_mail}</td>
-							<td><img alt="å°šç„¡åç‰‡"
-								src="data:image/gif;base64,${list.picture}"></td>
-							<td>${list.key_id}</td>
-							<td>${list.key_date}</td>
-							<td><input type="submit" name="action" value="update"
-								class="btn btn btn-xs"></td>
-							<td><input type="submit" name="action" value="delete"
-								class="btn btn btn-xs"></td>
-							<input type="hidden" name="com_id" value="${list.com_id}">
-
-						</tr>
-
-					</form>
-					<%-- 		${count.index} --%>
-				</c:forEach>
-			</table>
-		</center>
+		<div class="col-lg-4"
+			style="float: right; left: -30%; position: relative;">
+			<div class="form-panel">
+				<h4 class="mb">
+					<i class="fa fa-angle-right"></i> ·s¼W
+				</h4>
+				<c:if test="${not empty errorMsgs}">
+					<font color='red'>½Ğ­×¥¿¥H¤U¿ù»~:
+						<ul>
+							<c:forEach var="message" items="${errorMsgs}">
+								<li>${message}</li>
+							</c:forEach>
+						</ul>
+					</font>
+				</c:if>
+				<form method="post" action="insertCom.do"
+					enctype="multipart/form-data" class="form-horizontal style-form">
+					<table>
+					<tr>
+						<td>¦WºÙ</td>
+						<td><input type="text" name="com_name" value="Às²»¹q¤l"></td>
+					</tr>
+					<tr>
+						<td>²Î¤@½s¸¹</td>
+						<td><input type="text" name="com_um" value="33221354"></td>
+					</tr>
+					<tr>
+						<td>¦a§}</td>
+						<td><input type="text" name="com_addr" value="¥x¥_¥«ªQ¦¿¸ô83«Ñ5¸¹"></td>
+					</tr>
+					<tr>
+						<td>¹q¤l«H½c</td>
+						<td><input type="text" name="com_mail" value="dadaa@gmail.com"></td>
+					</tr>
+					<tr>
+						<td>¹q¸Ü</td>
+						<td><input type="text" name="com_phone" value="0988456877"></td>
+					</tr>
+					<tr>
+						<td>·Ó¤ù</td>
+						<td><input type="file" name="picture"></td>
+					</tr>
+					<tr>
+						<td>­×§ï¤H</td>
+						<td><input type="text" name="key_id" value="E00005"></td>
+					</tr>
+					</table>
+					<br>
+					<input type="submit" value="·s¼W" class="btn btn-round btn-theme03">
+				</form>
+			</div>
+		</div>
 	</div>
 	</section> </section> </section>
 	<script
@@ -198,7 +207,7 @@
 	<script class="include" type="text/javascript"
 		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
-	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"
+	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />" ££
 		type="text/javascript"></script>
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>

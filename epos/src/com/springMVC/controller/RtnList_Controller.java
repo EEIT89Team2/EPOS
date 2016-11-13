@@ -253,7 +253,7 @@ public class RtnList_Controller extends HttpServlet {
 //			String ret_id = new String(req.getParameter("ret_id"));
 			
 			/***************************2.開始查詢資料****************************************/
-			ReturnListService rtnListSvc = new ReturnListService();
+//			ReturnListService rtnListSvc = new ReturnListService();
 			RtnListVO rtnListVO = rtnListSvc.getOneRtnList(ret_id);
 			
 			model.addAttribute("RtnListVO", rtnListVO);
@@ -266,7 +266,7 @@ public class RtnList_Controller extends HttpServlet {
 //			RequestDispatcher failureView = req
 //					.getRequestDispatcher("/returns/ReturnList.jsp");
 //			failureView.forward(req, res);
-			return "/RETURNS/ReturnList.jsp";
+			return "/RETURNS/ReturnList";
 		}
 
 //		return ret_id;
@@ -351,7 +351,7 @@ public class RtnList_Controller extends HttpServlet {
 				return "/RETURNS/update_Return_List"; 
 			}
 			/***************************2.開始修改資料*****************************************/
-			ReturnListService rtnListSvc = new ReturnListService();
+//			ReturnListService rtnListSvc = new ReturnListService();
 			rtnListVO = rtnListSvc.updateRtnList(ret_id, ret_date, com_id, com_name, key_id, key_date, remark, status);
 			List<RtnListVO> list = new LinkedList<RtnListVO>();
 			list.add(rtnListVO);

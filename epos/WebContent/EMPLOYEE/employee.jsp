@@ -137,7 +137,7 @@
 						<div class="container-fluid" style="float: right; left: -50%; position: relative;">
 							<ul class="nav navbar-nav">
 								<li id="search1"><a data-toggle="tab" href="#search">搜尋</a></li>
-								<li><a data-toggle="tab" href="#new">新增</a></li>
+								<li id="new1"><a data-toggle="tab" href="#new">新增</a></li>
 								<li><a data-toggle="tab" href="#passcode" class="passscode">修改權限</a></li>
 								<li id="result"><a data-toggle="tab" href="#resolution">查詢結果</a></li>
 							</ul>
@@ -213,15 +213,15 @@
 								<h4>會員資料維護</h4>
 								<input type="checkbox" name="pass_code" value="/insertMemb.do" >新增會員<br>
 								<input type="checkbox" name="pass_code" value="/allMemb.do" >查詢全部會員<br>
-								<input type="checkbox" name="pass_code" value="/Memb.do" >依照會員編號、姓名查詢<br>
-								<input type="checkbox" name="pass_code" value="/datesMem.do" >依新增日期查詢<br>
+								<input type="checkbox" name="pass_code" value="/Memb.do" >依照會員編號、姓名搜詢<br>
+								<input type="checkbox" name="pass_code" value="/datesMem.do" >依新增日期搜詢<br>
 								<input type="checkbox" name="pass_code" value="/updateMem.do" >修改員工<br>
 								<input type="checkbox" name="pass_code" value="/deleteMem.do" >刪除員工<br>
 								<h4>員工維護</h4>
-								<input type="checkbox" name="pass_code" value="/getOneEmp.do" >依照員工編號查詢<br>
+								<input type="checkbox" name="pass_code" value="/getOneEmp.do" >依照員工編號搜詢<br>
 								<input type="checkbox" name="pass_code" value="/getAllEmp.do" >查詢全部員工<br>
 								<input type="checkbox" name="pass_code" value="/insertEmp.do" >新增員工<br>
-								<input type="checkbox" name="pass_code" value="/getEmpByName.do" >依照員工姓名查詢  <br>
+								<input type="checkbox" name="pass_code" value="/getEmpByName.do" >依照員工姓名搜詢  <br>
 								<input type="checkbox" name="pass_code" value="/updateDeleteEmp.do" >修改刪除員工<br>
 								<input type="checkbox" name="pass_code" value="/updateEmp.do" >修改員工<br>
 								<input type="checkbox" name="pass_code" value="/setPassCode.do" >權限設定<br>
@@ -236,19 +236,19 @@
 								<h4>請購單維護</h4>
 								<input type="checkbox" name="pass_code" value="/insertReq.do" >新增請購單<br>
 								<input type="checkbox" name="pass_code" value="/getAllReq.do" >查詢全部請購單<br>
-								<input type="checkbox" name="pass_code" value="/getByReq_id.do" >依請購單編號、日期查詢<br>
+								<input type="checkbox" name="pass_code" value="/getByReq_id.do" >依請購單編號、日期搜詢<br>
 								<input type="checkbox" name="pass_code" value="/selectOfN.do" >審核請購單<br>																							
 								<input type="checkbox" name="pass_code" value="/DetailDeleteReq.do" >刪除修改顯示請購單明細<br>
 								<h4>詢價單維護</h4>
 								<input type="checkbox" name="pass_code" value="/insertQuo.do" >新增詢價單<br>
 								<input type="checkbox" name="pass_code" value="/getAllQuo.do" >查詢全部詢價單<br>
-								<input type="checkbox" name="pass_code" value="/getByQuo_id.do" >依詢價單編號、日期查詢<br>
+								<input type="checkbox" name="pass_code" value="/getByQuo_id.do" >依詢價單編號、日期搜詢<br>
 								<input type="checkbox" name="pass_code" value="/selectOfN.do" >審核詢價單<br>
 								<input type="checkbox" name="pass_code" value="/DetailDeleteQuo.do" >刪除、修改顯示詢價單明細<br>																								
 								<h4>採購單維護</h4>
 								<input type="checkbox" name="pass_code" value="/insertPur.do" >新增採購單<br>
 								<input type="checkbox" name="pass_code" value="/getAllPur.do" >查詢全部採購單<br>
-								<input type="checkbox" name="pass_code" value="/getOnePurforDisplay.do" >依採購單編號查詢<br>
+								<input type="checkbox" name="pass_code" value="/getOnePurforDisplay.do" >依採購單編號搜詢<br>
 								<input type="checkbox" name="pass_code" value="/selectOfN.do" >審核採購單<br>
 								<input type="checkbox" name="pass_code" value="/updateQuo.do" >修改採購單<br>	
 								<input type="checkbox" name="pass_code" value="/DetailUpdateDeletePur.do" >刪除修改顯示採購單明細<br>	
@@ -257,22 +257,89 @@
 								<h4>進貨單維護</h4>
 								<input type="checkbox" name="pass_code" value="/insertBOP.do" >新增進貨單<br>
 								<input type="checkbox" name="pass_code" value="/updateBOP.do" >修改進貨單  <br>
-								<input type="checkbox" name="pass_code" value="/getOneBopforDisplay.do" >依照進貨單編號查詢 <br>
+								<input type="checkbox" name="pass_code" value="/getOneBopforDisplay.do" >依照進貨單編號搜詢 <br>
 								<input type="checkbox" name="pass_code" value="/getAllBop.do" >查詢全部進貨單  <br>
 								<input type="checkbox" name="pass_code" value="/deleteDetailBOP.do" >刪除進貨單明細	<br>
 								<input type="checkbox" name="pass_code" value="/DetailUpdateDeleteBOP.do" >查詢刪除修改進貨單	<br>
 								<h4>報價單維護</h4>
+								<input type="checkbox" name="pass_code" value="/addVltList.do" >新增報價單	<br>
+								<input type="checkbox" name="pass_code" value="/VltListServlet.do" >修改報價單	<br>
+								<input type="checkbox" name="pass_code" value="/getAllVlt.do" >查詢全部報價單	<br>
+								<input type="checkbox" name="pass_code" value="/getVltDate.do" >依報價單日期搜詢	<br>
+								<input type="checkbox" name="pass_code" value="/getByVlt_id.do" >依報價單編號搜詢	<br>
+								<input type="checkbox" name="pass_code" value="/Querydetail_DeleteVlt.do" >刪除顯示報價單明細	<br>
 								<h4>訂單維護</h4>
+<!-- 								<input type="checkbox" name="pass_code" value="/Order.do" >新增訂單<br> -->
+<!-- 								<input type="checkbox" name="pass_code" value="/Order.do" >修改訂單<br> -->
 								<h4>出貨單維護</h4>
+								<input type="checkbox" name="pass_code" value="/insertShip.do" >新增出貨單	<br>
+								<input type="checkbox" name="pass_code" value="/getShipByDate.do" >依出貨單日期搜詢	<br>
+								<input type="checkbox" name="pass_code" value="/getAllShip.do" >查詢全部出貨單	<br>
+								<input type="checkbox" name="pass_code" value="/getShipByShipId.do" >依出貨單編號搜詢	<br>
+								<input type="checkbox" name="pass_code" value="/getShipByOrdId.do" >依訂單編號搜詢	<br>
+								<input type="checkbox" name="pass_code" value="/detailDeleteShip.do" >刪除顯示出貨單明細	<br>
 								<h4>商品管理</h4>
+								<input type="checkbox" name="pass_code" value="/insertProd.do" >新增商品	<br>
+								<input type="checkbox" name="pass_code" value="/updateDeleteProd.do" >刪除修改商品	<br>
+								<input type="checkbox" name="pass_code" value="/updateProd.do" >修改商品	<br>
+								<input type="checkbox" name="pass_code" value="/getAllProd.do" >查詢全部商品	<br>
+								<input type="checkbox" name="pass_code" value="/getOneProd.do" >依商品編號搜尋	<br>
+								<input type="checkbox" name="pass_code" value="/getProdByName.do" >依商品名稱搜尋	<br>
+								<input type="checkbox" name="pass_code" value="/getProdByGroup.do" >依商品類別搜尋	<br>
 								<h4>促銷商品管理</h4>
+								<input type="checkbox" name="pass_code" value="/insertProm.do" >新增促銷品	<br>
+								<input type="checkbox" name="pass_code" value="/deleteProm.do" >刪除促銷品	<br>
+								<input type="checkbox" name="pass_code" value="/updateProm.do" >修改促銷品	<br>
+								<input type="checkbox" name="pass_code" value="/allProm.do" >查尋全部促銷品	<br>
+								<input type="checkbox" name="pass_code" value="/namesProm.do" >依促銷品編號搜尋	<br>
+								<input type="checkbox" name="pass_code" value="/datesProm.do" >依促銷日期搜尋	<br>
+								<input type="checkbox" name="pass_code" value="/idsProm.do" >依促銷編號範圍搜尋	<br>
 								<h4>退貨品管理</h4>
+								<input type="checkbox" name="pass_code" value="/insert_Item.do" >新增退貨品	<br>
+								<input type="checkbox" name="pass_code" value="/delete_Item.do" >刪除退貨品	<br>
+								<input type="checkbox" name="pass_code" value="/update_Item.do" >修改退貨品	<br>
+								<input type="checkbox" name="pass_code" value="/getName_Item.do" >依退貨品名稱搜尋	<br>
+								<input type="checkbox" name="pass_code" value="/getComId.do" >依廠商編號搜尋	<br>
 								<h4>退貨單管理</h4>
+								<input type="checkbox" name="pass_code" value="/insert.do" >新增退貨單	<br>
+								<input type="checkbox" name="pass_code" value="/delete.do" >刪除退貨單	<br>
+								<input type="checkbox" name="pass_code" value="/update.do" >修改退貨單	<br>
+								<input type="checkbox" name="pass_code" value="/getOne.do" >依退貨單編號搜尋	<br>
+								<input type="checkbox" name="pass_code" value="/getOne.do" >依退貨單編號搜尋	<br>
+								<input type="checkbox" name="pass_code" value="/getDate.do" >依退貨單日期搜尋	<br>
+								<input type="checkbox" name="pass_code" value="/getDate.do" >依退貨單日期搜尋	<br>
+								<input type="checkbox" name="pass_code" value="/getComName.do" >依廠商名稱搜尋<br>
+								<input type="checkbox" name="pass_code" value="/getDetail.do" >顯示退貨單明細<br>
 								<h4>作廢發票管理</h4>
+								<input type="checkbox" name="pass_code" value="/insertInvo.do" >新增作廢發票<br>
+								<input type="checkbox" name="pass_code" value="/deleteInvo.do" >刪除作廢發票<br>
+								<input type="checkbox" name="pass_code" value="/updateInvo.do" >修改作廢發票<br>
+								<input type="checkbox" name="pass_code" value="/updateInvo.do" >搜群全部作廢發票<br>
+								<input type="checkbox" name="pass_code" value="/getOneinvo.do" >依發票編號搜尋<br>
+								<input type="checkbox" name="pass_code" value="/getOneinvo.do" >依發票編號搜尋<br>
 								<h4>班別報表維護</h4>
-								<h4>折扣券</h4>
+								<input type="checkbox" name="pass_code" value="/insertShiftre.do" >新增班別報表<br>
+								<input type="checkbox" name="pass_code" value="/updateDeleteShiftre.do" >刪除班別報表<br>
+								<input type="checkbox" name="pass_code" value="/updateShiftre.do" >修改班別報表<br>
+								<input type="checkbox" name="pass_code" value="/updateShiftre.do" >依班別報表搜尋<br>
+								<input type="checkbox" name="pass_code" value="/getAllShiftre.do" >查詢全部<br>
+								<input type="checkbox" name="pass_code" value="/getShiftreByDate.do" >依日期搜尋<br>
+								<h4>折價券</h4>
+								<input type="checkbox" name="pass_code" value="/insertCpon.do" >新增折價券<br>
+								<input type="checkbox" name="pass_code" value="/deleteCpon.do" >刪除折價券<br>
+								<input type="checkbox" name="pass_code" value="/updateCpon.do" >修改折價券<br>
+								<input type="checkbox" name="pass_code" value="/coupon.do" >依折價券編號搜尋<br>
+								<input type="checkbox" name="pass_code" value="/namesCpon.do" >依折價券名稱搜尋<br>
+								<input type="checkbox" name="pass_code" value="/dollarCpon.do" >依折價券金額搜尋<br>
+								<input type="checkbox" name="pass_code" value="/datesCpon.do" >依折價券日期搜尋<br>
+								<input type="checkbox" name="pass_code" value="/allCpon.do" >查詢全部<br>
 								<h4>折扣管理</h4>
-								<input type="button" value="修改權限" class="btn btn-round btn-theme03">
+								<input type="checkbox" name="pass_code" value="/insertDisc.do" >新增折扣<br>
+								<input type="checkbox" name="pass_code" value="/deleteDisc.do" >刪除折扣<br>
+								<input type="checkbox" name="pass_code" value="/updateDisc.do" >修改折扣<br>
+								<input type="checkbox" name="pass_code" value="/disc.do" >依折扣身分、%數搜尋<br>
+								<input type="checkbox" name="pass_code" value="/disc.do" >查詢全部<br>
+								<input type="submit" value="修改權限" class="btn btn-round btn-theme03">
 		   					</form>
 						</div>
 						<div id="new" class="tab-pane fade">
@@ -281,16 +348,17 @@
 									<h4 class="mb">
 										<i class="fa fa-angle-right"></i> 新增
 									</h4>
-								<!--錯誤表列 -->
-<%-- 						<c:if test="${not empty errorMsgs}"> --%>
-<!-- 							<font color='red'>請修正以下錯誤: -->
-<!-- 								<ul> -->
-<%-- 									<c:forEach var="message" items="${errorMsgs}"> --%>
-<%-- 										<li>${message}</li> --%>
-<%-- 									</c:forEach> --%>
-<!-- 								</ul> -->
-<!-- 							</font> -->
-<%-- 						</c:if> --%>
+								錯誤表列
+						<c:if test="${not empty errorMsgs}">
+							<font color='red'>請修正以下錯誤:
+								<ul>
+									<c:forEach var="message" items="${errorMsgs}">
+										<li>${message}</li>
+									</c:forEach>
+								</ul>
+							</font>
+						</c:if>
+
 									<form class="form-inline" METHOD="post" ACTION="insertEmp.do" id="insert" enctype="multipart/form-data">
 										密碼<input type="text" name="emp_pwd" value="3310"><br> 
 										姓名<input type="text" name="emp_name" value="柯大中"><br> 
@@ -304,7 +372,7 @@
 										離職日<input type="date" name="emp_due"><br>
 									            照片<input type="file" name="picture"><br> 
 									            修改人<input type="text" name="key_id" value="E00005"><br> 
-<!-- 									    <input type="submit" value="新增"> -->
+									    <input type="submit" value="新增">
 										<input type="button" value="送出新增" class="btn btn-theme03">
 									</form>
 								</div>
@@ -396,6 +464,13 @@
 						"url" : insert.attr("action"),
 						"data" : insert.serialize(),
 						"success" : function(data) {
+// 							$(".result-context").html(data)
+// 							$("#result").attr("class","active");
+// 							$("#search1").removeAttr("class");
+// 							$("#search").attr("class","tab-pane fade");
+// 							$("#insert1").removeAttr("class");
+// 							$("#insert").attr("class","tab-pane fade");
+// 							$("#resolution").attr("class","tab-pane active");
 						},
 					});
 				} else if ("修改權限" == $(this).val()) {

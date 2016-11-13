@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="../resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="../resources/css/bootstrap-theme.min.css" rel="stylesheet">
-<title>Insert title here</title>
+<title>查詢退貨單明細</title>
 <style>
 	.divser{
 		font-size: 20px;

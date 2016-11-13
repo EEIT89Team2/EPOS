@@ -63,7 +63,7 @@
 	/* 	表格內容偶數 */
 	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
 		background:#ffe0e0;
-		border:1px solid #ff7d7d;
+		border:1px solid #ffa9a9;
 		
 	}
 	/* 	表格內容單數 */
@@ -75,9 +75,13 @@
 	.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
 		background-color:#fdaeae;
 	}
+	
+	a{
+		margin-left: 20px;
+	}
 
 </style>
-<title>return-items</title>
+<title>退貨單</title>
 
 </head>
 
@@ -140,8 +144,8 @@
 			</table>
 		</div>
 		
-			<li><a href="ReturnList.jsp"><i class="glyphicon glyphicon-th-list"></i>　退貨單</a></li>
-		
+	<a href="ReturnList.jsp"><i class="glyphicon glyphicon-th-list"></i>　退貨單</a></br>
+	<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>		
 		
 			<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

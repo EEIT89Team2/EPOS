@@ -5,42 +5,70 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="../resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="../resources/css/bootstrap-theme.min.css" rel="stylesheet">
+<style type="text/css">
+	
+	body { 
+ 		background: #ffe8d8; 
+ 	}
+ 	
+ 	a{
+		margin-left: 30px;
+	}
+	
+	legend{
+		background: #ff8d3a;
+	} 
 
+
+</style>
 <title>發票作廢資料修改</title>
+
 </head>
 <body>
-	<h3>修改發票作廢資料:</h3>
-	<FORM METHOD="post" ACTION="updateInvo.do" name="form1">
-		
-		<table border="0">
-			<tr>
-				<td>發票編號:</td>
-				<td>${invoVO.invoice_id}</td>
-			</tr>
-			<tr>
-				<td>訂單編號:</td>
-				<td><input type="TEXT" name="ord_id" size="45"
-					value="${invoVO.ord_id}" /></td>
-			</tr>
-			<tr>
-				<td>新發票編號:</td>
-				<td><input type="TEXT" name="new_invoice_number" size="45"
-					value="${invoVO.new_invoice_number}" /></td>
-			</tr>
-			<tr>
-				<td>新訂單編號:</td>
-				<td><input type="TEXT" name="new_ord_id" size="45"
-					value="${invoVO.new_ord_id}" /></td>
-			</tr>
-
-		</table>
-		<br> 
-<!-- 		<input type="hidden" name="action" value="update">  -->
-		<input type="hidden" name="invoice_id" value="${invoVO.invoice_id}">
-		<input type="submit" value="送出修改">
+<FORM METHOD="post" ACTION="updateInvo.do" name="form1">
+		<fieldset style="height: 50%">
+        <legend>修改發票作廢資料</legend>
+<from class="form-horizontal">
+	<div class="form-group">
+    	<label class="col-sm-4 control-label">發票編號:</label>
+    	<div class="col-sm-5">
+      		<input type="text" class="form-control" name="invoice_id" value="${invoVO.invoice_id}" disabled="disabled"/>
+    	</div>
+  	</div>
+  	<div class="form-group">
+    	<label class="col-sm-4 control-label">訂單編號:</label>
+    	<div class="col-sm-5">
+      		<input type="text" class="form-control" name="ord_id" value="${invoVO.ord_id}"/>
+    	</div>
+  	</div>
+  	<div class="form-group">
+    	<label class="col-sm-4 control-label">新發票編號:</label>
+    	<div class="col-sm-5">
+      		<input type="text" class="form-control" name="new_invoice_number" value="${invoVO.new_invoice_number}"/>
+    	</div>
+  	</div>
+  	<div class="form-group">
+    	<label class="col-sm-4 control-label">新訂單編號:</label>
+    	<div class="col-sm-5">
+      		<input type="text" class="form-control" name="new_ord_id" value="${invoVO.new_ord_id}"/>
+    	</div>
+  	</div>
+<!--   	送出   -->
+	<div class="form-group">
+    	<div class="col-sm-offset-6">
+    　　　　		<input type="hidden" name="action" value="update">
+    		<input type="hidden" name="invoice_id" value="${invoVO.invoice_id}">
+      		<button type="submit" class="btn btn-default">送　出</button>
+    	</div>
+  	</div>
+		</from>
+		</fieldset>
 	</FORM>
-	<jsp:include page="/COMMON/footer_invo.jsp" />
-	<a href="../index.jsp">回首頁</a>
-	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
+	
+	<a href="select_page.jsp"><i class="glyphicon glyphicon-tags"></i>　發票作廢</a></br>
+	<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>
+
 </body>
 </html>

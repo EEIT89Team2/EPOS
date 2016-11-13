@@ -191,7 +191,7 @@
 						<label class="col-sm-5 col-sm-3 control-label">查詢全部</label>
 						<div class="col-sm-3"></div>
 						<div class="col-sm-4">
-							<input type="submit" value="搜尋" class="btn btn-round btn-theme03">
+							<input type="submit" value="查詢全部" class="btn btn-round btn-theme03">
 						</div>
 					</div>
 				</form>

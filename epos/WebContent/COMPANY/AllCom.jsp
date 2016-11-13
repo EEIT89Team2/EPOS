@@ -144,7 +144,7 @@
 		</div>
 		</nav>
 		<center>
-			<table border="1">
+			<table border="1" bordercolor='#CCCCFF'>
 				<tr>
 					<th>廠商編號</th>
 					<th>廠商名稱</th>

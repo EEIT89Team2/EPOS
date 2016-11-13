@@ -145,7 +145,7 @@
 		</div>
 		</nav>
 		<center>
-			<table border="1">
+			<table border="1" bordercolor='#CCCCFF'>
 				<tr>
 					<th>員編</th>
 					<th>密碼</th>

@@ -12,6 +12,8 @@
 <!--external css-->
 <link href="<c:url value="/resources/font-awesome/css/font-awesome.css" />" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/lineicons/style.css" />">
+    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">    
 <!-- Custom styles for this template -->
 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/style-responsive.css" />" rel="stylesheet">

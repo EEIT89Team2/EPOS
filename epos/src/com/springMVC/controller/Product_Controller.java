@@ -302,6 +302,7 @@ System.out.println(u);
 		
 		/*************************** 2.永續層存取 ***************************************/
 		response.setCharacterEncoding("UTF-8");
+		response.setHeader("content-type","text/html;charset=UTF-8");
 		ProdVO prodVO = prodSrv.getOne(prod_id);
 
 			if (prodVO == null) {
@@ -322,7 +323,15 @@ System.out.println(u);
 			
 				try {
 					PrintWriter out = response.getWriter();
+//					out.print("<html>");
+//					out.print("<head>");
+//					out.print("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+//					out.print("</head>");
+//					out.print("<body>");
 					out.print(prodJson);
+//					out.write(prodJson);
+//					out.print("</body>");
+//					out.print("</html>");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

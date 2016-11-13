@@ -45,10 +45,10 @@
 			<td>${list.deal_profit}</td>
 			<td>${list.deal_num}</td>
 			<td>${list.shift_sum}</td>
-			<td><input type="submit" name="action" value="update" ></td>
-			<td><input type="submit" name="action" value="delete" ></td>
-			<input type="hidden" name="Date" value="${list.date}">
-			<input type="hidden" name="shift" value="${list.shift}">
+			<td><input type="button" name="action" value="update" target1="${list.date}" target2="${list.shift}"></td>
+			<td><input type="button" name="action" value="delete" target1="${list.date}" target2="${list.shift}"" ></td>
+<%-- 			<input type="hidden" name="Date" value="${list.date}"> --%>
+<%-- 			<input type="hidden" name="shift" value="${list.shift}"> --%>
 			
 		</tr>
 		
@@ -59,6 +59,43 @@
 	
 	<a href="../index.jsp">回首頁</a>
 	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
+
+	<script type="text/JavaScript">
+	$(document).ready(function() {
+		$(":button").on('click',function(){
+			if($(this).val()=="delete"){
+				$.ajax({
+					type : "post",
+					url : "updateDeleteShiftre.do",
+					data : {
+							Date:$(this).attr('target1'),
+							shift:$(this).attr('target2'),
+							action:"delete"
+							},
+					success :function(data) {
+						$(".rul").html(data);
+// 						$("#shi_rel").attr("class","active");
+// 						$("#result").attr("class","tab-pane active");
+					}	
+				});
+			}else if($(this).val()=="update"){
+				$.ajax({
+					type : "post",
+					url : "updateDeleteShiftre.do",
+					data : {
+							Date:$(this).attr('target1'),
+							shift:$(this).attr('target2'),
+							action:"update"
+							},
+					success :function(data) {
+						$(".rul").html(data);
+					}
+				});
+			}
+		});
+	});
+
+	</script>	
 
 </body>
 </html>

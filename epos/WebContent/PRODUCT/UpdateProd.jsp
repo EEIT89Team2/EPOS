@@ -10,6 +10,7 @@
 <title>修改商品資料</title>
 </head>
 <body>
+<h2>修改商品資料</h2>
 	<section id="container"> <section class="wrapper">
 	<div class="row mt">
 <c:if test="${not empty errorMsgs}">
@@ -21,7 +22,7 @@
 	</ul>
 	</font>
 </c:if>
-<form method="post" action="updateProd.do" enctype="multipart/form-data">
+<form method="post" action="updateProd.do" enctype="multipart/form-data" class="upd_prod">
 
 商品編號<input type="text" name="prod_id" value="${prodVO.prod_id}" readonly="readonly" style="color: gray;" ><br>
 商品名稱        <input type="text" name="prod_name" value="${prodVO.prod_name}"><br>
@@ -48,4 +49,27 @@
 	<a href="../index.jsp">回首頁</a>
 	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
 </body>
+	<script type="text/JavaScript">
+
+		
+		$(".upd_prod").on('submit',function(e){
+		   	e.preventDefault();
+		   	var serializeData = $(this).serialize();
+
+		    $(this).ajaxSubmit({
+					type : "post",
+					url : "updateProd.do",
+					data : serializeData,
+			        contentType: false,      
+			        cache: false,             
+			        processData:false, 
+					success :function(data) {
+						$("#rul").html(data);
+					}	
+				});
+
+		});
+		
+
+	</script>
 </html>

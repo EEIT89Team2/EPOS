@@ -46,15 +46,48 @@
 			<td><img alt="尚無照片" src="data:image/gif;base64,${list.picture}"></td>
 			<td>${list.remark}</td>
 			<td>${list.status}</td>
-			<td><input type="submit" name="action" value="update" ></td>
-			<td><input type="submit" name="action" value="delete" ></td>
-			<input type="hidden" name="prod_id" value="${list.prod_id}">
-			
+			<td><input type="button" name="action" value="update" target="${list.prod_id}" ></td>
+			<td><input type="button" name="action" value="delete" class="delete" target="${list.prod_id}"></td>
 		</tr>
+</form>	
 		
-</form>
 </c:forEach>
 	</table>
+	
+	<script type="text/JavaScript">
+	$(document).ready(function() {
+		$(":button").on('click',function(){
+			if($(this).attr('value')=="delete"){
+				$.ajax({
+					type : "post",
+					url : "updateDeleteProd.do",
+					data : {
+							prod_id:$(this).attr('target'),
+							action:"delete"
+							},
+					success :function(data) {
+						$("#rul").html(data);
+						$("#chg_result").attr("class","active");
+						$("#result").attr("class","tab-pane active");
+					}	
+				});
+			}else if($(this).attr('value')=="update"){
+				$.ajax({
+					type : "post",
+					url : "updateDeleteProd.do",
+					data : {
+							prod_id:$(this).attr('target'),
+							action:"update"
+							},
+					success :function(data) {
+						$("#rul").html(data);
+					}
+				});
+			}
+		});
+	});
+
+	</script>	
 
 </body>
 </html>

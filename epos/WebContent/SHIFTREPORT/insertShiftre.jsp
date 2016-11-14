@@ -23,7 +23,6 @@
 	.formlist {
 		font-family: '微軟正黑體';
 		font-weight: bold;
-		color: #3CB371;
 		height: 35px;
 		text-align: center;
 		font-size: 23px;
@@ -37,7 +36,10 @@
 	
 	.btn-success{
 		float:center			
-	}	
+	}
+.form-horizontal .control-label {
+    text-align: right;
+}
 </style>
 </head>
 <body>
@@ -56,14 +58,14 @@
 		</c:if>
 
 <!-- 	<div class="form-group"> -->
-<!--     	<label class="col-sm-4 control-label">廠商代號:</label> -->
-<!--     	<div class="col-sm-5"> -->
+<!--     	<label class="col-lg-4 control-label">廠商代號:</label> -->
+<!--     	<div class="col-lg-2"> -->
 <%--       		<input type="text" class="form-control" name="com_id" value="<%=rtnItemsVO.getCom_id()%>" disabled="disabled"/> --%>
 <!--     	</div> -->
 <!--   	</div>  -->
 
 
-			<div class="formlist">新增班別報表</div>
+			<div class="formlist">班別報表</div>
 
 			<center>
 		<form method="post" action="insertShiftre.do"
@@ -71,14 +73,14 @@
 
 			<p>
 			<div class="form-group">
-				<label class="col-sm-4 control-label">日期:</label>
-				<div class="col-sm-5">
+				<label class="col-lg-4 col-lg-offset-2 control-label">日期:</label>
+				<div class="col-lg-2">
 					<input type="date" name="Date">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label">班別:</label>
-				<div class="col-sm-5">
+				<label class="col-lg-4 col-lg-offset-2 control-label">班別:</label>
+				<div class="col-lg-2">
 					<Select name="shift">
 						<option value="A">A</option>
 						<option value="B">B</option>
@@ -87,70 +89,70 @@
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-4 control-label">員工編號:</label>
-				<div class="col-sm-5">
+				<label class="col-lg-4 col-lg-offset-2 control-label">員工編號:</label>
+				<div class="col-lg-2">
 					<input type="text" name="emp_id" value="E00001">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-4 control-label">現金:</label>
-				<div class="col-sm-5">
+				<label class="col-lg-4 col-lg-offset-2 control-label">現金:</label>
+				<div class="col-lg-2">
 					<input type="text" name="cash" value="2000">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label">禮卷:</label>
-				<div class="col-sm-5">
+				<label class="col-lg-4 col-lg-offset-2 control-label">禮卷:</label>
+				<div class="col-lg-2">
 					<input type="text" name="coupon" value="0">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-4 control-label">折讓:</label>
-				<div class="col-sm-5">
+				<label class="col-lg-4 col-lg-offset-2 control-label">折讓:</label>
+				<div class="col-lg-2">
 					<input type="text" name="discount" value="0">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-4 control-label">零用金:</label>
-				<div class="col-sm-5">
+				<label class="col-lg-4 col-lg-offset-2 control-label">零用金:</label>
+				<div class="col-lg-2">
 					<input type="text" name="coins" value="1500">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-4 control-label">交易額:</label>
-				<div class="col-sm-5">
+				<label class="col-lg-4 col-lg-offset-2 control-label">交易額:</label>
+				<div class="col-lg-2">
 					<input type="text" name="deal_sum" value="2000">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-4 control-label">交易成本:</label>
-				<div class="col-sm-5">
+				<label class="col-lg-4 col-lg-offset-2 control-label">交易成本:</label>
+				<div class="col-lg-2">
 					<input type="text" name="deal_cost" value="1000">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-4 control-label">交易淨利:</label>
-				<div class="col-sm-5">
+				<label class="col-lg-4 col-lg-offset-2 control-label">交易淨利:</label>
+				<div class="col-lg-2">
 					<input type="text" name="deal_profit" value="1000">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-4 control-label">交易次數:</label>
-				<div class="col-sm-5">
+				<label class="col-lg-4 col-lg-offset-2 control-label">交易次數:</label>
+				<div class="col-lg-2">
 					<input type="text" name="deal_num" value="3">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-4 control-label">班別小計:</label>
-				<div class="col-sm-5">
+				<label class="col-lg-4 col-lg-offset-2 control-label">班別小計:</label>
+				<div class="col-lg-2">
 					<input type="text" name="shift_sum" value="2000">
 				</div>
 			</div>
@@ -165,19 +167,20 @@
 
 <script>
 	$(":button").click(function() {
-		$.ajax({
-			type : "post",
-			url : "insertShiftre.do",
-			data : $(".insertShift").serialize(),
-			success : function(data) {
-				$(".rul").html(data);
-				$("#shi_new").removeAttr("class");
-				$("#shi_rel").attr("class", "active");
-				$("#new").attr("class", "tab-pane fade");
-				$("#result").attr("class", "tab-pane active");
-			}
-		});
-
+		if("新增"==$(this).val()){
+			$.ajax({
+				type : "post",
+				url : "insertShiftre.do",
+				data : $(".insertShift").serialize(),
+				success : function(data) {
+					$(".rul").html(data);
+					$("#shi_new").removeAttr("class");
+					$("#shi_rel").attr("class", "active");
+					$("#new").attr("class", "tab-pane fade");
+					$("#result").attr("class", "tab-pane active");
+				}
+			});
+		}
 	});
 </script>				
 </body>

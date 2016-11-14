@@ -8,13 +8,69 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>all</title>
+<style>
+
+		/* 	表格標題 */
+	.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{
+		background: #66CDAA;
+		font-weight:bold;
+		text-align: center;
+	}
+	
+	/* 	表格內容偶數 */
+	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
+		background:		#F0FFF0;
+		border:1px solid #556B2F;
+		
+	}
+	/* 	表格內容單數 */
+	.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th{
+		background:white;
+	}
+	
+	/* 	表格偶數滑鼠指向 */
+	.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
+		background-color:FFE4C4;
+	}
+	
+	.titlelist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: mediumseagreen;
+		padding-left: 10px;
+		font-size: 23px;
+		border-radius: 2px;
+	}
+	
+	.formlist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: mediumseagreen;
+		text-align: center;
+		font-size: 23px;
+		border-radius: 2px;
+	}
+	
+	p{
+		margin: 30px;
+	
+	}
+	
+</style>
 </head>
 <body>
 	<jsp:useBean id="copSvc" scope="page" class="com.coupon.model.CouponService" />
-<center>
- 
-	<table border='1' bordercolor='#CCCCFF' width='800'>
-		<tr>
+	
+<div class="titlelist">查詢結果</div>
+<div class="col-lg-12">
+ <p>
+	<div class="formlist">折價券</div>
+		<table border="2" bordercolor='#CCCCFF' width='800' class="table table-bordered table-striped  table-hover">
+		<thead><tr>
 			<th>折價券編號</th>
 			<th>折價券名稱</th>
 			<th>發行日期</th>
@@ -23,7 +79,7 @@
 			<th>狀態</th>
 			<th>修改</th>
 			<th>刪除</th>
-		</tr>
+		</tr></thead>
 	
 		<c:forEach var="copVO" items="${copSvc.all}">
 
@@ -35,19 +91,25 @@
 				<td>${copVO.cpon_dollar}</td>
 				<td>${copVO.status}</td>
 				<td>
-					<input type="button" value="修改" name='update' target="${copVO.cpon_id}"> 
+					<button type="button" class="btn btn-success" name="update" target="${copVO.cpon_id}">
+							<i class="fa fa-pencil"></i>
+					</button>
 				</td>
 				<td>
-					<input type="button" value="刪除" name='delete' target="${copVO.cpon_id}"> 
+					<button type="button" class="btn btn-danger" name="delete" target="${copVO.cpon_id}">
+						<i class="fa fa-trash-o"></i>
+					</button>
 				</td>
 			</tr>
 
 		</c:forEach>
 	</table>
-	</center>
+
+</div>
+
 	<script>
 		$(function() {
-			$(':button').on('click', function() {		
+			$('button').on('click', function() {		
 				if($(this).attr('name')=="delete"){
 					$.ajax({
 						type : "POST",

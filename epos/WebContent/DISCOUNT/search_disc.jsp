@@ -8,6 +8,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>searchCpon</title>
+<style>
+	.titlelist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: #F4A460;
+		padding-left: 10px;
+		font-size: 23px;
+		border-radius: 2px;
+	}
+
+	p{
+		margin: 20px;	
+	}
+
+</style>
 </head>
 <body>
 				<%-- 錯誤表列 --%>
@@ -21,61 +38,56 @@
 					</font>
 				</c:if>
 
-				<jsp:useBean id="DiscSvc" scope="page"
-					class="com.discount.model.DiscountService" />
+				<jsp:useBean id="DiscSvc" scope="page" class="com.discount.model.DiscountService" />
 
-				<div class="col-lg-6">
-					<div class="form-panel">
-						<h4 class="mb">
-							<i class="fa fa-angle-right"></i> 查詢
-						</h4>
-						<form METHOD="post" ACTION="disc.do" id="count"
-							class="form-horizontal style-form">
+				<div class="titlelist">查詢</div>
+				<div class="col-lg-12">
+
+						<p>
+						<form METHOD="post" ACTION="disc.do" id="count" class="form-horizontal style-form">
+							<div class="col-lg-4"></div>
 							<div class="form-group">
-								<label class="col-sm-5 col-sm-3 control-label">選擇折扣身份</label>
-								<div class="col-sm-3">
-									<select size="1" name="dis_id" class="form-control">
+								<label class="col-lg-1 control-label" for="dis_id">選擇折扣身份</label>
+								<div class="col-lg-1">
+									<select size="1" name="dis_id" id="dis_id" class="form-control">
 										<c:forEach var="discVO" items="${DiscSvc.all}">
-											<option value="${discVO.dis_id}">${discVO.dis_id}
+											<option value="${discVO.dis_id}">${discVO.dis_id}</option>
 										</c:forEach>
 									</select>
 								</div>
-								<div class="col-sm-4">
-									<input type="button" value="以折扣身份查詢"
-										class="btn btn-round btn-theme03">
+								<div class="col-lg-4">
+									<input type="button" value="以折扣身份查詢" class="btn btn-warning">
 								</div>
 							</div>
 						</form>
-						<form METHOD="post" ACTION="disc.do" id="pre"
-							class="form-horizontal style-form">
+						<form METHOD="post" ACTION="disc.do" id="pre" class="form-horizontal style-form">
+							<div class="col-lg-4"></div>
 							<div class="form-group">
-								<label class="col-sm-5 col-sm-3 control-label">選擇折扣%數</label>
-								<div class="col-sm-3">
-									<select size="1" name="dis_id" class="form-control refresh">
+								<label class="col-lg-1 control-label" for="dis_price">選擇折扣%數</label>
+								<div class="col-lg-1">
+									<select size="1" name="dis_id" id="dis_price" class="form-control refresh">
 										<c:forEach var="discVO" items="${DiscSvc.all}">
-											<option value="${discVO.dis_id}">${discVO.dis_price}
+											<option value="${discVO.dis_id}">${discVO.dis_price}</option>
 										</c:forEach>
 									</select>
 								</div>
-								<div class="col-sm-4">
-									<input type="button" value="以折扣%數查詢"
-										class="btn btn-round btn-theme03">
+								<div class="col-lg-4">
+									<input type="button" value="以折扣%數查詢" class="btn btn-warning">
 								</div>
 							</div>
 						</form>
-						<form METHOD="post" ACTION="allDisc.do" id="all"
-							class="form-horizontal style-form">
+						<form METHOD="post" ACTION="allDisc.do" id="all" class="form-horizontal style-form">
+							<div class="col-lg-4"></div>						
 							<div class="form-group">
-								<label class="col-sm-5 col-sm-3 control-label">查詢全部</label>
-								<div class="col-sm-3"></div>
-								<div class="col-sm-4">
-									<input type="button" value="查詢全部"
-										class="btn btn-round btn-theme03">
+								<label class="col-lg-1 control-label">查詢全部</label>
+								<div class="col-lg-1"></div>
+								<div class="col-lg-4">
+									<input type="button" value="查詢全部" class="btn btn-warning">
 								</div>
 							</div>
 						</form>
 					</div>
-				</div>
+
 	<script>
 	$(document).ready(function() {
 		$(":button").click(function() {

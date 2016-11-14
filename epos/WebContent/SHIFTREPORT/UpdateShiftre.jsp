@@ -39,8 +39,7 @@
 
 </form>
 
-	<a href="../index.jsp">回首頁</a>
-	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
+
 	<script type="text/JavaScript">
 	$(document).ready(function() {
 		$(":button").on('click',function(){

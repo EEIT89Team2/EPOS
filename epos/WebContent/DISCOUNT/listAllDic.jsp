@@ -12,19 +12,65 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-.table > thead:first-child > tr:first-child > td {
-	background:#575c67;
-	text-align: center;
-}
 
+		/* 	表格標題 */
+	.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{
+		background: #CD853F;
+		font-weight:bold;
+		text-align: center;
+	}
+	
+	/* 	表格內容偶數 */
+	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
+		background:	#FFE4B5;
+		border:1px solid #DEB887;
+		
+	}
+	/* 	表格內容單數 */
+	.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th{
+		background:white;
+	}
+	
+	/* 	表格偶數滑鼠指向 */
+	.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
+		background-color:FFE4C4;
+	}
+	
+	.titlelist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: #F4A460;
+		padding-left: 10px;
+		font-size: 23px;
+		border-radius: 2px;
+	}
+	
+	.formlist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: #F4A460;
+		text-align: center;
+		font-size: 23px;
+		border-radius: 2px;
+	}
+	
+	p{
+		margin: 30px;
+	
+	}
+	
 </style>
 
 <title>折扣清單</title>
 </head>
 <body>
-	<section id="container"> <section class="wrapper">
-	<div class="row mt">
 
+		<div class="titlelist">查詢結果</div>
+			<div class="col-lg-12">
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
 					<font color='red'>請修正以下錯誤:
@@ -35,37 +81,43 @@
 						</ul>
 					</font>
 				</c:if>
-
+				<p>
+				<div class="formlist">折扣清單</div>
 				<table border='1' bordercolor='#CCCCFF' width='800'
 					class="table table-bordered table-striped  table-hover">
 					<thead>
-					<tr>
-						<td class="numeric">折扣身分</td>
-						<td class="numeric">折扣%數</td>
-						<td class="numeric">修改/確認</td>
-						<td class="numeric">刪除</td>
-					</tr>
+						<tr>
+							<td class="numeric">折扣身分</td>
+							<td class="numeric">折扣%數</td>
+							<td class="numeric">修改/確認</td>
+							<td class="numeric">刪除</td>
+						</tr>
 					</thead>
 					<c:forEach var="discVO" items="${list}">
 						<tr align='center' valign='middle'>
 							<td class="numeric">${discVO.dis_id}</td>
-							<td class="numeric">
-							<label>${discVO.dis_price}</label>
-							<input type="text" name="dis_price" size="5" class="chg_price">
+							<td class="numeric"><label>${discVO.dis_price}</label> <input
+								type="text" name="dis_price" size="5" class="chg_price">
 							</td>
 							<td class="numeric">
-								<button type="button" class="btn btn-success" onclick="editEvent(this)" ><i class="fa fa-pencil"></i></button>
-								<button type="button" class="btn btn-primary" onclick="confirmEvent(this)" ><i class="fa fa-check"></i></button>
+								<button type="button" class="btn btn-success"
+									onclick="editEvent(this)">
+									<i class="fa fa-pencil"></i>
+								</button>
+								<button type="button" class="btn btn-primary"
+									onclick="confirmEvent(this)">
+									<i class="fa fa-check"></i>
+								</button>
 							</td>
 							<td class="numeric">
-                                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" target="${discVO.dis_id}"></i></button>									
+								<button type="button" class="btn btn-danger">
+									<i class="fa fa-trash-o" target="${discVO.dis_id}"></i>
+								</button>
 							</td>
 						</tr>
 					</c:forEach>
 				</table>
 			</div>
-
-	</section> </section>
 
 <script type="text/JavaScript">
 

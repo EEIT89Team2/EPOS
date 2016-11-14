@@ -18,16 +18,35 @@
 <title>shiftreport</title>
 <style>
 
-a{
-	color:#428bca;
-}
+	.navbar-default{
+		background: #99CC99;
+		border-color:#CCFF99;
+		border-radius: 8px;
+/* 		border-style: solid; */
+	}
 
-.main{
-	height: 600px;
-	border-radius: 8px;
- 	background: rgba(91, 175, 156, 0.12); 
-}
-</style>	
+
+ 	.main{ 
+  		height: 800px;  
+ 		border-radius: 8px; 
+ 		background:	#CCFFCC; 
+ 	}
+ 	
+ 	.titlelist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: mediumseagreen;
+		padding-left: 10px;
+		font-size: 23px;
+		border-radius: 2px;
+	}
+
+	p{
+		margin: 20px;	
+	} 
+</style>
 </head>
 <body>
 	<section id="container">
@@ -35,8 +54,7 @@ a{
 		<!--header start-->
 		<header class="header black-bg">
 			<div class="sidebar-toggle-box">
-				<div class="fa fa-bars tooltips" data-placement="right"
-					data-original-title="Toggle Navigation"></div>
+				<div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
 			</div>
 			<!--logo start-->
 			<a href="<%=request.getContextPath()%>/index.jsp" class="logo"><b>ePOS</b></a>
@@ -125,74 +143,113 @@ a{
 			</div>
 		</aside>
 		<!--sidebar end--> 
-		<section id="main-content"> 
-		<section class="wrapper main"> 
+		<section id="main-content"><section class="wrapper">
+
 	<div class="row mt">
-		<nav class="nav navbar-default alert-info">
-			<ul class="nav navbar-nav">
-				<li id="shi_search"><a data-toggle="tab" href="#search"><span class="glyphicon glyphicon-search"></span>搜尋</a></li>
-				<li id="shi_new"><a id="c_shift" target="insertShiftre.jsp" data-toggle="tab" href="#new"><span class="glyphicon glyphicon-file"></span>新增</a></li>
-				<li id="shi_rel"><a data-toggle="tab" href="#result"><span class="glyphicon glyphicon-list-alt" ></span>查詢結果</a></li>
-				<li><a data-toggle="tab" href="#print" class="print"><span class="glyphicon glyphicon-file"></span>列印</a></li>
-			</ul>
-		</nav>
-
-		<div class="tab-content">
-			<div id="search" class="tab-pane fade">
-				<%-- 錯誤表列 --%>
-				<c:if test="${not empty param.message}">
-					<font color='red'>請修正以下錯誤:
-					<ul>
-						<c:forEach var="message" items="${param.message}">
-							<li>${message}</li>
-						</c:forEach>
+		<div class="col-lg-12">
+			<div class="nav navbar-default">
+				<div class="container-fluid"
+					style="float: right; left: -50%; position: relative">
+					<ul class="nav navbar-nav"
+						style="float: left; left: 50%; position: relative">
+						<li id="shi_search"><a data-toggle="tab" href="#search"><span
+								class="glyphicon glyphicon-search"></span>搜尋</a></li>
+						<li id="shi_new"><a id="c_shift" target="insertShiftre.jsp"
+							data-toggle="tab" href="#new"><span
+								class="glyphicon glyphicon-file"></span>新增</a></li>
+						<li id="shi_rel"><a data-toggle="tab" href="#result"><span
+								class="glyphicon glyphicon-list-alt"></span>查詢結果</a></li>
+						<li><a data-toggle="tab" href="#print" class="print"><span
+								class="glyphicon glyphicon-print"></span>列印</a></li>
 					</ul>
-					</font>
-				</c:if>
+				</div>
+			</div>
 
-				<div class="col-lg-6">
-					<div class="form-panel">
-						<h4 class="mb">
-							<i class="fa fa-angle-right"></i> 查詢
-						</h4>
-						<form method="post" action="getOneShiftre.do" class="oneshift">
-							<p>依班別報表搜尋</p>
-							日期<input type="date" name="Date"><br> 
-							班別<Select name="shift">
-								<option value="A">A</option>
-								<option value="B">B</option>
-							</Select><br> 
-							<input type="button" value="搜尋" name='getOne'>
+			<div class="tab-content">
+				<div id="search" class="tab-pane fade">
+					<%-- 錯誤表列 --%>
+					<c:if test="${not empty param.message}">
+						<font color='red'>請修正以下錯誤:
+							<ul>
+								<c:forEach var="message" items="${param.message}">
+									<li>${message}</li>
+								</c:forEach>
+							</ul>
+						</font>
+					</c:if>
+
+					<div class="titlelist">查詢</div>
+					<div class="col-lg-12 main">
+					<p>
+						<form method="post" action="getOneShiftre.do"
+							class="oneshift form-horizontal style-form">
+							<div class="col-lg-4"></div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label" for="date">依班別報表搜尋</label>
+								<div class="col-lg-1">
+									<label class="control-label" for="date">日期</label> <input
+										type="date" name="Date" id="date">
+								</div>
+								<div class="col-lg-1">	
+								<label class="control-label" for="shift"> 班別</label>
+									<Select name="shift" id="shift">
+										<option value="A">A</option>
+										<option value="B">B</option>
+									</Select>
+								</div>
+								<div class="col-lg-2">
+									<input type="button" value="搜尋" name='getOne'
+										class="btn btn-success">
+								</div>
+							</div>
 						</form>
 
-						<form method="post" action="getAllShiftre.do">
-							<p>查詢全部班別報表(刪除.修改)</p>
-							<input type="button" value="搜尋" name='getAll'>
+						<form method="post" action="getAllShiftre.do"
+							class="form-horizontal style-form">
+							<div class="col-lg-4"></div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label" for="date">查詢全部班別報表(刪除.修改)</label>
+							<div class="col-lg-2"></div>	
+								<div class="col-lg-2">
+									<input type="button" value="搜尋" name='getAll'
+										class="btn btn-success">
+								</div>
+							</div>
 						</form>
 
-						<form method="post" action="getShiftreByDate.do" class="shiftbydate">
-							<p>依照日期查詢</p>
-							日期<input type="date" name="Date"><br> 
-							<input type="button" value="搜尋" name='getOneByDate'> 
-<!-- 							<input type="hidden" name="action" value="selectByDate"> -->
+						<form method="post" action="getShiftreByDate.do"
+							class="shiftbydate form-horizontal style-form">
+							<div class="col-lg-4"></div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label" for="date">依照日期查詢</label>
+								<label class="col-lg-1 control-label">日期</label>
+
+								<div class="col-lg-1">
+									<input type="date" name="Date">
+								</div>
+								<div class="col-lg-2">
+									<input type="button" value="搜尋" name='getOneByDate'
+										class="btn btn-success">
+									<!-- 							<input type="hidden" name="action" value="selectByDate"> -->
+								</div>
+							</div>
 						</form>
 					</div>
-					<div class="sub-context"></div>
-				</div>
 
-			</div>
-			<div id="new" class="tab-pane fade">
-				<div class="insert-content"></div>
-			</div>
-			<div id="result" class="tab-pane fade">
-				<div class=rul></div>
+				</div>
+				<div id="new" class="tab-pane fade">
+					<div class="insert-content main"></div>
+				</div>
+				<div id="result" class="tab-pane fade">
+					<div class="rul main"></div>
+				</div>
 			</div>
 		</div>
 	</div>
 	</section> </section>
 
 	</section>
-
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script> 
 	!window.jQuery && document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
@@ -208,7 +265,7 @@ a{
 	
 		<script type="text/JavaScript">
 	$(document).ready(function() {
-
+// -------------------------------載入新增----------------------------------
 		$('#c_shift').on('click', function() {							
 				var insertWeb = $(this).attr('target');
 				$.get(insertWeb, function(data) {
@@ -217,7 +274,7 @@ a{
 					
 		})		
 			
-// 查詢
+// -------------------------------查詢----------------------------------
 			$(":button").click(function() {
 				if ('getOne'==$(this).attr('name')) {
 					$.ajax({

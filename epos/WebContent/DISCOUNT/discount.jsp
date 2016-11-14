@@ -127,7 +127,7 @@
 		<section id="main-content"> <section class="wrapper"> 
 
 			<div class="row mt">
-				<div class="col-lg-12">
+				<div class="col-md-12">
 				<div class="nav navbar-default">
 				<div class="container-fluid" style="float: right; left: -50%; position: relative">
 					<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">

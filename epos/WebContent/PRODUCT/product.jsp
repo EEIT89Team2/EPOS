@@ -22,12 +22,30 @@
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
 <style>
-
-a{
-	color:#428bca;
+.navbar-default {
+	background: #CCFFCC;
+	border-color: #CCFF99;
+	border-radius: 8px;
+	/* 		border-style: solid; */
 }
 
-</style>	
+.main {
+	height: 750px;
+	border-radius: 8px;
+	background: #FFFFCC;
+}
+
+.titlelist {
+	font-family: '微軟正黑體';
+	font-weight: bold;
+	color: white;
+	height: 35px;
+	background: #99CCCC;
+	padding-left: 10px;
+	font-size: 23px;
+	border-radius: 2px;
+}
+</style>
 <title>product</title>
 </head>
 <body>
@@ -42,7 +60,8 @@ a{
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
+			<li><a class="logout"
+				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
 		</ul>
 	</div>
 	</header>
@@ -61,8 +80,8 @@ a{
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp"> <i
-					class="fa fa-dashboard"></i> <span>index</span>
+			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp">
+					<i class="fa fa-dashboard"></i> <span>index</span>
 			</a></li>
 
 			<li class="sub-menu"><a href="javascript:;"> <i
@@ -97,8 +116,8 @@ a{
 					<li><a
 						href="<%=request.getContextPath()%>/SHIPMENTS/shipments.jsp">出貨單維護</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;" class="active"> <i
-					class="fa fa-book"></i> <span>存貨作業</span>
+			<li class="sub-menu"><a href="javascript:;" class="active">
+					<i class="fa fa-book"></i> <span>存貨作業</span>
 			</a>
 				<ul class="sub">
 					<li class="active"><a
@@ -139,86 +158,116 @@ a{
 	</div>
 	</aside>
 	<!--sidebar end-->
-	
+
 	<section id="main-content"> <section id="container">
-	<section class="wrapper"> <nav class="nav navbar-default alert-info">
+	<section class="wrapper">
 	<div class="row mt">
-	<ul class="nav navbar-nav">
-		<li id="chg_search"><a data-toggle="tab" href="#search"><span class="glyphicon glyphicon-search"></span>搜尋</a></li>
-		<li id="chg_new"><a id="c_pord" target="InsertProd.jsp" data-toggle="tab" href="#new"><span class="glyphicon glyphicon-file"></span>新增</a></li>
-		<li id="chg_result"><a data-toggle="tab" href="#result"><span class="glyphicon glyphicon-list-alt" ></span>查詢結果</a></li>
-		<li><a data-toggle="tab" href="#print" class="print"><span class="glyphicon glyphicon-print" ></span>列印</a></li>
-	</ul>
-	</nav>
+		<div class="col-lg-12">
+			<div class="nav navbar-default">
+				<div class="container-fluid"
+					style="float: right; left: -50%; position: relative">
+					<ul class="nav navbar-nav"
+						style="float: left; left: 50%; position: relative">
+						<li id="chg_search"><a data-toggle="tab" href="#search"><span
+								class="glyphicon glyphicon-search"></span>搜尋</a></li>
+						<li id="chg_new"><a id="c_prod" target="InsertProd.jsp"
+							data-toggle="tab" href="#new"><span
+								class="glyphicon glyphicon-file"></span>新增</a></li>
+						<li id="chg_result"><a data-toggle="tab" href="#result"><span
+								class="glyphicon glyphicon-list-alt"></span>查詢結果</a></li>
+						<li><a data-toggle="tab" href="#print" class="print"><span
+								class="glyphicon glyphicon-print"></span>列印</a></li>
+					</ul>
+				</div>
+			</div>
 
-		<div class="tab-content">
-			<div id="search" class="tab-pane fade">
-				<%-- 錯誤表列 --%>
-				<c:if test="${not empty param.message}">
-					<font color='red'>請修正以下錯誤:
-						<ul>
-							<c:forEach var="message" items="${param.message}">
-								<li>${message}</li>
-							</c:forEach>
-						</ul>
-					</font>
-				</c:if>
-				<h1>PRODUCT</h1>
+			<div class="tab-content">
+				<div id="search" class="tab-pane fade">
+					<%-- 錯誤表列 --%>
+					<c:if test="${not empty param.message}">
+						<font color='red'>請修正以下錯誤:
+							<ul>
+								<c:forEach var="message" items="${param.message}">
+									<li>${message}</li>
+								</c:forEach>
+							</ul>
+						</font>
+					</c:if>
 
-				<div class="row mt">
-					<div class="col-lg-12">
-						<div class="form-panel">
-							<h4 class="mb">
-								<i>查詢</i>
-							</h4>
-							<form class="form-inline" role="form">
-								<div class="form-group">
-									<label class="sr-only" for="prod_id">product_id</label> 
-									<input type="button" value="商品編號搜尋" class="btn btn-theme"> 
-									<input type="text" name="prod_id" class="form-control" id="prod_id">
+					<div class="titlelist">查詢</div>
+					<div class="col-lg-12  main">
+						<p>
+						<form class="form-horizontal style-form" role="form">
+							<div class="form-group">
+								<div class="col-lg-3"></div>
+								<label class="col-lg-2 control-label" for="prod_id">商品編號搜尋</label>
+								<div class="col-lg-2">
+									<input type="text" name="prod_id" class="form-control"
+										id="prod_id">
 								</div>
-								<br>
-								<p>
-								<div class="form-group">
+								<div class="col-lg-2">
+									<input type="button" value="商品編號搜尋" class="btn btn-theme">
+								</div>
+							</div>
+
+							<p>
+							<div class="form-group">
+								<div class="col-lg-3"></div>
+								<label class="col-lg-2 control-label" for="prod_id">查詢全部商品</label>
+								<div class="col-lg-2"></div>
+								<div class="col-lg-2">
 									<input type="button" value="查詢全部商品" class="btn btn-theme">
 								</div>
-								<br>
-								<p>
-								<div class="form-group">
-									<label class="sr-only" for="prod_name">product_name</label> 
-									<input type="button" value="商品名稱關鍵字查詢" class="btn btn-theme">
-									<input type="text" class="form-control" name="prod_name" id="prod_name">
+							</div>
+
+							<p>
+							<div class="form-group">
+								<div class="col-lg-3"></div>
+								<label class="col-lg-2 control-label" for="prod_name">商品名稱關鍵字查詢</label>
+								<div class="col-lg-2">
+									<input type="text" class="form-control" name="prod_name"
+										id="prod_name">
 								</div>
-								<br>
-								<p>
-								<div class="form-group">
-									<label class="sr-only" for="prod_group">product_group</label> <input
-										type="button" value="商品分類關鍵字查詢" class="btn btn-theme">
+								<div class="col-lg-2">
+									<input type="button" value="商品名稱關鍵字查詢" class="btn btn-theme">
+								</div>
+							</div>
+
+							<p>
+							<div class="form-group">
+								<div class="col-lg-3"></div>
+								<label class="col-lg-2 control-label" for="prod_group">商品分類關鍵字查詢</label>
+								<div class="col-lg-2">
 									<input type="text" class="form-control" name="prod_group"
 										id="prod_group">
 								</div>
-							</form>
-						</div>
+								<div class="col-lg-2">
+									<input type="button" value="商品分類關鍵字查詢" class="btn btn-theme">
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
-			</div>
-			<div id="new" class="tab-pane fade">
-				<div class=insert_context></div>
-			</div>
-			<div id="result" class="tab-pane fade">
-				<div id=rul></div>
+				<div id="new" class="tab-pane fade">
+					<div class="insert_content"></div>
+				</div>
+				<div id="result" class="tab-pane fade">
+					<div id=rul></div>
+				</div>
 			</div>
 		</div>
-
+	</div>
 	</section> </section></section>
 
 
 
-<!-- ------------------------------------------------------------程式--------------------------------------------------- -->
+	<!-- ------------------------------------------------------------程式--------------------------------------------------- -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
-		!window.jQuery&& document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
+		!window.jQuery
+				&& document
+						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
 	</script>
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
@@ -232,89 +281,90 @@ a{
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.form.js" />"></script>
 	<script type="text/JavaScript">
-	$(document).ready(function() {
-		
-		$('#c_pord').on('click', function() {						
-			var insertweb = $(this).attr('target');
-			$.get(insertweb, function(data) {
-				$('.insert_context').html(data);
-			})		
-		})
+		$(document).ready(function() {
+// 載入新增網頁
 
-		$(function() {
+			$('#c_prod').on('click', function() {
+				var insertWeb = $(this).attr('target');
+				$.get(insertWeb, function(data) {
+					$('.insert_content').html(data);
+				})
+			})
 
-			$(":button").click(function() {
-				if ("查詢全部商品" == $(this).val()) {
-					$.ajax({
-						type : "post",
-						url : "getAllProd.do",
-						data : {
-							action : "getAllProd.do"
-						},
-						success : function(data) {
-							$("#rul").html(data);
-							$("#chg_search").removeAttr("class");
-							$("#chg_result").attr("class","active");
-							$("#search").attr("class","tab-pane fade");
-							$("#result").attr("class","tab-pane active");
-						}
-					});
-				} else if ("商品編號搜尋" == $(this).val()) {
-					$.ajax({
-						type : "post",
-						url : "getOneProd.do",
-						data : {
-							action : "getOneProd.do",
-							prod_id : $("#prod_id").val()
-						},
-						success : function(data) {
-							$("#rul").html(data);
-							$("#chg_search").removeAttr("class");
-							$("#chg_result").attr("class","active");
-							$("#search").attr("class","tab-pane fade");
-							$("#result").attr("class","tab-pane active");
-						}
-					});
-				} else if ("商品名稱關鍵字查詢" == $(this).val()) {
-					$.ajax({
-						type : "post",
-						url : "getProdByName.do",
-						data : {
-							action : "getProdByName.do",
-							prod_name : $("#prod_name").val()
-						},
-						success : function(data) {
-							$("#rul").html(data);
-							$("#chg_search").removeAttr("class");
-							$("#chg_result").attr("class","active");
-							$("#search").attr("class","tab-pane fade");
-							$("#result").attr("class","tab-pane active");
-						}
-					});
-				} else if ("商品分類關鍵字查詢" == $(this).val()) {
-					$.ajax({
-						type : "post",
-						url : "getProdByGroup.do",
-						data : {
-							action : "getProdByGroup.do",
-							prod_group : $("#prod_group").val()
-						},
-						success : function(data) {
-							$("#rul").html(data);
-							$("#chg_search").removeAttr("class");
-							$("#chg_result").attr("class","active");
-							$("#search").attr("class","tab-pane fade");
-							$("#result").attr("class","tab-pane active");
-						}
-					});
-				}
+			$(function() {
+
+				$(":button").click(function() {
+					if ("查詢全部商品" == $(this).val()) {
+						$.ajax({
+							type : "post",
+							url : "getAllProd.do",
+							data : {
+								action : "getAllProd.do"
+							},
+							success : function(data) {
+								$("#rul").html(data);
+								$("#chg_search").removeAttr("class");
+								$("#chg_result").attr("class", "active");
+								$("#search").attr("class", "tab-pane fade");
+								$("#result").attr("class", "tab-pane active");
+							}
+						});
+					} else if ("商品編號搜尋" == $(this).val()) {
+						$.ajax({
+							type : "post",
+							url : "getOneProd.do",
+							data : {
+								action : "getOneProd.do",
+								prod_id : $("#prod_id").val()
+							},
+							success : function(data) {
+								$("#rul").html(data);
+								$("#chg_search").removeAttr("class");
+								$("#chg_result").attr("class", "active");
+								$("#search").attr("class", "tab-pane fade");
+								$("#result").attr("class", "tab-pane active");
+							}
+						});
+					} else if ("商品名稱關鍵字查詢" == $(this).val()) {
+						$.ajax({
+							type : "post",
+							url : "getProdByName.do",
+							data : {
+								action : "getProdByName.do",
+								prod_name : $("#prod_name").val()
+							},
+							success : function(data) {
+								$("#rul").html(data);
+								$("#chg_search").removeAttr("class");
+								$("#chg_result").attr("class", "active");
+								$("#search").attr("class", "tab-pane fade");
+								$("#result").attr("class", "tab-pane active");
+							}
+						});
+					} else if ("商品分類關鍵字查詢" == $(this).val()) {
+						$.ajax({
+							type : "post",
+							url : "getProdByGroup.do",
+							data : {
+								action : "getProdByGroup.do",
+								prod_group : $("#prod_group").val()
+							},
+							success : function(data) {
+								$("#rul").html(data);
+								$("#chg_search").removeAttr("class");
+								$("#chg_result").attr("class", "active");
+								$("#search").attr("class", "tab-pane fade");
+								$("#result").attr("class", "tab-pane active");
+							}
+						});
+					}
+				})
+			})
+
+			$(".print").click(function() {
+				window.print();
 			})
 		})
-		
-		$(".print").click(function() {
-			window.print();
-		})
-	})
-</script>
+	</script>
 </body>
 </html>

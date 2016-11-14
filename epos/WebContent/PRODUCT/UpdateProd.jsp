@@ -33,9 +33,7 @@
 庫存        <input type="text" name="prod_stock" value="${prodVO.prod_stock}"><br>
 安全庫存        <input type="text" name="prod_q_safty" value="${prodVO.prod_q_safty}"><br>
 規格        <input type="text" name="prod_spec" value="${prodVO.prod_spec}"><br>
-
 商品照片<img alt="尚無名片" src="data:image/gif;base64,${prodVO.picture}">
-<input type="hidden" name="picture" value="${prodVO.picture}">
 <input  type="file" name="newPicture"><br>
 備註    <input type="text" name="remark" value="${prodVO.remark}"><br>
 是否上架<input type="text" name="status" value="${prodVO.status}"><br>
@@ -70,10 +68,6 @@
 								"data" : {},
 								"success" : function(data) {
 						        	   $("#rul").html(data);
-										$("#chg_new").removeAttr("class");
-										$("#chg_result").attr("class","active");
-										$("#new").attr("class","tab-pane fade");
-										$("#result").attr("class","tab-pane active");
 								},
 							});
 					}	

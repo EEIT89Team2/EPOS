@@ -1,11 +1,12 @@
 package com.order.model;
 
 import java.sql.Date;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import com.employee.model.EmpVO;
 import com.order_detail.model.Order_DetailVO;
+import com.product.model.ProdVO;
 
 public interface Order_Interface {
 
@@ -17,7 +18,15 @@ public interface Order_Interface {
 	public void update(OrderVO orderVO,Order_DetailVO order_detailVO) throws Exception;
 	public void delete(String order_id) throws Exception;
 	public List<OrderVO> getAll() throws Exception;
-	public Map Select_prod_id(String prod_id) throws Exception;
+	public List GetProdNameCount(String prod_id) throws Exception;
 	public void setStatus(String status,String ord_id) throws Exception;
 	
+	public ProdVO getOneProdid(String prod_id)throws Exception;
+	public EmpVO getOneMemid(String mem_id)throws Exception;
+	public double GetDayTotalPrice() throws Exception;
+	public long GetDayTotalPeople() throws Exception;
+	
+	public int getMaxInvoiceId() throws Exception;
+	
+	public String getOneTopOrdId() throws Exception;
 }

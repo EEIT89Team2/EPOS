@@ -37,7 +37,8 @@ public class LoginFilter implements Filter {
 				}
 			}
 
-			if (req.getServletPath().equals("/index.jsp")||req.getServletPath().equals("/login.do")||req.getServletPath().equals("/sign_in.jsp")||flag) {
+			if (req.getServletPath().equals("/index.jsp")||req.getServletPath().equals("/login.do")||
+					req.getServletPath().equals("/sign_in.jsp")||flag||req.getServletPath().equals("/ANDROID/getProdFromAndroid")) {
 				chain.doFilter(request, response);
 
 			} else {

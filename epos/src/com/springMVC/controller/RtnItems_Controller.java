@@ -182,11 +182,12 @@ public class RtnItems_Controller extends HttpServlet {
 		
 		try{
 			String prod_name = new String(req.getParameter("prod_name").trim());
-			
+			System.out.println("prod_name=" + prod_name);
 			String com_id = req.getParameter("com_id");
 			if (com_id == null || com_id.trim().length() == 0) {
 				errorMsgs.add("廠商代號請勿空白");
 			}
+			System.out.println("com_id=" + com_id);
 			String comidCK = "^[C][0-9]{5}$";
 			if(!com_id.trim().matches(comidCK) ) { 
 				errorMsgs.add("廠商代號格式:C00001");

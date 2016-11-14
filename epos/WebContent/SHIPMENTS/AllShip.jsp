@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
-<title>全部員工基本資料</title>
+<title>出貨單</title>
 
 </head>
 <body>

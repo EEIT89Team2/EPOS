@@ -24,6 +24,8 @@
 <title>employee</title>
 </head>
 <body>
+	<jsp:useBean id="empSvc" scope="page"
+		class="com.employee.model.EmpService" />
 	<section id="container"> <!--header start--> <header
 		class="header black-bg">
 	<div class="sidebar-toggle-box">
@@ -35,7 +37,8 @@
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
+			<li><a class="logout"
+				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -50,17 +53,16 @@
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a class="active"
-				href="<%=request.getContextPath()%>/index.jsp"> <i
+			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp"> <i
 					class="fa fa-dashboard"></i> <span>index</span>
 			</a></li>
 
-			<li class="sub-menu"><a href="javascript:;"> <i
+			<li class="sub-menu"><a href="javascript:;" class="active"> <i
 					class="fa fa-desktop"></i> <span>基本資料維護</span>
 			</a>
 				<ul class="sub">
 					<li><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
-					<li><a
+					<li class="active"><a
 						href="<%=request.getContextPath()%>/EMPLOYEE/employee.jsp">員工資料維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/COMPANY/company.jsp">廠商資料維護</a></li>
@@ -127,74 +129,78 @@
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
-	</aside> <!--sidebar end--> <section id="main-content"> <section
-		class="wrapper">
+	</aside> <!--sidebar end--> 
+	<section id="main-content"> <section class="wrapper">
 	<div class="row mt">
-		<%-- 錯誤表列 --%>
-		<c:if test="${not empty param.message}">
-			<font color='red'>請修正以下錯誤:
-				<ul>
-					<c:forEach var="message" items="${param.message}">
-						<li>${message}</li>
-					</c:forEach>
-				</ul>
-			</font>
-		</c:if>
-		<h1>EMPLOYEE</h1>
-
-		<form method="post" action="getOneEmp.do">
-			<p>依員工編號搜尋</p>
-			<input type="text" name="emp_id"> <input type="submit"
-				value="搜尋">
-		</form>
-		<hr>
-
-		<form method="post" action="getAllEmp.do">
-			<p>查詢全部員工(刪除.修改)</p>
-			<input type="submit" value="搜尋">
-		</form>
-		<hr>
-
-
-		<%-- <form method="post" action="insertEmp.do" enctype="multipart/form-data"> --%>
-		<form method="post" action="insertEmp.do"
-			enctype="multipart/form-data">
-			<p>新增員工</p>
-			密碼<input type="text" name="emp_pwd" value="3310"><br> 姓名<input
-				type="text" name="emp_name" value="柯大中"><br> 性別<input
-				type="text" name="emp_sex" value="男"><br> 身分證<input
-				type="text" name="emp_idnum" value="A132789952"><br> 地址
-			<input type="text" name="emp_addr" value="台北市新生北路五段一號"><br>
-			電子信箱<input type="text" name="emp_mail" value="dadaa@gmail.com"><br>
-			電話<input type="text" name="emp_phone" value="0988456877"><br>
-			生日<input type="date" name="emp_bday" value="1991-08-26"><br>
-			到職日<input type="date" name="emp_reg" value="2016-09-30"><br>
-			離職日<input type="date" name="emp_due"><br> 照片<input
-				type="file" name="picture"><br> 修改人<input type="text"
-				name="key_id" value="E00005"><br> <input type="submit"
-				value="新增">
-		</form>
-
-
-		<hr>
-
-		<form method="post" action="getEmpByName.do">
-			<p>姓名關鍵字查詢</p>
-			<input type="text" name="emp_name"><br> <input
-				type="submit" value="搜尋">
-		</form>
-		<hr>
-
-		<form method="post" action="setPassCode.do">
-			<p>修改權限</p>
-			員工編號<input type="text" name="emp_id"><br> 權限代號<input
-				type="text" name="pass_code"><br> <input type="submit"
-				value="修改">
-		</form>
+		<nav class="nav navbar-default">
+		<div class="container-fluid"
+			style="float: right; left: -40%; position: relative;">
+			<ul class="nav navbar-nav">
+				<li><a style="background-color: rgba(224, 224, 224, 0.7);">搜尋</a></li>
+				<li><a href="addEmp.jsp">新增</a></li>
+				<li><a href="SetPassCode.jsp">修改權限</a></li>
+				<li><a href="#">查詢結果</a></li>
+			</ul>
+		</div>
+		</nav>
+				<div class="col-lg-6" style="float: right; left: -20%; position: relative;">
+			<div class="form-panel">
+				<h4 class="mb">
+					<i class="fa fa-angle-right"></i> 查詢
+				</h4>
+				<%-- 錯誤表列 --%>
+				<c:if test="${not empty errorMsgs}">
+					<font color='red'>請修正以下錯誤:
+						<ul>
+							<c:forEach var="message" items="${errorMsgs}">
+								<li>${message}</li>
+							</c:forEach>
+						</ul>
+					</font>
+				</c:if>
+				<form method="post" action="getOneEmp.do" id="empId"
+					class="form-horizontal style-form">
+					<div class="form-group">
+						<label class="col-sm-5 col-sm-3 control-label">依員工編號搜尋</label>
+						<div class="col-sm-3">
+							<input type="text" name="emp_id">
+							<!-- 												<input type="submit" value="搜尋"> -->
+						</div>
+						<div class="col-sm-4">
+							<input type="submit" value="依員工編號搜尋"
+								class="btn btn-round btn-theme03">
+						</div>
+					</div>
+				</form>
+				<form METHOD="post" ACTION="getEmpByName.do" id="name"
+					class="form-horizontal style-form">
+					<div class="form-group">
+						<label class="col-sm-5 col-sm-3 control-label">姓名關鍵字查詢</label>
+						<div class="col-sm-3">
+							<input type="text" name="emp_name"><br>
+						</div>
+						<div class="col-sm-4">
+							<input type="submit" value="姓名關鍵字查詢"
+								class="btn btn-round btn-theme03">
+						</div>
+					</div>
+				</form>
+				<form METHOD="post" ACTION="getAllEmp.do" id="all"
+					class="form-horizontal style-form">
+					<div class="form-group">
+						<label class="col-sm-5 col-sm-3 control-label">查詢全部</label>
+						<div class="col-sm-3"></div>
+						<div class="col-sm-4">
+							<input type="submit" value="查詢全部"
+								class="btn btn-round btn-theme03">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 	</section> </section> </section>
 
-	<
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
@@ -204,6 +210,8 @@
 	</script>
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
+	<script type="text/javascript"
+		src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
 	<script class="include" type="text/javascript"
 		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
@@ -212,5 +220,8 @@
 
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
+	<!------------------------------------------------ 程式 --------------------------------------------------------------->
+	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
+		type="text/javascript"></script>
 </body>
 </html>

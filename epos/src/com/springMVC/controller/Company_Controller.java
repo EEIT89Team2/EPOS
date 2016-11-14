@@ -40,7 +40,7 @@ public class Company_Controller {
 	
 
 
-	@RequestMapping(method = RequestMethod.POST, value = "/getOneCom.do")
+	@RequestMapping(method = RequestMethod.POST, value = "/COMPANY/getOneCom.do")
 	public String getOneCom(@RequestParam("com_id") String com_id, ModelMap model) {
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 		 List<String> errorMsgs = new LinkedList<String>();
@@ -69,7 +69,7 @@ public class Company_Controller {
 		return "/COMPANY/AllCom";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/getAllCom.do")
+	@RequestMapping(method = RequestMethod.POST, value = "/COMPANY/getAllCom.do")
 	public String getAllCom(ModelMap model) {
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 		List list = comSrv.getAll();
@@ -83,7 +83,7 @@ public class Company_Controller {
 	}
 	
 
-	@RequestMapping(method = RequestMethod.POST,value = "/insertCom.do")
+	@RequestMapping(method = RequestMethod.POST,value = "/COMPANY/insertCom.do")
 	public String insertCom(ModelMap model,HttpServletRequest request) throws Exception, Exception {
 		
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
@@ -130,7 +130,7 @@ public class Company_Controller {
 
 
 
-	@RequestMapping(method = RequestMethod.POST, value = "/getComByName.do")
+	@RequestMapping(method = RequestMethod.POST, value = "/COMPANY/getComByName.do")
 	public String getComByName(ModelMap model,HttpServletRequest request,
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 		

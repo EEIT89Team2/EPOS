@@ -1,12 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.invo.model.*"%>
+
+<%
+	InvoService invoSvc = new InvoService();
+	List<InvoVO> list = invoSvc.getAll();
+	pageContext.setAttribute("list", list);
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <!-- Bootstrap core CSS -->
+<!-- <link href="../resources/css/bootstrap.min.css" rel="stylesheet"> -->
+<!-- <link href="../resources/css/bootstrap-theme.min.css" rel="stylesheet"> -->
 <link href="<c:url value="../resources/css/bootstrap.css" />"
 	rel="stylesheet">
 <!--external css-->
@@ -20,7 +32,65 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>invo</title>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
+<title>作廢發票</title>
+
+<style>
+	.titleinvo {
+		/*     	margin-top:auto; */
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: #ff8d3a;
+		font-size: 23px;
+		border-radius: 2px;
+		}
+	
+	a{
+		color:#f7781b;
+	}
+	
+	.main{
+		height: 250px;
+		border-radius: 8px;
+		background: #fff1e7;
+	}
+	
+	/* 	表格標題 */
+	.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{
+		background: #ff6c00;
+		font-weight:bold;
+	}
+	
+	/* 	表格內容偶數 */
+	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
+		background:#ffe1ca;
+		border:1px solid #ffa15c;
+		
+	}
+	/* 	表格內容單數 */
+	.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th{
+		background:white;
+	}
+	
+	/* 	表格偶數滑鼠指向 */
+	.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
+		background-color:#ffb784;
+	}
+	
+	.alert-info{
+		background: #ffcca7;
+		border-color:#ffa15c;
+	}
+	
+/* 	/* 	表格標題 */ */
+/* 	.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{ */
+/* 		background: #f56700; */
+/* 	} */
+}
+</style>
 
 </head>
 
@@ -104,7 +174,7 @@
 					<li><a
 						href="<%=request.getContextPath()%>/RETURNS/Return_Items.jsp">退貨品管理</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/RETURNS/returns.jsp">退貨單管理</a></li>
+						href="<%=request.getContextPath()%>/RETURNS/ReturnList.jsp">退貨單管理</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/INVO/select_page.jsp">作廢發票管理</a></li>
 				</ul></li>
@@ -128,39 +198,109 @@
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
-	</aside> <!--sidebar end--> <section id="main-content"> <section
-		class="wrapper">
+	</aside> <!--sidebar end--> <section id="main-content"> <section class="wrapper">
 
 	<div class="row mt">
-		<tr>
-			<td>
-				<FORM METHOD="post" ACTION="getOneinvo.do">
-					<b>請輸入發票編號 (例:KZ-22239651)</b> <input type="text" name="invoice_id">
-					<input type="submit" value="送出">
-					<!-- 				<input type="hidden" name="action" value="getOne_For_Display"> -->
-				</FORM>
-			</td>
+	<div class="col-sm-12">
+		<div id="add" class="main">
+			<div class="tab-content">
+				<nav class="alert alert-info">
+				<div>
+				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
+		    	<a href="#" onclick="window.open('searchinvo.jsp', 'Yahoo', config='height=500,width=850')"><span class="glyphicon glyphicon-search"></span>查詢</a>　　　
+		    	<a href="#" onclick="window.open('listAllInvo.jsp', 'RetrunList', config='height=800,width=1680')"><span class="glyphicon glyphicon-inbox"></span>全部查詢</a>　　
+		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　　
+		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>　
+				</div>
+				</nav>
+			</div>
 
-			<td>
-				<FORM METHOD="post" ACTION="listAllInvo.do">
-					<b>全部的發票作廢資料 </b> <input type="submit" value="查詢">
-					<!-- 				<input type="hidden" name="action" value="getAll_For_Display"> -->
-				</FORM>
-			</td>
 
-			<td>
-				<FORM METHOD="post" ACTION="addInvo.do">
-					<b>新增發票作廢資料 </b> <input type="submit" value="新增">
-					<!-- 				<input type="hidden" name="action" value="getAdd_For_Display"> -->
-				</FORM>
-			</td>
-		</tr>
+			<FORM id="invoform" METHOD="post" ACTION="insertInvo.do" class="form-inline">
+				<div class="form-group">
+					<label for="exampleInputName2">　發票編號:</label> <input type="text"
+						name="invoice_id" class="form-control">
+				</div> 　　
+				<div class="form-group">
+					<label for="exampleInputName2">訂單編號:</label> <input type="text"
+						name="ord_id" class="form-control">
+				</div>　　
+				<div class="form-group">
+					<label for="exampleInputEmail2">新發票編號：</label> <input type="text"
+						name="new_invoice_number" class="form-control">
+				</div>　　
+				<div class="form-group">
+					<label for="exampleInputName2">新訂單編號：</label> <input type="text"
+						name="new_ord_id" class="form-control">
+				</div>
+			</FORM>
+
+		</div>
+		<!-- -----------------------------------------------------------表格----------------------------------------------------------- -->
+		<div>
+			<div class="titleinvo">發票作廢</div>
+			<table id="table1" class="table table-bordered table-striped table-hover">
+				<thead>
+					<tr>
+						<td align='center'>發票編號</td>
+						<td align='center'>訂單編號</td>
+						<td align='center'>新發票號碼</td>
+						<td align='center'>新訂單編號</td>
+						<td align='center'>修改</td>
+						<td align='center'>刪除</td>
+					</tr>
+				</thead>
+				<c:forEach var="invoVO" items="${list}">
+					<tr class="table2" align='center' valign='middle'>
+						<td>${invoVO.invoice_id}</td>
+						<td>${invoVO.ord_id}</td>
+						<td>${invoVO.new_invoice_number}</td>
+						<td>
+							<label>${invoVO.new_ord_id}</label>
+							<input type="text" name="new_invoice_number" class="edittext">
+						</td>
+						<td>
+							<button type="button" class="btn btn-success" onclick="editdata(this)" target="${invoVO.invoice_id}"><i class="fa fa-pencil"></i></button>
+			     			<button type="button" class="btn btn-primary" onclick="confirm(this)" ><i class="glyphicon glyphicon-ok"></i></button>
+						</td>
+						<td>
+			    			<button type="submit" target="${invoVO.invoice_id}" class="btn btn-danger"><i class="fa fa-trash-o "></i></button>
+						</td>
+					</tr>
+
+				</c:forEach>
+
+			</table>
+		</div>
 	</div>
+	
+<!-- 		<tr> -->
+<!-- 			<td> -->
+<!-- 				<FORM METHOD="post" ACTION="getOneinvo.do"> -->
+<!-- 					<b>請輸入發票編號 (例:KZ-22239651)</b> <input type="text" name="invoice_id"> -->
+<!-- 					<input type="submit" value="送出"> -->
+<!-- 									<input type="hidden" name="action" value="getOne_For_Display"> -->
+<!-- 				</FORM> -->
+<!-- 			</td> -->
 
+<!-- 			<td> -->
+<!-- 				<FORM METHOD="post" ACTION="listAllInvo.do"> -->
+<!-- 					<b>全部的發票作廢資料 </b> <input type="submit" value="查詢"> -->
+<!-- 									<input type="hidden" name="action" value="getAll_For_Display"> -->
+<!-- 				</FORM> -->
+<!-- 			</td> -->
 
+<!-- 			<td> -->
+<!-- 				<FORM METHOD="post" ACTION="addInvo.do"> -->
+<!-- 					<b>新增發票作廢資料 </b> <input type="submit" value="新增"> -->
+<!-- 									<input type="hidden" name="action" value="getAdd_For_Display"> -->
+<!-- 				</FORM> -->
+<!-- 			</td> -->
+<!-- 		</tr> -->
+	</div>
 	</section> </section> </section>
 
-	<
+	
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
@@ -170,13 +310,108 @@
 	</script>
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
-	<script class="include" type="text/javascript"
-		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
+	<script class="include" type="text/javascript" src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"
 		type="text/javascript"></script>
 
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
+	<!------------------------------------------------ 程式 --------------------------------------------------------------->
+	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
+		type="text/javascript"></script>
+	<script type="text/JavaScript">
+	
+	$(document).ready(function(){
+		$(".btn-primary").hide();
+		$(".edittext").hide();
+	})	
+	
+		 $(function () {
+
+// <!----------------------------------------  新增         ------------------------------------>
+
+				$('#sub').on('click',function(){
+			    var url = "insertInvo.do"; 
+			    $.ajax({
+			           type: "POST",
+			           url: url,
+			           data: $("#invoform").serialize(), 
+			           success: function(data)
+			           {
+			        	   location.reload();
+			           }
+			         });
+				})
+//<!----------------------------------------刪除------------------------------------>
+				$('.btn-danger').on('click',function(){	
+					var id = $(this).attr('target');
+					console.log(id);
+			    	var url = "deleteInvo.do";
+			    $.ajax({
+			           type: "POST",
+			           url: url,
+			           data: {invoice_id:id},
+			           success: function(data)
+			           {
+			        	   location.reload(); 
+			           }
+			         });
+				})
+//<!----------------------------------------  表格         ------------------------------------>
+		 		$('#table1').DataTable();
+
+		 	})
+		 	
+//<!----------------------------------------  修改         ------------------------------------>	
+	
+	function editdata(event) {
+		var label = $(event).parent().parent().find("td:eq(3) > label");
+		var oldval = label.html();
+		console.log("oldval= "+oldval)
+		var edittext = $(event).parent().parent().find("td:eq(3) > input");
+		var confbtn = $(event).parent().parent().find("td:eq(4) > button:eq(1)");
+		edittext.val(oldval);
+		label.hide();
+		edittext.show();
+		$(event).hide();
+		confbtn.show();
+	}
+	
+	function confirm(event){
+		
+		var id = $(event).parent().parent().find("td:eq(0)").html();
+		var ord_id = $(event).parent().parent().find("td:eq(1)").html();
+		var new_invoice_number = $(event).parent().parent().find("td:eq(2)").html();
+		
+		var label = $(event).parent().parent().find("td:eq(3) > label");
+		var edittext = $(event).parent().parent().find("td:eq(3) > input").val();
+		var editbtn = $(event).parent().parent().find("td:eq(4) > button:eq(0)"); 
+		console.log("edittext="+edittext);
+		var url = "updateInvo.do";
+		
+		$.ajax({
+			type:"POST",
+			url:url,
+			data:{
+				invoice_id:id,
+				ord_id:ord_id,
+				new_invoice_number:new_invoice_number,
+				new_ord_id:edittext,
+				},
+			sucess:{}
+		})
+		
+		$(".edittext").hide();
+		label.html(edittext);
+		console.log("label="+label.html());
+		label.show();
+		$(event).hide();
+		editbtn.show();
+		
+	}
+	
+	</script>
 </body>
 </html>

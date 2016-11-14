@@ -29,11 +29,7 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO");	//若輸入錯誤可�
 <FORM METHOD="post" ACTION="insertCpon.do" name="form1">
 <table border="0">
 
-<!-- 	<tr> -->
-<!-- 		<td>折價券編號:</td> -->
-<!-- 		<td><input type="text" name="cpon_id" size="20"  -->
-<%-- 			value="<%= (copVO==null)? "CPa00001" : copVO.getCpon_id()%>" /></td> --%>
-<!-- 	</tr> -->
+
 	<tr>
 		<td>折價券名稱:</td>
 		<td><input type="text" name="cpon_name" size="20"
@@ -52,7 +48,7 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO");	//若輸入錯誤可�
 	<tr>
 		<td>面額:</td>
 		<td><input type="text" name="cpon_dollar" size="20"
-			value="<%= (copVO==null)? "500" : copVO.getCpon_dollar()%>" /></td>
+			value="<%= (copVO==null)? "100" : copVO.getCpon_dollar()%>" /></td>
 	</tr>
 	<tr>
 		<td>狀態:</td>
@@ -63,11 +59,26 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO");	//若輸入錯誤可�
 </table>
 <br>
 <!-- <input type="hidden" name="action" value="insert"> -->
-<input type="submit" value="送出新增"></FORM>
+<input type="button" value="送出新增"></FORM>
 </center>
 	<a href="../index.jsp">回首頁</a>
 	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
-<jsp:include page="/COMMON/footer_cpon.jsp" />
-<p/>
+
 </body>
+	<script>
+		$(function() {
+			$(':button').on('click', function() {		
+
+					var form1 = $("form[name='form1']");
+					$.ajax({
+						type : "POST",
+						url : form1.attr('action'),
+						data : form1.serialize(),
+						success : function(data) {
+							$(".chg-content").html(data);
+						}
+					})
+			})
+		})
+	</script>	
 </html>

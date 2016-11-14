@@ -38,7 +38,8 @@
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
+			<li><a class="logout"
+				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -53,16 +54,15 @@
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a class="active"
-				href="<%=request.getContextPath()%>/index.jsp"> <i
+			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp"> <i
 					class="fa fa-dashboard"></i> <span>index</span>
 			</a></li>
 
-			<li class="sub-menu"><a href="javascript:;"> <i
+			<li class="sub-menu"><a href="javascript:;" class="active"> <i
 					class="fa fa-desktop"></i> <span>基本資料維護</span>
 			</a>
 				<ul class="sub">
-					<li><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
+					<li class="active"><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/EMPLOYEE/employee.jsp">員工資料維護</a></li>
 					<li><a
@@ -130,29 +130,123 @@
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
-	</aside> <!--sidebar end-->
-		 <section id="main-content"> 
-	 		<section class="wrapper">
-	 		<div class="row mt">
-				<nav class="nav navbar-default">
-					<div class="container-fluid" style="float: right; left: -50%; position: relative;">
-						<form name="submitForm" method="POST" action="allMemb.do">
-							<input type="hidden" name="param1" value="param1Value">
-							<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative;">
-								<li><a class="insertMem" href="addMem.jsp"><span class="insertMemText">新增會員</span></a></li>
-    							<li><a href="javascript:document.submitForm.submit()">查詢會員</A></li>    			
-								<li><a class="selectMemId" href="selectMemId.jsp"><span class="selectMemIdText">依會員編號查詢</span></a></li>
-								<li><a class="selectManyMem" href="selectManyMem.jsp"><span class="selectManyMemText">查詢多筆會員</span></a></li>
-								<li><a class="selectMemName" href="selectMemName.jsp"><span class="selectMemNameText">依會員姓名查詢</span></a></li>
-								<li><a class="selectMemDate" href="selectMemDate.jsp"><span class="selectMemDateText">依新增日期查詢</span></a></li>			
-							</ul>
-						</form>
+	</aside> <!--sidebar end--> <section id="main-content"> <section
+		class="wrapper">
+	<div class="row mt">
+		<nav class="nav navbar-default">
+		<div class="container-fluid"
+			style="float: right; left: -50%; position: relative;">
+			<ul class="nav navbar-nav"
+				style="float: left; left: 50%; position: relative;">
+				<li><a style="background-color: rgba(224, 224, 224, 0.7);">搜尋</A></li>
+				<li><a href="addMem.jsp">新增</a></li>
+				<li><a href="#">查詢結果</a></li>
+			</ul>
+		</div>
+		</nav>
+		<div class="col-lg-6"
+			style="float: right; left: -20%; position: relative;">
+			<div class="form-panel">
+			<jsp:useBean id="MemSvc" scope="page" class="com.member.model.MemberService" />
+				<h4 class="mb">
+					<i class="fa fa-angle-right"></i> 查詢
+				</h4>
+				<%-- 錯誤表列 --%>
+				<c:if test="${not empty param.message}">
+					<font color='red'>請修正以下錯誤:
+						<ul>
+							<c:forEach var="message" items="${param.message}">
+								<li>${message}</li>
+							</c:forEach>
+						</ul>
+					</font>
+				</c:if>
+
+				<form method="post" action="Memb.do"
+					class="form-horizontal style-form">
+					<div class="form-group">
+						<label class="col-sm-5 col-sm-3 control-label">依會員編號搜尋</label>
+						<div class="col-sm-3">
+							<b>選擇會員ID:</b> 
+							<select size="1" name="mem_id">
+								<c:forEach var="memVO" items="${MemSvc.all}">
+									<option value="${memVO.mem_id}">${memVO.mem_id}
+								</c:forEach>
+							</select>
+						</div>
+						<div class="col-sm-4">
+							<input type="submit" value="依會員編號搜尋" class="btn btn-round btn-theme03"> 
+							<input type="hidden" name="action" value="getOne_For_Display">
+						</div>
 					</div>
-				</nav>
-				</div>
-			</section> 
-		</section>
-	</section>
+				</form>
+				<form method="post" action="Memb.do"
+					class="form-horizontal style-form">
+					<div class="form-group">
+						<label class="col-sm-5 col-sm-3 control-label">依會員姓名搜尋</label>
+						<div class="col-sm-3">
+							<b>選擇會員姓名:</b> 
+							<select size="1" name="mem_id">
+								<c:forEach var="memVO" items="${MemSvc.all}">
+									<option value="${memVO.mem_id}">${memVO.mem_name}
+								</c:forEach>
+							</select>
+						</div>
+						<div class="col-sm-4">
+							<input type="submit" value="依會員姓名搜尋" class="btn btn-round btn-theme03"> 
+							<input type="hidden" name="action" value="getOne_For_Display">
+						</div>
+					</div>
+				</form>
+				<form method="post" action="idsMemb.do"
+					class="form-horizontal style-form">
+					<div class="form-group">
+						<label class="col-sm-5 col-sm-3 control-label">搜尋多筆會員</label>
+						<div class="col-sm-3">
+							<b>查詢會員(多):</b> 
+							<select size="1" name="mem_id_1">
+								<c:forEach var="memVO" items="${MemSvc.all}">
+									<option value="${memVO.mem_id}">${memVO.mem_id}
+								</c:forEach>
+							</select> 
+							<select size="1" name="mem_id_2">
+								<c:forEach var="memVO" items="${MemSvc.all}">
+									<option value="${memVO.mem_id}">${memVO.mem_id}
+								</c:forEach>
+							</select>
+						</div>
+						<div class="col-sm-4">
+							<input type="submit" value="搜尋多筆會員" class="btn btn-round btn-theme03">
+						</div>
+					</div>
+				</form>
+				<form method="post" action="datesMem.do" class="form-horizontal style-form">
+					<div class="form-group">
+						<label class="col-sm-5 col-sm-3 control-label">依新增日期搜尋</label>
+						<div class="col-sm-3">
+							<b>查詢新增會員日期:</b> 
+							<input type="date" name="key_date_1"> 
+							<input type="date" name="key_date_2">
+						</div>
+						<div class="col-sm-4">
+							<input type="submit" value="依新增日期搜尋" class="btn btn-round btn-theme03">
+						</div>
+					</div>
+				</form>
+				<form method="post" action="allMemb.do"
+					class="form-horizontal style-form">
+					<div class="form-group">
+						<label class="col-sm-5 col-sm-3 control-label">查詢全部</label>
+						<div class="col-sm-3"></div>
+						<div class="col-sm-4">
+							<input type="submit" value="查詢全部" class="btn btn-round btn-theme03">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	</section> </section> </section>
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -163,9 +257,11 @@
 	</script>
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
-	<script class="include" type="text/javascript" src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
+	<script class="include" type="text/javascript"
+		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
-	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />" type="text/javascript"></script>
+	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"
+		type="text/javascript"></script>
 
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>

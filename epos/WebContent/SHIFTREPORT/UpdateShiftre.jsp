@@ -18,7 +18,7 @@
 	</ul>
 	</font>
 </c:if>
-<form method="post" action="updateShiftre.do" >
+<form method="post" action="updateShiftre.do" class="updateShi">
 
 日期<input type="date" name="Date" value="${shiftreVO.date}" readonly="readonly"><br>
 班別<Select name="shift">
@@ -35,12 +35,27 @@
 交易次數<input type="text" name="deal_num" value="${shiftreVO.deal_num}"><br>
 班別小計<input type="text" name="shift_sum" value="${shiftreVO.shift_sum}"><br>
 
-<input type="submit" value="修改">
+<input type="button" value="修改">
 
 </form>
 
-	<a href="../index.jsp">回首頁</a>
-	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
+
+	<script type="text/JavaScript">
+	$(document).ready(function() {
+		$(":button").on('click',function(){
+				$.ajax({
+					type : "post",
+					url : "updateShiftre.do",
+					data : $(".updateShi").serialize(),
+					success :function(data) {
+						$(".rul").html(data);
+
+					}	
+				});
+		});
+	});
+
+	</script>	
 
 </body>
 </html>

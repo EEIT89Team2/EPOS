@@ -200,9 +200,9 @@ public class RtnDetail_Controller extends HttpServlet {
 			if (ret_id == null || ret_id.trim().length() == 0) {
 				errorMsgs.add("退貨單編號請勿空白 & 請勿更改退貨單編號");
 			}
-			
+			System.out.println("ret_id = " + ret_id);
 			String prod_name = new String(req.getParameter("prod_name").trim());
-			
+			System.out.println("prod_name = " + prod_name);
 			Integer prod_quantity = null;
 			try{
 				prod_quantity = new Integer(req.getParameter("prod_quantity").trim());
@@ -210,9 +210,9 @@ public class RtnDetail_Controller extends HttpServlet {
 				prod_quantity = 0;
 				errorMsgs.add("請填入退貨品數量");
 			}
-			
+			System.out.println("prod_quantity = " + prod_quantity);
 			String ret_reason =new String(req.getParameter("ret_reason").trim());
-			
+			System.out.println("ret_reason = " + ret_reason);
 			RtnDetailVO rtnDetailVO = new RtnDetailVO();
 			RtnItemsVO rtnItemsVO =new RtnItemsVO();
 			RtnListVO rtnListVO = new RtnListVO();

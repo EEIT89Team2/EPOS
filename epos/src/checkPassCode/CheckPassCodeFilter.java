@@ -18,7 +18,8 @@ import com.employee.model.EmpVO;
 
 @WebFilter(urlPatterns = {
 		"/REQUISITION/addReq.jsp",
-		"/REQUISITION/SelectReq.jsp"					
+		"/REQUISITION/SelectReq.jsp",
+		"/DISCOUNT/updateDisc.do"
 })
 //@WebFilter(urlPatterns = {"/*"})
 public class CheckPassCodeFilter implements Filter {
@@ -32,6 +33,7 @@ public class CheckPassCodeFilter implements Filter {
 	public void destroy() {
 	}
 
+	
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
@@ -69,10 +71,11 @@ public class CheckPassCodeFilter implements Filter {
 	private boolean checkPCode2(String[] passCode,HttpServletRequest req){
 		HttpSession session = req.getSession();
 
-		String servletPath = req.getServletPath();		
+		String servletPath = req.getServletPath();	
+		System.out.println("servletPath="+servletPath);
 		servletPath = servletPath.substring(servletPath.lastIndexOf("/"));		
 		for(int i=0;i<=(passCode.length)-1;i++){
-//			System.out.println(passCode[i]);
+			System.out.println(passCode[i]);
 			if(passCode[i].equals(servletPath) || passCode[i].equals("ALL") ){
 				return true;
 			}				

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> --%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jstl/core_rt'%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="java.util.*"%>
 <%@ page import="com.returns.model.*"%>
@@ -11,8 +12,10 @@
 	pageContext.setAttribute("list",list);
 %>
 <html>
+
 <head>
 <SCRIPT LANGUAGE="JavaScript">
+
 
 function varitext(text){
 text=document
@@ -27,8 +30,7 @@ print(text)
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Bootstrap core CSS -->
-<!-- <link href="../resources/css/bootstrap.min.css" rel="stylesheet"> -->
-<!-- <link href="../resources/css/bootstrap-theme.min.css" rel="stylesheet"> -->
+
 <link href="<c:url value="../resources/css/bootstrap.css" />"
 	rel="stylesheet">
 <!--external css-->
@@ -44,20 +46,9 @@ print(text)
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
-<title>return-items</title>
+<title>退貨單</title>
 
 <style>
-
-	.titledetail {
-		/*     	margin-top:auto; */
-		font-family: '微軟正黑體';
-		font-weight: bold;
-		color: white;
-		height: 35px;
-		background: #fb9292;
-		font-size: 23px;
-		border-radius: 2px;
-	}
 	
 	a{
 		color:#ab2222;
@@ -74,7 +65,7 @@ print(text)
   		color:white;
   		border-top: 0;
   		font-family: 微軟正黑體;
-}
+	}
 	.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th{
 		background-color:white;
 	}
@@ -87,6 +78,22 @@ print(text)
 	.alert-info{
 		background: #f7a2a2;
 		border-color:#e86262;
+	}
+	
+	.titlelist {
+	/*     	margin-top:auto; */
+	font-family: '微軟正黑體';
+	font-weight: bold;
+	color: white;
+	height: 35px;
+	background: #f7a2a2;
+	font-size: 23px;
+	border-radius: 2px;
+}
+	
+	
+	.btn-primary{
+		margin-top:60px;
 	}
 	
 	
@@ -200,125 +207,92 @@ print(text)
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
-	</aside> <!--sidebar end--> <section id="main-content"> <section
-		class="wrapper"> <!-- -----------------------------------------------------------查詢----------------------------------------------------------- -->
+	</aside> <!--sidebar end--> <section id="main-content"> <section class="wrapper">
+	 <!-- -----------------------------------------------------------查詢----------------------------------------------------------- -->
 	
 	<div class="row mt">
 	<div class="col-sm-12">
+	
 		<div id="add" class="main">
 			<div class="tab-content">
 				<nav id="listinfo" class="alert alert-info">
 				<div>
 				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
-		    	<a href="#" onclick="window.open('searchItem.jsp', 'Yahoo', config='height=500,width=850')"><span class="glyphicon glyphicon-search"></span>查詢</a>　　　
-<!-- 		    	<a href="#"><span class="glyphicon glyphicon-pencil"></span>修改</a>　　　 -->
-<!-- 		    	<a href="#"><span class="glyphicon glyphicon-remove"></span>刪除</a>　　　 -->
+		    	<a href="#" onclick="window.open('searchList.jsp', 'RetrunItem', config='height=500,width=1200')"><span class="glyphicon glyphicon-search"></span>單筆查詢</a>　　
+		    	<a href="#" onclick="window.open('AllList.jsp', 'RetrunList', config='height=850,width=1680')"><span class="glyphicon glyphicon-inbox"></span>全部查詢</a>　　
+		    	<a href="Return_Detail.jsp"><i class="glyphicon glyphicon-list-alt"></i>退貨單明細</a>　　　
 		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　　
 		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>　
 				</div>
-
-				</nav>
+ 
+				</nav> 
 			</div>
-
-
-			<FORM id="listform" METHOD="post" ACTION="insert_Item.do" class="form-inline" name="form1">
-<!-- 				<div class="form-group"> -->
-<!-- 					<label for="exampleInputName2">　退貨單編號：</label>  -->
-<!-- 					<input type="text"　name="prod_name" class="form-control"> -->
-<!-- 				</div> 　　 -->
-				<div class="form-group">
-					<label for="exampleInputName2">　退貨日期：</label> 
-					<input type="date"　name="com_id" class="form-control" >
-				</div>　　
-				<div class="form-group">
-					<label for="exampleInputEmail2">廠商編號：</label> 
-					<input type="text"　name="re_quantity" class="form-control" placeholder="C00001">
-				</div>　　
-				<div class="form-group">
-					<label for="exampleInputName2">廠商名稱：</label> 
-					<input type="text"　name="com_name" class="form-control"　placeholder="神技科技">
-				</div>　　
-				<div class="form-group">
-					<label for="exampleInputName2">修改人員：</label> 
-					<input type="text"　name="key_id" class="form-control"　placeholder="E00001">
-				</div>
-				<div class="form-group">
-					<label for="exampleInputName2">　修改日期：　</label> 
-					<input type="date"　name="key_date" class="form-control">
-				</div>　　
-				<div class="form-group">
-					<label for="exampleInputName2">狀　態：</label> 
-					<input type="text"　name="status" class="form-control">
-				</div>
-				<div style="height: 10px;"></div>　
-				<div class="form-group">
-					<label for="exampleInputName2">備　註：</label> 
-					<input type="text"　name="remark" class="form-control">
-				</div>　　　
-				
-				
-			</FORM>
-
+	<FORM id="form1" METHOD="post" ACTION="insert.do" name="form1" class="form-inline">
+	<table border="0">
+	<tr>
+<!-- 		<div class="form-group"> -->
+<!-- 			<label for="exampleInputName2">　退貨單編號：</label> -->
+<!-- 			<input type="TEXT" class="form-control" name="ret_id" disabled/> -->
+<!-- 		</div>　　 -->
+		<div class="form-group">
+			<label for="exampleInputName2">　退貨日期：</label>
+			<input type="date" class="form-control" name="ret_date" />
+		</div>　　
+		<div class="form-group">
+			<label for="exampleInputName2">廠商編號：</label>
+			<input type="TEXT" class="form-control" name="com_id" value="C00001" />	
+		</div>　　
+		<div class="form-group">
+			<label for="exampleInputName2">廠商名稱：</label>
+			<input type="TEXT" class="form-control" name="com_name" value="德儀數位" />
+		</div>　　
+		<div class="form-group">
+			<label for="exampleInputName2">修改人員：</label>
+			<input type="TEXT" class="form-control" name="key_id" value="E00001" />
+		</div>　　
+		<div class="form-group">
+			<label for="exampleInputName2">　修 改 日 期 ：</label>
+			<input type="Date" class="form-control" name="key_date" />
+		</div>　
+		<div style="height: 10px;"></div>
+		<div class="form-group">　
+			<label for="exampleInputName2">狀　 態：</label>
+			<input type="TEXT" class="form-control" name="status" value="Y" />
+		</div>　　　
+		<div class="form-group">
+			<label for="exampleInputName2">備　註：</label>
+			<input type="TEXT" class="form-control" name="remark" value="test" />
 		</div>
-		<!-- -----------------------------------------------------------表格----------------------------------------------------------- -->
-		<div>
-			<div class="titledetail">退貨單</div>
-			<table id="table1"
-				class="table table-bordered table-striped table-hover">
-				<thead id="theadlist">
-					<tr>
-						<td align='center'>退貨單編號</td>
-						<td align='center'>退貨日期</td>
-						<td align='center'>廠商編號</td>
-						<td align='center'>廠商名稱</td>
-						<td align='center'>修改人員</td>
-						<td align='center'>修改日期</td>
-						<td align='center'>備註</td>
-						<td align='center'>狀態</td>
-						<td align='center'>查詢明細</td>
-						<td align='center'>修改</td>
-						<td align='center'>刪除</td>
-					</tr>
-				</thead>
-				<c:forEach var="list" items="${list}">
-					<tr class="table2" align='center' valign='middle'>
-						<td>${list.ret_id}</td>
-						<td>${list.ret_date}</td>
-						<td>${list.com_id}</td>
-						<td>${list.com_name}</td>
-						<td>${list.key_id}</td>
-						<td>${list.key_date}</td>
-						<td>${list.remark}</td>
-						<td>${list.status}</td>
-				<td>
-				
-			 	 	<FORM METHOD="post" ACTION="getDetail.do">
-			     	 	<button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i></button>
-			     	 	<input type="hidden" name="ret_id" value="${list.ret_id}">
-			    	  	<input type="hidden" name="action"	value="getDetail">
-			  		</FORM>
-				</td>
-				<td>
-			  		<FORM METHOD="post" ACTION="getOne_For_Update.do">
-			     		<button type="submit" class="btn btn-success"><i class="fa fa-pencil"></i></button>
-			     		<input type="hidden" name="ret_id" value="${list.ret_id}">
-			     		<input type="hidden" name="action"	value="getOne_For_Update">
-			  		</FORM>
-				</td>
-				<td>
-			  		<FORM METHOD="post" ACTION="delete.do">
-			    	<button type="submit" class="btn btn-danger"><i class="fa fa-trash-o "></i></button>
-			    	<input type="hidden" name="ret_id" value="${list.ret_id}">
-			    	<input type="hidden" name="action"value="delete">
-			  		</FORM>
-				</td>
-						
-					</tr>
-				</c:forEach>
-
-			</table>
-		</div>
-	</div>
+	</tr>
+</table>
+<div style="height: 70px;"></div>
+<button type="button" id="addNewDetail" class="btn btn-info">新增明細</button>
+<div class="titlelist">退貨單明細</div>
+<table border="0" id="form2" class="table table-bordered table-striped table-hover">
+<thead>
+	<tr>
+<!-- 		<td>退貨單編號：</td> -->
+<!-- 		<td><input type="TEXT" name="ret_id1" size="40" value="RE2016101500001"/></td> -->
+		<td align='center'>商品名稱：</td>
+		<td align='center'>退貨數量：</td>
+		<td align='center'>原因：</td>
+		<td align='center'>刪除：</td>
+	</tr>
+</thead>
+	<tr align='center' valign='middle'>
+	
+		<td><input type="TEXT" name="prod_name1"  value="iphone 6 16G 黑色" /></td>
+		<td><input type="TEXT" name="prod_quantity1" value="100" /></td>
+		<td><input type="TEXT" name="ret_reason1"  value="不能照相"/></td>
+		<td><input type='button' value='刪除' class='btn btn-danger'></input></td>
+	</tr>
+		
+</table>
+<br>
+</div>
+<input type="hidden" name="action" value="insert">
+</FORM>
+	
 	</div>
 	</section> </section> </section>
 
@@ -343,52 +317,70 @@ print(text)
 	<!------------------------------------------------ 程式 --------------------------------------------------------------->
 	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
 		type="text/javascript"></script>
-	<script type="text/JavaScript">
-		 	$(function () {
+	<script type="text/JavaScript"> 	
 
 // <!----------------------------------------  新增         ------------------------------------>
-// 				$('#add').on('click',function(){
-// 				var url = "Return_Items.jsp"; 
-// 				    $.ajax({
-// 				           type: "GET",
-// 				           url: url,
-// 				           success: function(data)
-// 				           {
-// 				               location.reload(); 
-// 				           }
-// 				         });
-// 					})	
+	$('#add').on('click',function(){
+		var url = "ReturnList.jsp"; 
+			$.ajax({
+				type: "GET",
+				url: url,
+				success: function(data)
+				 {
+				     
+				 }
+			});
+	})	
 
-				$('#sub').on('click',function(){
-			    var url = "../RETURNS/insert.do"; 
-			    $.ajax({
-			           type: "POST",
-			           url: url,
-			           data: $("#listform").serialize(), 
-			           success: function(data)
-			           {
-			        	   location.reload();
-			           }
-			         });
-				})
-//<!----------------------------------------刪除------------------------------------>
-				$('.btn-danger').on('click',function(){	
-					var id = $(this).attr('target');
-			    	var url = "delete_Item.do"; 
-			    $.ajax({
-			           type: "POST",
-			           url: url,
-			           data: {prod_name:id},
-			           success: function(data)
-			           {
-			        	   location.reload(); 
-			           }
-			         });
-				})
-//<!----------------------------------------  表格         ------------------------------------>
-		 		$('#table1').DataTable();
+// <!----------------------------------------  新增明細         ------------------------------------>
+	$("#form2").on('click', '.btn-danger', function() {
+		$(this).parents("tr").remove();
+	})
+	
+	$(function() {
+		var a = 2;
+		$("#addNewDetail").click(function() {
+			$("#form2").append("<tr align='center' valign='middle'><td><input type='TEXT' name='prod_name"+a+"'/></td>"
+								+ "<td><input type='TEXT' name='prod_quantity"+a+"'/></td>"
+								+ "<td><input type='TEXT' name='ret_reason"+a+"' /></td>"
+								+ "<td><input type='button' value='刪除' class='btn btn-danger'></input></td></tr>"
+			)
+							a = a + 1;
+		})
+	})
+	
 
-		 	})
+//<!----------------------------------------  送出新增        ------------------------------------>
+		
+	$('#sub').on('click',function(){
+	    var url = "insert.do"; 
+// 	    alert("1");
+	    $.ajax({
+	           type: "POST",
+	           url: url,
+	           data: $("#form1").serialize(), 
+	           success: function(data)
+	           {
+	        	   location.href="AllList.jsp";
+	           }
+	         });
+// 	    alert("2");
+		})
+
+//<!----------------------------------------  查詢全部        ------------------------------------>
+// 		$('#allsearch').on('click',function(){
+// 			var url="AllList.jsp";
+		
+// 			$.ajax({
+// 				type:"POST",
+// 				url:url,
+// 				success:function()
+// 				{
+// 					window.open("AllList.jsp");
+// 				}
+// 			})
+// 		})
+
 	</script>
 </body>
 </html>

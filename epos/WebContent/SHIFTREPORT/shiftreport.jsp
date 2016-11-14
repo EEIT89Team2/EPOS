@@ -16,6 +16,37 @@
 <link href="<c:url value="../resources/css/style.css" />" rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />" rel="stylesheet">
 <title>shiftreport</title>
+<style>
+
+	.navbar-default{
+		background: #99CC99;
+		border-color:#CCFF99;
+		border-radius: 8px;
+/* 		border-style: solid; */
+	}
+
+
+ 	.main{ 
+  		height: 800px;  
+ 		border-radius: 8px; 
+ 		background:	#CCFFCC; 
+ 	}
+ 	
+ 	.titlelist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: mediumseagreen;
+		padding-left: 10px;
+		font-size: 23px;
+		border-radius: 2px;
+	}
+
+	p{
+		margin: 20px;	
+	} 
+</style>
 </head>
 <body>
 	<section id="container">
@@ -23,8 +54,7 @@
 		<!--header start-->
 		<header class="header black-bg">
 			<div class="sidebar-toggle-box">
-				<div class="fa fa-bars tooltips" data-placement="right"
-					data-original-title="Toggle Navigation"></div>
+				<div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
 			</div>
 			<!--logo start-->
 			<a href="<%=request.getContextPath()%>/index.jsp" class="logo"><b>ePOS</b></a>
@@ -32,7 +62,7 @@
 
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
+					<li><a class="logout" href="login.html">Logout</a></li>
 				</ul>
 			</div>
 		</header>
@@ -49,7 +79,7 @@
 					</p>
 					<h5 class="centered">ePOS</h5>
 
-					<li class="mt"><a class="active" href="<%=request.getContextPath()%>/index.jsp"> <i
+					<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp"> <i
 							class="fa fa-dashboard"></i> <span>index</span>
 					</a></li>
 
@@ -90,14 +120,14 @@
 					</a>
 						<ul class="sub">
 							<li><a href="<%=request.getContextPath()%>/RETURNS/Return_Items.jsp">退貨品管理</a></li>
-							<li><a href="<%=request.getContextPath()%>/RETURNS/returns.jsp">退貨單管理</a></li>
+							<li><a href="<%=request.getContextPath()%>/RETURNS/ReturnList.jsp">退貨單管理</a></li>
 							<li><a href="<%=request.getContextPath()%>/INVO/select_page.jsp">作廢發票管理</a></li>
 						</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
+					<li class="sub-menu"><a href="javascript:;" class="active"> <i
 							class="fa fa-usd"></i> <span>金流管理</span>
 					</a>
 						<ul class="sub">
-							<li><a href="<%=request.getContextPath()%>/SHIFTREPORT/shiftreport.jsp">班別報表維護</a></li>
+							<li class="active"><a href="<%=request.getContextPath()%>/SHIFTREPORT/shiftreport.jsp">班別報表維護</a></li>
 							<li><a href="<%=request.getContextPath()%>/COUPON/coupon.jsp">折價券</a></li>
 							<li><a href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">折扣管理</a></li>
 						</ul></li>
@@ -113,105 +143,114 @@
 			</div>
 		</aside>
 		<!--sidebar end--> 
-		<section id="main-content"> 
-		<section class="wrapper"> 
+		<section id="main-content"><section class="wrapper">
+
 	<div class="row mt">
-		<nav class="nav navbar-default">
-			<ul class="nav navbar-nav">
-				<li><a data-toggle="tab" href="#search">搜尋</a></li>
-				<li><a data-toggle="tab" href="#new">新增</a></li>
-				<li><a data-toggle="tab" href="#print" class="print">列印</a></li>
-			</ul>
-		</nav>
-
-		<div class="tab-content">
-			<div id="search" class="tab-pane fade">
-				<%-- 錯誤表列 --%>
-				<c:if test="${not empty param.message}">
-					<font color='red'>請修正以下錯誤:
-					<ul>
-						<c:forEach var="message" items="${param.message}">
-							<li>${message}</li>
-						</c:forEach>
+		<div class="col-lg-12">
+			<div class="nav navbar-default">
+				<div class="container-fluid"
+					style="float: right; left: -50%; position: relative">
+					<ul class="nav navbar-nav"
+						style="float: left; left: 50%; position: relative">
+						<li id="shi_search"><a data-toggle="tab" href="#search"><span
+								class="glyphicon glyphicon-search"></span>搜尋</a></li>
+						<li id="shi_new"><a id="c_shift" target="insertShiftre.jsp"
+							data-toggle="tab" href="#new"><span
+								class="glyphicon glyphicon-file"></span>新增</a></li>
+						<li id="shi_rel"><a data-toggle="tab" href="#result"><span
+								class="glyphicon glyphicon-list-alt"></span>查詢結果</a></li>
+						<li><a data-toggle="tab" href="#print" class="print"><span
+								class="glyphicon glyphicon-print"></span>列印</a></li>
 					</ul>
-					</font>
-				</c:if>
-
-				<div class="col-lg-6">
-					<div class="form-panel">
-						<h4 class="mb">
-							<i class="fa fa-angle-right"></i> 查詢
-						</h4>
-						<form method="post" action="getOneShiftre.do">
-							<p>依班別報表搜尋</p>
-							日期<input type="date" name="Date"><br> 班別<Select
-								name="shift">
-								<option value="A">A</option>
-								<option value="B">B</option>
-							</Select><br> <input type="submit" value="搜尋">
-						</form>
-
-						<form method="post" action="getAllShiftre.do">
-							<p>查詢全部班別報表(刪除.修改)</p>
-							<input type="submit" value="搜尋">
-						</form>
-
-						<form method="post" action="getShiftreByDate.do">
-							<p>依照日期查詢</p>
-							日期<input type="date" name="Date"><br> <input
-								type="submit" value="搜尋"> <input type="hidden"
-								name="action" value="selectByDate">
-						</form>
-					</div>
-					<div class="sub-context"></div>
 				</div>
-
 			</div>
-			<div id="new" class="tab-pane fade">
-				<div class="col-lg-4">
-					<div class="form-panel">
-						<h4 class="mb">
-							<i class="fa fa-angle-right"></i> 新增
-						</h4>
-						<!--錯誤表列 -->
-						<c:if test="${not empty param.message}">
-							<font color='red'>請修正以下錯誤:
-								<ul>
-									<c:forEach var="message" items="${param.message}">
-										<li>${message}</li>
-									</c:forEach>
-								</ul>
-							</font>
-						</c:if>
-						<form method="post" action="insertShiftre.do">
-							<p>新增班別報表</p>
-							日期<input type="date" name="Date"><br> 班別<Select
-								name="shift">
-								<option value="A">A</option>
-								<option value="B">B</option>
-							</Select><br> 員工編號 <input type="text" name="emp_id" value="E00001"><br>
-							現金<input type="text" name="cash" value="2000"><br>
-							禮卷<input type="text" name="coupon" value="0"><br> 折讓<input
-								type="text" name="discount" value="0"><br> 零用金<input
-								type="text" name="coins" value="1500"><br> 交易額<input
-								type="text" name="deal_sum" value="2000"><br> 交易成本<input
-								type="text" name="deal_cost" value="1000"><br> 交易淨利<input
-								type="text" name="deal_profit" value="1000"><br>
-							交易次數<input type="text" name="deal_num" value="3"><br>
-							班別小計<input type="text" name="shift_sum" value="2000"><br>
-							<input type="submit" value="新增">
+
+			<div class="tab-content">
+				<div id="search" class="tab-pane fade">
+					<%-- 錯誤表列 --%>
+					<c:if test="${not empty param.message}">
+						<font color='red'>請修正以下錯誤:
+							<ul>
+								<c:forEach var="message" items="${param.message}">
+									<li>${message}</li>
+								</c:forEach>
+							</ul>
+						</font>
+					</c:if>
+
+					<div class="titlelist">查詢</div>
+					<div class="col-lg-12 main">
+					<p>
+						<form method="post" action="getOneShiftre.do"
+							class="oneshift form-horizontal style-form">
+							<div class="col-lg-4"></div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label" for="date">依班別報表搜尋</label>
+								<div class="col-lg-1">
+									<label class="control-label" for="date">日期</label> <input
+										type="date" name="Date" id="date">
+								</div>
+								<div class="col-lg-1">	
+								<label class="control-label" for="shift"> 班別</label>
+									<Select name="shift" id="shift">
+										<option value="A">A</option>
+										<option value="B">B</option>
+									</Select>
+								</div>
+								<div class="col-lg-2">
+									<input type="button" value="搜尋" name='getOne'
+										class="btn btn-success">
+								</div>
+							</div>
+						</form>
+
+						<form method="post" action="getAllShiftre.do"
+							class="form-horizontal style-form">
+							<div class="col-lg-4"></div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label" for="date">查詢全部班別報表(刪除.修改)</label>
+							<div class="col-lg-2"></div>	
+								<div class="col-lg-2">
+									<input type="button" value="搜尋" name='getAll'
+										class="btn btn-success">
+								</div>
+							</div>
+						</form>
+
+						<form method="post" action="getShiftreByDate.do"
+							class="shiftbydate form-horizontal style-form">
+							<div class="col-lg-4"></div>
+							<div class="form-group">
+								<label class="col-lg-1 control-label" for="date">依照日期查詢</label>
+								<label class="col-lg-1 control-label">日期</label>
+
+								<div class="col-lg-1">
+									<input type="date" name="Date">
+								</div>
+								<div class="col-lg-2">
+									<input type="button" value="搜尋" name='getOneByDate'
+										class="btn btn-success">
+									<!-- 							<input type="hidden" name="action" value="selectByDate"> -->
+								</div>
+							</div>
 						</form>
 					</div>
+
 				</div>
-				<div class="insert-context"></div>
+				<div id="new" class="tab-pane fade">
+					<div class="insert-content main"></div>
+				</div>
+				<div id="result" class="tab-pane fade">
+					<div class="rul main"></div>
+				</div>
 			</div>
 		</div>
 	</div>
 	</section> </section>
 
 	</section>
-
-	<<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script> 
 	!window.jQuery && document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
  	</script>
@@ -223,6 +262,67 @@
 
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
+	
+		<script type="text/JavaScript">
+	$(document).ready(function() {
+// -------------------------------載入新增----------------------------------
+		$('#c_shift').on('click', function() {							
+				var insertWeb = $(this).attr('target');
+				$.get(insertWeb, function(data) {
+					$('.insert-content').html(data);
+				})
+					
+		})		
+			
+// -------------------------------查詢----------------------------------
+			$(":button").click(function() {
+				if ('getOne'==$(this).attr('name')) {
+					$.ajax({
+						type : "post",
+						url : "getOneShiftre.do",
+						data : $(".oneshift").serialize(),
+						success : function(data) {
+							$(".rul").html(data);
+							$("#shi_search").removeAttr("class");
+							$("#shi_rel").attr("class","active");
+							$("#search").attr("class","tab-pane fade");
+							$("#result").attr("class","tab-pane active");
+						}
+					});
+				} else if ('getAll'==$(this).attr('name')) {
+					$.ajax({
+						type : "post",
+						url : "getAllShiftre.do",
+						data : {},
+						success : function(data) {
+							$(".rul").html(data);
+							$("#shi_search").removeAttr("class");
+							$("#shi_rel").attr("class","active");
+							$("#search").attr("class","tab-pane fade");
+							$("#result").attr("class","tab-pane active");
+						}
+					});
+				} else if ('getOneByDate'==$(this).attr('name')) {
+					$.ajax({
+						type : "post",
+						url : "getShiftreByDate.do",
+						data : $(".shiftbydate").serialize(),
+						success : function(data) {
+							$(".rul").html(data);
+							$("#shi_search").removeAttr("class");
+							$("#shi_rel").attr("class","active");
+							$("#search").attr("class","tab-pane fade");
+							$("#result").attr("class","tab-pane active");
+						}
+					});			
+				}
+			})
+
+		$(".print").click(function() {
+			window.print();
+		})
+	})
+</script>
 
 </body>
 </html>

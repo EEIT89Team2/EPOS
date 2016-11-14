@@ -9,7 +9,59 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>全部商品基本資料</title>
+<style>
 
+		/* 	表格標題 */
+	.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{
+		background: #66CDAA;
+		font-weight:bold;
+		text-align: center;
+	}
+	
+	/* 	表格內容偶數 */
+	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
+		background:		#F0FFF0;
+		border:1px solid #556B2F;
+		
+	}
+	/* 	表格內容單數 */
+	.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th{
+		background:white;
+	}
+	
+	/* 	表格偶數滑鼠指向 */
+	.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
+		background-color:FFE4C4;
+	}
+	
+	.titlelist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: mediumseagreen;
+		padding-left: 10px;
+		font-size: 23px;
+		border-radius: 2px;
+	}
+	
+	.formlist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: mediumseagreen;
+		text-align: center;
+		font-size: 23px;
+		border-radius: 2px;
+	}
+	
+	p{
+		margin: 30px;
+	
+	}
+	
+</style>
 </head>
 <body>
 
@@ -46,15 +98,48 @@
 			<td><img alt="尚無照片" src="data:image/gif;base64,${list.picture}"></td>
 			<td>${list.remark}</td>
 			<td>${list.status}</td>
-			<td><input type="submit" name="action" value="update" ></td>
-			<td><input type="submit" name="action" value="delete" ></td>
-			<input type="hidden" name="prod_id" value="${list.prod_id}">
-			
+			<td><input type="button" name="action" value="update" target="${list.prod_id}" ></td>
+			<td><input type="button" name="action" value="delete" class="delete" target="${list.prod_id}"></td>
 		</tr>
+</form>	
 		
-</form>
 </c:forEach>
 	</table>
+	
+	<script type="text/JavaScript">
+	$(document).ready(function() {
+		$(":button").on('click',function(){
+			if($(this).attr('value')=="delete"){
+				$.ajax({
+					type : "post",
+					url : "updateDeleteProd.do",
+					data : {
+							prod_id:$(this).attr('target'),
+							action:"delete"
+							},
+					success :function(data) {
+						$("#rul").html(data);
+						$("#chg_result").attr("class","active");
+						$("#result").attr("class","tab-pane active");
+					}	
+				});
+			}else if($(this).attr('value')=="update"){
+				$.ajax({
+					type : "post",
+					url : "updateDeleteProd.do",
+					data : {
+							prod_id:$(this).attr('target'),
+							action:"update"
+							},
+					success :function(data) {
+						$("#rul").html(data);
+					}
+				});
+			}
+		});
+	});
+
+	</script>	
 
 </body>
 </html>

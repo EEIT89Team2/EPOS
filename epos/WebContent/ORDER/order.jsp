@@ -303,7 +303,7 @@ print(text)
 							<td>收銀員姓名：</td>
 							<td>${LoginOK.emp_name}</td>
 							<td>班別：</td>
-							<td>${LoginOK.shift}<input type="hidden" name="shift" value="${LoginOK.shift}" /></td>
+							<td>${SHIFT}<input type="hidden" name="shift" value="${SHIFT}" /></td>
 							<td>購買會員：<input type="text" id="mem_name" name="mem_name" disabled /></td>
 							<td>購買員工：<input type="text" id="emp_name" name="emp_name" disabled /></td>
 							<td>今日天氣<input type="text" value="${weather.nowWeather}" disabled></td>

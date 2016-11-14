@@ -64,7 +64,18 @@
 			        cache: false,             
 			        processData:false, 
 					success :function(data) {
-						$("#rul").html(data);
+						 $.ajax({
+								"type" : "post",
+								"url" : "getAllProd.do",
+								"data" : {},
+								"success" : function(data) {
+						        	   $("#rul").html(data);
+										$("#chg_new").removeAttr("class");
+										$("#chg_result").attr("class","active");
+										$("#new").attr("class","tab-pane fade");
+										$("#result").attr("class","tab-pane active");
+								},
+							});
 					}	
 				});
 

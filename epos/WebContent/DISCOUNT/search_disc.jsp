@@ -9,6 +9,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>searchCpon</title>
 <style>
+.col-lg-1 {
+    width: 10%;
+}
+
 	.titlelist {
 		font-family: '微軟正黑體';
 		font-weight: bold;

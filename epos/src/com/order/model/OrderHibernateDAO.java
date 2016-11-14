@@ -13,6 +13,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.order_detail.model.Order_DetailVO;
+import com.product.model.ProdVO;
+import com.employee.model.EmpVO;
 import com.order.model.OrderVO;
 
 import hibernate.util.HibernateUtil;
@@ -134,7 +136,7 @@ public class OrderHibernateDAO implements Order_Interface {
 	private static final String GET_ONE_STMT_PRODID = "select prod_id,prod_name,sum(prod_quantity) as quantity from Order_DetailVO where prod_id= ? group by prod_id,prod_name";
 
 	@Override
-	public Map Select_prod_id(String prod_id) throws Exception {
+	public List GetProdNameCount(String prod_id) throws Exception {
 		Map map = new HashMap();
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		List<Map> list = null;
@@ -152,7 +154,7 @@ public class OrderHibernateDAO implements Order_Interface {
 			throw ex;
 		}
 		
-		return map;
+		return list;
 	}
 
 	@Override
@@ -168,6 +170,42 @@ public class OrderHibernateDAO implements Order_Interface {
 			throw ex;
 		}
 		
+	}
+
+	@Override
+	public ProdVO getOneProdid(String prod_id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public EmpVO getOneMemid(String mem_id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double GetDayTotalPrice() throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public long GetDayTotalPeople() throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getMaxInvoiceId() throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getOneTopOrdId() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

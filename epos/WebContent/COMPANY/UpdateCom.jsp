@@ -51,19 +51,18 @@
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a class="active"
-				href="<%=request.getContextPath()%>/index.jsp"> <i
+			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp"> <i
 					class="fa fa-dashboard"></i> <span>index</span>
 			</a></li>
 
-			<li class="sub-menu"><a href="javascript:;"> <i
+			<li class="sub-menu"><a href="javascript:;" class="active"> <i
 					class="fa fa-desktop"></i> <span>基本資料維護</span>
 			</a>
 				<ul class="sub">
 					<li><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/EMPLOYEE/employee.jsp">員工資料維護</a></li>
-					<li><a
+					<li class="active"><a
 						href="<%=request.getContextPath()%>/COMPANY/company.jsp">廠商資料維護</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i

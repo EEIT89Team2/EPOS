@@ -27,10 +27,26 @@
 	rel="stylesheet">
 <style>
 
-a{
-	color:#428bca;
-}
+ 	.main{ 
+  		height: 800px;  
+ 		border-radius: 8px; 
+ 		background:	#CCFFCC; 
+ 	}
+ 	
+ 	.titlelist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: mediumseagreen;
+		padding-left: 10px;
+		font-size: 23px;
+		border-radius: 2px;
+	}
 
+	p{
+		margin: 20px;	
+	}  
 </style>		
 </head>
 
@@ -142,9 +158,9 @@ a{
 	</div>
 	</aside> 
 	<!--sidebar end--> 
-	<section id="main-content"> 
-	<section class="wrapper">
-	<nav class="nav navbar-default alert-info">
+	<section id="main-content"><section class="wrapper">
+	
+	<nav class="nav navbar-default">
 		<div class="row mt">
 		<ul class="nav navbar-nav">
 			<li id="search_prom"><a id="r_prom" target="searchProm.jsp" data-toggle="tab" href="#search"><span class="glyphicon glyphicon-search"></span>搜尋</a></li>

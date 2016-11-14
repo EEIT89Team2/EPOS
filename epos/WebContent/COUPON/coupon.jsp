@@ -25,10 +25,22 @@
 	rel="stylesheet">
 <style>
 
-a{
-	color:#428bca;
-}
+	.navbar-default{
+		background: #FFE4B5;
+		border-color:#FF59FF;
+		border-radius: 8px;
+/* 		border-style: solid; */
+	}
 
+	.nav{
+		color:#ab2222;
+	}
+
+ 	.main{ 
+ 		height: 750px; 
+ 		border-radius: 8px; 
+ 		background:#FFF8DC; 
+ 	} 
 </style>	
 </head>
 

@@ -150,8 +150,7 @@
 			<div class="nav navbar-default">
 				<div class="container-fluid"
 					style="float: right; left: -50%; position: relative">
-					<ul class="nav navbar-nav"
-						style="float: left; left: 50%; position: relative">
+					<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">
 						<li id="shi_search"><a data-toggle="tab" href="#search"><span
 								class="glyphicon glyphicon-search"></span>搜尋</a></li>
 						<li id="shi_new"><a id="c_shift" target="insertShiftre.jsp"

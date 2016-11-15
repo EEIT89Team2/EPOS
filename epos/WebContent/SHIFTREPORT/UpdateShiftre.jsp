@@ -14,7 +14,7 @@
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: mediumseagreen;
+		background: #FF6666;
 		padding-left: 10px;
 		font-size: 23px;
 		border-radius: 2px;
@@ -117,10 +117,10 @@
 			<p>			
 			<div class="form-group">
 				<div class="col-lg-1 col-lg-offset-5">
-					<input type="button" value="送出修改" class="btn btn-success">
+					<input type="button" value="送出修改" class="btn btn-theme02">
 				</div>
 				<div class="col-lg-5">
-					<input type="reset" value="清除" class="btn btn-success">
+					<input type="reset" value="清除" class="btn btn-theme02">
 				</div>
 			</div>
 

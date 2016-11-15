@@ -362,18 +362,14 @@ print(text)
 										<td>總計金額：<input type="text" id="total_price"
 											name="total_price" value="0" readonly /><input type="hidden"
 											id="total_price_temp" name="total_price_temp" value="0" /></td>
-										<td>折讓：<input type="text" id="dis_price" name="dis_price"
-											value="1" readonly /></td>
-										<td>禮卷：<input type="text" id="cpon_dollar"
-											name="cpon_dollar" value="0" readonly /></td>
+										<td>折讓：<input type="text" id="dis_price" name="dis_price" value="1" readonly /></td>
+										<td>禮卷：<input type="text" id="cpon_dollar" name="cpon_dollar" value="0" readonly /></td>
 									</tr>
 									<tr>
 										<td>筆數：<input type="text" name="count" value="0" readonly /></td>
-										<td>現金：<input type="text" name="cash_temp" id="cash_temp"
-											value="" /> <input type="hidden" id="cash" name="cash"
-											value="" /></td>
-										<td>找零：<input type="text" name="charge" id="charge"
-											value="" readonly /></td>
+										<td>現金：<input type="text" name="cash_temp" id="cash_temp" value="" /> 
+											<input type="hidden" id="cash" name="cash" value="" /></td>
+										<td>找零：<input type="text" name="charge" id="charge" value="" readonly /></td>
 									</tr>
 								</table> <input type="button" value="輸入" id="addNewDetail"> <input
 								type="submit" value="結帳">

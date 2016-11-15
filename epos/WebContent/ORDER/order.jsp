@@ -135,13 +135,13 @@ print(text)
 	/* 	表格內容偶數 */
 	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
 		border:1px solid #3393c1;
-		background:#d7e0ff;
+		background:#dcf3ff;
 		height: 30px;
 		font-weight: bold;
 	}
 	/* 	表格偶數滑鼠指向 */
 	.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
-		background-color:#d7e0ff;
+		background-color:#dcf3ff;
 	}
 	
 	.alert-info{
@@ -159,7 +159,7 @@ print(text)
 	font-weight: bold;
 	color: white;
 	height: 35px;
-	background: #a2c3f7;
+	background: #0594da;
 	font-size: 23px;
 	border-radius: 2px;
 }
@@ -172,17 +172,34 @@ print(text)
 	
 	.main{
 		height: 180px;
-		background: #e0e9ff;
+		background: #ddf4ff;
 	}
 	
-	.btn-success{
-		height: 100px;
-		width: 100px;
+/* 	.btn-success{ */
+/* 		height: 100px; */
+/* 		width: 100px; */
+/* 	} */
+	
+/* 	.btn-warning{ */
+/* 		height: 100px; */
+/* 		width: 100px; */
+/* 	} */
+	
+	.btndiv{
+		border-style:double;
+		border-color:#007bb7;
+		border-width:thick;
+		height: 230px;
 	}
 	
-	.btn-warning{
-		height: 100px;
-		width: 100px;
+	.ordbtm{
+		margin-top: 20px;
+	}
+	
+	/* 下方明細主黨 */
+	.form-inline .form-group{
+		margin-top: 10px;
+		margin-left: 20px;
 	}
 
 </style>
@@ -350,53 +367,82 @@ print(text)
 						</table>
 
 					<!------------------------------------------------------------ 輸入區 -------------------------------------------------------------->
-					<div style="height: 30px;"></div>
-					<table class="ordbtm" border="1" bordercolor="#007bb7" width="1440px;">
-						<tr valign="top">
-							<td>
-								<table border="1" bordercolor="#007bb7">
-									<tr>
-										<td>輸入商品ID：
-										<input type="text" id="prod_id" name="prod_id" size="50" />
-										</td>
-									</tr>
-								</table>
-								<table border="1" bordercolor="#007bb7">
-									<tr>
-										<td>會員編號：<input type="text" id="mem_id" name="mem_id" class="form-control"/></td>
-										<td>統一編號：<input type="text" id="ord_um" name="ord_um" class="form-control"/></td>
-									</tr>
-									<tr>
-										<td>員工編號：<input type="text" id="emp_id" name="emp_id" class="form-control"/></td>
-										<td>日營業額：${dayPrice}</td>
-									</tr>
-									<tr>
-										<td>折價卷號：<input type="text" id="cpon_id" name="cpon_id" class="form-control"/></td>
-										<td>來客數量：${dayPeople}人次</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table border="1" bordercolor="#007bb7">
-									<tr>
-										<td>總計金額：<input type="text" id="total_price" name="total_price" class="form-control" value="0" readonly />
-												   <input type="hidden" id="total_price_temp" name="total_price_temp" value="0" class="form-control"/></td>
-										<td>折讓：<input type="text" id="dis_price" name="dis_price" value="1" class="form-control" readonly /></td>
-										<td>禮卷：<input type="text" id="cpon_dollar" name="cpon_dollar" value="0" class="form-control" readonly /></td>
-									</tr>
-									<tr>
-										<td>筆數：<input type="text" name="count" value="0" class="form-control" readonly /></td>
-										<td>現金：<input type="text" name="cash_temp" id="cash_temp" value="" class="form-control" /> 
-											    <input type="hidden" id="cash" name="cash" value="" /></td>
-										<td>找零：<input type="text" name="charge" id="charge" value="" class="form-control" readonly /></td>
-									</tr>
-								</table> 
-								<input type="button" value="輸入" id="addNewDetail" class="btn btn-success btn-lg"> 
-								<input type="submit" value="結帳" class="btn btn-warning btn-lg">
-							</td>
+					<div style="height: 20px;"></div>
+					<div class="btndiv">
+					<form class="form-inline">
+					<table class="ordbtm" border="3" bordercolor="#007bb7">
+						<tr> <!--  valign="top"  -->
+ 							<div class="form-group">
+									<label>輸入商品ID：</label>
+									<input type="text" id="prod_id" name="prod_id" size="63" class="form-control" />
+							</div>　　　　　　
+							<div class="form-group">
+									<label>筆　　　數：</label>
+									<input type="text" id="count" name="count" value="0" class="form-control" readonly/>
+							</div>　　
+							<div class="form-group">
+									<label>找　　　零：</label>
+									<input type="text" id="charge" name="charge" value="" class="form-control" readonly/>
+							</div>　　
+							<div class="form-group">
+									<label>總計金額：</label>
+									<input type="text" id="total_price" name="total_price" value="0" class="form-control" readonly/>
+									<input type="hidden" id="total_price_temp" name="total_price_temp" value="0" />
+							</div>
+						</tr>
+						<div style="height: 5px;"></div>
+						<tr>
+							<div class="form-group">
+									<label for="exampleInputName2">會員編號：　</label>
+									<input type="text" id="mem_id" name="mem_id"  class="form-control" />
+							</div>　　　
+							<div class="form-group">
+									<label for="exampleInputName2">統一編號：</label>
+									<input type="text" id="ord_um" name="ord_um"  class="form-control" />
+							</div>　　　　　　
+							<div class="form-group">
+									<label>禮　　　卷：</label>
+									<input type="text" id="cpon_dollar" name="cpon_dollar" value="0" class="form-control" readonly/>	
+							</div>
+						</tr>
+						<div style="height: 5px;"></div>
+						<tr>
+							<div class="form-group">
+									<label for="exampleInputName2">員工編號：　</label>
+									<input type="text" id="emp_id" name="emp_id"  class="form-control" />
+							</div>　　　
+							<div class="form-group">
+									<label for="exampleInputName2">日營業額：</label>
+									<input type="text" value="${dayPrice}"  class="form-control" readonly/>
+							</div>　　　　　　
+							<div class="form-group">
+									<label>折　　　讓：</label>
+									<input type="text" id="dis_price" name="dis_price" value="1" class="form-control" readonly/>	
+							</div>
+						</tr>
+						<div style="height: 5px;"></div>
+						<tr>
+							<div class="form-group">
+									<label for="exampleInputName2">折價卷號：　</label>
+									<input type="text" id="cpon_id" name="cpon_id" class="form-control"/>
+							</div>　　　
+							<div class="form-group">
+									<label for="exampleInputName2">來客數量：</label>
+									<input type="text" value="${dayPeople}"  class="form-control" readonly/>人次
+							</div>　　　 　
+							<div class="form-group">
+									<label>現　　　金：</label>
+									<input type="text" id="cash_temp" name="cash_temp" value="1" class="form-control"/>
+									<input type="hidden" id="cash" name="cash" value="" />　　　　　　　　　
+							</div>
+									<input type="button" id="addNewDetail"  value="　　　輸入　　　" class="btn btn-success btn-lg" />　　　　　　　　　
+									<input type="submit"   value="　　　結帳　　　" class="btn btn-warning btn-lg" />	
 						</tr>
 					</table>
-					<br> <input type="hidden" name="action" value="insert">
+					</form>
+					</div>
+					<br>
+					<input type="hidden" name="action" value="insert"> 
 				</Form>
 		</div>
 	</div>  	<!-- "col-sm-12" -->
@@ -452,6 +498,7 @@ print(text)
 				var p=3;
 				var del=4;
 				$("#addNewDetail").click(function() {
+									console.log("aaaaaa");
 									$.getJSON('getByProd_id.do',{prod_id:$('#prod_id').val()},function(data){
 										//取得JSON資料
 										prod_name = data.prod_name;

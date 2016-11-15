@@ -131,18 +131,18 @@
 					dis_id : id
 				},
 				"success" : function(data) {
-					$.ajax({
-						"type" : "post",
-						"url" : "allDisc.do",
-						"data" : {},
-						"success" : function(data) {
+// 					$.ajax({
+// 						"type" : "post",
+// 						"url" : "allDisc.do",
+// 						"data" : {},
+// 						"success" : function(data) {
 							$(".result_content").html(data);
-							$("#result").attr("class", "active");
-							$("#search1").removeAttr("class");
-							$("#search_Dic").attr("class", "tab-pane fade");
-							$("#resolution_Dic").attr("class", "tab-pane active");
-						}
-					});
+// 							$("#result").attr("class", "active");
+// 							$("#search1").removeAttr("class");
+// 							$("#search_Dic").attr("class", "tab-pane fade");
+// 							$("#resolution_Dic").attr("class", "tab-pane active");
+// 						}
+// 					});
 				},
 			});
 		})

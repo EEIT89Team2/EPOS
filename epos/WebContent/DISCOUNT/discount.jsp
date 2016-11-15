@@ -17,6 +17,9 @@
 <link href="<c:url value="../resources/css/style.css" />" rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />" rel="stylesheet">
 <style>
+	.navbar-default .navbar-nav > li > a{
+		color:rgba(19, 131, 121, 0.78)
+	}
 
 	.navbar-default{
 		background: #FFE4B5;
@@ -28,6 +31,10 @@
  		height: 750px; 
  		border-radius: 8px; 
  		background:#FFF8DC; 
+ 	}
+ 	
+ 	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+ 		background: #ffd60c;
  	} 
 </style>	
 </head>
@@ -179,12 +186,6 @@
 				$.get(insertweb, function(data) {
 					$('.insert_content').html(data);
 				})		
-			})
-			
-			$('.nav_a').on('click', function() {
-				$(this).css("color","#B8B8FF");
-			}).on('blur', function() {
-				$(this).css("color","");
 			})
 				
 			$(".print").click(function() {

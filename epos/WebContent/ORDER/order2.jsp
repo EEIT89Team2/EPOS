@@ -107,7 +107,7 @@ print(text)
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: #428bca;
+		background: #fb9292;
 		font-size: 23px;
 		border-radius: 2px;
 	}
@@ -116,32 +116,25 @@ print(text)
 		color:#ab2222;
 	}
 	
-	.table-bordered{
-		border: 1px solid #428bca;
+	.main{
+		height: 250px;
+		border-radius: 8px;
+		background: #fbe7e7;
 	}
 	
 	.table > thead:first-child > tr:first-child > td {
-		height: 20px;
-  		background:#007bb7;
+  		background:#fb9292;
   		color:white;
   		border-top: 0;
   		font-family: 微軟正黑體;
 }
-
-	/* 	表格內容單數 */
 	.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th{
 		background-color:white;
 	}
-	/* 	表格內容偶數 */
+
 	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
-		border:1px solid #3393c1;
-		background:#d7e0ff;
-		height: 30px;
-		font-weight: bold;
-	}
-	/* 	表格偶數滑鼠指向 */
-	.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
-		background-color:#d7e0ff;
+		border:1px solid #fdc0c0;
+		background:#f7e3e3;
 	}
 	
 	.alert-info{
@@ -153,13 +146,13 @@ print(text)
 		
 	}
 	
-	.deltitle {
+	.titlelist {
 	/*     	margin-top:auto; */
 	font-family: '微軟正黑體';
 	font-weight: bold;
 	color: white;
 	height: 35px;
-	background: #a2c3f7;
+	background: #f7a2a2;
 	font-size: 23px;
 	border-radius: 2px;
 }
@@ -170,10 +163,7 @@ print(text)
 	}
 	
 	
-	.main{
-		height: 130px;
-		background: #e0e9ff;
-	}
+	
 
 </style>
 </head>
@@ -288,59 +278,52 @@ print(text)
 	
 	<div class="row mt">
 	<div class="col-sm-12">
+	
 		<div id="add" class="main">
-			<div style="height: 10px;s"></div>
-			<Form METHOD="post" action="addOrder.do" name="ordmain" class="form-inline">
+			<div class="tab-content">
+				<nav id="listinfo" class="alert alert-info">
+				<div>
+				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
+		    	<a href="#" onclick="window.open('searchList.jsp', 'RetrunItem', config='height=500,width=1200')"><span class="glyphicon glyphicon-search"></span>單筆查詢</a>　　
+		    	<a href="#" onclick="window.open('SelectOrdAll.jsp', 'order', config='height=1050,width=1680')"><span class="glyphicon glyphicon-list-alt"></span>全部查詢</a>　　　
+		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　　
+		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>　
+				</div>
+ 
+				</nav> 
+			</div>
+	<Form METHOD="post" action="addOrder.do" name="form1">
+					<h2>新增訂單</h2>
+					<!-- 		<input type="submit" value="新增"> -->
 					<jsp:useBean id="weather" class="analysis.LoadWeatherRss" scope="page"/>
 					<table border="1">
 						<tr>
-						<div class="form-group">
-							<label for="exampleInputName2">　收銀員編號：</label> 
-							<input type="text" value="${LoginOK.emp_id}" name="key_id" class="form-control" disabled="disabled">
-						</div>
-						<div class="form-group">
-							<label for="exampleInputName2">　收銀員姓名：</label> 
-							<input type="text" value="${LoginOK.emp_name}" class="form-control" disabled="disabled">
-						</div>
-						<div class="form-group">
-							<label for="exampleInputName2">　班別：</label> 
-							<input type="text" value="${SHIFT}" name="shift" class="form-control" disabled="disabled">
-						</div>
-						<div class="form-group">
-							<label for="exampleInputName2">　購買會員：</label> 
-							<input type="text" name="mem_name" class="form-control" disabled>
-						</div>
-						<div class="form-group">
-							<label for="exampleInputName2">　購買員工：</label> 
-							<input type="text" name="emp_name" class="form-control" disabled>
-						</div>
-						<div style="height: 10px;"></div>
-						<div class="form-group">
-							<label for="exampleInputName2">　今 日 天 氣：</label> 
-							<input type="text" value="${weather.nowWeather}" name="emp_name" class="form-control" disabled>
-						</div>
+							<td>收銀員編號：</td>
+							<td>${LoginOK.emp_id}<input type="hidden" name="key_id" value="${LoginOK.emp_id}" /></td>
+							<td>收銀員姓名：</td>
+							<td>${LoginOK.emp_name}</td>
+							<td>班別：</td>
+							<td>${SHIFT}<input type="hidden" name="shift" value="${SHIFT}" /></td>
+							<td>購買會員：<input type="text" id="mem_name" name="mem_name" disabled /></td>
+							<td>購買員工：<input type="text" id="emp_name" name="emp_name" disabled /></td>
+							<td>今日天氣<input type="text" value="${weather.nowWeather}" disabled></td>
 							
 						</tr>
 					</table>
 					<!------------------------------------------------------------ 明細 -------------------------------------------------------------->
-					<div style="height: 30px;"></div>
-					<div class="deltitle">訂單明細</div>
+					<h2>新增訂單明細</h2>
 					<!-- 		<input type="button" value="新增明細" id="addNewDetail"> -->
-						<table border="1" id="table1" class="table table-bordered table-striped table-hover">
-							<!-- 由$("#addNewDetail").click產出明細table -->
-							<thead id="title">
-								<tr>
-									<td align='center'>商品編號</td>
-									<td align='center'>商品名稱</td>
-									<td align='center'>商品數量</td>
-									<td align='center'>商品價格</td>
-									<td align='center'>刪除</td>
-								</tr>
-							</thead>
-						</table>
+					<div
+						style="width: 1200px; height: 200px; overflow: auto; background-color: white;">
+						<table border="1" id="table1">
 
+							<!-- 由$("#addNewDetail").click產出明細table -->
+
+						</table>
+					</div>
+					<hr>
 					<!------------------------------------------------------------ 輸入區 -------------------------------------------------------------->
-					<table class="ordbtm" border="1">
+					<table border="1">
 						<tr valign="top">
 							<td>
 								<table border="1">
@@ -356,7 +339,7 @@ print(text)
 									</tr>
 									<tr>
 										<td>員工編號：<input type="text" id="emp_id" name="emp_id" /></td>
-										<td>日營業額：${dayPrice}</td>
+										<td>日營業額：$${dayPrice}</td>
 									</tr>
 									<tr>
 										<td>折價卷號：<input type="text" id="cpon_id" name="cpon_id" /></td>
@@ -391,9 +374,7 @@ print(text)
 
 					<br> <input type="hidden" name="action" value="insert">
 				</Form>
-		</div>
-	</div>  	<!-- "col-sm-12" -->
-	<div> 		<!-- "row mt" -->
+	
 	</div>
 	</section> </section> </section>
 
@@ -405,45 +386,24 @@ print(text)
 				&& document
 						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
 	</script>
-	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
-	<script class="include" type="text/javascript" src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
-	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
-	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"
-		type="text/javascript"></script>
 
-	<!--common script for all pages-->
-	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
-	<!------------------------------------------------ 程式 --------------------------------------------------------------->
-	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
-		type="text/javascript"></script>
-	<script type="text/JavaScript">
+<script type="text/JavaScript">
+	//練習五使用on綁定網頁上刪除按鈕，完成刪除動作
+	$("#table1").on('click', '.btn-danger', function() {
+		//總計金額先扣除該筆商品的金額
+		form1.total_price_temp.value = parseInt(form1.total_price_temp.value) - $(this).parents("tr").children("td:eq(8)").children("input").val();
+		count_total_price();
+		
+		$(this).parents("tr").remove();
+		//筆數再-1
+		form1.count.value=parseInt(form1.count.value)-1;
+	})
 	
-
-				var i=1;
-				for(var a=0;a<=12;a++){
-					$("#table1").each(function(tr){
-						$("#table1").append("<tr align='center'><td id="+i+"></td><td id="+i+"></td><td id="+i+"></td><td id="+i+"></td><td id="+i+"></td></tr>")
-						i=i+1;
-					})
-				}
-// <!----------------------------------------  一頁6筆         ------------------------------------>				
-				$("#table1").dataTable({
-					"pageLength": 6
-				});
-
 	$(function() {
-				
-				
-// <!----------------------------------------  新增明細         ------------------------------------>
 				var a = 1;
 				var prod_name;
 				var prod_price;
-				var id=0;
-				var n=1;
-				var q=2;
-				var p=3;
-				var del=4;
+				
 				$("#addNewDetail").click(function() {
 									$.getJSON('getByProd_id.do',{prod_id:$('#prod_id').val()},function(data){
 										//取得JSON資料
@@ -451,47 +411,28 @@ print(text)
 										prod_price = data.prod_price;
 
 										//先將總計金額加上本次新增商品金額
-										ordmain.total_price_temp.value = parseInt(ordmain.total_price_temp.value) + parseInt(prod_price);
+										form1.total_price_temp.value = parseInt(form1.total_price_temp.value) + parseInt(prod_price);
 										count_total_price();
 										
-										$("#table1 >tbody >tr >td:eq("+id+")").append("<input type='text' name='prod_id"+a+"' value='"+$('#prod_id').val()+"' />")
-										$("#table1 >tbody >tr >td:eq("+n+")").append("<input type='text' name='prod_name"+a+"' value='"+prod_name+"'/>")
-										$("#table1 >tbody >tr >td:eq("+q+")").append("<input type='text' name='prod_quantity"+a+"' value='1' onblur='count_total_prod_price(ordmain.prod_quantity"+a+",ordmain.prod_price"+a+",ordmain.total_prod_price"+a+")'/>")
-										$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='text' name='prod_price"+a+"' value='"+prod_price+"' />")
-										$("#table1 >tbody >tr >td:eq("+del+")").append("<input type='button' value='刪除' class='btn btn-danger'></input>")
-										a = a + 1;
-										id = id + 5;
-										n = n + 5;
-										q = q + 5;
-										p = p + 5;
-										del = del + 5;
-										console.log("id="+id);
-										console.log("n="+n);
-										console.log("q="+q);
-										console.log("p="+p);
-										console.log("del="+del);
+										$("#table1")
+										.append(
+												"<tr><td>商品編號：</td><td><input type='text' name='prod_id"+a+"' value='"+$('#prod_id').val()+"' /></td>"
+														+ "<td>商品名稱：</td><td><input type='text' name='prod_name"+a+"' value='"+prod_name+"' /></td>"
+														+ "<td>商品數量：</td><td><input type='text' name='prod_quantity"+a+"' value='1' onblur='count_total_prod_price(form1.prod_quantity"+a+",form1.prod_price"+a+",form1.total_prod_price"+a+")' /></td>"
+														+ "<td>商品價格：</td><td><input type='text' name='prod_price"+a+"' value='"+prod_price+"' /></td>"
+														+ "<td><input type='hidden' id='total_prod_price"+a+"' name='total_prod_price"+a+"' value='"+prod_price+"'/>"
+														+ "<input type='button' value='刪除' class='btn btn-danger'></input></td></tr>")
 										
-										if(id==30){
-											console.log("id="+id);
-											 id=0;
-											 n=1;
-											 q=2;
-											 p=3;
-											 del=4;
-										}
-										                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+										a = a + 1;
 										//筆數+1
-										ordmain.count.value=parseInt(ordmain.count.value)+1;
+										form1.count.value=parseInt(form1.count.value)+1;
 										
 									})
-									
-									
 								})
-
 				
 				$("#mem_id").blur(function() {
 									if($('#mem_id').val() != ""){
-										ordmain.emp_id.value='';
+										form1.emp_id.value='';
 										$.getJSON('getByMem_id.do',{mem_id:$('#mem_id').val()},function(data){
 											
 											//取得JSON資料
@@ -500,16 +441,16 @@ print(text)
 												alert(data.error);
 												$.getJSON('getByDis_id.do',{dis_id:'一般'},function(data){
 													//取得JSON資料
-													ordmain.dis_price.value = data.dis_price;
+													form1.dis_price.value = data.dis_price;
 													count_total_price();
 													
 												})
 											}else{//是會員,找%數
-												ordmain.emp_name.value ='';
-												ordmain.mem_name.value = data.mem_name;
+												form1.emp_name.value ='';
+												form1.mem_name.value = data.mem_name;
 												$.getJSON('getByDis_id.do',{dis_id:'會員'},function(data){
 													//取得JSON資料
-													ordmain.dis_price.value = data.dis_price;
+													form1.dis_price.value = data.dis_price;
 													count_total_price();
 												})
 											}
@@ -517,7 +458,7 @@ print(text)
 									}else{//沒有輸入資料時,預設查一般的折讓數
 										$.getJSON('getByDis_id.do',{dis_id:'一般'},function(data){
 											//取得JSON資料
-											ordmain.dis_price.value = data.dis_price;
+											form1.dis_price.value = data.dis_price;
 											count_total_price();
 										})
 									}
@@ -526,7 +467,7 @@ print(text)
 						
 				$("#emp_id").blur(function() {
 									if($('#emp_id').val() != ""){
-										ordmain.mem_id.value='';
+										form1.mem_id.value='';
 										$.getJSON('getByEmp_id.do',{emp_id:$('#emp_id').val()},function(data){
 											//取得JSON資料
 											//不是員工
@@ -534,15 +475,15 @@ print(text)
 												alert(data.error);
 												$.getJSON('getByDis_id.do',{dis_id:'一般'},function(data){
 													//取得JSON資料
-													ordmain.dis_price.value = data.dis_price;
+													form1.dis_price.value = data.dis_price;
 													count_total_price();
 												})
 											}else{//是員工,找%數
-												ordmain.mem_name.value ='';
-												ordmain.emp_name.value = data.emp_name;
+												form1.mem_name.value ='';
+												form1.emp_name.value = data.emp_name;
 												$.getJSON('getByDis_id.do',{dis_id:'員工'},function(data){
 													//取得JSON資料
-													ordmain.dis_price.value = data.dis_price;
+													form1.dis_price.value = data.dis_price;
 													count_total_price();	
 												})
 											}
@@ -550,7 +491,7 @@ print(text)
 									}else{//沒有輸入資料時,預設查一般的折讓數
 										$.getJSON('getByDis_id.do',{dis_id:'一般'},function(data){
 											//取得JSON資料
-											ordmain.dis_price.value = data.dis_price;
+											form1.dis_price.value = data.dis_price;
 											count_total_price();
 										})
 									}
@@ -566,16 +507,16 @@ print(text)
 							if(data.error=="查無此禮券"){//查無此禮券時,預設查一般的折讓數
 								alert(data.error);
 										
-								ordmain.cpon_dollar.value = 0;
+								form1.cpon_dollar.value = 0;
 								count_total_price();	
 							}else{
-								ordmain.cpon_dollar.value = data.cpon_dollar;
+								form1.cpon_dollar.value = data.cpon_dollar;
 								count_total_price();
 							}
 						})
 					}else{//沒有輸入資料時,預設查一般的折讓數
 						
-						ordmain.cpon_dollar.value = 0;
+						form1.cpon_dollar.value = 0;
 						count_total_price();
 					}
 				})
@@ -583,32 +524,58 @@ print(text)
 				
 				$("#cash_temp").blur(function() {
 				
-					ordmain.charge.value = ordmain.cash.value - ordmain.total_price.value;
-					ordmain.charge.value = ordmain.cash_temp.value - ordmain.total_price.value;
-					ordmain.cash.value = ordmain.cash_temp.value - ordmain.charge.value;
+					form1.charge.value = form1.cash.value - form1.total_price.value;
+					form1.charge.value = form1.cash_temp.value - form1.total_price.value;
+					form1.cash.value = form1.cash_temp.value - form1.charge.value;
 				})				
 	})
-	
-//<!----------------------------------------  刪除        ------------------------------------>	
-	//練習五使用on綁定網頁上刪除按鈕，完成刪除動作
-	$("#table1").on('click', '.btn-danger', function() {
-		//總計金額先扣除該筆商品的金額
-		ordmain.total_price_temp.value = parseInt(ordmain.total_price_temp.value) - $(this).parents("tr").children("td:eq(8)").children("input").val();
-		count_total_price();
-		
+	</script>
 
-		console.log($(this).parent().parent().html());
-		console.log("td="+$(this).parent().parent().find("td").html());
-		console.log("tr="+$(this).parent().parent().find("td input").html());
-		console.log($(this).parent().parent().find("td:eq(1) input").html());
-		console.log("0000000000000000000000");
-		console.log($(this).parent().parent().find("td input").html());
-		$(this).parent().parent("td + input").empty();
-		//筆數再-1
-		ordmain.count.value=parseInt(ordmain.count.value)-1;
+
+	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
+	<script class="include" type="text/javascript" src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
+	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
+	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"
+		type="text/javascript"></script>
+
+	<!--common script for all pages-->
+	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
+	<!------------------------------------------------ 程式 --------------------------------------------------------------->
+	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
+		type="text/javascript"></script>
+	<script type="text/JavaScript"> 	
+
+// <!----------------------------------------  新增         ------------------------------------>
+	$('#add').on('click',function(){
+		var url = "ValuationList.jsp"; 
+			$.ajax({
+				type: "GET",
+				url: url,
+				success: function(data)
+				 {
+				     
+				 }
+			});
+	})	
+
+// <!----------------------------------------  新增明細         ------------------------------------>
+	$("#form2").on('click', '.btn-danger', function() {
+		$(this).parents("tr").remove();
 	})
-
-
+	
+	$(function() {
+		var a = 2;
+		$("#addNewDetail").click(function() {
+			$("#form2").append("<tr align='center' valign='middle'><td><input type='TEXT' name='prod_id"+a+"'/></td>"
+								+ "<td><input type='TEXT' name='prod_name"+a+"'/></td>"
+								+ "<td><input type='TEXT' name='prod_quantity"+a+"'/></td>"
+								+ "<td><input type='TEXT' name='prod_price"+a+"' /></td>"
+								+ "<td><input type='button' value='刪除' class='btn btn-danger'></input></td></tr>"
+			)
+							a = a + 1;
+		})
+	})
 	
 
 //<!----------------------------------------  送出全部查詢        ------------------------------------>
@@ -624,8 +591,6 @@ print(text)
 				}
 			})
 		})
-		
-
 
 	</script>
 </body>

@@ -64,14 +64,14 @@
 								</div>
 							</div>
 						</form>
-						<form METHOD="post" ACTION="disc.do" id="pre" class="form-horizontal style-form">
+						<form METHOD="post" ACTION="GroupByDisc.do" id="pre" class="form-horizontal style-form">
 							<div class="col-lg-4"></div>
 							<div class="form-group">
 								<label class="col-lg-1 control-label" for="dis_price">選擇折扣%數</label>
 								<div class="col-lg-1">
-									<select size="1" name="dis_id" id="dis_price" class="form-control refresh">
-										<c:forEach var="discVO" items="${DiscSvc.all}">
-											<option value="${discVO.dis_id}">${discVO.dis_price}</option>
+									<select size="1" name="dis_price" id="dis_price" class="form-control refresh">
+										<c:forEach var="discVO" items="${DiscSvc.groupPrice()}">
+											<option value="${discVO.dis_price}">${discVO.dis_price}</option>
 										</c:forEach>
 									</select>
 								</div>

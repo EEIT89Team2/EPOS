@@ -41,5 +41,12 @@ public class DiscountService {
 	public List<DiscountVO> getAll() {
 		return dao.getAll();
 	}
-		
+	
+	public List<DiscountVO> groupPrice() {
+		return dao.GroupByPrice();
+	}
+	
+	public List<DiscountVO> findByPrice(Float dis_price) {
+		return dao.findByPrice(dis_price);
+	}
 }

@@ -19,15 +19,15 @@
 <style>
 
 	.navbar-default{
-		background: #99CC99;
-		border-color:#CCFF99;
+		background: #CCCCFF;
+		border-color:#CCCCFF;
 		border-radius: 8px;
 	}
 
  	.main{ 
   		height: 800px;  
  		border-radius: 8px; 
- 		background:	#CCFFCC; 
+ 		background:	#FFCCCC; 
  	}
  	
  	.titlelist {
@@ -35,7 +35,7 @@
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: mediumseagreen;
+		background: #FF6666;
 		padding-left: 10px;
 		font-size: 23px;
 		border-radius: 2px;
@@ -207,7 +207,7 @@
 									</Select>
 								</div>
 								<div class="col-lg-4">
-									<input type="button" value="搜尋" name='getOne' class="btn btn-success">
+									<input type="button" value="搜尋" name='getOne' class="btn btn-theme02">
 								</div>
 							</div>
 						</form>
@@ -217,7 +217,7 @@
 							<div class="form-group">
 								<label class="col-lg-offset-3 col-lg-1 control-label">查詢全部班別報表(刪除.修改)</label>
 								<div class="col-lg-offset-4 col-lg-4">
-									<input type="button" value="搜尋" name='getAll' class="btn btn-success">
+									<input type="button" value="搜尋" name='getAll' class="btn btn-theme02">
 								</div>
 							</div>
 						</form>
@@ -232,7 +232,7 @@
 									<input type="date" name="Date" id="date2">
 								</div>
 								<div class="col-lg-offset-2 col-lg-4">
-									<input type="button" value="搜尋" name='getOneByDate' class="btn btn-success">
+									<input type="button" value="搜尋" name='getOneByDate' class="btn btn-theme02">
 								</div>
 							</div>
 						</form>

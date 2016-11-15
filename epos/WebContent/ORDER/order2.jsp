@@ -135,6 +135,7 @@ print(text)
 	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
 		border:1px solid #fdc0c0;
 		background:#f7e3e3;
+		height: 30px;
 	}
 	
 	.alert-info{
@@ -314,9 +315,17 @@ print(text)
 					<h2>新增訂單明細</h2>
 					<!-- 		<input type="button" value="新增明細" id="addNewDetail"> -->
 					<div
-						style="width: 1200px; height: 200px; overflow: auto; background-color: white;">
-						<table border="1" id="table1">
-
+						style=" height: 500px; overflow: auto; background-color: white;">
+						<table border="1" id="table1" class="table table-bordered table-striped table-hover">
+							<thead id="title">
+								<tr>
+									<td align='center'>商品編號</td>
+									<td align='center'>商品名稱</td>
+									<td align='center'>商品數量</td>
+									<td align='center'>商品價格</td>
+									<td align='center'>刪除</td>
+								</tr>
+							</thead>
 							<!-- 由$("#addNewDetail").click產出明細table -->
 
 						</table>
@@ -386,9 +395,22 @@ print(text)
 				&& document
 						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
 	</script>
+	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
 
 <script type="text/JavaScript">
 	//練習五使用on綁定網頁上刪除按鈕，完成刪除動作
+				var i=1;
+				for(var a=0;a<=12;a++){
+					$("#table1").each(function(tr){
+						$("#table1").append("<tr align='center'><td id="+i+"></td><td id="+i+"></td><td id="+i+"></td><td id="+i+"></td><td id="+i+"></td></tr>")
+						i=i+1;
+					})
+				}
+// <!----------------------------------------  一頁6筆         ------------------------------------>				
+				$("#table1").dataTable({
+					"pageLength": 6
+				});	
+	
 	$("#table1").on('click', '.btn-danger', function() {
 		//總計金額先扣除該筆商品的金額
 		form1.total_price_temp.value = parseInt(form1.total_price_temp.value) - $(this).parents("tr").children("td:eq(8)").children("input").val();
@@ -533,7 +555,6 @@ print(text)
 
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
 	<script class="include" type="text/javascript" src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"
@@ -547,35 +568,35 @@ print(text)
 	<script type="text/JavaScript"> 	
 
 // <!----------------------------------------  新增         ------------------------------------>
-	$('#add').on('click',function(){
-		var url = "ValuationList.jsp"; 
-			$.ajax({
-				type: "GET",
-				url: url,
-				success: function(data)
-				 {
+// 	$('#add').on('click',function(){
+// 		var url = "ValuationList.jsp"; 
+// 			$.ajax({
+// 				type: "GET",
+// 				url: url,
+// 				success: function(data)
+// 				 {
 				     
-				 }
-			});
-	})	
+// 				 }
+// 			});
+// 	})	
 
 // <!----------------------------------------  新增明細         ------------------------------------>
 	$("#form2").on('click', '.btn-danger', function() {
 		$(this).parents("tr").remove();
 	})
 	
-	$(function() {
-		var a = 2;
-		$("#addNewDetail").click(function() {
-			$("#form2").append("<tr align='center' valign='middle'><td><input type='TEXT' name='prod_id"+a+"'/></td>"
-								+ "<td><input type='TEXT' name='prod_name"+a+"'/></td>"
-								+ "<td><input type='TEXT' name='prod_quantity"+a+"'/></td>"
-								+ "<td><input type='TEXT' name='prod_price"+a+"' /></td>"
-								+ "<td><input type='button' value='刪除' class='btn btn-danger'></input></td></tr>"
-			)
-							a = a + 1;
-		})
-	})
+// 	$(function() {
+// 		var a = 2;
+// 		$("#addNewDetail").click(function() {
+// 			$("#form2").append("<tr align='center' valign='middle'><td><input type='TEXT' name='prod_id"+a+"'/></td>"
+// 								+ "<td><input type='TEXT' name='prod_name"+a+"'/></td>"
+// 								+ "<td><input type='TEXT' name='prod_quantity"+a+"'/></td>"
+// 								+ "<td><input type='TEXT' name='prod_price"+a+"' /></td>"
+// 								+ "<td><input type='button' value='刪除' class='btn btn-danger'></input></td></tr>"
+// 			)
+// 							a = a + 1;
+// 		})
+// 	})
 	
 
 //<!----------------------------------------  送出全部查詢        ------------------------------------>

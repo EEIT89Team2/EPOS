@@ -171,8 +171,18 @@ print(text)
 	
 	
 	.main{
-		height: 130px;
+		height: 180px;
 		background: #e0e9ff;
+	}
+	
+	.btn-success{
+		height: 100px;
+		width: 100px;
+	}
+	
+	.btn-warning{
+		height: 100px;
+		width: 100px;
 	}
 
 </style>
@@ -289,7 +299,7 @@ print(text)
 	<div class="row mt">
 	<div class="col-sm-12">
 		<div id="add" class="main">
-			<div style="height: 10px;s"></div>
+			<div style="height: 20px;"></div>
 			<Form METHOD="post" action="addOrder.do" name="ordmain" class="form-inline">
 					<jsp:useBean id="weather" class="analysis.LoadWeatherRss" scope="page"/>
 					<table border="1">
@@ -314,7 +324,7 @@ print(text)
 							<label for="exampleInputName2">　購買員工：</label> 
 							<input type="text" name="emp_name" class="form-control" disabled>
 						</div>
-						<div style="height: 10px;"></div>
+						<div style="height: 20px;"></div>
 						<div class="form-group">
 							<label for="exampleInputName2">　今 日 天 氣：</label> 
 							<input type="text" value="${weather.nowWeather}" name="emp_name" class="form-control" disabled>
@@ -323,7 +333,7 @@ print(text)
 						</tr>
 					</table>
 					<!------------------------------------------------------------ 明細 -------------------------------------------------------------->
-					<div style="height: 30px;"></div>
+					<div style="height: 50px;"></div>
 					<div class="deltitle">訂單明細</div>
 					<!-- 		<input type="button" value="新增明細" id="addNewDetail"> -->
 						<table border="1" id="table1" class="table table-bordered table-striped table-hover">
@@ -340,55 +350,52 @@ print(text)
 						</table>
 
 					<!------------------------------------------------------------ 輸入區 -------------------------------------------------------------->
-					<table class="ordbtm" border="1">
+					<div style="height: 30px;"></div>
+					<table class="ordbtm" border="1" bordercolor="#007bb7" width="1440px;">
 						<tr valign="top">
 							<td>
-								<table border="1">
+								<table border="1" bordercolor="#007bb7">
 									<tr>
-										<td>輸入商品ID：<input type="text" id="prod_id" name="prod_id"
-											size="50" /></td>
+										<td>輸入商品ID：
+										<input type="text" id="prod_id" name="prod_id" size="50" />
+										</td>
 									</tr>
 								</table>
-								<table border="1">
+								<table border="1" bordercolor="#007bb7">
 									<tr>
-										<td>會員編號：<input type="text" id="mem_id" name="mem_id" /></td>
-										<td>統一編號：<input type="text" id="ord_um" name="ord_um" /></td>
+										<td>會員編號：<input type="text" id="mem_id" name="mem_id" class="form-control"/></td>
+										<td>統一編號：<input type="text" id="ord_um" name="ord_um" class="form-control"/></td>
 									</tr>
 									<tr>
-										<td>員工編號：<input type="text" id="emp_id" name="emp_id" /></td>
+										<td>員工編號：<input type="text" id="emp_id" name="emp_id" class="form-control"/></td>
 										<td>日營業額：${dayPrice}</td>
 									</tr>
 									<tr>
-										<td>折價卷號：<input type="text" id="cpon_id" name="cpon_id" /></td>
+										<td>折價卷號：<input type="text" id="cpon_id" name="cpon_id" class="form-control"/></td>
 										<td>來客數量：${dayPeople}人次</td>
 									</tr>
 								</table>
 							</td>
 							<td>
-								<table border="1">
+								<table border="1" bordercolor="#007bb7">
 									<tr>
-										<td>總計金額：<input type="text" id="total_price"
-											name="total_price" value="0" readonly /><input type="hidden"
-											id="total_price_temp" name="total_price_temp" value="0" /></td>
-										<td>折讓：<input type="text" id="dis_price" name="dis_price"
-											value="1" readonly /></td>
-										<td>禮卷：<input type="text" id="cpon_dollar"
-											name="cpon_dollar" value="0" readonly /></td>
+										<td>總計金額：<input type="text" id="total_price" name="total_price" class="form-control" value="0" readonly />
+												   <input type="hidden" id="total_price_temp" name="total_price_temp" value="0" class="form-control"/></td>
+										<td>折讓：<input type="text" id="dis_price" name="dis_price" value="1" class="form-control" readonly /></td>
+										<td>禮卷：<input type="text" id="cpon_dollar" name="cpon_dollar" value="0" class="form-control" readonly /></td>
 									</tr>
 									<tr>
-										<td>筆數：<input type="text" name="count" value="0" readonly /></td>
-										<td>現金：<input type="text" name="cash_temp" id="cash_temp"
-											value="" /> <input type="hidden" id="cash" name="cash"
-											value="" /></td>
-										<td>找零：<input type="text" name="charge" id="charge"
-											value="" readonly /></td>
+										<td>筆數：<input type="text" name="count" value="0" class="form-control" readonly /></td>
+										<td>現金：<input type="text" name="cash_temp" id="cash_temp" value="" class="form-control" /> 
+											    <input type="hidden" id="cash" name="cash" value="" /></td>
+										<td>找零：<input type="text" name="charge" id="charge" value="" class="form-control" readonly /></td>
 									</tr>
-								</table> <input type="button" value="輸入" id="addNewDetail"> <input
-								type="submit" value="結帳">
+								</table> 
+								<input type="button" value="輸入" id="addNewDetail" class="btn btn-success btn-lg"> 
+								<input type="submit" value="結帳" class="btn btn-warning btn-lg">
 							</td>
 						</tr>
 					</table>
-
 					<br> <input type="hidden" name="action" value="insert">
 				</Form>
 		</div>

@@ -107,7 +107,7 @@ print(text)
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: #fb9292;
+		background: #428bca;
 		font-size: 23px;
 		border-radius: 2px;
 	}
@@ -116,19 +116,32 @@ print(text)
 		color:#ab2222;
 	}
 	
+	.table-bordered{
+		border: 1px solid #428bca;
+	}
+	
 	.table > thead:first-child > tr:first-child > td {
-  		background:#fb9292;
+		height: 20px;
+  		background:#007bb7;
   		color:white;
   		border-top: 0;
   		font-family: 微軟正黑體;
 }
+
+	/* 	表格內容單數 */
 	.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th{
 		background-color:white;
 	}
-
+	/* 	表格內容偶數 */
 	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
-		border:1px solid #fdc0c0;
-		background:#f7e3e3;
+		border:1px solid #3393c1;
+		background:#d7e0ff;
+		height: 30px;
+		font-weight: bold;
+	}
+	/* 	表格偶數滑鼠指向 */
+	.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
+		background-color:#d7e0ff;
 	}
 	
 	.alert-info{
@@ -140,13 +153,13 @@ print(text)
 		
 	}
 	
-	.titlelist {
+	.deltitle {
 	/*     	margin-top:auto; */
 	font-family: '微軟正黑體';
 	font-weight: bold;
 	color: white;
 	height: 35px;
-	background: #f7a2a2;
+	background: #a2c3f7;
 	font-size: 23px;
 	border-radius: 2px;
 }
@@ -158,15 +171,9 @@ print(text)
 	
 	
 	.main{
-		height: 150px;
+		height: 130px;
 		background: #e0e9ff;
 	}
-	
-/* 	.ordbtm{ */
-/* 		margin-top: 100px; */
-/* 	} */
-	
-	
 
 </style>
 </head>
@@ -282,6 +289,7 @@ print(text)
 	<div class="row mt">
 	<div class="col-sm-12">
 		<div id="add" class="main">
+			<div style="height: 10px;s"></div>
 			<Form METHOD="post" action="addOrder.do" name="ordmain" class="form-inline">
 					<jsp:useBean id="weather" class="analysis.LoadWeatherRss" scope="page"/>
 					<table border="1">
@@ -292,31 +300,45 @@ print(text)
 						</div>
 						<div class="form-group">
 							<label for="exampleInputName2">　收銀員姓名：</label> 
-							<input type="text" value="${LoginOK.emp_name}" name="key_id" class="form-control" disabled="disabled">
+							<input type="text" value="${LoginOK.emp_name}" class="form-control" disabled="disabled">
 						</div>
-							<td>收銀員姓名：</td>
-							<td>${LoginOK.emp_name}</td>
-							<td>班別：</td>
-							<td>${SHIFT}<input type="hidden" name="shift" value="${SHIFT}" /></td>
-							<td>購買會員：<input type="text" id="mem_name" name="mem_name" disabled /></td>
-							<td>購買員工：<input type="text" id="emp_name" name="emp_name" disabled /></td>
-							<td>今日天氣<input type="text" value="${weather.nowWeather}" disabled></td>
+						<div class="form-group">
+							<label for="exampleInputName2">　班別：</label> 
+							<input type="text" value="${SHIFT}" name="shift" class="form-control" disabled="disabled">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputName2">　購買會員：</label> 
+							<input type="text" name="mem_name" class="form-control" disabled>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputName2">　購買員工：</label> 
+							<input type="text" name="emp_name" class="form-control" disabled>
+						</div>
+						<div style="height: 10px;"></div>
+						<div class="form-group">
+							<label for="exampleInputName2">　今 日 天 氣：</label> 
+							<input type="text" value="${weather.nowWeather}" name="emp_name" class="form-control" disabled>
+						</div>
 							
 						</tr>
 					</table>
 					<!------------------------------------------------------------ 明細 -------------------------------------------------------------->
-					<div style="height: 100px;"></div>
-					<h2>新增訂單明細</h2>
+					<div style="height: 30px;"></div>
+					<div class="deltitle">訂單明細</div>
 					<!-- 		<input type="button" value="新增明細" id="addNewDetail"> -->
-					<div
-						style="width: 1200px; height: 200px; overflow: auto; background-color: white;">
-						<table border="1" id="table1">
-
+						<table border="1" id="table1" class="table table-bordered table-striped table-hover">
 							<!-- 由$("#addNewDetail").click產出明細table -->
-
+							<thead id="title">
+								<tr>
+									<td align='center'>商品編號</td>
+									<td align='center'>商品名稱</td>
+									<td align='center'>商品數量</td>
+									<td align='center'>商品價格</td>
+									<td align='center'>刪除</td>
+								</tr>
+							</thead>
 						</table>
-					</div>
-					<hr>
+
 					<!------------------------------------------------------------ 輸入區 -------------------------------------------------------------->
 					<table class="ordbtm" border="1">
 						<tr valign="top">
@@ -544,17 +566,31 @@ print(text)
 	<script type="text/JavaScript"> 	
 
 // <!----------------------------------------  新增         ------------------------------------>
-	$('#add').on('click',function(){
-		var url = "ValuationList.jsp"; 
-			$.ajax({
-				type: "GET",
-				url: url,
-				success: function(data)
-				 {
+// 	$('#add').on('click',function(){
+// 		var url = "ValuationList.jsp"; 
+// 			$.ajax({
+// 				type: "GET",
+// 				url: url,
+// 				success: function(data)
+// 				 {
 				     
-				 }
-			});
-	})	
+// 				 }
+// 			});
+// 	})
+	for(var a=0;a<=11;a++){
+		$("#table1").each(function(tr){
+			$("#table1").append("<tr><td></td>"+"<td></td>"+"<td></td>"+"<td></td>"+"<td></td></tr>")
+			console.log(tr);
+		})
+	}
+	
+	$("#table1").dataTable({
+		"pageLength": 6
+	});
+
+		
+
+
 
 // <!----------------------------------------  新增明細         ------------------------------------>
 	$("#form2").on('click', '.btn-danger', function() {

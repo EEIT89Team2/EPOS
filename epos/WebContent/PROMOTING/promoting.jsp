@@ -26,6 +26,14 @@
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
 <style>
+	.navbar-default .navbar-nav > li > a{
+		color:#255957;
+	}
+	
+	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+ 		background: #95BF8F;
+ 	}
+
 	.navbar-default {
 		background: #CCFFCC;
 		border-color: #CCFF99;
@@ -43,7 +51,7 @@
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: mediumseagreen;
+		background: #F7C548;
 		padding-left: 10px;
 		font-size: 23px;
 		border-radius: 2px;
@@ -51,7 +59,13 @@
 
 	p{
 		margin: 20px;	
-	}  
+	}
+	
+	.btn-success {
+    color: #fff;
+    background-color: #e8c68a;
+    border-color: #f3f3f3;
+}  
 </style>		
 </head>
 

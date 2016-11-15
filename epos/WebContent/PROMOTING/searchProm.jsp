@@ -11,33 +11,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>search</title>
 <style>
-.titlelist {
-	font-family: '微軟正黑體';
-	font-weight: bold;
-	color: white;
-	height: 35px;
-	background: mediumseagreen;
-	padding-left: 10px;
-	font-size: 23px;
-	border-radius: 2px;
-}
+	.navbar-default .navbar-nav > li > a{
+		color:#255957;
+	}
+	
+	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+ 		background: #95BF8F;
+ 	}
 
-.formlist {
-	font-family: '微軟正黑體';
-	font-weight: bold;
-	height: 35px;
-	text-align: center;
-	font-size: 23px;
-	border-radius: 2px;
-}
+	.navbar-default {
+		background: #CCFFCC;
+		border-color: #CCFF99;
+		border-radius: 8px;
+	}
 
-p {
-	margin: 30px;
-}
+ 	.main{ 
+  		height: 800px;  
+ 		border-radius: 8px; 
+ 		background:	#FFE4E1; 
+ 	}
+ 	
+ 	.titlelist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: #F7C548;
+		padding-left: 10px;
+		font-size: 23px;
+		border-radius: 2px;
+	}
 
-.form-horizontal .control-label {
-	text-align: right;
-}
+	p{
+		margin: 20px;	
+	}
+	
+	.btn-success {
+    color: #fff;
+    background-color: #e8c68a;
+    border-color: #f3f3f3;
+}  
 </style>
 </head>
 <body>
@@ -62,7 +75,7 @@ p {
 					<input type="text" name="pro_prod_name" size="10">
 				</div>
 				<div class="col-lg-5">
-					<input type="button" value="送出" class="r_prom1 btn btn-theme04">
+					<input type="button" value="送出" class="r_prom1 btn btn-success">
 				</div>
 			</div>
 		</FORM>
@@ -82,7 +95,7 @@ p {
 					<input type="date" name="pro_end">
 				</div>
 				<div class="col-lg-5">
-					<input type="button" value="送出" class="r_prom2 btn btn-theme04">
+					<input type="button" value="送出" class="r_prom2 btn btn-success">
 				</div>
 
 				<input type="hidden" name="action" value="getDates_For_Display">
@@ -95,29 +108,29 @@ p {
 				<label class="col-lg-2 col-lg-offset-3 control-label">選擇促銷編號範圍:</label>
 				<div class="col-lg-1">
 					<select size="1" name="pro_prod_id1" class="form-control">
-						<c:forEach var="promVO" items="${PromSvc.all}">
+						<c:forEach var="promVO" items="${PromSvc.GroupByIDs()}">
 							<option value="${promVO.pro_prod_id}">${promVO.pro_prod_id}
 						</c:forEach>
 					</select>
 				</div>
 				<div class="col-lg-1">
 					<select size="1" name="pro_prod_id2" class="form-control">
-						<c:forEach var="promVO" items="${PromSvc.all}">
+						<c:forEach var="promVO" items="${PromSvc.GroupByIDs()}">
 							<option value="${promVO.pro_prod_id}">${promVO.pro_prod_id}
 						</c:forEach>
 					</select>
 				</div>
 				<div class="col-lg-5">
-					<input type="button" value="送出" class="r_prom3 btn btn-theme04">
+					<input type="button" value="送出" class="r_prom3 btn btn-success">
 				</div>
 					<input type="hidden" name="action" value="getIds_For_Display">
 			</div>
 		</FORM>
 
 		<%-- 查詢全部 --%>
-		<label class="col-lg-1 col-lg-offset-4 control-label">查詢全部:</label>
+		<label class="col-lg-2 col-lg-offset-3 control-label">查詢全部:</label>
 			<div class="col-lg-5 col-lg-offset-2">
-				<input type="button" value="送出" class="r_prom4 btn btn-theme04">
+				<input type="button" value="送出" class="r_prom4 btn btn-success">
 			</div>
 	</div>
 
@@ -127,7 +140,7 @@ p {
 	$(document).ready(function() {
 		// 查詢						
 		$(":button").click(function() {
-			if ($(this).attr("class") == 'r_prom1 btn btn-theme04') {
+			if ($(this).attr("class") == 'r_prom1 btn btn-success') {
 				var r_prom1 = $("form[name='r_prom1']");
 				$.ajax({
 					"type" : r_prom1.attr("method"),
@@ -141,7 +154,7 @@ p {
 						$("#result_Pro").attr("class", "tab-pane active");
 					},
 				});
-			} else if ($(this).attr("class") == 'r_prom2 btn btn-theme04') {
+			} else if ($(this).attr("class") == 'r_prom2 btn btn-success') {
 				var r_prom2 = $("form[name='r_prom2']");
 				$.ajax({
 					"type" : r_prom2.attr("method"),
@@ -155,7 +168,7 @@ p {
 						$("#result_Pro").attr("class", "tab-pane active");
 					},
 				});
-			} else if ($(this).attr("class") == 'r_prom3 btn btn-theme04') {
+			} else if ($(this).attr("class") == 'r_prom3 btn btn-success') {
 				var r_prom3 = $("form[name='r_prom3']");
 				$.ajax({
 					"type" : r_prom3.attr("method"),
@@ -169,7 +182,7 @@ p {
 						$("#result_Pro").attr("class", "tab-pane active");
 					},
 				});
-			} else if ($(this).attr("class") == 'r_prom4 btn btn-theme04') {
+			} else if ($(this).attr("class") == 'r_prom4 btn btn-success') {
 				$.ajax({
 					"type" : "post",
 					"url" : "allProm.do",

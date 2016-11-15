@@ -12,33 +12,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>新增促銷商品</title>
 <style>
-.titlelist {
-	font-family: '微軟正黑體';
-	font-weight: bold;
-	color: white;
-	height: 35px;
-	background: mediumseagreen;
-	padding-left: 10px;
-	font-size: 23px;
-	border-radius: 2px;
-}
+	.navbar-default .navbar-nav > li > a{
+		color:#255957;
+	}
+	
+	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+ 		background: #95BF8F;
+ 	}
 
-.formlist {
-	font-family: '微軟正黑體';
-	font-weight: bold;
-	height: 35px;
-	text-align: center;
-	font-size: 23px;
-	border-radius: 2px;
-}
+	.navbar-default {
+		background: #CCFFCC;
+		border-color: #CCFF99;
+		border-radius: 8px;
+	}
 
-p {
-	margin: 30px;
-}
+ 	.main{ 
+  		height: 800px;  
+ 		border-radius: 8px; 
+ 		background:	#FFE4E1; 
+ 	}
+ 	
+ 	.titlelist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: #F7C548;
+		padding-left: 10px;
+		font-size: 23px;
+		border-radius: 2px;
+	}
 
-.form-horizontal .control-label {
-	text-align: right;
-}
+	p{
+		margin: 20px;	
+	}
+	
+	.btn-success {
+    color: #fff;
+    background-color: #e8c68a;
+    border-color: #f3f3f3;
+} 
 </style>
 </head>
 <body>

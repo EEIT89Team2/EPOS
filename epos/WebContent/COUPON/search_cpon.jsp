@@ -20,15 +20,6 @@
 	border-radius: 2px;
 }
 
-.formlist {
-	font-family: '微軟正黑體';
-	font-weight: bold;
-	height: 35px;
-	text-align: center;
-	font-size: 23px;
-	border-radius: 2px;
-}
-
 p {
 	margin: 30px;
 }
@@ -58,10 +49,10 @@ p {
 				<div class="form-group">
 					<label class="col-lg-1 col-lg-offset-4 control-label">輸入折價券編號 (如CPa00001):</label>
 					<div class="col-lg-3">
-						<input type="text" name="cpon_id" size="10">
+						<input type="text" name="cpon_id" size="10" class="form-control">
 					</div>	
 					<div class="col-lg-4">	 
-						<input type="button" value="送出" id="search_1">
+						<input type="button" value="送出" id="search_1"  class="btn btn-theme03">
 					</div>	
 					<input type="hidden" name="action" value="getOne_For_Display">
 				</div>	
@@ -75,14 +66,14 @@ p {
 				<div class="form-group">
 					<label class="col-lg-1 col-lg-offset-4 control-label">選擇折價券編號:</label>
 					<div class="col-lg-3">
-						<select size="1" name="cpon_id">
+						<select size="1" name="cpon_id" class="form-control">
 							<c:forEach var="copVO" items="${copSvc.all}">
 								<option value="${copVO.cpon_id}">${copVO.cpon_id}
 							</c:forEach>
 						</select>
 					</div>
 					 <div class="col-lg-4">
-						<input type="button" value="送出" id="search_2">
+						<input type="button" value="送出" id="search_2" class="btn btn-theme03">
 					</div>
 						<input type="hidden" name="action" value="getOne_For_Display">
 				</div>	
@@ -95,14 +86,14 @@ p {
 				<div class="form-group">
 					<label class="col-lg-1 col-lg-offset-4 control-label">選擇折價券名稱:</label> 
 					<div class="col-lg-3">
-						<select size="1" name="cpon_name">
+						<select size="1" name="cpon_name" class="form-control">
 							<c:forEach var="copVO" items="${copSvc.groupNam}">
 								<option value="${copVO.cpon_name}">${copVO.cpon_name}
 							</c:forEach>
 						</select> 
 					</div>
 					<div class="col-lg-4">
-						<input type="button" value="送出" id="search_3">
+						<input type="button" value="送出" id="search_3" class="btn btn-theme03">
 					</div>
 						<input type="hidden" name="action" value="getNames_For_Display">
 				</div>	
@@ -114,14 +105,14 @@ p {
 				<div class="form-group">
 					<label class="col-lg-1 col-lg-offset-4 control-label">選擇折價券金額:</label> 
 					<div class="col-lg-3">
-						<select size="1" name="cpon_dollar">
+						<select size="1" name="cpon_dollar" class="form-control">
 							<c:forEach var="copVO" items="${copSvc.groupDol}">
 								<option value="${copVO.cpon_dollar}">${copVO.cpon_dollar}
 							</c:forEach>
 						</select> 
 					</div>
 					<div class="col-lg-4">
-						<input type="button" value="送出" id="search_4">
+						<input type="button" value="送出" id="search_4" class="btn btn-theme03">
 					</div>
 					<input type="hidden" name="action" value="getDollar_For_Display">
 				</div>
@@ -139,7 +130,7 @@ p {
 						<input type="date" name="cpon_period"> 
 					</div>
 					<div class="col-lg-4">
-						<input type="button" value="送出" id="search_5">
+						<input type="button" value="送出" id="search_5" class="btn btn-theme03">
 					</div>
 					<input type="hidden" name="action" value="getDates_For_Display">
 				</div>
@@ -150,7 +141,7 @@ p {
 				<div class="form-group">
 					<label class="col-lg-1 col-lg-offset-4 control-label">查詢全部折價券:</label>
 					<div class="col-lg-4 col-lg-offset-3">
-						<input type="button" value="查詢全部" id="search_6">
+						<input type="button" value="查詢全部" id="search_6" class="btn btn-theme03">
 					</div>
 					<input type="hidden" name="action" value="getAll_For_Display">
 				</div>

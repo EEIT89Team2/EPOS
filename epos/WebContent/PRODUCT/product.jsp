@@ -22,6 +22,14 @@
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
 <style>
+	.navbar-default .navbar-nav > li > a{
+		color:#542344;
+	}
+
+ 	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+ 		background: #BFD1E5;
+ 	}
+
 .navbar-default {
 	background: #CCFFCC;
 	border-color: #CCFF99;
@@ -198,7 +206,7 @@
 										id="prod_id">
 								</div>
 								<div class="col-lg-2">
-									<input type="button" value="商品編號搜尋" class="btn btn-theme">
+									<input type="button" value="商品編號搜尋" class="btn btn-warning">
 								</div>
 							</div>
 
@@ -208,7 +216,7 @@
 								<label class="col-lg-2 control-label" for="prod_id">查詢全部商品</label>
 								<div class="col-lg-2"></div>
 								<div class="col-lg-2">
-									<input type="button" value="查詢全部商品" class="btn btn-theme">
+									<input type="button" value="查詢全部商品" class="btn btn-warning">
 								</div>
 							</div>
 
@@ -221,7 +229,7 @@
 										id="prod_name">
 								</div>
 								<div class="col-lg-2">
-									<input type="button" value="商品名稱關鍵字查詢" class="btn btn-theme">
+									<input type="button" value="商品名稱關鍵字查詢" class="btn btn-warning">
 								</div>
 							</div>
 
@@ -234,7 +242,7 @@
 										id="prod_group">
 								</div>
 								<div class="col-lg-2">
-									<input type="button" value="商品分類關鍵字查詢" class="btn btn-theme">
+									<input type="button" value="商品分類關鍵字查詢" class="btn btn-warning">
 								</div>
 							</div>
 						</form>

@@ -14,17 +14,8 @@
 	font-weight: bold;
 	color: white;
 	height: 35px;
-	background: mediumseagreen;
+	background: #99CCCC;
 	padding-left: 10px;
-	font-size: 23px;
-	border-radius: 2px;
-}
-
-.formlist {
-	font-family: '微軟正黑體';
-	font-weight: bold;
-	height: 35px;
-	text-align: center;
 	font-size: 23px;
 	border-radius: 2px;
 }
@@ -135,10 +126,10 @@ p {
 				<p>	
 				<div class="form-group">
 					<div class="col-lg-1 col-lg-offset-5 control-label">
-						<input type="submit" value="修改" class="btn btn-success">
+						<input type="submit" value="修改" class="btn btn-warning">
 					</div>
 					<div class="col-lg-6">
-						<input type="reset" value="清除" class="btn btn-success">
+						<input type="reset" value="清除" class="btn btn-warning">
 					</div>
 				</div>
 

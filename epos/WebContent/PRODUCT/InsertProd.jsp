@@ -15,7 +15,7 @@
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: #F4A460;
+		background: #99CCCC;
 		padding-left: 10px;
 		font-size: 23px;
 		border-radius: 2px;
@@ -107,10 +107,10 @@
 			</div>	
 			<div class="form-group">
 				<div class="col-lg-1  col-lg-offset-5">
-					<input type="submit" value="新增" class="btn btn-success"> 
+					<input type="submit" value="新增" class="btn btn-warning"> 
 				</div>
 				<div class="col-lg-6">
-					<input type="reset" value="清除" class="btn btn-success">
+					<input type="reset" value="清除" class="btn btn-warning">
 				</div>	
 				<input type="hidden" name="status" value="Y">
 			</div>	

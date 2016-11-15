@@ -11,7 +11,7 @@
 
 		/* 	表格標題 */
 	.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{
-		background: #66CDAA;
+		background: #278829;
 		font-weight:bold;
 		text-align: center;
 	}
@@ -29,7 +29,7 @@
 	
 	/* 	表格偶數滑鼠指向 */
 	.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
-		background-color:FFE4C4;
+		background-color:#BFD1E5;
 	}
 	
 	.titlelist {
@@ -37,19 +37,8 @@
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: mediumseagreen;
+		background: #F7C548;
 		padding-left: 10px;
-		font-size: 23px;
-		border-radius: 2px;
-	}
-	
-	.formlist {
-		font-family: '微軟正黑體';
-		font-weight: bold;
-		color: white;
-		height: 35px;
-		background: mediumseagreen;
-		text-align: center;
 		font-size: 23px;
 		border-radius: 2px;
 	}
@@ -58,6 +47,12 @@
 		margin: 30px;
 	
 	}
+	
+		.btn-success {
+    color: #fff;
+    background-color: #e8c68a;
+    border-color: #f3f3f3;
+} 
 	
 </style>
 <head>
@@ -82,7 +77,7 @@
 	<div class="titlelist">查詢結果</div>
 	<div class="col-lg-12">
 		<p>
-		<div class="formlist">折扣清單</div>
+		<div class="titlelist">折扣清單</div>
 		<table border='1' bordercolor='#CCCCFF' width='800'
 			class="table table-bordered table-striped  table-hover">
 			<thead>

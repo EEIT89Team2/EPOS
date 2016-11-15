@@ -9,22 +9,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>insertShiftre</title>
 <style>
-	.titlelist {
+/* nav */
+	.navbar-default{
+		background: #E6F9AF;
+		border-color:#E6F9AF;
+		border-radius: 8px;
+	}
+/* background */
+ 	.main{ 
+  		height: 800px;  
+ 		border-radius: 8px; 
+ 		background:	#A0DBB9; 
+ 	}
+/*  title	 */
+ 	.titlelist {
 		font-family: '微軟正黑體';
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: #FF6666;
+		background: #384E77;
 		padding-left: 10px;
-		font-size: 23px;
-		border-radius: 2px;
-	}
-	
-	.formlist {
-		font-family: '微軟正黑體';
-		font-weight: bold;
-		height: 35px;
-		text-align: center;
 		font-size: 23px;
 		border-radius: 2px;
 	}
@@ -35,7 +39,13 @@
 	
 	 .form-horizontal .control-label { 
 	     text-align: right; 
-	 } 
+	 }
+	 
+	 .btn-theme02 {
+    color: #fff;
+    background-color: #229abd;
+    border-color: #31535d;
+} 
 </style>
 </head>
 <body>

@@ -1,8 +1,15 @@
 package com.promoting.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateTemplate;
+
+import hibernate.util.HibernateUtil;
 
 public class PromotingDAO implements PromotingDAO_interface{
 	
@@ -12,7 +19,9 @@ public class PromotingDAO implements PromotingDAO_interface{
 	private static final String GET_DATES_STMT = "FROM PromotingVO where pro_begin >=? and pro_end <=? ";
 	private static final String GET_NAMES_STMT = "FROM PromotingVO where pro_prod_id like ?";
 	private static final String GET_IDS_STMT = "FROM PromotingVO where pro_prod_id between ? and ? ";
-
+	private static final String GET_BYIDGROUP_STMT = "FROM PromotingVO where pro_prod_id = ?";
+	private static final String GET_IDGROUP_STMT = "SELECT pro_prod_id FROM PromotingVO group by pro_prod_id";
+	
 	private HibernateTemplate hibernateTemplate;
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate){
 		this.hibernateTemplate = hibernateTemplate;
@@ -69,6 +78,30 @@ public class PromotingDAO implements PromotingDAO_interface{
 		List<PromotingVO> list = null;
 		list = hibernateTemplate.find(GET_NAMES_STMT,"%"+pro_prod_name+"%");
 		return list;	
+	}
+
+
+	@Override
+	public List<PromotingVO> GroupByIDs() {
+		List<PromotingVO> list = new ArrayList<PromotingVO>();
+		PromotingVO PromVO = null;
+		List<String> temp = null;
+		temp = hibernateTemplate.find(GET_IDGROUP_STMT);
+		Iterator<String> iterator =	temp.iterator();
+			while(iterator.hasNext()) {
+				PromVO = new PromotingVO();
+				PromVO.setPro_prod_id(iterator.next());;			
+				list.add(PromVO);
+			}						
+		return list;
+	}
+
+	@Override
+	public List<PromotingVO> findByIDs(String pro_prod_id) {
+		List<PromotingVO> list = null;
+		list = hibernateTemplate.find(GET_BYIDGROUP_STMT, pro_prod_id);
+
+		return list;
 	}
 
 }

@@ -11,6 +11,48 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>修改促銷商品</title>
+<style>
+	.navbar-default .navbar-nav > li > a{
+		color:#255957;
+	}
+	
+	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+ 		background: #95BF8F;
+ 	}
+
+	.navbar-default {
+		background: #CCFFCC;
+		border-color: #CCFF99;
+		border-radius: 8px;
+	}
+
+ 	.main{ 
+  		height: 800px;  
+ 		border-radius: 8px; 
+ 		background:	#FFE4E1; 
+ 	}
+ 	
+ 	.titlelist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: #F7C548;
+		padding-left: 10px;
+		font-size: 23px;
+		border-radius: 2px;
+	}
+
+	p{
+		margin: 20px;	
+	}
+	
+	.btn-success {
+    color: #fff;
+    background-color: #e8c68a;
+    border-color: #f3f3f3;
+}  
+</style>
 </head>
 <body>
 

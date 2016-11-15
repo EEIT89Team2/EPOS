@@ -9,27 +9,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>修改員工資料</title>
 <style>
-	.titlelist {
+/* nav */
+	.navbar-default{
+		background: #E6F9AF;
+		border-color:#E6F9AF;
+		border-radius: 8px;
+	}
+/* background */
+ 	.main{ 
+  		height: 800px;  
+ 		border-radius: 8px; 
+ 		background:	#A0DBB9; 
+ 	}
+/*  title	 */
+ 	.titlelist {
 		font-family: '微軟正黑體';
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: #FF6666;
+		background: #384E77;
 		padding-left: 10px;
 		font-size: 23px;
 		border-radius: 2px;
 	}
-	
-	.formlist {
-		font-family: '微軟正黑體';
-		font-weight: bold;
-		height: 35px;
-		text-align: center;
-		font-size: 23px;
-		border-radius: 2px;
-	}
-	
-	
+		
 	p{
 		margin: 30px;	
 	}
@@ -102,15 +105,15 @@
 				</div>
 				<label class="col-lg-1 control-label">交易淨利:</label>
 				<div class="col-lg-1">		
-					<input type="text" name="deal_profit" value="${shiftreVO.deal_profit}"><br>
+					<input type="text" name="deal_profit" value="${shiftreVO.deal_profit}">
 				</div>
 				<label class="col-lg-1 control-label">交易次數:</label>
 				<div class="col-lg-1">			
-					<input type="text" name="deal_num" value="${shiftreVO.deal_num}"><br>
+					<input type="text" name="deal_num" value="${shiftreVO.deal_num}">
 				</div>
 				<label class="col-lg-1 control-label">班別小計:</label>
 				<div class="col-lg-3">			
-					<input type="text" name="shift_sum" value="${shiftreVO.shift_sum}"><br>
+					<input type="text" name="shift_sum" value="${shiftreVO.shift_sum}">
 				</div>
 			</div>
 

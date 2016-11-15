@@ -17,25 +17,29 @@
 <link href="<c:url value="../resources/css/style-responsive.css" />" rel="stylesheet">
 <title>shiftreport</title>
 <style>
-
-	.navbar-default{
-		background: #CCCCFF;
-		border-color:#CCCCFF;
-		border-radius: 8px;
+	.navbar-default .navbar-nav > li > a{
+		color:#56ad7b;
 	}
 
+/* nav */
+	.navbar-default{
+		background: #E6F9AF;
+		border-color:#E6F9AF;
+		border-radius: 8px;
+	}
+/* background */
  	.main{ 
   		height: 800px;  
  		border-radius: 8px; 
- 		background:	#FFCCCC; 
+ 		background:	#A0DBB9; 
  	}
- 	
+/*  title	 */
  	.titlelist {
 		font-family: '微軟正黑體';
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: #FF6666;
+		background: #384E77;
 		padding-left: 10px;
 		font-size: 23px;
 		border-radius: 2px;
@@ -45,18 +49,19 @@
 		margin: 20px;	
 	}
 	
-	.formlist {
-		font-family: '微軟正黑體';
-		font-weight: bold;
-		height: 35px;
-		text-align: center;
-		font-size: 23px;
-		border-radius: 2px;
-	}
-	
 	.form-horizontal .control-label { 
 	     text-align: right; 
-	 }  
+	 }
+	 
+	 .btn-theme02 {
+	    color: #fff;
+	    background-color: #229abd;
+	    border-color: #31535d;
+	}
+ 	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+ 		background: #fbe4c3;
+ 	}
+  
 </style>
 </head>
 <body>

@@ -13,14 +13,14 @@
 
 		/* 	表格標題 */
 	.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{
-		background: #66CDAA;
+		background: #42858C;
 		font-weight:bold;
 		text-align: center;
 	}
 	
 	/* 	表格內容偶數 */
 	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
-		background:		#F0FFF0;
+		background: #63CCCA;
 		border:1px solid #556B2F;
 		
 	}
@@ -31,7 +31,7 @@
 	
 	/* 	表格偶數滑鼠指向 */
 	.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
-		background-color:FFE4C4;
+		background-color: #397367;
 	}
 	
 	.titlelist {
@@ -39,19 +39,8 @@
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: mediumseagreen;
+		background: #99CCCC;
 		padding-left: 10px;
-		font-size: 23px;
-		border-radius: 2px;
-	}
-	
-	.formlist {
-		font-family: '微軟正黑體';
-		font-weight: bold;
-		color: white;
-		height: 35px;
-		background: mediumseagreen;
-		text-align: center;
 		font-size: 23px;
 		border-radius: 2px;
 	}
@@ -67,7 +56,7 @@
 		<div class="titlelist">查詢結果</div>
 			<div class="col-lg-12">		
 			<p>
-				<div class="formlist">商品清單</div>
+				<div class="titlelist">商品清單</div>
 		<table border='2' bordercolor='#CCCCFF' width='1300' class="table table-bordered table-striped  table-hover">
 		<thead>
 			<tr>

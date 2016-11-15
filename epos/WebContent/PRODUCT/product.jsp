@@ -26,7 +26,6 @@
 	background: #CCFFCC;
 	border-color: #CCFF99;
 	border-radius: 8px;
-	/* 		border-style: solid; */
 }
 
 .main {
@@ -164,25 +163,18 @@
 	<div class="row mt">
 		<div class="col-lg-12">
 			<div class="nav navbar-default">
-				<div class="container-fluid"
-					style="float: right; left: -50%; position: relative">
-					<ul class="nav navbar-nav"
-						style="float: left; left: 50%; position: relative">
-						<li id="chg_search"><a data-toggle="tab" href="#search"><span
-								class="glyphicon glyphicon-search"></span>搜尋</a></li>
-						<li id="chg_new"><a id="c_prod" target="InsertProd.jsp"
-							data-toggle="tab" href="#new"><span
-								class="glyphicon glyphicon-file"></span>新增</a></li>
-						<li id="chg_result"><a data-toggle="tab" href="#result"><span
-								class="glyphicon glyphicon-list-alt"></span>查詢結果</a></li>
-						<li><a data-toggle="tab" href="#print" class="print"><span
-								class="glyphicon glyphicon-print"></span>列印</a></li>
+				<div class="container-fluid" style="float: right; left: -50%; position: relative">
+					<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">
+						<li id="chg_search"><a data-toggle="tab" href="#search_Prod"><span class="glyphicon glyphicon-search"></span>搜尋</a></li>
+						<li id="chg_new"><a id="c_prod" target="InsertProd.jsp" data-toggle="tab" href="#new_Prod"><span class="glyphicon glyphicon-file"></span>新增</a></li>
+						<li id="chg_result"><a data-toggle="tab" href="#result_Prod"><span class="glyphicon glyphicon-list-alt"></span>查詢結果</a></li>
+						<li><a data-toggle="tab" href="#print" class="print"><span class="glyphicon glyphicon-print"></span>列印</a></li>
 					</ul>
 				</div>
 			</div>
 
 			<div class="tab-content">
-				<div id="search" class="tab-pane fade">
+				<div id="search_Prod" class="tab-pane fade">
 					<%-- 錯誤表列 --%>
 					<c:if test="${not empty param.message}">
 						<font color='red'>請修正以下錯誤:
@@ -248,11 +240,11 @@
 						</form>
 					</div>
 				</div>
-				<div id="new" class="tab-pane fade">
-					<div class="insert_content"></div>
+				<div id="new_Prod" class="tab-pane fade">
+					<div class="insert_content main"></div>
 				</div>
-				<div id="result" class="tab-pane fade">
-					<div id=rul></div>
+				<div id="result_Prod" class="tab-pane fade">
+					<div class="result_content main"></div>
 				</div>
 			</div>
 		</div>
@@ -265,9 +257,7 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
-		!window.jQuery
-				&& document
-						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
+		!window.jQuery&& document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
 	</script>
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
@@ -302,11 +292,11 @@
 								action : "getAllProd.do"
 							},
 							success : function(data) {
-								$("#rul").html(data);
+								$(".result_content").html(data);
 								$("#chg_search").removeAttr("class");
 								$("#chg_result").attr("class", "active");
-								$("#search").attr("class", "tab-pane fade");
-								$("#result").attr("class", "tab-pane active");
+								$("#search_Prod").attr("class", "tab-pane fade");
+								$("#result_Prod").attr("class", "tab-pane active");
 							}
 						});
 					} else if ("商品編號搜尋" == $(this).val()) {
@@ -318,11 +308,11 @@
 								prod_id : $("#prod_id").val()
 							},
 							success : function(data) {
-								$("#rul").html(data);
+								$(".result_content").html(data);
 								$("#chg_search").removeAttr("class");
 								$("#chg_result").attr("class", "active");
-								$("#search").attr("class", "tab-pane fade");
-								$("#result").attr("class", "tab-pane active");
+								$("#search_Prod").attr("class", "tab-pane fade");
+								$("#result_Prod").attr("class", "tab-pane active");
 							}
 						});
 					} else if ("商品名稱關鍵字查詢" == $(this).val()) {
@@ -334,11 +324,11 @@
 								prod_name : $("#prod_name").val()
 							},
 							success : function(data) {
-								$("#rul").html(data);
+								$(".result_content").html(data);
 								$("#chg_search").removeAttr("class");
 								$("#chg_result").attr("class", "active");
-								$("#search").attr("class", "tab-pane fade");
-								$("#result").attr("class", "tab-pane active");
+								$("#search_Prod").attr("class", "tab-pane fade");
+								$("#result_Prod").attr("class", "tab-pane active");
 							}
 						});
 					} else if ("商品分類關鍵字查詢" == $(this).val()) {
@@ -350,11 +340,11 @@
 								prod_group : $("#prod_group").val()
 							},
 							success : function(data) {
-								$("#rul").html(data);
+								$(".result_content").html(data);
 								$("#chg_search").removeAttr("class");
 								$("#chg_result").attr("class", "active");
-								$("#search").attr("class", "tab-pane fade");
-								$("#result").attr("class", "tab-pane active");
+								$("#search_Prod").attr("class", "tab-pane fade");
+								$("#result_Prod").attr("class", "tab-pane active");
 							}
 						});
 					}

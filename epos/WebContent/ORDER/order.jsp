@@ -107,7 +107,7 @@ print(text)
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: #fb9292;
+		background: #428bca;
 		font-size: 23px;
 		border-radius: 2px;
 	}
@@ -116,25 +116,32 @@ print(text)
 		color:#ab2222;
 	}
 	
-	.main{
-		height: 250px;
-		border-radius: 8px;
-		background: #fbe7e7;
+	.table-bordered{
+		border: 1px solid #428bca;
 	}
 	
 	.table > thead:first-child > tr:first-child > td {
-  		background:#fb9292;
+		height: 20px;
+  		background:#007bb7;
   		color:white;
   		border-top: 0;
   		font-family: 微軟正黑體;
 }
+
+	/* 	表格內容單數 */
 	.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th{
 		background-color:white;
 	}
-
+	/* 	表格內容偶數 */
 	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
-		border:1px solid #fdc0c0;
-		background:#f7e3e3;
+		border:1px solid #3393c1;
+		background:#d7e0ff;
+		height: 30px;
+		font-weight: bold;
+	}
+	/* 	表格偶數滑鼠指向 */
+	.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
+		background-color:#d7e0ff;
 	}
 	
 	.alert-info{
@@ -146,13 +153,13 @@ print(text)
 		
 	}
 	
-	.titlelist {
+	.deltitle {
 	/*     	margin-top:auto; */
 	font-family: '微軟正黑體';
 	font-weight: bold;
 	color: white;
 	height: 35px;
-	background: #f7a2a2;
+	background: #a2c3f7;
 	font-size: 23px;
 	border-radius: 2px;
 }
@@ -163,7 +170,10 @@ print(text)
 	}
 	
 	
-	
+	.main{
+		height: 130px;
+		background: #e0e9ff;
+	}
 
 </style>
 </head>
@@ -278,52 +288,59 @@ print(text)
 	
 	<div class="row mt">
 	<div class="col-sm-12">
-	
 		<div id="add" class="main">
-			<div class="tab-content">
-				<nav id="listinfo" class="alert alert-info">
-				<div>
-				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
-		    	<a href="#" onclick="window.open('searchList.jsp', 'RetrunItem', config='height=500,width=1200')"><span class="glyphicon glyphicon-search"></span>單筆查詢</a>　　
-		    	<a href="#" onclick="window.open('SelectOrdAll.jsp', 'order', config='height=1050,width=1680')"><span class="glyphicon glyphicon-list-alt"></span>全部查詢</a>　　　
-		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　　
-		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>　
-				</div>
- 
-				</nav> 
-			</div>
-	<Form METHOD="post" action="addOrder.do" name="form1">
-					<h2>新增訂單</h2>
-					<!-- 		<input type="submit" value="新增"> -->
+			<div style="height: 10px;s"></div>
+			<Form METHOD="post" action="addOrder.do" name="ordmain" class="form-inline">
 					<jsp:useBean id="weather" class="analysis.LoadWeatherRss" scope="page"/>
 					<table border="1">
 						<tr>
-							<td>收銀員編號：</td>
-							<td>${LoginOK.emp_id}<input type="hidden" name="key_id" value="${LoginOK.emp_id}" /></td>
-							<td>收銀員姓名：</td>
-							<td>${LoginOK.emp_name}</td>
-							<td>班別：</td>
-							<td>${SHIFT}<input type="hidden" name="shift" value="${SHIFT}" /></td>
-							<td>購買會員：<input type="text" id="mem_name" name="mem_name" disabled /></td>
-							<td>購買員工：<input type="text" id="emp_name" name="emp_name" disabled /></td>
-							<td>今日天氣<input type="text" value="${weather.nowWeather}" disabled></td>
+						<div class="form-group">
+							<label for="exampleInputName2">　收銀員編號：</label> 
+							<input type="text" value="${LoginOK.emp_id}" name="key_id" class="form-control" disabled="disabled">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputName2">　收銀員姓名：</label> 
+							<input type="text" value="${LoginOK.emp_name}" class="form-control" disabled="disabled">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputName2">　班別：</label> 
+							<input type="text" value="${SHIFT}" name="shift" class="form-control" disabled="disabled">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputName2">　購買會員：</label> 
+							<input type="text" name="mem_name" class="form-control" disabled>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputName2">　購買員工：</label> 
+							<input type="text" name="emp_name" class="form-control" disabled>
+						</div>
+						<div style="height: 10px;"></div>
+						<div class="form-group">
+							<label for="exampleInputName2">　今 日 天 氣：</label> 
+							<input type="text" value="${weather.nowWeather}" name="emp_name" class="form-control" disabled>
+						</div>
 							
 						</tr>
 					</table>
 					<!------------------------------------------------------------ 明細 -------------------------------------------------------------->
-					<h2>新增訂單明細</h2>
+					<div style="height: 30px;"></div>
+					<div class="deltitle">訂單明細</div>
 					<!-- 		<input type="button" value="新增明細" id="addNewDetail"> -->
-					<div
-						style="width: 1200px; height: 200px; overflow: auto; background-color: white;">
-						<table border="1" id="table1">
-
+						<table border="1" id="table1" class="table table-bordered table-striped table-hover">
 							<!-- 由$("#addNewDetail").click產出明細table -->
-
+							<thead id="title">
+								<tr>
+									<td align='center'>商品編號</td>
+									<td align='center'>商品名稱</td>
+									<td align='center'>商品數量</td>
+									<td align='center'>商品價格</td>
+									<td align='center'>刪除</td>
+								</tr>
+							</thead>
 						</table>
-					</div>
-					<hr>
+
 					<!------------------------------------------------------------ 輸入區 -------------------------------------------------------------->
-					<table border="1">
+					<table class="ordbtm" border="1">
 						<tr valign="top">
 							<td>
 								<table border="1">
@@ -374,7 +391,9 @@ print(text)
 
 					<br> <input type="hidden" name="action" value="insert">
 				</Form>
-	
+		</div>
+	</div>  	<!-- "col-sm-12" -->
+	<div> 		<!-- "row mt" -->
 	</div>
 	</section> </section> </section>
 
@@ -391,12 +410,12 @@ print(text)
 	//練習五使用on綁定網頁上刪除按鈕，完成刪除動作
 	$("#table1").on('click', '.btn-danger', function() {
 		//總計金額先扣除該筆商品的金額
-		form1.total_price_temp.value = parseInt(form1.total_price_temp.value) - $(this).parents("tr").children("td:eq(8)").children("input").val();
+		ordmain.total_price_temp.value = parseInt(ordmain.total_price_temp.value) - $(this).parents("tr").children("td:eq(8)").children("input").val();
 		count_total_price();
 		
 		$(this).parents("tr").remove();
 		//筆數再-1
-		form1.count.value=parseInt(form1.count.value)-1;
+		ordmain.count.value=parseInt(ordmain.count.value)-1;
 	})
 	
 	$(function() {
@@ -411,28 +430,28 @@ print(text)
 										prod_price = data.prod_price;
 
 										//先將總計金額加上本次新增商品金額
-										form1.total_price_temp.value = parseInt(form1.total_price_temp.value) + parseInt(prod_price);
+										ordmain.total_price_temp.value = parseInt(ordmain.total_price_temp.value) + parseInt(prod_price);
 										count_total_price();
 										
 										$("#table1")
 										.append(
 												"<tr><td>商品編號：</td><td><input type='text' name='prod_id"+a+"' value='"+$('#prod_id').val()+"' /></td>"
 														+ "<td>商品名稱：</td><td><input type='text' name='prod_name"+a+"' value='"+prod_name+"' /></td>"
-														+ "<td>商品數量：</td><td><input type='text' name='prod_quantity"+a+"' value='1' onblur='count_total_prod_price(form1.prod_quantity"+a+",form1.prod_price"+a+",form1.total_prod_price"+a+")' /></td>"
+														+ "<td>商品數量：</td><td><input type='text' name='prod_quantity"+a+"' value='1' onblur='count_total_prod_price(ordmain.prod_quantity"+a+",ordmain.prod_price"+a+",ordmain.total_prod_price"+a+")' /></td>"
 														+ "<td>商品價格：</td><td><input type='text' name='prod_price"+a+"' value='"+prod_price+"' /></td>"
 														+ "<td><input type='hidden' id='total_prod_price"+a+"' name='total_prod_price"+a+"' value='"+prod_price+"'/>"
 														+ "<input type='button' value='刪除' class='btn btn-danger'></input></td></tr>")
 										
 										a = a + 1;
 										//筆數+1
-										form1.count.value=parseInt(form1.count.value)+1;
+										ordmain.count.value=parseInt(ordmain.count.value)+1;
 										
 									})
 								})
 				
 				$("#mem_id").blur(function() {
 									if($('#mem_id').val() != ""){
-										form1.emp_id.value='';
+										ordmain.emp_id.value='';
 										$.getJSON('getByMem_id.do',{mem_id:$('#mem_id').val()},function(data){
 											
 											//取得JSON資料
@@ -441,16 +460,16 @@ print(text)
 												alert(data.error);
 												$.getJSON('getByDis_id.do',{dis_id:'一般'},function(data){
 													//取得JSON資料
-													form1.dis_price.value = data.dis_price;
+													ordmain.dis_price.value = data.dis_price;
 													count_total_price();
 													
 												})
 											}else{//是會員,找%數
-												form1.emp_name.value ='';
-												form1.mem_name.value = data.mem_name;
+												ordmain.emp_name.value ='';
+												ordmain.mem_name.value = data.mem_name;
 												$.getJSON('getByDis_id.do',{dis_id:'會員'},function(data){
 													//取得JSON資料
-													form1.dis_price.value = data.dis_price;
+													ordmain.dis_price.value = data.dis_price;
 													count_total_price();
 												})
 											}
@@ -458,7 +477,7 @@ print(text)
 									}else{//沒有輸入資料時,預設查一般的折讓數
 										$.getJSON('getByDis_id.do',{dis_id:'一般'},function(data){
 											//取得JSON資料
-											form1.dis_price.value = data.dis_price;
+											ordmain.dis_price.value = data.dis_price;
 											count_total_price();
 										})
 									}
@@ -467,7 +486,7 @@ print(text)
 						
 				$("#emp_id").blur(function() {
 									if($('#emp_id').val() != ""){
-										form1.mem_id.value='';
+										ordmain.mem_id.value='';
 										$.getJSON('getByEmp_id.do',{emp_id:$('#emp_id').val()},function(data){
 											//取得JSON資料
 											//不是員工
@@ -475,15 +494,15 @@ print(text)
 												alert(data.error);
 												$.getJSON('getByDis_id.do',{dis_id:'一般'},function(data){
 													//取得JSON資料
-													form1.dis_price.value = data.dis_price;
+													ordmain.dis_price.value = data.dis_price;
 													count_total_price();
 												})
 											}else{//是員工,找%數
-												form1.mem_name.value ='';
-												form1.emp_name.value = data.emp_name;
+												ordmain.mem_name.value ='';
+												ordmain.emp_name.value = data.emp_name;
 												$.getJSON('getByDis_id.do',{dis_id:'員工'},function(data){
 													//取得JSON資料
-													form1.dis_price.value = data.dis_price;
+													ordmain.dis_price.value = data.dis_price;
 													count_total_price();	
 												})
 											}
@@ -491,7 +510,7 @@ print(text)
 									}else{//沒有輸入資料時,預設查一般的折讓數
 										$.getJSON('getByDis_id.do',{dis_id:'一般'},function(data){
 											//取得JSON資料
-											form1.dis_price.value = data.dis_price;
+											ordmain.dis_price.value = data.dis_price;
 											count_total_price();
 										})
 									}
@@ -507,16 +526,16 @@ print(text)
 							if(data.error=="查無此禮券"){//查無此禮券時,預設查一般的折讓數
 								alert(data.error);
 										
-								form1.cpon_dollar.value = 0;
+								ordmain.cpon_dollar.value = 0;
 								count_total_price();	
 							}else{
-								form1.cpon_dollar.value = data.cpon_dollar;
+								ordmain.cpon_dollar.value = data.cpon_dollar;
 								count_total_price();
 							}
 						})
 					}else{//沒有輸入資料時,預設查一般的折讓數
 						
-						form1.cpon_dollar.value = 0;
+						ordmain.cpon_dollar.value = 0;
 						count_total_price();
 					}
 				})
@@ -524,9 +543,9 @@ print(text)
 				
 				$("#cash_temp").blur(function() {
 				
-					form1.charge.value = form1.cash.value - form1.total_price.value;
-					form1.charge.value = form1.cash_temp.value - form1.total_price.value;
-					form1.cash.value = form1.cash_temp.value - form1.charge.value;
+					ordmain.charge.value = ordmain.cash.value - ordmain.total_price.value;
+					ordmain.charge.value = ordmain.cash_temp.value - ordmain.total_price.value;
+					ordmain.cash.value = ordmain.cash_temp.value - ordmain.charge.value;
 				})				
 	})
 	</script>
@@ -547,17 +566,31 @@ print(text)
 	<script type="text/JavaScript"> 	
 
 // <!----------------------------------------  新增         ------------------------------------>
-	$('#add').on('click',function(){
-		var url = "ValuationList.jsp"; 
-			$.ajax({
-				type: "GET",
-				url: url,
-				success: function(data)
-				 {
+// 	$('#add').on('click',function(){
+// 		var url = "ValuationList.jsp"; 
+// 			$.ajax({
+// 				type: "GET",
+// 				url: url,
+// 				success: function(data)
+// 				 {
 				     
-				 }
-			});
-	})	
+// 				 }
+// 			});
+// 	})
+	for(var a=0;a<=11;a++){
+		$("#table1").each(function(tr){
+			$("#table1").append("<tr><td></td>"+"<td></td>"+"<td></td>"+"<td></td>"+"<td></td></tr>")
+			console.log(tr);
+		})
+	}
+	
+	$("#table1").dataTable({
+		"pageLength": 6
+	});
+
+		
+
+
 
 // <!----------------------------------------  新增明細         ------------------------------------>
 	$("#form2").on('click', '.btn-danger', function() {
@@ -591,6 +624,8 @@ print(text)
 				}
 			})
 		})
+		
+
 
 	</script>
 </body>

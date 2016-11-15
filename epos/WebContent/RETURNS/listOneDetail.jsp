@@ -81,7 +81,7 @@
 <table class="table table-bordered table-striped table-hover">
 <thead>
 <tr>
-	<td align='center'>退貨單明細</td><td align='center'>商品名稱</td><td align='center'>退貨數量</td><td td align='center'>退貨原因</td><td align='center'>修改</td><td align='center'>刪除</td>
+	<td align='center'>退貨單編號</td><td align='center'>商品名稱</td><td align='center'>退貨數量</td><td td align='center'>退貨原因</td><td align='center'>修改</td><td align='center'>刪除</td>
 </tr>
 </thead>
 <c:forEach var="list" items="${detailList}">

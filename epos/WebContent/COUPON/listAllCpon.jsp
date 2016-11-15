@@ -56,7 +56,6 @@
 	
 	p{
 		margin: 30px;
-	
 	}
 	
 </style>
@@ -79,8 +78,8 @@
 <div class="titlelist">查詢結果</div>
 <div class="col-lg-12">
  <p>
-	<div class="formlist">折價券</div>
-		<table border="2" bordercolor='#CCCCFF' width='800' class="table table-bordered table-striped  table-hover">
+	<div class="formlist">折價券清單</div>
+		<table border="2" bordercolor='#CCCCFF' width='1000' class="table table-bordered table-striped  table-hover">
 		<thead><tr>
 			<th>折價券編號</th>
 			<th>折價券名稱</th>
@@ -93,7 +92,6 @@
 		</tr></thead>
 	
 		<c:forEach var="copVO" items="${list}">
-<!-- 		<form method="post" action="updateAll.do"> -->
 			<tr align='center' valign='middle'>
 				<td>${copVO.cpon_id}</td>
 				<td>${copVO.cpon_name}</td>
@@ -102,30 +100,21 @@
 				<td>${copVO.cpon_dollar}</td>
 				<td>${copVO.status}</td>
 				<td>
-<%-- 					<FORM METHOD="post"		ACTION="<%=request.getContextPath()%>/COUPON/allForUpdateCpon.do"> --%>
 					<button type="button" class="btn btn-success" name="update" target="${copVO.cpon_id}">
 							<i class="fa fa-pencil"></i>
 					</button>
-<%-- 						<input type="hidden" name="cpon_id" value="${copVO.cpon_id}">  --%>
-<!-- 						<input type="hidden" name="action" value="getOne_For_Update"> -->
-<!-- 					</FORM> -->
 				</td>
 				<td>
-<%-- 					<FORM METHOD="post"		ACTION="<%=request.getContextPath()%>/COUPON/deleteCpon.do"> --%>
 					<button type="button" class="btn btn-danger" name="delete" target="${copVO.cpon_id}">
 						<i class="fa fa-trash-o"></i>
 					</button>
-<%-- 						<input type="hidden" name="cpon_id" value="${copVO.cpon_id}">  --%>
-<!-- 						<input type="hidden" name="action" value="delete"> -->
-<!-- 					</FORM> -->
 				</td>
 			</tr>
-<!-- 			</form> -->
 		</c:forEach>
 	</table>
 </div>
 
-
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 	<script>
 		$(function() {
 			$('button').on('click', function() {		
@@ -137,7 +126,7 @@
 							cpon_id:$(this).attr('target')
 						},
 						success : function(data) {
-							$(".chg-content").html(data);
+							$(".chg_content").html(data);
 						}
 					})
 				}if($(this).attr('name')=="update"){
@@ -148,7 +137,7 @@
 							cpon_id:$(this).attr('target')
 						},
 						success : function(data) {
-							$(".chg-content").html(data);
+							$(".chg_content").html(data);
 						}
 					})
 				}	

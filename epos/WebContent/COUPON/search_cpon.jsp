@@ -8,6 +8,35 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>searchCpon</title>
+<style>
+.titlelist {
+	font-family: '微軟正黑體';
+	font-weight: bold;
+	color: white;
+	height: 35px;
+	background: mediumseagreen;
+	padding-left: 10px;
+	font-size: 23px;
+	border-radius: 2px;
+}
+
+.formlist {
+	font-family: '微軟正黑體';
+	font-weight: bold;
+	height: 35px;
+	text-align: center;
+	font-size: 23px;
+	border-radius: 2px;
+}
+
+p {
+	margin: 30px;
+}
+
+.form-horizontal .control-label {
+	text-align: right;
+}
+</style>
 </head>
 <body>
 <!-- 錯誤表列 -->
@@ -21,73 +50,113 @@
 <!-- 					</font> -->
 <%-- 				</c:if> --%>
 
-				<h3>查詢</h3>
+	<div class="titlelist">查詢</div>
+		<div class="col-lg-12">
+		<p>
 
-				查詢單筆
-				<ul>
-					<li>
-						<FORM METHOD="post" ACTION="coupon.do" class="search_1">
-							<b>輸入折價券編號 (如CPa00001):</b> 
-							<input type="text" name="cpon_id" size="10"> 
-							<input type="button" value="送出" id="search_1">
-							<input type="hidden" name="action" value="getOne_For_Display">
-						</FORM>
-					</li>
+			<FORM METHOD="post" ACTION="coupon.do" class="search_1 form-horizontal" role="form"">
+				<div class="form-group">
+					<label class="col-lg-1 col-lg-offset-4 control-label">輸入折價券編號 (如CPa00001):</label>
+					<div class="col-lg-3">
+						<input type="text" name="cpon_id" size="10">
+					</div>	
+					<div class="col-lg-4">	 
+						<input type="button" value="送出" id="search_1">
+					</div>	
+					<input type="hidden" name="action" value="getOne_For_Display">
+				</div>	
+			</FORM>
+
 					
-					<jsp:useBean id="copSvc" scope="page" class="com.coupon.model.CouponService" />
-					
-					<li>
-						<FORM METHOD="post" ACTION="coupon.do" class="search_2">
-							<b>選擇折價券編號:</b> <select size="1" name="cpon_id">
-								<c:forEach var="copVO" items="${copSvc.all}">
-									<option value="${copVO.cpon_id}">${copVO.cpon_id}
-								</c:forEach>
-							</select> 
-							<input type="button" value="送出" id="search_2">
-							<input type="hidden" name="action" value="getOne_For_Display">
-						</FORM>
-					</li>
+		<jsp:useBean id="copSvc" scope="page" class="com.coupon.model.CouponService" />
+		
+
+			<FORM METHOD="post" ACTION="coupon.do" class="search_2 form-horizontal" role="form">
+				<div class="form-group">
+					<label class="col-lg-1 col-lg-offset-4 control-label">選擇折價券編號:</label>
+					<div class="col-lg-3">
+						<select size="1" name="cpon_id">
+							<c:forEach var="copVO" items="${copSvc.all}">
+								<option value="${copVO.cpon_id}">${copVO.cpon_id}
+							</c:forEach>
+						</select>
+					</div>
+					 <div class="col-lg-4">
+						<input type="button" value="送出" id="search_2">
+					</div>
+						<input type="hidden" name="action" value="getOne_For_Display">
+				</div>	
+			</FORM>
+		
 <%--查詢多筆 --%>
-					<p>
-					<li>
-						<FORM METHOD="post" ACTION="namesCpon.do" class="search_3">
-							<b>選擇折價券名稱:</b> <select size="1" name="cpon_name">
-								<c:forEach var="copVO" items="${copSvc.groupNam}">
-									<option value="${copVO.cpon_name}">${copVO.cpon_name}
-								</c:forEach>
-							</select> 
-							<input type="button" value="送出" id="search_3">
-							<input type="hidden" name="action" value="getNames_For_Display">
-						</FORM>
-					</li>
-					<p>
-					<li>
-						<FORM METHOD="post" ACTION="dollarCpon.do" class="search_4">
-							<b>選擇折價券金額:</b> <select size="1" name="cpon_dollar">
-								<c:forEach var="copVO" items="${copSvc.groupDol}">
-									<option value="${copVO.cpon_dollar}">${copVO.cpon_dollar}
-								</c:forEach>
-							</select> 
-							<input type="button" value="送出" id="search_4">
-							<input type="hidden" name="action" value="getDollar_For_Display">
-						</FORM>
-					</li>
-					<p>
-					<li>
-						<FORM METHOD="post" ACTION="datesCpon.do" class="search_5">
-							<b>選擇折價券日期區間:</b> <input type="date" name="release_date">
-							<input type="date" name="cpon_period"> 
-							<input type="button" value="送出" id="search_5">
-							<input type="hidden" name="action" value="getDates_For_Display">
-						</FORM>
-					</li>
-				</ul>
+		<p>
+		
+			<FORM METHOD="post" ACTION="namesCpon.do" class="search_3 form-horizontal" role="form">
+				<div class="form-group">
+					<label class="col-lg-1 col-lg-offset-4 control-label">選擇折價券名稱:</label> 
+					<div class="col-lg-3">
+						<select size="1" name="cpon_name">
+							<c:forEach var="copVO" items="${copSvc.groupNam}">
+								<option value="${copVO.cpon_name}">${copVO.cpon_name}
+							</c:forEach>
+						</select> 
+					</div>
+					<div class="col-lg-4">
+						<input type="button" value="送出" id="search_3">
+					</div>
+						<input type="hidden" name="action" value="getNames_For_Display">
+				</div>	
+			</FORM>
+	
+		<p>
+				
+			<FORM METHOD="post" ACTION="dollarCpon.do" class="search_4 form-horizontal" role="form">
+				<div class="form-group">
+					<label class="col-lg-1 col-lg-offset-4 control-label">選擇折價券金額:</label> 
+					<div class="col-lg-3">
+						<select size="1" name="cpon_dollar">
+							<c:forEach var="copVO" items="${copSvc.groupDol}">
+								<option value="${copVO.cpon_dollar}">${copVO.cpon_dollar}
+							</c:forEach>
+						</select> 
+					</div>
+					<div class="col-lg-4">
+						<input type="button" value="送出" id="search_4">
+					</div>
+					<input type="hidden" name="action" value="getDollar_For_Display">
+				</div>
+			</FORM>
+	
+		<p>
+		
+			<FORM METHOD="post" ACTION="datesCpon.do" class="search_5 form-horizontal" role="form">
+				<div class="form-group">
+					<label class="col-lg-1 col-lg-offset-4 control-label">選擇折價券日期區間:</label>
+					<div class="col-lg-1">
+						<input type="date" name="release_date">
+					</div>
+					<div class="col-lg-2">
+						<input type="date" name="cpon_period"> 
+					</div>
+					<div class="col-lg-4">
+						<input type="button" value="送出" id="search_5">
+					</div>
+					<input type="hidden" name="action" value="getDates_For_Display">
+				</div>
+			</FORM>
+
 <!--查詢全部 -->
-				<FORM METHOD="post"
-					ACTION="<%=request.getContextPath()%>/COUPON/allCpon.do">
-					<input type="button" value="查詢全部" id="search_6">
-						<input type="hidden" name="action" value="getAll_For_Display">
-				</FORM>
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/COUPON/allCpon.do" class="form-horizontal" role="form">
+				<div class="form-group">
+					<label class="col-lg-1 col-lg-offset-4 control-label">查詢全部折價券:</label>
+					<div class="col-lg-4 col-lg-offset-3">
+						<input type="button" value="查詢全部" id="search_6">
+					</div>
+					<input type="hidden" name="action" value="getAll_For_Display">
+				</div>
+			</FORM>
+		</div>		
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->				
 	<script>
 		$(function() {
 			$(':button').on('click', function() {		
@@ -98,7 +167,7 @@
 						url : search_1.attr('action'),
 						data : search_1.serialize(),
 						success : function(data) {
-							$(".chg-content").html(data);
+							$(".chg_content").html(data);
 						}
 					})
 				}else if($(this).attr('id')=="search_2"){
@@ -108,7 +177,7 @@
 	 					url : search_2.attr('action'),
 	 					data : search_2.serialize(),
 	 					success : function(data) {
-	 						$(".chg-content").html(data);
+	 						$(".chg_content").html(data);
 	 					}
 	 				})	
 				}else if($(this).attr('id')=="search_3"){
@@ -118,7 +187,7 @@
 	 					url : search_3.attr('action'),
 	 					data : search_3.serialize(),
 	 					success : function(data) {
-	 						$(".chg-content").html(data);
+	 						$(".chg_content").html(data);
 	 					}
 	 				})	
 				}else if($(this).attr('id')=="search_4"){
@@ -128,7 +197,7 @@
 	 					url : search_4.attr('action'),
 	 					data : search_4.serialize(),
 	 					success : function(data) {
-	 						$(".chg-content").html(data);
+	 						$(".chg_content").html(data);
 	 					}
 	 				})	
 				}else if($(this).attr('id')=="search_5"){
@@ -138,7 +207,7 @@
 	 					url : search_5.attr('action'),
 	 					data : search_5.serialize(),
 	 					success : function(data) {
-	 						$(".chg-content").html(data);
+	 						$(".chg_content").html(data);
 	 					}
 	 				})	
 				}else if($(this).attr('id')=="search_6"){
@@ -148,7 +217,7 @@
 	 					url : "allCpon.do",
 	 					data : {},
 	 					success : function(data) {
-	 						$(".chg-content").html(data);
+	 						$(".chg_content").html(data);
 	 					}
 	 				})	
 				}	

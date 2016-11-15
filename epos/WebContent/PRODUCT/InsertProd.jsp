@@ -9,6 +9,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>InsertProd</title>
 </head>
+<style>
+	.titlelist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: #F4A460;
+		padding-left: 10px;
+		font-size: 23px;
+		border-radius: 2px;
+	}
+	
+	p{
+		margin: 30px;	
+	}
+	
+	.btn-theme02{
+		float:center			
+	}	
+</style>
 <body>
 <!-- 				錯誤表列 -->
 	<c:if test="${not empty param.message}">
@@ -20,73 +40,133 @@
 			</ul>
 		</font>
 	</c:if>
-		<p>新增商品</p>
-	<form method="post" action="insertProd.do"
-		enctype="multipart/form-data" id="create_prod">
-		商品名稱<input type="text" name="prod_name" value="LG 液晶電視 23吋"><br>
-		廠商編號<input type="text" name="com_id" value="C00001"><br>
-		分類 <input type="text" name="prod_group" value="家電"><br>
-		定價<input type="text" name="prod_mkprice" value="6999"><br>
-		成本<input type="text" name="prod_cost" value="4000"><br>
-		庫存<input type="text" name="prod_stock" value="3"><br>
-		安全庫存<input type="text" name="prod_q_safty" value="1"><br>
-		規格<input type="text" name="prod_spec" value="Full HD"><br>
-		商品照片<input type="file" name="picture"><br> 備註<input
-			type="text" name="remark" value="檔期促銷"><br> <input
-			type="submit" value="新增"> <input type="hidden"
-			name="status" value="Y">
-	</form>
-<script type="text/JavaScript">
-$(document).ready(function() {
 	
-		$("#create_prod").on('submit',(function(e) {
-		   	e.preventDefault();
-		   	//序列化表单   
-		      var serializeData = $(this).serialize();
-		      var create_prod = $("#create_prod");
+	<div class="titlelist">新增商品</div>
+	<div class="col-lg-12">
+	<p>
+		<form method="post" action="insertProd.do" enctype="multipart/form-data" id="create_prod" class="form-horizontal" role="form">
+			<div class="form-group">
+				<label class="col-lg-1 col-lg-offset-5 control-label">商品名稱:</label>
+				<div class="col-lg-6">
+					<input type="text" name="prod_name" value="LG 液晶電視 23吋">
+				</div>	
+			</div>	
+			<div class="form-group">	
+				<label class="col-lg-1 col-lg-offset-5 control-label">廠商編號:</label>
+				<div class="col-lg-6">
+					<input type="text" name="com_id" value="C00001">
+				</div>	
+			</div>	
+			<div class="form-group">	
+				<label class="col-lg-1 col-lg-offset-5 control-label">分類:</label>
+				<div class="col-lg-6">
+					<input type="text" name="prod_group" value="家電">
+				</div>	
+			</div>	
+			<div class="form-group">	
+				<label class="col-lg-1 col-lg-offset-5 control-label">定價:</label>
+				<div class="col-lg-6">
+					<input type="text" name="prod_mkprice" value="6999">
+				</div>	
+			</div>	
+			<div class="form-group">	
+				<label class="col-lg-1 col-lg-offset-5 control-label">成本:</label>
+				<div class="col-lg-6">
+					<input type="text" name="prod_cost" value="4000">
+				</div>	
+			</div>	
+			<div class="form-group">
+				<label class="col-lg-1 col-lg-offset-5 control-label">庫存:</label>
+				<div class="col-lg-6">
+					<input type="text" name="prod_stock" value="3">
+				</div>	
+			</div>	
+			<div class="form-group">
+				<label class="col-lg-1 col-lg-offset-5 control-label">安全庫存:</label>
+				<div class="col-lg-6">
+					<input type="text" name="prod_q_safty" value="1">
+				</div>	
+			</div>	
+			<div class="form-group">
+				<label class="col-lg-1 col-lg-offset-5 control-label">規格:</label>
+				<div class="col-lg-6">
+					<input type="text" name="prod_spec" value="Full HD">
+				</div>	
+			</div>	
+			<div class="form-group">
+				<label class="col-lg-1 col-lg-offset-5 control-label">商品照片:</label>
+				<div class="col-lg-6">
+					<input type="file" name="picture"> 
+				</div>	
+			</div>	
+			<div class="form-group">
+				<label class="col-lg-1 col-lg-offset-5 control-label">備註:</label>
+				<div class="col-lg-6">
+					<input type="text" name="remark" value="檔期促銷"> 
+				</div>	
+			</div>	
+			<div class="form-group">
+				<div class="col-lg-1  col-lg-offset-5">
+					<input type="submit" value="新增" class="btn btn-success"> 
+				</div>
+				<div class="col-lg-6">
+					<input type="reset" value="清除" class="btn btn-success">
+				</div>	
+				<input type="hidden" name="status" value="Y">
+			</div>	
+		</form>
+	</div>
+	<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->	
+<script type="text/JavaScript">
 
-		      $(this).ajaxSubmit({
-		    	  
-		           type:'POST',
-		           url: create_prod.attr("action"),
-// 		           dataType: 'json', 
-		           data: serializeData,            
-   
-		           //attention!!!   
-		           contentType: false,      
-		           cache: false,             
-		           processData:false,      
-		           success:function(){
-		        	   $.ajax({
-							"type" : "post",
-							"url" : "getAllProd.do",
-							"data" : {},
-							"success" : function(data) {
-					        	   $("#rul").html(data);
-									$("#chg_new").removeAttr("class");
-									$("#chg_result").attr("class","active");
-									$("#new").attr("class","tab-pane fade");
-									$("#result").attr("class","tab-pane active");
-							},
-						});
-		           }
-// 		           beforeSubmit: function() {
-		           		//上传图片之前的处理   
-// 		           },
-// 		           uploadProgress: function (event, position, total, percentComplete){ 
-// 		               //在这里控制进度条   
-// 		           },
-// 		           error:function(data){
-// 		               alert('上传图片出错');
-// 		        	   $("#rul").html(data);
-// 						$("#chg_new").removeAttr("class");
-// 						$("#chg_result").attr("class","active");
-// 						$("#new").attr("class","tab-pane fade");
-// 						$("#result").attr("class","tab-pane active");
-// 		           }
-		       })
-		   }))
-})
+	$(document).ready(function() {
+
+		$("#create_prod").on('submit', (function(e) {
+			e.preventDefault();
+			//序列化表单   
+			var serializeData = $(this).serialize();
+			var create_prod = $("#create_prod");
+
+			$(this).ajaxSubmit({
+				type : 'POST',
+				url : create_prod.attr("action"),
+				data : serializeData,
+
+				//attention!!!   
+				contentType : false,
+				cache : false,
+				processData : false,
+				success : function() {
+					$.ajax({
+						type : "post",
+						url : "getAllProd.do",
+						data : {},
+						success : function(data) {
+							$(".result_content").html(data);
+							$("#chg_new").removeAttr("class");
+							$("#chg_result").attr("class", "active");
+							$("#new_Prod").attr("class", "tab-pane fade");
+							$("#result_Prod").attr("class", "tab-pane active");
+						},
+					});
+				}
+			// 		           beforeSubmit: function() {
+			//上传图片之前的处理   
+			// 		           },
+			// 		           uploadProgress: function (event, position, total, percentComplete){ 
+			// 		               //在这里控制进度条   
+			// 		           },
+			// 		           error:function(data){
+			// 		               alert('上传图片出错');
+			// 		        	   $("#rul").html(data);
+			// 						$("#chg_new").removeAttr("class");
+			// 						$("#chg_result").attr("class","active");
+			// 						$("#new").attr("class","tab-pane fade");
+			// 						$("#result").attr("class","tab-pane active");
+			// 		           }
+			})
+		}))
+	})
 </script>
 </body>
 </html>

@@ -64,51 +64,63 @@
 </style>
 </head>
 <body>
-
-		<table border="2">
-		<tr>
-			<th>商品編號</th>
-			<th>商品名稱</th>
-			<th>廠商編號</th>
-			<th>分類</th>
-			<th>定價</th>
-			<th>成本</th>
-			<th>庫存</th>
-			<th>安全庫存</th>
-			<th>規格</th>
-			<th>商品照片</th>
-			<th>備註</th>
-			<th>是否上架</th>
-			<th>修改</th>
-			<th>刪除</th>
-		</tr>
-		
-<c:forEach var="list" items="${list}" varStatus="count">
-		<form method="post" action="updateDeleteProd.do">
-		<tr>
-			<td>${list.prod_id}</td>
-			<td>${list.prod_name}</td>
-			<td>${list.com_id}</td>
-			<td>${list.prod_group}</td>
-			<td>${list.prod_mkprice}</td>
-			<td>${list.prod_cost}</td>
-			<td>${list.prod_stock}</td>
-			<td>${list.prod_q_safty}</td>
-			<td>${list.prod_spec}</td>
-			<td><img alt="尚無照片" src="data:image/gif;base64,${list.picture}"></td>
-			<td>${list.remark}</td>
-			<td>${list.status}</td>
-			<td><input type="button" name="action" value="update" target="${list.prod_id}" ></td>
-			<td><input type="button" name="action" value="delete" class="delete" target="${list.prod_id}"></td>
-		</tr>
-</form>	
+		<div class="titlelist">查詢結果</div>
+			<div class="col-lg-12">		
+			<p>
+				<div class="formlist">商品清單</div>
+		<table border='2' bordercolor='#CCCCFF' width='1300' class="table table-bordered table-striped  table-hover">
+		<thead>
+			<tr>
+				<th>商品編號</th>
+				<th>商品名稱</th>
+				<th>廠商編號</th>
+				<th>分類</th>
+				<th>定價</th>
+				<th>成本</th>
+				<th>庫存</th>
+				<th>安全庫存</th>
+				<th>規格</th>
+				<th>商品照片</th>
+				<th>備註</th>
+				<th>是否上架</th>
+				<th>修改</th>
+				<th>刪除</th>
+			</tr>
+		</thead>
+		<c:forEach var="list" items="${list}" varStatus="count">
+<!-- 		<form method="post" action="updateDeleteProd.do"> -->
+			<tr align='center' valign='middle'>
+				<td>${list.prod_id}</td>
+				<td>${list.prod_name}</td>
+				<td>${list.com_id}</td>
+				<td>${list.prod_group}</td>
+				<td>${list.prod_mkprice}</td>
+				<td>${list.prod_cost}</td>
+				<td>${list.prod_stock}</td>
+				<td>${list.prod_q_safty}</td>
+				<td>${list.prod_spec}</td>
+				<td><img alt="尚無照片" src="data:image/gif;base64,${list.picture}"></td>
+				<td>${list.remark}</td>
+				<td>${list.status}</td>
+				<td>
+					<button type="button" class="btn btn-success" name="action" value="update" target="${list.prod_id}">
+						<i class="fa fa-pencil"></i>
+					</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-danger" name="action" value="delete" target="${list.prod_id}">
+						<i class="fa fa-trash-o"></i>
+					</button>
+				</td>
+			</tr>
+<!-- </form>	 -->
 		
 </c:forEach>
 	</table>
-	
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->	
 	<script type="text/JavaScript">
 	$(document).ready(function() {
-		$(":button").on('click',function(){
+		$("button").on('click',function(){
 			if($(this).attr('value')=="delete"){
 				$.ajax({
 					type : "post",
@@ -118,9 +130,7 @@
 							action:"delete"
 							},
 					success :function(data) {
-						$("#rul").html(data);
-						$("#chg_result").attr("class","active");
-						$("#result").attr("class","tab-pane active");
+						$(".result_content").html(data);
 					}	
 				});
 			}else if($(this).attr('value')=="update"){
@@ -132,7 +142,7 @@
 							action:"update"
 							},
 					success :function(data) {
-						$("#rul").html(data);
+						$(".result_content").html(data);
 					}
 				});
 			}

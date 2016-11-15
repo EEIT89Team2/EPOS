@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 
 		/* 	表格標題 */
@@ -55,8 +56,7 @@
 	}
 	
 	p{
-		margin: 30px;
-	
+		margin: 30px;	
 	}
 	
 </style>
@@ -102,16 +102,16 @@
 			<td class="numeric">${list.deal_num}</td>
 			<td class="numeric">${list.shift_sum}</td>
 			<td class="numeric">
-					<button type="button" class="btn btn-success" name="action" value="update" target1="${list.date}" target2="${list.shift}">
-							<i class="fa fa-pencil"></i>
-					</button>
+				<button type="button" class="btn btn-success" name="action" value="update" target1="${list.date}" target2="${list.shift}">
+					<i class="fa fa-pencil"></i>
+				</button>
 	
 			</td>
 			<td class="numeric">
 <%-- 				<input type="button" name="action" value="delete" target1="${list.date}" target2="${list.shift}"> --%>
-					<button type="button" class="btn btn-danger">
-						<i class="fa fa-trash-o" action="delete" target1="${list.date}" target2="${list.shift}"></i>
-					</button>
+				<button type="button" class="btn btn-danger">
+					<i class="fa fa-trash-o" action="delete" target1="${list.date}" target2="${list.shift}"></i>
+				</button>
 			</td>
 					<%-- 			<input type="hidden" name="Date" value="${list.date}"> --%>
 <%-- 			<input type="hidden" name="shift" value="${list.shift}"> --%>
@@ -123,7 +123,7 @@
 </c:forEach>
 	</table>
 </div>
-
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 	<script type="text/JavaScript">
 	$(document).ready(function() {
 		

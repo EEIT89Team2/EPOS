@@ -22,11 +22,6 @@
 		background: #FFE4B5;
 		border-color:#FF59FF;
 		border-radius: 8px;
-/* 		border-style: solid; */
-	}
-
-	.nav{
-		color:#ab2222;
 	}
 
  	.main{ 
@@ -131,9 +126,9 @@
 				<div class="nav navbar-default">
 				<div class="container-fluid" style="float: right; left: -50%; position: relative">
 					<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">
-						<li id="search1"><a id="r_disc" target="search_disc.jsp" data-toggle="tab" href="#search" class="nav_a"><span class="glyphicon glyphicon-search"></span>搜尋</a></li>
-						<li id="import"><a id="c_disc" target="insertDic.jsp" data-toggle="tab" href="#new" class="nav_a"><span class="glyphicon glyphicon-file"></span>新增</a></li>
-						<li id="result"><a data-toggle="tab" href="#resolution" class="nav_a"><span class="glyphicon glyphicon-list-alt"></span>查詢結果</a></li>
+						<li id="search1"><a id="r_disc" target="search_disc.jsp" data-toggle="tab" href="#search_Dic" class="nav_a"><span class="glyphicon glyphicon-search"></span>搜尋</a></li>
+						<li id="import"><a id="c_disc" target="insertDic.jsp" data-toggle="tab" href="#new_Dic" class="nav_a"><span class="glyphicon glyphicon-file"></span>新增</a></li>
+						<li id="result"><a data-toggle="tab" href="#resolution_Dic" class="nav_a"><span class="glyphicon glyphicon-list-alt"></span>查詢結果</a></li>
 						<li><a data-toggle="tab" href="#print" class="print nav_a"><span class="glyphicon glyphicon-print" ></span>列印</a></li>
 					</ul>
 				</div>						
@@ -141,14 +136,14 @@
 			
 <!-- 						page include here -->		
 					<div class="tab-content">
-						<div id="search" class="tab-pane fade">
+						<div id="search_Dic" class="tab-pane fade">
 							<div class="chg_content main"></div>
 						</div>
-						<div id="new" class="tab-pane fade">
+						<div id="new_Dic" class="tab-pane fade">
 							<div class="insert_content main"></div>
 						</div>
-						<div id="resolution" class="tab-pane fade">
-							<div class="result-context main"></div>
+						<div id="resolution_Dic" class="tab-pane fade">
+							<div class="result_content main"></div>
 						</div>
 					</div>
 				</div>

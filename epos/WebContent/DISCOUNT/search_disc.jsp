@@ -9,9 +9,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>searchCpon</title>
 <style>
-.col-lg-1 {
-    width: 10%;
-}
+	.col-lg-1 {
+	    width: 10%;
+	}
 
 	.titlelist {
 		font-family: '微軟正黑體';
@@ -91,7 +91,7 @@
 							</div>
 						</form>
 					</div>
-
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->	
 	<script>
 	$(document).ready(function() {
 		$(":button").click(function() {
@@ -102,11 +102,11 @@
 					"url" : all.attr("action"),
 					"data" : all.serialize(),
 					"success" : function(data) {
-						$(".result-context").html(data);
+						$(".result_content").html(data);
 						$("#result").attr("class","active");
 						$("#search1").removeAttr("class");
-						$("#search").attr("class","tab-pane fade");
-						$("#resolution").attr("class","tab-pane active");
+						$("#search_Dic").attr("class","tab-pane fade");
+						$("#resolution_Dic").attr("class","tab-pane active");
 					},
 				});
 			} else if ("以折扣%數查詢" == $(this).val()) {
@@ -116,11 +116,11 @@
 					"url" : pre.attr("action"),
 					"data" : pre.serialize(),
 					"success" : function(data) {
-						$(".result-context").html(data)
+						$(".result_content").html(data)
 						$("#result").attr("class","active");
 						$("#search1").removeAttr("class");
-						$("#search").attr("class","tab-pane fade");
-						$("#resolution").attr("class","tab-pane active");
+						$("#search_Dic").attr("class","tab-pane fade");
+						$("#resolution_Dic").attr("class","tab-pane active");
 					},
 				});
 			} else if ("以折扣身份查詢" == $(this).val()) {
@@ -130,11 +130,11 @@
 					"url" : count.attr("action"),
 					"data" : count.serialize(),
 					"success" : function(data) {
-						$(".result-context").html(data)
+						$(".result_content").html(data)
 						$("#result").attr("class","active");
 						$("#search1").removeAttr("class");
-						$("#search").attr("class","tab-pane fade");
-						$("#resolution").attr("class","tab-pane active");
+						$("#search_Dic").attr("class","tab-pane fade");
+						$("#resolution_Dic").attr("class","tab-pane active");
 					},
 				});
 			} else if ("送出新增" == $(this).val()) {
@@ -149,11 +149,11 @@
 							"url" : "allDisc.do",
 							"data" : {},
 							"success" : function(data) {
-								$(".result-context").html(data);
+								$(".result_content").html(data);
 								$("#result").attr("class","active");
 								$("#import").removeAttr("class");
-								$("#new").attr("class","tab-pane fade");
-								$("#resolution").attr("class","tab-pane active");
+								$("#new_Dic").attr("class","tab-pane fade");
+								$("#resolution_Dic").attr("class","tab-pane active");
 							},
 						});
 					},

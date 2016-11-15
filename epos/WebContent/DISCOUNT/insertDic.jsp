@@ -42,28 +42,31 @@
 <!-- 							</font> -->
 <%-- 						</c:if> --%>
 					<form class="form-inline" METHOD="post" ACTION="insertDisc.do" id="insert">
-
 							<center>
-							<p>
-							<div class="form-group">
-								<label for="dis_id">　折扣身分：</label>
-								<input type=text class="form-control" name="dis_id" size="10" id="dis_id" >
-							</div>
-							<p>
-							<div class="form-group">
-								<label for="dis_price">　折扣%數：</label>
-								<input type="text" class="form-control" name="dis_price" placeholder="1.0" size="10" id="dis_price">
-							</div>
-							<p>
-							<div class="veri_id"></div><div class="veri_price"></div>
-							<div class="form-group">
-							<input type="button" value="送出新增" class="btn btn-warning">
-							<input type="reset" value="清除" class="btn btn-warning">
-							</div>
+								<p>
+								<div class="form-group">
+									<label for="dis_id">　折扣身分：</label>
+									<input type=text class="form-control" name="dis_id" size="10" id="dis_id" >
+								</div>
+								<p>
+								<div class="form-group">
+									<label for="dis_price">　折扣%數：</label>
+									<input type="text" class="form-control" name="dis_price" placeholder="1.0" maxlength="4" size="10" id="dis_price">
+								</div>
+								<p>
+								<div class="veri_id"></div><div class="veri_price"></div>
+								<div class="form-group">
+									<div class="col-lg-6">
+										<input type="button" value="送出新增" class="btn btn-warning">
+									</div>	
+									<div class="col-lg-5 col-lg-offset-1">
+										<input type="reset" value="清除" class="btn btn-warning">
+									</div>
+								</div>
 							</center>
-
 					</form>
 				</div>
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->				
 <script type="text/JavaScript">
 $(document).ready(function() {
 // ----------------------------------------	新增----------------------------------------		
@@ -80,11 +83,11 @@ $(document).ready(function() {
 					"url" : "allDisc.do",
 					"data" : {},
 					"success" : function(data) {
-						$(".result-context").html(data);
+						$(".result_content").html(data);
 						$("#result").attr("class","active");
 						$("#import").removeAttr("class");
-						$("#new").attr("class","tab-pane fade");
-						$("#resolution").attr("class","tab-pane active");
+						$("#new_Dic").attr("class","tab-pane fade");
+						$("#resolution_Dic").attr("class","tab-pane active");
 					},
 				});
 			},

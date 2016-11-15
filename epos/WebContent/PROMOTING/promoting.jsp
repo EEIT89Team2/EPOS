@@ -26,11 +26,16 @@
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
 <style>
+	.navbar-default {
+		background: #CCFFCC;
+		border-color: #CCFF99;
+		border-radius: 8px;
+	}
 
  	.main{ 
   		height: 800px;  
  		border-radius: 8px; 
- 		background:	#CCFFCC; 
+ 		background:	#FFE4E1; 
  	}
  	
  	.titlelist {
@@ -160,32 +165,38 @@
 	<!--sidebar end--> 
 	<section id="main-content"><section class="wrapper">
 	
-	<nav class="nav navbar-default">
 		<div class="row mt">
-		<ul class="nav navbar-nav">
-			<li id="search_prom"><a id="r_prom" target="searchProm.jsp" data-toggle="tab" href="#search"><span class="glyphicon glyphicon-search"></span>搜尋</a></li>
-			<li id="insert_prom"><a id="c_prom" target="addProm.jsp" data-toggle="tab" href="#new"><span class="glyphicon glyphicon-file"></span>新增</a></li>
-			<li id="result_prom"><a data-toggle="tab" href="#result"><span class="glyphicon glyphicon-list-alt" ></span>查詢結果</a></li>			
-			<li><a data-toggle="tab" href="#print" class="print"><span class="glyphicon glyphicon-print" ></span>列印</a></li>
-		</ul>
-	</nav>
-
-		<div class="tab-content">
-			<div id="search" class="tab-pane fade">
-				<div class="search-context"></div>
-			</div>
-			<div id="new" class="tab-pane fade">
-				<div class="insert-context"></div>
-			</div>
-			<div id="result" class="tab-pane fade">
-				<div class="result-context"></div>
+			<div class="col-lg-12">
+				<div class="nav navbar-default">
+					<div class="container-fluid"
+						style="float: right; left: -50%; position: relative">
+						<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">
+							<li id="search_prom"><a id="r_prom" target="searchProm.jsp" data-toggle="tab" href="#search_Pro"><span class="glyphicon glyphicon-search"></span>搜尋</a></li>
+							<li id="insert_prom"><a id="c_prom" target="addProm.jsp" data-toggle="tab" href="#new_Pro"><span class="glyphicon glyphicon-file"></span>新增</a></li>
+							<li id="result_prom"><a data-toggle="tab" href="#result_Pro"><span class="glyphicon glyphicon-list-alt" ></span>查詢結果</a></li>			
+							<li><a data-toggle="tab" href="#print" class="print"><span class="glyphicon glyphicon-print" ></span>列印</a></li>
+						</ul>
+					</div>
+				</div>
+	
+				<div class="tab-content">
+					<div id="search_Pro" class="tab-pane fade">
+						<div class="chg_content main"></div>
+					</div>
+					<div id="new_Pro" class="tab-pane fade">
+						<div class="insert_content main"></div>
+					</div>
+					<div id="result_Pro" class="tab-pane fade">
+						<div class="result_content main"></div>
+					</div>
+				</div>
 			</div>
 		</div>
+	</section> </section> 
+	</section>
 
-	</section> </section> </section>
 
-
-
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
 		!window.jQuery&& document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
@@ -203,16 +214,16 @@
 	$(document).ready(function() {
 		
 		$('#r_prom').on('click', function() {						
-			var r_web = $(this).attr('target');
-			$.get(r_web, function(data) {
-				$('.search-context').html(data);
+			var includeWeb = $(this).attr('target');
+			$.get(includeWeb, function(data) {
+				$('.chg_content').html(data);
 			})		
 		})
 		
 		$('#c_prom').on('click', function() {						
-			var c_web = $(this).attr('target');
-			$.get(c_web, function(data) {
-				$('.insert-context').html(data);
+			var includeWeb = $(this).attr('target');
+			$.get(includeWeb, function(data) {
+				$('.insert_content').html(data);
 			})		
 		})
 				

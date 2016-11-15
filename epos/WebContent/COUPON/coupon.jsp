@@ -29,11 +29,6 @@
 		background: #FFE4B5;
 		border-color:#FF59FF;
 		border-radius: 8px;
-/* 		border-style: solid; */
-	}
-
-	.nav{
-		color:#ab2222;
 	}
 
  	.main{ 
@@ -154,30 +149,37 @@
 	</div>
 	</aside>
 	<!--sidebar end--> 
-	<section id="main-content"> 
-	<section class="wrapper"> 
-	<div class="row mt">
-	<div class="col-lg-12">
-	<div class="nav navbar-default">
-		<div class="container-fluid" style="float: right; left: -50%; position: relative">
-			<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">
-				<li><a id="r_coup" target="search_cpon.jsp" href="javascript: void(0)"><span class="glyphicon glyphicon-search"></span>範圍查詢</a></li>
-				<li><a id="c_coup" target="addCpon.jsp"  href="javascript: void(0)"><span class="glyphicon glyphicon-file"></span>新增</a></li>
-				<li><a id="a_coup" target="all.jsp" href="javascript: void(0)"><span class="glyphicon glyphicon-list-alt" ></span>查詢全部</a></li>
-				<li><a id="print" href="javascript: void(0)"><span class="glyphicon glyphicon-print" ></span>列印</a></li>
-			</ul>
-		</div>	
-	</div>
-
-
-		<div class="chg-content">
-<!-- 			頁面載入點 -->
+	<section id="main-content"><section class="wrapper"> 
+		<div class="row mt">
+			<div class="col-lg-12">
+			<div class="nav navbar-default">
+				<div class="container-fluid" style="float: right; left: -50%; position: relative">
+					<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">
+						<li><a id="r_coup" target="search_cpon.jsp" href="#search_Cou"  data-toggle="tab"><span class="glyphicon glyphicon-search"></span>範圍查詢</a></li>
+						<li><a id="c_coup" target="addCpon.jsp"  href="#new_Cou"  data-toggle="tab"><span class="glyphicon glyphicon-file"></span>新增</a></li>
+						<li><a id="a_coup" target="all.jsp" href="#resolution_Cou"  data-toggle="tab"><span class="glyphicon glyphicon-list-alt" ></span>查詢全部</a></li>
+						<li><a id="print" href="#print"  data-toggle="tab"><span class="glyphicon glyphicon-print" ></span>列印</a></li>
+					</ul>
+				</div>	
+			</div>
+	
+<!--page include here -->		
+				<div class="tab-content">
+					<div id="search_Cou" class="tab-pane fade">
+						<div class="chg_content main"></div>
+					</div>
+					<div id="new_Cou" class="tab-pane fade">
+						<div class="insert_content main"></div>
+					</div>
+					<div id="resolution_Cou" class="tab-pane fade">
+						<div class="result_content main"></div>
+					</div>
+				</div>	
+			</div>
 		</div>
-
-	</div>
-	</div>
-	</section></section> </section>
-
+		</section></section> 
+	</section>
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
 		!window.jQuery&& document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
@@ -196,19 +198,19 @@
 		$(function() {
 			$('a').on('click', function() {
 				if($(this).attr('target')=="addCpon.jsp"){							
-					var c = $(this).attr('target');
-					$.get(c, function(data) {
-						$('.chg-content').html(data);
+					var includeWeb = $(this).attr('target');
+					$.get(includeWeb, function(data) {
+						$('.insert_content').html(data);
 					})
 				}else if($(this).attr('target')=="search_cpon.jsp"){
-					var c = $(this).attr('target');
-					$.get(c, function(data) {
-						$('.chg-content').html(data);
+					var includeWeb = $(this).attr('target');
+					$.get(includeWeb, function(data) {
+						$('.chg_content').html(data);
 					})	
 				}else if($(this).attr('target')=="all.jsp"){
-					var c = $(this).attr('target');
-					$.get(c, function(data) {
-						$('.chg-content').html(data);
+					var includeWeb = $(this).attr('target');
+					$.get(includeWeb, function(data) {
+						$('.result_content').html(data);
 					})	
 				}		
 			})

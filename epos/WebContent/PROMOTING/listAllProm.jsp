@@ -62,10 +62,11 @@
 </style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>促銷商品清單</title>
 </head>
 <body>
-<center>
+
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font color='red'>請修正以下錯誤:
@@ -76,54 +77,54 @@
 	</ul>
 	</font>
 </c:if>
- 
-<table border='1' bordercolor='#CCCCFF' width='800'>
-	<tr>
-		<th>促銷品號</th>
-		<th>促銷品名</th>
-		<th>活動起始日</th>
-		<th>活動截止日</th>
-		<th>備註</th>
-		<th>修改</th>
-		<th>查詢</th>
-	</tr>
-	
-	<c:forEach var="PromVO" items="${list}">	
-		<tr align='center' valign='middle'>
-			<td>${PromVO.pro_prod_id}</td>
-			<td>${PromVO.pro_prod_name}</td>
-			<td>${PromVO.pro_begin}</td>
-			<td>${PromVO.pro_end}</td>
-			<td>${PromVO.pro_neirong}</td>
 
-        		<td>
-<%-- 					<FORM METHOD="post"		ACTION="<%=request.getContextPath()%>/PROMOTING/allForUpdateProm.do"> --%>
-						<input type="button" value="修改"  target1="${PromVO.pro_prod_id}" target2="${PromVO.pro_begin}"> 
-<%-- 						<input type="hidden" name="pro_prod_id" value="${PromVO.pro_prod_id}">  --%>
-<%-- 						<input type="hidden" name="pro_begin" value="${PromVO.pro_begin}">  --%>
-<!-- 						<input type="hidden" name="action" value="getOne_For_Update"> -->
-<!-- 					</FORM> -->
-				</td>
-				<td>
-<%-- 					<FORM METHOD="post"		ACTION="<%=request.getContextPath()%>/PROMOTING/deleteProm.do"> --%>
-						<input type="button" value="刪除" target1="${PromVO.pro_prod_id}" target2="${PromVO.pro_begin}"> 
-<%-- 						<input type="hidden" name="pro_prod_id" value="${PromVO.pro_prod_id}">  --%>
-<%-- 						<input type="hidden" name="pro_begin" value="${PromVO.pro_begin}">  --%>
-<!-- 						<input type="hidden" name="action" value="delete"> -->
-<!-- 					</FORM> -->
-				</td>
-	 	</tr>
-	 </c:forEach>
-</table>
-</center>
-<jsp:include page="/COMMON/footer_prom.jsp" />
 
-	<a href="../index.jsp">回首頁</a>
-	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
+	<div class="titlelist">查詢結果</div>
+	<div class="col-lg-12">
+		<p>
+		<div class="formlist">折扣清單</div>
+		<table border='1' bordercolor='#CCCCFF' width='800'
+			class="table table-bordered table-striped  table-hover">
+			<thead>
+				<tr>
+					<th>促銷品號</th>
+					<th>促銷品名</th>
+					<th>活動起始日</th>
+					<th>活動截止日</th>
+					<th>備註</th>
+					<th>修改</th>
+					<th>查詢</th>
+				</tr>
+			</thead>
 
+			<c:forEach var="PromVO" items="${list}">
+				<tr align='center' valign='middle'>
+					<td>${PromVO.pro_prod_id}</td>
+					<td>${PromVO.pro_prod_name}</td>
+					<td>${PromVO.pro_begin}</td>
+					<td>${PromVO.pro_end}</td>
+					<td>${PromVO.pro_neirong}</td>
+
+					<td>
+						<button type="button" class="btn btn-success" target1="${PromVO.pro_prod_id}" target2="${PromVO.pro_begin}" value="修改">
+							<i class="fa fa-pencil"></i>
+						</button>
+					</td>
+					<td>
+						<button type="button" class="btn btn-danger" target1="${PromVO.pro_prod_id}" target2="${PromVO.pro_begin}" value="刪除">
+							<i class="fa fa-trash-o"></i>
+						</button>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
+
+
+	<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 	<script type="text/JavaScript">
 	$(document).ready(function() {
-		$(":button").on('click',function(){
+		$("button").on('click',function(){
 			if($(this).val()=="刪除"){
 				$.ajax({
 					type : "post",
@@ -133,7 +134,7 @@
 						pro_begin:$(this).attr('target2')
 					},
 					success :function(data) {
-						$(".result-context").html(data);
+						$(".result_content").html(data);
 					}	
 				});
 			}else if($(this).val()=="修改"){
@@ -145,7 +146,7 @@
 						pro_begin:$(this).attr('target2')
 					},
 					success :function(data) {
-						$(".result-context").html(data);
+						$(".result_content").html(data);
 					}
 				});
 			}

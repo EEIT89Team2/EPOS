@@ -68,8 +68,8 @@
 <div class="titlelist">查詢結果</div>
 <div class="col-lg-12">
  <p>
-	<div class="formlist">折價券</div>
-		<table border="2" bordercolor='#CCCCFF' width='800' class="table table-bordered table-striped  table-hover">
+	<div class="formlist">折價券清單</div>
+		<table border="2" bordercolor='#CCCCFF' width='1000' class="table table-bordered table-striped  table-hover">
 		<thead><tr>
 			<th>折價券編號</th>
 			<th>折價券名稱</th>
@@ -106,7 +106,7 @@
 	</table>
 
 </div>
-
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 	<script>
 		$(function() {
 			$('button').on('click', function() {		
@@ -118,7 +118,7 @@
 							cpon_id:$(this).attr('target')
 						},
 						success : function(data) {
-							$(".chg-content").html(data);
+							$(".result_content").html(data);
 						}
 					})
 				}if($(this).attr('name')=="update"){
@@ -129,7 +129,7 @@
 							cpon_id:$(this).attr('target')
 						},
 						success : function(data) {
-							$(".chg-content").html(data);
+							$(".result_content").html(data);
 						}
 					})
 				}	

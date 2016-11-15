@@ -22,9 +22,7 @@
 		background: #99CC99;
 		border-color:#CCFF99;
 		border-radius: 8px;
-/* 		border-style: solid; */
 	}
-
 
  	.main{ 
   		height: 800px;  
@@ -45,7 +43,20 @@
 
 	p{
 		margin: 20px;	
-	} 
+	}
+	
+	.formlist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		height: 35px;
+		text-align: center;
+		font-size: 23px;
+		border-radius: 2px;
+	}
+	
+	.form-horizontal .control-label { 
+	     text-align: right; 
+	 }  
 </style>
 </head>
 <body>
@@ -179,57 +190,49 @@
 
 					<div class="titlelist">查詢</div>
 					<div class="col-lg-12 main">
-					<p>
-						<form method="post" action="getOneShiftre.do"
-							class="oneshift form-horizontal style-form">
-							<div class="col-lg-4"></div>
+						<p>
+
+						<form method="post" action="getOneShiftre.do" class="oneshift form-horizontal style-form">
 							<div class="form-group">
-								<label class="col-lg-1 control-label" for="date">依班別報表搜尋</label>
+								<label class="col-lg-offset-3 col-lg-1 control-label">依班別報表搜尋</label>
+								<label class="col-lg-1 control-label" for="date1">日期</label> 
 								<div class="col-lg-1">
-									<label class="control-label" for="date">日期</label> <input
-										type="date" name="Date" id="date">
+									<input type="date" name="Date" id="date1">
 								</div>
+								<label class="control-label col-lg-1" for="shift"> 班別</label>
 								<div class="col-lg-1">	
-								<label class="control-label" for="shift"> 班別</label>
-									<Select name="shift" id="shift">
+									<Select name="shift" id="shift" class="form-control">
 										<option value="A">A</option>
 										<option value="B">B</option>
 									</Select>
 								</div>
-								<div class="col-lg-2">
-									<input type="button" value="搜尋" name='getOne'
-										class="btn btn-success">
+								<div class="col-lg-4">
+									<input type="button" value="搜尋" name='getOne' class="btn btn-success">
 								</div>
 							</div>
 						</form>
 
-						<form method="post" action="getAllShiftre.do"
-							class="form-horizontal style-form">
-							<div class="col-lg-4"></div>
+						<form method="post" action="getAllShiftre.do" class="form-horizontal style-form">
+
 							<div class="form-group">
-								<label class="col-lg-1 control-label" for="date">查詢全部班別報表(刪除.修改)</label>
-							<div class="col-lg-2"></div>	
-								<div class="col-lg-2">
-									<input type="button" value="搜尋" name='getAll'
-										class="btn btn-success">
+								<label class="col-lg-offset-3 col-lg-1 control-label">查詢全部班別報表(刪除.修改)</label>
+								<div class="col-lg-offset-4 col-lg-4">
+									<input type="button" value="搜尋" name='getAll' class="btn btn-success">
 								</div>
 							</div>
 						</form>
 
-						<form method="post" action="getShiftreByDate.do"
-							class="shiftbydate form-horizontal style-form">
-							<div class="col-lg-4"></div>
+						<form method="post" action="getShiftreByDate.do" class="shiftbydate form-horizontal style-form">
+
 							<div class="form-group">
-								<label class="col-lg-1 control-label" for="date">依照日期查詢</label>
-								<label class="col-lg-1 control-label">日期</label>
+								<label class="col-lg-offset-3 col-lg-1 control-label">依照日期查詢</label>
+								<label class="col-lg-1 control-label" for="date2">日期</label>
 
 								<div class="col-lg-1">
-									<input type="date" name="Date">
+									<input type="date" name="Date" id="date2">
 								</div>
-								<div class="col-lg-2">
-									<input type="button" value="搜尋" name='getOneByDate'
-										class="btn btn-success">
-									<!-- 							<input type="hidden" name="action" value="selectByDate"> -->
+								<div class="col-lg-offset-2 col-lg-4">
+									<input type="button" value="搜尋" name='getOneByDate' class="btn btn-success">
 								</div>
 							</div>
 						</form>

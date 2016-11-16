@@ -35,7 +35,8 @@
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
+			<li><a class="logout"
+				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -50,19 +51,18 @@
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a class="active"
-				href="<%=request.getContextPath()%>/index.jsp"> <i
+			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp"> <i
 					class="fa fa-dashboard"></i> <span>index</span>
 			</a></li>
 
-			<li class="sub-menu"><a href="javascript:;"> <i
+			<li class="sub-menu"><a href="javascript:;" class="active"> <i
 					class="fa fa-desktop"></i> <span>基本資料維護</span>
 			</a>
 				<ul class="sub">
 					<li><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/EMPLOYEE/employee.jsp">員工資料維護</a></li>
-					<li><a
+					<li class="active"><a
 						href="<%=request.getContextPath()%>/COMPANY/company.jsp">廠商資料維護</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
@@ -127,55 +127,75 @@
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
-	</aside> <!--sidebar end--> 
-	<section id="main-content"> 
-	<section class="wrapper">
+	</aside> <!--sidebar end--> <section id="main-content"> <section
+		class="wrapper">
 
 	<div class="row mt">
-		<%-- 錯誤表列 --%>
-		<c:if test="${not empty param.message}">
-			<font color='red'>請修正以下錯誤:
-				<ul>
-					<c:forEach var="message" items="${param.message}">
-						<li>${message}</li>
-					</c:forEach>
-				</ul>
-			</font>
-		</c:if>
-		<h1>COMPANY</h1>
+		<nav class="nav navbar-default">
+		<div class="container-fluid"
+			style="float: right; left: -45%; position: relative;">
+			<ul class="nav navbar-nav">
+				<li><a style="background-color: rgba(224, 224, 224, 0.7);">搜尋</a></li>
+				<li><a href="addCom.jsp">新增</a></li>
+				<li><a href="AllCom.jsp">查詢結果</a></li>
+			</ul>
+		</div>
+		</nav>
+		<div class="col-lg-6"
+			style="float: right; left: -20%; position: relative;">
+			<div class="form-panel">
+				<h4 class="mb">
+					<i class="fa fa-angle-right"></i> 查詢
+				</h4>
+				<%-- 錯誤表列 --%>
+				<c:if test="${not empty param.message}">
+					<font color='red'>請修正以下錯誤:
+						<ul>
+							<c:forEach var="message" items="${param.message}">
+								<li>${message}</li>
+							</c:forEach>
+						</ul>
+					</font>
+				</c:if>
 
-		<form method="post" action="getOneCom.do">
-			<p>依廠商編號搜尋</p>
-			<input type="text" name="com_id"> <input type="submit"
-				value="搜尋">
-		</form>
-		<hr>
-
-		<form method="post" action="getAllCom.do">
-			<p>查詢全部廠商(刪除.修改)</p>
-			<input type="submit" value="搜尋">
-		</form>
-		<hr>
-
-		<form method="post" action="insertCom.do"
-			enctype="multipart/form-data">
-			<p>新增廠商</p>
-			名稱<input type="text" name="com_name" value="龍祥電子"><br>
-			統一編號<input type="text" name="com_um" value="33221354"><br>
-			地址 <input type="text" name="com_addr" value="台北市松江路83巷5號"><br>
-			電子信箱<input type="text" name="com_mail" value="dadaa@gmail.com"><br>
-			電話<input type="text" name="com_phone" value="0988456877"><br>
-			照片<input type="file" name="picture"><br> 修改人<input
-				type="text" name="key_id" value="E00005"><br> <input
-				type="submit" value="新增">
-		</form>
-		<hr>
-
-		<form method="post" action="getComByName.do">
-			<p>廠商名稱關鍵字查詢</p>
-			<input type="text" name="com_name"><br> <input
-				type="submit" value="搜尋">
-		</form>
+				<form method="post" action="getOneCom.do"
+					class="form-horizontal style-form">
+					<div class="form-group">
+						<label class="col-sm-5 col-sm-3 control-label">依廠商編號搜尋</label>
+						<div class="col-sm-3">
+							<input type="text" name="com_id">
+						</div>
+						<div class="col-sm-4">
+							<input type="submit" value="依廠商編號搜尋"
+								class="btn btn-round btn-theme03">
+						</div>
+					</div>
+				</form>
+				<form method="post" action="getComByName.do"
+					class="form-horizontal style-form">
+					<div class="form-group">
+						<label class="col-sm-5 col-sm-3 control-label">依廠商名稱搜尋</label>
+						<div class="col-sm-3">
+							<input type="text" name="com_name"><br>
+						</div>
+						<div class="col-sm-4">
+							<input type="submit" value="依廠商名稱搜尋"
+								class="btn btn-round btn-theme03">
+						</div>
+					</div>
+				</form>
+				<form method="post" action="getAllCom.do"
+					class="form-horizontal style-form">
+					<div class="form-group">
+						<label class="col-sm-5 col-sm-3 control-label">查詢全部</label>
+						<div class="col-sm-3"></div>
+						<div class="col-sm-4">
+							<input type="submit" value="查詢全部" class="btn btn-round btn-theme03">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 	</section> </section> </section>
 

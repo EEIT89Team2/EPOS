@@ -3,6 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="java.util.*"%>
+<%@ page import="com.order.model.*"%>
+
+<%
+ 	OrderService ordSvc = new OrderService();
+ 	List<OrderVO> list = ordSvc.getAll();
+ 	pageContext.setAttribute("list",list);
+%>
 
 <html>
 <head>
@@ -11,7 +19,8 @@
 
 </head>
 <body>
-
+<section id="container"> <section class="wrapper">
+	<div class="row mt">
 		<table border="2">
 		<tr>
 			<th>訂單編號 </th>
@@ -59,6 +68,8 @@
 	
 	<a href="../index.jsp">回首頁</a>
 	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
+</div>
 
+	</section> </section>
 </body>
 </html>

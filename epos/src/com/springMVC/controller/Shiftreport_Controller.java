@@ -44,7 +44,7 @@ public class Shiftreport_Controller {
 	
 
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/getOneShiftre.do")
+	@RequestMapping(method = RequestMethod.POST, value = "/SHIFTREPORT/getOneShiftre.do")
 	public String getOneShiftre(ModelMap model,
 			@RequestParam("Date") Date date,
 			@RequestParam("shift") String shift
@@ -78,7 +78,7 @@ public class Shiftreport_Controller {
 		return "/SHIFTREPORT/AllShiftre";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/getAllShiftre.do")
+	@RequestMapping(method = RequestMethod.POST, value = "/SHIFTREPORT/getAllShiftre.do")
 	public String getAllShiftre(ModelMap model) {
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 		List list = shiftreSrv.getAll();
@@ -93,7 +93,7 @@ public class Shiftreport_Controller {
 	}
 	
 
-	@RequestMapping(method = RequestMethod.POST,value = "/insertShiftre.do")
+	@RequestMapping(method = RequestMethod.POST,value = "/SHIFTREPORT/insertShiftre.do")
 	public String insertShiftre(ModelMap model,HttpServletRequest request) throws Exception, Exception {
 		
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
@@ -138,7 +138,7 @@ public class Shiftreport_Controller {
 
 
 
-	@RequestMapping(method = RequestMethod.POST, value = "/getShiftreByDate.do")
+	@RequestMapping(method = RequestMethod.POST, value = "/SHIFTREPORT/getShiftreByDate.do")
 	public String getShiftreByDate(ModelMap model,HttpServletRequest request,
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 		

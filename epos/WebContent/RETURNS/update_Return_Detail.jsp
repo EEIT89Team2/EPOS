@@ -33,6 +33,11 @@
 	a{
 		margin-left: 30px;
 	}
+	
+	span{
+		color: red;
+		font-family: 微軟正黑體;
+	} 
 </style>
 
 
@@ -55,7 +60,7 @@
 	<div class="form-group">
     	<label class="col-sm-4 control-label">退貨單編號:</label>
     	<div class="col-sm-5">
-      		<input type="text" class="form-control" name="ret_id" value="${list.rtnListVO.ret_id}"/>
+      		<input type="text" class="form-control" name="ret_id" value="${list.rtnListVO.ret_id}" disabled="disabled"/>
     	</div>
   	</div>
 	<div class="form-group">
@@ -67,7 +72,8 @@
 	<div class="form-group">
     	<label class="col-sm-4 control-label">退貨數量:</label>
     	<div class="col-sm-5">
-      		<input type="text" class="form-control" name="prod_quantity" value="${list.prod_quantity}"/>
+      		<input id="quantity" type="text" class="form-control" name="prod_quantity" value="${list.prod_quantity}"/>
+      		<span class="MsgError"></span>
     	</div>
   	</div>
 	<div class="form-group">
@@ -91,5 +97,29 @@
 	<a id="back" href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>
 
 
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+		!window.jQuery
+				&& document
+						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
+	</script>
+	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
+		<script type="text/javascript">
+	
+	$(document).ready(function(){
+
+            var rule = /^\d{1,3}$/;
+            $('#quantity').blur(function(){
+            	if(rule.test($(this).val())){
+                    $("span").text('')
+                    $(this).css("border-color","green")
+                }else{
+                    $("span").html('格式錯誤,請重新輸入')
+                    $(this).css("border-color","red")
+                }
+            })
+        })
+	</script>
 </body>
 </html>

@@ -1,9 +1,13 @@
 package com.springMVC.controller;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.discount.model.DiscountService;
 import com.discount.model.DiscountVO;
+import gvjava.org.json.JSONArray;
 
 @Controller
 public class Disc_Controller  {
@@ -105,30 +110,77 @@ public class Disc_Controller  {
 			/*************************** 2.永續層存取 ***************************************/
 				
 				discVO = DiscSvc.addDisc(dis_id, price);
-				List<DiscountVO> list = new ArrayList<DiscountVO>();
+				List<DiscountVO> list = new LinkedList<DiscountVO>();
 				list.add(discVO);
-				
-				model.addAttribute("list", list);
-				
+								
 			/*************************** * 3.完成,準備轉交(Send the Success view) ***********/				
 
-				return "/DISCOUNT/listAllDic.jsp";
+				req.getSession().setAttribute("list", list);
+				return "redirect:/DISCOUNT/listAllDic.jsp";
 			}
-//按下修改 轉交到修改頁面	
+////按下修改 轉交到修改頁面	
+//			
+//			@RequestMapping(method = RequestMethod.POST,value = "/DISCOUNT/allForUpdateDisc.do")
+//			public String DiscAll(ModelMap model,HttpServletRequest req){
+//			/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 ************************/
+//				String dis_id = new String(req.getParameter("dis_id"));
+//			/*************************** 2.永續層存取 ***************************************/
+//				
+//				DiscountVO discVO = DiscSvc.getOneDisc(dis_id);
+//			/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
+//
+//				model.addAttribute("discVO",discVO);
+//				return "/DISCOUNT/updateDic";
+//
+//			}
 			
-			@RequestMapping(method = RequestMethod.POST,value = "/DISCOUNT/allForUpdateDisc.do")
-			public String DiscAll(ModelMap model,HttpServletRequest req){
-			/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 ************************/
-				String dis_id = new String(req.getParameter("dis_id"));
+			//查詢全部(json)
+//			@RequestMapping(method = RequestMethod.POST, value = "/DISCOUNT/alljson.do")
+//			public void getAllDiscJson(ModelMap model,HttpServletResponse resp) throws Exception {	
+//			/*************************** * 接收請求參數 - 輸入格式的錯誤處理 *************************/
+//				List<DiscountVO> list = DiscSvc.getAll();
+//				List l1 = new LinkedList();
+//				for(DiscountVO vo:list){
+//					Map m1 = new HashMap();
+//					m1.put("dis_id", vo.getDis_id());
+//					m1.put("dis_price", vo.getDis_price());
+//					l1.add(m1);
+//				}
+//				resp.setHeader("content-type","text/html;charset=utf-8");
+//				JSONArray jsonall = new JSONArray(l1);
+//				PrintWriter out = resp.getWriter();
+//				out.print(jsonall);
+//						
+//			/*************************** * 完成,準備轉交(Send the Success view) ***********/
+//						return "/DISCOUNT/listAllDic";
+			
+//				}
+			
+			// 輸入折價券編號
+			
+			
+			@RequestMapping(method = RequestMethod.POST, value = "/DISCOUNT/GroupByDisc.do")
+			public String getOneDic(@RequestParam("dis_price") float dis_price, ModelMap model) {
+				/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
+				List<String> errorMsgs = new LinkedList<String>();
+				model.addAttribute("errorMsgs", errorMsgs);
+
+					
 			/*************************** 2.永續層存取 ***************************************/
-				
-				DiscountVO discVO = DiscSvc.getOneDisc(dis_id);
+						
+						List<DiscountVO> list = new ArrayList<DiscountVO>();
+						list = DiscSvc.findByPrice(dis_price);
+
+						if (!errorMsgs.isEmpty()) {
+							model.addAttribute("message", errorMsgs);
+							return "redirect:search_disc.jsp";
+						}
+
 			/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
-
-				model.addAttribute("discVO",discVO);
-				return "/DISCOUNT/updateDic";
-
-			}
+						
+						model.addAttribute("list", list);				
+						return "/DISCOUNT/listAllDic";				
+				}
 			
 //送出修改
 			@RequestMapping(method = RequestMethod.POST,value = "/DISCOUNT/updateDisc.do")

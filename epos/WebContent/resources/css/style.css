@@ -327,7 +327,7 @@ ul.sidebar-menu li ul.sub li a:hover {
 }
 
 ul.sidebar-menu li ul.sub li.active a {
-    color: #f0ad4e;
+    color: white;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -2278,10 +2278,6 @@ label {
     background-position: center center;
 }
 
-.main {
-    height: 230px;
-    border-radius: 8px;
-    background: #ECFFFF;
-}
+
 
 

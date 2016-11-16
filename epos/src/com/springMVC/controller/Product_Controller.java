@@ -1,10 +1,13 @@
 package com.springMVC.controller;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.Base64;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.product.model.ProdService;
 import com.product.model.ProdVO;
+
+import gvjava.org.json.JSONObject;
 
 /**
  * Servlet implementation class Company_Servlet
@@ -153,7 +158,7 @@ System.out.println(u);
 	}
 
 	
-	@RequestMapping(method = RequestMethod.POST,value ={"PRODUCT/updateDeleteProd.do","/PRODUCT/updateDeleteProd.do"})
+	@RequestMapping(method = RequestMethod.POST,value = "/PRODUCT/updateDeleteProd.do")
 	public String updateDeleteProd(ModelMap model,HttpServletRequest request,
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 			@RequestParam("action")String action,
@@ -166,7 +171,7 @@ System.out.println(u);
 				model.addAttribute("prodVO", prodVO);
 				return "/PRODUCT/UpdateProd";
 			}
-
+System.out.println(1);
 			if("delete".equals(action)){
 				
 				prodSrv.delete(prod_id);
@@ -286,6 +291,51 @@ System.out.println(u);
 		model.addAttribute("lessProdlist", lessProdlist);
 		return "/ANALYSIS/getLessProdDemo";
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/ANDROID/getProdFromAndroid")
+	public void getProdFromAndroid(@RequestParam("prod_id") String prod_id,HttpServletResponse response,ModelMap model) {
+		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
+		
+		/*************************** 2.永續層存取 ***************************************/
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("content-type","text/html;charset=UTF-8");
+		ProdVO prodVO = prodSrv.getOne(prod_id);
+
+			if (prodVO == null) {
+				 try {
+					PrintWriter out = response.getWriter();
+					out.print("無資料");
+				 } catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			}else if(prodVO != null){
+			String prodJson=null;
+			JSONObject json = new JSONObject(prodVO);
+			prodJson = json.toString(); 
+			System.out.println(prodJson);
+
+		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
+			
+				try {
+					PrintWriter out = response.getWriter();
+//					out.print("<html>");
+//					out.print("<head>");
+//					out.print("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+//					out.print("</head>");
+//					out.print("<body>");
+					out.print(prodJson);
+//					out.write(prodJson);
+//					out.print("</body>");
+//					out.print("</html>");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			
+			}
+
+	}
+
 }
 
 

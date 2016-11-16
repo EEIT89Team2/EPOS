@@ -30,8 +30,7 @@ print(text)
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Bootstrap core CSS -->
-<!-- <link href="../resources/css/bootstrap.min.css" rel="stylesheet"> -->
-<!-- <link href="../resources/css/bootstrap-theme.min.css" rel="stylesheet"> -->
+
 <link href="<c:url value="../resources/css/bootstrap.css" />"
 	rel="stylesheet">
 <!--external css-->
@@ -50,17 +49,6 @@ print(text)
 <title>退貨單</title>
 
 <style>
-
-	.titledetail {
-		/*     	margin-top:auto; */
-		font-family: '微軟正黑體';
-		font-weight: bold;
-		color: white;
-		height: 35px;
-		background: #fb9292;
-		font-size: 23px;
-		border-radius: 2px;
-	}
 	
 	a{
 		color:#ab2222;
@@ -77,7 +65,7 @@ print(text)
   		color:white;
   		border-top: 0;
   		font-family: 微軟正黑體;
-}
+	}
 	.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th{
 		background-color:white;
 	}
@@ -90,10 +78,6 @@ print(text)
 	.alert-info{
 		background: #f7a2a2;
 		border-color:#e86262;
-	}
-	
-	.addNewDetail{
-		
 	}
 	
 	.titlelist {
@@ -235,7 +219,8 @@ print(text)
 				<div>
 				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
 		    	<a href="#" onclick="window.open('searchList.jsp', 'RetrunItem', config='height=500,width=1200')"><span class="glyphicon glyphicon-search"></span>單筆查詢</a>　　
-		    	<a href="#" onclick="window.open('AllList.jsp', 'RetrunList', config='height=1050,width=1680')"><span class="glyphicon glyphicon-list-alt"></span>全部查詢</a>　　　
+		    	<a href="#" onclick="window.open('AllList.jsp', 'RetrunList', config='height=850,width=1680')"><span class="glyphicon glyphicon-inbox"></span>全部查詢</a>　　
+		    	<a href="Return_Detail.jsp"><i class="glyphicon glyphicon-list-alt"></i>退貨單明細</a>　　　
 		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　　
 		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>　
 				</div>
@@ -245,10 +230,6 @@ print(text)
 	<FORM id="form1" METHOD="post" ACTION="insert.do" name="form1" class="form-inline">
 	<table border="0">
 	<tr>
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="exampleInputName2">　退貨單編號：</label> -->
-<!-- 			<input type="TEXT" class="form-control" name="ret_id" disabled/> -->
-<!-- 		</div>　　 -->
 		<div class="form-group">
 			<label for="exampleInputName2">　退貨日期：</label>
 			<input type="date" class="form-control" name="ret_date" />
@@ -260,7 +241,7 @@ print(text)
 		<div class="form-group">
 			<label for="exampleInputName2">廠商名稱：</label>
 			<input type="TEXT" class="form-control" name="com_name" value="德儀數位" />
-		</div>　　
+		</div>
 		<div class="form-group">
 			<label for="exampleInputName2">修改人員：</label>
 			<input type="TEXT" class="form-control" name="key_id" value="E00001" />
@@ -382,19 +363,19 @@ print(text)
 // 	    alert("2");
 		})
 
-//<!----------------------------------------  送出新增        ------------------------------------>
-		$('#allsearch').on('click',function(){
-			var url="AllList.jsp";
+//<!----------------------------------------  查詢全部        ------------------------------------>
+// 		$('#allsearch').on('click',function(){
+// 			var url="AllList.jsp";
 		
-			$.ajax({
-				type:"POST",
-				url:url,
-				success:function()
-				{
-					window.open("AllList.jsp");
-				}
-			})
-		})
+// 			$.ajax({
+// 				type:"POST",
+// 				url:url,
+// 				success:function()
+// 				{
+// 					window.open("AllList.jsp");
+// 				}
+// 			})
+// 		})
 
 	</script>
 </body>

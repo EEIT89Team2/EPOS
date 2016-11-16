@@ -63,7 +63,7 @@
 	/* 	表格內容偶數 */
 	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
 		background:#ffe0e0;
-		border:1px solid #ff7d7d;
+		border:1px solid #ffa9a9;
 		
 	}
 	/* 	表格內容單數 */
@@ -75,9 +75,13 @@
 	.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
 		background-color:#fdaeae;
 	}
+	
+	a{
+		margin-left: 20px;
+	}
 
 </style>
-<title>return-items</title>
+<title>退貨單</title>
 
 </head>
 
@@ -127,11 +131,11 @@
 			  		</FORM>
 				</td>
 				<td>
-			  		<FORM METHOD="post" ACTION="delete.do">
-			    	<button type="submit" class="btn btn-danger"><i class="fa fa-trash-o "></i></button>
-			    	<input type="hidden" name="ret_id" value="${list.ret_id}">
-			    	<input type="hidden" name="action"value="delete">
-			  		</FORM>
+<!-- 			  		<FORM METHOD="post" ACTION="delete.do"> -->
+			    	<button type="submit" target="${list.ret_id}" class="btn btn-danger"><i class="fa fa-trash-o "></i></button>
+<%-- 			    	<input type="hidden" name="ret_id" value="${list.ret_id}"> --%>
+<!-- 			    	<input type="hidden" name="action"value="delete"> -->
+<!-- 			  		</FORM> -->
 				</td>
 						
 					</tr>
@@ -140,8 +144,8 @@
 			</table>
 		</div>
 		
-			<li><a href="ReturnList.jsp"><i class="glyphicon glyphicon-th-list"></i>　退貨單</a></li>
-		
+	<a href="ReturnList.jsp"><i class="glyphicon glyphicon-th-list"></i>　退貨單</a></br>
+	<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>		
 		
 			<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -153,6 +157,30 @@
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
+	<script type="text/javascript">
+		
+	$('.btn-danger').on('click',function(){	
+		var delbtn = $(this).parent().parent();
+		var id = $(this).attr('target');
+		var prod_name = $(this).parent().parent().find("td:eq(4) > input").val();
+    	var url = "delete.do"; 
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: {
+        	   ret_id:id,
+        	   prod_name:prod_name,
+           },
+           success: function(data)
+           {
+        	   delbtn.remove();
+           }
+         });
+	})
+		
+		$('#table1').DataTable();
+	
+	</script>
 	
 </body>
 </html>

@@ -11,7 +11,6 @@
 <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
 <!--external css-->
 <link href="<c:url value="/resources/font-awesome/css/font-awesome.css" />" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/lineicons/style.css" />">
 <!-- Custom styles for this template -->
 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/style-responsive.css" />" rel="stylesheet">

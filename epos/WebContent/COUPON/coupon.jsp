@@ -23,24 +23,45 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
+<style>
+ 	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+ 		background: #f3a827;
+ 	}
+	.navbar-default{
+		background: #FFE4B5;
+		border-color:#FF59FF;
+		border-radius: 8px;
+	}
+
+ 	.main{ 
+ 		height: 750px; 
+ 		border-radius: 8px; 
+ 		background:#FFF8DC; 
+ 	} 
+</style>	
 </head>
 
 <body>
-	<section id="container"> <!--header start--> <header
-		class="header black-bg">
+	<section id="container"> 
+	<!--header start--> 
+	<header class="header black-bg">
 	<div class="sidebar-toggle-box">
 		<div class="fa fa-bars tooltips" data-placement="right"
 			data-original-title="Toggle Navigation"></div>
 	</div>
-	<!--logo start--> <a href="<%=request.getContextPath()%>/index.jsp"
-		class="logo"><b>ePOS</b></a> <!--logo end-->
+	<!--logo start--> 
+	<a href="<%=request.getContextPath()%>/index.jsp" class="logo"><b>ePOS</b></a> 
+	<!--logo end-->
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
+			<li><a class="logout" href="login.html">Logout</a></li>
 		</ul>
 	</div>
-	</header> <!--header end--> <!--sidebar start--> <aside>
+	</header> 
+	<!--header end--> 
+	<!--sidebar start--> 
+	<aside>
 	<div id="sidebar" class="nav-collapse ">
 		<!-- sidebar menu start-->
 		<ul class="sidebar-menu" id="nav-accordion">
@@ -52,8 +73,7 @@
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a class="active"
-				href="<%=request.getContextPath()%>/index.jsp"> <i
+			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp"> <i
 					class="fa fa-dashboard"></i> <span>index</span>
 			</a></li>
 
@@ -105,17 +125,17 @@
 					<li><a
 						href="<%=request.getContextPath()%>/RETURNS/Return_Items.jsp">退貨品管理</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/RETURNS/returns.jsp">退貨單管理</a></li>
+						href="<%=request.getContextPath()%>/RETURNS/ReturnList.jsp">退貨單管理</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/INVO/select_page.jsp">作廢發票管理</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i
+			<li class="sub-menu"><a href="javascript:;" class="active"> <i
 					class="fa fa-usd"></i> <span>金流管理</span>
 			</a>
 				<ul class="sub">
 					<li><a
 						href="<%=request.getContextPath()%>/SHIFTREPORT/shiftreport.jsp">班別報表維護</a></li>
-					<li><a href="<%=request.getContextPath()%>/COUPON/coupon.jsp">折價券</a></li>
+					<li class="active"><a href="<%=request.getContextPath()%>/COUPON/coupon.jsp">折價券</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">折扣管理</a></li>
 				</ul></li>
@@ -127,124 +147,44 @@
 				</ul></li>
 
 		</ul>
-		<!-- sidebar menu end-->
+	<!-- sidebar menu end-->
 	</div>
-	</aside> <!--sidebar end--> <section id="main-content"> <section
-		class="wrapper"> <nav class="nav navbar-default">
-	<div class="row mt">
-	<ul class="nav navbar-nav">
-		<li><a data-toggle="tab" href="#search">搜尋</a></li>
-		<li><a data-toggle="tab" href="#new">新增</a></li>
-		<li><a data-toggle="tab" href="#print">列印</a></li>
-	</ul>
-	</nav>
-
-
-		<div class="tab-content">
-			<div id="search" class="tab-pane fade">
-				<%-- 錯誤表列 --%>
-				<c:if test="${not empty errorMsgs}">
-					<font color='red'>請修正以下錯誤
-						<ul>
-							<c:forEach var="message" items="${errorMsgs}">
-								<li>${message}</li>
-							</c:forEach>
-						</ul>
-					</font>
-				</c:if>
-
-				<h3>查詢</h3>
-
-				<%-- 查詢單筆 --%>
-				<ul>
-					<li>
-						<FORM METHOD="post" ACTION="coupon.do">
-							<b>輸入折價券編號 (如CPa00001):</b> <input type="text" name="cpon_id"
-								size="10"> <input type="submit" value="送出">
-							<!--         <input type="hidden" name="action" value="getOne_For_Display"> -->
-						</FORM>
-					</li>
-					<jsp:useBean id="copSvc" scope="page"
-						class="com.coupon.model.CouponService" />
-					<p>
-					<li>
-						<FORM METHOD="post" ACTION="coupon.do">
-							<b>選擇折價券編號:</b> <select size="1" name="cpon_id">
-								<c:forEach var="copVO" items="${copSvc.all}">
-									<option value="${copVO.cpon_id}">${copVO.cpon_id}
-								</c:forEach>
-							</select> <input type="submit" value="送出">
-							<!--        <input type="hidden" name="action" value="getOne_For_Display"> -->
-						</FORM>
-					</li>
-
-					<%-- 查詢多筆 --%>
-					<p>
-					<li>
-						<FORM METHOD="post" ACTION="namesCpon.do">
-							<b>選擇折價券名稱:</b> <select size="1" name="cpon_name">
-								<c:forEach var="copVO" items="${copSvc.groupNam}">
-									<option value="${copVO.cpon_name}">${copVO.cpon_name}
-								</c:forEach>
-							</select> <input type="submit" value="送出">
-							<!--        <input type="hidden" name="action" value="getNames_For_Display"> -->
-						</FORM>
-					</li>
-					<p>
-					<li>
-						<FORM METHOD="post" ACTION="dollarCpon.do">
-							<b>選擇折價券金額:</b> <select size="1" name="cpon_dollar">
-								<c:forEach var="copVO" items="${copSvc.groupDol}">
-									<option value="${copVO.cpon_dollar}">${copVO.cpon_dollar}
-								</c:forEach>
-							</select> <input type="submit" value="送出">
-							<!--        <input type="hidden" name="action" value="getDollar_For_Display"> -->
-						</FORM>
-					</li>
-					<p>
-					<li>
-						<FORM METHOD="post" ACTION="datesCpon.do">
-							<b>選擇折價券日期區間:</b> <input type="date" name="release_date">
-							<input type="date" name="cpon_period"> <input
-								type="submit" value="送出">
-							<!--        <input type="hidden" name="action" value="getDates_For_Display"> -->
-						</FORM>
-					</li>
-				</ul>
-				<%-- 查詢全部 --%>
-				<p>
-				<FORM METHOD="post"
-					ACTION="<%=request.getContextPath()%>/COUPON/allCpon.do">
-					<input type="submit" value="查詢全部">
-					<!-- 	<input type="hidden" name="action" value="getAll_For_Display"> -->
-				</FORM>
-
+	</aside>
+	<!--sidebar end--> 
+	<section id="main-content"><section class="wrapper"> 
+		<div class="row mt">
+			<div class="col-lg-12">
+			<div class="nav navbar-default">
+				<div class="container-fluid" style="float: right; left: -50%; position: relative">
+					<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">
+						<li><a id="r_coup" target="search_cpon.jsp" href="#search_Cou"  data-toggle="tab"><span class="glyphicon glyphicon-search"></span>範圍查詢</a></li>
+						<li><a id="c_coup" target="addCpon.jsp"  href="#new_Cou"  data-toggle="tab"><span class="glyphicon glyphicon-file"></span>新增</a></li>
+						<li><a id="a_coup" target="all.jsp" href="#resolution_Cou"  data-toggle="tab"><span class="glyphicon glyphicon-list-alt" ></span>查詢全部</a></li>
+						<li><a id="print" href="#print"  data-toggle="tab"><span class="glyphicon glyphicon-print" ></span>列印</a></li>
+					</ul>
+				</div>	
 			</div>
-			<div id="new" class="tab-pane fade">
-				<%-- 新增資料 --%>
-				<h3>新增資料</h3>
-
-				<ul>
-					<li><a href='COUPON/addCpon.jsp'>新增資料</a></li>
-				</ul>
-			</div>
-			<div id="print" class="tab-pane fade">
-				<h3>Menu 2</h3>
-				<p>Some content in menu 2.</p>
+	
+<!--page include here -->		
+				<div class="tab-content">
+					<div id="search_Cou" class="tab-pane fade">
+						<div class="chg_content main"></div>
+					</div>
+					<div id="new_Cou" class="tab-pane fade">
+						<div class="insert_content main"></div>
+					</div>
+					<div id="resolution_Cou" class="tab-pane fade">
+						<div class="result_content main"></div>
+					</div>
+				</div>	
 			</div>
 		</div>
-
-	</div>
-
-	</section></section> </section>
-
-	<
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		</section></section> 
+	</section>
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
-		!window.jQuery
-				&& document
-						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
+		!window.jQuery&& document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
 	</script>
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
@@ -256,6 +196,31 @@
 
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
-
+	<script>
+		$(function() {
+			$('a').on('click', function() {
+				if($(this).attr('target')=="addCpon.jsp"){							
+					var includeWeb = $(this).attr('target');
+					$.get(includeWeb, function(data) {
+						$('.insert_content').html(data);
+					})
+				}else if($(this).attr('target')=="search_cpon.jsp"){
+					var includeWeb = $(this).attr('target');
+					$.get(includeWeb, function(data) {
+						$('.chg_content').html(data);
+					})	
+				}else if($(this).attr('target')=="all.jsp"){
+					var includeWeb = $(this).attr('target');
+					$.get(includeWeb, function(data) {
+						$('.result_content').html(data);
+					})	
+				}		
+			})
+			
+		})
+			$("#print").click(function() {
+			window.print();
+			})
+	</script>
 </body>
 </html>

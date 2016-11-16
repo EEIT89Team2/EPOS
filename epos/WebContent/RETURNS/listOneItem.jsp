@@ -44,7 +44,12 @@
 <table border='1' bordercolor='#CCCCFF' width='800' class="table table-bordered table-striped table-hover">
 <thead>
 <tr>
-	<td align='center' >商品名稱</td><td align='center'>廠商代號</td><td align='center'>退貨數量</td><td td align='center'>備註</td><td align='center'>修改</td><td align='center'>刪除</td>
+	<td align='center' >商品名稱</td>
+	<td align='center'>廠商代號</td>
+	<td align='center'>退貨數量</td>
+	<td td align='center'>備註</td>
+	<td align='center'>修改</td>
+	<td align='center'>刪除</td>
 </tr>
 </thead>
 		<c:forEach var="RtnItemsVO" items="${list}">
@@ -61,11 +66,8 @@
 			  </FORM>
 		</td>
 		<td>
-			  <FORM METHOD="post" ACTION="delete_Item.do">
-			  	<button type="submit" class="btn btn-danger"><i class="fa fa-trash-o "></i></button>
-			    <input type="hidden" name="prod_name" value="${RtnItemsVO.prod_name}">
-			    <input type="hidden" name="action"value="delete">
-			  </FORM>
+<!-- 			  <FORM METHOD="post" ACTION="delete_Item.do"> -->
+			  	<button type="submit" target="${RtnItemsVO.prod_name}" class="btn btn-danger"><i class="fa fa-trash-o "></i></button>
 		</td>
 		</tr>
 		</c:forEach>
@@ -76,7 +78,36 @@
 	<li><a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a> </li>
 </ul>
 
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+		!window.jQuery
+				&& document
+						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
+	</script>
+	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
+	
+	<script type="text/javascript">
 
+	// ----------------------------刪除-------------------------------------------
+	
+	$('.btn-danger').on('click',function(){	
+		var delbtn = $(this).parent().parent();
+		var id = $(this).attr('target');
+    	var url = "delete_Item.do"; 
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: {
+        	   prod_name:id,
+           },
+           success: function(data)
+           {
+        	   delbtn.remove();
+           }
+         });
+	})
+	</script>
 
 
 </body>

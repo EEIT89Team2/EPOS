@@ -52,19 +52,19 @@
 				<h5 class="centered">ePOS</h5>
 
 				<li class="mt">
-					<a class="active" href="<%=request.getContextPath()%>/index.jsp"> 
+					<a href="<%=request.getContextPath()%>/index.jsp"> 
 						<i class="fa fa-dashboard"></i>
 					    <span>index</span>
 					</a>
 				</li>
 
 				<li class="sub-menu">
-					<a href="javascript:;"> 
+					<a href="javascript:;" class="active"> 
 						<i class="fa fa-desktop"></i>
 				   	    <span>基本資料維護</span>
 				    </a>
 					<ul class="sub">
-						<li><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
+						<li class="active"><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
 						<li><a 	href="<%=request.getContextPath()%>/EMPLOYEE/employee.jsp">員工資料維護</a></li>
 						<li><a href="<%=request.getContextPath()%>/COMPANY/company.jsp">廠商資料維護</a></li>
 					</ul>
@@ -76,9 +76,9 @@
 					</a>
 					<ul class="sub">
 						<li><a href="<%=request.getContextPath()%>/REQUISITION/requisition.jsp">請購單維護</a></li>
-						<li><ahref="<%=request.getContextPath()%>/QUOTATION/quotation.jsp">詢價單維護</a></li>
+						<li><a href="<%=request.getContextPath()%>/QUOTATION/quotation.jsp">詢價單維護</a></li>
 						<li><a href="<%=request.getContextPath()%>/PURCHASE/pur.jsp">採購單維護</a></li>
-						<li><ahref="<%=request.getContextPath()%>/BILL_OF_PURCHASE/bop.jsp">進貨單維護</a></li>
+						<li><a href="<%=request.getContextPath()%>/BILL_OF_PURCHASE/bop.jsp">進貨單維護</a></li>
 					</ul>
 				</li>
 				<li class="sub-menu">
@@ -144,13 +144,10 @@
 					<div class="container-fluid" style="float: right; left: -50%; position: relative;">
 						<form name="submitForm" method="POST" action="allMemb.do">
 							<input type="hidden" name="param1" value="param1Value">
-							<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative;">
-								<li><a class="insertMem" href="addMem.jsp"><span class="insertMemText">新增會員</span></a></li>
-								<li><a href="javascript:document.submitForm.submit()">查詢會員</A></li>
-								<li><a class="selectMemId" href="selectMemId.jsp"><span class="selectMemIdText">依會員編號查詢</span></a></li>
-								<li><a class="selectManyMem" style="background-color: rgba(224, 224, 224, 0.7);"><span class="selectManyMemText">查詢多筆會員</span></a></li>
-								<li><a class="selectMemName" href="selectMemName.jsp"><span class="selectMemNameText">依會員姓名查詢</span></a></li>
-								<li><a class="selectMemDate" href="selectMemDate.jsp"><span class="selectMemDateText">依新增日期查詢</span></a></li>
+							<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative;">								
+    							<li><a href="member.jsp">搜尋</A></li>    																		
+								<li><a href="addMem.jsp">新增</a></li>
+								<li><a style="background-color: rgba(224, 224, 224, 0.7);">查詢結果</a></li>			
 							</ul>
 						</form>
 					</div>
@@ -234,7 +231,7 @@
 		</table>
 		<br> 
 <!-- 		<input type="hidden" name="action" value="update">  -->
-		<input type="submit" value="送出修改">
+		<input type="submit" value="送出修改" class="btn btn-round btn-theme03">
 	</FORM>
 	</center>
 		<script
@@ -252,8 +249,5 @@
 
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
-
-	<jsp:include page="/COMMON/footer_mem.jsp" />
-
 </body>
 </html>

@@ -59,8 +59,7 @@
 	}
 	
 	p{
-		margin: 30px;
-	
+		margin: 30px;	
 	}
 	
 </style>
@@ -83,8 +82,7 @@
 				</c:if>
 				<p>
 				<div class="formlist">折扣清單</div>
-				<table border='1' bordercolor='#CCCCFF' width='800'
-					class="table table-bordered table-striped  table-hover">
+				<table border='1' bordercolor='#CCCCFF' width='800' class="table table-bordered table-striped  table-hover">
 					<thead>
 						<tr>
 							<td class="numeric">折扣身分</td>
@@ -96,16 +94,15 @@
 					<c:forEach var="discVO" items="${list}">
 						<tr align='center' valign='middle'>
 							<td class="numeric">${discVO.dis_id}</td>
-							<td class="numeric"><label>${discVO.dis_price}</label> <input
-								type="text" name="dis_price" size="5" class="chg_price">
+							<td class="numeric">
+								<label>${discVO.dis_price}</label> 
+								<input type="text" name="dis_price" size="5" maxlength="4"class="chg_price">
 							</td>
 							<td class="numeric">
-								<button type="button" class="btn btn-success"
-									onclick="editEvent(this)">
+								<button type="button" class="btn btn-success" onclick="editEvent(this)">
 									<i class="fa fa-pencil"></i>
 								</button>
-								<button type="button" class="btn btn-primary"
-									onclick="confirmEvent(this)">
+								<button type="button" class="btn btn-primary" onclick="confirmEvent(this)">
 									<i class="fa fa-check"></i>
 								</button>
 							</td>
@@ -118,7 +115,7 @@
 					</c:forEach>
 				</table>
 			</div>
-
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->	
 <script type="text/JavaScript">
 
 	$(document).ready(function() {
@@ -134,18 +131,18 @@
 					dis_id : id
 				},
 				"success" : function(data) {
-					$.ajax({
-						"type" : "post",
-						"url" : "allDisc.do",
-						"data" : {},
-						"success" : function(data) {
-							$(".result-context").html(data);
-							$("#result").attr("class", "active");
-							$("#search1").removeAttr("class");
-							$("#search").attr("class", "tab-pane fade");
-							$("#resolution").attr("class", "tab-pane active");
-						}
-					});
+// 					$.ajax({
+// 						"type" : "post",
+// 						"url" : "allDisc.do",
+// 						"data" : {},
+// 						"success" : function(data) {
+							$(".result_content").html(data);
+// 							$("#result").attr("class", "active");
+// 							$("#search1").removeAttr("class");
+// 							$("#search_Dic").attr("class", "tab-pane fade");
+// 							$("#resolution_Dic").attr("class", "tab-pane active");
+// 						}
+// 					});
 				},
 			});
 		})

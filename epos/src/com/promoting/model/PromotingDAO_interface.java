@@ -12,5 +12,7 @@ public interface PromotingDAO_interface {
     public List<PromotingVO> getIds(String pro_prod_id1,String pro_prod_id2);
     public List<PromotingVO> getDates(Date pro_begin,Date pro_end);
     public List<PromotingVO> getNames(String pro_prod_name);
+    public List<PromotingVO> GroupByIDs();
+    public List<PromotingVO> findByIDs(String pro_prod_id);
     
 }

@@ -47,7 +47,8 @@ print(text)
 <title>退貨品</title>
 
 <style>
-.titledetail {
+
+	.titledetail {
 	/*     	margin-top:auto; */
 	font-family: '微軟正黑體';
 	font-weight: bold;
@@ -56,6 +57,12 @@ print(text)
 	background: #2B74C6;
 	font-size: 23px;
 	border-radius: 2px;
+}
+
+.main {
+    height: 230px;
+    border-radius: 8px;
+    background: #ECFFFF;
 }
 </style>
 </head>

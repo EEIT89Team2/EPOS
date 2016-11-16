@@ -9,37 +9,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>insertShiftre</title>
 <style>
-	.titlelist {
+/* nav */
+	.navbar-default{
+		background: #E6F9AF;
+		border-color:#E6F9AF;
+		border-radius: 8px;
+	}
+/* background */
+ 	.main{ 
+  		height: 800px;  
+ 		border-radius: 8px; 
+ 		background:	#A0DBB9; 
+ 	}
+/*  title	 */
+ 	.titlelist {
 		font-family: '微軟正黑體';
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: mediumseagreen;
+		background: #384E77;
 		padding-left: 10px;
 		font-size: 23px;
 		border-radius: 2px;
 	}
-	
-	.formlist {
-		font-family: '微軟正黑體';
-		font-weight: bold;
-		height: 35px;
-		text-align: center;
-		font-size: 23px;
-		border-radius: 2px;
-	}
-	
-	
+		
 	p{
 		margin: 30px;	
 	}
 	
-	.btn-success{
-		float:center			
-	}
-.form-horizontal .control-label {
-    text-align: right;
-}
+	 .form-horizontal .control-label { 
+	     text-align: right; 
+	 }
+	 
+	 .btn-theme02 {
+    color: #fff;
+    background-color: #229abd;
+    border-color: #31535d;
+} 
 </style>
 </head>
 <body>
@@ -58,113 +64,113 @@
 		</c:if>
 
 <!-- 	<div class="form-group"> -->
-<!--     	<label class="col-lg-4 control-label">廠商代號:</label> -->
-<!--     	<div class="col-lg-2"> -->
+<!--     	<label class="col-lg-1 control-label">廠商代號:</label> -->
+<!--     	<div class="col-lg-6"> -->
 <%--       		<input type="text" class="form-control" name="com_id" value="<%=rtnItemsVO.getCom_id()%>" disabled="disabled"/> --%>
 <!--     	</div> -->
 <!--   	</div>  -->
 
 
-			<div class="formlist">班別報表</div>
-
-			<center>
-		<form method="post" action="insertShiftre.do"
-			class="insertShift form-horizontal">
+		<form method="post" action="insertShiftre.do" class="insertShift form-horizontal" role="form">
 
 			<p>
 			<div class="form-group">
-				<label class="col-lg-4 col-lg-offset-2 control-label">日期:</label>
-				<div class="col-lg-2">
+				<label class="col-lg-1 col-lg-offset-5 control-label">日期:</label>
+				<div class="col-lg-6">
 					<input type="date" name="Date">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-lg-4 col-lg-offset-2 control-label">班別:</label>
-				<div class="col-lg-2">
-					<Select name="shift">
+				<label class="col-lg-1 col-lg-offset-5 control-label">班別:</label>
+				<div class="col-lg-1">
+					<Select name="shift" class="form-control">
 						<option value="A">A</option>
 						<option value="B">B</option>
 					</Select>
-				</div>
+				</div><div class="col-lg-5"></div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-lg-4 col-lg-offset-2 control-label">員工編號:</label>
-				<div class="col-lg-2">
+				<label class="col-lg-1 col-lg-offset-5 control-label">員工編號:</label>
+				<div class="col-lg-6">
 					<input type="text" name="emp_id" value="E00001">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-lg-4 col-lg-offset-2 control-label">現金:</label>
-				<div class="col-lg-2">
+				<label class="col-lg-1 col-lg-offset-5 control-label">現金:</label>
+				<div class="col-lg-6">
 					<input type="text" name="cash" value="2000">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-lg-4 col-lg-offset-2 control-label">禮卷:</label>
-				<div class="col-lg-2">
+				<label class="col-lg-1 col-lg-offset-5 control-label">禮卷:</label>
+				<div class="col-lg-6">
 					<input type="text" name="coupon" value="0">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-lg-4 col-lg-offset-2 control-label">折讓:</label>
-				<div class="col-lg-2">
+				<label class="col-lg-1 col-lg-offset-5 control-label">折讓:</label>
+				<div class="col-lg-6">
 					<input type="text" name="discount" value="0">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-lg-4 col-lg-offset-2 control-label">零用金:</label>
-				<div class="col-lg-2">
+				<label class="col-lg-1 col-lg-offset-5 control-label">零用金:</label>
+				<div class="col-lg-6">
 					<input type="text" name="coins" value="1500">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-lg-4 col-lg-offset-2 control-label">交易額:</label>
-				<div class="col-lg-2">
+				<label class="col-lg-1 col-lg-offset-5 control-label">交易額:</label>
+				<div class="col-lg-6">
 					<input type="text" name="deal_sum" value="2000">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-lg-4 col-lg-offset-2 control-label">交易成本:</label>
-				<div class="col-lg-2">
+				<label class="col-lg-1 col-lg-offset-5 control-label">交易成本:</label>
+				<div class="col-lg-6">
 					<input type="text" name="deal_cost" value="1000">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-lg-4 col-lg-offset-2 control-label">交易淨利:</label>
-				<div class="col-lg-2">
+				<label class="col-lg-1 col-lg-offset-5 control-label">交易淨利:</label>
+				<div class="col-lg-6">
 					<input type="text" name="deal_profit" value="1000">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-lg-4 col-lg-offset-2 control-label">交易次數:</label>
-				<div class="col-lg-2">
+				<label class="col-lg-1 col-lg-offset-5 control-label">交易次數:</label>
+				<div class="col-lg-6">
 					<input type="text" name="deal_num" value="3">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-lg-4 col-lg-offset-2 control-label">班別小計:</label>
-				<div class="col-lg-2">
+				<label class="col-lg-1 col-lg-offset-5 control-label">班別小計:</label>
+				<div class="col-lg-6">
 					<input type="text" name="shift_sum" value="2000">
 				</div>
 			</div>
+			<p>
+			<div class="form-group">
+				<div class="col-lg-1 col-lg-offset-5">
+					<input type="button" value="新增" name="insert_shift" class="btn btn-theme02">
+				</div>
+				<div class="col-lg-5">
+					<input type="reset" value="清除" class="btn btn-theme02">
+				</div>
+			</div>
 
-			<input type="button" value="新增" name="insert_shift"
-		class="btn btn-success">
-
-
-
-	</form></center>
+	</form>
 	</div>
-
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 <script>
 	$(":button").click(function() {
 		if("新增"==$(this).val()){

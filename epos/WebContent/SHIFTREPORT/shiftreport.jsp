@@ -17,27 +17,29 @@
 <link href="<c:url value="../resources/css/style-responsive.css" />" rel="stylesheet">
 <title>shiftreport</title>
 <style>
-
-	.navbar-default{
-		background: #99CC99;
-		border-color:#CCFF99;
-		border-radius: 8px;
-/* 		border-style: solid; */
+	.navbar-default .navbar-nav > li > a{
+		color:#56ad7b;
 	}
 
-
+/* nav */
+	.navbar-default{
+		background: #E6F9AF;
+		border-color:#E6F9AF;
+		border-radius: 8px;
+	}
+/* background */
  	.main{ 
   		height: 800px;  
  		border-radius: 8px; 
- 		background:	#CCFFCC; 
+ 		background:	#A0DBB9; 
  	}
- 	
+/*  title	 */
  	.titlelist {
 		font-family: '微軟正黑體';
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: mediumseagreen;
+		background: #384E77;
 		padding-left: 10px;
 		font-size: 23px;
 		border-radius: 2px;
@@ -45,7 +47,21 @@
 
 	p{
 		margin: 20px;	
-	} 
+	}
+	
+	.form-horizontal .control-label { 
+	     text-align: right; 
+	 }
+	 
+	 .btn-theme02 {
+	    color: #fff;
+	    background-color: #229abd;
+	    border-color: #31535d;
+	}
+ 	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+ 		background: #fbe4c3;
+ 	}
+  
 </style>
 </head>
 <body>
@@ -179,57 +195,49 @@
 
 					<div class="titlelist">查詢</div>
 					<div class="col-lg-12 main">
-					<p>
-						<form method="post" action="getOneShiftre.do"
-							class="oneshift form-horizontal style-form">
-							<div class="col-lg-4"></div>
+						<p>
+
+						<form method="post" action="getOneShiftre.do" class="oneshift form-horizontal style-form">
 							<div class="form-group">
-								<label class="col-lg-1 control-label" for="date">依班別報表搜尋</label>
+								<label class="col-lg-offset-3 col-lg-1 control-label">依班別報表搜尋</label>
+								<label class="col-lg-1 control-label" for="date1">日期</label> 
 								<div class="col-lg-1">
-									<label class="control-label" for="date">日期</label> <input
-										type="date" name="Date" id="date">
+									<input type="date" name="Date" id="date1">
 								</div>
+								<label class="control-label col-lg-1" for="shift"> 班別</label>
 								<div class="col-lg-1">	
-								<label class="control-label" for="shift"> 班別</label>
-									<Select name="shift" id="shift">
+									<Select name="shift" id="shift" class="form-control">
 										<option value="A">A</option>
 										<option value="B">B</option>
 									</Select>
 								</div>
-								<div class="col-lg-2">
-									<input type="button" value="搜尋" name='getOne'
-										class="btn btn-success">
+								<div class="col-lg-4">
+									<input type="button" value="搜尋" name='getOne' class="btn btn-theme02">
 								</div>
 							</div>
 						</form>
 
-						<form method="post" action="getAllShiftre.do"
-							class="form-horizontal style-form">
-							<div class="col-lg-4"></div>
+						<form method="post" action="getAllShiftre.do" class="form-horizontal style-form">
+
 							<div class="form-group">
-								<label class="col-lg-1 control-label" for="date">查詢全部班別報表(刪除.修改)</label>
-							<div class="col-lg-2"></div>	
-								<div class="col-lg-2">
-									<input type="button" value="搜尋" name='getAll'
-										class="btn btn-success">
+								<label class="col-lg-offset-3 col-lg-1 control-label">查詢全部班別報表(刪除.修改)</label>
+								<div class="col-lg-offset-4 col-lg-4">
+									<input type="button" value="搜尋" name='getAll' class="btn btn-theme02">
 								</div>
 							</div>
 						</form>
 
-						<form method="post" action="getShiftreByDate.do"
-							class="shiftbydate form-horizontal style-form">
-							<div class="col-lg-4"></div>
+						<form method="post" action="getShiftreByDate.do" class="shiftbydate form-horizontal style-form">
+
 							<div class="form-group">
-								<label class="col-lg-1 control-label" for="date">依照日期查詢</label>
-								<label class="col-lg-1 control-label">日期</label>
+								<label class="col-lg-offset-3 col-lg-1 control-label">依照日期查詢</label>
+								<label class="col-lg-1 control-label" for="date2">日期</label>
 
 								<div class="col-lg-1">
-									<input type="date" name="Date">
+									<input type="date" name="Date" id="date2">
 								</div>
-								<div class="col-lg-2">
-									<input type="button" value="搜尋" name='getOneByDate'
-										class="btn btn-success">
-									<!-- 							<input type="hidden" name="action" value="selectByDate"> -->
+								<div class="col-lg-offset-2 col-lg-4">
+									<input type="button" value="搜尋" name='getOneByDate' class="btn btn-theme02">
 								</div>
 							</div>
 						</form>

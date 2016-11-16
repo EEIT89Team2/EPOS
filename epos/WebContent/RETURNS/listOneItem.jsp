@@ -44,7 +44,12 @@
 <table border='1' bordercolor='#CCCCFF' width='800' class="table table-bordered table-striped table-hover">
 <thead>
 <tr>
-	<td align='center' >商品名稱</td><td align='center'>廠商代號</td><td align='center'>退貨數量</td><td td align='center'>備註</td><td align='center'>修改</td><td align='center'>刪除</td>
+	<td align='center' >商品名稱</td>
+	<td align='center'>廠商代號</td>
+	<td align='center'>退貨數量</td>
+	<td td align='center'>備註</td>
+	<td align='center'>修改</td>
+	<td align='center'>刪除</td>
 </tr>
 </thead>
 		<c:forEach var="RtnItemsVO" items="${list}">

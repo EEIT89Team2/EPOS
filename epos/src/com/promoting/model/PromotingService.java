@@ -65,4 +65,12 @@ public class PromotingService {
 		return dao.getIds(pro_prod_id1,pro_prod_id2);
 	}
 	
+	public List<PromotingVO> GroupByIDs() {
+		return dao.GroupByIDs();
+	}
+	
+	public List<PromotingVO> getGroupIds(String pro_prod_id) {
+		return dao.findByIDs(pro_prod_id);
+	}
+	
 }

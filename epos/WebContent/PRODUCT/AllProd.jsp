@@ -20,7 +20,7 @@
 	
 	/* 	表格內容偶數 */
 	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
-		background: #63CCCA;
+		background: #c0e8e7;
 		border:1px solid #556B2F;
 		
 	}
@@ -31,7 +31,7 @@
 	
 	/* 	表格偶數滑鼠指向 */
 	.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
-		background-color: #397367;
+		background-color: #a9c775;
 	}
 	
 	.titlelist {
@@ -57,7 +57,7 @@
 			<div class="col-lg-12">		
 			<p>
 				<div class="titlelist">商品清單</div>
-		<table border='2' bordercolor='#CCCCFF' width='1300' class="table table-bordered table-striped  table-hover">
+		<table id="pro_list" border='2' bordercolor='#CCCCFF' class="table table-bordered table-striped  table-hover">
 		<thead>
 			<tr>
 				<th>商品編號</th>
@@ -88,7 +88,7 @@
 				<td>${list.prod_stock}</td>
 				<td>${list.prod_q_safty}</td>
 				<td>${list.prod_spec}</td>
-				<td><img alt="尚無照片" src="data:image/gif;base64,${list.picture}"></td>
+				<td><img alt="尚無照片" src="data:image/gif;base64,${list.picture}" width="50" height="50"></td>
 				<td>${list.remark}</td>
 				<td>${list.status}</td>
 				<td>
@@ -109,6 +109,8 @@
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->	
 	<script type="text/JavaScript">
 	$(document).ready(function() {
+		$('#pro_list').DataTable();
+		
 		$("button").on('click',function(){
 			if($(this).attr('value')=="delete"){
 				$.ajax({

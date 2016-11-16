@@ -78,7 +78,7 @@
 	<div class="col-lg-12">
 		<p>
 		<div class="titlelist">折扣清單</div>
-		<table border='1' bordercolor='#CCCCFF' width='800'
+		<table id="prom" border='1' bordercolor='#CCCCFF'
 			class="table table-bordered table-striped  table-hover">
 			<thead>
 				<tr>
@@ -119,6 +119,8 @@
 	<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 	<script type="text/JavaScript">
 	$(document).ready(function() {
+		$("#prom").dataTable();
+		
 		$("button").on('click',function(){
 			if($(this).val()=="刪除"){
 				$.ajax({

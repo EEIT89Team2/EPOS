@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 
 		/* 	表格標題 */
@@ -76,7 +77,7 @@
 <div class="col-lg-12">
 <p>
 				<div class="titlelist">班別報表</div>
-		<table border="2" bordercolor='#CCCCFF' width='800' class="table table-bordered table-striped  table-hover">
+		<table id="allshif" border="2" bordercolor='#CCCCFF' class="table table-bordered table-striped  table-hover">
 		<thead><tr>
 			<th class="numeric">日期</th>
 			<th class="numeric">班別</th>
@@ -97,25 +98,25 @@
 <c:forEach var="list" items="${list}" varStatus="count">
 <!-- 		<form method="post" action="updateDeleteShiftre.do"> -->
 		<tr align='center' valign='middle'>
-			<td class="numeric">${list.date}</td>
-			<td class="numeric">${list.shift}</td>
-			<td class="numeric">${list.emp_id}</td>
-			<td class="numeric">${list.cash}</td>
-			<td class="numeric">${list.coupon}</td>
-			<td class="numeric">${list.discount}</td>
-			<td class="numeric">${list.coins}</td>
-			<td class="numeric">${list.deal_sum}</td>
-			<td class="numeric">${list.deal_cost}</td>
-			<td class="numeric">${list.deal_profit}</td>
-			<td class="numeric">${list.deal_num}</td>
-			<td class="numeric">${list.shift_sum}</td>
-			<td class="numeric">
+			<td class="numeric" data-title="日期">${list.date}</td>
+			<td class="numeric" data-title="班別">${list.shift}</td>
+			<td class="numeric" data-title="員工編號">${list.emp_id}</td>
+			<td class="numeric" data-title="現金">${list.cash}</td>
+			<td class="numeric" data-title="禮卷">${list.coupon}</td>
+			<td class="numeric" data-title="折讓">${list.discount}</td>
+			<td class="numeric" data-title="零用金">${list.coins}</td>
+			<td class="numeric" data-title="交易額">${list.deal_sum}</td>
+			<td class="numeric" data-title="交易成本">${list.deal_cost}</td>
+			<td class="numeric" data-title="交易淨利">${list.deal_profit}</td>
+			<td class="numeric" data-title="交易次數">${list.deal_num}</td>
+			<td class="numeric" data-title="班別小計">${list.shift_sum}</td>
+			<td class="numeric" data-title="修改">
 				<button type="button" class="btn btn-theme02" name="action" value="update" target1="${list.date}" target2="${list.shift}">
 					<i class="fa fa-pencil"></i>
 				</button>
 	
 			</td>
-			<td class="numeric">
+			<td class="numeric" data-title="刪除">
 <%-- 				<input type="button" name="action" value="delete" target1="${list.date}" target2="${list.shift}"> --%>
 				<button type="button" class="btn btn-danger">
 					<i class="fa fa-trash-o" action="delete" target1="${list.date}" target2="${list.shift}"></i>
@@ -132,8 +133,15 @@
 	</table>
 </div>
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
+		
 	<script type="text/JavaScript">
+	
+	
+	
 	$(document).ready(function() {
+		
+	$("#allshif").dataTable();
+		
 		
 		$('.fa-trash-o').click(function() {
 			var date = $(this).attr("target1");
@@ -171,8 +179,8 @@
 			}
 		});
 	});
-
+	
 	</script>	
-
+	
 </body>
 </html>

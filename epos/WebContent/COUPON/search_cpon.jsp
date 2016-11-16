@@ -20,7 +20,7 @@
 	border-radius: 2px;
 }
 
-p {
+.distance {
 	margin: 30px;
 }
 
@@ -43,7 +43,7 @@ p {
 
 	<div class="titlelist">查詢</div>
 		<div class="col-lg-12">
-		<p>
+		<p class="distance">
 
 			<FORM METHOD="post" ACTION="coupon.do" class="search_1 form-horizontal" role="form"">
 				<div class="form-group">
@@ -80,7 +80,7 @@ p {
 			</FORM>
 		
 <%--查詢多筆 --%>
-		<p>
+		<p class="distance">
 		
 			<FORM METHOD="post" ACTION="namesCpon.do" class="search_3 form-horizontal" role="form">
 				<div class="form-group">
@@ -99,7 +99,7 @@ p {
 				</div>	
 			</FORM>
 	
-		<p>
+		<p class="distance">
 				
 			<FORM METHOD="post" ACTION="dollarCpon.do" class="search_4 form-horizontal" role="form">
 				<div class="form-group">
@@ -118,7 +118,7 @@ p {
 				</div>
 			</FORM>
 	
-		<p>
+		<p class="distance">
 		
 			<FORM METHOD="post" ACTION="datesCpon.do" class="search_5 form-horizontal" role="form">
 				<div class="form-group">

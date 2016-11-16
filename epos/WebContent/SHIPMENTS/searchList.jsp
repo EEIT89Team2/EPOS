@@ -27,14 +27,13 @@
 
 </form>
 
-<hr><hr>
-<h3>查詢全部出貨單</h3>
-<form method="post" action="getAllShip.do" >
-<input type="submit"  value="查詢">
+<!-- <hr><hr> -->
+<!-- <h3>查詢全部出貨單</h3> -->
+<!-- <form method="post" action="getAllShip.do" > -->
+<!-- <input type="submit"  value="查詢"> -->
 
-</form>
+<!-- </form> -->
 
-<hr><hr>
 <h3>依出貨單編號查詢</h3>
 
 
@@ -52,8 +51,6 @@
 
 </form>
 
-
-<hr><hr>
 <h3>依訂單編號查詢</h3>
 <form method="post" action="getShipByOrdId.do" >
 <table border="1">
@@ -68,8 +65,8 @@
 </table>
 </form>
 
-	<a href="../index.jsp">回首頁</a>
-	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
+<!-- 	<a href="../index.jsp">回首頁</a> -->
+<!-- 	<a href="javascript:" onclick="history.back(); ">回上頁</a>  -->
 
 </body>
 </html>

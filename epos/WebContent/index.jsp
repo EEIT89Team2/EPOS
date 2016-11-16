@@ -80,9 +80,9 @@
 							class="glyphicon glyphicon-shopping-cart"></i> <span>銷貨系統</span>
 					</a>
 						<ul class="sub">
-							<li><a href="VALUATION/valuation.jsp">報價單維護</a></li>
+							<li><a href="VALUATION/ValuationList.jsp">報價單維護</a></li>
 							<li><a href="ORDER/order.jsp">訂單維護</a></li>
-							<li><a href="SHIPMENTS/shipments.jsp">出貨單維護</a></li>
+							<li><a href="SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 						</ul></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class="fa fa-book"></i> <span>存貨作業</span>
@@ -126,7 +126,7 @@
 
 	</section>
 
-	<<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script> 
 	!window.jQuery && document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
  	</script>
@@ -145,15 +145,14 @@
 		});
 	})
 	</script>
-<!-- 	<script type="text/javascript" -->
-<!-- 		src="resources/js/jquery.backstretch.min.js"></script> -->
-<!-- 	<script> -->
-<!--  		$.backstretch("resources/img/bg1_test.jpg", { -->
-<!--  			speed : 500 -->
-<!--  		}); -->
+	<script type="text/javascript" src="<c:url value="resources/js/jquery.backstretch.min.js" />"></script>
+	<script>
+ 		$.backstretch("resources/img/login-bg.jpg", {
+  			speed : 500
+  		});
 <!--  		$(".main-content").css({ -->
 <!--  			opacity : .1 -->
 <!--  		}); -->
-<!-- 	</script> -->
+	</script>
 </body>
 </html>

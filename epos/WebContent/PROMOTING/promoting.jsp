@@ -60,7 +60,7 @@
 		border-radius: 2px;
 	}
 
-	p{
+	.distance{
 		margin: 20px;	
 	}
 	

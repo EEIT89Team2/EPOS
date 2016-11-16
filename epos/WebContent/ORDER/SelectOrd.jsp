@@ -29,7 +29,7 @@
 			<th>備註</th>
 			<th>狀態</th>
 			<th>Detail</th>
-			<th>Delete</th>
+<!-- 			<th>Delete</th> -->
 		</tr>
 		
 <c:forEach var="list" items="${list}" varStatus="count">
@@ -49,7 +49,7 @@
 			<td>${list.remark}</td>
 			<td>${list.status}</td>
 			<td><input type="submit" name="action" value="Detail" ></td>
-			<td><input type="submit" name="action" value="Delete" ></td>
+<!-- 			<td><input type="submit" name="action" value="Delete" ></td> -->
 			<input type="hidden" name="ord_id" value="${list.ord_id}">
 			
 		</tr>
@@ -58,8 +58,9 @@
 </c:forEach>
 	</table>
 	
-	<a href="../index.jsp">回首頁</a>
-	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
+<!-- 	<a href="../index.jsp">回首頁</a> -->
+<!-- 	<a href="javascript:" onclick="history.back(); ">回上頁</a>  -->
+<input type="button" name="action" value="返回" onclick="history.back();">
 </div>
 
 	</section> </section>

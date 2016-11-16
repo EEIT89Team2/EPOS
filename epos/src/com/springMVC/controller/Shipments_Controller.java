@@ -77,7 +77,7 @@ public class Shipments_Controller {
 
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 
-		return "/SHIPMENTS/AllShip";
+		return "/SHIPMENTS/SelectShip";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST,value ="/SHIPMENTS/detailDeleteShip.do")
@@ -105,7 +105,7 @@ public class Shipments_Controller {
 				List<ShipVO> list = shipSrv.getAll();
 
 				request.getSession().setAttribute("list", list);
-				return "redirect:/SHIPMENTS/AllShip.jsp";
+				return "redirect:/SHIPMENTS/SelectShip.jsp";
 			}
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 			return null;
@@ -145,7 +145,7 @@ public class Shipments_Controller {
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 		request.getSession().setAttribute("list", list);
 
-		return "redirect:/SHIPMENTS/AllShip.jsp";
+		return "redirect:/SHIPMENTS/SelectShip.jsp";
 	}
 	
 	
@@ -163,14 +163,14 @@ public class Shipments_Controller {
 		
 		if (!errorMsgs.isEmpty()) {
 		model.addAttribute("message", errorMsgs);
-		return "redirect:Index1.jsp";
+		return "redirect:searchList.jsp";
 		}
 		/*************************** 2.永續層存取 ***************************************/
 		
 		ShipVO shipVO = shipSrv.getByShipId(ship_id);
 			if (shipVO == null) {
 				model.addAttribute("message", "查無此出貨單");
-				return "redirect:Index1.jsp";
+				return "/SHIPMENTS/searchList";
 			}
 			List<ShipVO> list = new LinkedList<ShipVO>();
 			list.add(shipVO);
@@ -178,7 +178,7 @@ public class Shipments_Controller {
 			
 		model.addAttribute("list", list);
 
-		return "/SHIPMENTS/AllShip";
+		return "/SHIPMENTS/SelectShip";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/SHIPMENTS/getShipByOrdId.do")
@@ -193,18 +193,23 @@ public class Shipments_Controller {
 			errorMsgs.add("請輸入訂單編號");
 		}
 		
-		if (!errorMsgs.isEmpty()) {
-		model.addAttribute("message", errorMsgs);
-		return "redirect:Index1.jsp";
-		}
+		
 		/*************************** 2.永續層存取 ***************************************/
 		
 		List<ShipVO> list= shipSrv.getByOrderId(ord_id);
+		if(list.size()==0){
+			errorMsgs.add("查無此訂單");
+		}
+		
+		if (!errorMsgs.isEmpty()) {
+			model.addAttribute("message", errorMsgs);
+			return "/SHIPMENTS/searchList";
+			}
 		model.addAttribute("list", list);
 			
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 
-		return "/SHIPMENTS/AllShip";
+		return "/SHIPMENTS/SelectShip";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/SHIPMENTS/getAllShip.do")
@@ -218,11 +223,11 @@ public class Shipments_Controller {
 
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 
-		return "/SHIPMENTS/AllShip";
+		return "/SHIPMENTS/SelectShip";
 	}
 	
 
-	@RequestMapping(method = RequestMethod.POST,value = "/SHIPMENTS/insertShip.do")
+	@RequestMapping(method = RequestMethod.POST,value = {"insertShip.do","/SHIPMENTS/insertShip.do"})
 	public String insertShiftre(ModelMap model,HttpServletRequest request) throws Exception, Exception {
 		
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
@@ -284,7 +289,7 @@ public class Shipments_Controller {
 
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 
-		return "redirect:/SHIPMENTS/AllShip.jsp";
+		return "redirect:/SHIPMENTS/SelectShip.jsp";
 	}	
 
 	

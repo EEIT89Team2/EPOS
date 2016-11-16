@@ -21,7 +21,7 @@
 		border-radius: 2px;
 	}
 	
-	p{
+	.distance{
 		margin: 30px;	
 	}
 	
@@ -43,7 +43,7 @@
 	
 	<div class="titlelist">新增商品</div>
 	<div class="col-lg-12">
-	<p>
+	<p class="distance">
 		<form method="post" action="insertProd.do" enctype="multipart/form-data" id="create_prod" class="form-horizontal" role="form">
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-5 control-label">商品名稱:</label>

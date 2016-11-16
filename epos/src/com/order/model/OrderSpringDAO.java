@@ -167,16 +167,14 @@ public class OrderSpringDAO implements Order_Interface {
 		return i;
 	}
 
-	private static final String GET_ONE_TOP_ORDID = "select top 1 ord_id from OrderVO order by ord_id desc";
+	private static final String GET_ONE_TOP_ORDID = "select ord_id from OrderVO order by ord_id desc";
 
 	@Override
 	public String getOneTopOrdId() throws Exception {
 
-//		OrderVO orderVO = null;
 		List list = null;
 		String str = null; 
-		// orderVO = (OrderVO) hibernateTemplate.get(OrderVO.class,ord_id);
-		list = hibernateTemplate.find(GET_DAY_TOTAL_PEOPLE);
+		list = hibernateTemplate.find(GET_ONE_TOP_ORDID);
 		
 		if (list.get(0) != null)
 			str = String.valueOf((String) list.get(0));

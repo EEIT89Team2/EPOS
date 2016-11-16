@@ -662,41 +662,17 @@ print(text)
 					ordmain.cash.value = ordmain.cash_temp.value - ordmain.charge.value;
 				})				
 	//<!----------------------------------------  刪除        ------------------------------------>	
-	
+	var table2 = $('#table1').DataTable();
 	$("#table1").on('click', '.btn-danger', function() {
 		//總計金額先扣除該筆商品的金額
 		ordmain.total_price_temp.value = parseInt(ordmain.total_price_temp.value) - $(this).parents("tr").children("td:eq(8)").children("input").val();
 		count_total_price();
 
-		console.log("input:eq(0)="+$("#table1").find("input:eq(0)").val());
-		console.log("input:eq(1)="+$("#table1").find("input:eq(1)").val());
-		console.log("input:eq(2)="+$("#table1").find("input:eq(2)").val());
-		console.log("input:eq(3)="+$("#table1").find("input:eq(3)").val());
-		console.log("input:eq(3)="+$("#table1").find("input:eq(5)").val());
 		
-// 		$(this).parent().parent().remove();
-// 		$("#table1").find("input:odd").remove();
-// 		$("#table1").find("input:even").remove();
-// 		var i=0;
-// 		for(var a=0;a<=5;a++){
-// 			$("#table1").each(function(){
-// 				console.log("a="+a);
-// 				$("#table1 tr input").remove();
-// 				console.log("i="+i);
-// 				i=i+1;
-// 			})
-// 		}
-		for(var i=0;i<=5;i++){
-		$("#table1").find("input:eq(0)").remove();
-		}
-		console.log("test="+$("#table1 >tbody >tr input").val());
-		console.log("input:eq(0)="+$("#table1").find("input:eq(0)").val());
-		console.log("input:eq(1)="+$("#table1").find("input:eq(1)").val());
-		console.log("input:eq(2)="+$("#table1").find("input:eq(2)").val());
-		console.log("input:eq(3)="+$("#table1").find("input:eq(3)").val());
-		console.log("input:eq(5)="+$("#table1").find("input:eq(5)").val());
-		console.log("tr="+$(this).parent().parent().html());
-		console.log("td="+$(this).parent().parent().find("td").html());
+		table2.row( $(this).parents('tr') ).remove().draw();
+		
+
+		
 		//筆數再-1
 		ordmain.count.value=parseInt(ordmain.count.value)-1;
 	});

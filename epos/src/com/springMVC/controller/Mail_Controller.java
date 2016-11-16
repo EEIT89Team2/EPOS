@@ -62,7 +62,7 @@ public class Mail_Controller {
 		}
 
 		String text = request.getParameter("text");
-
+//---------------------連結到gmail司服器---------------------------
 		Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
 		final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 		// Get a Properties object
@@ -81,25 +81,23 @@ public class Mail_Controller {
 				return new PasswordAuthentication(username, password);
 			}
 		});
-
-		Message msg = new MimeMessage(session);
+//--------------------------到此結束----------------------------------
+		Message msg = new MimeMessage(session); //建立gmail物件
 
 		msg.setFrom(new InternetAddress(username + "@gmail.com", from));
 		// ----------------------------記送單一會員----------------------
-		if (request.getParameter("howMany").equals("寄送單一會員")) {
-			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(addres, false));
-			msg.setSubject(subject);
-			msg.setText(text);
-			msg.setSentDate(new Date());
-			Transport.send(msg);
-		} else if (request.getParameter("howMany").equals("寄送全部會員")) {
+		if (request.getParameter("howMany").equals("寄送單一會員")) { //假如取得 howMany參數=寄送單一會員則
+			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(addres, false));//addres=收件者
+			msg.setSubject(subject);  					//subject=主旨
+			msg.setText(text); 							//text=內容
+			msg.setSentDate(new Date()); 				//日期
+			Transport.send(msg); 						//發送
+		} else if (request.getParameter("howMany").equals("寄送全部會員")) { //或，假如取得 howMany參數=寄送全部會員則
 			// -----------------------------寄送全部會員----------------------
-			List<MemberVO> list = MemSvc.getAll();
-			for (MemberVO all : list) {
-
-				System.out.println(all.getMem_mail());
-				String sss = all.getMem_mail();
-				msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(sss, false));
+			List<MemberVO> list = MemSvc.getAll(); 			//取得MemberVO物件
+			for (MemberVO all : list) {  					//列出MemberVO
+				String mail = all.getMem_mail();			//取得VO裡的mail，設成字串型別的變數
+				msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail, false)); //寄送收件者(mail變數只能是字串型別)
 				msg.setSubject(subject);
 				msg.setText(text);
 				msg.setSentDate(new Date());
@@ -112,35 +110,34 @@ public class Mail_Controller {
 			java.sql.Date s_ord_date = java.sql.Date.valueOf(request.getParameter("s_ord_date"));// 取得日期(起)的參數
 			java.sql.Date e_ord_date = java.sql.Date.valueOf(request.getParameter("e_ord_date"));// 取得日期(迄)的參數
 			List<OrderVO> list = ordSvc.getOneOrderDate(s_ord_date, e_ord_date); // 取得會員下訂單日期
-			List<String> memInOrd = new LinkedList<String>();// 建立新的List物件
+			List<String> memInOrd = new LinkedList<String>();					 // 建立新的List物件
 
-			for (OrderVO orderVO : list) { // 列出會員下訂單日期
-				String mem_id = orderVO.getMem_id(); // 取得下訂單會員人數
-				memInOrd.add(mem_id); // 加到 memInOrd 這個物件
+			for (OrderVO orderVO : list) { 										 // 列出會員下訂單日期
+				String mem_id = orderVO.getMem_id(); 							 // 取得下訂單會員人數
+				memInOrd.add(mem_id); 											 // 加到 memInOrd 這個物件
 			}
-			List<MemberVO> memberList = new MemberService().getAll();// 建立member物件.並取得全部MemberVO
+			List<MemberVO> memberList = new MemberService().getAll();			 // 建立member物件.並取得全部MemberVO
 			Map<String, MemberVO> memNotInOrd = new LinkedHashMap<String, MemberVO>();// 建立MAP物件放入(字串.MemberVO)
-			for (MemberVO memberVO : memberList) {// 列出memberVO
-				String mem_id = memberVO.getMem_id();// 取得會員人數
-				if (mem_id != null) { // 假如不=null則
-					memNotInOrd.put(mem_id, memberVO); // 加到memberList(字串.MemberVO)
+			for (MemberVO memberVO : memberList) {								 // 列出memberVO
+				String mem_id = memberVO.getMem_id();							 // 取得會員人數
+				if (mem_id != null) { 										     // 假如不=null則
+					memNotInOrd.put(mem_id, memberVO); 							 // 加到memberList(字串.MemberVO)
 				}
 			}
-
-			for (String mem_id2 : memInOrd) { // 列出下訂單會員人數
-				memNotInOrd.remove(mem_id2); // 移除下訂單會員人數
+			for (String mem_id2 : memInOrd) { 									 // 列出下訂單會員人數
+				memNotInOrd.remove(mem_id2); 									 // 移除下訂單會員人數
 			}
 
-			if (request.getParameter("howMany").equals("查詢未下訂單會員")) {
-				model.addAttribute("list1", memNotInOrd);// memNotInOrd=全部會員-下訂單會員=未下訂單會員
+			if (request.getParameter("howMany").equals("查詢未下訂單會員")) {         //假如取得 howMany參數=查詢未下訂單會員則
+				model.addAttribute("list1", memNotInOrd);						 // memNotInOrd=全部會員-下訂單會員=未下訂單會員
 				return "/MAIL/Mail";
 			} else {
-				Collection<MemberVO> noOrdMem = memNotInOrd.values();
-				for (MemberVO list1 : noOrdMem) {
-					String noOrdMem1 = list1.getMem_mail();
+				Collection<MemberVO> noOrdMem = memNotInOrd.values(); 			 //取得noOrdMem(Map裡的key值)
+				for (MemberVO list1 : noOrdMem) { 					  			 //列出全部未下訂單會員(key值)
+					String noOrdMem1 = list1.getMem_mail();           			 //取得全部未下訂單會員信箱，設成字串型別的變數
 
 					System.out.println(noOrdMem1);
-					msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(noOrdMem1, false));
+					msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(noOrdMem1, false));//寄送收件者(noOrdMem1變數只能是字串型別)
 					msg.setSubject(subject);
 					msg.setText(text);
 					msg.setSentDate(new Date());

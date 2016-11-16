@@ -40,7 +40,7 @@ public class RtnItems_Controller extends HttpServlet {
 			if(!errorMsgs.isEmpty()){
 //				RequestDispatcher failureView = req.getRequestDispatcher("/returns/Return_Items.jsp");
 //				failureView.forward(req, res);
-				return "/RETURNS/Return_Items";
+				return "/RETURNS/searchItem";
 			}
 			
 			String prod_name=null;
@@ -53,7 +53,7 @@ public class RtnItems_Controller extends HttpServlet {
 			if(!errorMsgs.isEmpty()){
 //				RequestDispatcher failureView = req.getRequestDispatcher("/returns/Return_Items.jsp");
 //				failureView.forward(req, res);
-				return "/RETURNS/Return_Items";
+				return "/RETURNS/searchItem";
 			}		
 			
 			/***************************2.開始查詢資料*****************************************/
@@ -68,7 +68,7 @@ public class RtnItems_Controller extends HttpServlet {
 //				RequestDispatcher failureView = req
 //						.getRequestDispatcher("/returns/Return_Items.jsp");
 //				failureView.forward(req, res);
-				return "/RETURNS/Return_Items";
+				return "/RETURNS/searchItem";
 			}
 			
 			/***************************3.查詢完成,準備轉交(Send the Success view)*************/
@@ -82,7 +82,7 @@ public class RtnItems_Controller extends HttpServlet {
 //			RequestDispatcher failureView = req
 //					.getRequestDispatcher("/returns/Return_Items.jsp");
 //			failureView.forward(req, res);
-			return "/RETURNS/Return_Items";
+			return "/RETURNS/searchItem";
 		}
 	}
 	
@@ -101,7 +101,7 @@ public class RtnItems_Controller extends HttpServlet {
 			if(!errorMsgs.isEmpty()){
 //				RequestDispatcher failureView = req.getRequestDispatcher("/returns/Return_Items.jsp");
 //				failureView.forward(req, res);
-				return "/RETURNS/Return_Items";
+				return "/RETURNS/searchItem";
 			}
 			
 			String com_id=null;
@@ -143,7 +143,7 @@ public class RtnItems_Controller extends HttpServlet {
 //			RequestDispatcher failureView = req
 //					.getRequestDispatcher("/returns/Return_Items.jsp");
 //			failureView.forward(req, res);
-			return "/RETURNS/Return_Items";
+			return "/RETURNS/searchItem";
 		}
 	}
 	

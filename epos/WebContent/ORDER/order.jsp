@@ -690,8 +690,7 @@ print(text)
 		count_total_price();
 
 		table2.row( $(this).parents('tr') ).remove().draw();
-		
-			
+
 		
 	
 				
@@ -700,7 +699,7 @@ print(text)
 		//筆數再-1
 		ordmain.count.value=parseInt(ordmain.count.value)-1;
 	});
-	
+//  	$('#table1').click();
 
 })
 	

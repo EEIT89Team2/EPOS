@@ -57,7 +57,7 @@ public class RtnList_Controller extends HttpServlet {
 			if(!errorMsgs.isEmpty()){
 //				RequestDispatcher failureView = req.getRequestDispatcher("/returns/ReturnList.jsp");
 //				failureView.forward(req, res);
-				return "/RETURNS/ReturnList";
+				return "/RETURNS/searchList";
 			}
 			
 			
@@ -70,7 +70,7 @@ public class RtnList_Controller extends HttpServlet {
 			if(!errorMsgs.isEmpty()){
 //				RequestDispatcher failureView = req.getRequestDispatcher("/returns/ReturnList.jsp");
 //				failureView.forward(req, res);
-				return "/RETURNS/ReturnList";
+				return "/RETURNS/searchList";
 			}		
 			
 			/***************************2.開始查詢資料*****************************************/
@@ -85,7 +85,7 @@ public class RtnList_Controller extends HttpServlet {
 //				RequestDispatcher failureView = req
 //						.getRequestDispatcher("/returns/ReturnList.jsp");
 //				failureView.forward(req, res);
-				return "/RETURNS/ReturnList";
+				return "/RETURNS/searchList";
 			}
 			
 			/***************************3.查詢完成,準備轉交(Send the Success view)*************/
@@ -99,7 +99,7 @@ public class RtnList_Controller extends HttpServlet {
 //			RequestDispatcher failureView = req
 //					.getRequestDispatcher("/returns/ReturnList.jsp");
 //			failureView.forward(req, res);
-			return "/RETURNS/ReturnList";
+			return "/RETURNS/searchList";
 		}
 		
 		//return ret_id;
@@ -123,7 +123,7 @@ public class RtnList_Controller extends HttpServlet {
 			if(!errorMsgs.isEmpty()){
 //				RequestDispatcher failureView = req.getRequestDispatcher("/returns/ReturnList.jsp");
 //				failureView.forward(req, res);
-				return "/RETURNS/ReturnList";
+				return "/RETURNS/searchList";
 			}	
 			
 			/***************************2.開始查詢資料*****************************************/
@@ -140,7 +140,7 @@ public class RtnList_Controller extends HttpServlet {
 //				RequestDispatcher failureView = req
 //						.getRequestDispatcher("/returns/ReturnList.jsp");
 //				failureView.forward(req, res);
-				return "/RETURNS/ReturnList";
+				return "/RETURNS/searchList";
 			}
 			
 			/***************************3.查詢完成,準備轉交(Send the Success view)*************/
@@ -154,7 +154,7 @@ public class RtnList_Controller extends HttpServlet {
 //			RequestDispatcher failureView = req
 //					.getRequestDispatcher("/returns/ReturnList.jsp");
 //			failureView.forward(req, res);
-			return "/RETURNS/ReturnList";
+			return "/RETURNS/searchList";
 		}
 
 //		return ret_date;
@@ -175,7 +175,7 @@ public class RtnList_Controller extends HttpServlet {
 			if(!errorMsgs.isEmpty()){
 //				RequestDispatcher failureView = req.getRequestDispatcher("/returns/ReturnList.jsp");
 //				failureView.forward(req, res);
-				return "/RETURNS/ReturnList";
+				return "/RETURNS/searchList";
 			}		
 			
 			/***************************2.開始查詢資料*****************************************/
@@ -190,7 +190,7 @@ public class RtnList_Controller extends HttpServlet {
 //				RequestDispatcher failureView = req
 //						.getRequestDispatcher("/returns/ReturnList.jsp");
 //				failureView.forward(req, res);
-				return "/RETURNS/ReturnList";
+				return "/RETURNS/searchList";
 			}
 			
 			/***************************3.查詢完成,準備轉交(Send the Success view)*************/
@@ -204,7 +204,7 @@ public class RtnList_Controller extends HttpServlet {
 //			RequestDispatcher failureView = req
 //					.getRequestDispatcher("/returns/ReturnList.jsp");
 //			failureView.forward(req, res);
-			return "/RETURNS/ReturnList";
+			return "/RETURNS/searchList";
 		}
 	}
 	

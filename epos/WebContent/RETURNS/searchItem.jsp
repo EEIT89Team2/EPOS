@@ -26,22 +26,21 @@
 
 </head>
 <body>
-<c:if test="${not empty errorMsgs}">
-<font color='red'>請修正以下錯誤:
-<ul>
-	<c:forEach var="message" items="${errorMsgs}">
-		<li>${message}</li>
-	</c:forEach>
-</ul>
-</font>
-</c:if>
+
+<!-- <font color='red'>請修正以下錯誤: -->
+<!-- <ul> -->
+<%-- 	<c:forEach var="message" items="${errorMsgs}"> --%>
+<%-- 		<li>${message}</li> --%>
+<%-- 	</c:forEach> --%>
+<!-- </ul> -->
+<!-- </font> -->
+
 	<div class="divser">查詢</div>
 	<div style="height: 20px"></div>
 	 <form action="getName_Item.do" method="post" class="form-inline">
 	 <div class="form-group">
 	 	<label style="font-family: 微軟正黑體; font-size: 20px;" for="exampleInputName2">商品名稱</label>
 	 	<input style="width: 60%" type='text' name='prod_name' class="form-control"/>
-	 	
 	 </div>
 	 	<input type="submit" value="查詢" class="btn btn-info">
 	 	<input type="hidden" name="action" value="getName">
@@ -54,6 +53,7 @@
 	 	<input type="submit" value="查詢" class="btn btn-info">
 	 	<input type="hidden" name="action" value="getComId">
 	 </form>
+	 	<c:if test="${not empty errorMsgs}"><font color='red'>請修正錯誤:<c:forEach var="message" items="${errorMsgs}"><span>${message}</span></c:forEach></c:if></font>
 	 
 	
   

@@ -375,7 +375,7 @@ print(text)
  							<div class="form-group">
 									<label>輸入商品ID：</label>
 									<input type="text" id="prod_id" name="prod_id" size="63" class="form-control" />
-							</div>　　　　　　
+							</div>　　　　　　　
 							<div class="form-group">
 									<label>筆　　　數：</label>
 									<input type="text" id="count" name="count" value="0" class="form-control" readonly/>
@@ -512,6 +512,7 @@ print(text)
 										$("#table1 >tbody >tr >td:eq("+n+")").append("<input type='text' name='prod_name"+a+"' value='"+prod_name+"'/>")
 										$("#table1 >tbody >tr >td:eq("+q+")").append("<input type='text' name='prod_quantity"+a+"' value='1' onblur='count_total_prod_price(ordmain.prod_quantity"+a+",ordmain.prod_price"+a+",ordmain.total_prod_price"+a+")'/>")
 										$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='text' name='prod_price"+a+"' value='"+prod_price+"' />")
+										$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='hidden' id='total_prod_price"+a+"' name='total_prod_price"+a+"' value='"+prod_price+"'/>")
 										$("#table1 >tbody >tr >td:eq("+del+")").append("<input type='button' value='刪除' class='btn btn-danger'></input>")
 										a = a + 1;
 										id = id + 5;

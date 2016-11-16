@@ -674,7 +674,7 @@ print(text)
 		console.log("input:eq(3)="+$("#table1").find("input:eq(3)").val());
 		console.log("input:eq(3)="+$("#table1").find("input:eq(5)").val());
 		
-		$(this).parent().parent().remove();
+// 		$(this).parent().parent().remove();
 // 		$("#table1").find("input:odd").remove();
 // 		$("#table1").find("input:even").remove();
 // 		var i=0;
@@ -686,6 +686,9 @@ print(text)
 // 				i=i+1;
 // 			})
 // 		}
+		for(var i=0;i<=5;i++){
+		$("#table1").find("input:eq(0)").remove();
+		}
 		console.log("test="+$("#table1 >tbody >tr input").val());
 		console.log("input:eq(0)="+$("#table1").find("input:eq(0)").val());
 		console.log("input:eq(1)="+$("#table1").find("input:eq(1)").val());

@@ -1,6 +1,8 @@
 package com.promoting.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -15,7 +17,9 @@ public class PromotingHIBERNATEDAO implements PromotingDAO_interface{
 	private static final String GET_DATES_STMT = "FROM PromotingVO where pro_begin >=? and pro_end <=? ";
 	private static final String GET_NAMES_STMT = "FROM PromotingVO where pro_prod_id like ?";
 	private static final String GET_IDS_STMT = "FROM PromotingVO where pro_prod_id between ? and ? ";
-
+	private static final String GET_BYIDGROUP_STMT = "FROM PromotingVO where pro_prod_id = ?";
+	private static final String GET_IDGROUP_STMT = "SELECT pro_prod_id FROM PromotingVO group by pro_prod_id";
+	
 	@Override
 	public void insert(PromotingVO promotingVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -150,4 +154,42 @@ public class PromotingHIBERNATEDAO implements PromotingDAO_interface{
 		return list;
 	}
 
+	@Override
+	public List<PromotingVO> GroupByIDs() {
+		List<PromotingVO> list = new ArrayList<PromotingVO>();
+		PromotingVO PromVO = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GET_IDGROUP_STMT);
+			Iterator<String> iterator =	query.iterate();
+			while(iterator.hasNext()) {
+				PromVO = new PromotingVO();
+				PromVO.setPro_prod_id(iterator.next());;			
+				list.add(PromVO);
+			}						
+			session.getTransaction().commit();			
+		} catch (RuntimeException e) {
+			session.getTransaction().rollback();
+			throw e;
+		}
+		return list;
+	}
+
+	@Override
+	public List<PromotingVO> findByIDs(String pro_prod_id) {
+		List<PromotingVO> list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try{
+		session.beginTransaction();
+		Query query = session.createQuery(GET_BYIDGROUP_STMT);
+		query.setParameter(0, pro_prod_id);
+		list = query.list();
+		session.getTransaction().commit();
+		}catch(RuntimeException e){
+			session.getTransaction().rollback();
+			throw e;
+		}
+		return list;
+	}
 }

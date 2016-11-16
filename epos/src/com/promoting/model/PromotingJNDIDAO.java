@@ -31,7 +31,9 @@ public class PromotingJNDIDAO implements PromotingDAO_interface{
 	private static final String GET_DATES_STMT = "SELECT pro_prod_id,pro_prod_name,pro_begin,pro_end,pro_neirong FROM PROMOTING where pro_begin >=? and pro_end <=? ";
 	private static final String GET_NAMES_STMT = "SELECT pro_prod_id,pro_prod_name,pro_begin,pro_end,pro_neirong FROM PROMOTING where pro_prod_id like ?";
 	private static final String GET_IDS_STMT = "SELECT pro_prod_id,pro_prod_name,pro_begin,pro_end,pro_neirong FROM PROMOTING where pro_prod_id between ? and ? ";
-
+	private static final String GET_BYIDGROUP_STMT = "SELECT pro_prod_id,pro_prod_name,pro_begin,pro_end,pro_neirong FROM PROMOTING where pro_prod_id = ?";
+	private static final String GET_IDGROUP_STMT = "SELECT pro_prod_id FROM PROMOTING group by pro_prod_id";
+	
 	@Override
 	public void insert(PromotingVO promotingVO) {
 		Connection con = null;
@@ -413,6 +415,105 @@ public class PromotingJNDIDAO implements PromotingDAO_interface{
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public List<PromotingVO> GroupByIDs() {
+		List<PromotingVO> list = new ArrayList<PromotingVO>();
+		PromotingVO promotingVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_IDGROUP_STMT);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				promotingVO = new PromotingVO();
+				promotingVO.setPro_prod_id(rs.getString("pro_prod_id"));
+				list.add(promotingVO);
+			}
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	
+	@Override
+	public List<PromotingVO> findByIDs(String pro_prod_id) {
+		List<PromotingVO> list = new ArrayList<PromotingVO>();
+		PromotingVO promotingVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_BYIDGROUP_STMT);
+			pstmt.setString(1,pro_prod_id);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				promotingVO = new PromotingVO();
+				promotingVO.setPro_prod_id(rs.getString("pro_prod_id"));
+				promotingVO.setPro_prod_name(rs.getString("pro_prod_name"));
+				promotingVO.setPro_begin(rs.getDate("pro_begin"));
+				promotingVO.setPro_end(rs.getDate("pro_end"));
+				promotingVO.setPro_neirong(rs.getString("pro_neirong"));
+				list.add(promotingVO);
+			}
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {

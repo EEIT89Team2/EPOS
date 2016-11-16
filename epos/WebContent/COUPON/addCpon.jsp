@@ -24,15 +24,6 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO");	//若輸入錯誤可�
 	border-radius: 2px;
 }
 
-.formlist {
-	font-family: '微軟正黑體';
-	font-weight: bold;
-	height: 35px;
-	text-align: center;
-	font-size: 23px;
-	border-radius: 2px;
-}
-
 p {
 	margin: 30px;
 }
@@ -60,33 +51,33 @@ p {
 	<FORM METHOD="post" ACTION="insertCpon.do" name="form1" class="form-horizontal" role="form">
 		<p>
 			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-4 control-label">折價券名稱:</label>
-				<div class="col-lg-7">
+				<label class="col-lg-1 col-lg-offset-5 control-label">折價券名稱:</label>
+				<div class="col-lg-6">
 					<input type="text" name="cpon_name" size="20"
 						value="<%=(copVO == null) ? "新年" : copVO.getCpon_name()%>" />
 				</div>
 			</div>
 			<div class="form-group">	
-				<label class="col-lg-1 col-lg-offset-4 control-label">發行日期:</label>
-				<div class="col-lg-7">
+				<label class="col-lg-1 col-lg-offset-5 control-label">發行日期:</label>
+				<div class="col-lg-6">
 					<input type="date" name="release_date" size="20" value="<%= (copVO==null)? "" : copVO.getRelease_date()%>" />
 				</div>
 			</div>
 			<div class="form-group">	
-				<label class="col-lg-1 col-lg-offset-4 control-label">使用期限:</label>
-				<div class="col-lg-7">
+				<label class="col-lg-1 col-lg-offset-5 control-label">使用期限:</label>
+				<div class="col-lg-6">
 					<input type="date" name="cpon_period" size="20" value="<%= (copVO==null)? "" : copVO.getCpon_period()%>" />
 				</div>
 			</div>
 			<div class="form-group">		
-				<label class="col-lg-1 col-lg-offset-4 control-label">面額:</label>
-				<div class="col-lg-7">	
+				<label class="col-lg-1 col-lg-offset-5 control-label">面額:</label>
+				<div class="col-lg-6">	
 					<input type="text" name="cpon_dollar" size="20" value="<%= (copVO==null)? "100" : copVO.getCpon_dollar()%>" />
 				</div>
 			</div>
 			<div class="form-group">		
-				<label class="col-lg-1 col-lg-offset-4 control-label">狀態:</label>
-				<div class="col-lg-7">
+				<label class="col-lg-1 col-lg-offset-5 control-label">狀態:</label>
+				<div class="col-lg-6">
 					已出貨<input type="radio" name="status"  value="Y" />
 					庫存<input type="radio" name="status"  value="N"/>
 				</div>
@@ -94,10 +85,10 @@ p {
 				<p>
 				<div class="form-group">
 					<div class="col-lg-1 col-lg-offset-5">
-						<input type="button" value="送出新增" name="c_promoting" class="btn btn-success">
+						<input type="button" value="送出新增" name="c_promoting" class="btn btn-theme03">
 					</div>
 					<div class="col-lg-5">
-						<input type="reset" value="清除" class="btn btn-success">
+						<input type="reset" value="清除" class="btn btn-theme03">
 					</div>
 				</div>
 	</FORM>

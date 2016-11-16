@@ -24,7 +24,9 @@
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
 <style>
-
+ 	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+ 		background: #f3a827;
+ 	}
 	.navbar-default{
 		background: #FFE4B5;
 		border-color:#FF59FF;

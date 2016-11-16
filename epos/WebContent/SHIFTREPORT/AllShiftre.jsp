@@ -12,15 +12,15 @@
 
 		/* 	表格標題 */
 	.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{
-		background: #FF99CC;
+		background: #bd3cb6;
 		font-weight:bold;
 		text-align: center;
 	}
 	
 	/* 	表格內容偶數 */
 	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
-		background:		#CCCCFF;
-		border:1px solid #556B2F;
+		background:		#DAFFEF;
+		border:1px solid #DAE0CE;
 		
 	}
 	/* 	表格內容單數 */
@@ -30,27 +30,29 @@
 	
 	/* 	表格偶數滑鼠指向 */
 	.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
-		background-color:#CCCCFF;
+		background-color:#D5E2BC;
 	}
 	
-	.titlelist {
+/* nav */
+	.navbar-default{
+		background: #E6F9AF;
+		border-color:#E6F9AF;
+		border-radius: 8px;
+	}
+/* background */
+ 	.main{ 
+  		height: 800px;  
+ 		border-radius: 8px; 
+ 		background:	#A0DBB9; 
+ 	}
+/*  title	 */
+ 	.titlelist {
 		font-family: '微軟正黑體';
 		font-weight: bold;
 		color: white;
 		height: 35px;
-		background: #FF6666;
+		background: #384E77;
 		padding-left: 10px;
-		font-size: 23px;
-		border-radius: 2px;
-	}
-	
-	.formlist {
-		font-family: '微軟正黑體';
-		font-weight: bold;
-		color: white;
-		height: 35px;
-		background: #FF6666;
-		text-align: center;
 		font-size: 23px;
 		border-radius: 2px;
 	}
@@ -58,6 +60,12 @@
 	p{
 		margin: 30px;	
 	}
+	
+	.btn-theme02 {
+    color: #fff;
+    background-color: #229abd;
+    border-color: #31535d;
+}
 	
 </style>
 <title>全部班別報表</title>
@@ -67,7 +75,7 @@
 <div class="titlelist">查詢結果</div>
 <div class="col-lg-12">
 <p>
-				<div class="formlist">班別報表</div>
+				<div class="titlelist">班別報表</div>
 		<table border="2" bordercolor='#CCCCFF' width='800' class="table table-bordered table-striped  table-hover">
 		<thead><tr>
 			<th class="numeric">日期</th>

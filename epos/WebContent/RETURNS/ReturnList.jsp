@@ -230,10 +230,6 @@ print(text)
 	<FORM id="form1" METHOD="post" ACTION="insert.do" name="form1" class="form-inline">
 	<table border="0">
 	<tr>
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="exampleInputName2">　退貨單編號：</label> -->
-<!-- 			<input type="TEXT" class="form-control" name="ret_id" disabled/> -->
-<!-- 		</div>　　 -->
 		<div class="form-group">
 			<label for="exampleInputName2">　退貨日期：</label>
 			<input type="date" class="form-control" name="ret_date" />
@@ -245,7 +241,7 @@ print(text)
 		<div class="form-group">
 			<label for="exampleInputName2">廠商名稱：</label>
 			<input type="TEXT" class="form-control" name="com_name" value="德儀數位" />
-		</div>　　
+		</div>
 		<div class="form-group">
 			<label for="exampleInputName2">修改人員：</label>
 			<input type="TEXT" class="form-control" name="key_id" value="E00001" />

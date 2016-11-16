@@ -11,6 +11,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
 <style>
 
 		/* 	表格標題 */
@@ -61,13 +63,15 @@
 	p{
 		margin: 30px;	
 	}
+
 	
+
 </style>
 
 <title>折扣清單</title>
 </head>
 <body>
-
+	<section class="wrapper">
 		<div class="titlelist">查詢結果</div>
 			<div class="col-lg-12">
 				<%-- 錯誤表列 --%>
@@ -82,7 +86,7 @@
 				</c:if>
 				<p>
 				<div class="formlist">折扣清單</div>
-				<table border='1' bordercolor='#CCCCFF' width='800' class="table table-bordered table-striped  table-hover">
+				<table id="dic" border='1' bordercolor='#CCCCFF' class="table table-bordered table-striped  table-hover" style="width:100%">
 					<thead>
 						<tr>
 							<td class="numeric">折扣身分</td>
@@ -114,11 +118,14 @@
 						</tr>
 					</c:forEach>
 				</table>
-			</div>
+			</div></section>
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->	
+	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
 <script type="text/JavaScript">
 
 	$(document).ready(function() {
+		$("#dic").dataTable();
+		
 		$('.btn-primary').hide();
 		$('.chg_price').hide();
 		

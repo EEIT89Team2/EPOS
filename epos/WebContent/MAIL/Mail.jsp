@@ -79,30 +79,5 @@
 	</form>
 	</table>
 	 <a href="<c:out value='${pageContext.request.contextPath}' />/MAIL/Mail.jsp">回上頁</a>
-
-<!-----------------------查詢會員信箱--------------- -->
-
-<!-- <table border='1' width='500'>	 -->
-<!-- 	<form method="post" action="noOrdMail.do" > -->
-<!-- 	<div> -->
-<!-- 	<br><br>  -->
-<!-- 	<input type="date" id="s_ord_date" name="s_ord_date" value="2016-09-15"/> -->
-<!-- 	<input type="date" id="e_ord_date" name="e_ord_date" value="2016-10-02"/>		 -->
-<!-- 	<input type="submit" value="查詢未下訂單會員" name="howMany"> -->
-<!-- 	<tr> -->
-<!-- 		<th>會員編號.信箱</th> -->
-<!-- <!-- 		<th>訂單日期</th> --> 
-<!-- 	</tr> -->
-<!-- 	<br> -->
-<%-- 	<c:forEach var="list" items="${list1}">	 --%>
-<!-- 		<tr align='center' valign='middle'> -->
-<%-- 		<td>${list.key} , ${list.value.mem_mail}</td> --%>
-<!-- 		</tr>		 -->
-<%-- 	 </c:forEach> --%>
-<!-- 	</div> -->
-<!-- 	</form> -->
-<!-- 	</table> -->
-<%-- 	 <a href="<c:out value='${pageContext.request.contextPath}' />/MAIL/Mail.jsp">回上頁</a> --%>
-
 </body>
 </html>

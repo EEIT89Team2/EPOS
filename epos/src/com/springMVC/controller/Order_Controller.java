@@ -31,6 +31,7 @@ import com.member.model.MemberVO;
 import com.order.model.OrderService;
 import com.order.model.OrderVO;
 import com.order_detail.model.Order_DetailVO;
+import com.product.model.ProdService;
 import com.product.model.ProdVO;
 import com.valuation.model.ValuationService;
 import com.valuation.model.ValuationVO;
@@ -183,7 +184,8 @@ public class Order_Controller extends HttpServlet {
 
 			Order_DetailVO ordDetailVO = null;
 			ProdVO prodVO = null;
-
+			ProdService prodSrv = new ProdService();
+			
 			// 明細檔set集合(多方)
 			Set<Order_DetailVO> set = new LinkedHashSet<Order_DetailVO>();
 
@@ -211,6 +213,15 @@ public class Order_Controller extends HttpServlet {
 							.setProd_price(Double.parseDouble(request.getParameter("prod_price" + String.valueOf(i))));
 					// list.add(ordDetailVO);
 					set.add(ordDetailVO);
+					
+					ProdVO oldProdVO = prodSrv.getOne(prodVO.getProd_id());
+					int oldQuay = oldProdVO.getProd_stock();
+					
+					oldProdVO.setProd_stock(oldQuay-(Integer.parseInt(request.getParameter("prod_quantity" + String.valueOf(i)))));
+					
+					prodSrv.update(oldProdVO);
+
+					
 					i++;
 				} catch (Exception e) {
 					if (i < 100) {
@@ -229,6 +240,10 @@ public class Order_Controller extends HttpServlet {
 //			List<OrderVO> listAll = ordSvc.getAll();
 			
 			vltSvc.setStatus("Y", vlt_id);
+			
+			
+			
+			
 			
 			String ord_id = ordSvc.getOneTopOrdId();
 			System.out.println("ord_id=>"+ord_id);

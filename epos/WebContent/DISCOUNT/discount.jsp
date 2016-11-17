@@ -217,7 +217,7 @@
 		
 		setInterval(function(){
 			if(timer){
-				location.replace("<%=request.getContextPath()%>/lock_screen.jsp");
+				location.assign("<%=request.getContextPath()%>/lock_screen.jsp");
 			}else{
 				timer = true;
 			}

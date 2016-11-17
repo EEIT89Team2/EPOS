@@ -36,10 +36,10 @@
 				</tr>
 				<tr>
 					</td>
-					<td>備註：<input type="text" value="${list.remark}" readonly /></td>			
-					<td>修改人員：<input type="text" value="${LoginOK.emp_id}"  /></td>
+					<td>備註：<input type="text" name="remark" value="${list.remark}" readonly /></td>			
+					<td>修改人員：<input type="text" name="key_id" value="${LoginOK.emp_id}"  /></td>
 					<td>建檔日期：<input type="date" name="key_date" value="${list.key_date}"  /></td>
-					<td>班別：<input type="text" value="${SHIFT}" readonly /></td>
+					<td>班別：<input type="text" name="shift" value="${SHIFT}" readonly /></td>
 					<input type="hidden" name="ord_um" value="" />
 					<input type="hidden" name="cpon_id" value="" />
 					<input type="hidden" name="cpon_dollar" value="" />

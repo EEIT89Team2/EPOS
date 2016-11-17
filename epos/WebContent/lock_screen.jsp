@@ -49,11 +49,11 @@
 				                      <div class="modal-body">
 				                          <p class="centered"><img class="img-circle" width="80" src="<c:url value="/resources/img/ui-sam.jpg"/>"></p>
 				                          <input type="password" name="password" placeholder="Password" autocomplete="off" class="form-control placeholder-no-fix">
-				
+										  <input type="hidden" id="count" value="${LoginOK.emp_pwd}">
 				                      </div>
 				                      <div class="modal-footer centered">
 				                          <button data-dismiss="modal" class="btn btn-theme04" type="button">Cancel</button>
-				                          <button class="btn btn-theme03" type="button">Login</button>
+				                          <button class="btn btn-theme03" type="button" id="log">Login</button>
 				                      </div>
 				                  </div>
 				              </div>
@@ -78,6 +78,7 @@
     </script>
 
     <script>
+    
         function getTime()
         {
             var today=new Date();
@@ -99,6 +100,14 @@
             }
             return i;
         }
+
+		$('#log').on('click', function() {
+	        if($('input[name="password"]').val()==$("#count").val()){
+				 window.history.back();
+			}			
+		})
+		
+        
     </script>
 
   </body>

@@ -100,14 +100,13 @@
             }
             return i;
         }
-
+//密碼確認
 		$('#log').on('click', function() {
 	        if($('input[name="password"]').val()==$("#count").val()){
 				 window.history.back();
 			}			
 		})
 		
-        
     </script>
 
   </body>

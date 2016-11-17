@@ -1,14 +1,9 @@
 package login;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,7 +44,6 @@ public class login_Servlet extends HttpServlet {
 		// EmpVO empVO;
 		String emp_id = request.getParameter("emp_id");
 		String emp_pwd = request.getParameter("emp_pwd");
-		String requestURI = (String) session.getAttribute("requestURI");
 
 		// 2. 進行必要的資料轉換
 		// 無
@@ -66,7 +60,6 @@ public class login_Servlet extends HttpServlet {
 			rd.forward(request, response);
 			return;
 		}
-
 		EmpService empSrv = new EmpService();
 		EmpVO empVO = empSrv.getOne(emp_id);
 

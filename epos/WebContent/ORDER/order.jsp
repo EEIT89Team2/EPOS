@@ -527,18 +527,38 @@ print(text)
 										ordmain.total_price_temp.value = parseInt(ordmain.total_price_temp.value) + parseInt(prod_price);
 										count_total_price();
 										
-										$("#table1 >tbody >tr >td:eq("+id+")").append("<input type='text' name='prod_id"+a+"' value='"+$('#prod_id').val()+"' />")
+										var count=0;
+										var z1=0;
+										while(true){
+											if($("#table1 input:eq("+z1+")").val()!=null){
+												
+											count++;
+											}else{
+												break;
+												}
+											z1=z1+6;
+										}
+										console.log(count)
+										count=count*5;
+										n = count + 1;
+										q = count + 2;
+										p = count + 3;
+										del = count + 4;
+// 										$("#table1 >tbody >tr >td:eq("+id+")").append("<input type='text' name='prod_id"+a+"' value='"+$('#prod_id').val()+"' />")
+										$("#table1 >tbody >tr >td:eq("+count+")").append("<input type='text' name='prod_id"+a+"' value='"+$('#prod_id').val()+"' />")
 										$("#table1 >tbody >tr >td:eq("+n+")").append("<input type='text' name='prod_name"+a+"' value='"+prod_name+"'/>")
 										$("#table1 >tbody >tr >td:eq("+q+")").append("<input type='text' name='prod_quantity"+a+"' value='1' onblur='count_total_prod_price(ordmain.prod_quantity"+a+",ordmain.prod_price"+a+",ordmain.total_prod_price"+a+")'/>")
 										$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='text' name='prod_price"+a+"' value='"+prod_price+"' />")
 										$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='hidden' id='total_prod_price"+a+"' name='total_prod_price"+a+"' value='"+prod_price+"'/>")
 										$("#table1 >tbody >tr >td:eq("+del+")").append("<input type='button' value='刪除' class='btn btn-danger'></input>")
 										a = a + 1;
-										id = id + 5;
-										n = n + 5;
-										q = q + 5;
-										p = p + 5;
-										del = del + 5;
+
+									
+// 										id = id + 5;
+// 										n = n + 5;
+// 										q = q + 5;
+// 										p = p + 5;
+// 										del = del + 5;
 // 										console.log("id="+id);
 // 										console.log("n="+n);
 // 										console.log("q="+q);
@@ -665,12 +685,16 @@ print(text)
 	var table2 = $('#table1').DataTable();
 	$("#table1").on('click', '.btn-danger', function() {
 		//總計金額先扣除該筆商品的金額
-		ordmain.total_price_temp.value = parseInt(ordmain.total_price_temp.value) - $(this).parents("tr").children("td:eq(8)").children("input").val();
+		ordmain.total_price_temp.value = parseInt(ordmain.total_price_temp.value) - $(this).parents("tr").children("td:eq(3)").children("input").val();
 		count_total_price();
 
 		
 		table2.row( $(this).parents('tr') ).remove().draw();
 		
+			
+		
+	
+				
 
 		
 		//筆數再-1

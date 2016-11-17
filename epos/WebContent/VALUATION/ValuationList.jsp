@@ -28,10 +28,6 @@ print(text)
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Bootstrap core CSS -->
-<!-- <link href="../resources/css/bootstrap.min.css" rel="stylesheet"> -->
-<!-- <link href="../resources/css/bootstrap-theme.min.css" rel="stylesheet"> -->
 <link href="<c:url value="../resources/css/bootstrap.css" />"
 	rel="stylesheet">
 <!--external css-->
@@ -50,31 +46,19 @@ print(text)
 <title>報價單</title>
 
 <style>
-
-	.titledetail {
-		/*     	margin-top:auto; */
-		font-family: '微軟正黑體';
-		font-weight: bold;
-		color: white;
-		height: 35px;
-		background: #fb9292;
-		font-size: 23px;
-		border-radius: 2px;
-	}
-	
 	a{
-		color:#ab2222;
+		color:black;
 	}
 	
 	.main{
 		height: 250px;
 		border-radius: 8px;
-		background: #fbe7e7;
+		background: #fff6e0;
 	}
 	
 	.table > thead:first-child > tr:first-child > td {
-  		background:#fb9292;
-  		color:white;
+  		background:#ffb400;
+  		color:black;
   		border-top: 0;
   		font-family: 微軟正黑體;
 }
@@ -83,32 +67,28 @@ print(text)
 	}
 
 	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
-		border:1px solid #fdc0c0;
-		background:#f7e3e3;
+		border:1px solid #ffc334;
+		background:#fff5cc;
 	}
 	
 	.alert-info{
-		background: #f7a2a2;
-		border-color:#e86262;
-	}
-	
-	.addNewDetail{
-		
+		background: #fbd373;
+		border-color:#ffb400;
 	}
 	
 	.titlelist {
 	/*     	margin-top:auto; */
 	font-family: '微軟正黑體';
-	font-weight: bold;
-	color: white;
+	color: black;
 	height: 35px;
-	background: #f7a2a2;
+	background: #fbd373;
 	font-size: 23px;
 	border-radius: 2px;
 }
 	
 	
 	.btn-primary{
+		background:#5b97de;
 		margin-top:60px;
 	}
 	
@@ -233,12 +213,12 @@ print(text)
 			<div class="tab-content">
 				<nav id="listinfo" class="alert alert-info">
 				<div>
-				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
+				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　
 		    	<a href="#" onclick="window.open('searchList.jsp', 'RetrunItem', config='height=500,width=1200')"><span class="glyphicon glyphicon-search"></span>單筆查詢</a>　　
-		    	<a href="#" onclick="window.open('SelectVltAll.jsp', 'ValuationList', config='height=1050,width=1680')"><span class="glyphicon glyphicon-list-alt"></span>全部查詢</a>　　　
-		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　　
+		    	<a href="#" onclick="window.open('SelectVltAll.jsp', 'ValuationList', config='height=1050,width=1680')"><span class="glyphicon glyphicon-list-alt"></span>全部查詢</a>　　
+		    	<a href="SelectVltAllForCHK.jsp" ><span class="glyphicon glyphicon-list-alt"></span>審核</a>　　
+		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　
 		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>
-		    	<a href="#" onclick="window.open('SelectVltAllForCHK.jsp', 'ValuationList', config='height=1050,width=1680')"><span class="glyphicon glyphicon-list-alt"></span>審核</a>
 				</div>
  
 				</nav> 
@@ -246,16 +226,8 @@ print(text)
 	<FORM id="form1" METHOD="post" ACTION="addVltList.do" name="form1" class="form-inline">
 	<table border="0">
 	<tr>
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="exampleInputName2">　退貨單編號：</label> -->
-<!-- 			<input type="TEXT" class="form-control" name="ret_id" disabled/> -->
-<!-- 		</div>　　 -->
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="exampleInputName2">　報價單號 ：</label> -->
-<!-- 			<input type=text class="form-control" name="vlt_id" readonly /> -->
-<!-- 		</div>　　 -->
 		<div class="form-group">
-			<label for="exampleInputName2">報價日期 ：</label>
+			<label for="exampleInputName2">　　報價日期 ：</label>
 			<input type="date" class="form-control" name="vlt_date" value="" />	
 		</div>　　
 		<div class="form-group">
@@ -265,29 +237,26 @@ print(text)
 		<div class="form-group">
 			<label for="exampleInputName2">總  金  額 ：</label>
 			<input type="text" class="form-control" name="total_price" value="" />
-		</div>　
-
+		</div>　　
 		<div class="form-group">
-			<label for="exampleInputName2">　修改人員 ：</label>
+			<label for="exampleInputName2">修改人員 ：</label>
 			<input type="text" class="form-control" name="key_id" value="${LoginOK.emp_id}" />
-		</div>
+		</div>　　
 		<div class="form-group">
-			<label for="exampleInputName2">　　 修改日期 ：</label>
+			<label for="exampleInputName2"> 修改日期 ：</label>
 			<input type="date" class="form-control" name="key_date" />
-		</div>　
-		<div class="form-group">
-			<label for="exampleInputName2">有效日期 ：</label>
-			<input type="date" class="form-control" name="exp_date" />
-		</div>　
-		<div class="form-group">　
-			<label for="exampleInputName2"> 狀　 態 ：</label>
-			<input type="text" class="form-control" name="status" value="N" readonly />
-		</div>　
-		
+		</div>
 		<div style="height: 10px;"></div>
-		　　
 		<div class="form-group">
-			<label for="exampleInputName2">備　註：</label>
+			<label for="exampleInputName2">　　有效日期 ：</label>
+			<input type="date" class="form-control" name="exp_date" />
+		</div>　　
+		<div class="form-group">
+			<label for="exampleInputName2">狀 　 態 ：</label> 
+			<input type="text" class="form-control" name="status" value="N" readonly />
+		</div>　　
+		<div class="form-group">
+			<label for="exampleInputName2">備　　註：</label>
 			<input type="text" class="form-control" name="remark" value="test" />
 		</div>
 	</tr>
@@ -313,7 +282,7 @@ print(text)
 		<td><input type="TEXT" name="prod_name1"  value="iphone 6 16G 黑色" /></td>
 		<td><input type="TEXT" name="prod_quantity1" value="2" /></td>
 		<td><input type="TEXT" name="prod_price1"  value="20000"/></td>
-		<td><input type='button' value='刪除' class='btn btn-danger'></input></td>
+		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
 	</tr>
 		
 </table>
@@ -373,7 +342,7 @@ print(text)
 								+ "<td><input type='TEXT' name='prod_name"+a+"'/></td>"
 								+ "<td><input type='TEXT' name='prod_quantity"+a+"'/></td>"
 								+ "<td><input type='TEXT' name='prod_price"+a+"' /></td>"
-								+ "<td><input type='button' value='刪除' class='btn btn-danger'></input></td></tr>"
+								+ "<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td></tr>"
 			)
 							a = a + 1;
 		})

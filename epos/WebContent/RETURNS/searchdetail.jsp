@@ -31,15 +31,6 @@
 
 </head>
 <body>
-<c:if test="${not empty errorMsgs}">
-<font color='red'>請修正以下錯誤:
-<ul>
-	<c:forEach var="message" items="${errorMsgs}">
-		<li>${message}</li>
-	</c:forEach>
-</ul>
-</font>
-</c:if>
 	<div class="divser">查詢</div>
 	<div style="height: 20px"></div>
 	
@@ -65,6 +56,7 @@
   		</div>
   		<button type="submit" class="btn btn-default">查詢</button>
 	</form>	
+	 	<c:if test="${not empty errorMsgs}"><font color='red'>請修正錯誤:<c:forEach var="message" items="${errorMsgs}"><span>${message}</span></c:forEach></c:if></font>
 	
 
 </body>

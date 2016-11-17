@@ -48,7 +48,7 @@ public class RtnDetail_Controller extends HttpServlet {
 				// RequestDispatcher failureView =
 				// req.getRequestDispatcher("/returns/Return_Detail.jsp");
 				// failureView.forward(req, res);
-				return "/RETURNS/Return_Detail";
+				return "/RETURNS/searchdetail";
 			}
 
 			// String prod_name=null;
@@ -62,7 +62,7 @@ public class RtnDetail_Controller extends HttpServlet {
 				// RequestDispatcher failureView =
 				// req.getRequestDispatcher("/returns/Return_Detail.jsp");
 				// failureView.forward(req, res);
-				return "/RETURNS/Return_Detail";
+				return "/RETURNS/searchdetail";
 			}
 
 			/*************************** 2.開始查詢資料 *****************************************/
@@ -89,7 +89,7 @@ public class RtnDetail_Controller extends HttpServlet {
 			// RequestDispatcher failureView = req
 			// .getRequestDispatcher("/returns/Return_Detail.jsp");
 			// failureView.forward(req, res);
-			return "/RETURNS/Return_Detail";
+			return "/RETURNS/searchdetail";
 		}
 		// return prod_name;
 	}
@@ -110,7 +110,7 @@ public class RtnDetail_Controller extends HttpServlet {
 				// RequestDispatcher failureView =
 				// req.getRequestDispatcher("/returns/Return_Detail.jsp");
 				// failureView.forward(req, res);
-				return "/RETURNS/Return_Detail";
+				return "/RETURNS/searchdetail";
 			}
 
 			String ret_id = null;
@@ -124,7 +124,7 @@ public class RtnDetail_Controller extends HttpServlet {
 				// RequestDispatcher failureView =
 				// req.getRequestDispatcher("/returns/Return_Detail.jsp");
 				// failureView.forward(req, res);
-				return "/RETURNS/Return_Detail";
+				return "/RETURNS/searchdetail";
 			}
 
 			/*************************** 2.開始查詢資料 *****************************************/
@@ -151,7 +151,7 @@ public class RtnDetail_Controller extends HttpServlet {
 			// RequestDispatcher failureView = req
 			// .getRequestDispatcher("/returns/Return_Detail.jsp");
 			// failureView.forward(req, res);
-			return "/RETURNS/Return_Detail";
+			return "/RETURNS/searchdetail";
 		}
 
 		// return getId;

@@ -280,7 +280,7 @@ print(text)
 		<td><input type="TEXT" name="prod_name1"  value="iphone 6 16G 黑色" /></td>
 		<td><input type="TEXT" name="prod_quantity1" value="100" /></td>
 		<td><input type="TEXT" name="ret_reason1"  value="不能照相"/></td>
-		<td><input type='button' value='刪除' class='btn btn-danger'></input></td>
+		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
 	</tr>
 		
 </table>
@@ -339,7 +339,7 @@ print(text)
 			$("#form2").append("<tr align='center' valign='middle'><td><input type='TEXT' name='prod_name"+a+"'/></td>"
 								+ "<td><input type='TEXT' name='prod_quantity"+a+"'/></td>"
 								+ "<td><input type='TEXT' name='ret_reason"+a+"' /></td>"
-								+ "<td><input type='button' value='刪除' class='btn btn-danger'></input></td></tr>"
+								+ "<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td></tr>"
 			)
 							a = a + 1;
 		})

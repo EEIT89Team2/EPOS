@@ -5,110 +5,72 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
+<style>
+	.divser{
+		font-size: 20px;
+		background: #ffb400;
+		font-family: 微軟正黑體;
+		text-align: center;
+		color:white;
+	}
+	
+	.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{
+		background-color:#fbbbbb;
+	
+	}
+	
+	th{
+		text-align: center;
+	}
+
+
+</style>
 <title>查詢報價單</title>
 </head>
 <body>
+	<div class="divser">報價單查詢</div>
+	<div style="height: 10px;"></div>
+	<form method="post" action="getVltDate.do" >
 
-<%-- 	<c:if test="${not empty errorMsgs}"> --%>
-<!-- 		<font color='red'>請修正以下錯誤: -->
-<!-- 			<ul> -->
-<%-- 				<c:forEach var="message" items="${errorMsgs}"> --%>
-<%-- 					<li>${message}</li> --%>
-<%-- 				</c:forEach> --%>
-<!-- 			</ul> -->
-<!-- 		</font> -->
-<%-- 	</c:if> --%>
-
-	<h1>報價單</h1>
-
-	<form method="post" action="getVltDate.do">
-
-		<table border="1">
+		<table>
 			<tr>
 				<th>日期範圍(起)</th>
 				<th>日期範圍(迄)</th>
+				<th>　</th>
+<!-- 				<th>查詢</th> -->
 			</tr>
 			<tr>
-				<td><input type="date" name="dateBegin" value="2016-09-14"></td>
-				<td><input type="date" name="dateEnd" value="2016-10-16"></td>
+				<td><input type="date" name="dateBegin" value="2016-09-14" class="form-control"></td>
+				<td><input type="date" name="dateEnd" value="2016-10-16" class="form-control"></td>
+				<td></td>
+				<td>
+					 <button type="submit"class="btn btn-success"><i class="glyphicon glyphicon-search"></i></button>
+					 <input type="hidden"name="action" value="SelectByDate">					
+				</td>
 			</tr>
 		</table>
 		<br>
-		 <input type="submit" value="送出" />
-		 <input type="hidden"name="action" value="SelectByDate">
 
 	</form>
 
-	<!-- 	<hr> -->
-	<!-- 	<hr> -->
-	<!-- 	<h3>查詢全部報價單</h3> -->
-	<!-- 	<form method="post" action="getAllVlt.do"> -->
-	<!-- 		<input type="submit" value="查詢"> <input type="hidden" -->
-	<!-- 			name="action" value="getAll"> -->
-
-	<!-- 	</form> -->
-
-	<!-- 	<hr> -->
-	<!-- 	<hr> -->
-	<h3>依報價單編號查詢</h3>
-
-
 	<form method="post" action="getByVlt_id.do">
-		<table border="1">
+		<table>
 			<tr>
 				<th>報價單編號</th>
-				<th>查詢</th>
+				<th>　</th>
+<!-- 				<th>查詢</th> -->
 			</tr>
 			<tr>
-				<td><input type="text" name="vlt_id"></td>
-				<td><input type="submit" value="送出"></td>
+				<td><input type="text" name="vlt_id" class="form-control"></td>
+				<td></td>
+				<td><button type="submit"class="btn btn-info"><i class="glyphicon glyphicon-search"></i></button></td>
 			</tr>
 		</table>
 		<input type="hidden" name="action" value="getByVlt_id">
 	</form>
 
-	<!-- 	<hr> -->
-	<!-- 	<hr> -->
-	<!-- 	<h3>依報價單編號修改</h3> -->
-
-
-	<!-- 	<form method="post" action="setVltStatus.do"> -->
-	<!-- 		<table border="1"> -->
-	<!-- 			<tr> -->
-	<!-- 				<td>報價單編號：</td> -->
-	<!-- 				<td><input type="text" name="vlt_id"></td> -->
-	<!-- 			</tr> -->
-	<!-- 			<tr> -->
-	<!-- 				<td>修改狀態：</td> -->
-	<!-- 				<td><input type="text" name="status"></td> -->
-	<!-- 			</tr> -->
-	<!-- 		</table> -->
-	<!-- 		<input type="submit" value="修改"> -->
-	<!-- 		<input type="hidden" name="action" value="setStatus"> -->
-	<!-- 	</form> -->
-
-
-	<!-- 	<hr> -->
-	<!-- 	<hr> -->
-	<!-- 	<a href="/pos/Index4.jsp">回首頁</a> -->
-
-	<!-- <hr><hr> -->
-	<!-- <h3>依訂單編號查詢</h3> -->
-	<!-- <form method="post" action="VltListServlet.do" > -->
-	<!-- <table border="1"> -->
-	<!-- 	<tr> -->
-	<!-- 		<th>訂單編號</th> -->
-	<!-- 		<th>查詢</th> -->
-	<!-- 	</tr> -->
-	<!-- 	<tr> -->
-	<!-- 		<td><input type="text" name="ord_id"></td> -->
-	<!-- 		<td><input type="submit"  value="送出"></td> -->
-	<!-- 	</tr> -->
-	<!-- </table> -->
-	<!-- <input type="hidden" name="action" value="getByOrd_id"> -->
-	<!-- </form> -->
-
-	<!-- 	<a href="../index.jsp">回首頁</a> -->
 	<!-- 	<a href="javascript:" onclick="history.back(); ">回上頁</a>  -->
 </body>
 </html>

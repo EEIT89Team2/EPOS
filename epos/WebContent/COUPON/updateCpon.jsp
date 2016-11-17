@@ -23,7 +23,7 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO"); //若輸入錯誤可�
 	border-radius: 2px;
 }
 
-p {
+.distance {
 	margin: 30px;
 }
 
@@ -50,7 +50,7 @@ p {
 		<FORM METHOD="post" ACTION="updateCpon.do" name="form2"
 			class="form-horizontal" role="form">
 
-			<p>
+			<p class="distance">
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-5 control-label">折價券編號:</label>
 				<div class="col-lg-6">
@@ -96,7 +96,7 @@ p {
 						name="status" value="N" ${copVO.status=="N"?'checked':''} />
 				</div>
 			</div>
-		<p>
+		<p class="distance">
 		<div class="form-group">
 			<div class="col-lg-1 col-lg-offset-5">
 				<!-- <input type="hidden" name="action" value="update"> -->

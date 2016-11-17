@@ -174,6 +174,7 @@
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
 	<script type="text/JavaScript">
+		
 		$(document).ready(function() {
 			
 			$('#r_disc').on('click', function() {
@@ -193,8 +194,36 @@
 			$(".print").click(function() {
 				window.print();
 			})
-	
+			
+// 			$(document).keydown(timer);
+// 			$(document).mouseover(function(e){ idle_time=0; });
+			
+// 			var idle_time = setInterval("idle_time++",1000);
+// 			console.log(idle_time);
+// 			console.log(idle_time);
+// 			console.log(idle_time);
+			
+// 			function autoUpdate(){
+// 				if(idle_time>=5){ 
+// 					console.log("2");
+// 					alert("3")
+// 				}
+// 				if(idle_time<10) setTimeout('autoUpdate()',5);
+// 			}
 		})
+		var timer = true;
+		$(document).keydown(function(e){timer=false;});
+		$(document).mouseover(function(e){timer=false;});
+		
+		setInterval(function(){
+			if(timer){
+				location.replace("<%=request.getContextPath()%>/lock_screen.jsp");
+			}else{
+				timer = true;
+			}
+		},5000);
+
+		
 	</script>
 </body>
 </html>

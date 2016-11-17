@@ -33,7 +33,7 @@
 		border-radius: 2px;
 	}
 		
-	p{
+	.distance{
 		margin: 30px;	
 	}
 	
@@ -73,7 +73,7 @@
 
 		<form method="post" action="insertShiftre.do" class="insertShift form-horizontal" role="form">
 
-			<p>
+			<p class="distance">
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-5 control-label">日期:</label>
 				<div class="col-lg-6">
@@ -158,7 +158,7 @@
 					<input type="text" name="shift_sum" value="2000">
 				</div>
 			</div>
-			<p>
+			<p class="distance">
 			<div class="form-group">
 				<div class="col-lg-1 col-lg-offset-5">
 					<input type="button" value="新增" name="insert_shift" class="btn btn-theme02">

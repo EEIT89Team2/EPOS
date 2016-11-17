@@ -46,7 +46,7 @@
 		border-radius: 2px;
 	}
 
-	p{
+	.distance{
 		margin: 20px;	
 	}
 	
@@ -196,7 +196,7 @@
 
 					<div class="titlelist">查詢</div>
 					<div class="col-lg-12 main">
-						<p>
+						<p class="distance">
 
 						<form method="post" action="getOneShiftre.do" class="oneshift form-horizontal style-form">
 							<div class="form-group">

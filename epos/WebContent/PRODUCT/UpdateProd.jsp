@@ -20,7 +20,7 @@
 	border-radius: 2px;
 }
 
-p {
+.distance {
 	margin: 30px;
 }
 
@@ -33,7 +33,7 @@ p {
 
 	<div class="titlelist">修改商品資料</div>
 		<div class="col-lg-12">
-	<p>
+	<p class="distance">
 		<c:if test="${not empty errorMsgs}">
 			<font color='red'>請修正以下錯誤:
 				<ul>
@@ -48,7 +48,7 @@ p {
 				<div class="form-group">
 					<label class="col-lg-1 col-lg-offset-5 control-label">商品編號:</label>
 					<div class="col-lg-6">
-					<input type="text" name="prod_id" value="${prodVO.prod_id}" readonly="readonly" style="color: gray;">
+					<input type="text" name="prod_id" value="${prodVO.prod_id}" readonly="readonly" style="color: gray">
 					</div>
 				</div>	
 				<div class="form-group">	
@@ -123,7 +123,7 @@ p {
 						<input type="text" name="status" value="${prodVO.status}">
 					</div>
 				</div>
-				<p>	
+				<p class="distance">	
 				<div class="form-group">
 					<div class="col-lg-1 col-lg-offset-5 control-label">
 						<input type="submit" value="修改" class="btn btn-warning">

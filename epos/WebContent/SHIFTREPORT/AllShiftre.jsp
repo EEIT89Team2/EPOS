@@ -58,7 +58,7 @@
 		border-radius: 2px;
 	}
 	
-	p{
+	.distance{
 		margin: 30px;	
 	}
 	

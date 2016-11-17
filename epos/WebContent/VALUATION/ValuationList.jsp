@@ -262,7 +262,10 @@ print(text)
 	</tr>
 </table>
 <div style="height: 70px;"></div>
-<button type="button" id="addNewDetail" class="btn btn-info">新增明細</button>
+<button type="button" id="addNewDetail" class="btn btn-info">新增明細</button>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+<button type="button" id="helper" class="btn btn-info">輸入小幫手</button>
+<!-- <button type="button" id="count_total_price" class="btn btn-info">計算總金額</button> -->
+
 <div class="titlelist">報價單明細</div>
 <table border="0" id="form2" class="table table-bordered table-striped table-hover">
 <thead>
@@ -278,19 +281,47 @@ print(text)
 	</tr>
 </thead>
 	<tr align='center' valign='middle'>
-		<td><input type="TEXT" name="prod_id1"  value="P00001" /></td>
-		<td><input type="TEXT" name="prod_name1"  value="iphone 6 16G 黑色" /></td>
-		<td><input type="TEXT" name="prod_quantity1" value="2" /></td>
-		<td><input type="TEXT" name="prod_price1"  value="20000"/></td>
+		<td><input type="TEXT" name="prod_id1"  value="" /></td>
+		<td><input type="TEXT" name="prod_name1"  value="" /></td>
+		<td><input type="TEXT" name="prod_quantity1" value="" /></td>
+		<td><input type="TEXT" name="prod_price1"  value=""/></td>
+		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
+	</tr>
+	<tr align='center' valign='middle'>
+		<td><input type="TEXT" name="prod_id2"  value="" /></td>
+		<td><input type="TEXT" name="prod_name2"  value="" /></td>
+		<td><input type="TEXT" name="prod_quantity2" value="" /></td>
+		<td><input type="TEXT" name="prod_price2"  value=""/></td>
+		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
+	</tr>
+	<tr align='center' valign='middle'>
+		<td><input type="TEXT" name="prod_id3"  value="" /></td>
+		<td><input type="TEXT" name="prod_name3"  value="" /></td>
+		<td><input type="TEXT" name="prod_quantity3" value="" /></td>
+		<td><input type="TEXT" name="prod_price3"  value=""/></td>
+		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
+	</tr>
+	<tr align='center' valign='middle'>
+		<td><input type="TEXT" name="prod_id4"  value="" /></td>
+		<td><input type="TEXT" name="prod_name4"  value="" /></td>
+		<td><input type="TEXT" name="prod_quantity4" value="" /></td>
+		<td><input type="TEXT" name="prod_price4"  value=""/></td>
+		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
+	</tr>
+	<tr align='center' valign='middle'>
+		<td><input type="TEXT" name="prod_id5"  value="" /></td>
+		<td><input type="TEXT" name="prod_name5"  value="" /></td>
+		<td><input type="TEXT" name="prod_quantity5" value="" /></td>
+		<td><input type="TEXT" name="prod_price5"  value=""/></td>
 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
 	</tr>
 		
 </table>
 <br>
-</div>
+
 <input type="hidden" name="action" value="insert">
 </FORM>
-	
+	</div>
 	</div>
 	</section> </section> </section>
 
@@ -336,7 +367,7 @@ print(text)
 	})
 	
 	$(function() {
-		var a = 2;
+		var a = 6;
 		$("#addNewDetail").click(function() {
 			$("#form2").append("<tr align='center' valign='middle'><td><input type='TEXT' name='prod_id"+a+"'/></td>"
 								+ "<td><input type='TEXT' name='prod_name"+a+"'/></td>"
@@ -346,6 +377,55 @@ print(text)
 			)
 							a = a + 1;
 		})
+	})
+	
+// <!----------------------------------------  輸入小幫手         ------------------------------------>
+	
+	$("#helper").click(function(){
+// 		alert("aaa");
+		form1.prod_id1.value="P00012";
+		form1.prod_name1.value="天然月見草油膠囊";
+		form1.prod_quantity1.value="2";
+		form1.prod_price1.value="379";
+		
+		form1.prod_id2.value="P00016";
+		form1.prod_name2.value="旺來仙貝超值包350g";
+		form1.prod_quantity2.value="3";
+		form1.prod_price2.value="136";
+		
+		form1.prod_id3.value="P00017";
+		form1.prod_name3.value="麻辣花生";
+		form1.prod_quantity3.value="2";
+		form1.prod_price3.value="129";
+		
+		form1.prod_id4.value="P00021";
+		form1.prod_name4.value="多飲礦泉水特大罐";
+		form1.prod_quantity4.value="1";
+		form1.prod_price4.value="46"
+		
+		form1.prod_id5.value="P00025";
+		form1.prod_name5.value="CCU炭燒大濾掛式咖啡";
+		form1.prod_quantity5.value="1";
+		form1.prod_price5.value="299";
+
+// 		var a = 2;
+		
+// 		form1.total_price.value = parseInt(document.getElementById("prod_price1").value)
+// 								+ parseInt(document.getElementById("prod_price2").value)
+// 								+ parseInt(document.getElementById("prod_price3").value)
+// 								+ parseInt(document.getElementById("prod_price4").value)
+// 								+ parseInt(document.getElementById("prod_price5").value);
+	
+	})
+	
+	$("count_total_price").click(function(){
+		alert("1");
+		form1.total_price.value = parseInt(document.getElementById("prod_price1").value)
+		+ parseInt(document.getElementById("prod_price2").value)
+		+ parseInt(document.getElementById("prod_price3").value)
+		+ parseInt(document.getElementById("prod_price4").value)
+		+ parseInt(document.getElementById("prod_price5").value)
+		alert("2");
 	})
 	
 

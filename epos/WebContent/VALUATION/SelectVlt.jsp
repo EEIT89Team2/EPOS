@@ -3,15 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ page import="java.util.*"%>
-<%@ page import="com.valuation.model.*"%>
-
-<%
-	ValuationService vltSvc = new ValuationService();
-	List<ValuationVO> list = vltSvc.getAll();
-	pageContext.setAttribute("list",list);
-%>
-
 
 <html>
 <head>
@@ -57,8 +48,7 @@
 			</form>
 		</c:forEach>
 	</table>
-
-<!-- <input type="button" name="action" value="返回" onclick="history.back();"> -->
-
+<!-- 	<a href="javascript:" onclick="history.back(); ">回上頁</a>  -->
+<input type="button" name="action" value="返回" onclick="history.back();">
 </body>
 </html>

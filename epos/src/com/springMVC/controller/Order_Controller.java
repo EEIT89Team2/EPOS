@@ -32,6 +32,9 @@ import com.order.model.OrderService;
 import com.order.model.OrderVO;
 import com.order_detail.model.Order_DetailVO;
 import com.product.model.ProdVO;
+import com.valuation.model.ValuationService;
+import com.valuation.model.ValuationVO;
+import com.valuation_detail.model.Valuation_DetailVO;
 
 @Controller
 public class Order_Controller extends HttpServlet {
@@ -41,6 +44,7 @@ public class Order_Controller extends HttpServlet {
 	private final static DiscountService disSvc = new DiscountService();
 	private final static CouponService cponSvc = new CouponService();
 	private final static EmpService empSvc = new EmpService();
+	private final static ValuationService vltSvc = new ValuationService();
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/addOrder.do", "/ORDER/addOrder.do" })
 	public String addOrder(ModelMap model, HttpServletRequest request) throws Exception {
@@ -129,7 +133,7 @@ public class Order_Controller extends HttpServlet {
 			}
 			String cpon_dollar = request.getParameter("cpon_dollar");
 			if("".equals(cpon_dollar)){
-				cpon_dollar="0";
+				cpon_dollar = "0";
 			}
 			
 			String remark = request.getParameter("remark");
@@ -222,14 +226,25 @@ public class Order_Controller extends HttpServlet {
 			ordVO.setOrderdetails(set);
 			// OrderService ordSvc = new OrderService();
 			ordVO = ordSvc.addOrder(ordVO, list);
-			List<OrderVO> listAll = ordSvc.getAll();
-
-			request.getSession().setAttribute("list", listAll);
-
+//			List<OrderVO> listAll = ordSvc.getAll();
+			
+			vltSvc.setStatus("Y", vlt_id);
+			
+			String ord_id = ordSvc.getOneTopOrdId();
+			System.out.println("ord_id=>"+ord_id);
+			OrderVO ordVO1 = ordSvc.Select_order_id(ord_id);
+			LinkedList<OrderVO> list1 = new LinkedList<OrderVO>();
+			list1.add(ordVO1);
+			model.addAttribute("list", list1);
+			
+			List<Order_DetailVO> detailList = ordSvc.Select_order_detailALL(ord_id);
+			model.addAttribute("detailList", detailList);
+			model.addAttribute("ordVO", ordVO1);
+			
 			/****************************
 			 * 3.完成,準備轉交(Send the Success view)
 			 ***********/
-			return "redirect:/ORDER/SelectOrd.jsp";
+			return "/ORDER/AllOrdDetail";
 
 			/*************************** 其他可能的錯誤處理 **********************************/
 		} catch (Exception e) {
@@ -383,7 +398,7 @@ public class Order_Controller extends HttpServlet {
 			errorMsgs.add("請輸入訂單編號");
 		}
 		if (!errorMsgs.isEmpty()) {
-			return "/ORDER/SelectOrder";
+			return "/ORDER/searchList";
 		}
 		/*************************** 2.開始查詢資料 *****************************************/
 		// OrderService ordSvc = new OrderService();
@@ -417,7 +432,7 @@ public class Order_Controller extends HttpServlet {
 			errorMsgs.add("請輸入商品編號");
 		}
 		if (!errorMsgs.isEmpty()) {
-			return "/ORDER/SelectOrder";
+			return "/ORDER/searchList";
 		}
 		/*************************** 2.開始查詢資料 *****************************************/
 		// OrderService ordSvc = new OrderService();
@@ -462,7 +477,7 @@ public class Order_Controller extends HttpServlet {
 			errorMsgs.add("狀態格式:N or Y");
 		}
 		if (!errorMsgs.isEmpty()) {
-			return "/ORDER/SelectOrder";
+			return "/ORDER/searchList";
 		}
 
 		/*************************** 2.開始修改資料 *****************************************/
@@ -629,5 +644,36 @@ public class Order_Controller extends HttpServlet {
 		}
 
 	}
+	
+	@RequestMapping(method = RequestMethod.POST,value ={"/OrdToShip.do","/ORDER/OrdToShip.do"})
+	public String OrdToShip(ModelMap model,HttpServletRequest request,
+			/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
+			@RequestParam("action")String action,
+			@RequestParam("ord_id") String ord_id)
+			throws Exception {
+		/*************************** 2.永續層存取 ***************************************/
+		if ("toShip".equals(action)) {
+			
+			//OrderService ordSvc = new OrderService();
+			try {
+				List<Order_DetailVO> detailList = ordSvc.Select_order_detailALL(ord_id);
+				request.setAttribute("detailList", detailList);
+
+				OrderVO ordVO = ordSvc.Select_order_id(ord_id);
+				LinkedList<OrderVO> list = new LinkedList<OrderVO>();
+				list.add(ordVO);
+				request.setAttribute("list", list);
+				request.setAttribute("ordVO", ordVO);
+
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
+			/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
+			return "/SHIPMENTS/ShipmentsList";
+		}
+		return null;	
+	}
+	
 
 }

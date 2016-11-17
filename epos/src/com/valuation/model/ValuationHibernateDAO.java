@@ -142,5 +142,11 @@ public class ValuationHibernateDAO implements Valuation_Interface {
 		
 	}
 
+	@Override
+	public List<ValuationVO> getAllByN() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

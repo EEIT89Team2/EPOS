@@ -16,5 +16,6 @@ public interface Valuation_Interface {
 	public void delete(String vlt_id) throws Exception;
 	public List<ValuationVO> getAll() throws Exception;
 	public void setStatus(String status,String vlt_id) throws Exception;
+	public List<ValuationVO> getAllByN() throws Exception;
 	
 }

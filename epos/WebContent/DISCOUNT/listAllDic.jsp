@@ -60,7 +60,7 @@
 		border-radius: 2px;
 	}
 	
-	p{
+	.distance{
 		margin: 30px;	
 	}
 
@@ -84,7 +84,7 @@
 						</ul>
 					</font>
 				</c:if>
-				<p>
+				<p  class="distance">
 				<div class="formlist">折扣清單</div>
 				<table id="dic" border='1' bordercolor='#CCCCFF' class="table table-bordered table-striped  table-hover" style="width:100%">
 					<thead>

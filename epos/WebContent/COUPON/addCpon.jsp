@@ -24,7 +24,7 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO");	//若輸入錯誤可�
 	border-radius: 2px;
 }
 
-p {
+.distance {
 	margin: 30px;
 }
 
@@ -49,7 +49,7 @@ p {
 <%-- </c:if> --%>
 							
 	<FORM METHOD="post" ACTION="insertCpon.do" name="form1" class="form-horizontal" role="form">
-		<p>
+		<p class="distance">
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-5 control-label">折價券名稱:</label>
 				<div class="col-lg-6">
@@ -82,7 +82,7 @@ p {
 					庫存<input type="radio" name="status"  value="N"/>
 				</div>
 			</div>
-				<p>
+				<p class="distance">
 				<div class="form-group">
 					<div class="col-lg-1 col-lg-offset-5">
 						<input type="button" value="送出新增" name="c_promoting" class="btn btn-theme03">

@@ -58,7 +58,7 @@
 		border-radius: 2px;
 	}
 	
-	p{
+	.distance {
 		margin: 30px;
 	}
 	
@@ -79,7 +79,7 @@
  
 <div class="titlelist">查詢結果</div>
 <div class="col-lg-12">
- <p>
+ <p class="distance">
 	<div class="formlist">折價券清單</div>
 		<table id="allcpon" border="2" bordercolor='#CCCCFF' class="table table-bordered table-striped  table-hover">
 		<thead><tr>
@@ -117,7 +117,6 @@
 </div>
 
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
-	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
 	<script>
 		$(function() {
 			$("#allcpon").dataTable();

@@ -24,7 +24,7 @@
 		border-radius: 2px;
 	}
 
-	p{
+	.distance{
 		margin: 20px;	
 	}
 
@@ -47,7 +47,7 @@
 				<div class="titlelist">查詢</div>
 				<div class="col-lg-12">
 
-						<p>
+						<p class="distance">
 						<form METHOD="post" ACTION="disc.do" id="count" class="form-horizontal style-form">
 							<div class="col-lg-4"></div>
 							<div class="form-group">

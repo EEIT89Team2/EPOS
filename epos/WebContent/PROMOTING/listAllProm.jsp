@@ -43,7 +43,7 @@
 		border-radius: 2px;
 	}
 	
-	p{
+	.distance{
 		margin: 30px;
 	
 	}
@@ -76,7 +76,7 @@
 
 	<div class="titlelist">查詢結果</div>
 	<div class="col-lg-12">
-		<p>
+		<p class="distance">
 		<div class="titlelist">折扣清單</div>
 		<table id="prom" border='1' bordercolor='#CCCCFF'
 			class="table table-bordered table-striped  table-hover">

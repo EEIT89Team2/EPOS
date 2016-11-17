@@ -43,7 +43,7 @@
 		border-radius: 2px;
 	}
 
-	p{
+	.distance{
 		margin: 20px;	
 	}
 	
@@ -72,7 +72,7 @@
 
 		<FORM METHOD="post" ACTION="insertProm.do" name="form1"
 			class="form-horizontal" role="form">
-			<p>
+			<p class="distance">
 			<div class="form-group">
 
 				<label class="col-lg-1 col-lg-offset-3 control-label">促銷商品編號:</label>
@@ -106,7 +106,7 @@
 				</div>
 			</div>
 			<!-- 		<input type="hidden" name="action" value="insert">  -->
-			<p>
+			<p class="distance">
 			<div class="form-group">
 				<div class="col-lg-1 col-lg-offset-5">
 					<input type="button" value="送出新增" name="c_promoting" class="btn btn-success">

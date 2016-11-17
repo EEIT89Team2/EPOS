@@ -33,7 +33,7 @@
 		border-radius: 2px;
 	}
 		
-	p{
+	.distance{
 		margin: 30px;	
 	}
 	
@@ -56,7 +56,7 @@
 		</c:if>
 		
 		<form method="post" action="updateShiftre.do" class="updateShi form-horizontal" role="form">
-		<p>
+		<p class="distance">
 			
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-2 control-label">日期:</label>
@@ -117,7 +117,7 @@
 				</div>
 			</div>
 
-			<p>			
+			<p class="distance">			
 			<div class="form-group">
 				<div class="col-lg-1 col-lg-offset-5">
 					<input type="button" value="送出修改" class="btn btn-theme02">

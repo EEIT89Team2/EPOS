@@ -42,7 +42,7 @@
 		border-radius: 2px;
 	}
 
-	p{
+	.distance{
 		margin: 20px;	
 	}
 	
@@ -67,7 +67,7 @@
 			</font>
 		</c:if>
 
-		<p>
+		<p class="distance">
 		<FORM METHOD="post" ACTION="namesProm.do" name="r_prom1" class="form-horizontal" role="form">
 			<div class="form-group">
 				<label class="col-lg-2 col-lg-offset-3 control-label">輸入促銷商品編號(如P00001):</label>

@@ -57,9 +57,8 @@
 		border-radius: 2px;
 	}
 	
-	p{
+	.distance {
 		margin: 30px;
-	
 	}
 	
 </style>
@@ -69,7 +68,7 @@
 	
 <div class="titlelist">查詢結果</div>
 <div class="col-lg-12">
- <p>
+ <p class="distance">
 	<div class="formlist">折價券清單</div>
 		<table id="coupon" border="2" bordercolor='#CCCCFF' class="table table-bordered table-striped  table-hover">
 		<thead><tr>

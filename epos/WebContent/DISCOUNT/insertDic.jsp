@@ -19,7 +19,7 @@
 		border-radius: 2px;
 	}
 	
-	p{
+	.distance{
 		margin: 30px;	
 	}
 	
@@ -43,17 +43,17 @@
 <%-- 						</c:if> --%>
 					<form class="form-inline" METHOD="post" ACTION="insertDisc.do" id="insert">
 							<center>
-								<p>
+								<p  class="distance">
 								<div class="form-group">
 									<label for="dis_id">　折扣身分：</label>
 									<input type=text class="form-control" name="dis_id" size="10" id="dis_id" >
 								</div>
-								<p>
+								<p  class="distance">
 								<div class="form-group">
 									<label for="dis_price">　折扣%數：</label>
 									<input type="text" class="form-control" name="dis_price" placeholder="1.0" maxlength="4" size="10" id="dis_price">
 								</div>
-								<p>
+								<p  class="distance">
 								<div class="veri_id"></div><div class="veri_price"></div>
 								<div class="form-group">
 									<div class="col-lg-6">

@@ -7,6 +7,10 @@
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
 <style>
 
 		/* 	表格標題 */
@@ -59,8 +63,6 @@
 	}
 	
 </style>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>折價券清單</title>
 </head>
 <body>
@@ -79,7 +81,7 @@
 <div class="col-lg-12">
  <p>
 	<div class="formlist">折價券清單</div>
-		<table border="2" bordercolor='#CCCCFF' width='1000' class="table table-bordered table-striped  table-hover">
+		<table id="allcpon" border="2" bordercolor='#CCCCFF' class="table table-bordered table-striped  table-hover">
 		<thead><tr>
 			<th>折價券編號</th>
 			<th>折價券名稱</th>
@@ -115,8 +117,11 @@
 </div>
 
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
+	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
 	<script>
 		$(function() {
+			$("#allcpon").dataTable();
+			
 			$('button').on('click', function() {		
 				if($(this).attr('name')=="delete"){
 					$.ajax({

@@ -128,6 +128,10 @@ public class Order_Controller extends HttpServlet {
 				cpon_id = null;
 			}
 			String cpon_dollar = request.getParameter("cpon_dollar");
+			if("".equals(cpon_dollar)){
+				cpon_dollar="0";
+			}
+			
 			String remark = request.getParameter("remark");
 			String shift = request.getParameter("shift");
 			

@@ -2,6 +2,7 @@ package com.springMVC.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.Base64;
 import java.util.LinkedList;
@@ -23,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.employee.model.EmpService;
 import com.employee.model.EmpVO;
+
+import gvjava.org.json.JSONObject;
 
 
 /**
@@ -393,6 +396,34 @@ public class Employee_Controller {
 			
 		return "redirect:/EMPLOYEE/AllEmp.jsp";
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/ANDROID/Login.do")
+	public void androidLogin(@RequestParam("emp_id") String emp_id,@RequestParam("emp_pwd") String emp_pwd, ModelMap model,HttpServletRequest request,HttpServletResponse response) throws Exception, Exception {
+	/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
+		
+	/*************************** 2.永續層存取 ***************************************/
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("content-type","text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		EmpVO empVO = empSrv.getOne(emp_id);
+		empVO.setPicture("");
+		if(emp_pwd.equals(empVO.getEmp_pwd())){
+			String empJson=null;
+			JSONObject json = new JSONObject(empVO);
+			empJson = json.toString(); 
+			System.out.println(empJson);
+			out.print(empJson);
+		}else{
+			out.print("帳號不存在或密碼錯誤");
+
+		}
+
+		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
+		
+
+	
+}
 
 }
 

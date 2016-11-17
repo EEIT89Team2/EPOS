@@ -23,6 +23,8 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
 <style>
  	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
  		background: #f3a827;
@@ -186,7 +188,7 @@
 	<script>
 		!window.jQuery&& document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
 	</script>
-
+	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
 	<script class="include" type="text/javascript"
 		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>

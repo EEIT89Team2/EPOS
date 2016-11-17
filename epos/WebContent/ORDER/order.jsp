@@ -171,7 +171,7 @@ print(text)
 	
 	
 	.main{
-		height: 180px;
+		height: 150px;
 		background: #ddf4ff;
 	}
 	
@@ -189,7 +189,7 @@ print(text)
 		border-style:double;
 		border-color:#007bb7;
 		border-width:thick;
-		height: 230px;
+		height: auto;
 	}
 	
 	.ordbtm{
@@ -201,6 +201,20 @@ print(text)
 		margin-top: 10px;
 		margin-left: 20px;
 	}
+	
+	label{
+		color:black;
+	}
+	
+ 	.btn-success{ 
+ 		font-family:微軟正黑體;
+ 		margin-left:120px;
+ 		margin-right:100px; 
+ 	}
+ 	
+ 	.btn-warning{
+ 		font-family:微軟正黑體;
+ 	} 
 
 </style>
 </head>
@@ -316,14 +330,15 @@ print(text)
 	<div class="row mt">
 	<div class="col-sm-12">
 		<div id="add" class="main">
-			<div style="height: 20px;"></div>
+			<div style="height: 15px;"></div>
 			<Form METHOD="post" action="addOrder.do" name="ordmain" class="form-inline">
 					<jsp:useBean id="weather" class="analysis.LoadWeatherRss" scope="page"/>
 					<table border="1">
 						<tr>
 						<div class="form-group">
 							<label for="exampleInputName2">　收銀員編號：</label> 
-							<input type="text" value="${LoginOK.emp_id}" name="key_id" class="form-control" disabled="disabled">
+							<input type="text" value="${LoginOK.emp_id}" name="key_id_txt" class="form-control" disabled="disabled">
+							<input type="hidden" value="${LoginOK.emp_id}" name="key_id">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputName2">　收銀員姓名：</label> 
@@ -331,7 +346,8 @@ print(text)
 						</div>
 						<div class="form-group">
 							<label for="exampleInputName2">　班別：</label> 
-							<input type="text" value="${SHIFT}" name="shift" class="form-control" disabled="disabled">
+							<input type="text" value="${SHIFT}" name="shift_txt" class="form-control" disabled="disabled">
+							<input type="hidden" value="${SHIFT}" name="shift">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputName2">　購買會員：</label> 
@@ -350,8 +366,9 @@ print(text)
 						</tr>
 					</table>
 					<!------------------------------------------------------------ 明細 -------------------------------------------------------------->
-					<div style="height: 50px;"></div>
+					<div style="height: 20px;"></div>
 					<div class="deltitle">訂單明細</div>
+				
 					<!-- 		<input type="button" value="新增明細" id="addNewDetail"> -->
 						<table border="1" id="table1" class="table table-bordered table-striped table-hover">
 							<!-- 由$("#addNewDetail").click產出明細table -->
@@ -365,43 +382,43 @@ print(text)
 								</tr>
 							</thead>
 						</table>
-
+					
 					<!------------------------------------------------------------ 輸入區 -------------------------------------------------------------->
-					<div style="height: 20px;"></div>
+					<div style="height: 10px;"></div>
 					<div class="btndiv">
 					<form class="form-inline">
 					<table class="ordbtm" border="3" bordercolor="#007bb7">
 						<tr> <!--  valign="top"  -->
  							<div class="form-group">
 									<label>輸入商品ID：</label>
-									<input type="text" id="prod_id" name="prod_id" size="63" class="form-control" />
-							</div>　　　　　　　
+									<input type="text" id="prod_id" name="prod_id" size="60" class="form-control" />
+							</div>　　
 							<div class="form-group">
-									<label>筆　　　數：</label>
+									<label>筆　　數：</label>
 									<input type="text" id="count" name="count" value="0" class="form-control" readonly/>
 							</div>　　
 							<div class="form-group">
-									<label>找　　　零：</label>
-									<input type="text" id="charge" name="charge" value="" class="form-control" readonly/>
-							</div>　　
-							<div class="form-group">
-									<label>總計金額：</label>
-									<input type="text" id="total_price" name="total_price" value="0" class="form-control" readonly/>
-									<input type="hidden" id="total_price_temp" name="total_price_temp" value="0" />
+									<label>現　　金：</label>
+									<input type="text" id="cash_temp" name="cash_temp" value="" class="form-control"/>　
+									<input type="hidden" id="cash" name="cash" value="" />
 							</div>
+							<div class="form-group">
+									<label>找　　零：</label>
+									<input type="text" id="charge" name="charge" value="" class="form-control" readonly/>
+							</div>　
 						</tr>
 						<div style="height: 5px;"></div>
 						<tr>
 							<div class="form-group">
 									<label for="exampleInputName2">會員編號：　</label>
 									<input type="text" id="mem_id" name="mem_id"  class="form-control" />
-							</div>　　　
+							</div>　
 							<div class="form-group">
 									<label for="exampleInputName2">統一編號：</label>
 									<input type="text" id="ord_um" name="ord_um"  class="form-control" />
-							</div>　　　　　　
+							</div>　　
 							<div class="form-group">
-									<label>禮　　　卷：</label>
+									<label>禮　　卷：</label>
 									<input type="text" id="cpon_dollar" name="cpon_dollar" value="0" class="form-control" readonly/>	
 							</div>
 						</tr>
@@ -410,13 +427,13 @@ print(text)
 							<div class="form-group">
 									<label for="exampleInputName2">員工編號：　</label>
 									<input type="text" id="emp_id" name="emp_id"  class="form-control" />
-							</div>　　　
+							</div>　
 							<div class="form-group">
 									<label for="exampleInputName2">日營業額：</label>
 									<input type="text" value="${dayPrice}"  class="form-control" readonly/>
-							</div>　　　　　　
+							</div>　　
 							<div class="form-group">
-									<label>折　　　讓：</label>
+									<label>折　　讓：</label>
 									<input type="text" id="dis_price" name="dis_price" value="1" class="form-control" readonly/>	
 							</div>
 						</tr>
@@ -425,18 +442,18 @@ print(text)
 							<div class="form-group">
 									<label for="exampleInputName2">折價卷號：　</label>
 									<input type="text" id="cpon_id" name="cpon_id" class="form-control"/>
-							</div>　　　
+							</div>　
 							<div class="form-group">
 									<label for="exampleInputName2">來客數量：</label>
-									<input type="text" value="${dayPeople}"  class="form-control" readonly/>人次
-							</div>　　　 　
-							<div class="form-group">
-									<label>現　　　金：</label>
-									<input type="text" id="cash_temp" name="cash_temp" value="1" class="form-control"/>
-									<input type="hidden" id="cash" name="cash" value="" />　　　　　　　　　
+									<input type="text" value="${dayPeople}"  class="form-control" readonly/> 人次
 							</div>
-									<input type="button" id="addNewDetail"  value="　　　輸入　　　" class="btn btn-success btn-lg" />　　　　　　　　　
-									<input type="submit"   value="　　　結帳　　　" class="btn btn-warning btn-lg" />	
+							<div class="form-group">
+									<label>總計金額：</label>
+									<input type="text" id="total_price" name="total_price" value="0" class="form-control" readonly/>
+									<input type="hidden" id="total_price_temp" name="total_price_temp" value="0" />
+							</div>
+									<input type="button" id="addNewDetail"  value="　　　輸入　　　" class="btn btn-success btn-lg" />
+									<input type="submit" value="　　　結帳　　　" class="btn btn-warning btn-lg" />	
 						</tr>
 					</table>
 					</form>
@@ -482,8 +499,10 @@ print(text)
 				}
 // <!----------------------------------------  一頁6筆         ------------------------------------>				
 				$("#table1").dataTable({
-					"pageLength": 6
+// 					"pageLength": 6,
+					"lengthMenu": [ 6 , 10, 15],
 				});
+				
 
 	$(function() {
 				
@@ -498,7 +517,7 @@ print(text)
 				var p=3;
 				var del=4;
 				$("#addNewDetail").click(function() {
-									console.log("aaaaaa");
+									
 									$.getJSON('getByProd_id.do',{prod_id:$('#prod_id').val()},function(data){
 										//取得JSON資料
 										prod_name = data.prod_name;
@@ -508,23 +527,44 @@ print(text)
 										ordmain.total_price_temp.value = parseInt(ordmain.total_price_temp.value) + parseInt(prod_price);
 										count_total_price();
 										
-										$("#table1 >tbody >tr >td:eq("+id+")").append("<input type='text' name='prod_id"+a+"' value='"+$('#prod_id').val()+"' />")
+										var count=0;
+										var z1=0;
+										while(true){
+											if($("#table1 input:eq("+z1+")").val()!=null){
+												
+											count++;
+											}else{
+												break;
+												}
+											z1=z1+6;
+										}
+										console.log(count)
+										count=count*5;
+										n = count + 1;
+										q = count + 2;
+										p = count + 3;
+										del = count + 4;
+// 										$("#table1 >tbody >tr >td:eq("+id+")").append("<input type='text' name='prod_id"+a+"' value='"+$('#prod_id').val()+"' />")
+										$("#table1 >tbody >tr >td:eq("+count+")").append("<input type='text' name='prod_id"+a+"' value='"+$('#prod_id').val()+"' />")
 										$("#table1 >tbody >tr >td:eq("+n+")").append("<input type='text' name='prod_name"+a+"' value='"+prod_name+"'/>")
 										$("#table1 >tbody >tr >td:eq("+q+")").append("<input type='text' name='prod_quantity"+a+"' value='1' onblur='count_total_prod_price(ordmain.prod_quantity"+a+",ordmain.prod_price"+a+",ordmain.total_prod_price"+a+")'/>")
-										$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='text' name='prod_price"+a+"' value='"+prod_price+"' />")
-										$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='hidden' id='total_prod_price"+a+"' name='total_prod_price"+a+"' value='"+prod_price+"'/>")
+// 										$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='text' name='prod_price"+a+"' value='"+prod_price+"' />")
+// 										$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='hidden' id='total_prod_price"+a+"' name='total_prod_price"+a+"' value='"+prod_price+"'/>")
+										$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='text' name='prod_price"+a+"' value='"+prod_price+"' /><input type='hidden' name='total_prod_price"+a+"' name='total_prod_price"+a+"' value='"+prod_price+"' />")
 										$("#table1 >tbody >tr >td:eq("+del+")").append("<input type='button' value='刪除' class='btn btn-danger'></input>")
 										a = a + 1;
-										id = id + 5;
-										n = n + 5;
-										q = q + 5;
-										p = p + 5;
-										del = del + 5;
-										console.log("id="+id);
-										console.log("n="+n);
-										console.log("q="+q);
-										console.log("p="+p);
-										console.log("del="+del);
+
+									
+// 										id = id + 5;
+// 										n = n + 5;
+// 										q = q + 5;
+// 										p = p + 5;
+// 										del = del + 5;
+// 										console.log("id="+id);
+// 										console.log("n="+n);
+// 										console.log("q="+q);
+// 										console.log("p="+p);
+// 										console.log("del="+del);
 										
 										if(id==30){
 											console.log("id="+id);
@@ -633,7 +673,7 @@ print(text)
 						ordmain.cpon_dollar.value = 0;
 						count_total_price();
 					}
-				})
+				}) 
 				
 				
 				$("#cash_temp").blur(function() {
@@ -642,28 +682,27 @@ print(text)
 					ordmain.charge.value = ordmain.cash_temp.value - ordmain.total_price.value;
 					ordmain.cash.value = ordmain.cash_temp.value - ordmain.charge.value;
 				})				
-	})
-	
-//<!----------------------------------------  刪除        ------------------------------------>	
-	//練習五使用on綁定網頁上刪除按鈕，完成刪除動作
+	//<!----------------------------------------  刪除        ------------------------------------>	
+	var table2 = $('#table1').DataTable();
 	$("#table1").on('click', '.btn-danger', function() {
 		//總計金額先扣除該筆商品的金額
-		ordmain.total_price_temp.value = parseInt(ordmain.total_price_temp.value) - $(this).parents("tr").children("td:eq(8)").children("input").val();
+		ordmain.total_price_temp.value = parseInt(ordmain.total_price_temp.value) - $(this).parents("tr").children("td:eq(3)").children("input").eq(1).val();
 		count_total_price();
-		
 
-		console.log($(this).parent().parent().html());
-		console.log("td="+$(this).parent().parent().find("td").html());
-		console.log("tr="+$(this).parent().parent().find("td input").html());
-		console.log($(this).parent().parent().find("td:eq(1) input").html());
-		console.log("0000000000000000000000");
-		console.log($(this).parent().parent().find("td input").html());
-		$(this).parent().parent("td + input").empty();
+		table2.row( $(this).parents('tr') ).remove().draw();
+		
+			
+		
+	
+				
+
+		
 		//筆數再-1
 		ordmain.count.value=parseInt(ordmain.count.value)-1;
-	})
+	});
+	
 
-
+})
 	
 
 //<!----------------------------------------  送出全部查詢        ------------------------------------>

@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
 <title>all</title>
 <style>
 
@@ -69,7 +71,7 @@
 <div class="col-lg-12">
  <p>
 	<div class="formlist">折價券清單</div>
-		<table border="2" bordercolor='#CCCCFF' width='1000' class="table table-bordered table-striped  table-hover">
+		<table id="coupon" border="2" bordercolor='#CCCCFF' class="table table-bordered table-striped  table-hover">
 		<thead><tr>
 			<th>折價券編號</th>
 			<th>折價券名稱</th>
@@ -107,8 +109,11 @@
 
 </div>
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
+	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
 	<script>
 		$(function() {
+			$("#coupon").dataTable();
+			
 			$('button').on('click', function() {		
 				if($(this).attr('name')=="delete"){
 					$.ajax({

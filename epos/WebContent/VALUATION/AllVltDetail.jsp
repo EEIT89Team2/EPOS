@@ -23,7 +23,7 @@
 			<th>修改日期</th>
 			<th>有效日期</th>
 			<th>備註</th>
-			<th>刪除</th>
+<!-- 			<th>刪除</th> -->
 		</tr>
 		
 <c:forEach var="list" items="${list}" varStatus="count">
@@ -38,7 +38,7 @@
 			<td>${list.key_date}</td>
 			<td>${list.exp_date}</td>
 			<td>${list.remark}</td>
-			<td><input type="submit" name="action" value="Delete" ></td>
+<!-- 			<td><input type="submit" name="action" value="Delete" ></td> -->
 			<input type="hidden" name="vlt_id" value="${list.vlt_id}">
 			
 		</tr>
@@ -56,7 +56,7 @@
 			<th>商品名稱</th>
 			<th>商品數量</th>
 			<th>商品價格</th>
-			<th>刪除明細</th>
+<!-- 			<th>刪除明細</th> -->
 		</tr>
 		
 <c:forEach var="list" items="${detailList}" varStatus="count">
@@ -67,7 +67,7 @@
 			<td>${list.prod_name}</td>
 			<td>${list.prod_quantity}</td>
 			<td>${list.prod_price}</td>
-			<td><input type="submit" value="Delete" ></td>
+<!-- 			<td><input type="submit" value="Delete" ></td> -->
 			<input type="hidden" name="vlt_id" value="${list.valuationVO.vlt_id}">
 			<input type="hidden" name="prod_id" value="${list.prodVO.prod_id}">
 			<input type="hidden" name="action" value="DeleteDetail">
@@ -78,8 +78,9 @@
 </c:forEach>
 	</table>
 		
-	<a href="../index.jsp">回首頁</a>
-	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
+<!-- 	<a href="../index.jsp">回首頁</a> -->
+<!-- 	<a href="javascript:" onclick="history.back(); ">回上頁</a>  -->
+<input type="button" name="action" value="返回" onclick="history.back();">
 
 </body>
 </html>

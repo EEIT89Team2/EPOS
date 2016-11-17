@@ -27,7 +27,7 @@
 			<th>班別</th>
 			<th>備註</th>
 			<th>狀態</th>
-			<th>Delete</th>
+<!-- 			<th>Delete</th> -->
 		</tr>
 		
 <c:forEach var="list" items="${list}" varStatus="count">
@@ -46,7 +46,7 @@
 			<td>${list.shift}</td>
 			<td>${list.remark}</td>
 			<td>${list.status}</td>
-			<td><input type="submit" name="action" value="Delete" ></td>
+<!-- 			<td><input type="submit" name="action" value="Delete" ></td> -->
 			<input type="hidden" name="ord_id" value="${list.ord_id}">
 			
 		</tr>
@@ -64,7 +64,7 @@
 			<th>商品名稱</th>
 			<th>商品數量</th>
 			<th>商品價格</th>
-			<th>刪除明細</th>
+<!-- 			<th>刪除明細</th> -->
 		</tr>
 		
 <c:forEach var="list" items="${detailList}" varStatus="count">
@@ -75,7 +75,7 @@
 			<td>${list.prod_name}</td>
 			<td>${list.prod_quantity}</td>
 			<td>${list.prod_price}</td>
-			<td><input type="submit" value="Delete" ></td>
+<!-- 			<td><input type="submit" value="Delete" ></td> -->
 			<input type="hidden" name="ord_id" value="${list.orderVO.ord_id}">
 			<input type="hidden" name="prod_id" value="${list.prodVO.prod_id}">
 			<input type="hidden" name="action" value="DeleteDetail">
@@ -85,9 +85,16 @@
 </form>
 </c:forEach>
 	</table>
-		
-	<a href="../index.jsp">回首頁</a>
-	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
+		<div>
+			<form method="post" action="../ORDER/OrdToShip.do">
+			  
+				<input type="submit" value="轉出貨">
+				<input type="hidden" name="ord_id" value="${ordVO.ord_id}">
+				<input type="hidden" name="action" value="toShip">
+			  
+			</form>
+				<input type="button" name="action" value="返回" onclick="history.back();">
+		</div>	
 
 </body>
 </html>

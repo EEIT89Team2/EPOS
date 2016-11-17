@@ -80,9 +80,9 @@
 							class="glyphicon glyphicon-shopping-cart"></i> <span>銷貨系統</span>
 					</a>
 						<ul class="sub">
-							<li><a href="VALUATION/valuation.jsp">報價單維護</a></li>
+							<li><a href="VALUATION/ValuationList.jsp">報價單維護</a></li>
 							<li><a href="ORDER/order.jsp">訂單維護</a></li>
-							<li><a href="SHIPMENTS/shipments.jsp">出貨單維護</a></li>
+							<li><a href="SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 						</ul></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class="fa fa-book"></i> <span>存貨作業</span>

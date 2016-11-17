@@ -170,7 +170,7 @@ public class Shipments_Controller {
 		ShipVO shipVO = shipSrv.getByShipId(ship_id);
 			if (shipVO == null) {
 				model.addAttribute("message", "查無此出貨單");
-				return "redirect:Index1.jsp";
+				return "/SHIPMENTS/searchList";
 			}
 			List<ShipVO> list = new LinkedList<ShipVO>();
 			list.add(shipVO);
@@ -193,13 +193,18 @@ public class Shipments_Controller {
 			errorMsgs.add("請輸入訂單編號");
 		}
 		
-		if (!errorMsgs.isEmpty()) {
-		model.addAttribute("message", errorMsgs);
-		return "redirect:Index1.jsp";
-		}
+		
 		/*************************** 2.永續層存取 ***************************************/
 		
 		List<ShipVO> list= shipSrv.getByOrderId(ord_id);
+		if(list.size()==0){
+			errorMsgs.add("查無此訂單");
+		}
+		
+		if (!errorMsgs.isEmpty()) {
+			model.addAttribute("message", errorMsgs);
+			return "/SHIPMENTS/searchList";
+			}
 		model.addAttribute("list", list);
 			
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/

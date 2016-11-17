@@ -34,7 +34,6 @@
 
 <!-- </form> -->
 
-<hr><hr>
 <h3>依出貨單編號查詢</h3>
 
 
@@ -52,8 +51,6 @@
 
 </form>
 
-
-<hr><hr>
 <h3>依訂單編號查詢</h3>
 <form method="post" action="getShipByOrdId.do" >
 <table border="1">

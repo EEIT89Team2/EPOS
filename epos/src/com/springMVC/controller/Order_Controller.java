@@ -393,18 +393,25 @@ public class Order_Controller extends HttpServlet {
 		/************************
 		 * 1.接收請求參數 - 輸入格式的錯誤處理
 		 *************************/
+		
+	try {
 		String ord_id = request.getParameter("ord_id");
 		if (ord_id == null || (ord_id.trim()).length() == 0) {
 			errorMsgs.add("請輸入訂單編號");
 		}
-		if (!errorMsgs.isEmpty()) {
-			return "/ORDER/searchList";
-		}
+	
 		/*************************** 2.開始查詢資料 *****************************************/
 		// OrderService ordSvc = new OrderService();
 		OrderVO ordVO;
-		try {
+		
 			ordVO = ordSvc.Select_order_id(ord_id);
+			if(ordVO == null){
+				errorMsgs.add("查無訂單編號");
+			}
+			
+			if (!errorMsgs.isEmpty()) {
+				return "/ORDER/searchList";
+			}
 			List<OrderVO> list = new LinkedList<OrderVO>();
 			list.add(ordVO);
 			model.addAttribute("list", list);

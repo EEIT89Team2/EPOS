@@ -9,15 +9,15 @@
 </head>
 <body>
 
-<c:if test="${not empty errorMsgs}">
-		<font color='red'>請修正以下錯誤:
-			<ul>
-				<c:forEach var="message" items="${errorMsgs}">
-					<li>${message}</li>
-				</c:forEach>
-			</ul>
-		</font>
-	</c:if>
+<%-- <c:if test="${not empty errorMsgs}"> --%>
+<!-- 		<font color='red'>請修正以下錯誤: -->
+<!-- 			<ul> -->
+<%-- 				<c:forEach var="message" items="${errorMsgs}"> --%>
+<%-- 					<li>${message}</li> --%>
+<%-- 				</c:forEach> --%>
+<!-- 			</ul> -->
+<!-- 		</font> -->
+<%-- 	</c:if> --%>
 
 	<h1>訂單</h1>
 
@@ -47,8 +47,6 @@
 
 <!-- 	</form> -->
 
-	<hr>
-	<hr>
 	<h3>依訂單編號查詢</h3>
 
 

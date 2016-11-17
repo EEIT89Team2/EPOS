@@ -31,15 +31,15 @@
 
 </head>
 <body>
-<c:if test="${not empty errorMsgs}">
-<font color='red'>請修正以下錯誤:
-<ul>
-	<c:forEach var="message" items="${errorMsgs}">
-		<li>${message}</li>
-	</c:forEach>
-</ul>
-</font>
-</c:if>
+<%-- <c:if test="${not empty errorMsgs}"> --%>
+<!-- <font color='red'>請修正以下錯誤: -->
+<!-- <ul> -->
+<%-- 	<c:forEach var="message" items="${errorMsgs}"> --%>
+<%-- 		<li>${message}</li> --%>
+<%-- 	</c:forEach> --%>
+<!-- </ul> -->
+<!-- </font> -->
+<%-- </c:if> --%>
 	<div class="divser">查詢</div>
 	<div style="height: 20px"></div>
 	
@@ -69,6 +69,7 @@
 	 		<input type="submit" value="查詢" class="btn btn-danger"> 
 	 		<input type="hidden" name="action" value="getComName">
 	 </form>
+	 	<c:if test="${not empty errorMsgs}"><font color='red'>請修正錯誤:<c:forEach var="message" items="${errorMsgs}"><span>${message}</span></c:forEach></c:if></font>
 	
 
 </body>

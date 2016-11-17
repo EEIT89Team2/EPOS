@@ -15,6 +15,7 @@
 <!-- Custom styles for this template -->
 <link href="<c:url value="../resources/css/style.css" />" rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
 <title>shiftreport</title>
 <style>
 	.navbar-default .navbar-nav > li > a{
@@ -172,7 +173,7 @@
 						<li id="shi_new"><a id="c_shift" target="insertShiftre.jsp"
 							data-toggle="tab" href="#new"><span
 								class="glyphicon glyphicon-file"></span>新增</a></li>
-						<li id="shi_rel"><a data-toggle="tab" href="#result"><span
+						<li id="shi_rel"><a data-toggle="tab" href="#result" id="test"><span
 								class="glyphicon glyphicon-list-alt"></span>查詢結果</a></li>
 						<li><a data-toggle="tab" href="#print" class="print"><span
 								class="glyphicon glyphicon-print"></span>列印</a></li>
@@ -261,17 +262,25 @@
 	<script> 
 	!window.jQuery && document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
  	</script>
-
+	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
     <script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
 	<script class="include" type="text/javascript" src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
     <script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
     <script src="<c:url value="../resources/js/jquery.nicescroll.js" />" type="text/javascript"></script>
-
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
 	
 		<script type="text/JavaScript">
 	$(document).ready(function() {
+// 		test
+// 		$('#test').on('click', function() {							
+// 			var test = "testall.jsp";
+// 			$.get(test, function(data) {
+// 				$('.rul').html(data);
+// 			})
+				
+// 	})	
+		
 // -------------------------------載入新增----------------------------------
 		$('#c_shift').on('click', function() {							
 				var insertWeb = $(this).attr('target');

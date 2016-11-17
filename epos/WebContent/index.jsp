@@ -38,7 +38,7 @@
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
 
-					<li><a class="logout" href="LOGIN/logout.jsp">Logout ${LoginOK.emp_id}</a></li>
+					<li><a class="logout" href="LOGIN/logout.jsp">Logout ${LoginOK.emp_id} ${SHIFT}</a></li>
 				</ul>
 			</div>
 		</header>
@@ -51,11 +51,11 @@
 				<ul class="sidebar-menu" id="nav-accordion">
 
 					<p class="centered">
-						<a href="index.jsp"><img src="<c:url value="/resources/img/ui-sam.jpg"/>" class="img-circle" width="60"></a>
+						<a href="ORDER/order.jsp"><img src="<c:url value="/resources/img/ui-sam.jpg"/>" class="img-circle" width="60"></a>
 					</p>
 					<h5 class="centered">ePOS</h5>
 
-					<li class="mt"><a class="active" href="index.jsp"> <i
+					<li class="mt"><a class="active" href="ORDER/order.jsp"> <i
 							class="fa fa-dashboard"></i> <span>index</span>
 					</a></li>
 

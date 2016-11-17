@@ -74,4 +74,10 @@ public class ValuationService {
 
 		vlt_dao.setStatus(status, vlt_id);
 	}
+	
+	public List<ValuationVO> getAllByN() throws Exception {
+		
+		return vlt_dao.getAllByN();
+	}
+	
 }

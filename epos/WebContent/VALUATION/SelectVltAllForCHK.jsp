@@ -8,7 +8,7 @@
 
 <%
 	ValuationService vltSvc = new ValuationService();
-	List<ValuationVO> list = vltSvc.getAll();
+	List<ValuationVO> list = vltSvc.getAllByN();
 	pageContext.setAttribute("list",list);
 %>
 
@@ -32,12 +32,11 @@
 			<th>修改日期</th>
 			<th>有效日期</th>
 			<th>備註</th>
-			<th>明細</th>
-<!-- 			<th>刪除</th> -->
+			<th>審核</th>
 		</tr>
 
 		<c:forEach var="list" items="${list}" varStatus="count">
-			<form method="post" action="Querydetail_DeleteVlt.do">
+			<form method="post" action="forVltCHK.do">
 				<tr>
 					<td>${list.vlt_id}</td>
 					<td>${list.vlt_date}</td>
@@ -48,17 +47,14 @@
 					<td>${list.key_date}</td>
 					<td>${list.exp_date}</td>
 					<td>${list.remark}</td>
-					<td><input type="submit" name="action" value="Detail"></td>
-<!-- 					<td><input type="submit" name="action" value="Delete"></td> -->
+					<td><input type="submit" value="審核"></td>
 					<input type="hidden" name="vlt_id" value="${list.vlt_id}">
-
+					<input type="hidden" name="action" value="CHK">
 				</tr>
 
 			</form>
 		</c:forEach>
 	</table>
-
-<!-- <input type="button" name="action" value="返回" onclick="history.back();"> -->
 
 </body>
 </html>

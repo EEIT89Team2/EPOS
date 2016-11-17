@@ -82,6 +82,19 @@ public class ValuationSpringDAO implements Valuation_Interface {
 		
 		return list;
 	}
+	
+	private static final String GET_ALL_STMT_BY_N = "from ValuationVO where status = 'N' order by vlt_id ";
+	
+	@Override
+	public List<ValuationVO> getAllByN() throws Exception {
+		
+		List<ValuationVO> list = null;
+		list= hibernateTemplate.find(GET_ALL_STMT_BY_N);
+		
+		return list;
+	}
+	
+	
 
 	@Override
 	public void setStatus(String status, String vlt_id) throws Exception {
@@ -89,5 +102,6 @@ public class ValuationSpringDAO implements Valuation_Interface {
 		hibernateTemplate.bulkUpdate("update ValuationVO set status=? where vlt_id=?",new Object[]{status,vlt_id});
 	}
 
+	
 	
 }

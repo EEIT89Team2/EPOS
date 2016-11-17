@@ -1,23 +1,26 @@
 package com.springMVC.controller;
 
+import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.order.model.OrderVO;
-import com.order_detail.model.Order_DetailVO;
+import com.product.model.ProdService;
 import com.product.model.ProdVO;
 import com.valuation.model.ValuationService;
 import com.valuation.model.ValuationVO;
@@ -27,6 +30,7 @@ import com.valuation_detail.model.Valuation_DetailVO;
 public class Valuation_Controller extends HttpServlet {
 
 	private final static ValuationService vltSvc = new ValuationService();
+	private final static ProdService prodSvc = new ProdService();
 
 	@RequestMapping(method = RequestMethod.POST, value = {"/addVltList.do","/VALUATION/addVltList.do"})
 	public String addVltList(ModelMap model, HttpServletRequest request) throws Exception {
@@ -158,7 +162,7 @@ public class Valuation_Controller extends HttpServlet {
 		}
 
 		/***************************** 3.新增完成,準備轉交(Send the Success view)***********/
-		return "redirect:/VALUATION/SelectVltAll.jsp";
+		return "redirect:/VALUATION/SelectVlt.jsp";
 		/*************************** 其他可能的錯誤處理 **********************************/
 	}
 	
@@ -178,7 +182,7 @@ public class Valuation_Controller extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		return "/VALUATION/SelectVltAll";
+		return "/VALUATION/SelectVlt";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST,value ={"/Querydetail_DeleteVlt.do","/VALUATION/Querydetail_DeleteVlt.do"})
@@ -192,7 +196,7 @@ public class Valuation_Controller extends HttpServlet {
 			
 			//OrderService ordSvc = new OrderService();
 			try {
-				List<Order_DetailVO> detailList = vltSvc.Select_valuation_detailALL(vlt_id);
+				List<Valuation_DetailVO> detailList = vltSvc.Select_valuation_detailALL(vlt_id);
 				request.setAttribute("detailList", detailList);
 
 				ValuationVO vltVO = vltSvc.Select_vlt_id(vlt_id);
@@ -221,7 +225,7 @@ public class Valuation_Controller extends HttpServlet {
 				
 				e.printStackTrace();
 			}
-			return "/VALUATION/SelectVltAll";
+			return "/VALUATION/SelectVlt";
 		}
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 		return null;
@@ -243,7 +247,7 @@ public class Valuation_Controller extends HttpServlet {
 
 			e.printStackTrace();
 		}
-		return "/VALUATION/SelectVltAll";
+		return "/VALUATION/SelectVlt";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST,value ={"/DeleteVltDetail.do","/VALUATION/DeleteVltDetail.do"})
@@ -284,7 +288,7 @@ public class Valuation_Controller extends HttpServlet {
 			errorMsgs.add("請輸入報價單編號");
 		}
 		if (!errorMsgs.isEmpty()) {
-			return "/VALUATION/SelectValuation";
+			return "/VALUATION/searchList";
 		}
 		
 		
@@ -299,7 +303,7 @@ public class Valuation_Controller extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/VALUATION/SelectVltAll";
+		return "/VALUATION/SelectVlt";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST,value ={"/setVltStatus.do","/VALUATION/setVltStatus.do"})
@@ -307,30 +311,14 @@ public class Valuation_Controller extends HttpServlet {
 		
 		List<String> errorMsgs = new LinkedList<String>();
 		model.addAttribute("errorMsgs", errorMsgs);
-		
+				
 		String vlt_id = request.getParameter("vlt_id");
-		if (vlt_id == null || vlt_id.trim().length() == 0) {
-			errorMsgs.add("報價單編號請勿空白");
-		}
-		
-		String status = request.getParameter("status");
-		if (status == null || status.trim().length() == 0) {
-			errorMsgs.add("狀態欄請勿空白");
-		}
-		String statusCK = "^[N,Y]{1}$";
-		if(!status.trim().matches(statusCK) ) { 
-			errorMsgs.add("狀態格式:N or Y");
-        }
-		if (!errorMsgs.isEmpty()) {
-			return "/VALUATION/SelectValuation";
-		}
-		
 		
 //		ValuationService vltSvc =new ValuationService();
 		try {
-			vltSvc.setStatus(status, vlt_id);
+			vltSvc.setStatus("D", vlt_id);
 			
-			List list = vltSvc.getAll();
+			List list = vltSvc.getAllByN();
 			
 			request.getSession().setAttribute("list", list);
 			//request.setAttribute("list", list);
@@ -340,8 +328,94 @@ public class Valuation_Controller extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		return "/VALUATION/SelectVltAll";	
+		return "/VALUATION/SelectVlt";	
 	}
+	
+	@RequestMapping(method = RequestMethod.POST,value ={"/forVltCHK.do","/VALUATION/forVltCHK.do"})
+	public String forVltCHK(ModelMap model,HttpServletRequest request,
+			/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
+			@RequestParam("action")String action,
+			@RequestParam("vlt_id") String vlt_id)
+			throws Exception {
+		/*************************** 2.永續層存取 ***************************************/
+		if ("CHK".equals(action)) {
+			
+			//OrderService ordSvc = new OrderService();
+			try {
+				List<Valuation_DetailVO> detailList = vltSvc.Select_valuation_detailALL(vlt_id);
+				request.setAttribute("detailList", detailList);
+
+				ValuationVO vltVO = vltSvc.Select_vlt_id(vlt_id);
+				LinkedList<ValuationVO> list = new LinkedList<ValuationVO>();
+				list.add(vltVO);
+				request.setAttribute("list", list);
+				request.setAttribute("vltVO", vltVO);
+
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
+			/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
+			return "/VALUATION/AllVltDetailForCHK";
+		}
+		return null;	
+	}
+	
+	@RequestMapping(method = RequestMethod.POST,value ={"/VltToOrd.do","/VALUATION/VltToOrd.do"})
+	public String VltToOrd(ModelMap model,HttpServletRequest request,
+			/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
+			@RequestParam("action")String action,
+			@RequestParam("vlt_id") String vlt_id)
+			throws Exception {
+		/*************************** 2.永續層存取 ***************************************/
+		if ("toOrd".equals(action)) {
+			
+			//OrderService ordSvc = new OrderService();
+			try {
+				List<Valuation_DetailVO> detailList = vltSvc.Select_valuation_detailALL(vlt_id);
+				request.setAttribute("detailList", detailList);
+
+				ValuationVO vltVO = vltSvc.Select_vlt_id(vlt_id);
+				LinkedList<ValuationVO> list = new LinkedList<ValuationVO>();
+				list.add(vltVO);
+				request.setAttribute("list", list);
+				request.setAttribute("vltVO", vltVO);
+
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
+			/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
+			return "/ORDER/VltToOrd";
+		}
+		return null;	
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = { "/getByProd_id_ByVlt.do", "/VALUATION/getByProd_id_ByVlt.do" })
+	public void getByProd_id_ByVlt(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setCharacterEncoding("UTF8");
+		PrintWriter out = response.getWriter();
+		/************************
+		 * 1.接收請求參數 - 輸入格式的錯誤處理
+		 *************************/
+		String prod_id = request.getParameter("prod_id");
+		/*************************** 2.開始查詢資料 *****************************************/
+		// OrderService ordSvc = new OrderService();
+		ProdVO proidVO;
+		try {
+			proidVO = prodSvc.getOne(prod_id);
+			Map map = new HashMap();
+			map.put("prod_name", proidVO.getProd_name());
+			map.put("prod_price", proidVO.getProd_mkprice());
+			String jsonString = JSONValue.toJSONString(map);
+			out.println(jsonString);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 	
 }
 

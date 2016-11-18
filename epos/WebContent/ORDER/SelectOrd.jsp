@@ -29,6 +29,7 @@
 			<th>備註</th>
 			<th>狀態</th>
 			<th>Detail</th>
+			<th>註銷</th>
 <!-- 			<th>Delete</th> -->
 		</tr>
 		
@@ -49,6 +50,7 @@
 			<td>${list.remark}</td>
 			<td>${list.status}</td>
 			<td><input type="submit" name="action" value="Detail" ></td>
+			<td><input type="submit" name="action" value="Logout" ></td>
 <!-- 			<td><input type="submit" name="action" value="Delete" ></td> -->
 			<input type="hidden" name="ord_id" value="${list.ord_id}">
 			

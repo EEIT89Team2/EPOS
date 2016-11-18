@@ -104,9 +104,11 @@
 				<td>${list.key_date}</td>
 				<td>${list.exp_date}</td>
 				<td>${list.remark}</td>
-				<td><input type="submit" name="action" value="Detail"></td>
+				<td>
+				<FORM METHOD="post" ACTION="Querydetail_DeleteVlt.do">
+				<button type="submit" name="action" class="btn btn-success"><i class="glyphicon glyphicon-search"></i></button>
 				<input type="hidden" name="vlt_id" value="${list.vlt_id}">
-
+				</FORM>
 				</form>
 			</tr>
 		</c:forEach>

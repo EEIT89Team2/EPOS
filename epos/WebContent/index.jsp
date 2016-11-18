@@ -150,9 +150,7 @@
  		$.backstretch("resources/img/login-bg.jpg", {
   			speed : 500
   		});
-<!--  		$(".main-content").css({ -->
-<!--  			opacity : .1 -->
-<!--  		}); -->
+
 	</script>
 </body>
 </html>

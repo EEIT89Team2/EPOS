@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.product.model.ProdDAO;
+import com.product.model.ProdService;
+import com.product.model.ProdVO;
 import com.returns.model.ReturnItemsService;
 import com.returns.model.RtnItemsVO;
 
@@ -282,6 +285,20 @@ public class RtnItems_Controller extends HttpServlet {
 //				failureView.forward(req, res);
 				return "/RETURNS/addItem";
 			}
+			
+//			ProdService prodsiv = new ProdService();
+//			ProdDAO ProdDAO = new ProdDAO();
+//			ProdVO ProdVO = new ProdVO();
+//			List P_name = ProdDAO.findByName(prod_name);
+//			
+//			System.out.println("prod_name="+prod_name);
+//			System.out.println("P_name="+P_name.get(0));
+//			if(prod_name == P_name.get(0)){
+//				int P_quantity = ProdVO.getProd_stock();
+//				ProdVO.setProd_stock(P_quantity-Integer.parseInt((req.getParameter("re_quantity"))));
+//				prodsiv.update(ProdVO);
+//			}
+			
 			
 			/***************************2.開始新增資料***************************************/
 //			ReturnItemsService rtnItemSvc = new ReturnItemsService();

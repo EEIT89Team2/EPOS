@@ -60,7 +60,7 @@ public class Order_Controller extends HttpServlet {
 			// getOrd主檔參數
 			// String ord_id = request.getParameter("ord_id");
 			String vlt_id = request.getParameter("vlt_id");
-			if("".equals(vlt_id)){
+			if ("".equals(vlt_id)) {
 				vlt_id = null;
 			}
 			// if (vlt_id == null || vlt_id.trim().length() == 0) {
@@ -68,10 +68,10 @@ public class Order_Controller extends HttpServlet {
 			// }
 
 			String mem_id = request.getParameter("mem_id");
-			if("".equals(mem_id)){
+			if ("".equals(mem_id)) {
 				mem_id = null;
 			}
-			
+
 			String emp_id = request.getParameter("emp_id");
 			// if (mem_id == null || mem_id.trim().length() == 0) {
 			// errorMsgs.add("會員編號請勿空白");
@@ -82,21 +82,20 @@ public class Order_Controller extends HttpServlet {
 			// }
 			// String ord_date = request.getParameter("ord_date");
 			String discount = request.getParameter("discount");
-				
-			if(mem_id!=null){
-				discount="會員";
-//				System.out.print(discount);
-			}else if(emp_id!=""){
-				discount="員工";
-//				System.out.print(discount);
-			}else if(mem_id==null || emp_id==""){
-				discount="一般";
-//				System.out.print(discount);
+
+			if (mem_id != null) {
+				discount = "會員";
+				// System.out.print(discount);
+			} else if (emp_id != "") {
+				discount = "員工";
+				// System.out.print(discount);
+			} else if (mem_id == null || emp_id == "") {
+				discount = "一般";
+				// System.out.print(discount);
 			}
-			
-			
+
 			String total_price = request.getParameter("total_price_temp");
-			String cash = request.getParameter("cash"); 
+			String cash = request.getParameter("cash");
 			if (cash == null || cash.trim().length() == 0) {
 				errorMsgs.add("現金請勿空白");
 			}
@@ -111,13 +110,13 @@ public class Order_Controller extends HttpServlet {
 			// }
 
 			// String invoice_id = request.getParameter("invoice_id");
-			
+
 			int maxInvoNum = ordSvc.getMaxInvoiceId();
-			int Invo = maxInvoNum+1;
-			String str= String.valueOf(Invo);
-			String rx= "RX";
-			String invoice_id = rx+str;
-			
+			int Invo = maxInvoNum + 1;
+			String str = String.valueOf(Invo);
+			String rx = "RX";
+			String invoice_id = rx + str;
+
 			if (invoice_id == null || invoice_id.trim().length() == 0) {
 				errorMsgs.add("發票號碼請勿空白");
 			}
@@ -127,22 +126,22 @@ public class Order_Controller extends HttpServlet {
 			if (!ord_um.trim().matches(ord_umCK)) {
 				errorMsgs.add("統一編號格式EX:04121001");
 			}
-			
+
 			String cpon_id = request.getParameter("cpon_id");
-			if("".equals(cpon_id)){
+			if ("".equals(cpon_id)) {
 				cpon_id = null;
 			}
 			String cpon_dollar = request.getParameter("cpon_dollar");
-			if("".equals(cpon_dollar)){
+			if ("".equals(cpon_dollar)) {
 				cpon_dollar = "0";
 			}
-			
+
 			String remark = request.getParameter("remark");
 			String shift = request.getParameter("shift");
-			
+
 			String key_id = request.getParameter("key_id");
-//			String key_id = "E00005";//先寫死
-			
+			// String key_id = "E00005";//先寫死
+
 			if (key_id == null || key_id.trim().length() == 0) {
 				errorMsgs.add("修改人員請勿空白");
 			}
@@ -151,14 +150,14 @@ public class Order_Controller extends HttpServlet {
 				errorMsgs.add("修改人員格式EX:E00001");
 			}
 
-//			String key_date = request.getParameter("key_date");
-//			if (key_date == null || key_date.trim().length() == 0) {
-//				errorMsgs.add("修改日期請勿空白");
-//			}
+			// String key_date = request.getParameter("key_date");
+			// if (key_date == null || key_date.trim().length() == 0) {
+			// errorMsgs.add("修改日期請勿空白");
+			// }
 
 			java.util.Date utilDate = new java.util.Date();
 			java.sql.Date key_date = new java.sql.Date(utilDate.getTime());
-			
+
 			// setOrd主檔參數
 			OrderVO ordVO = new OrderVO();
 
@@ -185,7 +184,7 @@ public class Order_Controller extends HttpServlet {
 			Order_DetailVO ordDetailVO = null;
 			ProdVO prodVO = null;
 			ProdService prodSrv = new ProdService();
-			
+
 			// 明細檔set集合(多方)
 			Set<Order_DetailVO> set = new LinkedHashSet<Order_DetailVO>();
 
@@ -213,15 +212,15 @@ public class Order_Controller extends HttpServlet {
 							.setProd_price(Double.parseDouble(request.getParameter("prod_price" + String.valueOf(i))));
 					// list.add(ordDetailVO);
 					set.add(ordDetailVO);
-					
+
 					ProdVO oldProdVO = prodSrv.getOne(prodVO.getProd_id());
 					int oldQuay = oldProdVO.getProd_stock();
-					
-					oldProdVO.setProd_stock(oldQuay-(Integer.parseInt(request.getParameter("prod_quantity" + String.valueOf(i)))));
-					
+
+					oldProdVO.setProd_stock(
+							oldQuay - (Integer.parseInt(request.getParameter("prod_quantity" + String.valueOf(i)))));
+
 					prodSrv.update(oldProdVO);
 
-					
 					i++;
 				} catch (Exception e) {
 					if (i < 100) {
@@ -237,25 +236,21 @@ public class Order_Controller extends HttpServlet {
 			ordVO.setOrderdetails(set);
 			// OrderService ordSvc = new OrderService();
 			ordVO = ordSvc.addOrder(ordVO, list);
-//			List<OrderVO> listAll = ordSvc.getAll();
-			
+			// List<OrderVO> listAll = ordSvc.getAll();
+
 			vltSvc.setStatus("Y", vlt_id);
-			
-			
-			
-			
-			
+
 			String ord_id = ordSvc.getOneTopOrdId();
-			System.out.println("ord_id=>"+ord_id);
+			System.out.println("ord_id=>" + ord_id);
 			OrderVO ordVO1 = ordSvc.Select_order_id(ord_id);
 			LinkedList<OrderVO> list1 = new LinkedList<OrderVO>();
 			list1.add(ordVO1);
 			model.addAttribute("list", list1);
-			
+
 			List<Order_DetailVO> detailList = ordSvc.Select_order_detailALL(ord_id);
 			model.addAttribute("detailList", detailList);
 			model.addAttribute("ordVO", ordVO1);
-			
+
 			/****************************
 			 * 3.完成,準備轉交(Send the Success view)
 			 ***********/
@@ -344,6 +339,43 @@ public class Order_Controller extends HttpServlet {
 			 ***********/
 			return "/ORDER/SelectOrd";
 		}
+		
+		if ("Logout".equals(action)) {
+			// OrderService ordSvc = new OrderService();
+			try {
+				ordSvc.setStatus("D", ord_id);	
+				OrderVO ordVO = ordSvc.Select_order_id(ord_id);
+				ProdService prodSrv = new ProdService();
+				Set<Order_DetailVO> ordDtls = ordVO.getOrderdetails();
+				
+				
+				for(Order_DetailVO order_DetailVO :ordDtls ){
+					String prod_id = order_DetailVO.getProdVO().getProd_id();
+					int prod_quy = order_DetailVO.getProd_quantity();
+					ProdVO prodVO = prodSrv.getOne(prod_id);
+					int quay=(prodVO.getProd_stock())+(order_DetailVO.getProd_quantity());
+					prodVO.setProd_stock(quay);
+					prodSrv.update(prodVO);
+
+			
+				}
+				
+				OrderVO ordVO1 = ordSvc.getOneOrder(ord_id);
+				List<OrderVO> list = new LinkedList<OrderVO>();
+				list.add(ordVO1);
+				model.addAttribute("list",list);
+			
+
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
+			/***************************
+			 * * 3.完成,準備轉交(Send the Success view)
+			 ***********/
+			return "/ORDER/SelectOrd";
+		}
+		
 		return null;
 	}
 
@@ -392,10 +424,9 @@ public class Order_Controller extends HttpServlet {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-		}
-		/***************************
-		 * * 3.完成,準備轉交(Send the Success view)
-		 ***********/
+		} /***************************
+			 * * 3.完成,準備轉交(Send the Success view)
+			 ***********/
 		return "/ORDER/AllOrdDetail";
 	}
 
@@ -408,22 +439,22 @@ public class Order_Controller extends HttpServlet {
 		/************************
 		 * 1.接收請求參數 - 輸入格式的錯誤處理
 		 *************************/
-		
-	try {
-		String ord_id = request.getParameter("ord_id");
-		if (ord_id == null || (ord_id.trim()).length() == 0) {
-			errorMsgs.add("請輸入訂單編號");
-		}
-	
-		/*************************** 2.開始查詢資料 *****************************************/
-		// OrderService ordSvc = new OrderService();
-		OrderVO ordVO;
-		
+
+		try {
+			String ord_id = request.getParameter("ord_id");
+			if (ord_id == null || (ord_id.trim()).length() == 0) {
+				errorMsgs.add("請輸入訂單編號");
+			}
+
+			/*************************** 2.開始查詢資料 *****************************************/
+			// OrderService ordSvc = new OrderService();
+			OrderVO ordVO;
+
 			ordVO = ordSvc.Select_order_id(ord_id);
-			if(ordVO == null){
+			if (ordVO == null) {
 				errorMsgs.add("查無訂單編號");
 			}
-			
+
 			if (!errorMsgs.isEmpty()) {
 				return "/ORDER/searchList";
 			}
@@ -433,13 +464,12 @@ public class Order_Controller extends HttpServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		/***************************
-		 * * 3.完成,準備轉交(Send the Success view)
-		 ***********/
+		} /***************************
+			 * * 3.完成,準備轉交(Send the Success view)
+			 ***********/
 		return "/ORDER/SelectOrd";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = { "/getProdNameCount.do", "/ORDER/getProdNameCount.do" })
 	public String getProdNameCount(ModelMap model, HttpServletRequest request) throws Exception {
 
@@ -461,20 +491,17 @@ public class Order_Controller extends HttpServlet {
 		List list;
 		try {
 			list = ordSvc.GetProdNameCount(prod_id);
-//			List<OrderVO> list = new LinkedList<OrderVO>();
-//			list.add(ordVO);
+			// List<OrderVO> list = new LinkedList<OrderVO>();
+			// list.add(ordVO);
 			model.addAttribute("result", list);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		/***************************
-		 * * 3.完成,準備轉交(Send the Success view)
-		 ***********/
+		} /***************************
+			 * * 3.完成,準備轉交(Send the Success view)
+			 ***********/
 		return "/ORDER/SelectProdQuantity";
 	}
-	
-	
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/setOrdStatus.do", "/ORDER/setOrdStatus.do" })
 	public String setOrdStatus(ModelMap model, HttpServletRequest request) throws Exception {
@@ -516,10 +543,9 @@ public class Order_Controller extends HttpServlet {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-		}
-		/***************************
-		 * * 3.完成,準備轉交(Send the Success view)
-		 ***********/
+		} /***************************
+			 * * 3.完成,準備轉交(Send the Success view)
+			 ***********/
 		return "/ORDER/SelectOrd";
 	}
 
@@ -666,17 +692,17 @@ public class Order_Controller extends HttpServlet {
 		}
 
 	}
-	
-	@RequestMapping(method = RequestMethod.POST,value ={"/OrdToShip.do","/ORDER/OrdToShip.do"})
-	public String OrdToShip(ModelMap model,HttpServletRequest request,
-			/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
-			@RequestParam("action")String action,
-			@RequestParam("ord_id") String ord_id)
-			throws Exception {
+
+	@RequestMapping(method = RequestMethod.POST, value = { "/OrdToShip.do", "/ORDER/OrdToShip.do" })
+	public String OrdToShip(ModelMap model, HttpServletRequest request,
+			/***************************
+			 * * 1.接收請求參數 - 輸入格式的錯誤處理
+			 *************************/
+			@RequestParam("action") String action, @RequestParam("ord_id") String ord_id) throws Exception {
 		/*************************** 2.永續層存取 ***************************************/
 		if ("toShip".equals(action)) {
-			
-			//OrderService ordSvc = new OrderService();
+
+			// OrderService ordSvc = new OrderService();
 			try {
 				List<Order_DetailVO> detailList = ordSvc.Select_order_detailALL(ord_id);
 				request.setAttribute("detailList", detailList);
@@ -691,11 +717,12 @@ public class Order_Controller extends HttpServlet {
 
 				e.printStackTrace();
 			}
-			/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
+			/***************************
+			 * * 3.完成,準備轉交(Send the Success view)
+			 ***********/
 			return "/SHIPMENTS/ShipmentsList";
 		}
-		return null;	
+		return null;
 	}
-	
 
 }

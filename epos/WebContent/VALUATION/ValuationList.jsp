@@ -262,7 +262,7 @@ print(text)
 	</tr>
 </table>
 <div style="height: 70px;"></div>
-<button type="button" id="addNewDetail" class="btn btn-info">新增明細</button>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+<button type="button" id="addNewDetail" class="btn btn-info">新增明細</button>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
 <button type="button" id="helper" class="btn btn-info">輸入小幫手</button>
 <!-- <button type="button" id="count_total_price" class="btn btn-info">計算總金額</button> -->
 
@@ -284,35 +284,35 @@ print(text)
 		<td><input type="TEXT" name="prod_id1"  value="" /></td>
 		<td><input type="TEXT" name="prod_name1"  value="" /></td>
 		<td><input type="TEXT" name="prod_quantity1" value="" /></td>
-		<td><input type="TEXT" name="prod_price1"  value=""/></td>
+		<td><input type="TEXT" name="prod_price1" id="prod_price1" value=""/></td>
 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
 	</tr>
 	<tr align='center' valign='middle'>
 		<td><input type="TEXT" name="prod_id2"  value="" /></td>
 		<td><input type="TEXT" name="prod_name2"  value="" /></td>
 		<td><input type="TEXT" name="prod_quantity2" value="" /></td>
-		<td><input type="TEXT" name="prod_price2"  value=""/></td>
+		<td><input type="TEXT" name="prod_price2" id="prod_price2" value=""/></td>
 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
 	</tr>
 	<tr align='center' valign='middle'>
 		<td><input type="TEXT" name="prod_id3"  value="" /></td>
 		<td><input type="TEXT" name="prod_name3"  value="" /></td>
 		<td><input type="TEXT" name="prod_quantity3" value="" /></td>
-		<td><input type="TEXT" name="prod_price3"  value=""/></td>
+		<td><input type="TEXT" name="prod_price3" id="prod_price3" value=""/></td>
 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
 	</tr>
 	<tr align='center' valign='middle'>
 		<td><input type="TEXT" name="prod_id4"  value="" /></td>
 		<td><input type="TEXT" name="prod_name4"  value="" /></td>
 		<td><input type="TEXT" name="prod_quantity4" value="" /></td>
-		<td><input type="TEXT" name="prod_price4"  value=""/></td>
+		<td><input type="TEXT" name="prod_price4" id="prod_price4" value=""/></td>
 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
 	</tr>
 	<tr align='center' valign='middle'>
 		<td><input type="TEXT" name="prod_id5"  value="" /></td>
 		<td><input type="TEXT" name="prod_name5"  value="" /></td>
 		<td><input type="TEXT" name="prod_quantity5" value="" /></td>
-		<td><input type="TEXT" name="prod_price5"  value=""/></td>
+		<td><input type="TEXT" name="prod_price5" id="prod_price5" value=""/></td>
 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
 	</tr>
 		
@@ -408,26 +408,13 @@ print(text)
 		form1.prod_quantity5.value="1";
 		form1.prod_price5.value="299";
 
-// 		var a = 2;
-		
-// 		form1.total_price.value = parseInt(document.getElementById("prod_price1").value)
-// 								+ parseInt(document.getElementById("prod_price2").value)
-// 								+ parseInt(document.getElementById("prod_price3").value)
-// 								+ parseInt(document.getElementById("prod_price4").value)
-// 								+ parseInt(document.getElementById("prod_price5").value);
-	
-	})
-	
-	$("count_total_price").click(function(){
-		alert("1");
 		form1.total_price.value = parseInt(document.getElementById("prod_price1").value)
-		+ parseInt(document.getElementById("prod_price2").value)
-		+ parseInt(document.getElementById("prod_price3").value)
-		+ parseInt(document.getElementById("prod_price4").value)
-		+ parseInt(document.getElementById("prod_price5").value)
-		alert("2");
-	})
+								+ parseInt(document.getElementById("prod_price2").value)
+								+ parseInt(document.getElementById("prod_price3").value)
+								+ parseInt(document.getElementById("prod_price4").value)
+								+ parseInt(document.getElementById("prod_price5").value);
 	
+	})	
 
 //<!----------------------------------------  送出新增        ------------------------------------>
 		

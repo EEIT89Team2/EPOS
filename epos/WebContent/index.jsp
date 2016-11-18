@@ -38,8 +38,7 @@
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
 
-					<li><a class="logout" href="LOGIN/logout.jsp">Logout ${LoginOK.emp_id} ${SHIFT}</a></li>
-				</ul>
+		<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>歡迎使用ePOS</li>						</ul>
 			</div>
 		</header>
 		<!--header end-->
@@ -51,13 +50,14 @@
 				<ul class="sidebar-menu" id="nav-accordion">
 
 					<p class="centered">
-						<a href="ORDER/order.jsp"><img src="<c:url value="/resources/img/ui-sam.jpg"/>" class="img-circle" width="60"></a>
+						<a href="<%=request.getContextPath()%>/ORDER/order.jsp"><img src="<c:url value="/resources/img/ui-sam.jpg"/>" class="img-circle" width="60"></a>
 					</p>
 					<h5 class="centered">ePOS</h5>
 
-					<li class="mt"><a class="active" href="ORDER/order.jsp"> <i
-							class="fa fa-dashboard"></i> <span>index</span>
-					</a></li>
+					<li class="mt"><a class="active"
+				href="<%=request.getContextPath()%>/ORDER/order.jsp"> <i
+					class="fa fa-dashboard"></i> <span>收銀結帳</span>
+			</a></li>
 
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class="fa fa-desktop"></i> <span>基本資料維護</span>

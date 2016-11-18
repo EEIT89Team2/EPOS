@@ -231,9 +231,10 @@ print(text)
 		class="logo"><b>ePOS</b></a> <!--logo end-->
 
 	<div class="top-menu">
+	
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="login.html">Logout</a></li>
-		</ul>
+	
+<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
 	<div id="sidebar" class="nav-collapse ">
@@ -241,15 +242,15 @@ print(text)
 		<ul class="sidebar-menu" id="nav-accordion">
 
 			<p class="centered">
-				<a href="<%=request.getContextPath()%>/index.jsp"><img
+				<a href="<%=request.getContextPath()%>/ORDER/order.jsp"><img
 					src="<c:url value="../resources/img/ui-sam.jpg"/>"
 					class="img-circle" width="60"></a>
 			</p>
 			<h5 class="centered">ePOS</h5>
 
 			<li class="mt"><a class="active"
-				href="<%=request.getContextPath()%>/index.jsp"> <i
-					class="fa fa-dashboard"></i> <span>index</span>
+				href="<%=request.getContextPath()%>/ORDER/order.jsp"> <i
+					class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
 
 			<li class="sub-menu"><a href="javascript:;"> <i
@@ -433,7 +434,7 @@ print(text)
 									<input type="text" value="${dayPrice}"  class="form-control" readonly/>
 							</div>　　
 							<div class="form-group">
-									<label>折　　讓：</label>
+									<label>折　　扣：</label>
 									<input type="text" id="dis_price" name="dis_price" value="1" class="form-control" readonly/>	
 							</div>
 						</tr>

@@ -24,6 +24,7 @@
 		<property name="prod_name" column="prod_name" />
 		<property name="prod_quantity" column="prod_quantity" />
 		<property name="prod_price" column="prod_price" />
+		<property name="prod_lsum" column="prod_lsum" />
 		
 <!-- 			<key-property name="prod_id" column="prod_id" />  -->
 <!-- 		<many-to-one name="prodVO" class="com.prod.model.ProdVO" lazy="false" > -->

@@ -9,7 +9,7 @@
 			<generator class="generator.PURCHASE_Generator"/>
 		</id>
 		
-		<property name="quo_id" column="quo_id" />
+<!-- 		<property name="quo_id" column="quo_id" /> -->
 		<property name="pur_date" column="pur_date" />
 		<property name="delivery_date" column="delivery_date" />
 		<property name="com_id" column="com_id" />

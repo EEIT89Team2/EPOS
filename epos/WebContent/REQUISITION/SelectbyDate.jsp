@@ -15,6 +15,14 @@
 body {
 	font-size: 16px;
 }
+
+.my-error-class {
+	color: #1dc489;
+}
+
+.my-valid-class {
+	color: #3a51e8;
+}
 </style>
 <body>
 	<section id="container"> <section class="wrapper">
@@ -34,7 +42,7 @@ body {
 		</div>
 		</nav>
 		<div
-			style="background-color: rgba(0, 0, 0, 0.2); position: relativve; height: 750px; overflow: auto;">
+			style="background-color: rgba(66, 134, 244, 0.3); position: relativve; height: 750px; overflow: auto;">
 
 			<div align=center>
 				<br> <br> <br>
@@ -59,18 +67,38 @@ body {
 	</section></section>
 	<script>
 		$(function() {
-			$('#sbt').on('click', function() {
+			$('#form1').validate({
 
-				var url = "findByDate.do";
+				errorClass : "my-error-class",
+				validClass : "my-valid-class",
 
-				$.ajax({
-					type : "POST",
-					url : url,
-					data : $('#form1').serialize(),
-					success : function(data) {
-						$("#main-content").html(data);
+				rules : {
+					begin_date : "required",
+					end_date : "required"
+				},
+				messages : {
+					begin_date : {
+						required:"【請輸入起始日期】"
+					},
+					end_date : {
+						required:"【請輸入結束日期】"
 					}
-				})
+				}
+			})
+
+			$('#sbt').on('click', function() {
+				var $form = $('#form1');
+				var url = "findByDate.do";
+				if ($form.valid()) {
+					$.ajax({
+						type : "POST",
+						url : url,
+						data : $('#form1').serialize(),
+						success : function(data) {
+							$("#main-content").html(data);
+						}
+					})
+				}
 			})
 			$('#req1').on('click', function() {
 				var t1 = $(this).attr('target');
@@ -103,6 +131,7 @@ body {
 				})
 			})
 		})
+		$("#table1").dataTable();
 	</script>
 </body>
 </html>

@@ -46,4 +46,9 @@ private ProdDAO_interface dao=null;
 	public List getByGroup(String prod_group){
 		return dao.findByGroup(prod_group);
 	}
+	
+	public void update2(Integer prod_stock, String prod_id){
+		dao.update2(prod_stock, prod_id);
+		return;
+	}
 }

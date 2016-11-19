@@ -1,87 +1,438 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增採購單</title>
+
+<link href="<c:url value="../resources/css/bootstrap.css" />"
+	rel="stylesheet">
+
 </head>
+<style type="text/css">
+body {
+	font-size: 16px;
+}
+
+table {
+	margin: 10px 2px;
+	line-height: 20px;
+}
+
+input {
+	margin: 5px;
+	text-align: left;
+	/* 		background-color:rgba(234,225,225,1); */
+}
+
+.dbt {
+	height: 24px;
+	color: white;
+	background-color: rgba(221, 15, 15, 0.8);
+	border: 0px;
+}
+
+.detailtable td {
+	padding: 2px 10px;
+}
+
+.my-error-class {
+	color: #1dc489;
+}
+
+.my-valid-class {
+	color: #3a51e8;
+}
+</style>
 <body>
 
-<%-- 錯誤表列 --%>
-<c:if test="${not empty param.message}">
-	<font color='red'>請修正以下錯誤:
-	<ul>
-		<c:forEach var="message" items="${param.message}">
-			<li>${message}</li>
-		</c:forEach>
-	</ul>
-	</font>
-</c:if>
+	<section id="container"> <section class="wrapper">
+	<div class="row mt">
+		<%-- 錯誤表列 --%>
+		<%-- <c:if test="${not empty param.message}"> --%>
+		<!-- 	<font color='red'>請修正以下錯誤: -->
+		<!-- 	<ul> -->
+		<%-- 		<c:forEach var="message" items="${param.message}"> --%>
+		<%-- 			<li>${message}</li> --%>
+		<%-- 		</c:forEach> --%>
+		<!-- 	</ul> -->
+		<!-- 	</font> -->
+		<%-- </c:if> --%>
+		<nav class="nav navbar-default">
+		<div class="container-fluid"
+			style="float: right; left: -50%; position: relative;">
+			<ul class="nav navbar-nav"
+				style="float: left; left: 50%; position: relative;">
+				<li style="background-color: rgba(221, 15, 15, 0.8);"><a
+					id="pur1" target="insertPur00.do" style="color: white;">新增採購單</a></li>
+				<li><a id="pur2" target="SelectPur.jsp">單筆查詢</a></li>
+				<li><a id="pur3" target="getAllPur.do">全部查詢</a></li>
+				<li><a id="pur4" target="SelectbyDate.jsp">依日期查詢</a></li>
+				<li><a id="pur5" target="selectOfN.do">審核</a></li>
+			</ul>
+		</div>
+		</nav>
 
-<h1>採購單</h1>
+		<div
+			style="background-color: rgba(66, 134, 244, 0.3); position: relativve; height: 750px; overflow: auto; overflow-x: hidden;">
+			<!-- 	<br> -->
+			<h1>新增採購單</h1>
+			<hr>
 
-<form method="post" action="insertPur.do" id="form1">
+			<form method="post" action="insertReq.do" id="form1">
 
-<table border="0">
-	<tr>
-		<td>採購單編號 <input type="text" name="pur_id" value="由資料庫產生" readonly="readonly" /></td></tr>
-		<tr><td>詢價單編號<input type="text" name="quo_id" value="Q2016092900001"></td></tr>
-		<tr><td>採購日期<input type="date" name="pur_date" value="2016-11-01"></td></tr>
-		<tr><td>送貨日期<input type="date" name="delivery_date" value="2016-10-14"></td></tr>
-		<tr><td>廠商編號<input type="text" name="com_id" value="C00001"></td></tr>
-		<tr><td>修改人員<input type="text" name="key_id" value="E00001"></td></tr>
-		<tr><td>修改日期<input type="date" name="key_date" value="2016-10-10"></td></tr>
-		<tr><td>備註<input type="text" name="remark" value="test"></td></tr>
-		<tr><td>狀態<input type="text" name="status" value="N"></td></tr>
-</table>
-<hr><hr>
-<input type="button" value="新增明細" id="addNewDetail">
-<input type="submit" value="送出"/>
-<!-- <input type="hidden" name="action" value="insert"> -->
-<table border="0">
-		
-		<tr><td>採購單編號 <input type="text" name="pur_id1" value="由資料庫產生" readonly="readonly" /></td></tr>
-		<tr><td>商品編號 <input type="text" name="prod_id1" value="P00001" /></td></tr>
-		<tr><td>商品名稱<input type="text" name="prod_name1" value="iphone 6 32G 黑色"></td></tr>
-		<tr><td>商品數量<input type="text" name="prod_quantity1" value="1"></td></tr>
-		<tr><td>商品價格<input type="text" name="prod_price1" value="23000"></td></tr>
-		<tr><td><input type='button' value='刪除' class='btn btn-danger'></input></td></tr>
+				<table border="0" id="table1"
+					class="table table-bordered table-striped table-hover">
+					<tr>
+						<td>&nbsp;&nbsp;採購單號：<input type="text" name="pur_id"
+							value="系統產生" readonly="readonly" /></td>
+					</tr>
+					<tr>
+						<td>&nbsp;&nbsp;採購日期：<input type="date" name="pur_date"
+							id="theDate" style="width: 200px;"></td>
+					</tr>
+					<tr>
+						<td>&nbsp;&nbsp;廠商名稱：<input type="text" name="com_id"
+							value="${ComVO.com_id }" readonly="readonly" />
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;&nbsp;建檔人員：<input type="text" name="key_id"
+							value="${sessionScope.LoginOK.emp_id }" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td>&nbsp;&nbsp;建檔日期：<input type="date" name="key_date"
+							id="theDate2" style="width: 200px;"></td>
+					</tr>
+					<tr>
+						<td>&nbsp;&nbsp;送貨日期：<input type="date" name="delivery_date"
+							id="theDate3" style="width: 200px;"></td>
+					</tr>
+					<tr>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;金&nbsp;&nbsp;&nbsp;額&nbsp;&nbsp;：<input
+							type="text" id="sum" name="remark" value="" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;狀&nbsp;&nbsp;&nbsp;態&nbsp;&nbsp;：<input
+							type="text" name="status" value="N" readonly="readonly" /><span
+							style="font-size: 10px; color: gray">(N:未審核 Y:已審核 D:註銷
+								S:成功)</span></td>
+					</tr>
+				</table>
+				<hr>
+				<!-- 			<hr> -->
+				<table border=0
+					class="table table-bordered table-striped table-hover"
+					id="detailtable">
 
-</form>
+				</table>
+				<div style="position: absolute; bottom: 30px; right: 40%;">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script> 
-!window.jQuery && document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
- </script>
+					<input type="button" value="新增明細" id="addNewDetail"> <input
+						type="button" id="sbt" value="提交" /> <input type="hidden"
+						name="action" value="insert">
 
+				</div>
+			</form>
+		</div>
+	</div>
+	</section></section>
 	<script>
-	$("#form1").on('click', '.btn-danger', function() {
-		$(this).parents("table").remove();
-	})
-		$(function() {   
-			var a=2;
-			$("#addNewDetail").click(function() {$("#form1").append(
-					"</br><table border='0'>"
-					+"<tr><td>採購單編號 <input type='text' name='pur_id"+a+"' value='由資料庫產生' readonly='readonly'/></td></tr>"
-					+"<tr><td>商品編號<input type='text' name='prod_id"+a+"' /></td></tr>"
-					+"<tr><td>商品名稱<input type='text' name='prod_name"+a+"'/ ></td></tr>"
-					+"<tr><td>商品數量<input type='text' name='prod_quantity"+a+"'/></td></tr>"
-					+"<tr><td>商品價格<input type='text' name='prod_price"+a+"' /></td></tr>"
-					+"<tr><td><input type='button' value='刪除' class='btn btn-danger'></input></td></tr>"
-					+"</table>")
-					a=a+1;
+		$(function() {
+			var a = 1;
+			var sum = 0;
+			$("#addNewDetail")
+					.click(
+							function() {
+								$("#detailtable")
+										.append(
+												"<tr><td>商品編號：&nbsp;<select id='w"+a+"' class='item' name='prod_id"+a+"'style='width: 199px; height: 30px;'><c:forEach var='prodVO' items='${list2 }' varStatus='status'><option>${prodVO.prod_id }</option></c:forEach></select></td>"
+														+ "<td>商品名稱：<input type='text' id='x"+a+"' name='prod_name"+a+"' readonly='readonly' /></td>"
+														+ "<td>商品數量：<input type='text' id='y"+a+"' name='prod_quantity"+a+"'/></td>"
+														+ "<td>商品單價：<input type='text' id='z"+a+"' name='prod_price"+a+"' readonly='readonly' /></td>"
+														+ "<td>金額小計：<input type='text' id='r"+a+"' class='lsum' name='prod_lsum"+a+"' readonly='readonly' /></td>"
+														+ "<td><input type='button' value='刪除' class='dbt'/></td></tr>")
+
+								$('#w' + a).val("");
+
+								$('.dbt').on('click', function() {
+									$(this).parents('tr').remove();
+									sum = 0;
+
+									$('.lsum').each(function() {
+
+										sum = sum + Number($(this).val());
+									})
+
+									$('#sum').val(sum);
+								})
+
+								$('#w' + a)
+										.change(
+												function() {
+													var prod_id = $(this).val();
+													var element = this;
+													var url = "getOneProd1.do";
+													$
+															.ajax({
+																type : 'POST',
+																url : url,
+																data : {
+																	"prod_id" : prod_id
+																},
+																success : function(
+																		data) {
+
+																	$(element)
+																			.parent()
+																			.next()
+																			.children()
+																			.val(
+																					data);
+
+																}
+
+															})
+													url = "getOneProd2.do";
+													$
+															.ajax({
+																type : 'POST',
+																url : url,
+																data : {
+																	"prod_id" : prod_id
+																},
+																success : function(
+																		data) {
+
+																	$(element)
+																			.parent()
+																			.next()
+																			.next()
+																			.next()
+																			.children()
+																			.val(
+																					data);
+																	//  											alert(data);
+
+																}
+															})
+
+													$(this).parent().next()
+															.next().children()
+															.val("");
+
+													var y1 = $(this).parent()
+															.next().next()
+															.children().val();
+													var y2 = $(this).parent()
+															.next().next()
+															.next().children()
+															.val();
+
+													var ysum = y1 * y2;
+													$(this).parent().next()
+															.next().next()
+															.next().children()
+															.val(ysum);
+
+													sum = 0;
+
+													$('.lsum')
+															.each(
+																	function() {
+
+																		sum = sum
+																				+ Number($(
+																						this)
+																						.val());
+																	})
+
+													$('#sum').val(sum);
+
+												})
+
+								$('#y' + a).blur(
+										function() {
+											var y1 = $(this).val();
+											var y2 = $(this).parent().next()
+													.children().val();
+											var ysum = y1 * y2;
+											$(this).parent().next().next()
+													.children().val(ysum);
+
+										})
+
+								$('#y' + a).blur(function() {
+
+									sum = 0;
+
+									$('.lsum').each(function() {
+
+										sum = sum + Number($(this).val());
+									})
+
+									$('#sum').val(sum);
+
+								})
+
+								// 								$('#w'+a).change(function(){
+								// 									var prod_id = $(this).val();
+								// 									var element = this;
+								// 									var url = "getOneProd2.do";
+								// 									$.ajax({
+								// 										type:'POST',
+								// 										url:url,
+								// 										data:{"prod_id":prod_id},
+								// 										success:function(data){
+
+								//  												$(element).parent().next().next().next().children().val(data);
+
+								// 										}
+								// 									})
+								// 								})
+
+								$('#w' + a)
+										.blur(
+												function() {
+													var element = this;
+													var origin = $(this).val();
+													var i = 0;
+													$('.item')
+															.each(
+																	function() {
+																		if ($(
+																				this)
+																				.val() != null) {
+																			if ($(
+																					this)
+																					.val() == origin) {
+																				i++;
+																				if (i >= 2) {
+																					var t = $(
+																							this)
+																							.val();
+																					alert("商品 "
+																							+ t
+																							+ " 已存在，請重新輸入");
+																					$(
+																							element)
+																							.val(
+																									"");
+																					$(
+																							element)
+																							.parent()
+																							.next()
+																							.children()
+																							.val(
+																									"");
+																					$(
+																							element)
+																							.parent()
+																							.next()
+																							.next()
+																							.next()
+																							.children()
+																							.val(
+																									"");
+																					$(
+																							element)
+																							.parent()
+																							.next()
+																							.next()
+																							.next()
+																							.next()
+																							.children()
+																							.val(
+																									"");
+																				}
+																			}
+																		}
+																	})
+												})
+
+								a = a + 1;
+							})
+
+			$('#form1').validate({
+
+				errorClass : "my-error-class",
+				validClass : "my-valid-class",
+
+				rules : {
+					pur_date : "required",
+					key_date : "required",
+					delivery_date : "required"
+				},
+				messages : {
+					pur_date : {
+						required : "【請輸入採購日期】"
+					},
+					key_date : {
+						required : "【請輸入建檔日期】"
+					},
+					delivery_date : {
+						required : "【請輸入送貨日期】"
+					}
+				}
 			})
 
+			$('#sbt').on('click', function() {
+				var $form = $('#form1');
+				var url = "insertPur.do";
+				if ($form.valid()) {
+					$.ajax({
+						type : "POST",
+						url : url,
+						data : $('#form1').serialize(),
+						success : function(data) {
+							$("#main-content").html(data);
+						}
+					})
+				}
+			})
+
+			$('#pur1').on('click', function() {
+				var t1 = $(this).attr('target');
+				$.post(t1, function(data) {
+					$('#main-content').html(data);
+				})
+			})
+
+			$('#pur2').on('click', function() {
+				var t1 = $(this).attr('target');
+				$.get(t1, function(data) {
+					$('#main-content').html(data);
+				})
+			})
+
+			$('#pur3').on('click', function() {
+				var t1 = $(this).attr('target');
+				$.ajax({
+					type : "post",
+					url : t1,
+					success : function(data) {
+						$('#main-content').html(data);
+					}
+				})
+			})
+			$('#pur4').on('click', function() {
+				var t1 = $(this).attr('target');
+				$.post(t1, function(data) {
+					$('#main-content').html(data);
+				})
+			})
+			$('#pur5').on('click', function() {
+				var t1 = $(this).attr('target');
+				$.post(t1, function(data) {
+					$('#main-content').html(data);
+				})
+			})
 		})
-		
+		$("#table1").dataTable();
 	</script>
 
-	<a href="../index.jsp">回首頁</a>
-	<a href="javascript:" onclick="history.back(); ">回上頁</a> 
 
 </body>
 </html>

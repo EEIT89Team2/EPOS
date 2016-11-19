@@ -1,12 +1,14 @@
 package com.pur.model;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.bop.model.Bop_Interface;
+import com.company.model.ComVO;
+import com.product.model.ProdVO;
 import com.pur_detail.model.Pur_detailVO;
 
 public class PurService {
@@ -16,6 +18,16 @@ public class PurService {
 	public PurService() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans-config.xml");
 		dao =(Pur_Interface) context.getBean("purDAO");
+	}
+	
+	public List<PurVO> selectOfN(){
+		List<PurVO> list = dao.selectOfN();
+		return list;
+	}
+	
+	public List<PurVO> findByDate(Date begin_date, Date end_date){
+		List<PurVO> list = dao.findByDate(begin_date, end_date);
+		return list;
 	}
 	
 	public PurVO insert(PurVO purVO) {
@@ -54,6 +66,26 @@ public class PurService {
 	public List<PurVO> getAll() {
 		List<PurVO> list = dao.getAll();
 		return list;
+	}
+	
+	public List<ComVO> getCom(){
+		List<ComVO> list = dao.getCom();
+		return list;
+	}
+	
+	public List<ProdVO> getProd(String com_id){
+		List<ProdVO> list = dao.getProd(com_id);
+		return list;
+	}
+	
+	public List<ComVO> getOneCom(String com_name){
+		List<ComVO> list = dao.getOneCom(com_name);
+		return list;
+	}
+	
+	public ProdVO getOneProd(String prod_id){
+		ProdVO prodVO = dao.getPordById(prod_id);
+		return prodVO;
 	}
 
 }

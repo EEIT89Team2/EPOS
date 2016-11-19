@@ -8,7 +8,7 @@ import com.pur_detail.model.Pur_detailVO;
 
 public class PurVO implements java.io.Serializable{
 	private String pur_id;
-	private String quo_id;
+//	private String quo_id;
 	private Date pur_date;
 	private Date delivery_date;
 	private String com_id;
@@ -30,12 +30,12 @@ public class PurVO implements java.io.Serializable{
 	public void setPur_id(String pur_id) {
 		this.pur_id = pur_id;
 	}
-	public String getQuo_id() {
-		return quo_id;
-	}
-	public void setQuo_id(String quo_id) {
-		this.quo_id = quo_id;
-	}
+//	public String getQuo_id() {
+//		return quo_id;
+//	}
+//	public void setQuo_id(String quo_id) {
+//		this.quo_id = quo_id;
+//	}
 	public Date getPur_date() {
 		return pur_date;
 	}

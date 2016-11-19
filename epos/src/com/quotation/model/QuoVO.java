@@ -9,11 +9,29 @@ import com.quotation_detail.model.QuoDetailVO;
 public class QuoVO implements java.io.Serializable{
 	private String quo_id;
 	private String req_id;
+	private String key_id;
+	private Date key_date;
 	private String remark;
 	private String status;
-	
-	//hibernate
 	private Set<QuoDetailVO> quoDetails =new HashSet<QuoDetailVO>();
+	
+	public String getKey_id() {
+		return key_id;
+	}
+
+	public void setKey_id(String key_id) {
+		this.key_id = key_id;
+	}
+
+	public Date getKey_date() {
+		return key_date;
+	}
+
+	public void setKey_date(Date key_date) {
+		this.key_date = key_date;
+	}
+
+	//hibernate
 
 	public String getQuo_id() {
 		return quo_id;

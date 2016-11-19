@@ -12,6 +12,7 @@ import com.requisition_detail.model.ReqDetailVO;
 import hibernate.util.HibernateUtil;
 
 import com.order.model.OrderVO;
+import com.product.model.ProdVO;
 import com.requisition.model.ReqVO;
 
 public class ReqDAO implements Req_Interface{
@@ -19,6 +20,7 @@ public class ReqDAO implements Req_Interface{
 	private static final String GET_ALL_STMT = "from ReqVO order by req_id";
 	private static final String GET_BY_DATE = "from ReqVO where key_date between ? and ?";
 	private static final String SELECT_OF_N = "from ReqVO where status = 'N'";
+	private static final String GET_ALL_PROD = "from ProdVO order by prod_id";
 	
 	private HibernateTemplate hibernateTemplate;
 	
@@ -77,6 +79,15 @@ public class ReqDAO implements Req_Interface{
 		list = hibernateTemplate.find(SELECT_OF_N);
 		return list;
 	}
+
+	@Override
+	public List<ProdVO> getAllProd() {
+		// TODO Auto-generated method stub
+		List<ProdVO> list = null;
+		list = hibernateTemplate.find(GET_ALL_PROD);
+		return list;
+	}
+	
 
 //	@Override
 //	public Set<ReqDetailVO> getDetails(String req_id) {

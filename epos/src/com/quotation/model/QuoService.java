@@ -6,7 +6,10 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.company.model.ComVO;
+import com.product.model.ProdVO;
 import com.quotation_detail.model.QuoDetailVO;
+import com.requisition.model.ReqVO;
 
 public class QuoService {
 	
@@ -19,8 +22,24 @@ public class QuoService {
 		dao =(Quo_Interface) context.getBean("QuoDAO");
 	}
 	
+	public List<QuoVO> selectOfN(){
+		return dao.selectOfN();
+	}
+	
+	public List<QuoVO> selectOfY(){
+		return dao.selectOfY();
+	}
+	
+	public String getComId(String com_name){
+		return dao.getComId(com_name);
+	}
+	
 	public void addQuo(QuoVO quoVO,List<QuoDetailVO> list){
 		dao.insert(quoVO,list);
+	}
+	
+	public void addProd(ProdVO prodVO){
+		dao.insertProduct(prodVO);
 	}
 	
 	public void updateQuo(QuoVO quoVO){
@@ -46,6 +65,11 @@ public class QuoService {
 		dao.setStatus(status, quo_id);
 	}
 	
+	public void setReqStatus(String status2, String req_id) throws Exception {
+
+		dao.setReqStatus(status2, req_id);
+	}
+	
 	public List<QuoVO> getByReqId(String req_id){
 		return dao.findByReqid(req_id);
 	}
@@ -53,6 +77,28 @@ public class QuoService {
 	public List<QuoVO> getAll(){
 		System.out.println("1");
 		return dao.getAll();
+	}
+	
+	public List<ReqVO> findYReq(){
+		return dao.findYReq();
+	}
+	
+	public ReqVO findByReqKey(String req_id){
+		return dao.findByReqKey(req_id);
+	}
+	
+	public List<ProdVO> getAllProd(){
+		return dao.getAllProd();
+	}
+	
+	public List<ComVO> getAllCom(){
+		return dao.getCom();
+	}
+	
+	public List<QuoVO> getByDate(Date begin_date, Date end_date){
+		List<QuoVO> list = null;
+		list = dao.findByDate(begin_date, end_date);
+		return list;
 	}
 
 }

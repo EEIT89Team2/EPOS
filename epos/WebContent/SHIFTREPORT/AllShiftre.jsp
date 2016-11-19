@@ -135,13 +135,8 @@
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 		
 	<script type="text/JavaScript">
-	
-	
-	
+
 	$(document).ready(function() {
-		
-	$("#allshif").dataTable();
-		
 		
 		$('.fa-trash-o').click(function() {
 			var date = $(this).attr("target1");
@@ -178,6 +173,8 @@
 				});
 			}
 		});
+		
+		$("#allshif").dataTable();
 	});
 	
 	</script>	

@@ -25,6 +25,14 @@
 	
 	.btn-theme02{
 		float:center			
+	}
+	
+	.my-valid-class{
+		color:#3a51e8;
+	}
+	
+	.my-error-class{
+		color:#1dc489;
 	}	
 </style>
 </head>
@@ -46,7 +54,7 @@
 								<p  class="distance">
 								<div class="form-group">
 									<label for="dis_id">　折扣身分：</label>
-									<input type=text class="form-control" name="dis_id" size="10" id="dis_id" >
+									<input type=text class="form-control" name="dis_id" size="10" id="dis_id"  maxlength="10">
 								</div>
 								<p  class="distance">
 								<div class="form-group">
@@ -66,73 +74,58 @@
 							</center>
 					</form>
 				</div>
-<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->				
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->			
 <script type="text/JavaScript">
 $(document).ready(function() {
 // ----------------------------------------	新增----------------------------------------		
 	$(":button[value='送出新增']").click(function() {
 
 		var insert = $("#insert");
-		$.ajax({
-			"type" : insert.attr("method"),
-			"url" : insert.attr("action"),
-			"data" : insert.serialize(),
-			"success" : function(data) {
-				$.ajax({
-					"type" : "post",
-					"url" : "allDisc.do",
-					"data" : {},
-					"success" : function(data) {
-						$(".result_content").html(data);
-						$("#result").attr("class","active");
-						$("#import").removeAttr("class");
-						$("#new_Dic").attr("class","tab-pane fade");
-						$("#resolution_Dic").attr("class","tab-pane active");
-					},
-				});
-			},
-		});
+		if(insert.valid()){
+			$.ajax({
+				"type" : insert.attr("method"),
+				"url" : insert.attr("action"),
+				"data" : insert.serialize(),
+				"success" : function(data) {
+					$.ajax({
+						"type" : "post",
+						"url" : "allDisc.do",
+						"data" : {},
+						"success" : function(data) {
+							$(".result_content").html(data);
+							$("#result").attr("class","active");
+							$("#import").removeAttr("class");
+							$("#new_Dic").attr("class","tab-pane fade");
+							$("#resolution_Dic").attr("class","tab-pane active");
+						},
+					});
+				},
+			});
+		}	
 	})
 	
 // ----------------------------------------	驗證----------------------------------------	
-    $('#dis_id').blur(function(){
-    	var rule1= /^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,10}$/;
-    	if(rule1.test($(this).val())){
-    		$(".veri_id").text('')
-//     		$(this).attr("border-color","")
-    	}else if($(this).val().length==0){
-    		$(".veri_id").text('折扣身分:請勿空白')
-//     		$(this).css("border-color","red")
-    	}else{
-    		$(".veri_id").text('折扣身分:只能是中、英文字母、數字和_ , 且長度必須在1到10之間,且之間不可有空白')
-//     		$(this).css("border-color","red")
-    	}focus(function(){
-//     		$(this).removeAttr("border-color")
-//     		$(this).attr("border-color","")
-        	})
 
-    })
-    
-      $('#dis_price').blur(function(){
-    	var rule1= /^[0-9.]{1,4}$/;
-    	if(rule1.test($(this).val())){
-    		$(".veri_price").text('')
-//     		$(this).attr("border-color","")
-    	}else if($(this).val().length==0){
-    		$(".veri_price").text('折扣%數:請勿空白')
-//     		$(this).css("border-color","red")
-    	}else if(($(this).val()<0.01)||($(this).val()>1)){
-    		$(".veri_price").text('折扣%數:數值必須在1到0.01之間')
-//     		$(this).css("border-color","red")
-    	}else{
-    		$(".veri_price").text('折扣%數:只能是數字 ,且數值必須在1到0.01之間')
-//     		$(this).css("border-color","red")
-    	}focus(function(){
-//     		$(this).removeAttr("border-color")
-//     		$(this).attr("border-color","")
-        	})
-
-    })
+	$("#insert").validate({
+		errorClass:"my-error-class",
+		validClass:"my-valid-class",
+		
+		rules:{
+			dis_id: {required:true,maxlength:10},
+			dis_price:{required:true,number:true,range:[0.01,1]}
+		},
+		messages:{
+			dis_id:{
+				required:"【請輸入折扣身分】",
+				maxlength:"【輸入長度不可大於10】"
+			},
+			dis_price:{
+				required:"【請輸入折扣%數】",
+				number:"【請輸入數字】",
+				range:"【範圍必須介於0.01~1之間】"
+			}
+		}
+	})
 	
 })
 </script>

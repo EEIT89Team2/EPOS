@@ -51,7 +51,15 @@
     color: #fff;
     background-color: #e8c68a;
     border-color: #f3f3f3;
-}  
+	} 
+	
+	.my-valid-class{
+		color:#3a51e8;
+	}
+	
+	.my-error-class{
+		color:#1dc489;
+	} 
 </style>
 </head>
 <body>
@@ -69,8 +77,7 @@
 
 	<div class="titlelist">修改</div>
 	<div class="col-lg-12">
-		<FORM METHOD="post" ACTION="updateProm.do" name="upProForm"
-			class="form-horizontal" role="form">
+		<FORM METHOD="post" ACTION="updateProm.do" name="upProForm" class="form-horizontal" role="form" id="pord_upd_form">
 			<p class="distance">
 			<div class="form-group">
 
@@ -82,7 +89,7 @@
 				</div>
 				<label class="col-lg-1 control-label">促銷商品名稱:</label>
 				<div class="col-lg-1">
-					<input type="text" name="pro_prod_name" size="20"
+					<input type="text" name="pro_prod_name" size="20" maxlength="20"
 						value="${promVO.pro_prod_name}" />
 				</div>
 				<label class="col-lg-1 control-label">促銷商品起始日期:</label>
@@ -120,10 +127,12 @@
 	</div>
 
 
-	<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
-	<script>
-		$(function() {
-			$(":button").on('click', function() {
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
+<script>
+	$(function() {
+		$(":button").on('click', function() {
+			var update = $("#pord_upd_form");
+			if(update.valid()){
 				$.ajax({
 					type : "POST",
 					url : "updateProm.do",
@@ -139,9 +148,36 @@
 						});
 					},
 				})
-			})
+			}	
 		})
-	</script>	
+		
+		// ----------------------------------------	驗證----------------------------------------	
+
+		$("#pord_upd_form").validate({
+			errorClass:"my-error-class",
+			validClass:"my-valid-class",
+			
+			rules:{
+				pro_prod_name: {required:true},
+				pro_end:{required:true},
+				pro_neirong:{maxlength:70}
+			},
+			messages:{
+				pro_prod_name:{
+					required:"【請輸入促銷商品名稱】"
+				},
+				pro_end:{
+					required:"【請輸入商品截止日】"
+				},
+				pro_neirong:{
+					maxlength:"【範圍必須小於70字之間】"
+				}
+				
+			}
+		})
+
+	})
+</script>	
 	
 
 </body>

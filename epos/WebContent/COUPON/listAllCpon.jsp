@@ -88,7 +88,7 @@
 			<th>發行日期</th>
 			<th>使用期限</th>
 			<th>面額</th>
-			<th>狀態</th>
+			<th>狀態(Y已出貨，N庫存)</th>
 			<th>修改</th>
 			<th>刪除</th>
 		</tr></thead>
@@ -118,8 +118,6 @@
 
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 	<script>
-		$(function() {
-			$("#allcpon").dataTable();
 			
 			$('button').on('click', function() {		
 				if($(this).attr('name')=="delete"){
@@ -130,7 +128,7 @@
 							cpon_id:$(this).attr('target')
 						},
 						success : function(data) {
-							$(".chg_content").html(data);
+							$(".result_content").html(data);
 						}
 					})
 				}if($(this).attr('name')=="update"){
@@ -141,12 +139,14 @@
 							cpon_id:$(this).attr('target')
 						},
 						success : function(data) {
-							$(".chg_content").html(data);
+							$(".result_content").html(data);
 						}
 					})
 				}	
 			})
-		})
+
+
+	$("#allcpon").dataTable();
 	</script>
 </body>
 </html>

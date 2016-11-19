@@ -64,7 +64,13 @@
 		margin: 30px;	
 	}
 
+	.my-valid-class{
+		color:#3a51e8;
+	}
 	
+	.my-error-class{
+		color:#1dc489;
+	}
 
 </style>
 
@@ -86,49 +92,48 @@
 				</c:if>
 				<p  class="distance">
 				<div class="formlist">折扣清單</div>
-				<table id="dic" border='1' bordercolor='#CCCCFF' class="table table-bordered table-striped  table-hover" style="width:100%">
-					<thead>
-						<tr>
-							<td class="numeric">折扣身分</td>
-							<td class="numeric">折扣%數</td>
-							<td class="numeric">修改/確認</td>
-							<td class="numeric">刪除</td>
-						</tr>
-					</thead>
-					<c:forEach var="discVO" items="${list}">
-						<tr align='center' valign='middle'>
-							<td class="numeric">${discVO.dis_id}</td>
-							<td class="numeric">
-								<label>${discVO.dis_price}</label> 
-								<input type="text" name="dis_price" size="5" maxlength="4"class="chg_price">
-							</td>
-							<td class="numeric">
-								<button type="button" class="btn btn-success" onclick="editEvent(this)">
-									<i class="fa fa-pencil"></i>
-								</button>
-								<button type="button" class="btn btn-primary" onclick="confirmEvent(this)">
-									<i class="fa fa-check"></i>
-								</button>
-							</td>
-							<td class="numeric">
-								<button type="button" class="btn btn-danger">
-									<i class="fa fa-trash-o" target="${discVO.dis_id}"></i>
-								</button>
-							</td>
-						</tr>
-					</c:forEach>
-				</table>
+					<table id="dic" border='1' bordercolor='#CCCCFF' class="table table-bordered table-striped  table-hover" style="width:100%">
+						<thead>
+							<tr>
+								<td class="numeric">折扣身分</td>
+								<td class="numeric">折扣%數</td>
+								<td class="numeric">修改/確認</td>
+								<td class="numeric">刪除</td>
+							</tr>
+						</thead>
+						<c:forEach var="discVO" items="${list}">
+							<tr align='center' valign='middle'>
+								<td class="numeric">${discVO.dis_id}</td>
+								<td class="numeric">
+									<label>${discVO.dis_price}</label> 
+									<input type="text" name="dis_price" size="5" maxlength="4"class="chg_price">
+								</td>
+								<td class="numeric">
+									<button type="button" class="btn btn-success" onclick="editEvent(this)">
+										<i class="fa fa-pencil"></i>
+									</button>
+									<button type="button" class="btn btn-primary" onclick="confirmEvent(this)">
+										<i class="fa fa-check"></i>
+									</button>
+								</td>
+								<td class="numeric">
+									<button type="button" class="btn btn-danger">
+										<i class="fa fa-trash-o" target="${discVO.dis_id}"></i>
+									</button>
+								</td>
+							</tr>
+						</c:forEach>
+					</table>
 			</div></section>
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->	
 	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
 <script type="text/JavaScript">
 
 	$(document).ready(function() {
-		$("#dic").dataTable();
 		
 		$('.btn-primary').hide();
 		$('.chg_price').hide();
-		
+//刪除		
 		$('.fa-trash-o').click(function() {
 			var id = $(this).attr("target");
 			$.ajax({
@@ -138,23 +143,14 @@
 					dis_id : id
 				},
 				"success" : function(data) {
-// 					$.ajax({
-// 						"type" : "post",
-// 						"url" : "allDisc.do",
-// 						"data" : {},
-// 						"success" : function(data) {
 							$(".result_content").html(data);
-// 							$("#result").attr("class", "active");
-// 							$("#search1").removeAttr("class");
-// 							$("#search_Dic").attr("class", "tab-pane fade");
-// 							$("#resolution_Dic").attr("class", "tab-pane active");
-// 						}
-// 					});
 				},
 			});
 		})
 
+		$("#dic").dataTable();
 	})
+//修改	
 	function editEvent(event) {
 // 		console.log($(event).html());  //現在位置
 // 		console.log($(event).parent().parent().find("td:eq(1) > label").html());  //要更改的位置
@@ -168,48 +164,57 @@
 		$(event).parent().find("button:eq(1)").show();
 	}
 	
-
+//確認修改
 	function confirmEvent(event) {
 		var id = $(event).parent().parent().find("td:eq(0)").html(); //id
 		var inp = $(event).parent().parent().find(":text");
 		var value =inp.val();
-
 		var $label = $(event).parent().parent().find("td:eq(1) > label");
-		$.ajax({
-			"type" : "post",
-			"url" : "updateDisc.do",
-			"data" : {
-				dis_id : id,
-				dis_price : value
-			},
-			"success" : function() {
-				//ajax
-				$.ajax({
-					"type" : "post",
-					"url" : "alljson.do",
-					"data" : {},
-					"success" : function(data) {
-						var sel = $('select[name="dis_id"]:eq(1)');
-						sel.empty();
-						$.each($.parseJSON(data), function() {
-							var n = this.dis_id;
-							var vp = this.dis_price;
-							var opt = $("<option>");
-							opt.append(vp);
-							opt.val(n);
-							sel.append(opt);
-						})						
-						
-					}
-				});
-			}
-		});
-		inp.hide();
-		$label.html(value);
-		$label.show();
-		$(event).hide();
-		$(event).parent().find("button:eq(0)").show();
+		if(parseFloat(value)<=1){			
+			$.ajax({
+				"type" : "post",
+				"url" : "updateDisc.do",
+				"data" : {
+					dis_id : id,
+					dis_price : value
+				},
+				"success" : {}
+	// 				function() {
+					//ajax
+	// 				$.ajax({
+	// 					"type" : "post",
+	// 					"url" : "alljson.do",
+	// 					"data" : {},
+	// 					"success" : function(data) {
+	// 						var sel = $('select[name="dis_id"]:eq(1)');
+	// 						sel.empty();
+	// 						$.each($.parseJSON(data), function() {
+	// 							var n = this.dis_id;
+	// 							var vp = this.dis_price;
+	// 							var opt = $("<option>");
+	// 							opt.append(vp);
+	// 							opt.val(n);
+	// 							sel.append(opt);
+	// 						})						
+							
+	// 					}
+	// 				});
+	// 			}
+			});
+			inp.hide();
+			$label.html(value);
+			$label.show();
+			$(event).hide();
+			$(event).parent().find("button:eq(0)").show();
+		}else{
+// 			inp.after("必須是數字且介於0.01~1之間");
+			alert("必須是數字且介於0.01~1之間");
+		}
+				
+		
 	}
+	
+
 </script>
 
 </body>

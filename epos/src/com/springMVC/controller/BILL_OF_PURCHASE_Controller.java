@@ -1,5 +1,6 @@
 package com.springMVC.controller;
 
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,6 +22,9 @@ import com.bop_detail.model.Bop_detailVO;
 import com.product.model.ProdService;
 import com.product.model.ProdVO;
 import com.pur.model.PurVO;
+
+import gvjava.org.json.JSONArray;
+import gvjava.org.json.JSONObject;
 
 @Controller
 public class BILL_OF_PURCHASE_Controller {
@@ -426,4 +431,52 @@ public class BILL_OF_PURCHASE_Controller {
 		}
 		return null;
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/ANDROID/getBOP.do")
+	public void androidBOP(@RequestParam("bop_id") String bop_id, ModelMap model, HttpServletRequest request,
+			HttpServletResponse response) throws Exception, Exception {
+		/***************************
+		 * * 1.接收請求參數 - 輸入格式的錯誤處理
+		 *************************/
+
+		/*************************** 2.永續層存取 ***************************************/
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("content-type", "text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		Set<Bop_detailVO> set=null;
+		
+		try{
+		 set = bopSvc.getBopDetail(bop_id);
+		}catch(Exception e){
+			out.print("查無此進貨單");
+		}
+		
+		JSONArray jsonArray = new JSONArray();
+		JSONObject jSONObject;
+
+		for (Bop_detailVO bop_detailVO : set) {
+
+			String bop_detailJson = null;
+			bop_detailVO.setBop_id(bop_id);
+			bop_detailVO.setBopVO(null);
+			jSONObject = new JSONObject(bop_detailVO);
+
+			jsonArray.put(jSONObject);
+
+		}
+		
+		 String bop_detailJsonArray = jsonArray.toString();
+		 System.out.println(bop_detailJsonArray);
+		 out.print(bop_detailJsonArray);
+		
+		
+		
+
+
+		/***************************
+		 * * 3.完成,準備轉交(Send the Success view)
+		 ***********/
+
+	}
+
 }

@@ -264,7 +264,7 @@ public class RtnItems_Controller extends HttpServlet {
 			
 			Integer re_quantity = null;
 			try{
-				re_quantity = new Integer(req.getParameter("re_quantity").trim());
+				re_quantity  = new Integer(req.getParameter("re_quantity").trim());
 			}catch(NumberFormatException e){
 				re_quantity = 0;
 				errorMsgs.add("請填入退貨品數量");
@@ -286,18 +286,18 @@ public class RtnItems_Controller extends HttpServlet {
 				return "/RETURNS/addItem";
 			}
 			
-//			ProdService prodsiv = new ProdService();
-//			ProdDAO ProdDAO = new ProdDAO();
-//			ProdVO ProdVO = new ProdVO();
-//			List P_name = ProdDAO.findByName(prod_name);
-//			
-//			System.out.println("prod_name="+prod_name);
-//			System.out.println("P_name="+P_name.get(0));
-//			if(prod_name == P_name.get(0)){
-//				int P_quantity = ProdVO.getProd_stock();
-//				ProdVO.setProd_stock(P_quantity-Integer.parseInt((req.getParameter("re_quantity"))));
-//				prodsiv.update(ProdVO);
-//			}
+			ProdService prodsiv = new ProdService();
+
+			ProdVO ProdVO = prodsiv.getByName(prod_name).get(0);
+			String P_name = ProdVO.getProd_name();
+			
+			System.out.println("prod_name="+prod_name);
+			System.out.println("P_name="+P_name);
+			if(prod_name.equals(P_name)&&re_quantity>=0){
+				int P_quantity = ProdVO.getProd_stock();
+				ProdVO.setProd_stock(P_quantity-Integer.parseInt((req.getParameter("re_quantity"))));
+				prodsiv.update(ProdVO);
+			}
 			
 			
 			/***************************2.開始新增資料***************************************/

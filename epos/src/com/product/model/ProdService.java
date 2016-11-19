@@ -30,7 +30,7 @@ private ProdDAO_interface dao=null;
 		dao.insert(prodVO);
 	}
 	
-	public List getByName(String prod_name){
+	public List<ProdVO> getByName(String prod_name){
 		return dao.findByName(prod_name);
 	}
 	

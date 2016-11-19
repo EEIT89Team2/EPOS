@@ -214,12 +214,25 @@
 					})	
 				}	
 			})
+						
+		//自定義驗證		
+		$.validator.addMethod("compareDate",function(value,element,param){
 			
-		})
+            var release_date = jQuery(param).val();
+            var cpon_period = value;
+            release_date = new Date(parseInt(Date.parse(release_date),10));
+            cpon_period = new Date(parseInt(Date.parse(cpon_period),10));
+            if(release_date>cpon_period){
+                return false;
+            }else{
+                return true;
+            }
+        });			
 			
 		$("#print").click(function() {
 		window.print();
 			})
+		})			
 	</script>
 </body>
 </html>

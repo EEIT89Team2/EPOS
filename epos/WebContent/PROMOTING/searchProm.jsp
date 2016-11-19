@@ -50,7 +50,14 @@
     color: #fff;
     background-color: #e8c68a;
     border-color: #f3f3f3;
-}  
+	}  
+	.my-valid-class{
+		color:#3a51e8;
+	}
+	
+	.my-error-class{
+		color:#1dc489;
+	}
 </style>
 </head>
 <body>
@@ -84,8 +91,7 @@
 		<jsp:useBean id="PromSvc" scope="page"
 			class="com.promoting.model.PromotingService" />
 
-		<FORM METHOD="post" ACTION="datesProm.do" name="r_prom2"
-			class="form-horizontal" role="form">
+		<FORM METHOD="post" ACTION="datesProm.do" name="r_prom2" class="form-horizontal" role="form" id="r_prom2">
 			<div class="form-group">
 				<label class="col-lg-2 col-lg-offset-3 control-label">選擇促銷日期區間:</label>
 				<div class="col-lg-1">
@@ -102,8 +108,7 @@
 			</div>
 		</FORM>
 
-		<FORM METHOD="post" ACTION="idsProm.do" name="r_prom3"
-			class="form-horizontal" role="form">
+		<FORM METHOD="post" ACTION="idsProm.do" name="r_prom3" class="form-horizontal" role="form" id="r_prom3">
 			<div class="form-group">
 				<label class="col-lg-2 col-lg-offset-3 control-label">選擇促銷編號範圍:</label>
 				<div class="col-lg-1">
@@ -137,6 +142,26 @@
 
 	<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->			
 <script type="text/JavaScript">
+//----------------------------------------	驗證----------------------------------------	
+	$("#r_prom2").validate({
+		errorClass:"my-error-class",
+		validClass:"my-valid-class",
+		
+		rules:{
+			pro_begin:{required:true},
+			pro_end:{compareDate:$("input[name='pro_begin']"),required:true},
+		},
+		messages:{
+			pro_begin:{
+				required:"【請輸入商品起始日期】"
+			},
+			pro_end:{
+				required:"【請輸入商品截止日】",
+				compareDate:"【使用期限必须大於發行日期】"
+			}	
+		}
+	})		
+	
 	$(document).ready(function() {
 		// 查詢						
 		$(":button").click(function() {
@@ -156,32 +181,36 @@
 				});
 			} else if ($(this).attr("class") == 'r_prom2 btn btn-success') {
 				var r_prom2 = $("form[name='r_prom2']");
-				$.ajax({
-					"type" : r_prom2.attr("method"),
-					"url" : r_prom2.attr("action"),
-					"data" : r_prom2.serialize(),
-					"success" : function(data) {
-						$(".result_content").html(data);
-						$("#result_prom").attr("class", "active");
-						$("#search_prom").removeAttr("class");
-						$("#search_Pro").attr("class", "tab-pane fade");
-						$("#result_Pro").attr("class", "tab-pane active");
-					},
-				});
+				if(r_prom2.valid()){
+					$.ajax({
+						"type" : r_prom2.attr("method"),
+						"url" : r_prom2.attr("action"),
+						"data" : r_prom2.serialize(),
+						"success" : function(data) {
+							$(".result_content").html(data);
+							$("#result_prom").attr("class", "active");
+							$("#search_prom").removeAttr("class");
+							$("#search_Pro").attr("class", "tab-pane fade");
+							$("#result_Pro").attr("class", "tab-pane active");
+						},
+					});
+				}	
 			} else if ($(this).attr("class") == 'r_prom3 btn btn-success') {
 				var r_prom3 = $("form[name='r_prom3']");
-				$.ajax({
-					"type" : r_prom3.attr("method"),
-					"url" : r_prom3.attr("action"),
-					"data" : r_prom3.serialize(),
-					"success" : function(data) {
-						$(".result_content").html(data);
-						$("#result_prom").attr("class", "active");
-						$("#search_prom").removeAttr("class");
-						$("#search_Pro").attr("class", "tab-pane fade");
-						$("#result_Pro").attr("class", "tab-pane active");
-					},
-				});
+// 				if(r_prom3.valid()){
+					$.ajax({
+						"type" : r_prom3.attr("method"),
+						"url" : r_prom3.attr("action"),
+						"data" : r_prom3.serialize(),
+						"success" : function(data) {
+							$(".result_content").html(data);
+							$("#result_prom").attr("class", "active");
+							$("#search_prom").removeAttr("class");
+							$("#search_Pro").attr("class", "tab-pane fade");
+							$("#result_Pro").attr("class", "tab-pane active");
+						},
+					});
+// 				}	
 			} else if ($(this).attr("class") == 'r_prom4 btn btn-success') {
 				$.ajax({
 					"type" : "post",

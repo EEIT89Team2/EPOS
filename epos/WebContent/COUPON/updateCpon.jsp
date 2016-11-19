@@ -115,31 +115,15 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO"); //若輸入錯誤可�
 
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 <script>
-	$(function() {
-			//更新
-			$(":button[name='update']").on('click', function() {
-				var form2 = $("#update");
-				if(form2.valid()){
-					$.ajax({
-						type : "POST",
-						url : "updateCpon.do",
-						data : form2.serialize(),
-						success : function(data) {
-							$(".result_content").html(data);
-						}
-					})	
-				}
-			})
-			
-			//驗證
-			$("#update").validate({
+		//驗證
+		$("#update").validate({
 			errorClass:"my-error-class",
 			validClass:"my-valid-class",
-			
+				
 			rules:{
 				cpon_name: {required:true},
 				release_date:{required:true},
-				cpon_period:{required:true},
+				cpon_period:{required:true,compareDate:$("input[name='release_date']")},
 				cpon_dollar:{required:true,number:true,range:[1,10000]},
 				status:{required:true}
 			},
@@ -152,6 +136,7 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO"); //若輸入錯誤可�
 				},
 				cpon_period:{
 					required:"【請輸入折價券到期日】",
+					compareDate:"【使用期限必须大於發行日期】"
 				},
 				cpon_dollar:{
 					required:"【請輸入折價券金額】",
@@ -163,10 +148,24 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO"); //若輸入錯誤可�
 				}
 			}
 		})
-		
-		//自定義驗證
+	$(function() {
+		//更新
+		$(":button[name='update']").on('click', function() {
+			var form2 = $("#update");
+			if(form2.valid()){
+				$.ajax({
+					type : "POST",
+					url : "updateCpon.do",
+					data : form2.serialize(),
+					success : function(data) {
+						$(".result_content").html(data);
+					}
+				})	
+			}
+		})
 
 	})
+	
 </script>
 </body>
 </html>

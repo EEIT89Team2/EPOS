@@ -132,6 +132,34 @@
 
 	<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 <script type="text/JavaScript">
+		// ----------------------------------------	驗證----------------------------------------	
+		$("#pord_ins_form").validate({
+			errorClass:"my-error-class",
+			validClass:"my-valid-class",
+			
+			rules:{
+				pro_prod_name: {required:true},
+				pro_begin:{required:true},
+				pro_end:{compareDate:$("input[name='pro_begin']"),required:true},
+				pro_neirong:{maxlength:70}
+			},
+			messages:{
+				pro_prod_name:{
+					required:"【請輸入促銷商品名稱】"
+				},
+				pro_begin:{
+					required:"【請輸入商品起始日期】"
+				},
+				pro_end:{
+					required:"【請輸入商品截止日】",
+					compareDate:"【使用期限必须大於發行日期】"
+				},
+				pro_neirong:{
+					maxlength:"【範圍必須小於70字之間】"
+				}
+				
+			}
+		})	
 	$(document).ready(function() {
 //新增						
 		$(":button[name='c_promoting']").click(function() {
@@ -158,35 +186,7 @@
 					});
 				}
 			})
-			
-// ----------------------------------------	驗證----------------------------------------	
-
-		$("#pord_ins_form").validate({
-			errorClass:"my-error-class",
-			validClass:"my-valid-class",
-			
-			rules:{
-				pro_prod_name: {required:true},
-				pro_begin:{required:true},
-				pro_end:{required:true},
-				pro_neirong:{maxlength:70}
-			},
-			messages:{
-				pro_prod_name:{
-					required:"【請輸入促銷商品名稱】"
-				},
-				pro_begin:{
-					required:"【請輸入商品起始日期】"
-				},
-				pro_end:{
-					required:"【請輸入商品截止日】"
-				},
-				pro_neirong:{
-					maxlength:"【範圍必須小於70字之間】"
-				}
-				
-			}
-		})			
+		
 	})
 </script>
 </body>

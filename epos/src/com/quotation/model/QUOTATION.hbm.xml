@@ -10,6 +10,8 @@
 		</id>
 
 		<property name="req_id" column="req_id" />
+		<property name="key_id"	column="key_id"	/>
+		<property name="key_date" column="key_date" />
 		<property name="remark" column="remark" />
 		<property name="status" column="status" />
 		

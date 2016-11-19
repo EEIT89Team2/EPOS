@@ -109,7 +109,6 @@
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->	
 	<script type="text/JavaScript">
 	$(document).ready(function() {
-		$('#pro_list').DataTable();
 		
 		$("button").on('click',function(){
 			if($(this).attr('value')=="delete"){
@@ -138,6 +137,8 @@
 				});
 			}
 		});
+		
+		$('#pro_list').DataTable();
 	});
 
 	</script>	

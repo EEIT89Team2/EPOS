@@ -2,12 +2,11 @@ package com.requisition.model;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.quotation.model.Quo_Interface;
+import com.product.model.ProdVO;
 import com.requisition_detail.model.ReqDetailVO;
 
 public class ReqService {
@@ -57,6 +56,10 @@ public class ReqService {
 	
 	public List<ReqVO> selectOfN() {
 		return dao.selectOfN();
+	}
+	
+	public List<ProdVO> getAllProd(){
+		return dao.getAllProd();
 	}
 
 }

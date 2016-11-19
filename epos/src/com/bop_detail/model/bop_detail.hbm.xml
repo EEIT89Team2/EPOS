@@ -8,6 +8,7 @@
 		<composite-id>
 		
 			<key-many-to-one name="bopVO" class="com.bop.model.BopVO" lazy="false" >
+			
 				<column name="bop_id" />
 				
 			</key-many-to-one>
@@ -21,6 +22,7 @@
 		<property name="prod_name" column="prod_name" />
 		<property name="prod_quantity" column="prod_quantity" />
 		<property name="prod_price" column="prod_price" />
+		<property name="prod_lsum" column="prod_lsum" />
 		
 
 	

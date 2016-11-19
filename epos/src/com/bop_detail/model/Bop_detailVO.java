@@ -8,6 +8,13 @@ public class Bop_detailVO implements java.io.Serializable {
 	private String prod_name;
 	private Integer prod_quantity;
 	private Integer prod_price;
+	private Integer prod_lsum;
+	public Integer getProd_lsum() {
+		return prod_lsum;
+	}
+	public void setProd_lsum(Integer prod_lsum) {
+		this.prod_lsum = prod_lsum;
+	}
 	private BopVO bopVO;
 	
 	public BopVO getBopVO() {

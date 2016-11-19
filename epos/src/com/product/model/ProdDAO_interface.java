@@ -16,5 +16,7 @@ public interface ProdDAO_interface {
 	public List<ProdVO> findByName(String prod_name);
 
 	public List<ProdVO> findByGroup(String prod_group);
+	
+	public void update2(Integer prod_stock, String prod_id);
 
 }

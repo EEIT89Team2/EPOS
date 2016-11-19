@@ -15,6 +15,14 @@
 body {
 	font-size: 16px;
 }
+
+.my-error-class {
+	color: #1dc489;
+}
+
+.my-valid-class {
+	color: #3a51e8;
+}
 </style>
 <body>
 	<section id="container"> <section class="wrapper">
@@ -34,14 +42,14 @@ body {
 		</div>
 		</nav>
 		<div
-			style="background-color: rgba(0, 0, 0, 0.2); position: relativve; height: 750px; overflow: auto;">
+			style="background-color: rgba(66, 134, 244, 0.3); position: relativve; height: 750px; overflow: auto;">
 
 			<div align=center>
 				<br> <br> <br>
 				<h3>請輸入請購單編號</h3>
 
 				<form method="post" id="form1" action="getByReq_id.do">
-					<table border="1">
+					<table border="0">
 						<tr>
 							<td><input type="text" name="req_id"></td>
 							<td><input type="button" id="sbt" value="查詢"></td>
@@ -55,18 +63,47 @@ body {
 	</section></section>
 	<script>
 		$(function() {
-			$('#sbt').on('click', function() {
+			$.validator.addMethod("rule1", function(value, element) {
 
-				var url = "getByReq_id.do";
+				var re = /^R[0-9]{13}/g;
 
-				$.ajax({
-					type : "POST",
-					url : url,
-					data : $('#form1').serialize(),
-					success : function(data) {
-						$("#main-content").html(data);
+				return value.match(re);
+
+			});
+			$('#form1').validate({
+
+				errorClass : "my-error-class",
+				validClass : "my-valid-class",
+
+				rules : {
+					req_id : {
+						required : true,
+						rule1 : true
 					}
-				})
+				},
+				messages : {
+					req_id : {
+						required : "【請輸入請購單編號】",
+						rule1 : "【請輸入正確編號格式】"
+					}
+				},
+				errorPlacement : function(error, element) {
+					error.appendTo(element.parent().next());
+				}
+			})
+			$('#sbt').on('click', function() {
+				var $form = $('#form1');
+				var url = "getByReq_id.do";
+				if ($form.valid()) {
+					$.ajax({
+						type : "POST",
+						url : url,
+						data : $('#form1').serialize(),
+						success : function(data) {
+							$("#main-content").html(data);
+						}
+					})
+				}
 			})
 			$('#req1').on('click', function() {
 				var t1 = $(this).attr('target');
@@ -97,6 +134,7 @@ body {
 				})
 			})
 		})
+		// 		$("#table1").dataTable();
 	</script>
 </body>
 </html>

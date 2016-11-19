@@ -45,18 +45,18 @@
 		<div class="col-lg-12">
 		<p class="distance">
 
-			<FORM METHOD="post" ACTION="coupon.do" class="search_1 form-horizontal" role="form"">
-				<div class="form-group">
-					<label class="col-lg-1 col-lg-offset-4 control-label">輸入折價券編號 (如CPa00001):</label>
-					<div class="col-lg-3">
-						<input type="text" name="cpon_id" size="10" class="form-control">
-					</div>	
-					<div class="col-lg-4">	 
-						<input type="button" value="送出" id="search_1"  class="btn btn-theme03">
-					</div>	
-					<input type="hidden" name="action" value="getOne_For_Display">
-				</div>	
-			</FORM>
+<!-- 			<FORM METHOD="post" ACTION="coupon.do" class="search_1 form-horizontal" role="form""> -->
+<!-- 				<div class="form-group"> -->
+<!-- 					<label class="col-lg-1 col-lg-offset-4 control-label">輸入折價券編號 (如CPa00001):</label> -->
+<!-- 					<div class="col-lg-3"> -->
+<!-- 						<input type="text" name="cpon_id" size="10" class="form-control"> -->
+<!-- 					</div>	 -->
+<!-- 					<div class="col-lg-4">	  -->
+<!-- 						<input type="button" value="送出" id="search_1"  class="btn btn-theme03"> -->
+<!-- 					</div>	 -->
+<!-- 					<input type="hidden" name="action" value="getOne_For_Display"> -->
+<!-- 				</div>	 -->
+<!-- 			</FORM> -->
 
 					
 		<jsp:useBean id="copSvc" scope="page" class="com.coupon.model.CouponService" />
@@ -151,24 +151,33 @@
 	<script>
 		$(function() {
 			$(':button').on('click', function() {		
-				if($(this).attr('id')=="search_1"){
-					var search_1 = $(".search_1");
-					$.ajax({
-						type : "POST",
-						url : search_1.attr('action'),
-						data : search_1.serialize(),
-						success : function(data) {
-							$(".chg_content").html(data);
-						}
-					})
-				}else if($(this).attr('id')=="search_2"){
+// 				if($(this).attr('id')=="search_1"){
+// 					var search_1 = $(".search_1");
+// 					$.ajax({
+// 						type : "POST",
+// 						url : search_1.attr('action'),
+// 						data : search_1.serialize(),
+// 						success : function(data) {
+// 							$(".result_content").html(data);
+// 							$("#rel_cou").attr("class","active");
+// 							$("#sea_cou").removeAttr("class");
+// 							$("#search_Cou").attr("class","tab-pane fade");
+// 							$("#resolution_Cou").attr("class","tab-pane active");
+// 						}
+// 					})
+// 				}else 
+					if($(this).attr('id')=="search_2"){
 					var search_2 = $(".search_2");
 	 				$.ajax({
 	 					type : "POST",
 	 					url : search_2.attr('action'),
 	 					data : search_2.serialize(),
 	 					success : function(data) {
-	 						$(".chg_content").html(data);
+	 						$(".result_content").html(data);
+							$("#rel_cou").attr("class","active");
+							$("#sea_cou").removeAttr("class");
+							$("#search_Cou").attr("class","tab-pane fade");
+							$("#resolution_Cou").attr("class","tab-pane active");
 	 					}
 	 				})	
 				}else if($(this).attr('id')=="search_3"){
@@ -178,7 +187,11 @@
 	 					url : search_3.attr('action'),
 	 					data : search_3.serialize(),
 	 					success : function(data) {
-	 						$(".chg_content").html(data);
+	 						$(".result_content").html(data);
+							$("#rel_cou").attr("class","active");
+							$("#sea_cou").removeAttr("class");
+							$("#search_Cou").attr("class","tab-pane fade");
+							$("#resolution_Cou").attr("class","tab-pane active");
 	 					}
 	 				})	
 				}else if($(this).attr('id')=="search_4"){
@@ -188,7 +201,11 @@
 	 					url : search_4.attr('action'),
 	 					data : search_4.serialize(),
 	 					success : function(data) {
-	 						$(".chg_content").html(data);
+	 						$(".result_content").html(data);
+							$("#rel_cou").attr("class","active");
+							$("#sea_cou").removeAttr("class");
+							$("#search_Cou").attr("class","tab-pane fade");
+							$("#resolution_Cou").attr("class","tab-pane active");
 	 					}
 	 				})	
 				}else if($(this).attr('id')=="search_5"){
@@ -198,7 +215,11 @@
 	 					url : search_5.attr('action'),
 	 					data : search_5.serialize(),
 	 					success : function(data) {
-	 						$(".chg_content").html(data);
+	 						$(".result_content").html(data);
+							$("#rel_cou").attr("class","active");
+							$("#sea_cou").removeAttr("class");
+							$("#search_Cou").attr("class","tab-pane fade");
+							$("#resolution_Cou").attr("class","tab-pane active");
 	 					}
 	 				})	
 				}else if($(this).attr('id')=="search_6"){
@@ -208,7 +229,11 @@
 	 					url : "allCpon.do",
 	 					data : {},
 	 					success : function(data) {
-	 						$(".chg_content").html(data);
+	 						$(".result_content").html(data);
+							$("#rel_cou").attr("class","active");
+							$("#sea_cou").removeAttr("class");
+							$("#search_Cou").attr("class","tab-pane fade");
+							$("#resolution_Cou").attr("class","tab-pane active");
 	 					}
 	 				})	
 				}	

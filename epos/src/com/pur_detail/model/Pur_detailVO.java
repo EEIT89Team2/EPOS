@@ -17,7 +17,14 @@ public class Pur_detailVO implements java.io.Serializable{
 	private Integer prod_price;
 	private PurVO purVO;
 	private ProdVO prodVO;
+	private Integer prod_lsum;
 	
+	public Integer getProd_lsum() {
+		return prod_lsum;
+	}
+	public void setProd_lsum(Integer prod_lsum) {
+		this.prod_lsum = prod_lsum;
+	}
 	public ProdVO getProdVO() {
 		return prodVO;
 	}

@@ -23,6 +23,11 @@
 	rel="stylesheet">
 <title>purchase</title>
 </head>
+<style>
+body {
+	font-size: 16px;
+}
+</style>
 <body>
 	<section id="container"> <!--header start--> <header
 		class="header black-bg">
@@ -50,7 +55,7 @@
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a class="active"
+			<li class="mt"><a 
 				href="<%=request.getContextPath()%>/index.jsp"> <i
 					class="fa fa-dashboard"></i> <span>index</span>
 			</a></li>
@@ -65,7 +70,7 @@
 					<li><a
 						href="<%=request.getContextPath()%>/COMPANY/company.jsp">廠商資料維護</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i
+			<li class="sub-menu"><a href="javascript:;" class="active"> <i
 					class="fa fa-edit"></i> <span>進貨作業</span>
 			</a>
 				<ul class="sub">
@@ -73,7 +78,7 @@
 						href="<%=request.getContextPath()%>/REQUISITION/requisition.jsp">請購單維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/QUOTATION/quotation.jsp">詢價單維護</a></li>
-					<li><a href="<%=request.getContextPath()%>/PURCHASE/pur.jsp">採購單維護</a></li>
+					<li class="active"><a href="<%=request.getContextPath()%>/PURCHASE/pur.jsp">採購單維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/BILL_OF_PURCHASE/bop.jsp">進貨單維護</a></li>
 				</ul></li>
@@ -130,20 +135,19 @@
 	</aside> <!--sidebar end--> <section id="main-content"> <section
 		class="wrapper">
 	<div class="row mt">
-		<%-- 錯誤表列 --%>
-		<c:if test="${not empty param.message}">
-			<font color='red'>請修正以下錯誤:
-				<ul>
-					<c:forEach var="message" items="${param.message}">
-						<li>${message}</li>
-					</c:forEach>
-				</ul>
-			</font>
-		</c:if>
-
-		<h1>PURCHASE_ORDER</h1>
-		<a href="PURCHASE/SelectPur.jsp">查詢採購單</a><br> <a
-			href="PURCHASE/addPur.jsp">新增採購單</a><br>
+		<nav class="nav navbar-default">
+	<div class="container-fluid"
+		style="float: right; left: -50%; position: relative;">
+		<ul class="nav navbar-nav"
+			style="float: left; left: 50%; position: relative;">
+			<li><a id="pur1" target="insertPur00.do">新增採購單</a></li>
+			<li><a id="pur2" target="SelectPur.jsp">單筆查詢</a></li>
+			<li><a id="pur3" target="getAllPur.do">全部查詢</a></li>
+			<li><a id="pur4" target="SelectbyDate.jsp">依日期查詢</a></li>
+			<li><a id="pur5" target="selectOfN.do">審核</a></li>
+		</ul>
+	</div>
+	</nav>
 	</div>
 	</section> </section> </section>
 
@@ -155,7 +159,7 @@
 				&& document
 						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
 	</script>
-
+	<script src="<c:url value='../resources/js/jquery.validate.min.js' />"></script>
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
 	<script class="include" type="text/javascript"
 		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
@@ -165,6 +169,46 @@
 
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
+	<script>
+		$(function() {
+			$('#pur1').on('click', function() {
+				var t1 = $(this).attr('target');
+				$.post(t1, function(data) {
+					$('#main-content').html(data);
+				})
+			})
 
+			$('#pur2').on('click', function() {
+				var t1 = $(this).attr('target');
+				$.get(t1, function(data) {
+					$('#main-content').html(data);
+				})
+			})
+
+			$('#pur3').on('click', function() {
+				var t1 = $(this).attr('target');
+				$.ajax({
+					type : "post",
+					url : t1,
+					success : function(data) {
+						$('#main-content').html(data);
+					}
+				})
+			})
+			$('#pur4').on('click', function() {
+				var t1 = $(this).attr('target');
+				$.post(t1, function(data) {
+					$('#main-content').html(data);
+				})
+			})
+			$('#pur5').on('click', function() {
+				var t1 = $(this).attr('target');
+				$.post(t1, function(data) {
+					$('#main-content').html(data);
+				})
+			})
+			
+		})
+	</script>
 </body>
 </html>

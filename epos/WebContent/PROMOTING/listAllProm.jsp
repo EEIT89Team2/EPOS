@@ -119,7 +119,6 @@
 	<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 	<script type="text/JavaScript">
 	$(document).ready(function() {
-		$("#prom").dataTable();
 		
 		$("button").on('click',function(){
 			if($(this).val()=="刪除"){
@@ -148,6 +147,7 @@
 				});
 			}
 		});
+		$("#prom").dataTable();
 	});
 
 	</script>	

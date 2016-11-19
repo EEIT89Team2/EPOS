@@ -20,10 +20,10 @@
 		<property name="prod_quantity" column="prod_quantity" />
 		<property name="com_name" column="com_name" />
 		<property name="prod_cost" column="prod_cost" />
-		<property name="delivery_date" column="delivery_date" />
+<!-- 		<property name="delivery_date" column="delivery_date" /> -->
 		<property name="remark" column="remark" />
-		<property name="key_id" column="key_id" />
-		<property name="key_date" column="key_date" />
+<!-- 		<property name="key_id" column="key_id" /> -->
+<!-- 		<property name="key_date" column="key_date" /> -->
 		
 	</class>
 </hibernate-mapping>

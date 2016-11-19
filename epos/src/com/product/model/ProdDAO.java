@@ -62,5 +62,12 @@ public class ProdDAO implements ProdDAO_interface {
 			
 		return list;
 		}
+	
+	@Override
+	public void update2(Integer prod_stock, String prod_id) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.bulkUpdate("update ProdVO set prod_stock=? where prod_id=?",new Object[]{prod_stock,prod_id});
+		return;
+	}
 }
 

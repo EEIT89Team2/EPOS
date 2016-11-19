@@ -519,4 +519,10 @@ public class ProdJDBCDAO implements ProdDAO_interface {
 	}
 	}
 
+	@Override
+	public void update2(Integer prod_stock, String prod_id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

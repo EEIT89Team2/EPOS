@@ -37,6 +37,13 @@ input {
 .detailtable td {
 	padding: 2px 10px;
 }
+
+.my-error-class {
+	color:#1dc489;
+}
+.my-valid-class {
+	color:#3a51e8;
+}
 </style>
 <body>
 
@@ -68,35 +75,39 @@ input {
 		</nav>
 
 		<div
-			style="background-color: rgba(0, 0, 0, 0.2); position: relativve; height: 750px; overflow: auto;">
+			style="background-color: rgba(66, 134, 244, 0.3); position: relativve; height: 750px; overflow: auto; overflow-x: hidden;">
 			<!-- 	<br> -->
 			<h1>新增請購單</h1>
 			<hr>
 
 			<form method="post" action="insertReq.do" id="form1">
 
-				<table border="0">
+				<table border="0" id="table1"
+					class="table table-bordered table-striped table-hover">
 					<tr>
 						<td>&nbsp;&nbsp;請購單號：<input type="text" name="req_id"
 							value="系統產生" readonly="readonly" /></td>
 					</tr>
 					<tr>
 						<td>&nbsp;&nbsp;建檔人員：<input type="text" name="key_id"
-							value="E00001"></td>
+							value="${sessionScope.LoginOK.emp_id }" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td>&nbsp;&nbsp;建檔日期：<input type="date" name="key_date"
-							id="theDate" style="width: 200px;"></td>
+							id="theDate" style="width: 200px;" required></td>
 					</tr>
 					<tr>
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;狀&nbsp;&nbsp;&nbsp;態&nbsp;&nbsp;：<input
 							type="text" name="status" value="N" readonly="readonly" /><span
-							style="font-size: 10px; color: gray">(N:未審核 Y:已審核 D:註銷)</span></td>
+							style="font-size: 10px; color: gray">(N:未審核 Y:已審核 D:註銷
+								S:成功)</span></td>
 					</tr>
 				</table>
-				<hr>
+				<!-- 				<hr> -->
 				<!-- 			<hr> -->
-				<table border=0 class="detailtable" id="detailtable">
+				<table border=0
+					class="table table-bordered table-striped table-hover"
+					id="detailtable">
 
 				</table>
 				<div style="position: absolute; bottom: 30px; right: 40%;">
@@ -111,67 +122,172 @@ input {
 	</div>
 	</section></section>
 	<script>
-		$(
-				function() {
-					var a = 1;
-					$("#addNewDetail")
-							.click(
-									function() {
-										$("#detailtable")
-												.append(
-														"<tr><td>商品名稱：<input type='text' name='prod_name"+a+"'/ ></td>"
-																+ "<td>商品數量：<input type='text' name='prod_quantity"+a+"'/></td>"
-																+ "<td><input type='button' value='刪除' class='dbt'/></td></tr>")
-										a = a + 1;
-										$('.dbt').on('click', function() {
-											$(this).parents('tr').remove();
-										})
-									})
+		$(function() {
+			var a = 1;
+			$("#addNewDetail")
+					.click(
+							function() {
+								$("#detailtable")
+										.append(
+												"<tr><td>商品名稱：<input type='text' id='ck"+a+"' class='ck' name='prod_name"+a+"'/ ></td>"
+														+ "<td>商品數量：<input type='text' name='prod_quantity"+a+"'/></td>"
+														+ "<td><input type='button' value='刪除' class='dbt'/></td></tr>")
+								$('.dbt').on('click', function() {
+									$(this).parents('tr').remove();
+								})
+								$('#ck' + a)
+										.blur(
+												function() {
+													// 									alert('b');
+													var url = "checkProdId.do";
+													var prod_name = $(this)
+															.val();
+													$
+															.ajax({
+																type : "POST",
+																url : url,
+																data : {
+																	"prod_name" : prod_name
+																},
+																dataType : "text",
+																success : function(
+																		data) {
+																	if ($
+																			.trim(data) == "exist") {
+																		alert("商品 "
+																				+ prod_name
+																				+ " 已存在於商品目錄，請重新輸入");
+																		// 												alert(a);
+																		for (i = 0; i < a; i++) {
+																			if (($('#ck'
+																					+ i)
+																					.val()) == prod_name) {
+																				$(
+																						'#ck'
+																								+ i)
+																						.val(
+																								"");
+																			}
+																		}
 
-					$('#sbt').on('click', function() {
+																	}
+																}
+															})
+													// 									alert('a');
+													// 									var origin = this;
+												})
+								$('#ck' + a)
+										.blur(
+												function() {
+													var element = this;
+													var origin = $(this).val();
+													var i = 0;
+													$('.ck')
+															.each(
+																	function() {
+																		if ($(
+																				this)
+																				.val() != "") {
+																			if ($(
+																					this)
+																					.val() == origin) {
+																				i++;
+																				if (i >= 2) {
+																					var t = $(
+																							this)
+																							.val();
+																					alert("商品 "
+																							+ t
+																							+ " 已存在，請重新輸入");
+																					$(
+																							element)
+																							.val(
+																									"");
+																				}
+																			}
+																		}
+																	})
+												})
 
-						var url = "insertReq.do";
-						$.ajax({
-							type : "POST",
-							url : url,
-							data : $('#form1').serialize(),
-							success : function(data) {
-								$("#main-content").html(data);
-							}
-						})
+								a = a + 1;
+
+							})
+
+				
+							
+			$('#form1').validate({
+				
+				errorClass:"my-error-class",
+				validClass:"my-valid-class",
+				
+				rules : {
+					key_date : "required"
+				},
+				messages : {
+					key_date : {required:"請輸入請購日期"}
+				}
+			})
+
+			$('#sbt').on('click', function() {
+
+				var $form = $('#form1');
+				var url = "insertReq.do";
+				if ($form.valid()) {
+					$.ajax({
+						type : "POST",
+						url : url,
+						data : $('#form1').serialize(),
+						success : function(data) {
+							$("#main-content").html(data);
+						}
 					})
-					$('#req2').on('click', function() {
-						var t1 = $(this).attr('target');
-						$.get(t1, function(data) {
-							$('#main-content').html(data);
-						})
-					})
-					$('#req3').on('click', function() {
-						var t1 = $(this).attr('target');
-						$.ajax({
-							type : "post",
-							url : t1,
-							success : function(data) {
-								$('#main-content').html(data);
-							}
-						})
-					})
-					$('#req4').on('click', function() {
-						var t1 = $(this).attr('target');
-						$.get(t1, function(data) {
-							$('#main-content').html(data);
-						})
-					})
-					$('#req5').on('click', function() {
-						var t1 = $(this).attr('target');
-						$.post(t1, function(data) {
-							$('#main-content').html(data);
-						})
-					})
+				}
+			})
+
+			$('#req2').on('click', function() {
+				var t1 = $(this).attr('target');
+				$.get(t1, function(data) {
+					$('#main-content').html(data);
 				})
+			})
+			$('#req3').on('click', function() {
+				var t1 = $(this).attr('target');
+				$.ajax({
+					type : "post",
+					url : t1,
+					success : function(data) {
+						$('#main-content').html(data);
+					}
+				})
+			})
+			$('#req4').on('click', function() {
+				var t1 = $(this).attr('target');
+				$.get(t1, function(data) {
+					$('#main-content').html(data);
+				})
+			})
+			$('#req5').on('click', function() {
+				var t1 = $(this).attr('target');
+				$.post(t1, function(data) {
+					$('#main-content').html(data);
+				})
+			})
+
+			$("#table1").dataTable();
+
+			// 			$('#form1').validate({
+			// 				rules : {
+			// 					name : "required",
+			// 					key_date : "required",
+
+			// 				}
+			// 			});
+			// 			$('#form1').validate();
+
+		})
 	</script>
-	<a href="../index.jsp">回首頁</a>
-	<a href="javascript:" onclick="history.back(); ">回上頁</a>
+
+
 
 </body>
 </html>

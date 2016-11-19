@@ -34,14 +34,14 @@ body {
 		</div>
 		</nav>
 		<div
-			style="background-color: rgba(0, 0, 0, 0.2); position: relativve; height: 750px; overflow: auto;">
+			style="background-color: rgba(66, 134, 244, 0.3); position: relativve; height: 750px; overflow: auto;">
 			<!-- 	<br> -->
 			<h1>修改請購單</h1>
 			<hr>
 
 			<form method="post" action="insertReq.do" id="form1">
 
-				<table border="0">
+				<table border="0" id="table1" class="table table-bordered table-striped table-hover">
 					<tr>
 						<td>&nbsp;&nbsp;請購單號：<input type="text" name="req_id"
 							id="req_id" value="${reqVO.req_id}" readonly="readonly" /></td>
@@ -52,19 +52,19 @@ body {
 					</tr>
 					<tr>
 						<td>&nbsp;&nbsp;建檔日期：<input type="date" name="key_date"
-							value="${reqVO.key_date}" id="theDate" style="width: 174px;"
+							value="${reqVO.key_date}" id="theDate" style="width: 199px;"
 							readonly="readonly" /></td>
 					</tr>
 					<tr>
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;狀&nbsp;&nbsp;&nbsp;態&nbsp;&nbsp;：<input
 							type="text" id="status" name="status" value="${reqVO.status }"
 							readonly="readonly" /><span style="font-size: 10px; color: gray">(N:未審核
-								Y:已審核 D:註銷)</span></td>
+								Y:已審核 D:註銷 S:成功)</span></td>
 					</tr>
 				</table>
 				<hr>
 				<!-- 			<hr> -->
-				<table border=0 class="table" id="detailtable">
+				<table border=0 class="table table-bordered table-striped table-hover" id="detailtable">
 					<tr>
 						<td>#</td>
 						<td>商品名稱</td>
@@ -173,6 +173,7 @@ body {
 			})
 
 		})
+		$("#table1").dataTable();
 	</script>
 </body>
 </html>

@@ -48,13 +48,23 @@
 	}
 	
 	.btn-success {
-    color: #fff;
-    background-color: #e8c68a;
-    border-color: #f3f3f3;
-} 
+	    color: #fff;
+	    background-color: #e8c68a;
+	    border-color: #f3f3f3;
+	}
+
+	.my-valid-class{
+		color:#3a51e8;
+	}
+	
+	.my-error-class{
+		color:#1dc489;
+	}	 
 </style>
 </head>
 <body>
+
+	<jsp:useBean id="ProdSvc" scope="page" class="com.product.model.ProdService" />
 
 	<div class="titlelist">新增</div>
 	<div class="col-lg-12">
@@ -70,19 +80,21 @@
 			</font>
 		</c:if>
 
-		<FORM METHOD="post" ACTION="insertProm.do" name="form1"
-			class="form-horizontal" role="form">
+		<FORM METHOD="post" ACTION="insertProm.do" name="form1" class="form-horizontal" role="form" id="pord_ins_form">
 			<p class="distance">
 			<div class="form-group">
 
 				<label class="col-lg-1 col-lg-offset-3 control-label">促銷商品編號:</label>
 				<div class="col-lg-1">
-					<input type="text" name="pro_prod_id" size="20" maxlength="15"
-						value="<%=(promVO == null) ? "" : promVO.getPro_prod_id()%>" />
+					<select size="1" name="pro_prod_id" id="pro_prod_id" class="form-control">
+						<c:forEach var="prodVO" items="${ProdSvc.all}">
+							<option value="${prodVO.prod_id}">${prodVO.prod_id}</option>
+						</c:forEach>
+					</select>
 				</div>
 				<label class="col-lg-1 control-label">促銷商品名稱:</label>
 				<div class="col-lg-1">
-					<input type="text" name="pro_prod_name" size="20"
+					<input type="text" name="pro_prod_name" size="20" maxlength="20"
 						value="<%=(promVO == null) ? "" : promVO.getPro_prod_name()%>" />
 				</div>
 				<label class="col-lg-1 control-label">促銷商品起始日期:</label>
@@ -119,32 +131,63 @@
 	</div>
 
 	<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
-	<script type="text/JavaScript">
-		$(document).ready(function() {
+<script type="text/JavaScript">
+	$(document).ready(function() {
 //新增						
-			$(":button[name='c_promoting']").click(function() {
-				var insert = $("form[name='form1']");
-				$.ajax({
+		$(":button[name='c_promoting']").click(function() {
+			var insert = $("#pord_ins_form");
+				if(insert.valid()){
+					$.ajax({
 						type : insert.attr("method"),
 						url : insert.attr("action"),
 						data : insert.serialize(),
 						success : function(data) {
-									$.ajax({
-									type : "post",
-									url : "allProm.do",
-									data : {},
-									success : function(data) {
-										$(".result_content").html(data);
-										$("#result_prom").attr("class","active");
-										$("#insert_prom").removeAttr("class");
-										$("#new_Pro").attr("class","tab-pane fade");
-										$("#result_Pro").attr("class","tab-pane active");
-										},
-									});
+							$.ajax({
+								type : "post",
+								url : "allProm.do",
+								data : {},
+								success : function(data) {
+									$(".result_content").html(data);
+									$("#result_prom").attr("class","active");
+									$("#insert_prom").removeAttr("class");
+									$("#new_Pro").attr("class","tab-pane fade");
+									$("#result_Pro").attr("class","tab-pane active");
 								},
-						});
-				})
-		})
-	</script>
+							});
+						},
+					});
+				}
+			})
+			
+// ----------------------------------------	驗證----------------------------------------	
+
+		$("#pord_ins_form").validate({
+			errorClass:"my-error-class",
+			validClass:"my-valid-class",
+			
+			rules:{
+				pro_prod_name: {required:true},
+				pro_begin:{required:true},
+				pro_end:{required:true},
+				pro_neirong:{maxlength:70}
+			},
+			messages:{
+				pro_prod_name:{
+					required:"【請輸入促銷商品名稱】"
+				},
+				pro_begin:{
+					required:"【請輸入商品起始日期】"
+				},
+				pro_end:{
+					required:"【請輸入商品截止日】"
+				},
+				pro_neirong:{
+					maxlength:"【範圍必須小於70字之間】"
+				}
+				
+			}
+		})			
+	})
+</script>
 </body>
 </html>

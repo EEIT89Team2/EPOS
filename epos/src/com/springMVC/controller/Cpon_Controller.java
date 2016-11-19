@@ -211,6 +211,7 @@ public class Cpon_Controller  {
 				errorMsgs.add("折價券金額須為正整數且範圍必須在1~10000之間");
 				dollar = 100;
 			}
+			int count =  new Integer(req.getParameter("cpon_count"));
 
 			String status = req.getParameter("status");
 
@@ -228,8 +229,9 @@ public class Cpon_Controller  {
 			}
 		
 			/*************************** 2.永續層存取 ***************************************/
-					
-				copVO = copSvc.addCpon(cpon_name, release_date, cpon_period, dollar, status);
+				for(int i=0;i<count;i++){
+					copVO = copSvc.addCpon(cpon_name, release_date, cpon_period, dollar, status);					
+				}	
 				List<CouponVO> list = copSvc.getAll();
 				req.getSession().setAttribute("list", list);
 			/*************************** * 3.完成,準備轉交(Send the Success view) ***********/

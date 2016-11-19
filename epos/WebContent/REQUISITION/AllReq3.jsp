@@ -36,9 +36,10 @@ body {
 		</div>
 		</nav>
 		<div
-			style="background-color: rgba(0, 0, 0, 0.2); position: relativve; height: 750px; overflow: auto;">
+			style="background-color: rgba(66, 134, 244, 0.3); position: relativve; height: 750px; overflow: auto;">
 			<div align=center>
-				<table class="table">
+			<hr>
+				<table border="0" id="table1" class="table table-bordered table-striped table-hover">
 					<tr>
 						<th>請購單編號</th>
 						<th>修改人員</th>
@@ -124,6 +125,7 @@ body {
 				})
 			})
 		})
+		$("#table1").dataTable();
 	</script>
 </body>
 </html>

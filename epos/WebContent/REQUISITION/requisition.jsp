@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>請購單管理</title>
+<title>requisition</title>
 <!-- Bootstrap core CSS -->
 <link href="<c:url value="../resources/css/bootstrap.css" />"
 	rel="stylesheet">
@@ -56,7 +56,7 @@ body {
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a class="active"
+			<li class="mt"><a 
 				href="<%=request.getContextPath()%>/index.jsp"> <i
 					class="fa fa-dashboard"></i> <span>index</span>
 			</a></li>
@@ -71,11 +71,11 @@ body {
 					<li><a
 						href="<%=request.getContextPath()%>/COMPANY/company.jsp">廠商資料維護</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i
+			<li class="sub-menu"><a href="javascript:;" class="active"> <i
 					class="fa fa-edit"></i> <span>進貨作業</span>
 			</a>
 				<ul class="sub">
-					<li><a
+					<li class="active"><a
 						href="<%=request.getContextPath()%>/REQUISITION/requisition.jsp">請購單維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/QUOTATION/quotation.jsp">詢價單維護</a></li>
@@ -136,17 +136,6 @@ body {
 	</aside> <!--sidebar end--> <section id="main-content"> 
 	<section class="wrapper">
 	<div class="row mt">
-			<!-- 	<div class="row mt"> -->
-			<!-- 錯誤表列 -->
-			<%-- <c:if test="${not empty param.message}"> --%>
-			<!-- 	<font color='red'>請修正以下錯誤: -->
-			<!-- 	<ul> -->
-			<%-- 		<c:forEach var="message" items="${param.message}"> --%>
-			<%-- 			<li>${message}</li> --%>
-			<%-- 		</c:forEach> --%>
-			<!-- 	</ul> -->
-			<!-- 	</font> -->
-			<%-- </c:if> --%>
 			<nav class="nav navbar-default">
 			<div class="container-fluid"
 				style="float: right; left: -50%; position: relative;">
@@ -170,7 +159,8 @@ body {
 		!window.jQuery&& document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
 
 	</script>
-
+<!-- 	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script> -->
+	<script src="<c:url value='../resources/js/jquery.validate.min.js' />"></script>
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
 	<script class="include" type="text/javascript"
 		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>

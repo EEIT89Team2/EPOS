@@ -50,38 +50,49 @@ body {
 		</div>
 		</nav>
 		<div
-			style="background-color: rgba(0, 0, 0, 0.2); position: relativve; height: 750px; overflow: auto;">
+			style="background-color: rgba(66, 134, 244, 0.3); position: relativve; height: 750px; overflow: auto;">
 			<div>
-				<table class="table" style="text-align: center;">
+				<h1>請購單查詢</h1>
+				<hr>
+				<table border="0" id="table1" class="table table-bordered table-striped table-hover">
 					<c:forEach var="list" items="${list}" varStatus="count">
-
 						<tr>
-							<th>請購單編號</th>
-							<td id="req_id">${list.req_id}</td>
+							<td>&nbsp;&nbsp;請購單號：<input type="text" name="req_id"
+								id="req_id" value="${list.req_id}" readonly="readonly" /></td>
 						</tr>
 						<tr>
-							<th>修改人員</th>
-							<td>${list.key_id}</td>
+							<td>&nbsp;&nbsp;建檔人員：<input type="text" name="key_id"
+								value="${list.key_id}" id="key_id" readonly="readonly"></td>
 						</tr>
 						<tr>
-							<th>修改日期</th>
-							<td>${list.key_date}</td>
+							<td>&nbsp;&nbsp;建檔日期：<input type="date" name="key_date"
+								value="${list.key_date}" id="theDate" style="width: 199px;"
+								readonly="readonly"></td>
 						</tr>
 						<tr>
-							<th>狀態</th>
-							<td>${list.status}</td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;狀&nbsp;&nbsp;&nbsp;態&nbsp;&nbsp;：<input
+								type="text" id="status" name="status" value="${list.status }"
+								readonly="readonly" /><span
+								style="font-size: 10px; color: gray">(N:未審核 Y:已審核 D:註銷 S:成功)</span></td>
 						</tr>
+					</c:forEach>
+				</table>
+				<hr>
+				<table border=0 class="table table-bordered table-striped table-hover">
+					<c:forEach var="list" items="${list}" varStatus="count">
 						<tr>
 							<td>#</td>
 							<td>商品名稱</td>
 							<td>商品數量</td>
 						</tr>
-						<c:forEach var="Reqdetail" items="${list.reqDetails }"
+						<c:forEach var="detailVO" items="${list.reqDetails }"
 							varStatus="status">
 							<tr>
 								<td>${status.count}</td>
-								<td>${Reqdetail.prod_name }</td>
-								<td>${Reqdetail.prod_quantity }</td>
+							<td><input type="text" name="prod_name${status.count }"
+							value="${detailVO.prod_name }" readonly="readonly" /></td>
+							<td><input type="text" name="prod_quantity${status.count }"
+							value="${detailVO.prod_quantity }" readonly="readonly" /></td>
 							</tr>
 
 						</c:forEach>
@@ -92,17 +103,27 @@ body {
 		<div style="position: absolute; bottom: 30px; right: 40%;">
 
 			<input type="button" value="修改" id="alter"
-				target="DetailDeleteReq.do" /> <input type="button"
-				value="確認" id="confirm" target="getAllReq.do">
+				target="DetailDeleteReq.do" /> <input type="button" value="確認"
+				id="confirm" target="getAllReq.do">
 			<!-- 		<input type="button" value="註銷" id="writeoff"> -->
 		</div>
 	</div>
 	</section></section>
 	<script>
 		$(function() {
+			if ($('#status').val() == 'Y') {
+				$('#alter').hide();
+			}
+			if ($('#status').val() == 'D') {
+				$('#alter').hide();
+				}
+			if ($('#status').val() == 'S') {
+				$('#alter').hide();
+				}
+			
 			$('#alter').on('click', function() {
 				var url = $(this).attr('target');
-				var req_id = $('#req_id').text();
+				var req_id = $('#req_id').val();
 				$.ajax({
 					type : "POST",
 					url : url,
@@ -156,6 +177,7 @@ body {
 				})
 			})
 		})
+		$("#table1").dataTable();
 	</script>
 </body>
 </html>

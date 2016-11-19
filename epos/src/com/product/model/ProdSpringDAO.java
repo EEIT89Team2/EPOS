@@ -62,5 +62,11 @@ public class ProdSpringDAO implements ProdDAO_interface {
 			
 		return list;
 		}
+
+	@Override
+	public void update2(Integer prod_stock, String prod_id) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 

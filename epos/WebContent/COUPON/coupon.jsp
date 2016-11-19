@@ -159,9 +159,9 @@
 			<div class="nav navbar-default">
 				<div class="container-fluid" style="float: right; left: -50%; position: relative">
 					<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">
-						<li><a id="r_coup" target="search_cpon.jsp" href="#search_Cou"  data-toggle="tab"><span class="glyphicon glyphicon-search"></span>範圍查詢</a></li>
-						<li><a id="c_coup" target="addCpon.jsp"  href="#new_Cou"  data-toggle="tab"><span class="glyphicon glyphicon-file"></span>新增</a></li>
-						<li><a id="a_coup" target="all.jsp" href="#resolution_Cou"  data-toggle="tab"><span class="glyphicon glyphicon-list-alt" ></span>查詢全部</a></li>
+						<li id="sea_cou"><a id="r_coup" target="search_cpon.jsp" href="#search_Cou"  data-toggle="tab"><span class="glyphicon glyphicon-search"></span>範圍查詢</a></li>
+						<li id="ins_cou"><a id="c_coup" target="addCpon.jsp"  href="#new_Cou"  data-toggle="tab"><span class="glyphicon glyphicon-file"></span>新增</a></li>
+						<li id="rel_cou"><a id="a_coup" href="#resolution_Cou"  data-toggle="tab"><span class="glyphicon glyphicon-list-alt" ></span>查詢全部</a></li>
 						<li><a id="print" href="#print"  data-toggle="tab"><span class="glyphicon glyphicon-print" ></span>列印</a></li>
 					</ul>
 				</div>	
@@ -189,6 +189,7 @@
 		!window.jQuery&& document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
 	</script>
 	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
+	<script src="<c:url value="../resources/js/jquery.validate.min.js" />"></script>
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
 	<script class="include" type="text/javascript"
 		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
@@ -211,17 +212,13 @@
 					$.get(includeWeb, function(data) {
 						$('.chg_content').html(data);
 					})	
-				}else if($(this).attr('target')=="all.jsp"){
-					var includeWeb = $(this).attr('target');
-					$.get(includeWeb, function(data) {
-						$('.result_content').html(data);
-					})	
-				}		
+				}	
 			})
 			
 		})
-			$("#print").click(function() {
-			window.print();
+			
+		$("#print").click(function() {
+		window.print();
 			})
 	</script>
 </body>

@@ -1,20 +1,32 @@
 package com.pur.model;
 
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
+import com.company.model.ComVO;
+import com.product.model.ProdVO;
 import com.pur_detail.model.Pur_detailVO;
-
-import hibernate.util.HibernateUtil;
 
 public class PurDAO implements Pur_Interface {
 	
 	private static final String GETALL = "from PurVO order by pur_id";
+	
+	private static final String GET_ALL_COM = "from ComVO order by com_id";
+	
+	private static final String GET_ALL_PROD = "from ProdVO where com_id = ? order by prod_id";
+	
+	private static final String GET_BY_DATE = "from PurVO where key_date between ? and ?";
+	
+	private static final String SELECT_OF_N = "from PurVO where status = 'N'";
+	
+	private static final String GET_ONE_COM = "from ComVO where com_name = ?";
+	
+	
+
 	
 	private HibernateTemplate hibernateTemplate;
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
@@ -31,7 +43,9 @@ public class PurDAO implements Pur_Interface {
 	@Override
 	public void update(PurVO purVO) {
 		// TODO Auto-generated method stub
+//		hibernateTemplate.clear();
 		hibernateTemplate.saveOrUpdate(purVO);
+//		hibernateTemplate.flush();
 
 	}
 
@@ -74,5 +88,56 @@ public class PurDAO implements Pur_Interface {
 	public void setStatus(String status, String pur_id){
 		hibernateTemplate.bulkUpdate("update PurVO set status=? where pur_id=?",new Object[]{status,pur_id});
 	}
+
+	@Override
+	public List<ComVO> getCom() {
+		// TODO Auto-generated method stub
+		List<ComVO> list = null;
+		list = hibernateTemplate.find(GET_ALL_COM);
+		return list;
+	}
+
+	@Override
+	public List<ProdVO> getProd(String com_id) {
+		// TODO Auto-generated method stub
+		List<ProdVO> list = null;
+		list = hibernateTemplate.find(GET_ALL_PROD, com_id);
+		return list;
+	}
+
+	
+	
+	@Override
+	public ProdVO getPordById(String prod_id) {
+		// TODO Auto-generated method stub
+		ProdVO prodVO = null;
+		prodVO = hibernateTemplate.get(ProdVO.class, prod_id);
+		return prodVO;
+	}
+
+	@Override
+	public List<PurVO> findByDate(Date begin_date, Date end_date) {
+		// TODO Auto-generated method stub
+		List<PurVO> list = null;
+		list = hibernateTemplate.find(GET_BY_DATE, new Object[]{begin_date,end_date});
+		return list;
+	}
+
+	@Override
+	public List<PurVO> selectOfN() {
+		// TODO Auto-generated method stub
+		List<PurVO> list=null;
+		list = hibernateTemplate.find(SELECT_OF_N);
+		return list;
+	}
+
+	@Override
+	public List<ComVO> getOneCom(String com_name) {
+		// TODO Auto-generated method stub
+		List<ComVO> list = null;
+		list = hibernateTemplate.find(GET_ONE_COM, com_name);
+		return list;
+	}
+
 
 }

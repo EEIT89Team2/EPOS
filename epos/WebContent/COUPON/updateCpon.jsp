@@ -12,24 +12,31 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO"); //若輸入錯誤可�
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>修改折價券資料</title>
 <style>
-.titlelist {
-	font-family: '微軟正黑體';
-	font-weight: bold;
-	color: white;
-	height: 35px;
-	background: mediumseagreen;
-	padding-left: 10px;
-	font-size: 23px;
-	border-radius: 2px;
-}
-
-.distance {
-	margin: 30px;
-}
-
-.form-horizontal .control-label {
-	text-align: right;
-}
+	.titlelist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: mediumseagreen;
+		padding-left: 10px;
+		font-size: 23px;
+		border-radius: 2px;
+	}
+	
+	.distance {
+		margin: 30px;
+	}
+	
+	.form-horizontal .control-label {
+		text-align: right;
+	}
+	.my-valid-class{
+		color:#3a51e8;
+	}
+	
+	.my-error-class{
+		color:#1dc489;
+	}
 </style>
 </head>
 <body>
@@ -47,8 +54,7 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO"); //若輸入錯誤可�
 	<div class="titlelist">新增</div>
 	<div class="col-lg-12">
 
-		<FORM METHOD="post" ACTION="updateCpon.do" name="form2"
-			class="form-horizontal" role="form">
+		<FORM METHOD="post" ACTION="updateCpon.do" name="form2" class="form-horizontal" role="form" id="update">
 
 			<p class="distance">
 			<div class="form-group">
@@ -62,23 +68,21 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO"); //若輸入錯誤可�
 				<label class="col-lg-1 col-lg-offset-5 control-label">折價券名稱:</label>
 				<div class="col-lg-6">
 					<input type="text" name="cpon_name" size="20"
-						value="${copVO.cpon_name}" />
+						value="${copVO.cpon_name}" maxlength="20"/>
 
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-5 control-label">發行日期:</label>
 				<div class="col-lg-6">
-					<input type="date" name="release_date" size="20"
-						value="${copVO.release_date}" />
+					<input type="date" name="release_date" size="20" value="${copVO.release_date}" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-5 control-label">使用期限:</label>
 				<div class="col-lg-6">
 
-					<input type="date" name="cpon_period" size="20"
-						value="${copVO.cpon_period}" />
+					<input type="date" name="cpon_period" size="20" value="${copVO.cpon_period}"/>
 				</div>
 			</div>
 			<div class="form-group">
@@ -109,20 +113,60 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO"); //若輸入錯誤可�
 		</FORM>
 		</div>
 
-		<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
-		<script>
-		$(function() {
+<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
+<script>
+	$(function() {
+			//更新
 			$(":button[name='update']").on('click', function() {
-				$.ajax({
-					type : "POST",
-					url : "updateCpon.do",
-					data : $("form[name='form2']").serialize(),
-					success : function(data) {
-						$(".chg_content").html(data);
-					}
-				})	
+				var form2 = $("#update");
+				if(form2.valid()){
+					$.ajax({
+						type : "POST",
+						url : "updateCpon.do",
+						data : form2.serialize(),
+						success : function(data) {
+							$(".result_content").html(data);
+						}
+					})	
+				}
 			})
+			
+			//驗證
+			$("#update").validate({
+			errorClass:"my-error-class",
+			validClass:"my-valid-class",
+			
+			rules:{
+				cpon_name: {required:true},
+				release_date:{required:true},
+				cpon_period:{required:true},
+				cpon_dollar:{required:true,number:true,range:[1,10000]},
+				status:{required:true}
+			},
+			messages:{
+				cpon_name:{
+					required:"【請輸入折價券名稱】"
+				},
+				release_date:{
+					required:"【請輸入折價券起始日】"
+				},
+				cpon_period:{
+					required:"【請輸入折價券到期日】",
+				},
+				cpon_dollar:{
+					required:"【請輸入折價券金額】",
+					number:"【請輸入數字】",
+					range:"【範圍必須介於1~10000之間】"
+				},
+				status:{
+					required:"【請選擇折價券狀態】"
+				}
+			}
 		})
-	</script>
+		
+		//自定義驗證
+
+	})
+</script>
 </body>
 </html>

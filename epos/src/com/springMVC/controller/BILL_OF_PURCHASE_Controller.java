@@ -478,5 +478,47 @@ public class BILL_OF_PURCHASE_Controller {
 		 ***********/
 
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/ANDROID/getBopOfY2.do")
+	public void androidBopOfY2(ModelMap model, HttpServletRequest request,
+			HttpServletResponse response) throws Exception, Exception {
+		/***************************
+		 * * 1.接收請求參數 - 輸入格式的錯誤處理
+		 *************************/
+
+		/*************************** 2.永續層存取 ***************************************/
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("content-type", "text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		List<BopVO> list=null;
+		
+		try{
+			list = bopSvc.selectOfY2();
+		}catch(Exception e){
+			out.print("查無此進貨單");
+		}
+		
+		JSONArray jsonArray = new JSONArray();
+		JSONObject jSONObject;
+
+		for (BopVO bopVO : list) {
+
+			bopVO.setBops(null);
+			jSONObject = new JSONObject(bopVO);
+
+			jsonArray.put(jSONObject);
+
+		}
+		
+		 String bop_detailJsonArray = jsonArray.toString();
+		 System.out.println(bop_detailJsonArray);
+		 out.print(bop_detailJsonArray);
+		
+
+		/***************************
+		 * * 3.完成,準備轉交(Send the Success view)
+		 ***********/
+
+	}
 
 }

@@ -185,10 +185,10 @@ print(text)
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/VALUATION/valuation.jsp">報價單維護</a></li>
+						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
 					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/SHIPMENTS/shipments.jsp">出貨單維護</a></li>
+						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
 					class="fa fa-book"></i> <span>存貨作業</span>
@@ -305,7 +305,9 @@ print(text)
 	
 	
 </thead>
-	<%for(int i=0;i<detailList.size();i++){ 
+	<%
+		if(detailList!=null){
+		for(int i=0;i<detailList.size();i++){ 
 				Order_DetailVO valuation_DetailVO = (Order_DetailVO)detailList.get(i);
 				ProdVO prodVO = (ProdVO)valuation_DetailVO.getProdVO();
 				
@@ -323,14 +325,15 @@ print(text)
 
 				</tr>
 <%-- 			</c:forEach> --%>
-			<%} %>
+			<%} 
+		}%>
 		
 </table>
 <br>
-</div>
+
 <input type="hidden" name="action" value="insert">
 </FORM>
-	
+	</div>
 	</div>
 	</section> </section> </section>
 

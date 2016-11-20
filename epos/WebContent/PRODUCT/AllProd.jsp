@@ -11,7 +11,7 @@
 <title>全部商品基本資料</title>
 <style>
 
-		/* 	表格標題 */
+	/* 	表格標題 */
 	.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{
 		background: #42858C;
 		font-weight:bold;

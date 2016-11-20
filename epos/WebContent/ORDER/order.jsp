@@ -280,10 +280,10 @@ print(text)
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/VALUATION/valuation.jsp">報價單維護</a></li>
+						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
 					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/SHIPMENTS/shipments.jsp">出貨單維護</a></li>
+						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
 					class="fa fa-book"></i> <span>存貨作業</span>
@@ -680,9 +680,12 @@ print(text)
 				
 				$("#cash_temp").blur(function() {
 				
-					ordmain.charge.value = ordmain.cash.value - ordmain.total_price.value;
-					ordmain.charge.value = ordmain.cash_temp.value - ordmain.total_price.value;
-					ordmain.cash.value = ordmain.cash_temp.value - ordmain.charge.value;
+					if($(this).val() != ""){
+						
+						ordmain.charge.value = ordmain.cash.value - ordmain.total_price.value;
+						ordmain.charge.value = ordmain.cash_temp.value - ordmain.total_price.value;
+						ordmain.cash.value = ordmain.cash_temp.value - ordmain.charge.value;
+					}
 				})				
 	//<!----------------------------------------  刪除        ------------------------------------>	
 	var table2 = $('#table1').DataTable();

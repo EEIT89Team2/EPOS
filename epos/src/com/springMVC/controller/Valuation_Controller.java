@@ -158,13 +158,20 @@ public class Valuation_Controller extends HttpServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-
+			errorMsgs.add("商品不可重複");
 		}
 
 		/*****************************
 		 * 3.新增完成,準備轉交(Send the Success view)
 		 ***********/
-		return "redirect:/VALUATION/SelectVlt.jsp";
+		String url="";
+		if(errorMsgs.size() >0){
+			url = "/VALUATION/ValuationList.jsp";
+		}else{
+			url = "redirect:/VALUATION/SelectVlt.jsp";
+		}
+		
+		return url;
 		/*************************** 其他可能的錯誤處理 **********************************/
 	}
 
@@ -214,21 +221,21 @@ public class Valuation_Controller extends HttpServlet {
 			return "/VALUATION/AllVltDetail";
 		}
 
-		if ("Delete".equals(action)) {
-			// OrderService ordSvc = new OrderService();
-			try {
-				vltSvc.delete(vlt_id);
-
-				List<ValuationVO> list = vltSvc.getAll();
-
-				model.addAttribute("list", list);
-
-			} catch (Exception e) {
-
-				e.printStackTrace();
-			}
-			return "/VALUATION/SelectVlt";
-		}
+//		if ("Delete".equals(action)) {
+//			// OrderService ordSvc = new OrderService();
+//			try {
+//				vltSvc.delete(vlt_id);
+//
+//				List<ValuationVO> list = vltSvc.getAll();
+//
+//				model.addAttribute("list", list);
+//
+//			} catch (Exception e) {
+//
+//				e.printStackTrace();
+//			}
+//			return "/VALUATION/SelectVlt";
+//		}
 		/***************************
 		 * * 3.完成,準備轉交(Send the Success view)
 		 ***********/
@@ -401,9 +408,8 @@ public class Valuation_Controller extends HttpServlet {
 		return null;
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = { "/getByProd_id_ByVlt.do",
-			"/VALUATION/getByProd_id_ByVlt.do" })
-	public void getByProd_id_ByVlt(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(method = RequestMethod.GET, value = { "/getProd_DDL.do","/VALUATION/getProd_DDL.do" })
+	public void getProd_DDL(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setCharacterEncoding("UTF8");
 		PrintWriter out = response.getWriter();
 		/************************
@@ -412,13 +418,20 @@ public class Valuation_Controller extends HttpServlet {
 		String prod_id = request.getParameter("prod_id");
 		/*************************** 2.開始查詢資料 *****************************************/
 		// OrderService ordSvc = new OrderService();
-		ProdVO proidVO;
+		List<ProdVO> list = null;
+		List<Map> prodlist = new LinkedList();
 		try {
-			proidVO = prodSvc.getOne(prod_id);
-			Map map = new HashMap();
-			map.put("prod_name", proidVO.getProd_name());
-			map.put("prod_price", proidVO.getProd_mkprice());
-			String jsonString = JSONValue.toJSONString(map);
+			
+			list = prodSvc.getAll();
+			
+			for(ProdVO prodVO : list){
+				Map map = new HashMap();
+				map.put("SelectValue",prodVO.getProd_id()+"^"+prodVO.getProd_name()+"^" + prodVO.getProd_mkprice());
+				map.put("SelectText", prodVO.getProd_name());
+				prodlist.add(map);
+			}
+			
+			String jsonString = JSONValue.toJSONString(prodlist);
 			out.println(jsonString);
 
 		} catch (Exception e) {

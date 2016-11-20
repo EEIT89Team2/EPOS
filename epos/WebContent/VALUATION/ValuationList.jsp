@@ -8,6 +8,7 @@
 	 	ValuationVO vltListVO = (ValuationVO) request.getAttribute("Vlt_id");
  		Valuation_DetailVO vltDetailVO = (Valuation_DetailVO) request.getAttribute("Vlt_id");
  		session.getAttribute("LoginOK");
+ 		
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -158,10 +159,10 @@ print(text)
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/VALUATION/valuation.jsp">報價單維護</a></li>
+						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
 					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/SHIPMENTS/shipments.jsp">出貨單維護</a></li>
+						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
 					class="fa fa-book"></i> <span>存貨作業</span>
@@ -215,7 +216,7 @@ print(text)
 				<div>
 				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　
 		    	<a href="#" onclick="window.open('searchList.jsp', 'RetrunItem', config='height=500,width=1200')"><span class="glyphicon glyphicon-search"></span>單筆查詢</a>　　
-		    	<a href="#" onclick="window.open('SelectVltAll.jsp', 'ValuationList', config='height=1050,width=1680')"><span class="glyphicon glyphicon-list-alt"></span>全部查詢</a>　　
+		    	<a href="#" onclick="window.open('SelectVltAll.jsp', 'ValuationList', config='height=800,width=1680')"><span class="glyphicon glyphicon-list-alt"></span>全部查詢</a>　　
 		    	<a href="SelectVltAllForCHK.jsp" ><span class="glyphicon glyphicon-list-alt"></span>審核</a>　　
 		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　
 		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>
@@ -235,12 +236,12 @@ print(text)
 			<input type="date" class="form-control" name="delivery_date" value="" />
 		</div>　　
 		<div class="form-group">
-			<label for="exampleInputName2">總  金  額 ：</label>
-			<input type="text" class="form-control" name="total_price" value="" />
+			<label for="exampleInputName2">報價金額：</label>
+			<input type="text" class="form-control" name="total_price" value="0" readonly />
 		</div>　　
 		<div class="form-group">
 			<label for="exampleInputName2">修改人員 ：</label>
-			<input type="text" class="form-control" name="key_id" value="${LoginOK.emp_id}" />
+			<input type="text" class="form-control" name="key_id" value="${LoginOK.emp_id}" readonly />
 		</div>　　
 		<div class="form-group">
 			<label for="exampleInputName2"> 修改日期 ：</label>
@@ -257,13 +258,13 @@ print(text)
 		</div>　　
 		<div class="form-group">
 			<label for="exampleInputName2">備　　註：</label>
-			<input type="text" class="form-control" name="remark" value="test" />
+			<input type="text" class="form-control" name="remark" value="" />
 		</div>
 	</tr>
 </table>
 <div style="height: 70px;"></div>
 <button type="button" id="addNewDetail" class="btn btn-info">新增明細</button>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
-<button type="button" id="helper" class="btn btn-info">輸入小幫手</button>
+<!-- <button type="button" id="helper" class="btn btn-info">輸入小幫手</button> -->
 <!-- <button type="button" id="count_total_price" class="btn btn-info">計算總金額</button> -->
 
 <div class="titlelist">報價單明細</div>
@@ -272,7 +273,7 @@ print(text)
 	<tr>
 <!-- 		<td>退貨單編號：</td> -->
 <!-- 		<td><input type="TEXT" name="ret_id1" size="40" value="RE2016101500001"/></td> -->
-		<td align='center'>商品編號</td>
+<!-- 		<td align='center'>商品編號</td> -->
 		<td align='center'>商品名稱</td>
 		<td align='center'>商品數量</td>
 		<td align='center'>商品價格</td>
@@ -281,40 +282,39 @@ print(text)
 	</tr>
 </thead>
 	<tr align='center' valign='middle'>
-		<td><input type="TEXT" name="prod_id1"  value="" /></td>
-		<td><input type="TEXT" name="prod_name1"  value="" /></td>
-		<td><input type="TEXT" name="prod_quantity1" value="" /></td>
-		<td><input type="TEXT" name="prod_price1" id="prod_price1" value=""/></td>
+		<td><select type="TEXT" name="prod_name_select1" id="prod_name_select1"><option value="">請選擇商品</option></select><input type="hidden" id="prod_id1"  name="prod_id1" /><input type="hidden" id="prod_name1"  name="prod_name1" /></td>
+		<td><input type="TEXT" name="prod_quantity1"  id="prod_quantity1" value="0"/></td>
+		<td><input type="TEXT" name="prod_price1" id="prod_price1" value="0" readonly/><input type="hidden" name="total_prod_price1" id="total_prod_price1" value="0"/></td>
 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
 	</tr>
-	<tr align='center' valign='middle'>
-		<td><input type="TEXT" name="prod_id2"  value="" /></td>
-		<td><input type="TEXT" name="prod_name2"  value="" /></td>
-		<td><input type="TEXT" name="prod_quantity2" value="" /></td>
-		<td><input type="TEXT" name="prod_price2" id="prod_price2" value=""/></td>
-		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
-	</tr>
-	<tr align='center' valign='middle'>
-		<td><input type="TEXT" name="prod_id3"  value="" /></td>
-		<td><input type="TEXT" name="prod_name3"  value="" /></td>
-		<td><input type="TEXT" name="prod_quantity3" value="" /></td>
-		<td><input type="TEXT" name="prod_price3" id="prod_price3" value=""/></td>
-		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
-	</tr>
-	<tr align='center' valign='middle'>
-		<td><input type="TEXT" name="prod_id4"  value="" /></td>
-		<td><input type="TEXT" name="prod_name4"  value="" /></td>
-		<td><input type="TEXT" name="prod_quantity4" value="" /></td>
-		<td><input type="TEXT" name="prod_price4" id="prod_price4" value=""/></td>
-		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
-	</tr>
-	<tr align='center' valign='middle'>
-		<td><input type="TEXT" name="prod_id5"  value="" /></td>
-		<td><input type="TEXT" name="prod_name5"  value="" /></td>
-		<td><input type="TEXT" name="prod_quantity5" value="" /></td>
-		<td><input type="TEXT" name="prod_price5" id="prod_price5" value=""/></td>
-		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
-	</tr>
+<!-- 	<tr align='center' valign='middle'> -->
+<!-- 		<td><input type="TEXT" name="prod_id2"  value="" /></td> -->
+<!-- 		<td><input type="TEXT" name="prod_name2"  value="" /></td> -->
+<!-- 		<td><input type="TEXT" name="prod_quantity2" value="" /></td> -->
+<!-- 		<td><input type="TEXT" name="prod_price2" id="prod_price2" value=""/></td> -->
+<!-- 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td> -->
+<!-- 	</tr> -->
+<!-- 	<tr align='center' valign='middle'> -->
+<!-- 		<td><input type="TEXT" name="prod_id3"  value="" /></td> -->
+<!-- 		<td><input type="TEXT" name="prod_name3"  value="" /></td> -->
+<!-- 		<td><input type="TEXT" name="prod_quantity3" value="" /></td> -->
+<!-- 		<td><input type="TEXT" name="prod_price3" id="prod_price3" value=""/></td> -->
+<!-- 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td> -->
+<!-- 	</tr> -->
+<!-- 	<tr align='center' valign='middle'> -->
+<!-- 		<td><input type="TEXT" name="prod_id4"  value="" /></td> -->
+<!-- 		<td><input type="TEXT" name="prod_name4"  value="" /></td> -->
+<!-- 		<td><input type="TEXT" name="prod_quantity4" value="" /></td> -->
+<!-- 		<td><input type="TEXT" name="prod_price4" id="prod_price4" value=""/></td> -->
+<!-- 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td> -->
+<!-- 	</tr> -->
+<!-- 	<tr align='center' valign='middle'> -->
+<!-- 		<td><input type="TEXT" name="prod_id5"  value="" /></td> -->
+<!-- 		<td><input type="TEXT" name="prod_name5"  value="" /></td> -->
+<!-- 		<td><input type="TEXT" name="prod_quantity5" value="" /></td> -->
+<!-- 		<td><input type="TEXT" name="prod_price5" id="prod_price5" value=""/></td> -->
+<!-- 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td> -->
+<!-- 	</tr> -->
 		
 </table>
 <br>
@@ -363,58 +363,130 @@ print(text)
 
 // <!----------------------------------------  新增明細         ------------------------------------>
 	$("#form2").on('click', '.btn-danger', function() {
+		
+		form1.total_price.value = parseInt(form1.total_price.value) - $(this).parents("tr").children("td:eq(2)").children("input").eq(1).val();
+		
 		$(this).parents("tr").remove();
 	})
 	
 	$(function() {
-		var a = 6;
+		
+		$.getJSON("getProd_DDL.do",{},function(data){
+			$.each(data,function(){
+				var SelectValue = this.SelectValue;
+				var SelectText = this.SelectText;
+				var opt=$("<option></option>").val(SelectValue).text(SelectText);
+				$('#prod_name_select1').append(opt);
+			})
+			
+			$('#prod_name_select1').change(function(){
+				
+				form1.total_price.value = parseInt(form1.total_price.value) - parseInt(document.getElementById('total_prod_price1').value);
+				
+				var values = $('#prod_name_select1').val().split("^");
+				document.getElementById('prod_id1').value=values[0];
+				document.getElementById('prod_quantity1').value='1';
+				document.getElementById('prod_name1').value=values[1];
+				document.getElementById('prod_price1').value=values[2];
+				document.getElementById('total_prod_price1').value=values[2];
+				
+				
+				form1.total_price.value = parseInt(form1.total_price.value) + parseInt(values[2]);
+				
+			})	
+			
+			
+			$('#prod_quantity1').blur(function(){
+				form1.total_price.value = parseInt(form1.total_price.value) - parseInt(document.getElementById('total_prod_price1').value);				
+				form1.total_price.value = parseInt(form1.total_price.value) + (parseInt(form1.prod_quantity1.value) * parseInt(form1.prod_price1.value));				
+				form1.total_prod_price1.value = parseInt(form1.prod_quantity1.value) * parseInt(form1.prod_price1.value);
+			})
+			
+		})
+		
+		
+		var a = 1;
 		$("#addNewDetail").click(function() {
-			$("#form2").append("<tr align='center' valign='middle'><td><input type='TEXT' name='prod_id"+a+"'/></td>"
-								+ "<td><input type='TEXT' name='prod_name"+a+"'/></td>"
-								+ "<td><input type='TEXT' name='prod_quantity"+a+"'/></td>"
-								+ "<td><input type='TEXT' name='prod_price"+a+"' /></td>"
+			a = a + 1;
+			var b = a;//for onchange用的,onchange區塊裡面的變數只有事件觸發時才會給值,所以a會一直隨著列數增加而增加,導致錯誤,需先給定一個值(塞入b)
+			$("#form2").append("<tr align='center' valign='middle'>"
+								+ "<td><select id='prod_name_select"+a+"' name='prod_name_select"+a+"'><option value=''>請選擇商品</option></select><input type='hidden' id='prod_id"+a+"' name='prod_id"+a+"'/><input type='hidden' id='prod_name"+a+"' name='prod_name"+a+"'/></td>"
+								+ "<td><input type='TEXT' id ='prod_quantity"+a+"'  name='prod_quantity"+a+"' value='0' /></td>"
+								+ "<td><input type='TEXT' id ='prod_price"+a+"' name='prod_price"+a+"' value='0' readonly /><input type='hidden' name='total_prod_price"+a+"' id='total_prod_price"+a+"' value='0'/></td>"
 								+ "<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td></tr>"
 			)
-							a = a + 1;
+			
+			$.getJSON("getProd_DDL.do",{},function(data){
+				$.each(data,function(){
+					var SelectValue = this.SelectValue;					
+					var SelectText = this.SelectText;
+					var opt=$("<option></option>").val(SelectValue).text(SelectText);
+					$("#prod_name_select"+a).append(opt);
+					
+				})
+			})
+			
+			$("#prod_name_select"+a).change(function(){
+				
+				form1.total_price.value = parseInt(form1.total_price.value) - parseInt(document.getElementById('total_prod_price'+b).value);
+				
+				var values = $("#prod_name_select"+b).val().split("^");
+				document.getElementById('prod_id'+b).value=values[0];
+				document.getElementById('prod_quantity'+b).value='1';
+				document.getElementById('prod_name'+b).value=values[1];
+				document.getElementById('prod_price'+b).value=values[2];
+				document.getElementById('total_prod_price'+b).value=values[2];
+				
+				form1.total_price.value = parseInt(form1.total_price.value) + parseInt(values[2]);
+				
+			})
+				
+			$("#prod_quantity"+a).blur(function(){
+				
+				form1.total_price.value = parseInt(form1.total_price.value) - parseInt(document.getElementById('total_prod_price'+b).value);
+				form1.total_price.value = parseInt(form1.total_price.value) + parseInt(document.getElementById("prod_quantity"+b).value) * parseInt(document.getElementById("prod_price"+b).value);
+				document.getElementById("total_prod_price"+b).value = parseInt(document.getElementById("prod_quantity"+b).value) * parseInt(document.getElementById("prod_price"+b).value);
+			})
+			
 		})
 	})
 	
 // <!----------------------------------------  輸入小幫手         ------------------------------------>
 	
-	$("#helper").click(function(){
-// 		alert("aaa");
-		form1.prod_id1.value="P00012";
-		form1.prod_name1.value="天然月見草油膠囊";
-		form1.prod_quantity1.value="2";
-		form1.prod_price1.value="379";
+// 	$("#helper").click(function(){
+//  		alert("aaa");
+// 		form1.prod_id1.value="P00012";
+// 		form1.prod_name1.value="天然月見草油膠囊";
+// 		form1.prod_quantity1.value="2";
+// 		form1.prod_price1.value="379";
 		
-		form1.prod_id2.value="P00016";
-		form1.prod_name2.value="旺來仙貝超值包350g";
-		form1.prod_quantity2.value="3";
-		form1.prod_price2.value="136";
+// 		form1.prod_id2.value="P00016";
+// 		form1.prod_name2.value="旺來仙貝超值包350g";
+// 		form1.prod_quantity2.value="3";
+// 		form1.prod_price2.value="136";
 		
-		form1.prod_id3.value="P00017";
-		form1.prod_name3.value="麻辣花生";
-		form1.prod_quantity3.value="2";
-		form1.prod_price3.value="129";
+// 		form1.prod_id3.value="P00017";
+// 		form1.prod_name3.value="麻辣花生";
+// 		form1.prod_quantity3.value="2";
+// 		form1.prod_price3.value="129";
 		
-		form1.prod_id4.value="P00021";
-		form1.prod_name4.value="多飲礦泉水特大罐";
-		form1.prod_quantity4.value="1";
-		form1.prod_price4.value="46"
+// 		form1.prod_id4.value="P00021";
+// 		form1.prod_name4.value="多飲礦泉水特大罐";
+// 		form1.prod_quantity4.value="1";
+// 		form1.prod_price4.value="46"
 		
-		form1.prod_id5.value="P00025";
-		form1.prod_name5.value="CCU炭燒大濾掛式咖啡";
-		form1.prod_quantity5.value="1";
-		form1.prod_price5.value="299";
+// 		form1.prod_id5.value="P00025";
+// 		form1.prod_name5.value="CCU炭燒大濾掛式咖啡";
+// 		form1.prod_quantity5.value="1";
+// 		form1.prod_price5.value="299";
 
-		form1.total_price.value = parseInt(document.getElementById("prod_price1").value)
-								+ parseInt(document.getElementById("prod_price2").value)
-								+ parseInt(document.getElementById("prod_price3").value)
-								+ parseInt(document.getElementById("prod_price4").value)
-								+ parseInt(document.getElementById("prod_price5").value);
+// 		form1.total_price.value = parseInt(document.getElementById("prod_price1").value)
+// 								+ parseInt(document.getElementById("prod_price2").value)
+// 								+ parseInt(document.getElementById("prod_price3").value)
+// 								+ parseInt(document.getElementById("prod_price4").value)
+// 								+ parseInt(document.getElementById("prod_price5").value);
 	
-	})	
+// 	})	
 
 //<!----------------------------------------  送出新增        ------------------------------------>
 		

@@ -66,7 +66,7 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO");	//若輸入錯誤可�
 			<div class="form-group">	
 				<label class="col-lg-1 col-lg-offset-5 control-label">發行日期:</label>
 				<div class="col-lg-6">
-					<input type="date" name="release_date" size="20" value="<%= (copVO==null)? "" : copVO.getRelease_date()%>" />
+					<input type="date" name="release_date" size="20" value="<%= (copVO==null)? "" : copVO.getRelease_date()%>" id="release_date"/>
 				</div>
 			</div>
 			<div class="form-group">	
@@ -109,6 +109,39 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO");	//若輸入錯誤可�
 </div>				
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 <script>
+//驗證
+		$("#insert").validate({
+		errorClass:"my-error-class",
+		validClass:"my-valid-class",
+		
+		rules:{
+			cpon_name: {required:true},
+			release_date:{required:true},
+			cpon_period:{required:true,compareDate:$("input[name='release_date']")},
+			cpon_dollar:{required:true,number:true,range:[1,10000]},
+			status:{required:true}
+		},
+		messages:{
+			cpon_name:{
+				required:"【請輸入折價券名稱】"
+			},
+			release_date:{
+				required:"【請輸入折價券起始日】"
+			},
+			cpon_period:{
+				required:"【請輸入折價券到期日】",
+				compareDate:"【使用期限必须大於發行日期】"
+			},
+			cpon_dollar:{
+				required:"【請輸入折價券金額】",
+				number:"【請輸入數字】",
+				range:"【範圍必須介於1~10000之間】"
+			},
+			status:{
+				required:"【請選擇折價券狀態】"
+			}
+		}
+	})	    
 	$(function() {
 //迴圈產生1~100			
 		var sel =$('select[name=cpon_count]');
@@ -118,6 +151,7 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO");	//若輸入錯誤可�
 	        opt.append(i);
 	        sel.append(opt);
 	    }
+	    
 //新增			
 		$(':button').on('click', function() {
 			if("送出新增"==$(this).val()){				
@@ -138,51 +172,7 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO");	//若輸入錯誤可�
 				}	
 			}
 		})
-//驗證
-			$("#insert").validate({
-			errorClass:"my-error-class",
-			validClass:"my-valid-class",
-			
-			rules:{
-				cpon_name: {required:true},
-				release_date:{required:true},
-				cpon_period:{required:true,compareDate:true},
-				cpon_dollar:{required:true,number:true,range:[1,10000]},
-				status:{required:true}
-			},
-			messages:{
-				cpon_name:{
-					required:"【請輸入折價券名稱】"
-				},
-				release_date:{
-					required:"【請輸入折價券起始日】"
-				},
-				cpon_period:{
-					required:"【請輸入折價券到期日】",
-					compareDate:"【使用期限必须大於發行日期】"
-				},
-				cpon_dollar:{
-					required:"【請輸入折價券金額】",
-					number:"【請輸入數字】",
-					range:"【範圍必須介於1~10000之間】"
-				},
-				status:{
-					required:"【請選擇折價券狀態】"
-				}
-			}
-		})
-//自定義驗證		
-		$.validator.addMethod("compareDate",function(value,element){
-            var release_date = $("input[name=release_date]").val();
-            var cpon_period = $("input[name=cpon_period]").val();
-            release_date = new Date(parseInt(Date.parse(release_date),10));
-            cpon_period = new Date(parseInt(Date.parse(cpon_period),10));
-            if(release_date>cpon_period){
-                return false;
-            }else{
-                return true;
-            }
-        });
+
 	})
 </script>	
 </body>

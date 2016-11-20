@@ -27,9 +27,17 @@
 	
 	.btn-theme02{
 		float:center			
+	}
+	.my-valid-class{
+		color:#3a51e8;
+	}
+	
+	.my-error-class{
+		color:#1dc489;
 	}	
 </style>
 <body>
+	<jsp:useBean id="ComSvc" scope="page" class="com.company.model.ComService" />
 <!-- 				錯誤表列 -->
 	<c:if test="${not empty param.message}">
 		<font color='red'>請修正以下錯誤:
@@ -52,10 +60,14 @@
 				</div>	
 			</div>	
 			<div class="form-group">	
-				<label class="col-lg-1 col-lg-offset-5 control-label">廠商編號:</label>
-				<div class="col-lg-6">
-					<input type="text" name="com_id" value="C00001">
-				</div>	
+				<label class="col-lg-1 col-lg-offset-5 control-label">廠商名稱:</label>
+				<div class="col-lg-1">
+					<select size="1" name="com_id" id="com_id" class="form-control">
+						<c:forEach var="ComVO" items="${ComSvc.all}">
+							<option value="${ComVO.com_id}">${ComVO.com_name}</option>
+						</c:forEach>
+					</select>
+				</div><div class="col-lg-5"></div>	
 			</div>	
 			<div class="form-group">	
 				<label class="col-lg-1 col-lg-offset-5 control-label">分類:</label>
@@ -78,13 +90,13 @@
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-5 control-label">庫存:</label>
 				<div class="col-lg-6">
-					<input type="text" name="prod_stock" value="3">
+					<input type="text" name="prod_stock" value="0" readonly="readonly">
 				</div>	
 			</div>	
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-5 control-label">安全庫存:</label>
 				<div class="col-lg-6">
-					<input type="text" name="prod_q_safty" value="1">
+					<input type="text" name="prod_q_safty" value="10">
 				</div>	
 			</div>	
 			<div class="form-group">
@@ -118,53 +130,94 @@
 	</div>
 	<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->	
 <script type="text/JavaScript">
-
+//----------------------------------------	驗證----------------------------------------	
+$("#create_prod").validate({
+	errorClass:"my-error-class",
+	validClass:"my-valid-class",
+	
+	rules:{
+		prod_name: {required:true},
+		prod_group:{required:true},
+		prod_mkprice:{digits:true ,required:true,min:1},
+		prod_cost:{digits:true,required:true,min:1},
+		prod_q_safty:{min:1,required:true},
+		prod_spec:{maxlength:70},
+		remark:{maxlength:70},
+	},
+	messages:{
+		prod_name:{
+			required:"【請輸入商品名稱】"
+		},
+		prod_group:{
+			required:"【請輸入商品分類】"
+		},
+		prod_mkprice:{
+			required:"【請輸入商品定價】",
+			digits:"【必須是數字】",
+			min:"【數字至少大於1且不可為負】"
+		},
+		prod_cost:{
+			required:"【請輸入商品成本】",
+			digits:"【必須是數字】",
+			min:"【數字至少大於1且不可為負】"
+		},prod_q_safty:{
+			min:"【安全庫存量至少大於1】",
+			required:"【請輸入安全庫存量】"		
+		},prod_spec:{
+			maxlength:"【範圍必須小於70字之間】"
+		},remark:{
+			maxlength:"【範圍必須小於70字之間】"
+		}
+		
+	}
+})	
 	$(document).ready(function() {
-
+//----------------------------------------	新增----------------------------------------	
 		$("#create_prod").on('submit', (function(e) {
 			e.preventDefault();
-			//序列化表单   
+			//序列化表單  
 			var serializeData = $(this).serialize();
 			var create_prod = $("#create_prod");
-
-			$(this).ajaxSubmit({
-				type : 'POST',
-				url : create_prod.attr("action"),
-				data : serializeData,
-
-				//attention!!!   
-				contentType : false,
-				cache : false,
-				processData : false,
-				success : function() {
-					$.ajax({
-						type : "post",
-						url : "getAllProd.do",
-						data : {},
-						success : function(data) {
-							$(".result_content").html(data);
-							$("#chg_new").removeAttr("class");
-							$("#chg_result").attr("class", "active");
-							$("#new_Prod").attr("class", "tab-pane fade");
-							$("#result_Prod").attr("class", "tab-pane active");
-						},
-					});
-				}
-			// 		           beforeSubmit: function() {
-			//上传图片之前的处理   
-			// 		           },
-			// 		           uploadProgress: function (event, position, total, percentComplete){ 
-			// 		               //在这里控制进度条   
-			// 		           },
-			// 		           error:function(data){
-			// 		               alert('上传图片出错');
-			// 		        	   $("#rul").html(data);
-			// 						$("#chg_new").removeAttr("class");
-			// 						$("#chg_result").attr("class","active");
-			// 						$("#new").attr("class","tab-pane fade");
-			// 						$("#result").attr("class","tab-pane active");
-			// 		           }
-			})
+			if($("#create_prod").valid()){
+				$(this).ajaxSubmit({
+					type : 'POST',
+					url : create_prod.attr("action"),
+					data : serializeData,
+	
+					//attention!!!   
+					contentType : false,
+					cache : false,
+					processData : false,
+					success : function() {
+						$.ajax({
+							type : "post",
+							url : "getAllProd.do",
+							data : {},
+							success : function(data) {
+								$(".result_content").html(data);
+								$("#chg_new").removeAttr("class");
+								$("#chg_result").attr("class", "active");
+								$("#new_Prod").attr("class", "tab-pane fade");
+								$("#result_Prod").attr("class", "tab-pane active");
+							},
+						});		
+					}
+				// 		           beforeSubmit: function() {
+				//上傳圖片之前的理   
+				// 		           },
+				// 		           uploadProgress: function (event, position, total, percentComplete){ 
+				// 		               //在這裡控制進度條   
+				// 		           },
+				// 		           error:function(data){
+				// 		               alert('上傳圖片出錯');
+				// 		        	   $("#rul").html(data);
+				// 						$("#chg_new").removeAttr("class");
+				// 						$("#chg_result").attr("class","active");
+				// 						$("#new").attr("class","tab-pane fade");
+				// 						$("#result").attr("class","tab-pane active");
+				// 		           }
+				})
+			}
 		}))
 	})
 </script>

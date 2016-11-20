@@ -68,11 +68,15 @@
 	color: black;
 	font-weight: bold;
 }
+
+td{
+	text-align: center;
+}
 </style>
 
 </head>
 <body>
-	<div id="title">報價單明細</div>
+	<div id="title">報價單</div>
 	<table id="Vlt" border="2"
 		class="table table-bordered table-striped table-hover">
 		<thead>
@@ -94,7 +98,7 @@
 		<!--  			<tbody>  -->
 		<c:forEach var="list" items="${list}" varStatus="count">
 			<tr>
-				<form method="post" action="Querydetail_DeleteVlt.do">
+<!-- 				<form method="post" action="../VALUATION/Querydetail_DeleteVlt.do"> -->
 				<td>${list.vlt_id}</td>
 				<td>${list.vlt_date}</td>
 				<td>${list.delivery_date}</td>
@@ -105,11 +109,12 @@
 				<td>${list.exp_date}</td>
 				<td>${list.remark}</td>
 				<td>
+
 				<FORM METHOD="post" ACTION="Querydetail_DeleteVlt.do">
-				<button type="submit" name="action" class="btn btn-success"><i class="glyphicon glyphicon-search"></i></button>
-				<input type="hidden" name="vlt_id" value="${list.vlt_id}">
+					<button type="submit" name="action" class="btn btn-success" value="Detail"><i class="glyphicon glyphicon-search"></i></button>
+					<input type="hidden" name="vlt_id" value="${list.vlt_id}">
+					</td>
 				</FORM>
-				</form>
 			</tr>
 		</c:forEach>
 		<!--  			</tbody>  -->

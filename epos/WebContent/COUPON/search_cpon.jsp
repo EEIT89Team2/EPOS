@@ -9,24 +9,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>searchCpon</title>
 <style>
-.titlelist {
-	font-family: '微軟正黑體';
-	font-weight: bold;
-	color: white;
-	height: 35px;
-	background: mediumseagreen;
-	padding-left: 10px;
-	font-size: 23px;
-	border-radius: 2px;
-}
+	.titlelist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: mediumseagreen;
+		padding-left: 10px;
+		font-size: 23px;
+		border-radius: 2px;
+	}
+	
+	.distance {
+		margin: 30px;
+	}
+	
+	.form-horizontal .control-label {
+		text-align: right;
+	}
 
-.distance {
-	margin: 30px;
-}
-
-.form-horizontal .control-label {
-	text-align: right;
-}
+	.my-valid-class{
+		color:#3a51e8;
+	}
+	
+	.my-error-class{
+		color:#1dc489;
+	}
 </style>
 </head>
 <body>
@@ -120,7 +128,7 @@
 	
 		<p class="distance">
 		
-			<FORM METHOD="post" ACTION="datesCpon.do" class="search_5 form-horizontal" role="form">
+			<FORM METHOD="post" ACTION="datesCpon.do" class="search_5 form-horizontal" role="form" id="sel_cou_valid">
 				<div class="form-group">
 					<label class="col-lg-1 col-lg-offset-4 control-label">選擇折價券日期區間:</label>
 					<div class="col-lg-1">
@@ -149,8 +157,28 @@
 		</div>		
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->				
 	<script>
+		//驗證
+			$("#sel_cou_valid").validate({
+			errorClass:"my-error-class",
+			validClass:"my-valid-class",
+			
+			rules:{
+				release_date:{required:true},
+				cpon_period:{required:true,compareDate:$("input[name='release_date']")},
+			},
+			messages:{
+				release_date:{
+					required:"【請輸入折價券起始日】"
+				},
+				cpon_period:{
+					required:"【請輸入折價券到期日】",
+					compareDate:"【使用期限必须大於發行日期】"
+				}
+			}				
+		})	    				
 		$(function() {
-			$(':button').on('click', function() {		
+			$(':button').on('click', function() {
+				
 // 				if($(this).attr('id')=="search_1"){
 // 					var search_1 = $(".search_1");
 // 					$.ajax({
@@ -210,18 +238,20 @@
 	 				})	
 				}else if($(this).attr('id')=="search_5"){
 					var search_5 = $(".search_5");
-	 				$.ajax({
-	 					type : "POST",
-	 					url : search_5.attr('action'),
-	 					data : search_5.serialize(),
-	 					success : function(data) {
-	 						$(".result_content").html(data);
-							$("#rel_cou").attr("class","active");
-							$("#sea_cou").removeAttr("class");
-							$("#search_Cou").attr("class","tab-pane fade");
-							$("#resolution_Cou").attr("class","tab-pane active");
-	 					}
-	 				})	
+					if(search_5.valid()){
+		 				$.ajax({
+		 					type : "POST",
+		 					url : search_5.attr('action'),
+		 					data : search_5.serialize(),
+		 					success : function(data) {
+		 						$(".result_content").html(data);
+								$("#rel_cou").attr("class","active");
+								$("#sea_cou").removeAttr("class");
+								$("#search_Cou").attr("class","tab-pane fade");
+								$("#resolution_Cou").attr("class","tab-pane active");
+		 					}
+		 				})
+					}	
 				}else if($(this).attr('id')=="search_6"){
 					var search_6 = $(".search_6");
 	 				$.ajax({

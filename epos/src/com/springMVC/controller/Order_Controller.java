@@ -340,7 +340,7 @@ public class Order_Controller extends HttpServlet {
 			return "/ORDER/SelectOrd";
 		}
 		
-		if ("Logout".equals(action)) {
+		if ("Revoke".equals(action)) {
 			// OrderService ordSvc = new OrderService();
 			try {
 				ordSvc.setStatus("D", ord_id);	

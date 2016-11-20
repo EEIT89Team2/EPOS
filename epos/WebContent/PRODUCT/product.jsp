@@ -197,6 +197,7 @@
 						</font>
 					</c:if>
 
+	<jsp:useBean id="ProdSvc" scope="page" class="com.product.model.ProdService" />
 					<div class="titlelist">查詢</div>
 					<div class="col-lg-12  main">
 						<p>
@@ -205,8 +206,11 @@
 								<div class="col-lg-3"></div>
 								<label class="col-lg-2 control-label" for="prod_id">商品編號搜尋</label>
 								<div class="col-lg-2">
-									<input type="text" name="prod_id" class="form-control"
-										id="prod_id">
+									<select size="1" name="prod_id" id="prod_id" class="form-control">
+										<c:forEach var="prodVO" items="${ProdSvc.all}">
+											<option value="${prodVO.prod_id}">${prodVO.prod_id}</option>
+										</c:forEach>
+									</select>
 								</div>
 								<div class="col-lg-2">
 									<input type="button" value="商品編號搜尋" class="btn btn-warning">
@@ -239,10 +243,14 @@
 							<p>
 							<div class="form-group">
 								<div class="col-lg-3"></div>
-								<label class="col-lg-2 control-label" for="prod_group">商品分類關鍵字查詢</label>
+								<label class="col-lg-2 control-label" for="prod_group">商品分類查詢</label>
 								<div class="col-lg-2">
-									<input type="text" class="form-control" name="prod_group"
-										id="prod_group">
+<!-- 									<input type="text" class="form-control" name="prod_group" id="prod_group"> -->
+									<select size="1" name="prod_group" id="prod_group" class="form-control">
+										<c:forEach var="prodVO" items="${ProdSvc.all}">
+											<option value="${prodVO.prod_group}">${prodVO.prod_group}</option>
+										</c:forEach>
+									</select>
 								</div>
 								<div class="col-lg-2">
 									<input type="button" value="商品分類關鍵字查詢" class="btn btn-warning">
@@ -270,7 +278,6 @@
 	<script>
 		!window.jQuery&& document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
 	</script>
-
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
 	<script src="<c:url value="../resources/js/jquery.validate.min.js" />"></script>
@@ -293,7 +300,7 @@
 					$('.insert_content').html(data);
 				})
 			})
-
+//查詢
 			$(function() {
 
 				$(":button").click(function() {

@@ -249,9 +249,24 @@
 			window.print();
 		})
 		
+//自定義驗證
+	//結束日期必須大於起始日期
+		$.validator.addMethod("compareDate",function(value,element,param){
+			
+            var begin = jQuery(param).val();
+            var end = value;
+            begin = new Date(parseInt(Date.parse(begin),10));
+            end = new Date(parseInt(Date.parse(end),10));
+            if(begin>end){
+                return false;
+            }else{
+                return true;
+            }
+        });
 		
-
 	})
+	
+
 </script>
 
 </body>

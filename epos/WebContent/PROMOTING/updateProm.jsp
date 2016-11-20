@@ -129,6 +129,31 @@
 
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 <script>
+	//----------------------------------------	驗證----------------------------------------	
+	$("#pord_upd_form").validate({
+		errorClass:"my-error-class",
+		validClass:"my-valid-class",
+		
+		rules:{
+			pro_prod_name: {required:true},
+			pro_end:{compareDate:$("input[name='pro_begin']"),required:true},
+			pro_neirong:{maxlength:70}
+		},
+		messages:{
+			pro_prod_name:{
+				required:"【請輸入促銷商品名稱】"
+			},
+			pro_end:{
+				required:"【請輸入商品截止日】",
+				compareDate:"【使用期限必须大於發行日期】"
+			},
+			pro_neirong:{
+				maxlength:"【範圍必須小於70字之間】"
+			}
+			
+		}
+	})	
+
 	$(function() {
 		$(":button").on('click', function() {
 			var update = $("#pord_upd_form");
@@ -151,31 +176,6 @@
 			}	
 		})
 		
-		// ----------------------------------------	驗證----------------------------------------	
-
-		$("#pord_upd_form").validate({
-			errorClass:"my-error-class",
-			validClass:"my-valid-class",
-			
-			rules:{
-				pro_prod_name: {required:true},
-				pro_end:{required:true},
-				pro_neirong:{maxlength:70}
-			},
-			messages:{
-				pro_prod_name:{
-					required:"【請輸入促銷商品名稱】"
-				},
-				pro_end:{
-					required:"【請輸入商品截止日】"
-				},
-				pro_neirong:{
-					maxlength:"【範圍必須小於70字之間】"
-				}
-				
-			}
-		})
-
 	})
 </script>	
 	

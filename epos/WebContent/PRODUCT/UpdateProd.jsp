@@ -9,28 +9,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>修改商品資料</title>
 <style>
-.titlelist {
-	font-family: '微軟正黑體';
-	font-weight: bold;
-	color: white;
-	height: 35px;
-	background: #99CCCC;
-	padding-left: 10px;
-	font-size: 23px;
-	border-radius: 2px;
-}
-
-.distance {
-	margin: 30px;
-}
-
-.form-horizontal .control-label {
-	text-align: right;
-}
+	.titlelist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: #99CCCC;
+		padding-left: 10px;
+		font-size: 23px;
+		border-radius: 2px;
+	}
+	
+	.distance {
+		margin: 30px;
+	}
+	
+	.form-horizontal .control-label {
+		text-align: right;
+	}
+	.my-valid-class{
+		color:#3a51e8;
+	}
+	
+	.my-error-class{
+		color:#1dc489;
+	}
 </style>
 </head>
 <body>
-
+	<jsp:useBean id="ComSvc" scope="page" class="com.company.model.ComService" />
 	<div class="titlelist">修改商品資料</div>
 		<div class="col-lg-12">
 	<p class="distance">
@@ -44,7 +51,7 @@
 			</font>
 		</c:if>
 		
-		<form method="post" action="updateProd.do" enctype="multipart/form-data" class="upd_prod form-horizontal" role="form">
+		<form method="post" action="updateProd.do" enctype="multipart/form-data" class="upd_prod form-horizontal" role="form" id="upd_prod_valid">
 				<div class="form-group">
 					<label class="col-lg-1 col-lg-offset-5 control-label">商品編號:</label>
 					<div class="col-lg-6">
@@ -58,10 +65,14 @@
 					</div>	
 				</div>	
 				<div class="form-group">	
-					<label class="col-lg-1 col-lg-offset-5 control-label">廠商編號:</label>
-					<div class="col-lg-6">
-						<input type="text" name="com_id" value="${prodVO.com_id}">
-					</div>
+					<label class="col-lg-1 col-lg-offset-5 control-label">廠商名稱:</label>
+					<div class="col-lg-1">
+						<select size="1" name="com_id" id="com_id" class="form-control">
+							<c:forEach var="ComVO" items="${ComSvc.all}">
+								<option value="${ComVO.com_id}">${ComVO.com_name}</option>
+							</c:forEach>
+						</select>
+					</div><div class="col-lg-5"></div>	
 				</div>	
 				<div class="form-group">	
 					<label class="col-lg-1 col-lg-offset-5 control-label">分類:</label>
@@ -139,29 +150,74 @@
 
 	<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 	<script type="text/JavaScript">
-		$(".upd_prod").on('submit', function(e) {
+	//----------------------------------------	驗證----------------------------------------	
+	$("#upd_prod_valid").validate({
+		errorClass:"my-error-class",
+		validClass:"my-valid-class",
+		
+		rules:{
+			prod_name: {required:true},
+			prod_group:{required:true},
+			prod_mkprice:{digits:true ,required:true,min:1},
+			prod_cost:{digits:true,required:true,min:1},
+			prod_q_safty:{min:1,required:true},
+			prod_spec:{maxlength:70},
+			remark:{maxlength:70},
+			status:{required:true}
+		},
+		messages:{
+			prod_name:{
+				required:"【請輸入商品名稱】"
+			},
+			prod_group:{
+				required:"【請輸入商品分類】"
+			},
+			prod_mkprice:{
+				required:"【請輸入商品定價】",
+				digits:"【必須是數字】",
+				min:"【數字至少大於1且不可為負】"
+			},
+			prod_cost:{
+				required:"【請輸入商品成本】",
+				digits:"【必須是數字】",
+				min:"【數字至少大於1且不可為負】"
+			},prod_q_safty:{
+				min:"【安全庫存量至少大於1且不可為負】",
+				required:"【請輸入安全庫存量】"		
+			},prod_spec:{
+				maxlength:"【範圍必須小於70字之間】"
+			},remark:{
+				maxlength:"【範圍必須小於70字之間】"
+			},status:{
+				required:"【請輸入商品狀態】"
+			}
+			
+		}
+	})	
+	//----------------------------------------	更新----------------------------------------	
+		$("#upd_prod_valid").on('submit', function(e) {
 			e.preventDefault();
 			var serializeData = $(this).serialize();
-
-			$(this).ajaxSubmit({
-				type : "post",
-				url : "updateProd.do",
-				data : serializeData,
-				contentType : false,
-				cache : false,
-				processData : false,
-				success : function(data) {
-					$.ajax({
-						"type" : "post",
-						"url" : "getAllProd.do",
-						"data" : {},
-						"success" : function(data) {
-							$(".result_content").html(data);
-						},
-					});
-				}
-			});
-
+			if($("#upd_prod_valid").valid()){
+				$(this).ajaxSubmit({
+					type : "post",
+					url : "updateProd.do",
+					data : serializeData,
+					contentType : false,
+					cache : false,
+					processData : false,
+					success : function(data) {
+						$.ajax({
+							"type" : "post",
+							"url" : "getAllProd.do",
+							"data" : {},
+							"success" : function(data) {
+								$(".result_content").html(data);
+							},
+						});
+					}
+				});
+			}
 		});
 	</script>
 </body>

@@ -16,7 +16,22 @@ public class ShiftreVO implements Serializable {
 	private  int deal_profit;
 	private  int deal_num;
 	private  int shift_sum;
+	private  int real_cash;
+	private  int real_coupon;
 	
+	
+	public int getReal_cash() {
+		return real_cash;
+	}
+	public void setReal_cash(int real_cash) {
+		this.real_cash = real_cash;
+	}
+	public int getReal_coupon() {
+		return real_coupon;
+	}
+	public void setReal_coupon(int real_coupon) {
+		this.real_coupon = real_coupon;
+	}
 	public Date getDate() {
 		return Date;
 	}

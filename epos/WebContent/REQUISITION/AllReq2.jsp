@@ -85,7 +85,7 @@ body {
 							<td>商品名稱</td>
 							<td>商品數量</td>
 						</tr>
-						<c:forEach var="detailVO" items="${list.reqDetails }"
+						<c:forEach var="detailVO" items="${reqDetaolList}"
 							varStatus="status">
 							<tr>
 								<td>${status.count}</td>

@@ -20,6 +20,8 @@
 		<property name="deal_profit" column="deal_profit" />
 		<property name="deal_num" column="deal_num" />
 		<property name="shift_sum" column="shift_sum" />
+		<property name="real_cash" column="real_cash" />
+		<property name="real_coupon" column="real_coupon" />
 
 	</class>
 </hibernate-mapping>

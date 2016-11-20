@@ -9,7 +9,7 @@
 <style>
 	.divser{
 		font-size: 20px;
-		background: #179090;
+		background: #3bafaf;
 		font-family: 微軟正黑體;
 		text-align: center;
 		color:white;

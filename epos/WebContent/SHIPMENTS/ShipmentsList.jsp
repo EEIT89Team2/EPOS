@@ -305,7 +305,9 @@ print(text)
 	
 	
 </thead>
-	<%for(int i=0;i<detailList.size();i++){ 
+	<%
+		if(detailList!=null){
+		for(int i=0;i<detailList.size();i++){ 
 				Order_DetailVO valuation_DetailVO = (Order_DetailVO)detailList.get(i);
 				ProdVO prodVO = (ProdVO)valuation_DetailVO.getProdVO();
 				
@@ -323,7 +325,8 @@ print(text)
 
 				</tr>
 <%-- 			</c:forEach> --%>
-			<%} %>
+			<%} 
+		}%>
 		
 </table>
 <br>

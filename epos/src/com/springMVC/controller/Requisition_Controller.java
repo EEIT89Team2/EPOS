@@ -53,7 +53,7 @@ public class Requisition_Controller {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/REQUISITION/getByReq_id.do")
-	public String getByReq_id(@RequestParam("req_id") String req_id, ModelMap model) {
+	public String getByReq_id(@RequestParam("req_id") String req_id, ModelMap model,HttpServletRequest request) {
 		/***************************
 		 * * 1.接收請求參數 - 輸入格式的錯誤處理
 		 *************************/
@@ -73,11 +73,15 @@ public class Requisition_Controller {
 		}
 		List<ReqVO> list = new LinkedList<ReqVO>();
 		list.add(reqVO);
+		
+		List<ReqDetailVO> reqDetaolList = new ReqDetailService().getByReqId(req_id);
 		/***************************
 		 * * 3.完成,準備轉交(Send the Success view)
 		 ***********/
-
-		model.addAttribute("list", list);
+		request.setAttribute("list", list);
+		request.setAttribute("reqDetaolList", reqDetaolList);
+		
+//		model.addAttribute("list", list);
 
 		return "/REQUISITION/AllReq2";
 	}

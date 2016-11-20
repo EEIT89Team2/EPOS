@@ -13,7 +13,8 @@
 	<property name="key_date" column="key_date"/>
 	<property name="status" column="status"/>
 	
-	<set name="reqDetails" table="REQUISITION_DETAIL" lazy="false"
+<!-- 	<set name="reqDetails" table="REQUISITION_DETAIL" lazy="false" -->
+	<set name="reqDetails" table="REQUISITION_DETAIL" lazy="true"
 		cascade="all" inverse="true" order-by="req_id asc">
 		<key><column name="req_id"/></key>
 		<one-to-many class="com.requisition_detail.model.ReqDetailVO"/>

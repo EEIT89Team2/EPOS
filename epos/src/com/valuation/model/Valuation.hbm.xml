@@ -16,7 +16,8 @@
 		<property name="key_date" column="key_date" />
 		<property name="exp_date" column="exp_date" />
 		
-		<set name="valuationdetails" table="Valuation_DETAIL" lazy="false"
+<!-- 		<set name="valuationdetails" table="Valuation_DETAIL" lazy="false" -->
+		<set name="valuationdetails" table="Valuation_DETAIL" lazy="true"
 		cascade="all" inverse="true" order-by="vlt_id asc">
 		<key><column name="vlt_id"></column></key>
 		<one-to-many class="com.valuation_detail.model.Valuation_DetailVO"/>

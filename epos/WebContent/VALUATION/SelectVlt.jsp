@@ -68,11 +68,15 @@
 	color: black;
 	font-weight: bold;
 }
+
+td{
+	text-align: center;
+}
 </style>
 
 </head>
 <body>
-	<div id="title">報價單明細</div>
+	<div id="title">報價單</div>
 	<table id="Vlt" border="2"
 		class="table table-bordered table-striped table-hover">
 		<thead>
@@ -105,10 +109,10 @@
 				<td>${list.exp_date}</td>
 				<td>${list.remark}</td>
 				<td>
-				<FORM METHOD="post" ACTION="Querydetail_DeleteVlt.do">
-				<button type="submit" name="action" class="btn btn-success"><i class="glyphicon glyphicon-search"></i></button>
+<!-- 				<FORM METHOD="post" ACTION="Querydetail_DeleteVlt.do"> -->
+				<input type="submit" name="action" value="Detail" class="btn btn-success" />
 				<input type="hidden" name="vlt_id" value="${list.vlt_id}">
-				</FORM>
+				</td>
 				</form>
 			</tr>
 		</c:forEach>

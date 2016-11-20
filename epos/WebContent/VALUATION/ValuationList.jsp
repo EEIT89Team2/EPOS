@@ -158,7 +158,7 @@ print(text)
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/VALUATION/valuation.jsp">報價單維護</a></li>
+						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
 					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/SHIPMENTS/shipments.jsp">出貨單維護</a></li>
@@ -215,7 +215,7 @@ print(text)
 				<div>
 				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　
 		    	<a href="#" onclick="window.open('searchList.jsp', 'RetrunItem', config='height=500,width=1200')"><span class="glyphicon glyphicon-search"></span>單筆查詢</a>　　
-		    	<a href="#" onclick="window.open('SelectVltAll.jsp', 'ValuationList', config='height=1050,width=1680')"><span class="glyphicon glyphicon-list-alt"></span>全部查詢</a>　　
+		    	<a href="#" onclick="window.open('SelectVltAll.jsp', 'ValuationList', config='height=800,width=1680')"><span class="glyphicon glyphicon-list-alt"></span>全部查詢</a>　　
 		    	<a href="SelectVltAllForCHK.jsp" ><span class="glyphicon glyphicon-list-alt"></span>審核</a>　　
 		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　
 		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>

@@ -4,67 +4,75 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
+<style>
+	.divser{
+		font-size: 20px;
+		background: #179090;
+		font-family: 微軟正黑體;
+		text-align: center;
+		color:white;
+	}
+	
+	.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{
+		background-color:#fbbbbb;
+	
+	}
+	
+	th{
+		text-align: center;
+	}
+
+
+</style>
 <title>查詢出貨單</title>
 </head>
 <body>
 
-<h1>出貨單</h1>
+	<div class="divser">出貨單查詢</div>
+	<div style="height: 20px;"></div>
+	
 
+<form method="post" action="getShipByShipId.do" class="form-inline">
+
+	<div class="form-group">
+		<label for="exampleInputName2">出貨單編號：</label>
+		<input type="text" name="ship_id" class="form-control">　
+		<button type="submit"class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>				 
+	</div> 　
+</form>
+
+<div style="height: 30px;"></div>
+<form method="post" action="getShipByOrdId.do" class="form-inline">
+	
+	<div class="form-group">
+		<label for="exampleInputName2">訂單編號：</label>　
+		<input type="text" name="ord_id" class="form-control">　
+		<button type="submit"class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>				 
+	</div> 　
+
+</form>
+
+
+<div style="height: 30px;"></div>
 <form method="post" action="getShipByDate.do">
 
-<table border="1">
+<table>
 		<tr>
 			<th>日期範圍(起)</th>
 			<th>日期範圍(迄)</th>
 		</tr>
 		<tr>
-		    <td><input type="date" name="dateBegin" value="2016-09-16"></td>
-			<td><input type="date" name="dateEnd" value="2016-10-16"></td>
+		    <td><input type="date" name="dateBegin" value="2016-09-16" class="form-control"></td>
+			<td><input type="date" name="dateEnd" value="2016-10-16" class="form-control"></td>
+			<td>　</td>
+			<td>
+				<button type="submit"class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>			
+			</td>
 		</tr>
-		</table>
-<br>
-<input type="submit" value="送出"/>
-
-</form>
-
-<!-- <hr><hr> -->
-<!-- <h3>查詢全部出貨單</h3> -->
-<!-- <form method="post" action="getAllShip.do" > -->
-<!-- <input type="submit"  value="查詢"> -->
-
-<!-- </form> -->
-
-<h3>依出貨單編號查詢</h3>
-
-
-<form method="post" action="getShipByShipId.do" >
-<table border="1">
-	<tr>
-		<th>出貨單編號</th>
-		<th>查詢</th>
-	</tr>
-	<tr>
-		<td><input type="text" name="ship_id"></td>
-		<td><input type="submit"  value="送出"></td>
-	</tr>
-</table>
-
-</form>
-
-<h3>依訂單編號查詢</h3>
-<form method="post" action="getShipByOrdId.do" >
-<table border="1">
-	<tr>
-		<th>訂單編號</th>
-		<th>查詢</th>
-	</tr>
-	<tr>
-		<td><input type="text" name="ord_id"></td>
-		<td><input type="submit"  value="送出"></td>
-	</tr>
 </table>
 </form>
-
 <!-- 	<a href="../index.jsp">回首頁</a> -->
 <!-- 	<a href="javascript:" onclick="history.back(); ">回上頁</a>  -->
 

@@ -31,7 +31,7 @@
 </head>
 <body>
 	<div class="divser">報價單查詢</div>
-	<div style="height: 10px;"></div>
+	<div style="height: 20px;"></div>
 	<form method="post" action="getVltDate.do" >
 
 		<table>

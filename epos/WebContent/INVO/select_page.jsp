@@ -121,9 +121,9 @@
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a class="active"
-				href="<%=request.getContextPath()%>/index.jsp"> <i
-					class="fa fa-dashboard"></i> <span>index</span>
+			<li class="mt"><a
+				href="<%=request.getContextPath()%>/ORDER/order.jsp"> <i
+					class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
 
 			<li class="sub-menu"><a href="javascript:;"> <i
@@ -167,7 +167,7 @@
 					<li><a
 						href="<%=request.getContextPath()%>/PROMOTING/promoting.jsp">促銷商品管理</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i
+			<li class="sub-menu"><a href="javascript:;" class="active"> <i
 					class="glyphicon glyphicon-log-out"></i> <span>退貨作業</span>
 			</a>
 				<ul class="sub">
@@ -175,7 +175,7 @@
 						href="<%=request.getContextPath()%>/RETURNS/Return_Items.jsp">退貨品管理</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/RETURNS/ReturnList.jsp">退貨單管理</a></li>
-					<li><a
+					<li class="active"><a
 						href="<%=request.getContextPath()%>/INVO/select_page.jsp">作廢發票管理</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i

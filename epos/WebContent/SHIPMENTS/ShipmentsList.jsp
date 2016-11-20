@@ -153,8 +153,8 @@ print(text)
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a class="active"
-				href="<%=request.getContextPath()%>/index.jsp"> <i
+			<li class="mt"><a
+				href="<%=request.getContextPath()%>/ORDER/order.jsp"> <i
 					class="fa fa-dashboard"></i> <span>index</span>
 			</a></li>
 
@@ -180,14 +180,14 @@ print(text)
 					<li><a
 						href="<%=request.getContextPath()%>/BILL_OF_PURCHASE/bop.jsp">進貨單維護</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i
+			<li class="sub-menu"><a href="javascript:;" class="active"> <i
 					class="glyphicon glyphicon-shopping-cart"></i> <span>銷貨系統</span>
 			</a>
 				<ul class="sub">
 					<li><a
 						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
 					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
-					<li><a
+					<li class="active"><a
 						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i

@@ -50,7 +50,7 @@
 			<td>${list.remark}</td>
 			<td>${list.status}</td>
 			<td><input type="submit" name="action" value="Detail" ></td>
-			<td><input type="submit" name="action" value="Logout" ></td>
+			<td><input type="submit" name="action" value="Revoke" ></td>
 <!-- 			<td><input type="submit" name="action" value="Delete" ></td> -->
 			<input type="hidden" name="ord_id" value="${list.ord_id}">
 			

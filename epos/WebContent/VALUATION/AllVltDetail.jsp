@@ -83,20 +83,20 @@ td{
 }
 
 
-#VltDet>thead:first-child>tr:first-child>td{
-	background: #428bca;
-	font-size: 20px;
-	font-family: 微軟正黑體;
-	text-align: center;
-	color: white;
-}
+/* #VltDet>thead:first-child>tr:first-child>td{ */
+/* 	background: #428bca; */
+/* 	font-size: 20px; */
+/* 	font-family: 微軟正黑體; */
+/* 	text-align: center; */
+/* 	color: white; */
+/* } */
 
-#VltDet-bordered>thead>tr>th, .table-bordered>tbody>tr>th,
-	.table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td,
-	.table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td{
-	border: 1px solid #2a5c88;
-	background: #ddefff;
-}
+/* #VltDet-bordered>thead>tr>th, .table-bordered>tbody>tr>th, */
+/* 	.table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, */
+/* 	.table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td{ */
+/* 	border: 1px solid #2a5c88; */
+/* 	background: #ddefff; */
+/* } */
 </style>
 <title>報價單明細資料</title>
 
@@ -115,7 +115,6 @@ td{
 				<td align='center'>修改日期</td>
 				<td align='center'>有效日期</td>
 				<td align='center'>備註</td>
-				<!-- 			</td>刪除</td> -->
 			</tr>
 		</thead>
 		

@@ -98,7 +98,7 @@ td{
 		<!--  			<tbody>  -->
 		<c:forEach var="list" items="${list}" varStatus="count">
 			<tr>
-				<form method="post" action="Querydetail_DeleteVlt.do">
+<!-- 				<form method="post" action="../VALUATION/Querydetail_DeleteVlt.do"> -->
 				<td>${list.vlt_id}</td>
 				<td>${list.vlt_date}</td>
 				<td>${list.delivery_date}</td>
@@ -109,11 +109,12 @@ td{
 				<td>${list.exp_date}</td>
 				<td>${list.remark}</td>
 				<td>
-<!-- 				<FORM METHOD="post" ACTION="Querydetail_DeleteVlt.do"> -->
-				<input type="submit" name="action" value="Detail" class="btn btn-success" />
-				<input type="hidden" name="vlt_id" value="${list.vlt_id}">
-				</td>
-				</form>
+
+				<FORM METHOD="post" ACTION="Querydetail_DeleteVlt.do">
+					<button type="submit" name="action" class="btn btn-success" value="Detail"><i class="glyphicon glyphicon-search"></i></button>
+					<input type="hidden" name="vlt_id" value="${list.vlt_id}">
+					</td>
+				</FORM>
 			</tr>
 		</c:forEach>
 		<!--  			</tbody>  -->

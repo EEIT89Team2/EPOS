@@ -225,11 +225,10 @@
 							</div>
 							<div class="form-group">
 								<label class="col-lg-1 col-lg-offset-4 control-label">照片:</label>
-								
-									<img alt="尚無名片" src="data:image/gif;base64,${comVO.picture}" class="col-lg-1">
-									<input type="hidden" name="picture" value="${comVO.picture}" class="col-lg-1">
-									<input type="file" name="newPicture">
-								
+									<img alt="尚無名片" src="data:image/gif;base64,${comVO.picture}"
+										class="col-lg-1"> <input type="hidden" name="picture"
+										value="${comVO.picture}" class="col-lg-1"> <input
+										type="file" name="newPicture">
 							</div>
 							<div class="form-group">
 								<label class="col-lg-1 col-lg-offset-4 control-label">修改人:</label>

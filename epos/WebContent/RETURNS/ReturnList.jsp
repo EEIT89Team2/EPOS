@@ -289,8 +289,8 @@ print(text)
 </thead>
 	<tr align='center' valign='middle'>
 	
-		<td><input type="TEXT" name="prod_name1"  value="iphone 6 16G 黑色" /></td>
-		<td><input type="TEXT" name="prod_quantity1" value="100" /></td>
+		<td><select type="TEXT" name="prod_name_select1" id="prod_name_select1"><option value="">請選擇商品</option></select><input type="hidden" id="prod_id1"  name="prod_id1" /><input type="hidden" id="prod_name1"  name="prod_name1" /></td>
+		<td><input type="TEXT" name="prod_quantity1"  id="prod_quantity1" value="0" readonly/></td>
 		<td><input type="TEXT" name="ret_reason1"  value="不能照相"/></td>
 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
 	</tr>
@@ -346,17 +346,57 @@ print(text)
 	})
 	
 	$(function() {
-		var a = 2;
+		
+		$.getJSON("getProd_DDL_rtn.do",{},function(data){
+			$.each(data,function(){
+				var SelectValue = this.SelectValue;
+				var SelectText = this.SelectText;
+				var opt=$("<option></option>").val(SelectValue).text(SelectText);
+				$('#prod_name_select1').append(opt);
+			})		
+		
+		$('#prod_name_select1').change(function(){
+								
+				var values = $('#prod_name_select1').val().split("^");
+				document.getElementById('prod_name1').value=values[0];
+				document.getElementById('prod_quantity1').value=values[1];
+// 				document.getElementById('prod_id1').value=values[0];
+				
+			})
+		
+		
+// 		var a = 2;
+		var a = 1;
 		$("#addNewDetail").click(function() {
-			$("#form2").append("<tr align='center' valign='middle'><td><input type='TEXT' name='prod_name"+a+"'/></td>"
-								+ "<td><input type='TEXT' name='prod_quantity"+a+"'/></td>"
-								+ "<td><input type='TEXT' name='ret_reason"+a+"' /></td>"
-								+ "<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td></tr>"
+			a = a + 1;
+			var b = a;
+			$("#form2").append("<tr align='center' valign='middle'>"
+					+ "<td><select id='prod_name_select"+a+"' name='prod_name_select"+a+"'><option value=''>請選擇商品</option></select><input type='hidden' id='prod_id"+a+"' name='prod_id"+a+"'/><input type='hidden' id='prod_name"+a+"' name='prod_name"+a+"'/></td>"
+					+ "<td><input type='TEXT' id ='prod_quantity"+a+"'  name='prod_quantity"+a+"' value='0' readonly/></td>"
+					+ "<td><input type='TEXT' name='ret_reason"+a+"' value=''/></td>"
+					+ "<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td></tr>"
 			)
-							a = a + 1;
+
+			$.getJSON("getProd_DDL_rtn.do",{},function(data){
+				$.each(data,function(){
+					var SelectValue = this.SelectValue;
+					var SelectText = this.SelectText;
+					var opt=$("<option></option>").val(SelectValue).text(SelectText);
+					$('#prod_name_select'+a).append(opt);
+				})		
+			
+			$('#prod_name_select'+a).change(function(){
+									
+					var values = $('#prod_name_select'+b).val().split("^");
+					document.getElementById('prod_name'+b).value=values[0];
+					document.getElementById('prod_quantity'+b).value=values[1];
+//	 				document.getElementById('prod_id1').value=values[0];
+					
+				})
+			})		
 		})
 	})
-	
+})
 
 //<!----------------------------------------  送出新增        ------------------------------------>
 		

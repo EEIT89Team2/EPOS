@@ -77,7 +77,30 @@
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->			
 <script type="text/JavaScript">
 $(document).ready(function() {
-// ----------------------------------------	新增----------------------------------------		
+
+// ----------------------------------------	驗證----------------------------------------	
+
+	$("#insert").validate({
+		errorClass:"my-error-class",
+		validClass:"my-valid-class",
+		
+		rules:{
+			dis_id: {required:true,maxlength:10},
+			dis_price:{required:true,number:true,range:[0.01,1]}
+		},
+		messages:{
+			dis_id:{
+				required:"【請輸入折扣身分】",
+				maxlength:"【輸入長度不可大於10】"
+			},
+			dis_price:{
+				required:"【請輸入折扣%數】",
+				number:"【請輸入數字】",
+				range:"【範圍必須介於0.01~1之間】"
+			}
+		}
+	})
+// ----------------------------------------	新增----------------------------------------			
 	$(":button[value='送出新增']").click(function() {
 
 		var insert = $("#insert");
@@ -104,28 +127,6 @@ $(document).ready(function() {
 		}	
 	})
 	
-// ----------------------------------------	驗證----------------------------------------	
-
-	$("#insert").validate({
-		errorClass:"my-error-class",
-		validClass:"my-valid-class",
-		
-		rules:{
-			dis_id: {required:true,maxlength:10},
-			dis_price:{required:true,number:true,range:[0.01,1]}
-		},
-		messages:{
-			dis_id:{
-				required:"【請輸入折扣身分】",
-				maxlength:"【輸入長度不可大於10】"
-			},
-			dis_price:{
-				required:"【請輸入折扣%數】",
-				number:"【請輸入數字】",
-				range:"【範圍必須介於0.01~1之間】"
-			}
-		}
-	})
 	
 })
 </script>

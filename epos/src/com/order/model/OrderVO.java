@@ -12,7 +12,7 @@ public class OrderVO implements Serializable {
 	private String ord_id;
 	private String vlt_id;
 	private String mem_id;
-	private java.util.Date ord_date;
+	private java.sql.Date ord_date;
 	private String discount;
 	private double total_price;
 	private double cash;
@@ -70,11 +70,11 @@ public class OrderVO implements Serializable {
 		this.mem_id = member_id;
 	}
 
-	public java.util.Date getOrd_date() {
+	public java.sql.Date getOrd_date() {
 		return ord_date;
 	}
 
-	public void setOrd_date(java.util.Date ord_date) {
+	public void setOrd_date(java.sql.Date ord_date) {
 		this.ord_date = ord_date;
 	}
 

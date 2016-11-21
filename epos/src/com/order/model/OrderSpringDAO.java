@@ -6,15 +6,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateTemplate;
-
 import com.employee.model.EmpVO;
 import com.order_detail.model.Order_DetailVO;
 import com.product.model.ProdVO;
-
 import hibernate.util.HibernateUtil;
 
 public class OrderSpringDAO implements Order_Interface {
@@ -181,6 +178,18 @@ public class OrderSpringDAO implements Order_Interface {
 		
 		return str;
 
+	}
+	
+	private static final String GET_ONE_STMT_ORDERDATEANDSHIFT = "from OrderVO where ord_date =? and shift =?";
+
+	@Override
+	public List<OrderVO> Select_ord_date_shift(Date s_ord_date, String shift) throws Exception {
+		System.out.println("OrdDAO");
+	
+		List<OrderVO> list = null;
+		list = hibernateTemplate.find(GET_ONE_STMT_ORDERDATEANDSHIFT,new Object[]{s_ord_date,shift});
+
+		return list;
 	}
 
 }

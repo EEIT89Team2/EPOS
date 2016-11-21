@@ -7,25 +7,24 @@ import java.util.Base64;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.company.model.ComService;
 import com.company.model.ComVO;
 import com.employee.model.EmpService;
 import com.employee.model.EmpVO;
+import com.order.model.OrderService;
+import com.order.model.OrderVO;
 import com.product.model.ProdService;
 import com.product.model.ProdVO;
 import com.shiftreport.model.ShiftreService;
@@ -41,6 +40,7 @@ public class Shiftreport_Controller {
 
 	
 	private final static ShiftreService shiftreSrv = new ShiftreService();
+	private final static OrderService ordSvc = new OrderService();
 	
 
 	
@@ -98,20 +98,48 @@ public class Shiftreport_Controller {
 		
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 
-		Date date = Date.valueOf(request.getParameter("Date"));
+//		Date date = Date.valueOf(request.getParameter("Date"));
 		String shift=request.getParameter("shift");
 		String emp_id=request.getParameter("emp_id");
-		int cash=Integer.parseInt(request.getParameter("cash"));
-		int coupon=Integer.parseInt(request.getParameter("coupon"));
+//		int cash=Integer.parseInt(request.getParameter("cash"));
+//		int coupon=Integer.parseInt(request.getParameter("coupon"));
 		int discount=Integer.parseInt(request.getParameter("discount"));
-		int coins=Integer.parseInt(request.getParameter("coins"));
-		int deal_sum=Integer.parseInt(request.getParameter("deal_sum"));
+//		int coins=Integer.parseInt(request.getParameter("coins"));
+//		int deal_sum=Integer.parseInt(request.getParameter("deal_sum"));
 		int deal_cost=Integer.parseInt(request.getParameter("deal_cost"));
 		int deal_profit=Integer.parseInt(request.getParameter("deal_profit"));
-		int deal_num=Integer.parseInt(request.getParameter("deal_num"));
-		int shift_sum=Integer.parseInt(request.getParameter("shift_sum"));
+//		int deal_num=Integer.parseInt(request.getParameter("deal_num"));
+//		int shift_sum=Integer.parseInt(request.getParameter("shift_sum"));
+//		ProdService prodSrv = new ProdService();
+		Long now = new java.util.Date().getTime();
+		Date date = new Date(now);
+		
+		System.out.println("1="+shift);
+		System.out.println("1="+date);
 
+		int cash = 0;
+		int coupon = 0;
+		int deal_sum = 0;
+		int shift_sum = 0;
+		int real_cash = 0;
+		int real_coupon = 0;
+		List<OrderVO> listAll = ordSvc.getDateAndShift(date, shift);
+		System.out.println(listAll);
+		for(OrderVO orderVO: listAll){
+			cash = cash+(int) orderVO.getCash();
+			coupon = orderVO.getCpon_dollar();
+			deal_sum = (int) orderVO.getTotal_price();
+			System.out.println(cash);
+			System.out.println(coupon);
+			System.out.println(deal_sum);
+		}
+		System.out.println(cash);
+		System.out.println(coupon);
+		System.out.println(deal_sum);
 
+		int coins = 20000+deal_sum;
+		int deal_num = (int)ordSvc.GetDayTotalPeople();
+		
 		ShiftreVO shiftreVO = new ShiftreVO();
 		
 		shiftreVO.setDate(date);
@@ -126,6 +154,8 @@ public class Shiftreport_Controller {
 		shiftreVO.setDeal_profit(deal_profit);
 		shiftreVO.setDeal_num(deal_num);
 		shiftreVO.setShift_sum(shift_sum);
+		shiftreVO.setReal_cash(real_cash);
+		shiftreVO.setReal_coupon(real_coupon);
 		/*************************** 2.永續層存取 ***************************************/
 		shiftreSrv.insertOne(shiftreVO);
 		List list = shiftreSrv.getAll();

@@ -361,7 +361,8 @@ print(text)
 						<div style="height: 20px;"></div>
 						<div class="form-group">
 							<label for="exampleInputName2">　今 日 天 氣：</label> 
-							<input type="text" value="${weather.nowWeather}" name="emp_name" class="form-control" disabled>
+							<input type="text" value="${weather.nowWeather}" name="txtnowWeather" class="form-control" disabled>
+							<input type="hidden" value="${weather.nowWeather}" name="nowWeather">
 						</div>
 							
 						</tr>

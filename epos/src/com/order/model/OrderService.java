@@ -135,7 +135,10 @@ public class OrderService {
 	
 	public String getOneTopOrdId() throws Exception{
 		
-		return ord_dao.getOneTopOrdId();
-		
+		return ord_dao.getOneTopOrdId();				
 	}
+	public List<OrderVO> getDateAndShift(Date s_ord_date,String shift) throws Exception{
+		
+		return ord_dao.Select_ord_date_shift(s_ord_date, shift);
+	}	
 }

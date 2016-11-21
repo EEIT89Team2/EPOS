@@ -180,13 +180,14 @@ public class OrderSpringDAO implements Order_Interface {
 
 	}
 	
-	private static final String GET_ONE_STMT_ORDERDATEANDSHIFT = "from OrderVO where ord_date = ? and shift = ?";
+	private static final String GET_ONE_STMT_ORDERDATEANDSHIFT = "from OrderVO where ord_date =? and shift =?";
 
 	@Override
-	public List Select_ord_date_shift(Date s_ord_date, String shift) throws Exception {
-
+	public List<OrderVO> Select_ord_date_shift(Date s_ord_date, String shift) throws Exception {
+		System.out.println("OrdDAO");
+	
 		List<OrderVO> list = null;
-		list = hibernateTemplate.find(GET_ONE_STMT_ORDERDATEANDSHIFT,s_ord_date, shift);
+		list = hibernateTemplate.find(GET_ONE_STMT_ORDERDATEANDSHIFT,new Object[]{s_ord_date,shift});
 
 		return list;
 	}

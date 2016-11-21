@@ -142,6 +142,9 @@ public class Order_Controller extends HttpServlet {
 			String key_id = request.getParameter("key_id");
 			// String key_id = "E00005";//先寫死
 
+			String nowWeather= request.getParameter("nowWeather");
+			System.out.println("nowWeather="+nowWeather);
+			
 			if (key_id == null || key_id.trim().length() == 0) {
 				errorMsgs.add("修改人員請勿空白");
 			}
@@ -164,7 +167,7 @@ public class Order_Controller extends HttpServlet {
 			// ordVO.setOrd_id(ord_id);
 			ordVO.setVlt_id(vlt_id);
 			ordVO.setMem_id(mem_id);
-			ordVO.setOrd_date(new java.util.Date(utilDate.getTime()));
+			ordVO.setOrd_date(new java.sql.Date(utilDate.getTime()));
 			ordVO.setDiscount(discount);
 			ordVO.setTotal_price(Double.valueOf(total_price));
 			ordVO.setCash(Double.valueOf(cash));
@@ -177,6 +180,8 @@ public class Order_Controller extends HttpServlet {
 			ordVO.setShift(shift);
 			ordVO.setKey_id(key_id);
 			ordVO.setKey_date(key_date);
+			ordVO.setWeather(nowWeather);
+			
 
 			// setOrd明細檔參數
 			List<Order_DetailVO> list = new LinkedList<Order_DetailVO>();

@@ -37,7 +37,8 @@ public class ShiftreDAO implements ShiftreDAO_interface {
 	public ShiftreVO findByPrimaryKey(Date Date, String shift) {
 		ShiftreVO shiftreVO = null;
 		List<ShiftreVO> list = hibernateTemplate.find("from ShiftreVO where Date=? and shift=?",new Object[]{Date,shift});	
-			
+		System.out.println("2="+shift);
+		System.out.println("2="+Date);
 			for(ShiftreVO shiftreVO1 : list){
 				shiftreVO=shiftreVO1;
 			}

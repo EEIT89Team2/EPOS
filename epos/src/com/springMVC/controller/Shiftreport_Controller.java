@@ -113,22 +113,29 @@ public class Shiftreport_Controller {
 //		ProdService prodSrv = new ProdService();
 		Long now = new java.util.Date().getTime();
 		Date date = new Date(now);
+		
+		System.out.println("1="+shift);
+		System.out.println("1="+date);
+
 		int cash = 0;
 		int coupon = 0;
 		int deal_sum = 0;
 		int shift_sum = 0;
 		int real_cash = 0;
 		int real_coupon = 0;
-		List<OrderVO> listAll = ordSvc.getDateAndShift(date,shift);
-
+		List<OrderVO> listAll = ordSvc.getDateAndShift(date, shift);
+		System.out.println(listAll);
 		for(OrderVO orderVO: listAll){
 			cash = cash+(int) orderVO.getCash();
-			coupon = coupon+orderVO.getCpon_dollar();
-			deal_sum += orderVO.getTotal_price();
+			coupon = orderVO.getCpon_dollar();
+			deal_sum = (int) orderVO.getTotal_price();
 			System.out.println(cash);
 			System.out.println(coupon);
 			System.out.println(deal_sum);
 		}
+		System.out.println(cash);
+		System.out.println(coupon);
+		System.out.println(deal_sum);
 
 		int coins = 20000+deal_sum;
 		int deal_num = (int)ordSvc.GetDayTotalPeople();
@@ -147,6 +154,8 @@ public class Shiftreport_Controller {
 		shiftreVO.setDeal_profit(deal_profit);
 		shiftreVO.setDeal_num(deal_num);
 		shiftreVO.setShift_sum(shift_sum);
+		shiftreVO.setReal_cash(real_cash);
+		shiftreVO.setReal_coupon(real_coupon);
 		/*************************** 2.永續層存取 ***************************************/
 		shiftreSrv.insertOne(shiftreVO);
 		List list = shiftreSrv.getAll();

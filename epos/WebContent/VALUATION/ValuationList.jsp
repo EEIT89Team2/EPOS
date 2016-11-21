@@ -9,6 +9,9 @@
  		Valuation_DetailVO vltDetailVO = (Valuation_DetailVO) request.getAttribute("Vlt_id");
  		session.getAttribute("LoginOK");
  		
+ 		Date nowDate =new java.sql.Date(System.currentTimeMillis());
+ 		pageContext.setAttribute("nowDate",nowDate);
+ 		
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -125,7 +128,7 @@ print(text)
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="login.html">Logout</a></li>
+			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -173,7 +176,7 @@ print(text)
 				<ul class="sub">
 					<li class="active"><a
 						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
-					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/ordmain.jsp">訂單維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
@@ -242,7 +245,7 @@ print(text)
 	<tr>
 		<div class="form-group">
 			<label for="exampleInputName2">　　報價日期 ：</label>
-			<input type="date" class="form-control" name="vlt_date" value="" />	
+			<input type="date" class="form-control" name="vlt_date" value="${nowDate}" />	
 		</div>　　
 		<div class="form-group">
 			<label for="exampleInputName2">交貨日期 ：</label>
@@ -258,7 +261,7 @@ print(text)
 		</div>　　
 		<div class="form-group">
 			<label for="exampleInputName2"> 修改日期 ：</label>
-			<input type="date" class="form-control" name="key_date" />
+			<input type="date" class="form-control" name="key_date" value="${nowDate}" />
 		</div>
 		<div style="height: 10px;"></div>
 		<div class="form-group">
@@ -300,34 +303,6 @@ print(text)
 		<td><input type="TEXT" name="prod_price1" id="prod_price1" value="0" readonly/><input type="hidden" name="total_prod_price1" id="total_prod_price1" value="0"/></td>
 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
 	</tr>
-<!-- 	<tr align='center' valign='middle'> -->
-<!-- 		<td><input type="TEXT" name="prod_id2"  value="" /></td> -->
-<!-- 		<td><input type="TEXT" name="prod_name2"  value="" /></td> -->
-<!-- 		<td><input type="TEXT" name="prod_quantity2" value="" /></td> -->
-<!-- 		<td><input type="TEXT" name="prod_price2" id="prod_price2" value=""/></td> -->
-<!-- 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td> -->
-<!-- 	</tr> -->
-<!-- 	<tr align='center' valign='middle'> -->
-<!-- 		<td><input type="TEXT" name="prod_id3"  value="" /></td> -->
-<!-- 		<td><input type="TEXT" name="prod_name3"  value="" /></td> -->
-<!-- 		<td><input type="TEXT" name="prod_quantity3" value="" /></td> -->
-<!-- 		<td><input type="TEXT" name="prod_price3" id="prod_price3" value=""/></td> -->
-<!-- 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td> -->
-<!-- 	</tr> -->
-<!-- 	<tr align='center' valign='middle'> -->
-<!-- 		<td><input type="TEXT" name="prod_id4"  value="" /></td> -->
-<!-- 		<td><input type="TEXT" name="prod_name4"  value="" /></td> -->
-<!-- 		<td><input type="TEXT" name="prod_quantity4" value="" /></td> -->
-<!-- 		<td><input type="TEXT" name="prod_price4" id="prod_price4" value=""/></td> -->
-<!-- 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td> -->
-<!-- 	</tr> -->
-<!-- 	<tr align='center' valign='middle'> -->
-<!-- 		<td><input type="TEXT" name="prod_id5"  value="" /></td> -->
-<!-- 		<td><input type="TEXT" name="prod_name5"  value="" /></td> -->
-<!-- 		<td><input type="TEXT" name="prod_quantity5" value="" /></td> -->
-<!-- 		<td><input type="TEXT" name="prod_price5" id="prod_price5" value=""/></td> -->
-<!-- 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td> -->
-<!-- 	</tr> -->
 		
 </table>
 <br>

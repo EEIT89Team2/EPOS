@@ -22,7 +22,26 @@
 	rel="stylesheet">
 
 <title>member</title>
+<style>
+.navbar-default {
+	background: #D2E9FF;
+}
 
+.titlelist {
+	font-family: '微軟正黑體';
+	font-weight: bold;
+	color: white;
+	height: 35px;
+	background: #66B3FF;
+	padding-left: 10px;
+	font-size: 23px;
+	border-radius: 2px;
+}
+
+.glyphicon {
+	top: auto;
+}
+</style>
 </head>
 
 <body>
@@ -54,15 +73,16 @@
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp"> <i
-					class="fa fa-dashboard"></i> <span>index</span>
+			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp">
+					<i class="fa fa-dashboard"></i> <span>index</span>
 			</a></li>
 
-			<li class="sub-menu"><a href="javascript:;" class="active"> <i
-					class="fa fa-desktop"></i> <span>基本資料維護</span>
+			<li class="sub-menu"><a href="javascript:;" class="active">
+					<i class="fa fa-desktop"></i> <span>基本資料維護</span>
 			</a>
 				<ul class="sub">
-					<li class="active"><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
+					<li class="active"><a
+						href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/EMPLOYEE/employee.jsp">員工資料維護</a></li>
 					<li><a
@@ -133,116 +153,123 @@
 	</aside> <!--sidebar end--> <section id="main-content"> <section
 		class="wrapper">
 	<div class="row mt">
-		<nav class="nav navbar-default">
-		<div class="container-fluid"
-			style="float: right; left: -50%; position: relative;">
-			<ul class="nav navbar-nav"
-				style="float: left; left: 50%; position: relative;">
-				<li><a style="background-color: rgba(224, 224, 224, 0.7);">搜尋</A></li>
-				<li><a href="addMem.jsp">新增</a></li>
-				<li><a href="#">查詢結果</a></li>
-			</ul>
-		</div>
-		</nav>
-		<div class="col-lg-6"
-			style="float: right; left: -20%; position: relative;">
-			<div class="form-panel">
-			<jsp:useBean id="MemSvc" scope="page" class="com.member.model.MemberService" />
-				<h4 class="mb">
-					<i class="fa fa-angle-right"></i> 查詢
-				</h4>
-				<%-- 錯誤表列 --%>
-				<c:if test="${not empty param.message}">
-					<font color='red'>請修正以下錯誤:
-						<ul>
+		<div class="col-lg-12">
+			<nav class="nav navbar-default">
+			<div class="tab-content">
+				<ul class="nav navbar-nav">
+					<li><a style="background-color: rgba(172, 214, 255, 0.6);" class="glyphicon glyphicon-search">搜尋</A></li>
+					<li><a href="addMem.jsp" class="glyphicon glyphicon-file">新增</a></li>
+					<li><a href="#" class="glyphicon glyphicon-list-alt">查詢結果</a></li>
+				</ul>
+			</div>
+			</nav>
+			<div class="tab-content">
+				<div>
+					<jsp:useBean id="MemSvc" scope="page"
+						class="com.member.model.MemberService" />
+					<div class="titlelist">查詢會員資料</div>
+					<div class="col-lg-12  main">
+						<p>
+							<%-- 錯誤表列 --%>
+							<c:if test="${not empty param.message}">
+								<font color='red'>請修正以下錯誤:
+									<ul>
+										
 							<c:forEach var="message" items="${param.message}">
-								<li>${message}</li>
-							</c:forEach>
+											<li>${message}</li>
+										</c:forEach>
+									
 						</ul>
-					</font>
-				</c:if>
-
-				<form method="post" action="Memb.do"
-					class="form-horizontal style-form">
-					<div class="form-group">
-						<label class="col-sm-5 col-sm-3 control-label">依會員編號搜尋</label>
-						<div class="col-sm-3">
-							<b>選擇會員ID:</b> 
-							<select size="1" name="mem_id">
-								<c:forEach var="memVO" items="${MemSvc.all}">
-									<option value="${memVO.mem_id}">${memVO.mem_id}
-								</c:forEach>
-							</select>
-						</div>
-						<div class="col-sm-4">
-							<input type="submit" value="依會員編號搜尋" class="btn btn-round btn-theme03"> 
-							<input type="hidden" name="action" value="getOne_For_Display">
-						</div>
+								</font>
+							</c:if>
+						<form method="post" action="Memb.do"
+								class="form-horizontal style-form">
+							<div class="form-group"><div class="col-lg-2"></div>
+								<label class="col-lg-2 control-label">依會員編號搜尋</label>
+								<div class="col-lg-4">
+									<select size="1" name="mem_id">
+										<c:forEach var="memVO" items="${MemSvc.all}">
+											<option value="${memVO.mem_id}">${memVO.mem_id}
+										
+											</c:forEach>
+									</select>
+								</div>
+								<div class="col-lg-2">
+									<input type="submit" value="依會員編號搜尋"
+											class="btn  btn-theme03"> <input
+											type="hidden" name="action" value="getOne_For_Display">
+								</div>
+							</div>
+						</form>
+						<form method="post" action="Memb.do"
+								class="form-horizontal style-form">
+							<div class="form-group"><div class="col-lg-2"></div>
+								<label class="col-lg-2 control-label">依會員姓名搜尋</label>
+								<div class="col-lg-4">
+									<select size="1" name="mem_id">
+										<c:forEach var="memVO" items="${MemSvc.all}">
+											<option value="${memVO.mem_id}">${memVO.mem_name}
+										
+											</c:forEach>
+									</select>
+								</div>
+								<div class="col-lg-2">
+									<input type="submit" value="依會員姓名搜尋"
+											class="btn  btn-theme03"> <input
+											type="hidden" name="action" value="getOne_For_Display">
+								</div>
+							</div>
+						</form>
+						<form method="post" action="idsMemb.do"
+								class="form-horizontal style-form">
+							<div class="form-group"><div class="col-lg-2"></div>
+								<label class="col-lg-2 control-label">搜尋多筆會員</label>
+								<div class="col-lg-4">
+									<select size="1" name="mem_id_1">
+										<c:forEach var="memVO" items="${MemSvc.all}">
+											<option value="${memVO.mem_id}">${memVO.mem_id}
+										
+											</c:forEach>
+									</select> <select size="1" name="mem_id_2">
+										<c:forEach var="memVO" items="${MemSvc.all}">
+											<option value="${memVO.mem_id}">${memVO.mem_id}
+										
+											</c:forEach>
+									</select>
+								</div>
+								<div class="col-lg-2">
+									<input type="submit" value="搜尋多筆會員"
+											class="btn  btn-theme03">
+								</div>
+							</div>
+						</form>
+						<form method="post" action="datesMem.do"
+								class="form-horizontal style-form">
+							<div class="form-group"><div class="col-lg-2"></div>
+								<label class="col-lg-2 control-label">依新增日期搜尋</label>
+								<div class="col-lg-4">
+									<input type="date" name="key_date_1">
+									<input type="date" name="key_date_2">
+								</div>
+								<div class="col-lg-2">
+									<input type="submit" value="依新增日期搜尋"
+											class="btn  btn-theme03">
+								</div>
+							</div>
+						</form>
+						<form method="post" action="allMemb.do"
+								class="form-horizontal style-form">
+							<div class="form-group"><div class="col-lg-2"></div>
+								<label class="col-lg-2 control-label">查詢全部</label>
+								<div class="col-lg-4"></div>
+								<div class="col-lg-2">
+									<input type="submit" value="查詢全部"
+											class="btn  btn-theme03">
+								</div>
+							</div>
+						</form>
 					</div>
-				</form>
-				<form method="post" action="Memb.do"
-					class="form-horizontal style-form">
-					<div class="form-group">
-						<label class="col-sm-5 col-sm-3 control-label">依會員姓名搜尋</label>
-						<div class="col-sm-3">
-							<b>選擇會員姓名:</b> 
-							<select size="1" name="mem_id">
-								<c:forEach var="memVO" items="${MemSvc.all}">
-									<option value="${memVO.mem_id}">${memVO.mem_name}
-								</c:forEach>
-							</select>
-						</div>
-						<div class="col-sm-4">
-							<input type="submit" value="依會員姓名搜尋" class="btn btn-round btn-theme03"> 
-							<input type="hidden" name="action" value="getOne_For_Display">
-						</div>
-					</div>
-				</form>
-				<form method="post" action="idsMemb.do"
-					class="form-horizontal style-form">
-					<div class="form-group">
-						<label class="col-sm-5 col-sm-3 control-label">搜尋多筆會員</label>
-						<div class="col-sm-3">
-							<b>查詢會員(多):</b> 
-							<select size="1" name="mem_id_1">
-								<c:forEach var="memVO" items="${MemSvc.all}">
-									<option value="${memVO.mem_id}">${memVO.mem_id}
-								</c:forEach>
-							</select> 
-							<select size="1" name="mem_id_2">
-								<c:forEach var="memVO" items="${MemSvc.all}">
-									<option value="${memVO.mem_id}">${memVO.mem_id}
-								</c:forEach>
-							</select>
-						</div>
-						<div class="col-sm-4">
-							<input type="submit" value="搜尋多筆會員" class="btn btn-round btn-theme03">
-						</div>
-					</div>
-				</form>
-				<form method="post" action="datesMem.do" class="form-horizontal style-form">
-					<div class="form-group">
-						<label class="col-sm-5 col-sm-3 control-label">依新增日期搜尋</label>
-						<div class="col-sm-3">
-							<b>查詢新增會員日期:</b> 
-							<input type="date" name="key_date_1"> 
-							<input type="date" name="key_date_2">
-						</div>
-						<div class="col-sm-4">
-							<input type="submit" value="依新增日期搜尋" class="btn btn-round btn-theme03">
-						</div>
-					</div>
-				</form>
-				<form method="post" action="allMemb.do"
-					class="form-horizontal style-form">
-					<div class="form-group">
-						<label class="col-sm-5 col-sm-3 control-label">查詢全部</label>
-						<div class="col-sm-3"></div>
-						<div class="col-sm-4">
-							<input type="submit" value="查詢全部" class="btn btn-round btn-theme03">
-						</div>
-					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>

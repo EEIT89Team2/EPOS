@@ -13,6 +13,9 @@
 		
 		session.getAttribute("LoginOK");
 		List detailList = (List)request.getAttribute("detailList");
+		
+		Date nowDate =new java.sql.Date(System.currentTimeMillis());
+		pageContext.setAttribute("nowDate",nowDate);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -150,7 +153,7 @@ print(text)
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="login.html">Logout</a></li>
+			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -167,7 +170,7 @@ print(text)
 
 			<li class="mt"><a
 				href="<%=request.getContextPath()%>/ORDER/order.jsp"> <i
-					class="fa fa-dashboard"></i> <span>index</span>
+					class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
 
 			<li class="sub-menu"><a href="javascript:;"> <i
@@ -198,7 +201,7 @@ print(text)
 				<ul class="sub">
 					<li><a
 						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
-					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/ordmain.jsp">訂單維護</a></li>
 					<li class="active"><a
 						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
@@ -266,7 +269,7 @@ print(text)
 	<tr>
 		<div id="form" class="form-group">
 			<label for="exampleInputName2">訂單編號 ：</label>
-			<input type="text" class="form-control" name="ord_id" value="${ordVO.ord_id}" />
+			<input type="text" class="form-control" name="ord_id" value="${ordVO.ord_id}" readonly />
 		</div>
 		<div id="group" class="form-group">　
 			<label for="exampleInputName2">收件人姓名 ：</label>
@@ -278,16 +281,16 @@ print(text)
 		</div>
 		<div id="group" class="form-group">
 			<label for="exampleInputName2">出貨日期 ：</label>
-			<input type="date" class="form-control" name="ship_date" />
+			<input type="date" class="form-control" name="ship_date" value="${nowDate}" />
 		</div>
 		<div id="group" class="form-group">
 			<label for="exampleInputName2">修改人員 ：</label>
-			<input type="text" class="form-control" name="key_id" value="${LoginOK.emp_id}" />
+			<input type="text" class="form-control" name="key_id" value="${LoginOK.emp_id}" readonly />
 		</div>
 		<div style="height: 15px;"></div>
 		<div id="group" class="form-group">
 			<label for="exampleInputName2">備　註：</label>
-			<input type="text" class="form-control" name="remark" value="test" />
+			<input type="text" class="form-control" name="remark" value="" />
 		</div>
 	</tr>
 </table>

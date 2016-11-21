@@ -1,8 +1,11 @@
 package com.springMVC.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -348,6 +352,39 @@ public class RtnItems_Controller extends HttpServlet {
 			return "/RETURNS/Return_Items";
 		}
 	
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = { "/getProd_DDL_itm.do","/RETURNS/getProd_DDL_itm.do" })
+	public void getProd_DDL_itm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setCharacterEncoding("UTF8");
+		PrintWriter out = response.getWriter();
+		/************************
+		 * 1.接收請求參數 - 輸入格式的錯誤處理
+		 *************************/
+		String prod_id = request.getParameter("prod_id");
+		/*************************** 2.開始查詢資料 *****************************************/
+		// OrderService ordSvc = new OrderService();
+		List<ProdVO> list = null;
+		List<Map> prodlist = new LinkedList();
+		try {
+			
+			ProdService prodSvc = new ProdService();
+			list = prodSvc.getAll();
+			
+			for(ProdVO prodVO : list){
+				Map map = new HashMap();
+				map.put("SelectValue",prodVO.getProd_name());
+				map.put("SelectText", prodVO.getProd_name());
+				prodlist.add(map);
+			}
+			
+			String jsonString = JSONValue.toJSONString(prodlist);
+			out.println(jsonString);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 }

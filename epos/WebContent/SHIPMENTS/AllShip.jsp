@@ -132,7 +132,6 @@
 </c:forEach>
 	</table>
 	
-		<a href="ShipmentsList.jsp"><i class="glyphicon glyphicon-th-list"></i>¡@¥X³f³æ</a></br>
 	
 <script type="text/javascript"
 		src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>

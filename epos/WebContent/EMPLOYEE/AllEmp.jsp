@@ -23,7 +23,59 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
 <title>全部員工基本資料</title>
+<style>
+
+/* 	表格標題 */
+.table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>th,
+	.table>thead:first-child>tr:first-child>th, .table>caption+thead>tr:first-child>td,
+	.table>colgroup+thead>tr:first-child>td, .table>thead:first-child>tr:first-child>td
+	{
+	font-weight: bold;
+	text-align: center;
+	background: steelblue;
+}
+
+/* 	表格內容偶數 */
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th,
+	.table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td,
+	.table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
+ 	background: lightgray; 
+}
+/* 	表格內容單數 */
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th
+	{
+	background: lightgray;
+}
+
+/* 	表格偶數滑鼠指向 */
+.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+	background-color: lightsteelblue;
+}
+
+.titlelist {
+	font-family: '微軟正黑體';
+	font-weight: bold;
+	color: white;
+	height: 35px;
+	background: #66B3FF;
+	padding-left: 10px;
+	font-size: 23px;
+	border-radius: 2px;
+}
+.glyphicon {
+	top: auto;
+}
+.navbar-default {
+	background: #D2E9FF;
+}
+table {
+    font-size: small;
+}
+
+</style>
 </head>
 <body>
 	<section id="container"> <!--header start--> <header
@@ -53,12 +105,12 @@
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp"> <i
-					class="fa fa-dashboard"></i> <span>index</span>
+			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp">
+					<i class="fa fa-dashboard"></i> <span>index</span>
 			</a></li>
 
-			<li class="sub-menu"><a href="javascript:;" class="active"> <i
-					class="fa fa-desktop"></i> <span>基本資料維護</span>
+			<li class="sub-menu"><a href="javascript:;" class="active">
+					<i class="fa fa-desktop"></i> <span>基本資料維護</span>
 			</a>
 				<ul class="sub">
 					<li><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
@@ -131,40 +183,42 @@
 	</div>
 	</aside> <!--sidebar end--> <section id="main-content"> <section
 		class="wrapper">
-	<div class="row mt">
+	<div class="row mt"><div class="col-lg-12">
 		<nav class="nav navbar-default">
-		<div class="container-fluid"
-			style="float: right; left: -40%; position: relative;">
+		<div class="tab-content">
 			<ul class="nav navbar-nav">
-				<li><a href="employee.jsp">搜尋</a></li>
-				<li><a href="addEmp.jsp">新增</a></li>
-				<li><a href="SetPassCode.jsp">修改權限</a></li>
-				<li><a style="background-color: rgba(224, 224, 224, 0.7);">查詢結果</a></li>
+				<li><a href="employee.jsp" class="glyphicon glyphicon-search">搜尋</a></li>
+				<li><a href="addEmp.jsp" class="glyphicon glyphicon-file">新增</a></li>
+				<li><a href="SetPassCode.jsp" class="glyphicon glyphicon-lock">修改權限</a></li>
+				<li><a style="background-color: rgba(172, 214, 255, 0.6);"
+					class="glyphicon glyphicon-list-alt">查詢結果</a></li>
 			</ul>
 		</div>
 		</nav>
+		<div class="titlelist">員工資料清單</div>
 		<center>
-			<table border="1" bordercolor='#CCCCFF'>
-				<tr>
-					<th>員編</th>
-					<th>密碼</th>
-					<th>姓名</th>
-					<th>性別</th>
-					<th>身分證字號</th>
-					<th>地址</th>
-					<th>電子信箱</th>
-					<th>電話</th>
-					<th>生日</th>
-					<th>到職日</th>
-					<th>離職日</th>
-					<th>照片</th>
-					<th>修改人</th>
-					<th>修改時間</th>
-					<th>權限</th>
-					<th>修改</th>
-					<th>刪除</th>
-				</tr>
-
+			<table border="1" bordercolor='#CCCCFF' id="table1"
+				class="table table-bordered table-striped  table-hover">
+				<thead>
+					<tr>
+						<th>員編</th>
+						<th>密碼</th>
+						<th>姓名</th>
+						<th>性別</th>
+						<th>身分證字號</th>
+						<th>地址</th>
+						<th>電子信箱</th>
+						<th>電話</th>
+						<th>生日</th>
+						<th>到職日</th>
+						<th>離職日</th>
+						<th>照片</th>
+						<th>修改人</th>
+						<th>修改時間</th>
+						<th>修改</th>
+						<th>刪除</th>
+					</tr>
+				</thead>
 				<c:forEach var="list" items="${list}" varStatus="count">
 					<form method="post" action="updateDeleteEmp.do">
 						<tr>
@@ -183,21 +237,17 @@
 								src="data:image/gif;base64,${list.picture}"></td>
 							<td>${list.key_id}</td>
 							<td>${list.key_date}</td>
-							<td>${list.pass_code}</td>
-							<td>
-								<input type="submit" name="action" class="btn btn btn-xs" value="update">
-							</td>
-							<td>
-								<input type="submit" name="action" class="btn btn btn-xs" value="delete">
-							</td>
-								<input type="hidden" name="emp_id" value="${list.emp_id}">
+							<td><input type="submit" name="action"
+								class="btn btn btn-xs" value="update"></td>
+							<td><input type="submit" name="action"
+								class="btn btn btn-xs" value="delete"></td>
+							<input type="hidden" name="emp_id" value="${list.emp_id}">
 						</tr>
-
 					</form>
 				</c:forEach>
 			</table>
 		</center>
-	</div>
+	</div></div>
 	</section> </section> </section>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -207,12 +257,22 @@
 						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
 	</script>
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
+	<script type="text/javascript"
+		src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
 	<script class="include" type="text/javascript"
 		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
-	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />" ㄒ
+	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"
 		type="text/javascript"></script>
+
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
+	<!------------------------------------------------ 程式 --------------------------------------------------------------->
+	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"type="text/javascript"></script>
+<!-- <script>
+	$(function () {
+$('#table1').DataTable();
+	})
+</script> -->
 </body>
 </html>

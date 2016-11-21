@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Bootstrap core CSS -->
 <link href="<c:url value="../resources/css/bootstrap.css" />"
 	rel="stylesheet">
 <!--external css-->
@@ -21,31 +19,44 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>company</title>
-<style>
-.navbar-default {
-	background: #D2E9FF;
-}
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
+	
+<style type="text/css">
 
-.titlelist {
-	font-family: '微軟正黑體';
-	font-weight: bold;
-	color: white;
-	height: 35px;
-	background: #66B3FF;
-	padding-left: 10px;
-	font-size: 23px;
-	border-radius: 2px;
-}
-
-.glyphicon {
-	top: auto;
-}
+	/* 導覽列點擊顏色*/
+	.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+		background-color: white;
+		border-left: 1px solid #4da7ff;
+		border-top: 1px solid #4da7ff;
+		border-right: 1px solid #4da7ff;
+	}
+	
+	/* 導覽列內圈*/
+	.nav-tabs > li > a{
+	    height: 45px;
+	    text-align: center;
+	    margin-top: 5px;
+	}
+	
+	/* 導覽列外圍*/
+	.nav-tabs{
+		height: 50px;
+		border-bottom:1px solid #abcae8;
+	}
+	
+	/*導覽列div*/
+	.container-fluid{
+		background: #c0e0ff;
+	}
+	
 </style>
+<title>訂單維護</title>
 </head>
+
 <body>
-	<section id="container"> <!--header start--> <header
-		class="header black-bg">
+
+ <header class="header black-bg">
 	<div class="sidebar-toggle-box">
 		<div class="fa fa-bars tooltips" data-placement="right"
 			data-original-title="Toggle Navigation"></div>
@@ -55,8 +66,7 @@
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout"
-				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
+			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -71,18 +81,19 @@
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp">
-					<i class="fa fa-dashboard"></i> <span>index</span>
+			<li class="mt"><a
+				href="<%=request.getContextPath()%>/ORDER/order.jsp"> <i
+					class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
 
-			<li class="sub-menu"><a href="javascript:;" class="active">
-					<i class="fa fa-desktop"></i> <span>基本資料維護</span>
+			<li class="sub-menu"><a href="javascript:;"> <i
+					class="fa fa-desktop"></i> <span>基本資料維護</span>
 			</a>
 				<ul class="sub">
 					<li><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/EMPLOYEE/employee.jsp">員工資料維護</a></li>
-					<li class="active"><a
+					<li><a
 						href="<%=request.getContextPath()%>/COMPANY/company.jsp">廠商資料維護</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
@@ -97,15 +108,15 @@
 					<li><a
 						href="<%=request.getContextPath()%>/BILL_OF_PURCHASE/bop.jsp">進貨單維護</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i
+			<li class="sub-menu"><a href="javascript:;" class="active"> <i
 					class="glyphicon glyphicon-shopping-cart"></i> <span>銷貨系統</span>
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/VALUATION/valuation.jsp">報價單維護</a></li>
-					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
+						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
+					<li class="active"><a href="<%=request.getContextPath()%>/ORDER/ordmain.jsp">訂單維護</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/SHIPMENTS/shipments.jsp">出貨單維護</a></li>
+						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
 					class="fa fa-book"></i> <span>存貨作業</span>
@@ -123,7 +134,7 @@
 					<li><a
 						href="<%=request.getContextPath()%>/RETURNS/Return_Items.jsp">退貨品管理</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/RETURNS/returns.jsp">退貨單管理</a></li>
+						href="<%=request.getContextPath()%>/RETURNS/ReturnList.jsp">退貨單管理</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/INVO/select_page.jsp">作廢發票管理</a></li>
 				</ul></li>
@@ -147,96 +158,73 @@
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
-	</aside> <!--sidebar end--> <section id="main-content"> <section
-		class="wrapper">
-
-	<div class="row mt">
-		<div class="col-lg-12">
-			<nav class="nav navbar-default">
-			<div class="tab-content">
-				<ul class="nav navbar-nav">
-					<li><a style="background-color: rgba(172, 214, 255, 0.6);" class="glyphicon glyphicon-search">搜尋</a></li>
-					<li><a href="addCom.jsp" class="glyphicon glyphicon-file">新增</a></li>
-					<li><a href="#" class="glyphicon glyphicon-list-alt">查詢結果</a></li>
-				</ul>
-			</div>
-			</nav>
-			<div class="tab-content">
-				<div>
-					<div class="titlelist">查詢廠商資料</div>
-					<div class="col-lg-12  main">
-						<p>
-							<%-- 錯誤表列 --%>
-							<c:if test="${not empty param.message}">
-								<font color='red'>請修正以下錯誤:
-									<ul>
-										<c:forEach var="message" items="${param.message}">
-											<li>${message}</li>
-										</c:forEach>
-									</ul>
-								</font>
-							</c:if>
-						<form method="post" action="getOneCom.do"
-							class="form-horizontal style-form">
-							<div class="form-group"><div class="col-lg-3"></div>
-								<label class="col-lg-2 control-label">依廠商編號搜尋</label>
-								<div class="col-lg-2">
-									<input type="text" name="com_id">
-								</div>
-								<div class="col-lg-2">
-									<input type="submit" value="依廠商編號搜尋"
-										class="btn  btn-theme03">
-								</div>
-							</div>
-						</form>
-						<form method="post" action="getComByName.do"
-							class="form-horizontal style-form">
-							<div class="form-group"><div class="col-lg-3"></div>
-								<label class="col-lg-2 control-label">依廠商名稱搜尋</label>
-								<div class="col-lg-2">
-									<input type="text" name="com_name"><br>
-								</div>
-								<div class="col-lg-2">
-									<input type="submit" value="依廠商名稱搜尋"
-										class="btn  btn-theme03">
-								</div>
-							</div>
-						</form>
-						<form method="post" action="getAllCom.do"
-							class="form-horizontal style-form">
-							<div class="form-group"><div class="col-lg-3"></div>
-								<label class="col-lg-2 control-label">查詢全部</label>
-								<div class="col-lg-2"></div>
-								<div class="col-lg-2">
-									<input type="submit" value="查詢全部"
-										class="btn  btn-theme03">
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
+	</aside> <!--sidebar end--> 
+	<section id="main-content"> <section id="container"> <section class="wrapper">
+	 <!-- -----------------------------------------------------------查詢----------------------------------------------------------- -->
+	
+<div class="row mt">
+<div class="col-sm-12">
+	<div class="nav navbar-default">
+		<div class="container-fluid" style="position: relative">
+			<ul class="nav nav-tabs">
+				<li><a id="order" href="order.jsp" ><span class="glyphicon glyphicon-file"></span>新增</a></li>
+				<li><a id="search" target="OrdsearchList.jsp" href="#searchList" data-toggle="tab"><span class="glyphicon glyphicon-search"></span>查詢</a></li>
+				<li><a id="searchall" target="SelectOrdAll.jsp" href="#SelectOrdAll"  data-toggle="tab"  ><span class="glyphicon glyphicon-list-alt" ></span>查詢全部</a></li>
+				<li><a id="print" href="#print"  data-toggle="tab"><span class="glyphicon glyphicon-print" ></span>列印</a></li>
+			</ul>
 		</div>
 	</div>
-	</section> </section> </section>
+<!--page include here -->		
+				<div class="tab-content">
+					<div id="searchList" class="tab-pane fade">
+						<div class="chg_content main"></div>
+					</div>
+					<div id="SelectOrdAll" class="tab-pane fade">
+						<div class="chg2_content main"></div>
+					</div>
+				</div>
+				
+<!----------  class="row mt"      class="col-sm-12"	-------------->
+</div>
+</div>
 
-
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</section> </section> </section>
+	
+<!---------------------------------------------------- JS -------------------------------------------------------------------->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
-		!window.jQuery
-				&& document
-						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
+		!window.jQuery&& document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
+	</script>
+	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
+	<script class="include" type="text/javascript" src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
+	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
+	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"></script>
+	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
+<!---------------------------------------------------- JS -------------------------------------------------------------------->	
+	
+	<script>
+	
+		$('a').on('click', function() {
+			if($(this).attr('target')=="OrdsearchList.jsp"){							
+				var includeWeb = $(this).attr('target');
+				$.get(includeWeb, function(data) {
+					$('.chg_content').html(data);
+				})
+			}else if($(this).attr('target')=="SelectOrdAll.jsp"){
+				var includeWeb = $(this).attr('target');
+				$.get(includeWeb, function(data) {
+					$('.chg2_content').html(data);
+				})	
+			}	
+		})
+		
+		$("#print").click(function() {
+		window.print();
+			})
+		
+		
 	</script>
 
-	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
-	<script class="include" type="text/javascript"
-		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
-	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
-	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"
-		type="text/javascript"></script>
-
-	<!--common script for all pages-->
-	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
 </body>
 </html>

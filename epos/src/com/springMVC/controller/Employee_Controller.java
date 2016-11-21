@@ -139,9 +139,9 @@ public class Employee_Controller {
 		if (emp_idnum == null || emp_idnum.length() == 0) {
 			errorMsgs.add("身分證ID不可為空值");
 		}
-		String emp_idnumReg = "^[(a-zA-Z0-9)]{1,12}$";		//簡易的判斷,之後再做修改
+		String emp_idnumReg = "^[A-Z]{1}[1-2]{1}[0-9]{8}$";		//簡易的判斷,之後再做修改
 		if (!emp_idnum.matches(emp_idnumReg)) {
-			errorMsgs.add("身分證ID:只能是英文字母、數字 , 且長度必須在1到12之間");
+			errorMsgs.add("請輸入有效的身份證字號");
 		}
 		String emp_addr = request.getParameter("emp_addr").trim();
 		if (emp_addr == null || emp_addr.length() == 0) {
@@ -159,9 +159,9 @@ public class Employee_Controller {
 		if (emp_phone == null || emp_phone.length() == 0) {
 			errorMsgs.add("電話不可為空值");
 		}		
-		Date emp_bday = null;
+		Date emp_bday;
 		if (request.getParameter("emp_bday").length() == 0) {
-			errorMsgs.add("生日不可為空值");
+			emp_bday = null;
 		} else {
 			emp_bday = Date.valueOf(request.getParameter("emp_bday"));
 		}
@@ -276,8 +276,11 @@ public class Employee_Controller {
 
 			if("delete".equals(action)){
 //				EmpService empSrv = new EmpService();
+				try{
 				empSrv.delete(emp_id);
-				
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
 				List list = empSrv.getAll();
 				
 				request.getSession().setAttribute("list", list);
@@ -294,15 +297,50 @@ public class Employee_Controller {
 		List<String> errorMsgs = new LinkedList<String>();
 		request.setAttribute("errorMsgs", errorMsgs);
 
-		String emp_id = request.getParameter("emp_id");
-		String emp_pwd = request.getParameter("emp_pwd");
-		String emp_name = request.getParameter("emp_name");
-		String emp_sex = request.getParameter("emp_sex");
-		String emp_idnum = request.getParameter("emp_idnum");
-		String emp_addr = request.getParameter("emp_addr");
-		String emp_mail = request.getParameter("emp_mail");
-		String emp_phone = request.getParameter("emp_phone");
+		String emp_id = request.getParameter("emp_id").trim();
+		String emp_pwd = request.getParameter("emp_pwd").trim();
+		if (emp_pwd == null || emp_pwd.length() == 0) {
+			errorMsgs.add("密碼不可為空值");
+		}
+		String emp_pwdReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9!@#$%^)]{1,20}$";
+		if (!emp_pwd.matches(emp_pwdReg)) {
+			errorMsgs.add("密碼:只能是中、英文字母、數字和!@#$%^ , 且長度必須在1到20之間");
+		}
+		String emp_name = request.getParameter("emp_name").trim();
+		if (emp_name == null || emp_name.length() == 0) {
+			errorMsgs.add("姓名不可為空值");
+		}
+		String emp_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)(\\s)]{1,20}$";
+		if (!emp_name.matches(emp_nameReg)) {
+			errorMsgs.add("姓名:只能是中、英文字母、數字和_ , 且長度必須在1到20之間");
+		}
+		String emp_sex = request.getParameter("emp_sex").trim();
+		String emp_idnum = request.getParameter("emp_idnum").trim();
+		if (emp_idnum == null || emp_idnum.length() == 0) {
+			errorMsgs.add("身分證ID不可為空值");
+		}
+		String emp_idnumReg = "^[A-Z]{1}[1-2]{1}[0-9]{8}$";		//簡易的判斷,之後再做修改
+		if (!emp_idnum.matches(emp_idnumReg)) {
+			errorMsgs.add("身分證ID:只能是英文字母、數字 , 且長度必須在1到12之間");
+		}
+		String emp_addr = request.getParameter("emp_addr").trim();
+		if (emp_addr == null || emp_addr.length() == 0) {
+			errorMsgs.add("地址不可為空值");
+		}
+		String emp_mail = request.getParameter("emp_mail").trim();
+		if (emp_mail == null || emp_mail.length() == 0) {
+			errorMsgs.add("email不可為空值");
+		}
+		String emp_mailReg = "^[_a-z0-9-]+([.][_a-z0-9-]+)*@[a-z0-9-]+([.][a-z0-9-]+)*$";
+		if (!emp_mail.matches(emp_mailReg)) {
+			errorMsgs.add("email輸入格式不正確");
+		}
+		String emp_phone = request.getParameter("emp_phone").trim();
+		if (emp_phone == null || emp_phone.length() == 0) {
+			errorMsgs.add("電話不可為空值");
+		}	
 		Date emp_bday = Date.valueOf(request.getParameter("emp_bday"));
+
 		Date emp_reg = Date.valueOf(request.getParameter("emp_reg"));
 		
 		Date emp_due;
@@ -394,7 +432,7 @@ public class Employee_Controller {
 
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 			
-		return "redirect:/EMPLOYEE/AllEmp.jsp";
+		return "redirect:/EMPLOYEE/getPassCode.jsp";
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/ANDROID/Login.do")

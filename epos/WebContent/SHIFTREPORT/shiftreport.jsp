@@ -255,7 +255,7 @@
 		</div>
 	</div>
 	</section> </section>
-
+<input type="hidden" name="shift" value="${SHIFT}"><input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 	</section>
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -273,14 +273,27 @@
 	
 		<script type="text/JavaScript">
 	$(document).ready(function() {
-// 		test
-// 		$('#test').on('click', function() {							
-// 			var test = "testall.jsp";
-// 			$.get(test, function(data) {
-// 				$('.rul').html(data);
-// 			})
-				
-// 	})	
+
+// -------------------------------自動新增----------------------------------
+		setInterval(function(){
+			insertTime = new Date();
+			var hour = insertTime.getHours();
+			var minutes = insertTime.getMinutes();
+			var seconds = insertTime.getSeconds();
+			if((hour==14||hour==20)&&(minutes==0)&&(seconds==0)){
+				alert(1);
+				$.ajax({
+					type : "post",
+					url : "insertShiftre.do",
+					data : {"shift":$("input[name='shift']").val(),
+							"emp_id":$("input[name='emp_id']").val()
+					}					
+				});
+			}else{
+
+			}
+		},1000);
+		
 		
 // -------------------------------載入新增----------------------------------
 		$('#c_shift').on('click', function() {							

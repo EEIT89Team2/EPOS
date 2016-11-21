@@ -187,7 +187,7 @@
 							<div class="form-group"><div class="col-lg-2"></div>
 								<label class="col-lg-2 control-label">依會員編號搜尋</label>
 								<div class="col-lg-4">
-									<b>選擇會員ID:</b> <select size="1" name="mem_id">
+									<select size="1" name="mem_id">
 										<c:forEach var="memVO" items="${MemSvc.all}">
 											<option value="${memVO.mem_id}">${memVO.mem_id}
 										
@@ -206,7 +206,7 @@
 							<div class="form-group"><div class="col-lg-2"></div>
 								<label class="col-lg-2 control-label">依會員姓名搜尋</label>
 								<div class="col-lg-4">
-									<b>選擇會員姓名:</b> <select size="1" name="mem_id">
+									<select size="1" name="mem_id">
 										<c:forEach var="memVO" items="${MemSvc.all}">
 											<option value="${memVO.mem_id}">${memVO.mem_name}
 										
@@ -225,7 +225,7 @@
 							<div class="form-group"><div class="col-lg-2"></div>
 								<label class="col-lg-2 control-label">搜尋多筆會員</label>
 								<div class="col-lg-4">
-									<b>查詢會員(多):</b> <select size="1" name="mem_id_1">
+									<select size="1" name="mem_id_1">
 										<c:forEach var="memVO" items="${MemSvc.all}">
 											<option value="${memVO.mem_id}">${memVO.mem_id}
 										
@@ -248,7 +248,7 @@
 							<div class="form-group"><div class="col-lg-2"></div>
 								<label class="col-lg-2 control-label">依新增日期搜尋</label>
 								<div class="col-lg-4">
-									<b>查詢新增會員日期:</b> <input type="date" name="key_date_1">
+									<input type="date" name="key_date_1">
 									<input type="date" name="key_date_2">
 								</div>
 								<div class="col-lg-2">

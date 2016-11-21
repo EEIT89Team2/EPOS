@@ -203,16 +203,16 @@ print(text)
 
 			<FORM id="itemsform" METHOD="post" ACTION="insert_Item.do" class="form-inline">
 				<div class="form-group">
-					<label for="exampleInputName2">　商品名稱：</label> <input type="text"
-						name="prod_name" class="form-control">
+					<label for="exampleInputName2">　商品名稱：</label> <select type="TEXT" name="prod_name_select1" id="prod_name_select1"><option value="">請選擇商品</option></select><input type="hidden" name="prod_name" id="prod_name" class="form-control">
+	
 				</div> 　　
 				<div class="form-group">
 					<label for="exampleInputName2">廠商代號：</label> <input type="text"
-						name="com_id" class="form-control" placeholder="C00001">
+						name="com_id" class="form-control">
 				</div>　　
 				<div class="form-group">
 					<label for="exampleInputEmail2">退貨數量：</label> <input type="text"
-						name="re_quantity" class="form-control" placeholder="50">
+						name="re_quantity" class="form-control">
 				</div>　　
 				<div class="form-group">
 					<label for="exampleInputName2">備註：</label> <input type="text"
@@ -299,7 +299,19 @@ print(text)
 	
 	
 		 	$(function () {
-
+		 		
+		 		$.getJSON("getProd_DDL_itm.do",{},function(data){
+					$.each(data,function(){
+						var SelectValue = this.SelectValue;
+// 						var SelectText = this.SelectText;
+						var opt=$("<option></option>").val(SelectValue).text(SelectValue);
+						$('#prod_name_select1').append(opt);
+					})
+		 		
+						$('#prod_name_select1').change(function(){
+					 		var values = $('#prod_name_select1').val();
+					 		document.getElementById('prod_name').value=values;
+						})
 // <!----------------------------------------  新增         ------------------------------------>
 // 				$('#add').on('click',function(){
 // 				var url = "Return_Items.jsp"; 
@@ -344,7 +356,7 @@ print(text)
 		 		$('#table1').DataTable();
 
 		 	})
-		 	
+		 })	 	
 				
 //<!----------------------------------------  修改        ------------------------------------>
 				function editbtn(event){

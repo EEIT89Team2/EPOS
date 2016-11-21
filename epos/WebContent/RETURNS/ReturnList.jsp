@@ -257,7 +257,7 @@ print(text)
 		</div>
 		<div id="aa" class="form-group">
 			<label for="exampleInputName2">廠商名稱：</label>
-			<select type="TEXT" class="form-control" name="com_name" id="com_name" style="width: 160px"/><option value="">請選擇廠商</option></select>	
+			<select type="TEXT" class="form-control" name="com_name_select" id="com_name_select" style="width: 160px"/><option value="">請選擇廠商</option></select><input type="hidden" id="com_name"  name="com_name" />			
 		</div>
 		<div id="aa" class="form-group">
 			<label for="exampleInputName2">廠商編號：</label>
@@ -411,13 +411,14 @@ print(text)
 				var SelectValue = this.SelectValue;
 				var SelectText = this.SelectText;
 				var opt=$("<option></option>").val(SelectValue).text(SelectText);
-				$('#com_name').append(opt);
+				$('#com_name_select').append(opt);
 			})		
 	
-		$('#com_name').change(function(){
+		$('#com_name_select').change(function(){
 									
-				var values = $('#com_name').val().split("^");
-				document.getElementById('com_id').value=values[0];					
+				var values = $('#com_name_select').val().split("^");
+				document.getElementById('com_id').value=values[0];
+				document.getElementById('com_name').value=values[1];
 			})
 	})
 })

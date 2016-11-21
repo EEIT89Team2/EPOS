@@ -75,8 +75,9 @@
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp"> <i
-					class="fa fa-dashboard"></i> <span>index</span>
+			<li class="mt"><a
+				href="<%=request.getContextPath()%>/ORDER/order.jsp"> <i
+					class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
 
 			<li class="sub-menu"><a href="javascript:;"> <i
@@ -106,10 +107,10 @@
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/VALUATION/valuation.jsp">報價單維護</a></li>
+						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
 					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/SHIPMENTS/shipments.jsp">出貨單維護</a></li>
+						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
 					class="fa fa-book"></i> <span>存貨作業</span>
@@ -135,11 +136,9 @@
 					class="fa fa-usd"></i> <span>金流管理</span>
 			</a>
 				<ul class="sub">
-					<li><a
-						href="<%=request.getContextPath()%>/SHIFTREPORT/shiftreport.jsp">班別報表維護</a></li>
+					<li><a href="<%=request.getContextPath()%>/SHIFTREPORT/shiftreport.jsp">班別報表維護</a></li>
 					<li class="active"><a href="<%=request.getContextPath()%>/COUPON/coupon.jsp">折價券</a></li>
-					<li><a
-						href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">折扣管理</a></li>
+					<li><a href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">折扣管理</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
 					class=" fa fa-bar-chart-o"></i> <span>報表分析</span>
@@ -149,7 +148,7 @@
 				</ul></li>
 
 		</ul>
-	<!-- sidebar menu end-->
+		<!-- sidebar menu end-->
 	</div>
 	</aside>
 	<!--sidebar end--> 

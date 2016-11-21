@@ -525,4 +525,10 @@ public class ProdJDBCDAO implements ProdDAO_interface {
 		
 	}
 
+	@Override
+	public List<ProdVO> selectByGroup() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

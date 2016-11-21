@@ -257,7 +257,7 @@ print(text)
 		</div>
 		<div id="aa" class="form-group">
 			<label for="exampleInputName2">廠商名稱：</label>
-			<select type="TEXT" class="form-control" name="com_name" id="com_name" /><option value="">請選擇廠商</option></select>	
+			<select type="TEXT" class="form-control" name="com_name" id="com_name" style="width: 160px"/><option value="">請選擇廠商</option></select>	
 		</div>
 		<div id="aa" class="form-group">
 			<label for="exampleInputName2">廠商編號：</label>
@@ -278,7 +278,9 @@ print(text)
 		</div>
 		<div id="aa" class="form-group">
 			<label for="exampleInputName2">備　註：</label>
+
 			<input type="TEXT" class="form-control" name="remark" value="" />
+
 		</div>
 	</tr>
 </table>

@@ -16,6 +16,7 @@
 		background: #42858C;
 		font-weight:bold;
 		text-align: center;
+		font-size: 13px;
 	}
 	
 	/* 	表格內容偶數 */

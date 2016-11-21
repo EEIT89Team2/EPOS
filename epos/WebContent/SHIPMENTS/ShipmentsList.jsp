@@ -150,7 +150,7 @@ print(text)
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="login.html">Logout</a></li>
+			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -167,7 +167,7 @@ print(text)
 
 			<li class="mt"><a
 				href="<%=request.getContextPath()%>/ORDER/order.jsp"> <i
-					class="fa fa-dashboard"></i> <span>index</span>
+					class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
 
 			<li class="sub-menu"><a href="javascript:;"> <i
@@ -198,7 +198,7 @@ print(text)
 				<ul class="sub">
 					<li><a
 						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
-					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/ordmain.jsp">訂單維護</a></li>
 					<li class="active"><a
 						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>

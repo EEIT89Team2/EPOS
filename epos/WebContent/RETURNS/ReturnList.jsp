@@ -278,7 +278,7 @@ print(text)
 		</div>
 		<div id="aa" class="form-group">
 			<label for="exampleInputName2">備　註：</label>
-			<input type="TEXT" class="form-control" name="remark" value="test" />
+			<input type="TEXT" class="form-control" name="remark" value="" />
 		</div>
 	</tr>
 </table>

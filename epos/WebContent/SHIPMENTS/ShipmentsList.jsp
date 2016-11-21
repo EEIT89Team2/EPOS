@@ -269,7 +269,7 @@ print(text)
 	<tr>
 		<div id="form" class="form-group">
 			<label for="exampleInputName2">訂單編號 ：</label>
-			<input type="text" class="form-control" name="ord_id" value="${ordVO.ord_id}" />
+			<input type="text" class="form-control" name="ord_id" value="${ordVO.ord_id}" readonly />
 		</div>
 		<div id="group" class="form-group">　
 			<label for="exampleInputName2">收件人姓名 ：</label>
@@ -285,12 +285,12 @@ print(text)
 		</div>
 		<div id="group" class="form-group">
 			<label for="exampleInputName2">修改人員 ：</label>
-			<input type="text" class="form-control" name="key_id" value="${LoginOK.emp_id}" />
+			<input type="text" class="form-control" name="key_id" value="${LoginOK.emp_id}" readonly />
 		</div>
 		<div style="height: 15px;"></div>
 		<div id="group" class="form-group">
 			<label for="exampleInputName2">備　註：</label>
-			<input type="text" class="form-control" name="remark" value="test" />
+			<input type="text" class="form-control" name="remark" value="" />
 		</div>
 	</tr>
 </table>

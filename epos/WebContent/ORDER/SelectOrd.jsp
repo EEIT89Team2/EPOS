@@ -137,7 +137,7 @@
 </c:forEach>
 	</table>
 
-<input type="button" name="action" value="返回" onclick="history.back();">
+		<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>
 
 
 	

@@ -208,4 +208,10 @@ public class OrderHibernateDAO implements Order_Interface {
 		return null;
 	}
 
+	@Override
+	public List Select_ord_date_shift(Date s_ord_date, String shift) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

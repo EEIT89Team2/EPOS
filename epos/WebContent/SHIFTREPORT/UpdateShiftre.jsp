@@ -61,59 +61,57 @@
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-2 control-label">日期:</label>
 				<div class="col-lg-1">
-					<input type="date" name="Date" value="${shiftreVO.date}" readonly="readonly">
+					<input type="date" name="Date" value="${shiftreVO.date}" readonly="readonly" class="form-control">
 				</div>
 				<label class="col-lg-1 control-label">班別:</label>
 				<div class="col-lg-1">
-					<Select name="shift" class="form-control">
-						<option value="${shiftreVO.shift}" selected="selected">${shiftreVO.shift}</option>
-					</Select><br>
+					<input type="text" name="shift" value="${shiftreVO.shift}" readonly="readonly" class="form-control">
 				</div>
 				<label class="col-lg-1 control-label">員工編號:</label>
 				<div class="col-lg-1">			
-					<input type="text" name="emp_id" value="${shiftreVO.emp_id}">
+					<input type="text" name="emp_id" value="${shiftreVO.emp_id}" readonly="readonly" class="form-control">
 				</div>
 				<label class="col-lg-1 control-label">現金:</label>			
 				<div class="col-lg-3">			
-					<input type="text" name="cash" value="${shiftreVO.cash}">
+					<input type="text" name="cash" value="${shiftreVO.cash}" readonly="readonly" class="form-control">
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-2 control-label">禮卷:</label>
+				<label class="col-lg-1 col-lg-offset-2 control-label">實收現金:</label>
 				<div class="col-lg-1">			
-					<input type="text" name="coupon" value="${shiftreVO.coupon}">
+					<input type="text" name="deal_cost" value="${shiftreVO.real_cash}" class="form-control">
+				</div>
+				<label class="col-lg-1 control-label">禮卷:</label>
+				<div class="col-lg-1">			
+					<input type="text" name="coupon" value="${shiftreVO.coupon}" readonly="readonly" class="form-control">
+				</div>
+				<label class="col-lg-1 control-label">實收禮卷:</label>
+				<div class="col-lg-1">		
+					<input type="text" name="deal_profit" value="${shiftreVO.real_coupon}" class="form-control">
 				</div>
 				<label class="col-lg-1 control-label">折讓:</label>
-				<div class="col-lg-1">			
-					<input type="text" name="discount" value="${shiftreVO.discount}">
-				</div>
-				<label class="col-lg-1 control-label">零用金:</label>
-				<div class="col-lg-1">			
-					<input type="text" name="coins" value="${shiftreVO.coins}">
-				</div>
-				<label class="col-lg-1 control-label">交易額:</label>
-				<div class="col-lg-3">			
-					<input type="text" name="deal_sum" value="${shiftreVO.deal_sum}">
+				<div class="col-lg-3">		
+					<input type="text" name="discount" value="${shiftreVO.discount}" readonly="readonly" class="form-control">
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-2 control-label">交易成本:</label>
+				<label class="col-lg-1 col-lg-offset-2 control-label">零用金:</label>
 				<div class="col-lg-1">			
-					<input type="text" name="deal_cost" value="${shiftreVO.deal_cost}">
+					<input type="text" name="coins" value="${shiftreVO.coins}" readonly="readonly" class="form-control">
 				</div>
-				<label class="col-lg-1 control-label">交易淨利:</label>
-				<div class="col-lg-1">		
-					<input type="text" name="deal_profit" value="${shiftreVO.deal_profit}">
+				<label class="col-lg-1 control-label">交易額:</label>
+				<div class="col-lg-1">			
+					<input type="text" name="deal_sum" value="${shiftreVO.deal_sum}" readonly="readonly" class="form-control">
+				</div>
+				<label class="col-lg-1 control-label">實收交易額:</label>
+				<div class="col-lg-1">			
+					<input type="text" name="shift_sum" value="${shiftreVO.shift_sum}" class="form-control">
 				</div>
 				<label class="col-lg-1 control-label">交易次數:</label>
-				<div class="col-lg-1">			
-					<input type="text" name="deal_num" value="${shiftreVO.deal_num}">
-				</div>
-				<label class="col-lg-1 control-label">班別小計:</label>
 				<div class="col-lg-3">			
-					<input type="text" name="shift_sum" value="${shiftreVO.shift_sum}">
+					<input type="text" name="deal_num" value="${shiftreVO.deal_num}" readonly="readonly" class="form-control">
 				</div>
 			</div>
 

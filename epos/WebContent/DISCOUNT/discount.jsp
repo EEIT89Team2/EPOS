@@ -16,8 +16,7 @@
 <!-- Custom styles for this template -->
 <link href="<c:url value="../resources/css/style.css" />" rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />" rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
 <style>
 	.navbar-default .navbar-nav > li > a{
 		color:rgba(19, 131, 121, 0.78)

@@ -83,14 +83,16 @@
 			<th class="numeric">班別</th>
 			<th class="numeric">員工編號</th>
 			<th class="numeric">現金</th>
+			<th class="numeric">實收現金</th>
 			<th class="numeric">禮卷</th>
+			<th class="numeric">實收禮卷</th>
 			<th class="numeric">折讓</th>
 			<th class="numeric">零用金</th>
 			<th class="numeric">交易額</th>
+			<th class="numeric">實收交易額</th>
 			<th class="numeric">交易成本</th>
 			<th class="numeric">交易淨利</th>
 			<th class="numeric">交易次數</th>
-			<th class="numeric">班別小計</th>
 			<th class="numeric">修改</th>
 			<th class="numeric">刪除</th>
 		</tr></thead>
@@ -102,14 +104,16 @@
 			<td class="numeric" data-title="班別">${list.shift}</td>
 			<td class="numeric" data-title="員工編號">${list.emp_id}</td>
 			<td class="numeric" data-title="現金">${list.cash}</td>
+			<td class="numeric" data-title="實收現金">${list.real_cash}</td>
 			<td class="numeric" data-title="禮卷">${list.coupon}</td>
+			<td class="numeric" data-title="實收禮卷">${list.real_coupon}</td>
 			<td class="numeric" data-title="折讓">${list.discount}</td>
 			<td class="numeric" data-title="零用金">${list.coins}</td>
 			<td class="numeric" data-title="交易額">${list.deal_sum}</td>
+			<td class="numeric" data-title="實收交易額">${list.shift_sum}</td>
 			<td class="numeric" data-title="交易成本">${list.deal_cost}</td>
 			<td class="numeric" data-title="交易淨利">${list.deal_profit}</td>
 			<td class="numeric" data-title="交易次數">${list.deal_num}</td>
-			<td class="numeric" data-title="班別小計">${list.shift_sum}</td>
 			<td class="numeric" data-title="修改">
 				<button type="button" class="btn btn-theme02" name="action" value="update" target1="${list.date}" target2="${list.shift}">
 					<i class="fa fa-pencil"></i>

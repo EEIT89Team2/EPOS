@@ -52,63 +52,41 @@
 		<div class="titlelist">新增</div>
 	<div class="col-lg-12">
 
-		<!--錯誤表列 -->
-		<c:if test="${not empty param.message}">
-			<font color='red'>請修正以下錯誤:
-				<ul>
-					<c:forEach var="message" items="${param.message}">
-						<li>${message}</li>
-					</c:forEach>
-				</ul>
-			</font>
-		</c:if>
-
-<!-- 	<div class="form-group"> -->
-<!--     	<label class="col-lg-1 control-label">廠商代號:</label> -->
-<!--     	<div class="col-lg-6"> -->
-<%--       		<input type="text" class="form-control" name="com_id" value="<%=rtnItemsVO.getCom_id()%>" disabled="disabled"/> --%>
-<!--     	</div> -->
-<!--   	</div>  -->
-
-
 		<form method="post" action="insertShiftre.do" class="insertShift form-horizontal" role="form">
 
 			<p class="distance">
-			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-5 control-label">日期:</label>
-				<div class="col-lg-6">
-					<input type="date" name="Date">
-				</div>
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label class="col-lg-1 col-lg-offset-5 control-label">日期:</label> -->
+<!-- 				<div class="col-lg-6"> -->
+<!-- 					<input type="Date" name="Date"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-5 control-label">班別:</label>
 				<div class="col-lg-1">
-					<Select name="shift" class="form-control">
-						<option value="A">A</option>
-						<option value="B">B</option>
-					</Select>
+					<input type="text" name="shift" value="${SHIFT}">
 				</div><div class="col-lg-5"></div>
 			</div>
 
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-5 control-label">員工編號:</label>
 				<div class="col-lg-6">
-					<input type="text" name="emp_id" value="E00001">
+					<input type="text" name="emp_id" value="${LoginOK.emp_id}">
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-5 control-label">現金:</label>
-				<div class="col-lg-6">
-					<input type="text" name="cash" value="2000">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-5 control-label">禮卷:</label>
-				<div class="col-lg-6">
-					<input type="text" name="coupon" value="0">
-				</div>
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label class="col-lg-1 col-lg-offset-5 control-label">現金:</label> -->
+<!-- 				<div class="col-lg-6"> -->
+<!-- 					<input type="text" name="cash" value="2000"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<label class="col-lg-1 col-lg-offset-5 control-label">禮卷:</label> -->
+<!-- 				<div class="col-lg-6"> -->
+<!-- 					<input type="text" name="coupon" value="0"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-5 control-label">折讓:</label>
@@ -117,19 +95,19 @@
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-5 control-label">零用金:</label>
-				<div class="col-lg-6">
-					<input type="text" name="coins" value="1500">
-				</div>
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label class="col-lg-1 col-lg-offset-5 control-label">零用金:</label> -->
+<!-- 				<div class="col-lg-6"> -->
+<!-- 					<input type="text" name="coins" value="1500"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 
-			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-5 control-label">交易額:</label>
-				<div class="col-lg-6">
-					<input type="text" name="deal_sum" value="2000">
-				</div>
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label class="col-lg-1 col-lg-offset-5 control-label">交易額:</label> -->
+<!-- 				<div class="col-lg-6"> -->
+<!-- 					<input type="text" name="deal_sum" value="2000"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-5 control-label">交易成本:</label>
@@ -152,12 +130,12 @@
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-5 control-label">班別小計:</label>
-				<div class="col-lg-6">
-					<input type="text" name="shift_sum" value="2000">
-				</div>
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label class="col-lg-1 col-lg-offset-5 control-label">班別小計:</label> -->
+<!-- 				<div class="col-lg-6"> -->
+<!-- 					<input type="text" name="shift_sum" value="2000"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<p class="distance">
 			<div class="form-group">
 				<div class="col-lg-1 col-lg-offset-5">

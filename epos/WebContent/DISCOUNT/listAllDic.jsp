@@ -126,28 +126,14 @@
 					</table>
 			</div></section>
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->	
-	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
 <script type="text/JavaScript">
 
 	$(document).ready(function() {
-		
+//hide		
 		$('.btn-primary').hide();
 		$('.chg_price').hide();
-//刪除		
-		$('.fa-trash-o').click(function() {
-			var id = $(this).attr("target");
-			$.ajax({
-				"type" : "post",
-				"url" : "deleteDisc.do",
-				"data" : {
-					dis_id : id
-				},
-				"success" : function(data) {
-							$(".result_content").html(data);
-				},
-			});
-		})
-
+		
+//datatable
 		var oLanguage	= {
 		//"sUrl": "cn.txt",//從配置文件中讀取語言包
 		"sLengthMenu": "每頁顯示 _MENU_ 筆記錄",
@@ -168,7 +154,7 @@
 			"bPaginate" : true, //翻頁功能
 			"bLengthChange" : false, //改變每頁顯示數據數量
 			"bFilter" : false, //過濾功能
-			"bSort" : false, //排序功能
+			"bSort" : true, //排序功能
 			"bInfo" : true,//頁腳信息
 			"bAutoWidth" : true,//自動寬度
 			"oLanguage" : oLanguage,
@@ -178,6 +164,21 @@
 		);
 		
 	})
+
+//刪除		
+		$('.fa-trash-o').click(function() {
+			var id = $(this).attr("target");
+			$.ajax({
+				"type" : "post",
+				"url" : "deleteDisc.do",
+				"data" : {
+					dis_id : id
+				},
+				"success" : function(data) {
+							$(".result_content").html(data);
+				},
+			});
+		})
 //修改	
 	function editEvent(event) {
 // 		console.log($(event).html());  //現在位置

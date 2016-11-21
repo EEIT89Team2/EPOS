@@ -9,6 +9,9 @@
  		Valuation_DetailVO vltDetailVO = (Valuation_DetailVO) request.getAttribute("Vlt_id");
  		session.getAttribute("LoginOK");
  		
+ 		Date nowDate =new java.sql.Date(System.currentTimeMillis());
+ 		pageContext.setAttribute("nowDate",nowDate);
+ 		
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -242,7 +245,7 @@ print(text)
 	<tr>
 		<div class="form-group">
 			<label for="exampleInputName2">　　報價日期 ：</label>
-			<input type="date" class="form-control" name="vlt_date" value="" />	
+			<input type="date" class="form-control" name="vlt_date" value="${nowDate}" />	
 		</div>　　
 		<div class="form-group">
 			<label for="exampleInputName2">交貨日期 ：</label>
@@ -258,7 +261,7 @@ print(text)
 		</div>　　
 		<div class="form-group">
 			<label for="exampleInputName2"> 修改日期 ：</label>
-			<input type="date" class="form-control" name="key_date" />
+			<input type="date" class="form-control" name="key_date" value="${nowDate}" />
 		</div>
 		<div style="height: 10px;"></div>
 		<div class="form-group">

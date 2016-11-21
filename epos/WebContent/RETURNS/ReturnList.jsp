@@ -12,6 +12,9 @@
 	pageContext.setAttribute("list",list);
 	
 	session.getAttribute("LoginOK");
+	
+	Date nowDate =new java.sql.Date(System.currentTimeMillis());
+	pageContext.setAttribute("nowDate",nowDate);
 %>
 <html>
 
@@ -132,7 +135,7 @@ print(text)
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
+			<li><a class="logout" href="login.html">Logout</a></li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -249,7 +252,8 @@ print(text)
 	<tr>
 		<div class="form-group">
 			<label for="exampleInputName2">　退貨日期：</label>
-			<input type="date" class="form-control" name="ret_date" />
+<!-- 			<input type="date" class="form-control" name="ret_date" /> -->
+				<input type = "date" name="ret_date" id="ret_date" class="form-control" value="${nowDate}" />
 		</div>
 		<div id="aa" class="form-group">
 			<label for="exampleInputName2">廠商名稱：</label>
@@ -265,7 +269,7 @@ print(text)
 		</div>
 		<div id="aa" class="form-group">
 			<label for="exampleInputName2">　修 改 日 期 ：</label>
-			<input type="Date" class="form-control" name="key_date" />
+			<input type="Date" class="form-control" name="key_date" value="${nowDate}" />
 		</div>
 		<div style="height: 20px;"></div>
 		<div id="bb" class="form-group">　

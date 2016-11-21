@@ -119,8 +119,9 @@ td{
 		</c:forEach>
 		<!--  			</tbody>  -->
 	</table>
-	<!-- 	<a href="javascript:" onclick="history.back(); ">回上頁</a>  -->
-	<input type="button" name="action" value="返回" onclick="history.back();">
+
+	<a href="../VALUATION/ValuationList.jsp"><i class="glyphicon glyphicon-th-list"></i>　報價單</a></br>
+			<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>
 
 	<script type="text/javascript"
 		src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>

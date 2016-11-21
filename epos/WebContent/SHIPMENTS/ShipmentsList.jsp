@@ -13,6 +13,9 @@
 		
 		session.getAttribute("LoginOK");
 		List detailList = (List)request.getAttribute("detailList");
+		
+		Date nowDate =new java.sql.Date(System.currentTimeMillis());
+		pageContext.setAttribute("nowDate",nowDate);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -278,7 +281,7 @@ print(text)
 		</div>
 		<div id="group" class="form-group">
 			<label for="exampleInputName2">出貨日期 ：</label>
-			<input type="date" class="form-control" name="ship_date" />
+			<input type="date" class="form-control" name="ship_date" value="${nowDate}" />
 		</div>
 		<div id="group" class="form-group">
 			<label for="exampleInputName2">修改人員 ：</label>

@@ -25,7 +25,59 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
 <title>會員清單</title>
+<style>
+
+/* 	表格標題 */
+.table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>th,
+	.table>thead:first-child>tr:first-child>th, .table>caption+thead>tr:first-child>td,
+	.table>colgroup+thead>tr:first-child>td, .table>thead:first-child>tr:first-child>td
+	{
+	font-weight: bold;
+	text-align: center;
+	background: steelblue;
+}
+
+/* 	表格內容偶數 */
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th,
+	.table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td,
+	.table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
+ 	background: lightgray; 
+}
+/* 	表格內容單數 */
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th
+	{
+	background: lightgray;
+}
+
+/* 	表格偶數滑鼠指向 */
+.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+	background-color: lightsteelblue;
+}
+
+.titlelist {
+	font-family: '微軟正黑體';
+	font-weight: bold;
+	color: white;
+	height: 35px;
+	background: #66B3FF;
+	padding-left: 10px;
+	font-size: 23px;
+	border-radius: 2px;
+}
+.glyphicon {
+	top: auto;
+}
+.navbar-default {
+	background: #D2E9FF;
+}
+table {
+    font-size: small;
+}
+
+</style>
 </head>
 <body>
 	<section id="container"> <!--header start--> <header
@@ -131,32 +183,29 @@
 	</div>
 	</aside> <!--sidebar end--> <section id="main-content"> <section
 		class="wrapper">
-	<div class="row mt">
+	<div class="row mt"><div class="col-lg-12">
 		<nav class="nav navbar-default">
-		<div class="container-fluid"
-			style="float: right; left: -50%; position: relative;">
-			<ul class="nav navbar-nav"
-				style="float: left; left: 50%; position: relative;">
-				<li><a href="member.jsp">搜尋</A></li>
-				<li><a href="addMem.jsp">新增</a></li>
-				<li><a style="background-color: rgba(224, 224, 224, 0.7);">查詢結果</a></li>
+		<div class="tab-content">
+			<ul class="nav navbar-nav">
+				<li><a href="member.jsp" class="glyphicon glyphicon-search">搜尋</A></li>
+				<li><a href="addMem.jsp" class="glyphicon glyphicon-file">新增</a></li>
+				<li><a style="background-color: rgba(172, 214, 255, 0.6);" class="glyphicon glyphicon-list-alt">查詢結果</a></li>
 			</ul>
 		</div>
 		</nav>
-		<div class="col-lg-12">
+		<div class="titlelist">會員資料清單</div>
 			<center>
-				<%-- 錯誤表列 --%>
-				<c:if test="${not empty errorMsgs}">
-					<font color='red'>請修正以下錯誤:
-						<ul>
-							<c:forEach var="message" items="${errorMsgs}">
-								<li>${message}</li>
-							</c:forEach>
-						</ul>
-					</font>
-				</c:if>
-
-				<table border='1' bordercolor='#CCCCFF' width='auto'>
+			<c:if test="${not empty errorMsgs}">
+								<font color='red'>請修正以下錯誤:
+									<ul>
+										<c:forEach var="message" items="${errorMsgs}">
+											<li>${message}</li>
+										</c:forEach>
+									</ul>
+								</font>
+							</c:if>
+				<table border='1' bordercolor='#CCCCFF' width='auto' id="table1" class="table table-bordered table-striped  table-hover">
+					<thead>
 					<tr>
 						<th>會員編號</th>
 						<th>密碼</th>
@@ -173,7 +222,7 @@
 						<th>修改</th>
 						<th>刪除</th>
 					</tr>
-
+</thead>
 					<c:forEach var="memVO" items="${list}">
 						<tr align='center' valign='middle'>
 							<td>${memVO.mem_id}</td>
@@ -209,8 +258,7 @@
 					</c:forEach>
 				</table>
 			</center>
-		</div>
-	</div>
+	</div></div>
 	</section> </section> </section>
 
 	<script
@@ -235,5 +283,10 @@
 	<!------------------------------------------------ 程式 --------------------------------------------------------------->
 	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
 		type="text/javascript"></script>
+<!-- 	<script>
+		$(function() {
+			$('#table1').DataTable();
+		})
+	</script> -->
 </body>
 </html>

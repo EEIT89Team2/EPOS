@@ -371,8 +371,11 @@ public class Memb_Controller {
 			/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 				
 			/*************************** 2.永續層存取 ***************************************/
-				
-				MemSvc.delMem(mem_id);
+				try{
+					MemSvc.delMem(mem_id);					
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
 				List<MemberVO> list = MemSvc.getAll();
 			/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 				

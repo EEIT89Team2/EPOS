@@ -24,6 +24,34 @@
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
 <title>全部員工基本資料</title>
+<style>
+.navbar-default {
+	background: #D2E9FF;
+}
+
+.titlelist {
+	font-family: '微軟正黑體';
+	font-weight: bold;
+	color: white;
+	height: 35px;
+	background: #66B3FF;
+	padding-left: 10px;
+	font-size: 23px;
+	border-radius: 2px;
+}
+
+.glyphicon {
+	top: auto;
+}
+
+.my-valid-class {
+	color: #3a51e8;
+}
+
+.my-error-class {
+	color: red;
+}
+</style>
 </head>
 <body>
 	<section id="container"> <!--header start--> <header
@@ -53,16 +81,16 @@
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp"> <i
-					class="fa fa-dashboard"></i> <span>index</span>
+			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp">
+					<i class="fa fa-dashboard"></i> <span>index</span>
 			</a></li>
 
-			<li class="sub-menu"><a href="javascript:;" class="active"> <i
-					class="fa fa-desktop"></i> <span>基本資料維護</span>
+			<li class="sub-menu"><a href="javascript:;" class="active">
+					<i class="fa fa-desktop"></i> <span>基本資料維護</span>
 			</a>
 				<ul class="sub">
 					<li><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
-					<li class="active"><a 
+					<li class="active"><a
 						href="<%=request.getContextPath()%>/EMPLOYEE/employee.jsp">員工資料維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/COMPANY/company.jsp">廠商資料維護</a></li>
@@ -129,89 +157,122 @@
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
-	</aside> <!--sidebar end--> 
-	<section id="main-content"> <section class="wrapper">
+	</aside> <!--sidebar end--> <section id="main-content"> <section
+		class="wrapper">
 	<div class="row mt">
-		<nav class="nav navbar-default">
-		<div class="container-fluid" style="float: right; left: -40%; position: relative;">
-			<ul class="nav navbar-nav">
-				<li><a href="employee.jsp">搜尋</a></li>
-				<li><a style="background-color: rgba(224, 224, 224, 0.7);">新增</a></li>
-				<li><a href="SetPassCode.jsp">修改權限</a></li>
-				<li><a href="#">查詢結果</a></li>
-			</ul>
-		</div>
-		</nav>
-		<div class="col-lg-4"
-			style="float: right; left: -30%; position: relative;">
-			<div class="form-panel">
-				<h4 class="mb">
-					<i class="fa fa-angle-right"></i> 新增
-				</h4>
-				<c:if test="${not empty errorMsgs}">
-					<font color='red'>請修正以下錯誤:
-						<ul>
-							<c:forEach var="message" items="${errorMsgs}">
-								<li>${message}</li>
-							</c:forEach>
-						</ul>
-					</font>
-				</c:if>
-
-				<form class="form-inline" METHOD="post" ACTION="insertEmp.do" enctype="multipart/form-data">
-					<table>
-					<tr>
-						<td>密碼:</td>
-						<td><input type="text" name="emp_pwd" value="3310"></td>
-					</tr>
-					<tr>
-						<td>姓名:</td>
-						<td><input type="text" name="emp_name" value="柯大中"></td>
-					</tr>
-					<tr>
-						<td>性別:</td>
-						<td><input type="text" name="emp_sex" value="男"></td>
-					</tr>					
-					<tr>
-						<td>身分證:</td>
-						<td><input type="text" name="emp_idnum" value="A132789952"></td> 
-					</tr>					
-					<tr>
-						<td>地址:</td>
-						<td><input type="text" name="emp_addr" value="台北市新生北路五段一號"></td>
-					</tr>					
-					<tr>
-						<td>電子信箱:</td>
-						<td><input type="text" name="emp_mail" value="dadaa@gmail.com"></td>
-					</tr>					
-					<tr>
-						<td>電話:</td>
-						<td><input type="text" name="emp_phone" value="0988456877"></td>
-					</tr>					
-					<tr>
-						<td>生日:</td>
-						<td><input type="date" name="emp_bday" value="1991-08-26"></td>
-					</tr>					
-					<tr>
-						<td>到職日:</td>
-						<td><input type="date" name="emp_reg" value="2016-09-30"></td>
-					</tr>					
-					<tr>
-						<td>離職日:</td>
-						<td><input type="date" name="emp_due"></td>
-					</tr>					
-					<tr>
-						<td>照片:</td>
-						<td><input type="file" name="picture"><br></td> 
-					</tr>					
-					<tr>
-						<td>修改人:</td>
-						<td><input type="text" name="key_id" value="E00005"></td> 
-					</tr>	
-					</table>				
-					<br>
-					<input type="submit" value="送出新增" class="btn btn-theme03">
-				</form>
+		<div class="col-lg-12">
+			<nav class="nav navbar-default">
+			<div class="tab-content">
+				<ul class="nav navbar-nav">
+					<li><a href="employee.jsp" class="glyphicon glyphicon-search">搜尋</a></li>
+					<li><a style="background-color: rgba(172, 214, 255, 0.6);"
+						class="glyphicon glyphicon-file">新增</a></li>
+					<li><a href="SetPassCode.jsp" class="glyphicon glyphicon-lock">修改權限</a></li>
+					<li><a href="#" class="glyphicon glyphicon-list-alt">查詢結果</a></li>
+				</ul>
+			</div>
+			</nav>
+			<div class="tab-content">
+				<div>
+					<div class="titlelist">新增員工資料</div>
+					<div class="col-lg-12  main">
+						<p>
+							<c:if test="${not empty errorMsgs}">
+								<font color='red'>請修正以下錯誤:
+									<ul>
+										<c:forEach var="message" items="${errorMsgs}">
+											<li>${message}</li>
+										</c:forEach>
+									</ul>
+								</font>
+							</c:if>
+						<form METHOD="post" ACTION="insertEmp.do" id="create_emp"
+							enctype="multipart/form-data" class="form-horizontal style-form">
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">密碼:</label>
+								<div class="col-lg-6">
+									<input type="text" name="emp_pwd" value="3310">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">姓名:</label>
+								<div class="col-lg-6">
+									<input type="text" name="emp_name" value="柯大中">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">性別:</label>
+								<div class="col-lg-6">
+									<input type="text" name="emp_sex" value="男">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">身分證:</label>
+								<div class="col-lg-6">
+									<input type="text" name="emp_idnum" id="emp_idnum"
+										value="A132789952">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">地址:</label>
+								<div class="col-lg-6">
+									<input type="text" name="emp_addr" value="台北市新生北路五段一號">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">電子信箱:</label>
+								<div class="col-lg-6">
+									<input type="text" name="emp_mail" value="dadaa@gmail.com">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">電話:</label>
+								<div class="col-lg-6">
+									<input type="text" name="emp_phone" value="0988456877">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">生日:</label>
+								<div class="col-lg-6">
+									<input type="date" name="emp_bday" value="1991-08-26">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">到職日:</label>
+								<div class="col-lg-6">
+									<input type="date" name="emp_reg" value="2016-09-30">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">離職日:</label>
+								<div class="col-lg-6">
+									<input type="date" name="emp_due">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">照片:</label>
+								<div class="col-lg-6">
+									<input type="file" name="picture">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">修改人:</label>
+								<div class="col-lg-6">
+									<input type="text" name="key_id"
+										value="${sessionScope.LoginOK.emp_id }" readonly="readonly"
+										style="color: gray;">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-1  col-lg-offset-5">
+									<div class="col-lg-6">
+										<input type="submit" value="送出新增" class="btn btn-theme03">
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -227,6 +288,7 @@
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
 	<script type="text/javascript"
 		src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
+	<script src="<c:url value='../resources/js/jquery.validate.min.js' />"></script>
 	<script class="include" type="text/javascript"
 		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
@@ -238,5 +300,81 @@
 	<!------------------------------------------------ 程式 --------------------------------------------------------------->
 	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
 		type="text/javascript"></script>
+	<script>
+		$(document).ready(function() {
+			// 		------------------------------------------加入身分證驗證方法----------------------
+			$.validator.addMethod("twId", function(value, element) {
+				var regExpID = /^[a-z](1|2)\d{8}$/i, // 身份證正規式
+				re = new RegExp(regExpID);
+				return this.optional(element) || re.test(value);
+			});
+			// -----------------------------------驗證-------------------------------------------
+			$("#create_emp").validate({
+				// 				success: function(label) {
+				// 					label.text("【正確】")
+				// 					},
+				errorClass : "my-error-class",
+				validClass : "my-valid-class",
+
+				rules : {
+					emp_pwd : {
+						required : true,
+						minlength : 4
+					},
+					emp_name : {
+						required : true
+					},
+					emp_idnum : {
+						required : true,
+						rangelength : [ 10, 10 ],
+						twId : true
+					},
+					emp_addr : {
+						required : true
+					},
+					emp_mail : {
+						email : true
+					},
+					emp_phone : {
+						digits : true,
+						required : true,
+						rangelength : [ 10, 10 ]
+					},
+					emp_reg : {
+						required : true
+					}
+				},
+				messages : {
+					emp_pwd : {
+						required : "【請輸入密碼】",
+						minlength : "【密碼長度必須大於4位數】"
+					},
+					emp_name : {
+						required : "【請輸入員工姓名】"
+					},
+					emp_idnum : {
+						required : "【請輸入身分證號】",
+						rangelength : "【長度必須為10位數】",
+						twId : "【請輸入有效的身份證字號】"
+					},
+					emp_addr : {
+						required : "【請輸入地址】"
+
+					},
+					emp_mail : {
+						email : "【email格式不正確】"
+					},
+					emp_phone : {
+						digits : "【必須是數字】",
+						required : "【請輸入電話】",
+						rangelength : "【電話輸入格式不正確】"
+					},
+					emp_reg : {
+						required : "【請輸入到職日】"
+					}
+				}
+			})
+		})
+	</script>
 </body>
 </html>

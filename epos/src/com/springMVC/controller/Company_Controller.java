@@ -180,8 +180,11 @@ public class Company_Controller {
 			}
 
 			if("delete".equals(action)){
-				
-				comSrv.delete(com_id);
+				try {
+					comSrv.delete(com_id);					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				List list = comSrv.getAll();
 				
 				request.getSession().setAttribute("list", list);

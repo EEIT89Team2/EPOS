@@ -1,26 +1,28 @@
 package com.springMVC.controller;
 
-import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.discount.model.DiscountVO;
+import com.product.model.ProdVO;
 import com.returns.model.ReturnDetailService;
+import com.returns.model.ReturnItemsService;
 import com.returns.model.ReturnListService;
 import com.returns.model.RtnDetailVO;
 import com.returns.model.RtnItemsVO;
@@ -540,6 +542,42 @@ System.out.println("3");
 			return "/RETURNS/ReturnList";
 		}
 		//return ret_id;
+	}
+		
+	@RequestMapping(method = RequestMethod.GET, value = { "/getProd_DDL_rtn.do","/RETURNS/getProd_DDL_rtn.do" })
+	public void getProd_DDL_rtn(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setCharacterEncoding("UTF8");
+		PrintWriter out = response.getWriter();
+		/************************
+		 * 1.接收請求參數 - 輸入格式的錯誤處理
+		 *************************/
+//		String prod_id = request.getParameter("prod_id");
+		/*************************** 2.開始查詢資料 *****************************************/
+		// OrderService ordSvc = new OrderService();
+		List<RtnItemsVO> list = null;
+		List<Map> prodlist = new LinkedList();
+		try {
+			
+//			ProdService prodSvc = new  ProdService();
+			ReturnItemsService rtnItmSvc = new ReturnItemsService();
+			
+//			list = prodSvc.getAll();
+			list = rtnItmSvc.getAll();
+			
+			for(RtnItemsVO rtnVO : list){
+				Map map = new HashMap();
+				map.put("SelectValue",rtnVO.getProd_name()+"^"+rtnVO.getRe_quantity());
+				map.put("SelectText", rtnVO.getProd_name());
+				prodlist.add(map);
+			}
+			
+			String jsonString = JSONValue.toJSONString(prodlist);
+			out.println(jsonString);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 }

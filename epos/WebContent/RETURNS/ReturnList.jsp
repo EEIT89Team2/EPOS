@@ -12,6 +12,9 @@
 	pageContext.setAttribute("list",list);
 	
 	session.getAttribute("LoginOK");
+	
+	Date nowDate =new java.sql.Date(System.currentTimeMillis());
+	pageContext.setAttribute("nowDate",nowDate);
 %>
 <html>
 
@@ -249,11 +252,12 @@ print(text)
 	<tr>
 		<div class="form-group">
 			<label for="exampleInputName2">　退貨日期：</label>
-			<input type="date" class="form-control" name="ret_date" />
+<!-- 			<input type="date" class="form-control" name="ret_date" /> -->
+				<input type = "date" name="ret_date" id="ret_date" class="form-control" value="${nowDate}" />
 		</div>
 		<div id="aa" class="form-group">
 			<label for="exampleInputName2">廠商名稱：</label>
-			<select type="TEXT" class="form-control" name="com_name" id="com_name" /><option value="">請選擇廠商</option></select>	
+			<select type="TEXT" class="form-control" name="com_name" id="com_name" style="width: 160px"/><option value="">請選擇廠商</option></select>	
 		</div>
 		<div id="aa" class="form-group">
 			<label for="exampleInputName2">廠商編號：</label>
@@ -265,7 +269,7 @@ print(text)
 		</div>
 		<div id="aa" class="form-group">
 			<label for="exampleInputName2">　修 改 日 期 ：</label>
-			<input type="Date" class="form-control" name="key_date" />
+			<input type="Date" class="form-control" name="key_date" value="${nowDate}" />
 		</div>
 		<div style="height: 20px;"></div>
 		<div id="bb" class="form-group">　
@@ -274,7 +278,9 @@ print(text)
 		</div>
 		<div id="aa" class="form-group">
 			<label for="exampleInputName2">備　註：</label>
-			<input type="TEXT" class="form-control" name="remark" value="test" />
+
+			<input type="TEXT" class="form-control" name="remark" value="" />
+
 		</div>
 	</tr>
 </table>

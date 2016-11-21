@@ -87,7 +87,7 @@
 	
 
 </style>
-<title>全部員工基本資料</title>
+<title>出貨單資料</title>
 
 </head>
 <body>
@@ -158,7 +158,7 @@
 		
 <!-- 	<a href="../index.jsp">回首頁</a> -->
 <!-- 	<a href="javascript:" onclick="history.back(); ">回上頁</a>  -->
-<input type="button" name="action" value="返回" onclick="history.back();">
+<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>
 
 <script type="text/javascript"
 		src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>

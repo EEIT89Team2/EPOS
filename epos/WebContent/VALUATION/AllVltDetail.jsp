@@ -172,11 +172,12 @@ td{
 </c:forEach>
 	</table>
 
-<!-- 	<a href="../index.jsp">回首頁</a> -->
-<!-- 	<a href="javascript:" onclick="history.back(); ">回上頁</a>  -->
-	<center>
-	<input type="button" name="action" value="返回" class="btn btn-success" onclick="history.back();">
-	</center>
+			<a href="../VALUATION/ValuationList.jsp"><i class="glyphicon glyphicon-th-list"></i>　報價單</a></br>
+			<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>
+				
+<%-- 	<center> --%>
+<!-- 	<input type="button" name="action" value="返回" class="btn btn-success" onclick="history.back();"> -->
+<%-- 	</center> --%>
 	
 
 	<script type="text/javascript"

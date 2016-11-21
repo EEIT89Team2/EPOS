@@ -112,7 +112,7 @@
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
+			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -159,7 +159,7 @@
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/VALUATION/valuation.jsp">報價單維護</a></li>
+						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
 					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
@@ -280,29 +280,6 @@
 		</div>
 	</div>
 	
-<!-- 		<tr> -->
-<!-- 			<td> -->
-<!-- 				<FORM METHOD="post" ACTION="getOneinvo.do"> -->
-<!-- 					<b>請輸入發票編號 (例:KZ-22239651)</b> <input type="text" name="invoice_id"> -->
-<!-- 					<input type="submit" value="送出"> -->
-<!-- 									<input type="hidden" name="action" value="getOne_For_Display"> -->
-<!-- 				</FORM> -->
-<!-- 			</td> -->
-
-<!-- 			<td> -->
-<!-- 				<FORM METHOD="post" ACTION="listAllInvo.do"> -->
-<!-- 					<b>全部的發票作廢資料 </b> <input type="submit" value="查詢"> -->
-<!-- 									<input type="hidden" name="action" value="getAll_For_Display"> -->
-<!-- 				</FORM> -->
-<!-- 			</td> -->
-
-<!-- 			<td> -->
-<!-- 				<FORM METHOD="post" ACTION="addInvo.do"> -->
-<!-- 					<b>新增發票作廢資料 </b> <input type="submit" value="新增"> -->
-<!-- 									<input type="hidden" name="action" value="getAdd_For_Display"> -->
-<!-- 				</FORM> -->
-<!-- 			</td> -->
-<!-- 		</tr> -->
 	</div>
 	</section> </section> </section>
 

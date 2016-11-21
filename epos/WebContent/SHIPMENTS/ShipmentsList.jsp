@@ -70,17 +70,17 @@ print(text)
 	}
 	
 	a{
-		color:#ab2222;
+		color:#365d5d;
 	}
 	
 	.main{
 		height: 250px;
 		border-radius: 8px;
-		background: #fbe7e7;
+		background: #e1ffff;
 	}
 	
 	.table > thead:first-child > tr:first-child > td {
-  		background:#fb9292;
+  		background:#519292;
   		color:white;
   		border-top: 0;
   		font-family: 微軟正黑體;
@@ -90,13 +90,18 @@ print(text)
 	}
 
 	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
-		border:1px solid #fdc0c0;
-		background:#f7e3e3;
+		border:1px solid #72cccc;
+		background:#d2ffff;
+	}
+	
+	/* 滑鼠移過 */
+	.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+		background-color: #b0e4e4;
 	}
 	
 	.alert-info{
-		background: #f7a2a2;
-		border-color:#e86262;
+		background: #72cccc;
+		border-color:#3bafaf;
 	}
 	
 	.addNewDetail{
@@ -109,7 +114,7 @@ print(text)
 	font-weight: bold;
 	color: white;
 	height: 35px;
-	background: #f7a2a2;
+	background: #72cccc;
 	font-size: 23px;
 	border-radius: 2px;
 }
@@ -119,6 +124,13 @@ print(text)
 		margin-top:60px;
 	}
 	
+	#form{
+		margin-left: 20px;
+	}
+	
+	#group{
+		margin-left: 30px;
+	}
 	
 	
 
@@ -252,38 +264,28 @@ print(text)
 	<FORM id="form1" METHOD="post" name="form1" class="form-inline">
 	<table border="0">
 	<tr>
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="exampleInputName2">　退貨單編號：</label> -->
-<!-- 			<input type="TEXT" class="form-control" name="ret_id" disabled/> -->
-<!-- 		</div>　　 -->
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="exampleInputName2">　出貨單號 ：</label> -->
-<!-- 			<input type=text class="form-control" name="ship_id" readonly /> -->
-<!-- 		</div>　　 -->
-		<div class="form-group">
+		<div id="form" class="form-group">
 			<label for="exampleInputName2">訂單編號 ：</label>
-			<input type="text" class="form-control" name="ord_id" value="${ordVO.ord_id}" />	
-		</div>　　
-		<div class="form-group">　
+			<input type="text" class="form-control" name="ord_id" value="${ordVO.ord_id}" />
+		</div>
+		<div id="group" class="form-group">　
 			<label for="exampleInputName2">收件人姓名 ：</label>
 			<input type="text" class="form-control" name="rec_name" value="" />
-		</div>　
-		<div class="form-group">
+		</div>
+		<div id="group" class="form-group">
 			<label for="exampleInputName2">收件人地址 ：</label>
 			<input type="text" class="form-control" name="rec_addr" />
 		</div>
-		
-		<div style="height: 10px;"></div>
-		
-		<div class="form-group">
-			<label for="exampleInputName2">　出貨日期 ：</label>
+		<div id="group" class="form-group">
+			<label for="exampleInputName2">出貨日期 ：</label>
 			<input type="date" class="form-control" name="ship_date" />
-		</div>　
-		<div class="form-group">
-			<label for="exampleInputName2">　  修改人員 ：</label>
+		</div>
+		<div id="group" class="form-group">
+			<label for="exampleInputName2">修改人員 ：</label>
 			<input type="text" class="form-control" name="key_id" value="${LoginOK.emp_id}" />
-		</div>　
-
+		</div>
+		<div style="height: 15px;"></div>
+		<div id="group" class="form-group">
 			<label for="exampleInputName2">備　註：</label>
 			<input type="text" class="form-control" name="remark" value="test" />
 		</div>

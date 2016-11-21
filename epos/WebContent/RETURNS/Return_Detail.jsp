@@ -87,6 +87,12 @@
 		background-color:#dfd5ff;
 	}
 	
+	/* 计*/
+	.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+		background: #818ebf;
+		border-color: #bdcbfd;
+	}
+	
 </style>
 
 
@@ -99,12 +105,12 @@
 			<div class="tab-content">
 				<nav class="alert alert-info">
 				<div>
-				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>穝糤</a>
+				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>穝糤</a>
 		    	<a href="#" onclick="window.open('searchdetail.jsp', 'Yahoo', config='height=500,width=850')"><span class="glyphicon glyphicon-search"></span>琩高</a>
-		    	<a href="#" onclick="window.open('AllReturnDetail.jsp', '癶砯虫灿', config='height=850,width=1600')"><span class="glyphicon glyphicon-inbox"></span>场琩高</a>
-				<a href="ReturnList.jsp"><i class="glyphicon glyphicon-th-list"></i>癶砯虫</a>
-		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span></a>
-		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">癳</span></a>
+		    	<a href="#" onclick="window.open('AllReturnDetail.jsp', '癶砯虫灿', config='height=850,width=1600')"><span class="glyphicon glyphicon-inbox"></span>场琩高</a>
+				<a href="ReturnList.jsp"><i class="glyphicon glyphicon-th-list"></i>癶砯虫</a>
+		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span></a>
+		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">癳</span></a>
 				</div>
 
 				</nav>

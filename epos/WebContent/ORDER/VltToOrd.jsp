@@ -15,47 +15,151 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="<c:url value="../resources/css/bootstrap.css" />"
+	rel="stylesheet">
+<!--external css-->
+<link
+	href="<c:url value="../resources/font-awesome/css/font-awesome.css" />"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="../resources/lineicons/style.css" />">
+<!-- Custom styles for this template -->
+<link href="<c:url value="../resources/css/style.css" />"
+	rel="stylesheet">
+<link href="<c:url value="../resources/css/style-responsive.css" />"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />	
+<style type="text/css">
+
+	/* 訂單div*/
+	#orddiv{
+		background: #4dbcff;
+		height: 30px;
+		text-align: center;
+		color: white;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	
+	#ordmain{	
+		height: 150px;
+		background: #e1f4ff;
+		border-bottom: double #4dbcff 4px;
+		border-left: double #4dbcff 4px;
+		border-right: double #4dbcff 4px;
+	
+	}
+	
+	.form-group{
+		margin-left: 20px;
+		margin-top: 20px;
+	}
+	
+	#group{
+		margin-left: 50px;
+	}
+	
+	/* 訂單明細div*/
+	#detaildiv{
+		background: #ffc36e;
+		height: 30px;
+		text-align: center;
+		color: white;
+		font-size: 20px;
+ 		margin-top: 10px;
+ 		font-weight: bold; 
+	}
+	
+	td{
+		text-align: center;
+	}
+	
+	/* 表格雙數欄位*/
+	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
+		background: #ffe8c8;
+		border:3px double #ffc572;
+	}
+	
+	/* 表格標題*/
+	.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{
+		background: #f0ad4e;
+	}
+	
+	/* 滑鼠移過*/
+	.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th{
+		background: #ffd497;	
+	}
+	
+	button{
+		margin-left: 20px;
+	}
+	
+
+	
+	
+</style>
 <title>報價單轉訂單</title>
 
 </head>
 <body>
 
-	<h2>訂單</h2>
-	<form method="post" action="../ORDER/addOrder.do">
-		<table border="1">
-
+	<div id="orddiv">訂單</div>
+	<form method="post" action="../ORDER/addOrder.do" class="form-inline">
+	<div id="ordmain">
+		<table id="ord">
 			<c:forEach var="list" items="${list}" varStatus="count">
 				<tr>
-					<td>報價單號：<input type="text" name="vlt_id" value="${list.vlt_id}" readonly/></td>	
-					<td>實際金額：<input type="text" value="${list.total_price}" readonly />
-							   <input type="hidden" name="total_price_temp" value="${list.total_price}" />
-							   <input type="hidden" name="cash" value="${list.total_price}" />
-					<td>狀態：<input type="text" value="${list.status}" readonly /></td>
-<%-- 					<td>交貨日期：<input type="date" name="delivery_date" value="${list.delivery_date}" /></td> --%>
-<%-- 					<td>有效日期：<input type="date" name="exp_date" value="${list.exp_date}" /></td> --%>
-				</tr>
-				<tr>
-					</td>
-					<td>備註：<input type="text" name="remark" value="${list.remark}" readonly /></td>			
-					<td>修改人員：<input type="text" name="key_id" value="${LoginOK.emp_id}"  /></td>
-					<td>建檔日期：<input type="date" name="key_date" value="${list.key_date}"  /></td>
-					<td>班別：<input type="text" name="shift" value="${SHIFT}" readonly /></td>
-					<input type="hidden" name="ord_um" value="" />
-					<input type="hidden" name="cpon_id" value="" />
-					<input type="hidden" name="cpon_dollar" value="" />
-					
+					<div class="form-group">
+						<label for="exampleInputName2">報價單號：</label>
+						<input type="text" class="form-control" name="vlt_id" value="${list.vlt_id}" readonly/>	
+					</div>
+					<div id="group" class="form-group">
+						<label for="exampleInputName2">實際金額：</label>
+						<input type="text" class="form-control" value="${list.total_price}" readonly/>	
+						<input type="hidden" name="total_price_temp" value="${list.total_price}" />
+						<input type="hidden" name="cash" value="${list.total_price}" />
+					</div>
+					<div id="group" class="form-group">
+						<label for="exampleInputName2">修改人員：</label>
+						<input type="text" name="key_id" class="form-control" value="${LoginOK.emp_id}"/>	
+					</div>
+					<div id="group" class="form-group">
+						<label for="exampleInputName2">建檔日期：</label>
+						<input type="text" name="key_date" class="form-control" value="${list.key_date}"/>	
+					</div>
+					<div id="group" class="form-group">
+						<label for="exampleInputName2">狀態：</label>
+						<input type="text" class="form-control" value="${list.status}" readonly/>	
+					</div>
+					<div id="group" class="form-group">
+						<label for="exampleInputName2">備註：</label>
+						<input type="text" name="remark" class="form-control" value="${list.remark}" readonly/>	
+					</div>
+					<div id="group" class="form-group">
+						<label for="exampleInputName2">班別：</label>
+						<input type="text" name="shift" class="form-control" value="${SHIFT}"/>	
+					</div>
+					<div id="group" class="form-group">
+						<input type="hidden" name="ord_um" value="" />
+						<input type="hidden" name="cpon_id" value="" />
+						<input type="hidden" name="cpon_dollar" value="" />		
+					</div>
 				</tr>
 			</c:forEach>
 		</table>
-
-		<h2>訂單明細</h2>
-		<table border="1">
-			<tr>
-					<th>商品編號</th>
-					<th>商品名稱</th>
-					<th>商品數量</th>
-					<th>商品價格</th>
+	</div>
+		<div id="detaildiv">訂單明細</div>
+		<table id="del" class="table table-bordered table-striped table-hover">
+			<thead>
+				<tr>
+					<td>商品編號</td>
+					<td>商品名稱</td>
+					<td>商品數量</td>
+					<td>商品價格</td>
 				</tr>
+			</thead>
 		
 			<%for(int i=0;i<detailList.size();i++){ 
 				Valuation_DetailVO valuation_DetailVO = (Valuation_DetailVO)detailList.get(i);
@@ -82,9 +186,9 @@
 		<center>
 			<table>
 				<tr>
-					<td><input type="button" name="action" value="返回"
-						onclick="history.back();"></td>
-					<td><input type="submit" value="結帳"></td>
+					<td><button type="button" name="action" class="btn btn-success" value="返回"
+						onclick="history.back();">← 返回</button></td>
+					<td><button type="submit" value="結帳" class="btn btn-danger">$ 結帳</button></td>
 				</tr>
 			</table>
 		</center>

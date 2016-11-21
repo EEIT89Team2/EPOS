@@ -101,6 +101,18 @@ print(text)
 		margin-top:60px;
 	}
 	
+	#a{
+		margin-left: 30px;
+	}
+	
+	#sub{
+		margin-left: 30px;
+	}
+	
+	#print{
+		margin-left: 30px;
+	}
+	
 	
 	
 
@@ -222,12 +234,12 @@ print(text)
 			<div class="tab-content">
 				<nav id="listinfo" class="alert alert-info">
 				<div>
-				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
-		    	<a href="#" onclick="window.open('searchList.jsp', 'RetrunItem', config='height=500,width=1200')"><span class="glyphicon glyphicon-search"></span>單筆查詢</a>　　
-		    	<a href="#" onclick="window.open('AllList.jsp', 'RetrunList', config='height=850,width=1680')"><span class="glyphicon glyphicon-inbox"></span>全部查詢</a>　　
-		    	<a href="Return_Detail.jsp"><i class="glyphicon glyphicon-list-alt"></i>退貨單明細</a>　　　
-		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　　
-		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>　
+				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>
+		    	<a id="a" href="#" onclick="window.open('searchList.jsp', 'RetrunItem', config='height=500,width=1200')"><span class="glyphicon glyphicon-search"></span>單筆查詢</a>
+		    	<a id="a" href="#" onclick="window.open('AllList.jsp', 'RetrunList', config='height=850,width=1680')"><span class="glyphicon glyphicon-inbox"></span>全部查詢</a>
+		    	<a id="a" href="Return_Detail.jsp"><i class="glyphicon glyphicon-list-alt"></i>退貨單明細</a>
+		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>
+		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>
 				</div>
  
 				</nav> 

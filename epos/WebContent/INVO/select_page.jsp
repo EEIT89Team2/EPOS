@@ -80,6 +80,12 @@
 		background-color:#ffb784;
 	}
 	
+	/* 表格頁數*/
+	.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+		background: #ff6c00;
+		border-color:#ff8d3a;
+	}
+	
 	.alert-info{
 		background: #ffcca7;
 		border-color:#ffa15c;

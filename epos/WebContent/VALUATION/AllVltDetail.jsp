@@ -174,7 +174,10 @@ td{
 
 <!-- 	<a href="../index.jsp">回首頁</a> -->
 <!-- 	<a href="javascript:" onclick="history.back(); ">回上頁</a>  -->
+	<center>
 	<input type="button" name="action" value="返回" class="btn btn-success" onclick="history.back();">
+	</center>
+	
 
 	<script type="text/javascript"
 		src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>

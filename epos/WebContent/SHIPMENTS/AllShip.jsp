@@ -61,7 +61,7 @@
 	
 	/* 表格雙數欄位*/
 	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
-		background: #eaffff;
+		background: #d9ffff;
 		border: 1px solid #1fb9b9;
 	}
 	
@@ -131,6 +131,8 @@
 		</tr>
 </c:forEach>
 	</table>
+	
+		<a href="ShipmentsList.jsp"><i class="glyphicon glyphicon-th-list"></i>　出貨單</a></br>
 	
 <script type="text/javascript"
 		src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>

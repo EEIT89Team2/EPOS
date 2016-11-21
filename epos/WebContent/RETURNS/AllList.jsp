@@ -76,6 +76,12 @@
 		background-color:#fdaeae;
 	}
 	
+	/* 表格頁數*/
+	.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+		background: #ff7d7d;
+		border-color: #ffa9a9;
+	}
+	
 	a{
 		margin-left: 20px;
 	}

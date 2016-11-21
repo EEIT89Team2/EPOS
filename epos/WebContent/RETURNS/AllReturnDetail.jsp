@@ -76,8 +76,16 @@
 		background-color:#dfd5ff;
 	}
 	
+	/* 表格頁數*/
+	.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+		background: #818ebf;
+		border-color: #bdcbfd;
+	}
+	
 	a{
-		margin-left: 20px;
+		margin-top:20px;
+		
+		margin-left: 30px;
 	}
 
 </style>
@@ -128,7 +136,7 @@
 			</c:forEach>
 			</table>
 		</div>
-		
+	
 	<a href="../RETURNS/ReturnList.jsp"><i class="glyphicon glyphicon-th-list"></i>　退貨單</a></br>
 	<a href="../RETURNS/Return_Detail.jsp"><i class="glyphicon glyphicon-list-alt"></i>　退貨單明細</a></br>
 	<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>		

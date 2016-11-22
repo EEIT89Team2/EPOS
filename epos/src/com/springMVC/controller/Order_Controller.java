@@ -208,7 +208,6 @@ public class Order_Controller extends HttpServlet implements Runnable {
 			int i = 1;
 			while (true) {
 				try {
-//					Thread thread1 = new Thread(this);
 					Thread thread = new Thread(this);
 					threadList.add(thread);
 					

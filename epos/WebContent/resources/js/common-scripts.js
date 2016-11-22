@@ -121,8 +121,8 @@ var Script = function () {
 		var hour = insertTime.getHours();
 		var minutes = insertTime.getMinutes();
 		var seconds = insertTime.getSeconds();
-		if((hour==11||hour==20)&&(minutes==25)&&(seconds==0)){
-			alert(1);
+		if((hour==15||hour==20)&&(minutes==24)&&(seconds==0)){
+			alert("班別報表新增完成");
 			$.ajax({
 				type : "post",
 				url : "insertShiftre.do",

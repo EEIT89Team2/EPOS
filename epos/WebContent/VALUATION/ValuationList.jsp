@@ -216,7 +216,12 @@ print(text)
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
 				</ul></li>
-
+		<li class="sub-menu"><a href="javascript:;"> <i
+					class="fa fa-users"></i> <span>顧客關係</span>
+			</a>
+				<ul class="sub">
+					<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+				</ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
@@ -245,7 +250,7 @@ print(text)
 	<tr>
 		<div class="form-group">
 			<label for="exampleInputName2">　　報價日期 ：</label>
-			<input type="date" class="form-control" name="vlt_date" value="${nowDate}" />	
+			<input type="text" class="form-control" name="vlt_date" value="${nowDate}" readonly />	
 		</div>　　
 		<div class="form-group">
 			<label for="exampleInputName2">交貨日期 ：</label>
@@ -261,7 +266,7 @@ print(text)
 		</div>　　
 		<div class="form-group">
 			<label for="exampleInputName2"> 修改日期 ：</label>
-			<input type="date" class="form-control" name="key_date" value="${nowDate}" />
+			<input type="text" class="form-control" name="key_date" value="${nowDate}"  readonly/>
 		</div>
 		<div style="height: 10px;"></div>
 		<div class="form-group">
@@ -275,6 +280,10 @@ print(text)
 		<div class="form-group">
 			<label for="exampleInputName2">備　　註：</label>
 			<input type="text" class="form-control" name="remark" value="" />
+		</div>
+		<div>
+		<input type="hidden" name="shift" value="${SHIFT}" >
+		<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 		</div>
 	</tr>
 </table>

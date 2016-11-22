@@ -21,7 +21,7 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>company</title>
+<title>搜尋廠商</title>
 <style>
 .navbar-default {
 	background: #D2E9FF;

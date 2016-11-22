@@ -21,7 +21,7 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>修改員工資料</title>
+<title>修改廠商資料</title>
 <style>
 .navbar-default {
 	background: #D2E9FF;

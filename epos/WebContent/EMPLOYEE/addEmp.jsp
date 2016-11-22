@@ -23,7 +23,7 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>全部員工基本資料</title>
+<title>新增員工基本資料</title>
 <style>
 .navbar-default {
 	background: #D2E9FF;

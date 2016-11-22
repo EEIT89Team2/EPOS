@@ -21,7 +21,7 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>employee</title>
+<title>員工</title>
 <style>
 .navbar-default {
 	background: #D2E9FF;
@@ -167,6 +167,9 @@
 			</nav>
 			<div class="tab-content">
 				<div>
+					<div class="titlelist">查詢員工資料</div>
+					<div class="col-lg-12  main">
+						<p>
 					<%-- 錯誤表列 --%>
 					<c:if test="${not empty errorMsgs}">
 						<font color='red'>
@@ -177,9 +180,6 @@
 							</ul>
 						</font>
 					</c:if>
-					<div class="titlelist">查詢員工資料</div>
-					<div class="col-lg-12  main">
-						<p>
 						<form method="post" action="getOneEmp.do" id="empId"
 							class="form-horizontal style-form" role="form">
 							<div class="form-group">

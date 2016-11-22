@@ -25,7 +25,7 @@
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
-<title>全部員工基本資料</title>
+<title>員工資料清單</title>
 <style>
 
 /* 	表格標題 */

@@ -686,11 +686,19 @@ print(text)
 				
 				$("#cash_temp").blur(function() {
 				
-					if($(this).val() != ""){
+					if($(this).val() != ""){	
 						
 						ordmain.charge.value = ordmain.cash.value - ordmain.total_price.value;
 						ordmain.charge.value = ordmain.cash_temp.value - ordmain.total_price.value;
 						ordmain.cash.value = ordmain.cash_temp.value - ordmain.charge.value;
+						
+						if(parseInt(document.getElementById("charge").value) <= 0){	
+							
+							var Balance = ordmain.total_price.value - parseInt(document.getElementById("cash_temp").value);
+							ordmain.charge.value="請補足餘額："+Balance;
+						}
+					}else{
+						document.getElementById("charge").value="0";
 					}
 				})				
 	//<!----------------------------------------  刪除        ------------------------------------>	

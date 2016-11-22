@@ -342,12 +342,14 @@ print(text)
 						<div class="form-group">
 							<label for="exampleInputName2">　收銀員編號：</label> 
 							<input type="text" value="${LoginOK.emp_id}" name="key_id_txt" class="form-control" disabled="disabled">
-							<input type="hidden" value="${LoginOK.emp_id}" name="key_id">
+							<input type="hidden" name="key_id" value="${LoginOK.emp_id}">
+							<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputName2">　收銀員姓名：</label> 
 							<input type="text" value="${LoginOK.emp_name}" class="form-control" disabled="disabled">
 						</div>
+						
 						<div class="form-group">
 							<label for="exampleInputName2">　班別：</label> 
 							<input type="text" value="${SHIFT}" name="shift_txt" class="form-control" disabled="disabled">

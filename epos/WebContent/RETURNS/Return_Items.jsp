@@ -9,6 +9,8 @@
 	ReturnItemsService rtnItemSvc = new ReturnItemsService();
 	List<RtnItemsVO> list = rtnItemSvc.getAll();
 	pageContext.setAttribute("list", list);
+	
+	session.getAttribute("LoginOK");
 %>
 <html>
 <head>
@@ -178,7 +180,12 @@ print(text)
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
 				</ul></li>
-
+			<li class="sub-menu"><a href="javascript:;"> <i
+					class="fa fa-users"></i> <span>顧客關係</span>
+			</a>
+				<ul class="sub">
+					<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+				</ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
@@ -221,6 +228,10 @@ print(text)
 				<div class="form-group">
 					<label for="exampleInputName2">備註：</label> <input type="text"
 						name="remark" class="form-control">
+				</div>
+				<div>
+					<input type="hidden" name="shift" value="${SHIFT}" >
+					<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 				</div>
 			</FORM>
 

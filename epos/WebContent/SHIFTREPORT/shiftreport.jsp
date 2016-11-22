@@ -169,7 +169,12 @@
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
 				</ul></li>
-
+<li class="sub-menu"><a href="javascript:;"> <i
+     class="fa fa-users"></i> <span>顧客關係</span>
+   </a>
+    <ul class="sub">
+     <li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+    </ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
@@ -290,24 +295,24 @@
 	$(document).ready(function() {
 
 // -------------------------------自動新增----------------------------------
-		setInterval(function(){
-			insertTime = new Date();
-			var hour = insertTime.getHours();
-			var minutes = insertTime.getMinutes();
-			var seconds = insertTime.getSeconds();
-			if((hour==14||hour==20)&&(minutes==0)&&(seconds==0)){
-				alert(1);
-				$.ajax({
-					type : "post",
-					url : "insertShiftre.do",
-					data : {"shift":$("input[name='shift']").val(),
-							"emp_id":$("input[name='emp_id']").val()
-					}					
-				});
-			}else{
+// 		setInterval(function(){
+// 			insertTime = new Date();
+// 			var hour = insertTime.getHours();
+// 			var minutes = insertTime.getMinutes();
+// 			var seconds = insertTime.getSeconds();
+// 			if((hour==14||hour==20)&&(minutes==0)&&(seconds==0)){
+// 				alert(1);
+// 				$.ajax({
+// 					type : "post",
+// 					url : "insertShiftre.do",
+// 					data : {"shift":$("input[name='shift']").val(),
+// 							"emp_id":$("input[name='emp_id']").val()
+// 					}					
+// 				});
+// 			}else{
 
-			}
-		},1000);
+// 			}
+// 		},1000);
 		
 		
 // -------------------------------載入新增----------------------------------

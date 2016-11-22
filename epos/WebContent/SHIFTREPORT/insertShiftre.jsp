@@ -55,16 +55,20 @@
 		<form method="post" action="insertShiftre.do" class="insertShift form-horizontal" role="form">
 
 			<p class="distance">
-<!-- 			<div class="form-group"> -->
-<!-- 				<label class="col-lg-1 col-lg-offset-5 control-label">日期:</label> -->
-<!-- 				<div class="col-lg-6"> -->
-<!-- 					<input type="Date" name="Date"> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
+			<div class="form-group">
+				<label class="col-lg-1 col-lg-offset-5 control-label">日期:</label>
+				<div class="col-lg-6">
+					<input type="Date" name="Date">
+				</div>
+			</div>
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-5 control-label">班別:</label>
 				<div class="col-lg-1">
-					<input type="text" name="shift" value="${SHIFT}">
+<%-- 					<input type="text" name="shift" value="${SHIFT}"> --%>
+									<select size="1" name="shift" id="shift" class="form-control refresh">
+											<option value="A">A</option>
+											<option value="B">B</option>
+									</select>
 				</div><div class="col-lg-5"></div>
 			</div>
 

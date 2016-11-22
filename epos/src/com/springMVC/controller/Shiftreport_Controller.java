@@ -134,12 +134,6 @@ public class Shiftreport_Controller {
 		int coins = 20000;
 		//來客數
 		int deal_num = (int)ordSvc.GetDayTotalPeople();
-		//折扣身分
-//		String dis_id = "";
-		//折扣%數
-//		Float dis_price = 0f;
-		//原價
-//		int original_price = 0;
 		
 		List<OrderVO> listAll = ordSvc.getDateAndShift(date, shift);
 
@@ -147,13 +141,6 @@ public class Shiftreport_Controller {
 			cash += (int)orderVO.getCash();
 			coupon += orderVO.getCpon_dollar();
 			deal_sum += (int)orderVO.getTotal_price();
-			
-			//以下都是要算折讓
-//			dis_id = orderVO.getDiscount();
-//			DiscountVO discountVO;
-//			discountVO = disSvc.getOneDisc(dis_id);
-//			dis_price = discountVO.getDis_price();
-//			original_price = original_price+(int) (((int)orderVO.getTotal_price() + orderVO.getCpon_dollar())/dis_price);
 		}
 		//折讓
 		int discount = deal_sum-cash;

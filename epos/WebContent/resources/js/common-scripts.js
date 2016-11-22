@@ -115,5 +115,24 @@ var Script = function () {
         })
     }
 
+ // -------------------------------自動新增----------------------------------
+	setInterval(function(){
+		insertTime = new Date();
+		var hour = insertTime.getHours();
+		var minutes = insertTime.getMinutes();
+		var seconds = insertTime.getSeconds();
+		if((hour==14||hour==20)&&(minutes==0)&&(seconds==0)){
+			alert(1);
+			$.ajax({
+				type : "post",
+				url : "insertShiftre.do",
+				data : {"shift":$("input[name='shift']").val(),
+						"emp_id":$("input[name='emp_id']").val()
+				}					
+			});
+		}else{
+
+		}
+	},1000);
 
 }();

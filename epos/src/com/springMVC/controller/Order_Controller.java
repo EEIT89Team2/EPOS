@@ -223,23 +223,24 @@ public class Order_Controller extends HttpServlet implements Runnable {
 					prodVO.setProd_id(request.getParameter("prod_id" + String.valueOf(i)));
 					ordDetailVO.setProdVO(prodVO);
 
-					// ordDetailVO.setProd_id(request.getParameter("prod_id" +
-					// String.valueOf(i)));
 					ordDetailVO.setProd_name(request.getParameter("prod_name" + String.valueOf(i)));
 					ordDetailVO.setProd_quantity(
 							Integer.parseInt(request.getParameter("prod_quantity" + String.valueOf(i))));
 					ordDetailVO
-							.setProd_price(Double.parseDouble(request.getParameter("prod_price" + String.valueOf(i))));
-					// list.add(ordDetailVO);
+					.setProd_price(Double.parseDouble(request.getParameter("prod_price" + String.valueOf(i))));
 					set.add(ordDetailVO);
-
-//					this.prodVO2=prodVO;
 					
 					prodVOList.add(prodVO);
 					quayList.add(Integer.parseInt(request.getParameter("prod_quantity" + String.valueOf(i))));
+					threadList.get(i-1).start();
+					i++;
+					// ordDetailVO.setProd_id(request.getParameter("prod_id" +
+					// String.valueOf(i)));
+					// list.add(ordDetailVO);
+
+//					this.prodVO2=prodVO;
 //					Order_Controller order_Controller=new Order_Controller();
 					
-					threadList.get(i-1).start();
 
 //					ProdVO oldProdVO = prodSrv.getOne(prodVO.getProd_id());
 //					int oldQuay = oldProdVO.getProd_stock();
@@ -248,7 +249,6 @@ public class Order_Controller extends HttpServlet implements Runnable {
 //							oldQuay - (Integer.parseInt(request.getParameter("prod_quantity" + String.valueOf(i)))));
 //
 //					prodSrv.update(oldProdVO);
-					i++;
 				} catch (Exception e) {
 					if (i < 100) {
 						i++;
@@ -262,18 +262,14 @@ public class Order_Controller extends HttpServlet implements Runnable {
 			// 將明細檔set進主檔,合併成一個VO
 			ordVO.setOrderdetails(set);
 			// OrderService ordSvc = new OrderService();
-			System.out.println("------1-------");
 			ordVO = ordSvc.addOrder(ordVO, list);
-			System.out.println("------2-------");
 
 			// List<OrderVO> listAll = ordSvc.getAll();
 
 			if(vlt_id!=null)
 			vltSvc.setStatus("Y", vlt_id);
-			System.out.println("------getOneTopOrdId1-------");
 
 			OrderVO ordVO1 = ordSvc.getOneTopOrdId();
-			System.out.println("------getOneTopOrdId2-------");
 
 			LinkedList<OrderVO> list1 = new LinkedList<OrderVO>();
 			
@@ -283,9 +279,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 
 
 			String ord_id=ordVO1.getOrd_id();
-			System.out.println("------getOrd_id1-------");
 			List<Order_DetailVO> detailList = ordSvc.Select_order_detailALL(ord_id);
-			System.out.println("------getOrd_id2-------");
 
 			session.setAttribute("detailList", detailList);
 			session.setAttribute("ordVO", ordVO1);

@@ -44,9 +44,7 @@ public class OrderSpringDAO implements Order_Interface {
 
 	@Override
 	public OrderVO addOrder(OrderVO orderVO, List<Order_DetailVO> order_detailVO_list) throws Exception {
-System.out.println("-----orderDAO1-----");
 		hibernateTemplate.save(orderVO);
-		System.out.println("-----orderDAO2-----");
 
 		return orderVO;
 	}

@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.company.model.ComService;
+import com.company.model.ComVO;
 import com.product.model.ProdDAO;
 import com.product.model.ProdService;
 import com.product.model.ProdVO;
@@ -375,6 +377,43 @@ public class RtnItems_Controller extends HttpServlet {
 				Map map = new HashMap();
 				map.put("SelectValue",prodVO.getProd_name());
 				map.put("SelectText", prodVO.getProd_name());
+				prodlist.add(map);
+			}
+			
+			String jsonString = JSONValue.toJSONString(prodlist);
+			out.println(jsonString);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = { "/getCom_DDL_com.do","/RETURNS/getCom_DDL_com.do" })
+	public void getCom_DDL_com(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setCharacterEncoding("UTF8");
+		PrintWriter out = response.getWriter();
+		/************************
+		 * 1.接收請求參數 - 輸入格式的錯誤處理
+		 *************************/
+//		String prod_id = request.getParameter("prod_id");
+		/*************************** 2.開始查詢資料 *****************************************/
+		// OrderService ordSvc = new OrderService();
+		List<ComVO> list = null;
+		List<Map> prodlist = new LinkedList();
+		try {
+			
+//			ProdService prodSvc = new  ProdService();
+			ComService comSvc = new ComService();
+			
+//			list = prodSvc.getAll();
+			list = comSvc.getAll();
+			
+			for(ComVO comVO : list){
+				Map map = new HashMap();
+//				map.put("SelectValue",comVO.getProd_name()+"^"+comVO.getRe_quantity());
+				map.put("SelectValue",comVO.getCom_id());
+				map.put("SelectText", comVO.getCom_id());
 				prodlist.add(map);
 			}
 			

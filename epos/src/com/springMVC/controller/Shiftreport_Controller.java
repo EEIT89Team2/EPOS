@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import com.company.model.ComService;
 import com.company.model.ComVO;
+import com.discount.model.DiscountService;
+import com.discount.model.DiscountVO;
 import com.employee.model.EmpService;
 import com.employee.model.EmpVO;
 import com.order.model.OrderService;
@@ -37,13 +39,11 @@ import com.shiftreport.model.ShiftreVO;
 
 @Controller
 public class Shiftreport_Controller {
-
 	
 	private final static ShiftreService shiftreSrv = new ShiftreService();
 	private final static OrderService ordSvc = new OrderService();
-	
+	private final static DiscountService disSvc = new DiscountService();
 
-	
 	@RequestMapping(method = RequestMethod.POST, value = "/SHIFTREPORT/getOneShiftre.do")
 	public String getOneShiftre(ModelMap model,
 			@RequestParam("Date") Date date,
@@ -103,42 +103,60 @@ public class Shiftreport_Controller {
 		String emp_id=request.getParameter("emp_id");
 //		int cash=Integer.parseInt(request.getParameter("cash"));
 //		int coupon=Integer.parseInt(request.getParameter("coupon"));
-		int discount=Integer.parseInt(request.getParameter("discount"));
+//		int discount=Integer.parseInt(request.getParameter("discount"));
 //		int coins=Integer.parseInt(request.getParameter("coins"));
 //		int deal_sum=Integer.parseInt(request.getParameter("deal_sum"));
-		int deal_cost=Integer.parseInt(request.getParameter("deal_cost"));
-		int deal_profit=Integer.parseInt(request.getParameter("deal_profit"));
+//		int deal_cost=Integer.parseInt(request.getParameter("deal_cost"));
+//		int deal_profit=Integer.parseInt(request.getParameter("deal_profit"));
 //		int deal_num=Integer.parseInt(request.getParameter("deal_num"));
 //		int shift_sum=Integer.parseInt(request.getParameter("shift_sum"));
 //		ProdService prodSrv = new ProdService();
+		//日期
 		Long now = new java.util.Date().getTime();
 		Date date = new Date(now);
-		
-		System.out.println("1="+shift);
-		System.out.println("1="+date);
-
+		//現金
 		int cash = 0;
+		//折價券
 		int coupon = 0;
+		//交易額
 		int deal_sum = 0;
+		//班別小計(實收交易額)
 		int shift_sum = 0;
+		//實收現金
 		int real_cash = 0;
+		//實收折價券
 		int real_coupon = 0;
-		List<OrderVO> listAll = ordSvc.getDateAndShift(date, shift);
-		System.out.println(listAll);
-		for(OrderVO orderVO: listAll){
-			cash = cash+(int) orderVO.getCash();
-			coupon = orderVO.getCpon_dollar();
-			deal_sum = (int) orderVO.getTotal_price();
-			System.out.println(cash);
-			System.out.println(coupon);
-			System.out.println(deal_sum);
-		}
-		System.out.println(cash);
-		System.out.println(coupon);
-		System.out.println(deal_sum);
-
-		int coins = 20000+deal_sum;
+		//交易成本
+		int deal_cost = 0;
+		//交易淨利
+		int deal_profit = 0;
+		//零用金
+		int coins = 20000;
+		//來客數
 		int deal_num = (int)ordSvc.GetDayTotalPeople();
+		//折扣身分
+//		String dis_id = "";
+		//折扣%數
+//		Float dis_price = 0f;
+		//原價
+//		int original_price = 0;
+		
+		List<OrderVO> listAll = ordSvc.getDateAndShift(date, shift);
+
+		for(OrderVO orderVO: listAll){
+			cash += (int)orderVO.getCash();
+			coupon += orderVO.getCpon_dollar();
+			deal_sum += (int)orderVO.getTotal_price();
+			
+			//以下都是要算折讓
+//			dis_id = orderVO.getDiscount();
+//			DiscountVO discountVO;
+//			discountVO = disSvc.getOneDisc(dis_id);
+//			dis_price = discountVO.getDis_price();
+//			original_price = original_price+(int) (((int)orderVO.getTotal_price() + orderVO.getCpon_dollar())/dis_price);
+		}
+		//折讓
+		int discount = deal_sum-cash;
 		
 		ShiftreVO shiftreVO = new ShiftreVO();
 		

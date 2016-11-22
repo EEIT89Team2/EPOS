@@ -590,20 +590,16 @@ System.out.println("3");
 		 *************************/
 //		String prod_id = request.getParameter("prod_id");
 		/*************************** 2.開始查詢資料 *****************************************/
-		// OrderService ordSvc = new OrderService();
 		List<ComVO> list = null;
 		List<Map> prodlist = new LinkedList();
 		try {
 			
-//			ProdService prodSvc = new  ProdService();
 			ComService comSvc = new ComService();
 			
-//			list = prodSvc.getAll();
 			list = comSvc.getAll();
 			
 			for(ComVO comVO : list){
 				Map map = new HashMap();
-//				map.put("SelectValue",comVO.getProd_name()+"^"+comVO.getRe_quantity());
 				map.put("SelectValue",comVO.getCom_id()+"^" + comVO.getCom_name());
 				map.put("SelectText", comVO.getCom_name());
 				prodlist.add(map);

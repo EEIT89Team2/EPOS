@@ -135,4 +135,10 @@ public class ProdHibernateDAO implements ProdDAO_interface {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<ProdVO> selectByGroup() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

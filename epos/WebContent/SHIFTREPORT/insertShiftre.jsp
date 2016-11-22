@@ -88,12 +88,12 @@
 <!-- 				</div> -->
 <!-- 			</div> -->
 
-			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-5 control-label">折讓:</label>
-				<div class="col-lg-6">
-					<input type="text" name="discount" value="0">
-				</div>
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label class="col-lg-1 col-lg-offset-5 control-label">折讓:</label> -->
+<!-- 				<div class="col-lg-6"> -->
+<!-- 					<input type="text" name="discount" value="0"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 
 <!-- 			<div class="form-group"> -->
 <!-- 				<label class="col-lg-1 col-lg-offset-5 control-label">零用金:</label> -->
@@ -109,26 +109,26 @@
 <!-- 				</div> -->
 <!-- 			</div> -->
 
-			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-5 control-label">交易成本:</label>
-				<div class="col-lg-6">
-					<input type="text" name="deal_cost" value="1000">
-				</div>
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label class="col-lg-1 col-lg-offset-5 control-label">交易成本:</label> -->
+<!-- 				<div class="col-lg-6"> -->
+<!-- 					<input type="text" name="deal_cost" value="1000"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 
-			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-5 control-label">交易淨利:</label>
-				<div class="col-lg-6">
-					<input type="text" name="deal_profit" value="1000">
-				</div>
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label class="col-lg-1 col-lg-offset-5 control-label">交易淨利:</label> -->
+<!-- 				<div class="col-lg-6"> -->
+<!-- 					<input type="text" name="deal_profit" value="1000"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 
-			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-5 control-label">交易次數:</label>
-				<div class="col-lg-6">
-					<input type="text" name="deal_num" value="3">
-				</div>
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label class="col-lg-1 col-lg-offset-5 control-label">交易次數:</label> -->
+<!-- 				<div class="col-lg-6"> -->
+<!-- 					<input type="text" name="deal_num" value="3"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 
 <!-- 			<div class="form-group"> -->
 <!-- 				<label class="col-lg-1 col-lg-offset-5 control-label">班別小計:</label> -->

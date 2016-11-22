@@ -19,4 +19,6 @@ public interface ProdDAO_interface {
 	
 	public void update2(Integer prod_stock, String prod_id);
 
+	List<ProdVO> selectByGroup();
+
 }

@@ -53,7 +53,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 .table-bordered>thead>tr>th, .table-bordered>tbody>tr>th,
 	.table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td,
 	.table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
- 	background: lightgray; 
+	background: lightgray;
 }
 /* 	表格內容單數 */
 .table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th
@@ -64,6 +64,14 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 /* 	表格偶數滑鼠指向 */
 .table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
 	background-color: lightsteelblue;
+}
+
+.my-valid-class {
+	color: #3a51e8;
+}
+
+.my-error-class {
+	color: red;
 }
 </style>
 </head>
@@ -196,7 +204,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 						</font>
 					</c:if>
 				<form method="post" action="email.do" name="form2"
-					class="form-horizontal style-form" id="create_mail">
+					class="form-horizontal style-form" id="send_mail">
 					<div class="col-lg-12">
 
 						<div class="form-group">
@@ -226,7 +234,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 						<div class="form-group">
 							<div class="col-lg-offset-4">
 								<input type="submit" value="寄送單一會員" name="howMany"
-									class="btn  btn-theme01"> <input type="submit"
+									class="btn  btn-theme01" id="one"> <input type="submit"
 									value="寄送全部會員" name="howMany" class="btn  btn-theme01">
 								<input type="submit" value="寄送優惠訊息" name="howMany"
 									class="btn  btn-theme01">
@@ -252,13 +260,14 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 								</tr>
 							</c:forEach>
 						</table>
-						<a href="<c:out value='${pageContext.request.contextPath}' />/MAIL/Mail.jsp">回上頁</a>
+						<a
+							href="<c:out value='${pageContext.request.contextPath}' />/MAIL/Mail.jsp">回上頁</a>
 					</div>
 				</form>
 				<div class="col-lg-6" id="allMem">
 					<!-----------------------寄送全部會員--------------- -->
 					<form method="post" action="allMail.do">
-						<input type="submit" value="查詢全部會員" class="btn  btn-theme01" >
+						<input type="submit" value="查詢全部會員" class="btn  btn-theme01">
 						<table border='1' width='500'>
 							<tr>
 								<th>會員編號</th>
@@ -271,7 +280,8 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 								</tr>
 							</c:forEach>
 						</table>
-						<a href="<c:out value='${pageContext.request.contextPath}' />/MAIL/Mail.jsp">回上頁</a>
+						<a
+							href="<c:out value='${pageContext.request.contextPath}' />/MAIL/Mail.jsp">回上頁</a>
 					</form>
 				</div>
 
@@ -279,7 +289,8 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 		</div>
 	</div>
 	</section> </section></section>
-	<input type="hidden" name="shift" value="${SHIFT}"><input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
+	<input type="hidden" name="shift" value="${SHIFT}">
+	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
@@ -291,6 +302,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 	<script type="text/javascript"
 		src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
+	<script src="<c:url value='../resources/js/jquery.validate.min.js' />"></script>
 	<script class="include" type="text/javascript"
 		src="<c:url value="/resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="/resources/js/jquery.scrollTo.min.js" />"></script>
@@ -299,5 +311,33 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 
 	<!--common script for all pages-->
 	<script src="<c:url value="/resources/js/common-scripts.js" />"></script>
+	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
+		type="text/javascript"></script>
+	<script>
+		$(document).ready(function() {
+			$("#send_mail").validate({
+				errorClass : "my-error-class",
+				validClass : "my-valid-class",
+
+				rules : {
+
+					from : {
+						required : true
+					},
+					subject : {
+						required : true
+					}
+				},
+				messages : {
+					from : {
+						required : "【請輸入標題】"
+					},
+					subject : {
+						required : "【請輸入主旨】"
+					}
+				}
+			})
+		})
+	</script>
 </body>
 </html>

@@ -16,7 +16,56 @@
 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>寄送系統</title>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
+<title>顧客關係維護</title>
+<style>
+.titlelist {
+	font-family: '微軟正黑體';
+	font-weight: bold;
+	color: white;
+	height: 35px;
+	background: salmon;
+	padding-left: 10px;
+	font-size: 23px;
+	border-radius: 2px;
+}
+
+th {
+	text-align: center;
+}
+
+input[type="date"], input[type="time"], input[type="datetime-local"],
+	input[type="month"] {
+	line-height: normal;
+}
+/* 	表格標題 */
+.table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>th,
+	.table>thead:first-child>tr:first-child>th, .table>caption+thead>tr:first-child>td,
+	.table>colgroup+thead>tr:first-child>td, .table>thead:first-child>tr:first-child>td
+	{
+	font-weight: bold;
+	text-align: center;
+	background: steelblue;
+}
+
+/* 	表格內容偶數 */
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th,
+	.table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td,
+	.table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
+ 	background: lightgray; 
+}
+/* 	表格內容單數 */
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th
+	{
+	background: lightgray;
+}
+
+/* 	表格偶數滑鼠指向 */
+.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+	background-color: lightsteelblue;
+}
+</style>
 </head>
 <body>
 	<section id="container"> <!--header start--> <header
@@ -132,76 +181,105 @@
 		class="wrapper">
 	<div class="row mt">
 		<div class="col-lg-12">
-			<%-- 錯誤表列 --%>
-			<c:if test="${not empty errorMsgs}">
+			<div class="titlelist">顧客關係維護</div>
+			<div class="col-lg-12">
+				<p>
+					<%-- 錯誤表列 --%>
+					<c:if test="${not empty errorMsgs}">
 
-				<font color='red'>請修正以下錯誤:
-					<ul>
-						<c:forEach var="message" items="${errorMsgs}">
-							<li>${message}</li>
-						</c:forEach>
-					</ul>
-				</font>
-			</c:if>
-			<!---------------------收件者信箱 -------------------- -->
-			<form method="post" action="email.do" name="form2">
-					<table>
-						<tr>
-							<!-- <td>Client:<input type="text" name="uesr" size="10"></td> -->
-							<!-- <td>Password:<input type="password" name="pass" size="10"></td> -->
-							<td>收件者信箱:<input type="text" name="addres" size="20"></td>
-							<td>標題:<input type="text" name="from" size="10"></td>
-							<td>主旨:<input type="text" name="subject" size="10"></td>
-						</tr>
-						<input type="submit" value="寄送單一會員" name="howMany"> 
-						<input type="submit" value="寄送全部會員" name="howMany"> 
-						<input type="submit" value="寄送優惠訊息" name="howMany"> <br> <br>
-					</table>
-					內容:
-					<div align="center">
-						<textarea cols="50" rows="9" name="text"></textarea>
+						<font color='red'>請修正以下錯誤:
+							<ul>
+								<c:forEach var="message" items="${errorMsgs}">
+									<li>${message}</li>
+								</c:forEach>
+							</ul>
+						</font>
+					</c:if>
+				<form method="post" action="email.do" name="form2"
+					class="form-horizontal style-form" id="create_mail">
+					<div class="col-lg-12">
+
+						<div class="form-group">
+							<label class="col-lg-1 col-lg-offset-4 control-label">收件者信箱:</label>
+							<div class="col-lg-6">
+								<input type="text" name="addres">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-1 col-lg-offset-4 control-label">標題:</label>
+							<div class="col-lg-6">
+								<input type="text" name="from">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-1 col-lg-offset-4 control-label">主旨:</label>
+							<div class="col-lg-6">
+								<input type="text" name="subject">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-1 col-lg-offset-4 control-label">內容:</label><br>
+							<div class="col-lg-6">
+								<textarea cols="50" rows="9" name="text"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-lg-offset-4">
+								<input type="submit" value="寄送單一會員" name="howMany"
+									class="btn  btn-theme01"> <input type="submit"
+									value="寄送全部會員" name="howMany" class="btn  btn-theme01">
+								<input type="submit" value="寄送優惠訊息" name="howMany"
+									class="btn  btn-theme01">
+							</div>
+						</div>
+						<p>
 					</div>
-					</form>
-					<div>
-					<form method="post" action="email.do" name="form2"  class="col-lg-6">
+					<hr>
+					<div class="col-lg-6">
+						<input type="date" name="s_ord_date" value="2016-09-14"> <input
+							type="date" name="e_ord_date" value="2016-10-16"> <input
+							type="submit" value="查詢未下訂單會員" name="howMany"
+							class="btn  btn-theme01">
 						<table border='1' width='500'>
 							<tr align='center' valign='middle'>
-								<th>會員編號.信箱</th>
+								<th>會員編號</th>
+								<th>信箱</th>
 							</tr>
 							<c:forEach var="list" items="${list1}">
 								<tr align='center' valign='middle'>
-									<td>${list.key},${list.value.mem_mail}</td>
+									<td>${list.key}</td>
+									<td>${list.value.mem_mail}</td>
 								</tr>
 							</c:forEach>
 						</table>
-						<input type="date" name="s_ord_date" value="2016-09-14"> <input
-							type="date" name="e_ord_date" value="2016-10-16"> <input
-							type="submit" value="查詢未下訂單會員" name="howMany">
-			<a href="<c:out value='${pageContext.request.contextPath}' />/MAIL/Mail.jsp">回上頁</a>
-			</form>
-			<!-----------------------寄送全部會員--------------- -->
-				<form method="post" action="allMail.do" class="col-lg-6">
-			<table border='1' width='500'>
-						<tr>
-							<th>會員編號</th>
-							<th>信箱</th>
-						</tr>
-						<br>
-						<c:forEach var="list" items="${list}">
-							<tr align='center' valign='middle'>
-								<td>${list.mem_id}</td>
-								<td>${list.mem_mail}</td>
-							</tr>
-						</c:forEach>
-			</table>
-					 <input type="submit" value="查詢全部會員">
-			<a href="<c:out value='${pageContext.request.contextPath}' />/MAIL/Mail.jsp">回上頁</a>
-				</form>
+						<a href="<c:out value='${pageContext.request.contextPath}' />/MAIL/Mail.jsp">回上頁</a>
 					</div>
-			
-					
+				</form>
+				<div class="col-lg-6" id="allMem">
+					<!-----------------------寄送全部會員--------------- -->
+					<form method="post" action="allMail.do">
+						<input type="submit" value="查詢全部會員" class="btn  btn-theme01" >
+						<table border='1' width='500'>
+							<tr>
+								<th>會員編號</th>
+								<th>信箱</th>
+							</tr>
+							<c:forEach var="list" items="${list}">
+								<tr align='center' valign='middle'>
+									<td>${list.mem_id}</td>
+									<td>${list.mem_mail}</td>
+								</tr>
+							</c:forEach>
+						</table>
+						<a href="<c:out value='${pageContext.request.contextPath}' />/MAIL/Mail.jsp">回上頁</a>
+					</form>
+				</div>
+
+			</div>
 		</div>
+	</div>
 	</section> </section></section>
+	<input type="hidden" name="shift" value="${SHIFT}"><input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
@@ -211,6 +289,8 @@
 	</script>
 
 	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+	<script type="text/javascript"
+		src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
 	<script class="include" type="text/javascript"
 		src="<c:url value="/resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="/resources/js/jquery.scrollTo.min.js" />"></script>
@@ -219,19 +299,5 @@
 
 	<!--common script for all pages-->
 	<script src="<c:url value="/resources/js/common-scripts.js" />"></script>
-	<script type="text/JavaScript">
-		$(document).ready(function() {
-			$.get("sign_in.jsp", function(data) { //初始將sign_in.jsp include div#main-content
-				$("#main-content").html(data);
-			});
-		})
-	</script>
-	<script type="text/javascript"
-		src="<c:url value="resources/js/jquery.backstretch.min.js" />"></script>
-	<script>
-		$.backstretch("resources/img/login-bg.jpg", {
-			speed : 500
-		});
-	</script>
 </body>
 </html>

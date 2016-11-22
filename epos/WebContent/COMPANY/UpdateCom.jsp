@@ -151,7 +151,12 @@
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
 				</ul></li>
-
+			<li class="sub-menu"><a href="javascript:;"> <i
+					class="fa fa-users"></i> <span>顧客關係</span>
+			</a>
+				<ul class="sub">
+					<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+				</ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
@@ -225,10 +230,10 @@
 							</div>
 							<div class="form-group">
 								<label class="col-lg-1 col-lg-offset-4 control-label">照片:</label>
-									<img alt="尚無名片" src="data:image/gif;base64,${comVO.picture}"
-										class="col-lg-1"> <input type="hidden" name="picture"
-										value="${comVO.picture}" class="col-lg-1"> <input
-										type="file" name="newPicture">
+								<img alt="尚無名片" src="data:image/gif;base64,${comVO.picture}"
+									class="col-lg-1"> <input type="hidden" name="picture"
+									value="${comVO.picture}" class="col-lg-1"> <input
+									type="file" name="newPicture">
 							</div>
 							<div class="form-group">
 								<label class="col-lg-1 col-lg-offset-4 control-label">修改人:</label>
@@ -252,6 +257,8 @@
 		</div>
 	</div>
 	</section> </section> </section>
+	<input type="hidden" name="shift" value="${SHIFT}">
+	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>

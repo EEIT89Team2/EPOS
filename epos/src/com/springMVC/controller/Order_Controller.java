@@ -12,6 +12,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONValue;
 import org.springframework.stereotype.Controller;
@@ -38,7 +39,7 @@ import com.valuation.model.ValuationVO;
 import com.valuation_detail.model.Valuation_DetailVO;
 
 @Controller
-public class Order_Controller extends HttpServlet {
+public class Order_Controller extends HttpServlet implements Runnable {
 
 	private final static OrderService ordSvc = new OrderService();
 	private final static MemberService memSvc = new MemberService();
@@ -46,10 +47,18 @@ public class Order_Controller extends HttpServlet {
 	private final static CouponService cponSvc = new CouponService();
 	private final static EmpService empSvc = new EmpService();
 	private final static ValuationService vltSvc = new ValuationService();
+	private final static ProdService prodSrv = new ProdService();
+
+
+	LinkedList<ProdVO> prodVOList;
+	LinkedList<Integer> quayList;
+	int x;
+
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/addOrder.do", "/ORDER/addOrder.do" })
-	public String addOrder(ModelMap model, HttpServletRequest request) throws Exception {
-
+	public synchronized String addOrder(ModelMap model, HttpServletRequest request) throws Exception {
+		x=0;
+		
 		List<String> errorMsgs = new LinkedList<String>();
 		model.addAttribute("errorMsgs", errorMsgs);
 
@@ -143,7 +152,7 @@ public class Order_Controller extends HttpServlet {
 			// String key_id = "E00005";//先寫死
 
 			String nowWeather= request.getParameter("nowWeather");
-			System.out.println("nowWeather="+nowWeather);
+//			System.out.println("nowWeather="+nowWeather);
 			
 			if (key_id == null || key_id.trim().length() == 0) {
 				errorMsgs.add("修改人員請勿空白");
@@ -188,15 +197,21 @@ public class Order_Controller extends HttpServlet {
 
 			Order_DetailVO ordDetailVO = null;
 			ProdVO prodVO = null;
-			ProdService prodSrv = new ProdService();
 
 			// 明細檔set集合(多方)
 			Set<Order_DetailVO> set = new LinkedHashSet<Order_DetailVO>();
+			
 
+			List<Thread> threadList = new LinkedList<Thread>();
+			prodVOList=new LinkedList<ProdVO>();
+			quayList=new LinkedList<Integer>();
 			int i = 1;
 			while (true) {
 				try {
-
+//					Thread thread1 = new Thread(this);
+					Thread thread = new Thread(this);
+					threadList.add(thread);
+					
 					ordDetailVO = new Order_DetailVO();
 
 					// 明細檔VO的兩個主key都是對應到另外兩個主檔VO的欄位,所以自己是無權set這兩個key,
@@ -218,14 +233,21 @@ public class Order_Controller extends HttpServlet {
 					// list.add(ordDetailVO);
 					set.add(ordDetailVO);
 
-					ProdVO oldProdVO = prodSrv.getOne(prodVO.getProd_id());
-					int oldQuay = oldProdVO.getProd_stock();
+//					this.prodVO2=prodVO;
+					
+					prodVOList.add(prodVO);
+					quayList.add(Integer.parseInt(request.getParameter("prod_quantity" + String.valueOf(i))));
+//					Order_Controller order_Controller=new Order_Controller();
+					
+					threadList.get(i-1).start();
 
-					oldProdVO.setProd_stock(
-							oldQuay - (Integer.parseInt(request.getParameter("prod_quantity" + String.valueOf(i)))));
-
-					prodSrv.update(oldProdVO);
-
+//					ProdVO oldProdVO = prodSrv.getOne(prodVO.getProd_id());
+//					int oldQuay = oldProdVO.getProd_stock();
+//
+//					oldProdVO.setProd_stock(
+//							oldQuay - (Integer.parseInt(request.getParameter("prod_quantity" + String.valueOf(i)))));
+//
+//					prodSrv.update(oldProdVO);
 					i++;
 				} catch (Exception e) {
 					if (i < 100) {
@@ -240,31 +262,63 @@ public class Order_Controller extends HttpServlet {
 			// 將明細檔set進主檔,合併成一個VO
 			ordVO.setOrderdetails(set);
 			// OrderService ordSvc = new OrderService();
+			System.out.println("------1-------");
 			ordVO = ordSvc.addOrder(ordVO, list);
+			System.out.println("------2-------");
+
 			// List<OrderVO> listAll = ordSvc.getAll();
 
+			if(vlt_id!=null)
 			vltSvc.setStatus("Y", vlt_id);
+			System.out.println("------getOneTopOrdId1-------");
 
-			String ord_id = ordSvc.getOneTopOrdId();
-			System.out.println("ord_id=>" + ord_id);
-			OrderVO ordVO1 = ordSvc.Select_order_id(ord_id);
+			OrderVO ordVO1 = ordSvc.getOneTopOrdId();
+			System.out.println("------getOneTopOrdId2-------");
+
 			LinkedList<OrderVO> list1 = new LinkedList<OrderVO>();
+			
 			list1.add(ordVO1);
-			model.addAttribute("list", list1);
+			HttpSession session = request.getSession();
+			session.setAttribute("list", list1);
 
+
+			String ord_id=ordVO1.getOrd_id();
+			System.out.println("------getOrd_id1-------");
 			List<Order_DetailVO> detailList = ordSvc.Select_order_detailALL(ord_id);
-			model.addAttribute("detailList", detailList);
-			model.addAttribute("ordVO", ordVO1);
+			System.out.println("------getOrd_id2-------");
+
+			session.setAttribute("detailList", detailList);
+			session.setAttribute("ordVO", ordVO1);
 
 			/****************************
 			 * 3.完成,準備轉交(Send the Success view)
 			 ***********/
-			return "/ORDER/AllOrdDetail";
+			return "redirect:/ORDER/AllOrdDetail.jsp";
 
 			/*************************** 其他可能的錯誤處理 **********************************/
 		} catch (Exception e) {
 			errorMsgs.add(e.getMessage());
 			return "/ORDER/order";
+		}
+	}
+	
+	@Override
+	public synchronized void run() {
+		try{
+		
+		String prod_id = prodVOList.get(x).getProd_id();
+		int quay = quayList.get(x);
+		
+		System.out.println("=-=-=-=-"+prod_id);
+		ProdVO oldProdVO = prodSrv.getOne(prod_id);
+		int oldQuay = oldProdVO.getProd_stock();
+
+		oldProdVO.setProd_stock(oldQuay -quay);
+
+		prodSrv.update(oldProdVO);
+		x++;
+		}catch(Exception e){
+			System.out.println("error");
 		}
 	}
 
@@ -729,5 +783,7 @@ public class Order_Controller extends HttpServlet {
 		}
 		return null;
 	}
+
+	
 
 }

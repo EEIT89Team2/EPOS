@@ -42,7 +42,7 @@
 		}
 </style>
 
-<title>訂單明細資料3</title>
+<title>訂單明細資料</title>
 
 </head>
 <body>

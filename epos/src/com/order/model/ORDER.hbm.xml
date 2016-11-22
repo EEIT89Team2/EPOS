@@ -24,7 +24,8 @@
 		<property name="key_date" column="key_date" />
 		<property name="weather" column="weather" />
 		
-		<set name="orderdetails" table="ORDER_DETAIL" lazy="false"
+<!-- 		<set name="orderdetails" table="ORDER_DETAIL" lazy="false" -->
+		<set name="orderdetails" table="ORDER_DETAIL" lazy="true"
 		cascade="all" inverse="true" order-by="ord_id asc">
 		<key><column name="ord_id"></column></key>
 		<one-to-many class="com.order_detail.model.Order_DetailVO"/>

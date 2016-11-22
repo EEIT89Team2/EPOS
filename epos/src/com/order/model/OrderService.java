@@ -133,7 +133,7 @@ public class OrderService {
 		return ord_dao.getMaxInvoiceId();
 	}
 	
-	public String getOneTopOrdId() throws Exception{
+	public OrderVO getOneTopOrdId() throws Exception{
 		
 		return ord_dao.getOneTopOrdId();				
 	}

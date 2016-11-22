@@ -2,8 +2,10 @@ package com.springMVC.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +34,7 @@ import com.product.model.ProdService;
 import com.product.model.ProdVO;
 import com.shiftreport.model.ShiftreService;
 import com.shiftreport.model.ShiftreVO;
-
+import gvjava.org.json.JSONArray;
 
 /**
  * Servlet implementation class Shiftreport_Servlet
@@ -282,8 +284,30 @@ public class Shiftreport_Controller {
 		return "redirect:/SHIFTREPORT/AllShiftre.jsp";
 	
 	}
-	
+	/*************************** * 圖表json區 ***********/
+	//日期範圍+班別查詢全部(json)
+	@RequestMapping(method = RequestMethod.POST, value = "/alljson.do")
+	public void getAllDiscJson(ModelMap model,HttpServletRequest request,
+			@RequestParam("shift") String shift,
+			@RequestParam("date1") Date date1,
+			@RequestParam("date2") Date date2, HttpServletResponse resp) throws Exception {	
 
+		List<ShiftreVO> list = shiftreSrv.getByJson(date1, date2, shift);
+		List l1 = new LinkedList();
+		for(ShiftreVO vo:list){
+			Map m1 = new HashMap();
+			m1.put("Date", vo.getDate());
+			m1.put("Shift", vo.getShift());
+			m1.put("deal_sum", vo.getDeal_sum());
+			m1.put("discount", vo.getDiscount());
+			m1.put("shift_sum", vo.getShift_sum());
+			l1.add(m1);
+		}
+		resp.setHeader("content-type","text/html;charset=utf-8");
+		JSONArray jsonall = new JSONArray(l1);
+		PrintWriter out = resp.getWriter();
+		out.print(jsonall);
+	}
 	
 }
 

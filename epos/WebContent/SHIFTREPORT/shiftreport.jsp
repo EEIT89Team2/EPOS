@@ -190,9 +190,9 @@
 					<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">
 						<li id="shi_search"><a data-toggle="tab" href="#search"><span
 								class="glyphicon glyphicon-search"></span>搜尋</a></li>
-<!-- 						<li id="shi_new"><a id="c_shift" target="insertShiftre.jsp" -->
-<!-- 							data-toggle="tab" href="#new"><span -->
-<!-- 								class="glyphicon glyphicon-file"></span>新增</a></li> -->
+						<li id="shi_new"><a id="c_shift" target="shiftCharts.jsp"
+							data-toggle="tab" href="#new"><span
+								class="glyphicon glyphicon-file"></span>新增</a></li>
 						<li id="shi_rel"><a data-toggle="tab" href="#result" id="test"><span
 								class="glyphicon glyphicon-list-alt"></span>查詢結果</a></li>
 						<li><a data-toggle="tab" href="#print" class="print"><span
@@ -265,9 +265,9 @@
 					</div>
 
 				</div>
-<!-- 				<div id="new" class="tab-pane fade"> -->
-<!-- 					<div class="insert-content main"></div> -->
-<!-- 				</div> -->
+				<div id="new" class="tab-pane fade">
+					<div class="insert-content main"></div>
+				</div>
 				<div id="result" class="tab-pane fade">
 					<div class="rul main"></div>
 				</div>
@@ -316,13 +316,13 @@
 		
 		
 // -------------------------------載入新增----------------------------------
-// 		$('#c_shift').on('click', function() {							
-// 				var insertWeb = $(this).attr('target');
-// 				$.get(insertWeb, function(data) {
-// 					$('.insert-content').html(data);
-// 				})
+		$('#c_shift').on('click', function() {							
+				var insertWeb = $(this).attr('target');
+				$.get(insertWeb, function(data) {
+					$('.insert-content').html(data);
+				})
 					
-// 		})		
+		})		
 			
 // -------------------------------查詢----------------------------------
 			$(":button").click(function() {

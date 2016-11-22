@@ -41,8 +41,10 @@ public class ShiftreService {
 	}
 	
 	public void delete(Date Date,String shift){
-		dao.delete(Date,shift);
-		
+		dao.delete(Date,shift);		
+	}
+	public List getByJson(Date Date1,Date Date2,String shift){
+		return dao.getSumJson(Date1,Date2,shift);
 	}
 
 }

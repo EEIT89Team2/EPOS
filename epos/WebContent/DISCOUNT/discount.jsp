@@ -163,8 +163,8 @@
 			<div class="row mt">
 				<div class="col-md-12">
 				<div class="nav navbar-default">
-				<div class="container-fluid" style="float: right; left: -50%; position: relative">
-					<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">
+				<div class="container-fluid">
+					<ul class="nav navbar-nav">
 						<li id="search1"><a id="r_disc" target="search_disc.jsp" data-toggle="tab" href="#search_Dic" class="nav_a"><span class="glyphicon glyphicon-search"></span>搜尋</a></li>
 						<li id="import"><a id="c_disc" target="insertDic.jsp" data-toggle="tab" href="#new_Dic" class="nav_a"><span class="glyphicon glyphicon-file"></span>新增</a></li>
 						<li id="result"><a data-toggle="tab" href="#resolution_Dic" class="nav_a"><span class="glyphicon glyphicon-list-alt"></span>查詢結果</a></li>

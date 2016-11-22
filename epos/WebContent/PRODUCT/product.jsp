@@ -180,8 +180,8 @@
 	<div class="row mt">
 		<div class="col-lg-12">
 			<div class="nav navbar-default">
-				<div class="container-fluid" style="float: right; left: -50%; position: relative">
-					<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">
+				<div class="container-fluid">
+					<ul class="nav navbar-nav">
 						<li id="chg_search"><a data-toggle="tab" href="#search_Prod"><span class="glyphicon glyphicon-search"></span>搜尋</a></li>
 						<li id="chg_new"><a id="c_prod" target="InsertProd.jsp" data-toggle="tab" href="#new_Prod"><span class="glyphicon glyphicon-file"></span>新增</a></li>
 						<li id="chg_result"><a data-toggle="tab" href="#result_Prod"><span class="glyphicon glyphicon-list-alt"></span>查詢結果</a></li>

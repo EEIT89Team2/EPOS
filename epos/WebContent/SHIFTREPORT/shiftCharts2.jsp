@@ -64,17 +64,17 @@
 		<div class="form-group">
 			<label class="col-lg-1 col-lg-offset-4 control-label">日期(起):</label>
 			<div class="col-lg-1">
-				<input type="Date" name="date1">
+				<input type="Date" name="date3">
 			</div>
 			
 			<label class="col-lg-1 control-label">日期(訖):</label>
 			<div class="col-lg-1">
-				<input type="Date" name="date2">
+				<input type="Date" name="date4">
 			</div>
 			<div class="col-lg-1">
 
-				<input type="button" value="A班" name='A' class="btn btn-theme02">
-				<input type="button" value="B班" name='B' class="btn btn-theme02">
+				<input type="button" value="A班" name='C' class="btn btn-theme02">
+				<input type="button" value="B班" name='D' class="btn btn-theme02">
 			</div>
 
 		</div>
@@ -90,15 +90,15 @@
 <script>
 
 	$(":button").click(function(){ 
-			if('A'==$(this).attr('name')){
+			if('C'==$(this).attr('name')){
 //抓資料			
 				$.ajax({
 					"type" : "post",
 					"url" : "alljson.do",
 					"data" : {
 						shift:"A",
-						date1:$('input[name="date1"]').val(),
-						date2:$('input[name="date2"]').val()						
+						date1:$('input[name="date3"]').val(),
+						date2:$('input[name="date4"]').val()						
 					},
 //成功的話執行以下					
 					"success" : function(data) {
@@ -114,7 +114,7 @@
 //圖表塞入div_C
 							$("#C_charts").highcharts({                   
 						        chart: {
-						            type: 'column'                         
+						            type: 'line'                         
 						        },
 						        title: {
 						            text: '每日早班來客數'     
@@ -160,15 +160,15 @@
 					}
 				});
 			}
-			if('B'==$(this).attr('name')){
+			if('D'==$(this).attr('name')){
 //抓資料			
 				$.ajax({
 					"type" : "post",
 					"url" : "alljson.do",
 					"data" : {
 						shift:"B",
-						date1:$('input[name="date1"]').val(),
-						date2:$('input[name="date2"]').val()						
+						date1:$('input[name="date3"]').val(),
+						date2:$('input[name="date4"]').val()						
 					},
 //成功的話執行以下					
 					"success" : function(data) {
@@ -185,7 +185,7 @@
 //圖表塞入div_D
 							$("#D_charts").highcharts({                   
 						        chart: {
-						            type: 'column'                         
+						            type: 'line'                         
 						        },
 						        title: {
 						            text: '每日晚班來客數'     

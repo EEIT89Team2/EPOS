@@ -184,9 +184,8 @@
 	<div class="row mt">
 		<div class="col-lg-12">
 			<div class="nav navbar-default">
-				<div class="container-fluid"
-					style="float: right; left: -50%; position: relative">
-					<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">
+				<div class="container-fluid">
+					<ul class="nav navbar-nav">
 						<li id="shi_search"><a data-toggle="tab" href="#search"><span class="glyphicon glyphicon-search"></span>搜尋</a></li>
 						<li id="shi_new"><a id="c_shift" target="shiftCharts.jsp" data-toggle="tab" href="#new"><span class="fa fa-bar-chart-o"></span>營業額分析</a></li>
 						<li id="shi_analysis"><a id="analysis_shift" target="shiftCharts2.jsp" data-toggle="tab" href="#analysis"><span class="fa fa-bar-chart-o"></span>來客數分析</a></li>

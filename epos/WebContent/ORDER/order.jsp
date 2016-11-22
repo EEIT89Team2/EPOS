@@ -59,6 +59,19 @@
 		var total_price = document.getElementById("total_price").value;
 		document.getElementById("cash").value = total_price - cpon_dollar;
 	}
+	
+	function check(value) {  
+// 	    var f = document.forms[0];  
+	    var re = /^\d+$/;  
+	    if (!re.test(value)) {  
+// 	       alert("欄位不能空白且只允許輸入數字");
+		   ordmain.cash_temp.value = '';
+	       ordmain.cash_temp.focus();  
+	       return false;  
+	    }  
+	    return true;  
+	} 
+	
 </script>
 
 <head>
@@ -406,7 +419,7 @@ print(text)
 							</div>　　
 							<div class="form-group">
 									<label>現　　金：</label>
-									<input type="text" id="cash_temp" name="cash_temp" value="" class="form-control"/>　
+									<input type="text" id="cash_temp" name="cash_temp" value="" class="form-control" onkeyup="check(this.value)"/>　
 									<input type="hidden" id="cash" name="cash" value="" />
 							</div>
 							<div class="form-group">

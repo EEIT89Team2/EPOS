@@ -311,7 +311,7 @@ print(text)
 	
 		<td><select type="TEXT" name="prod_name_select1" id="prod_name_select1"><option value="">請選擇商品</option></select><input type="hidden" id="prod_id1"  name="prod_id1" /><input type="hidden" id="prod_name1"  name="prod_name1" /></td>
 		<td><input type="TEXT" name="prod_quantity1"  id="prod_quantity1" value="0" readonly/></td>
-		<td><input type="TEXT" name="ret_reason1"  value="不能照相"/></td>
+		<td><input type="TEXT" name="ret_reason1"  value=""/></td>
 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
 	</tr>
 		
@@ -376,13 +376,17 @@ print(text)
 			})		
 		
 		$('#prod_name_select1').change(function(){
-								
+				
+			if($('#prod_name_select1').val() != ''){
 				var values = $('#prod_name_select1').val().split("^");
 				document.getElementById('prod_name1').value=values[0];
 				document.getElementById('prod_quantity1').value=values[1];
 // 				document.getElementById('prod_id1').value=values[0];
-				
-			})
+			}else{
+				document.getElementById('prod_quantity1').value='0';
+			}
+
+		})
 		
 		
 // 		var a = 2;
@@ -406,10 +410,13 @@ print(text)
 				})		
 			
 			$('#prod_name_select'+a).change(function(){
-									
+				if($('#prod_name_select'+b).val() != ''){				
 					var values = $('#prod_name_select'+b).val().split("^");
 					document.getElementById('prod_name'+b).value=values[0];
-					document.getElementById('prod_quantity'+b).value=values[1];					
+					document.getElementById('prod_quantity'+b).value=values[1];	
+				}else{
+					document.getElementById('prod_quantity'+b).value='0';	
+				}
 				})
 			})		
 		})

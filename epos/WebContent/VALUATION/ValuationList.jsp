@@ -380,15 +380,23 @@ print(text)
 				
 				form1.total_price.value = parseInt(form1.total_price.value) - parseInt(document.getElementById('total_prod_price1').value);
 				
-				var values = $('#prod_name_select1').val().split("^");
-				document.getElementById('prod_id1').value=values[0];
-				document.getElementById('prod_quantity1').value='1';
-				document.getElementById('prod_name1').value=values[1];
-				document.getElementById('prod_price1').value=values[2];
-				document.getElementById('total_prod_price1').value=values[2];
+				if($('#prod_name_select1').val() != ''){
+					var values = $('#prod_name_select1').val().split("^");
+					document.getElementById('prod_id1').value=values[0];
+					document.getElementById('prod_quantity1').value='1';
+					document.getElementById('prod_name1').value=values[1];
+					document.getElementById('prod_price1').value=values[2];
+					document.getElementById('total_prod_price1').value=values[2];
+					
+					form1.total_price.value = parseInt(form1.total_price.value) + parseInt(values[2]);
+				}else{
+					document.getElementById('prod_id1').value='';
+					document.getElementById('prod_quantity1').value='0';
+					document.getElementById('prod_name1').value='';
+					document.getElementById('prod_price1').value='0';
+					document.getElementById('total_prod_price1').value='0';
+				}
 				
-				
-				form1.total_price.value = parseInt(form1.total_price.value) + parseInt(values[2]);
 				
 			})	
 			
@@ -427,14 +435,23 @@ print(text)
 				
 				form1.total_price.value = parseInt(form1.total_price.value) - parseInt(document.getElementById('total_prod_price'+b).value);
 				
-				var values = $("#prod_name_select"+b).val().split("^");
-				document.getElementById('prod_id'+b).value=values[0];
-				document.getElementById('prod_quantity'+b).value='1';
-				document.getElementById('prod_name'+b).value=values[1];
-				document.getElementById('prod_price'+b).value=values[2];
-				document.getElementById('total_prod_price'+b).value=values[2];
+				if($('#prod_name_select'+b).val() != ''){
+					var values = $("#prod_name_select"+b).val().split("^");
+					document.getElementById('prod_id'+b).value=values[0];
+					document.getElementById('prod_quantity'+b).value='1';
+					document.getElementById('prod_name'+b).value=values[1];
+					document.getElementById('prod_price'+b).value=values[2];
+					document.getElementById('total_prod_price'+b).value=values[2];
+					
+					form1.total_price.value = parseInt(form1.total_price.value) + parseInt(values[2]);
+				}else{
+					document.getElementById('prod_id'+b).value='';
+					document.getElementById('prod_quantity'+b).value='0';
+					document.getElementById('prod_name'+b).value='';
+					document.getElementById('prod_price'+b).value='0';
+					document.getElementById('total_prod_price'+b).value='0';
+				}
 				
-				form1.total_price.value = parseInt(form1.total_price.value) + parseInt(values[2]);
 				
 			})
 				

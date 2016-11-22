@@ -79,6 +79,10 @@
 td{
 	text-align: center;
 }
+
+a{
+	margin-left: 20px;
+}
 </style>
 
 </head>
@@ -124,6 +128,7 @@ td{
 		</c:forEach>
 	</table>
 	<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>
+	<a href="SelectVltAllForCHK.jsp"><i class="glyphicon glyphicon-list-alt"></i>　審核</a>
 <!-- <input type="button" name="action" value="返回" onclick="history.back();"> -->
 
 	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>

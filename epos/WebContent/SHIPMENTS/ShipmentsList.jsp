@@ -13,6 +13,9 @@
 		
 		session.getAttribute("LoginOK");
 		List detailList = (List)request.getAttribute("detailList");
+		
+		Date nowDate =new java.sql.Date(System.currentTimeMillis());
+		pageContext.setAttribute("nowDate",nowDate);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -70,17 +73,17 @@ print(text)
 	}
 	
 	a{
-		color:#ab2222;
+		color:#365d5d;
 	}
 	
 	.main{
 		height: 250px;
 		border-radius: 8px;
-		background: #fbe7e7;
+		background: #e1ffff;
 	}
 	
 	.table > thead:first-child > tr:first-child > td {
-  		background:#fb9292;
+  		background:#519292;
   		color:white;
   		border-top: 0;
   		font-family: 微軟正黑體;
@@ -90,13 +93,18 @@ print(text)
 	}
 
 	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
-		border:1px solid #fdc0c0;
-		background:#f7e3e3;
+		border:1px solid #72cccc;
+		background:#d2ffff;
+	}
+	
+	/* 滑鼠移過 */
+	.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+		background-color: #b0e4e4;
 	}
 	
 	.alert-info{
-		background: #f7a2a2;
-		border-color:#e86262;
+		background: #72cccc;
+		border-color:#3bafaf;
 	}
 	
 	.addNewDetail{
@@ -109,7 +117,7 @@ print(text)
 	font-weight: bold;
 	color: white;
 	height: 35px;
-	background: #f7a2a2;
+	background: #72cccc;
 	font-size: 23px;
 	border-radius: 2px;
 }
@@ -119,6 +127,13 @@ print(text)
 		margin-top:60px;
 	}
 	
+	#form{
+		margin-left: 20px;
+	}
+	
+	#group{
+		margin-left: 30px;
+	}
 	
 	
 
@@ -138,7 +153,7 @@ print(text)
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="login.html">Logout</a></li>
+			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -155,7 +170,7 @@ print(text)
 
 			<li class="mt"><a
 				href="<%=request.getContextPath()%>/ORDER/order.jsp"> <i
-					class="fa fa-dashboard"></i> <span>index</span>
+					class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
 
 			<li class="sub-menu"><a href="javascript:;"> <i
@@ -186,7 +201,7 @@ print(text)
 				<ul class="sub">
 					<li><a
 						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
-					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/ordmain.jsp">訂單維護</a></li>
 					<li class="active"><a
 						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
@@ -252,40 +267,30 @@ print(text)
 	<FORM id="form1" METHOD="post" name="form1" class="form-inline">
 	<table border="0">
 	<tr>
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="exampleInputName2">　退貨單編號：</label> -->
-<!-- 			<input type="TEXT" class="form-control" name="ret_id" disabled/> -->
-<!-- 		</div>　　 -->
-<!-- 		<div class="form-group"> -->
-<!-- 			<label for="exampleInputName2">　出貨單號 ：</label> -->
-<!-- 			<input type=text class="form-control" name="ship_id" readonly /> -->
-<!-- 		</div>　　 -->
-		<div class="form-group">
+		<div id="form" class="form-group">
 			<label for="exampleInputName2">訂單編號 ：</label>
-			<input type="text" class="form-control" name="ord_id" value="${ordVO.ord_id}" />	
-		</div>　　
-		<div class="form-group">　
+			<input type="text" class="form-control" name="ord_id" value="${ordVO.ord_id}" readonly />
+		</div>
+		<div id="group" class="form-group">　
 			<label for="exampleInputName2">收件人姓名 ：</label>
 			<input type="text" class="form-control" name="rec_name" value="" />
-		</div>　
-		<div class="form-group">
+		</div>
+		<div id="group" class="form-group">
 			<label for="exampleInputName2">收件人地址 ：</label>
 			<input type="text" class="form-control" name="rec_addr" />
 		</div>
-		
-		<div style="height: 10px;"></div>
-		
-		<div class="form-group">
-			<label for="exampleInputName2">　出貨日期 ：</label>
-			<input type="date" class="form-control" name="ship_date" />
-		</div>　
-		<div class="form-group">
-			<label for="exampleInputName2">　  修改人員 ：</label>
-			<input type="text" class="form-control" name="key_id" value="${LoginOK.emp_id}" />
-		</div>　
-
+		<div id="group" class="form-group">
+			<label for="exampleInputName2">出貨日期 ：</label>
+			<input type="date" class="form-control" name="ship_date" value="${nowDate}" />
+		</div>
+		<div id="group" class="form-group">
+			<label for="exampleInputName2">修改人員 ：</label>
+			<input type="text" class="form-control" name="key_id" value="${LoginOK.emp_id}" readonly />
+		</div>
+		<div style="height: 15px;"></div>
+		<div id="group" class="form-group">
 			<label for="exampleInputName2">備　註：</label>
-			<input type="text" class="form-control" name="remark" value="test" />
+			<input type="text" class="form-control" name="remark" value="" />
 		</div>
 	</tr>
 </table>

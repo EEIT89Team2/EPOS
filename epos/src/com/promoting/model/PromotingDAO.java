@@ -90,7 +90,7 @@ public class PromotingDAO implements PromotingDAO_interface{
 		Iterator<String> iterator =	temp.iterator();
 			while(iterator.hasNext()) {
 				PromVO = new PromotingVO();
-				PromVO.setPro_prod_id(iterator.next());;			
+				PromVO.setPro_prod_id(iterator.next());			
 				list.add(PromVO);
 			}						
 		return list;

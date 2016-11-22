@@ -520,5 +520,49 @@ public class BILL_OF_PURCHASE_Controller {
 		 ***********/
 
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = { "/ANDROID/goInsertProd.do" })
+	public void androidInsertProd(ModelMap model, HttpServletRequest request) throws Exception {
+		String bop_id = request.getParameter("bop_id");
+		String status = "S";
+
+		Set<Bop_detailVO> set = bopSvc.getBopDetail(bop_id);
+		for(Bop_detailVO bop_detailVO:set){
+			String prod_id =bop_detailVO.getProd_id();
+			int prod_quantity=bop_detailVO.getProd_quantity();
+			ProdVO prodVO = prodSvc.getOne(prod_id);
+			int s1 = prodVO.getProd_stock();
+			s1 = s1 + prod_quantity;
+			prodSvc.update2(s1, prod_id);
+		}
+		bopSvc.setStatus(status, bop_id);
+
+		
+//		Integer i = 1;
+//
+//		while (true) {
+//			String x = i.toString();
+//			try {
+//				String prod_id = request.getParameter("prod_id" + x);
+//				int prod_quantity = Integer.valueOf(request.getParameter("prod_quantity" + x));
+//				ProdVO prodVO = prodSvc.getOne(prod_id);
+//				int s1 = prodVO.getProd_stock();
+//				s1 = s1 + prod_quantity;
+//				prodSvc.update2(s1, prod_id);
+//
+//				i++;
+//
+//			} catch (Exception e) {
+//				if (i < 100) {
+//					i++;
+//					continue;
+//				} else
+//					break;
+//			}
+//		}
+		
+
+	}
+
 
 }

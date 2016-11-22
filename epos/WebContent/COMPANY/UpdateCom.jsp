@@ -21,7 +21,35 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>修改員工資料</title>
+<title>修改廠商資料</title>
+<style>
+.navbar-default {
+	background: #D2E9FF;
+}
+
+.titlelist {
+	font-family: '微軟正黑體';
+	font-weight: bold;
+	color: white;
+	height: 35px;
+	background: #66B3FF;
+	padding-left: 10px;
+	font-size: 23px;
+	border-radius: 2px;
+}
+
+.glyphicon {
+	top: auto;
+}
+
+.my-valid-class {
+	color: #3a51e8;
+}
+
+.my-error-class {
+	color: red;
+}
+</style>
 </head>
 <body>
 	<section id="container"> <!--header start--> <header
@@ -51,12 +79,12 @@
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp"> <i
-					class="fa fa-dashboard"></i> <span>index</span>
+			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp">
+					<i class="fa fa-dashboard"></i> <span>index</span>
 			</a></li>
 
-			<li class="sub-menu"><a href="javascript:;" class="active"> <i
-					class="fa fa-desktop"></i> <span>基本資料維護</span>
+			<li class="sub-menu"><a href="javascript:;" class="active">
+					<i class="fa fa-desktop"></i> <span>基本資料維護</span>
 			</a>
 				<ul class="sub">
 					<li><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
@@ -131,76 +159,97 @@
 		class="wrapper">
 
 	<div class="row mt">
-		<nav class="nav navbar-default">
-		<div class="container-fluid"
-			style="float: right; left: -45%; position: relative;">
-			<ul class="nav navbar-nav">
-				<li><a href="company.jsp">搜尋</a></li>
-				<li><a href="addCom.jsp">新增</a></li>
-				<li><a style="background-color: rgba(224, 224, 224, 0.7);">查詢結果</a></li>
-			</ul>
+		<div class="col-lg-12">
+			<nav class="nav navbar-default">
+			<div class="tab-content">
+				<ul class="nav navbar-nav">
+					<li><a href="company.jsp" class="glyphicon glyphicon-search">搜尋</a></li>
+					<li><a href="addCom.jsp" class="glyphicon glyphicon-file">新增</a></li>
+					<li><a style="background-color: rgba(172, 214, 255, 0.6);"
+						class="glyphicon glyphicon-list-alt">查詢結果</a></li>
+				</ul>
+			</div>
+			</nav>
+			<div class="tab-content">
+				<div>
+					<div class="titlelist">修改廠商資料</div>
+					<div class="col-lg-12  main">
+						<p>
+							<c:if test="${not empty errorMsgs}">
+								<font color='red'>請修正以下錯誤:
+									<ul>
+										<c:forEach var="message" items="${errorMsgs}">
+											<li>${message}</li>
+										</c:forEach>
+									</ul>
+								</font>
+							</c:if>
+						<form method="post" action="updateCom.do" id="create_com"
+							enctype="multipart/form-data" class="form-horizontal style-form">
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">廠商編號:</label>
+								<div class="col-lg-6">
+									<input type="text" name="com_id" value="${comVO.com_id}"
+										readonly="readonly" style="color: gray;">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">廠商名稱:</label>
+								<div class="col-lg-6">
+									<input type="text" name="com_name" value="${comVO.com_name}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">統一編號:</label>
+								<div class="col-lg-6">
+									<input type="text" name="com_um" value="${comVO.com_um}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">地址:</label>
+								<div class="col-lg-6">
+									<input type="text" name="com_addr" value="${comVO.com_addr}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">電子信箱:</label>
+								<div class="col-lg-6">
+									<input type="text" name="com_mail" value="${comVO.com_mail}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">電話:</label>
+								<div class="col-lg-6">
+									<input type="text" name="com_phone" value="${comVO.com_phone}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">照片:</label>
+									<img alt="尚無名片" src="data:image/gif;base64,${comVO.picture}"
+										class="col-lg-1"> <input type="hidden" name="picture"
+										value="${comVO.picture}" class="col-lg-1"> <input
+										type="file" name="newPicture">
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">修改人:</label>
+								<div class="col-lg-6">
+									<input type="text" name="key_id" value="${comVO.key_id}"
+										style="color: gray;">
+								</div>
+							</div>
+							<!-- <input type="hidden" name="action" value="updateToDB"> -->
+							<div class="form-group">
+								<div class="col-lg-1  col-lg-offset-5">
+									<div class="col-lg-6">
+										<input type="submit" value="修改" class="btn  btn-theme03">
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
-		</nav>
-		<div class="col-lg-4" style="float: right; left: -30%; position: relative;">
-			<c:if test="${not empty errorMsgs}">
-				<font color='red'>請修正以下錯誤:
-					<ul>
-						<c:forEach var="message" items="${errorMsgs}">
-							<li>${message}</li>
-						</c:forEach>
-					</ul>
-				</font>
-			</c:if>
-			<form method="post" action="updateCom.do"
-				enctype="multipart/form-data">
-				<table>
-					<tr>
-						<td>廠商編號:</td>
-						<td><input type="text" name="com_id" value="${comVO.com_id}"
-							readonly="readonly" style="color: gray;"></td>
-					</tr>
-					<tr>
-						<td>名稱</td>
-						<td><input type="text" name="com_name"
-							value="${comVO.com_name}"></td>
-					</tr>
-					<tr>
-						<td>統一編號</td>
-						<td><input type="text" name="com_um" value="${comVO.com_um}"></td>
-					</tr>
-					<tr>
-						<td>地址</td>
-						<td><input type="text" name="com_addr"
-							value="${comVO.com_addr}"></td>
-					</tr>
-					<tr>
-						<td>電子信箱</td>
-						<td><input type="text" name="com_mail"
-							value="${comVO.com_mail}"></td>
-					</tr>
-					<tr>
-						<td>電話</td>
-						<td><input type="text" name="com_phone"
-							value="${comVO.com_phone}"></td>
-					</tr>
-					<tr>
-						<td>照片</td>
-						<td>
-							<img alt="尚無名片" src="data:image/gif;base64,${comVO.picture}">
-							<input type="hidden" name="picture" value="${comVO.picture}">
-					    	<input type="file" name="newPicture">
-					    </td>
-					</tr>
-					<tr>
-						<td>修改人</td>
-						<td><input type="text" name="key_id" value="${comVO.key_id}"></td>
-					</tr>
-					<!-- <input type="hidden" name="action" value="updateToDB"> -->
-				</table>
-					<br>
-					<input type="submit" value="修改" class="btn btn-round btn-theme03">
-			</form>
-		</div></div>
 	</div>
 	</section> </section> </section>
 	<script
@@ -211,6 +260,7 @@
 						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
 	</script>
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
+	<script src="<c:url value='../resources/js/jquery.validate.min.js' />"></script>
 	<script class="include" type="text/javascript"
 		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
@@ -218,5 +268,60 @@
 		type="text/javascript"></script>
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
+	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
+		type="text/javascript"></script>
+	<script>
+		$(document).ready(function() {
+			$("#create_com").validate({
+				// 				success: function(label) {
+				// 					label.text("【正確】")
+				// 					},
+				errorClass : "my-error-class",
+				validClass : "my-valid-class",
+
+				rules : {
+					com_name : {
+						required : true
+					},
+					com_um : {
+						digits : true,
+						rangelength : [ 8, 8 ],
+					},
+					com_addr : {
+						required : true
+					},
+					com_mail : {
+						email : true
+					},
+					com_phone : {
+						digits : true,
+						required : true,
+						rangelength : [ 10, 10 ]
+					}
+				},
+				messages : {
+					com_name : {
+						required : "【請輸入廠商名稱】"
+					},
+					com_um : {
+						digits : "【必須是數字】",
+						rangelength : "【統編格式不正確】"
+					},
+					com_addr : {
+						required : "【請輸入廠商地址】"
+
+					},
+					com_mail : {
+						email : "【email格式不正確】"
+					},
+					com_phone : {
+						digits : "【必須是數字】",
+						required : "【請輸入廠商電話】",
+						rangelength : "【電話輸入格式不正確】"
+					}
+				}
+			})
+		})
+	</script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.product.model;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -60,6 +62,21 @@ public class ProdDAO implements ProdDAO_interface {
 		List<ProdVO> list = null;
 			list= hibernateTemplate.find("from ProdVO where prod_group like '%"+prod_group+"%'");
 			
+		return list;
+		}
+	@Override
+	public List<ProdVO> selectByGroup() {
+		
+		List<ProdVO> list = new ArrayList<ProdVO>();
+		ProdVO prodVO =null;
+		List<String> temp = null;
+		temp = hibernateTemplate.find("select prod_group from ProdVO group by prod_group");
+		Iterator<String> iterator =	temp.iterator();
+			while(iterator.hasNext()) {
+				prodVO = new ProdVO();
+				prodVO.setProd_group(iterator.next());
+				list.add(prodVO);
+			}
 		return list;
 		}
 	

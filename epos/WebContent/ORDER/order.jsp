@@ -281,7 +281,7 @@ print(text)
 				<ul class="sub">
 					<li><a
 						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
-					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/ordmain.jsp">訂單維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
@@ -321,7 +321,12 @@ print(text)
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
 				</ul></li>
-
+			<li class="sub-menu"><a href="javascript:;"> <i
+					class="fa fa-users"></i> <span>顧客關係</span>
+			</a>
+				<ul class="sub">
+					<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+				</ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
@@ -361,7 +366,8 @@ print(text)
 						<div style="height: 20px;"></div>
 						<div class="form-group">
 							<label for="exampleInputName2">　今 日 天 氣：</label> 
-							<input type="text" value="${weather.nowWeather}" name="emp_name" class="form-control" disabled>
+							<input type="text" value="${weather.nowWeather}" name="txtnowWeather" class="form-control" disabled>
+							<input type="hidden" value="${weather.nowWeather}" name="nowWeather">
 						</div>
 							
 						</tr>

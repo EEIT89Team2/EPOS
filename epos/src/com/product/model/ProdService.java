@@ -51,4 +51,8 @@ private ProdDAO_interface dao=null;
 		dao.update2(prod_stock, prod_id);
 		return;
 	}
+	public List selgroup(){
+		return dao.selectByGroup();
+	
+	}
 }

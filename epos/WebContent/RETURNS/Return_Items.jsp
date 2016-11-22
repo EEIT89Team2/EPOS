@@ -59,11 +59,21 @@ print(text)
 	border-radius: 2px;
 }
 
-.main {
-    height: 230px;
-    border-radius: 8px;
-    background: #ECFFFF;
-}
+	.main {
+	    height: 230px;
+	    border-radius: 8px;
+	    background: #ECFFFF;
+	}
+	
+	#a{
+		margin-left: 30px;
+	}
+	
+	#sub{
+		margin-left: 30px;
+	}
+
+
 </style>
 </head>
 
@@ -181,12 +191,10 @@ print(text)
 			<div class="tab-content">
 				<nav class="alert alert-info">
 				<div>
-				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
-		    	<a href="#" onclick="window.open('searchItem.jsp', 'Yahoo', config='height=500,width=850')"><span class="glyphicon glyphicon-search"></span>查詢</a>　　　
-<!-- 		    	<a href="#"><span class="glyphicon glyphicon-pencil"></span>修改</a>　　　 -->
-<!-- 		    	<a href="#"><span class="glyphicon glyphicon-remove"></span>刪除</a>　　　 -->
-		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　　
-		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>　
+				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>
+		    	<a id="a" href="#" onclick="window.open('searchItem.jsp', 'Yahoo', config='height=500,width=850')"><span class="glyphicon glyphicon-search"></span>查詢</a>
+		    	<a id="a" id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>
+		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>
 				</div>
 
 				</nav>
@@ -195,16 +203,20 @@ print(text)
 
 			<FORM id="itemsform" METHOD="post" ACTION="insert_Item.do" class="form-inline">
 				<div class="form-group">
-					<label for="exampleInputName2">　商品名稱：</label> <input type="text"
-						name="prod_name" class="form-control">
+					<label for="exampleInputName2">　商品名稱：</label>
+				    <select type="TEXT" name="prod_name_select1" id="prod_name_select1" class="form-control">
+				    <option value="">請選擇商品</option></select>
+				    <input type="hidden" name="prod_name" id="prod_name">
 				</div> 　　
 				<div class="form-group">
-					<label for="exampleInputName2">廠商代號：</label> <input type="text"
-						name="com_id" class="form-control" placeholder="C00001">
+					<label for="exampleInputName2">廠商代號：</label>
+					<select type="TEXT" id="com_id_select" name="com_id_select" class="form-control">
+					<option value="">請選擇廠商代號</option></select>
+					<input type="hidden" name="com_id" id="com_id" class="form-control">
 				</div>　　
 				<div class="form-group">
 					<label for="exampleInputEmail2">退貨數量：</label> <input type="text"
-						name="re_quantity" class="form-control" placeholder="50">
+						name="re_quantity" class="form-control">
 				</div>　　
 				<div class="form-group">
 					<label for="exampleInputName2">備註：</label> <input type="text"
@@ -291,7 +303,33 @@ print(text)
 	
 	
 		 	$(function () {
-
+		 		
+		 		$.getJSON("getProd_DDL_itm.do",{},function(data){
+					$.each(data,function(){
+						var SelectValue = this.SelectValue;
+						var SelectText = this.SelectText;
+						var opt=$("<option></option>").val(SelectValue).text(SelectText);
+						$('#prod_name_select1').append(opt);
+					})
+		 		
+						$('#prod_name_select1').change(function(){
+					 		var values = $('#prod_name_select1').val();
+					 		document.getElementById('prod_name').value=values;
+						})
+						
+						
+				$.getJSON("getCom_DDL_com.do",{},function(data){
+					$.each(data,function(){
+						var SelectValue = this.SelectValue;
+						var SelectText = this.SelectText;
+						var opt=$("<option></option>").val(SelectValue).text(SelectText);
+						$('#com_id_select').append(opt);
+					})
+		 		
+						$('#com_id_select').change(function(){
+					 		var values = $('#com_id_select').val();
+					 		document.getElementById('com_id').value=values;
+						})
 // <!----------------------------------------  新增         ------------------------------------>
 // 				$('#add').on('click',function(){
 // 				var url = "Return_Items.jsp"; 
@@ -336,8 +374,8 @@ print(text)
 		 		$('#table1').DataTable();
 
 		 	})
-		 	
-				
+		 })	 	
+	})		
 //<!----------------------------------------  修改        ------------------------------------>
 				function editbtn(event){
 					

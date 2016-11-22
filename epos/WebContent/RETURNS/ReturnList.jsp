@@ -10,6 +10,11 @@
 	ReturnListService rtnListSvc = new ReturnListService();
 	List<RtnListVO> list = rtnListSvc.getAll();
 	pageContext.setAttribute("list",list);
+	
+	session.getAttribute("LoginOK");
+	
+	Date nowDate =new java.sql.Date(System.currentTimeMillis());
+	pageContext.setAttribute("nowDate",nowDate);
 %>
 <html>
 
@@ -49,6 +54,9 @@ print(text)
 <title>退貨單</title>
 
 <style>
+	#aa{
+	margin-left: 30px;
+	}
 	
 	a{
 		color:#ab2222;
@@ -96,6 +104,18 @@ print(text)
 		margin-top:60px;
 	}
 	
+	#a{
+		margin-left: 30px;
+	}
+	
+	#sub{
+		margin-left: 30px;
+	}
+	
+	#print{
+		margin-left: 30px;
+	}
+	
 	
 	
 
@@ -118,7 +138,8 @@ print(text)
 			<li><a class="logout" href="login.html">Logout</a></li>
 		</ul>
 	</div>
-	</header> <!--header end--> <!--sidebar start--> <aside>
+	</header> <!--header end--> <!--sidebar start--> 
+	<aside>
 	<div id="sidebar" class="nav-collapse ">
 		<!-- sidebar menu start-->
 		<ul class="sidebar-menu" id="nav-accordion">
@@ -217,12 +238,12 @@ print(text)
 			<div class="tab-content">
 				<nav id="listinfo" class="alert alert-info">
 				<div>
-				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>　　　
-		    	<a href="#" onclick="window.open('searchList.jsp', 'RetrunItem', config='height=500,width=1200')"><span class="glyphicon glyphicon-search"></span>單筆查詢</a>　　
-		    	<a href="#" onclick="window.open('AllList.jsp', 'RetrunList', config='height=850,width=1680')"><span class="glyphicon glyphicon-inbox"></span>全部查詢</a>　　
-		    	<a href="Return_Detail.jsp"><i class="glyphicon glyphicon-list-alt"></i>退貨單明細</a>　　　
-		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>　　　
-		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>　
+				<a id="add" href="#"><span class="glyphicon glyphicon-file"></span>新增</a>
+		    	<a id="a" href="#" onclick="window.open('searchList.jsp', 'RetrunItem', config='height=500,width=1200')"><span class="glyphicon glyphicon-search"></span>單筆查詢</a>
+		    	<a id="a" href="#" onclick="window.open('AllList.jsp', 'RetrunList', config='height=850,width=1680')"><span class="glyphicon glyphicon-inbox"></span>全部查詢</a>
+		    	<a id="a" href="Return_Detail.jsp"><i class="glyphicon glyphicon-list-alt"></i>退貨單明細</a>
+		    	<a id="print" href="javaScript:varitext()"><span class="glyphicon glyphicon-print" ></span>列印</a>
+		    	<a id="sub" href="#"><span class="glyphicon glyphicon-ok-sign">送出</span></a>
 				</div>
  
 				</nav> 
@@ -232,32 +253,35 @@ print(text)
 	<tr>
 		<div class="form-group">
 			<label for="exampleInputName2">　退貨日期：</label>
-			<input type="date" class="form-control" name="ret_date" />
-		</div>　　
-		<div class="form-group">
-			<label for="exampleInputName2">廠商編號：</label>
-			<input type="TEXT" class="form-control" name="com_id" value="C00001" />	
-		</div>　　
-		<div class="form-group">
-			<label for="exampleInputName2">廠商名稱：</label>
-			<input type="TEXT" class="form-control" name="com_name" value="德儀數位" />
+<!-- 			<input type="date" class="form-control" name="ret_date" /> -->
+				<input type = "date" name="ret_date" id="ret_date" class="form-control" value="${nowDate}" />
 		</div>
-		<div class="form-group">
+		<div id="aa" class="form-group">
+			<label for="exampleInputName2">廠商名稱：</label>
+			<select type="TEXT" class="form-control" name="com_name_select" id="com_name_select" style="width: 160px"/><option value="">請選擇廠商</option></select><input type="hidden" id="com_name"  name="com_name" />			
+		</div>
+		<div id="aa" class="form-group">
+			<label for="exampleInputName2">廠商編號：</label>
+			<input type="TEXT" class="form-control" name="com_id" id="com_id" value="" readonly />
+		</div>
+		<div id="aa" class="form-group">
 			<label for="exampleInputName2">修改人員：</label>
-			<input type="TEXT" class="form-control" name="key_id" value="E00001" />
-		</div>　　
-		<div class="form-group">
+			<input type="TEXT" class="form-control" name="key_id" value="${LoginOK.emp_id}" readonly/>
+		</div>
+		<div id="aa" class="form-group">
 			<label for="exampleInputName2">　修 改 日 期 ：</label>
-			<input type="Date" class="form-control" name="key_date" />
-		</div>　
-		<div style="height: 10px;"></div>
-		<div class="form-group">　
+			<input type="Date" class="form-control" name="key_date" value="${nowDate}" />
+		</div>
+		<div style="height: 20px;"></div>
+		<div id="bb" class="form-group">　
 			<label for="exampleInputName2">狀　 態：</label>
 			<input type="TEXT" class="form-control" name="status" value="Y" />
-		</div>　　　
-		<div class="form-group">
+		</div>
+		<div id="aa" class="form-group">
 			<label for="exampleInputName2">備　註：</label>
-			<input type="TEXT" class="form-control" name="remark" value="test" />
+
+			<input type="TEXT" class="form-control" name="remark" value="" />
+
 		</div>
 	</tr>
 </table>
@@ -377,12 +401,26 @@ print(text)
 									
 					var values = $('#prod_name_select'+b).val().split("^");
 					document.getElementById('prod_name'+b).value=values[0];
-					document.getElementById('prod_quantity'+b).value=values[1];
-//	 				document.getElementById('prod_id1').value=values[0];
-					
+					document.getElementById('prod_quantity'+b).value=values[1];					
 				})
 			})		
 		})
+	})
+	
+		$.getJSON("getCom_DDL_rtn.do",{},function(data){
+			$.each(data,function(){
+				var SelectValue = this.SelectValue;
+				var SelectText = this.SelectText;
+				var opt=$("<option></option>").val(SelectValue).text(SelectText);
+				$('#com_name_select').append(opt);
+			})		
+	
+		$('#com_name_select').change(function(){
+									
+				var values = $('#com_name_select').val().split("^");
+				document.getElementById('com_id').value=values[0];
+				document.getElementById('com_name').value=values[1];
+			})
 	})
 })
 

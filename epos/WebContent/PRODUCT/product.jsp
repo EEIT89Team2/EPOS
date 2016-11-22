@@ -78,7 +78,7 @@
 	<!--header end-->
 
 	<!--sidebar start-->
-	<aside>
+		<aside>
 	<div id="sidebar" class="nav-collapse ">
 		<!-- sidebar menu start-->
 		<ul class="sidebar-menu" id="nav-accordion">
@@ -90,8 +90,9 @@
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp">
-					<i class="fa fa-dashboard"></i> <span>index</span>
+			<li class="mt"><a
+				href="<%=request.getContextPath()%>/ORDER/order.jsp"> <i
+					class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
 
 			<li class="sub-menu"><a href="javascript:;"> <i
@@ -121,13 +122,13 @@
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/VALUATION/valuation.jsp">報價單維護</a></li>
+						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
 					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/SHIPMENTS/shipments.jsp">出貨單維護</a></li>
+						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;" class="active">
-					<i class="fa fa-book"></i> <span>存貨作業</span>
+			<li class="sub-menu"><a href="javascript:;" class="active"> <i
+					class="fa fa-book"></i> <span>存貨作業</span>
 			</a>
 				<ul class="sub">
 					<li class="active"><a
@@ -166,7 +167,7 @@
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
-	</aside>
+	</aside> 
 	<!--sidebar end-->
 
 	<section id="main-content"> <section id="container">
@@ -247,7 +248,7 @@
 								<div class="col-lg-2">
 <!-- 									<input type="text" class="form-control" name="prod_group" id="prod_group"> -->
 									<select size="1" name="prod_group" id="prod_group" class="form-control">
-										<c:forEach var="prodVO" items="${ProdSvc.all}">
+										<c:forEach var="prodVO" items="${ProdSvc.selgroup()}">
 											<option value="${prodVO.prod_group}">${prodVO.prod_group}</option>
 										</c:forEach>
 									</select>

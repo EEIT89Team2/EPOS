@@ -140,6 +140,6 @@
 			
 			$("#ship").dataTable();
 </script>
-
+<a href="../SHIPMENTS/ShipmentsList.jsp"><i class="glyphicon glyphicon-th-list"></i>¡@¥X³f³æ</a></br>
 </body>
 </html>

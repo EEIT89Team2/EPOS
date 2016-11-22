@@ -245,7 +245,7 @@ print(text)
 	<tr>
 		<div class="form-group">
 			<label for="exampleInputName2">　　報價日期 ：</label>
-			<input type="date" class="form-control" name="vlt_date" value="${nowDate}" />	
+			<input type="text" class="form-control" name="vlt_date" value="${nowDate}" readonly />	
 		</div>　　
 		<div class="form-group">
 			<label for="exampleInputName2">交貨日期 ：</label>
@@ -261,7 +261,7 @@ print(text)
 		</div>　　
 		<div class="form-group">
 			<label for="exampleInputName2"> 修改日期 ：</label>
-			<input type="date" class="form-control" name="key_date" value="${nowDate}" />
+			<input type="text" class="form-control" name="key_date" value="${nowDate}"  readonly/>
 		</div>
 		<div style="height: 10px;"></div>
 		<div class="form-group">

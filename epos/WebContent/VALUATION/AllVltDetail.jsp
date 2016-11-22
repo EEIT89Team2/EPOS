@@ -172,7 +172,7 @@ td{
 </c:forEach>
 	</table>
 
-			<a href="../VALUATION/ValuationList.jsp"><i class="glyphicon glyphicon-th-list"></i>　報價單</a></br>
+<!-- 			<a href="../VALUATION/ValuationList.jsp"><i class="glyphicon glyphicon-th-list"></i>　報價單</a></br> -->
 			<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>
 				
 <%-- 	<center> --%>

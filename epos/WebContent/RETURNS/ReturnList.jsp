@@ -254,7 +254,7 @@ print(text)
 		<div class="form-group">
 			<label for="exampleInputName2">　退貨日期：</label>
 <!-- 			<input type="date" class="form-control" name="ret_date" /> -->
-				<input type = "date" name="ret_date" id="ret_date" class="form-control" value="${nowDate}" />
+				<input type = "TEXT" name="ret_date" id="ret_date" class="form-control" value="${nowDate}" readonly />
 		</div>
 		<div id="aa" class="form-group">
 			<label for="exampleInputName2">廠商名稱：</label>
@@ -270,7 +270,7 @@ print(text)
 		</div>
 		<div id="aa" class="form-group">
 			<label for="exampleInputName2">　修 改 日 期 ：</label>
-			<input type="Date" class="form-control" name="key_date" value="${nowDate}" />
+			<input type="TEXT" class="form-control" name="key_date" value="${nowDate}"  readonly/>
 		</div>
 		<div style="height: 20px;"></div>
 		<div id="bb" class="form-group">　

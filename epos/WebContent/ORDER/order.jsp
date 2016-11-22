@@ -40,15 +40,13 @@
 			total_prod_price = 0;
 		}
 
-		//total_prod_price=新增的商品金額
-		//計算總計金額
-		document.getElementById("total_price_temp").value = parseInt(document
+		document.getElementById("total_price_temp").value = Math.floor(parseInt(document
 				.getElementById("total_price_temp").value)
-				+ parseInt(total_prod_price);
-		document.getElementById("total_price").value = (document
+				+ parseInt(total_prod_price));
+		document.getElementById("total_price").value = Math.floor((document
 				.getElementById("total_price_temp").value * document
 				.getElementById("dis_price").value)
-				- document.getElementById("cpon_dollar").value;
+				- document.getElementById("cpon_dollar").value);
 	}
 
 	//計算應付金額(現金)
@@ -552,12 +550,12 @@ print(text)
 										p = count + 3;
 										del = count + 4;
 // 										$("#table1 >tbody >tr >td:eq("+id+")").append("<input type='text' name='prod_id"+a+"' value='"+$('#prod_id').val()+"' />")
-										$("#table1 >tbody >tr >td:eq("+count+")").append("<input type='text' name='prod_id"+a+"' value='"+$('#prod_id').val()+"' />")
-										$("#table1 >tbody >tr >td:eq("+n+")").append("<input type='text' name='prod_name"+a+"' value='"+prod_name+"'/>")
+										$("#table1 >tbody >tr >td:eq("+count+")").append("<input type='text' name='prod_id"+a+"' value='"+$('#prod_id').val()+"' readonly />")
+										$("#table1 >tbody >tr >td:eq("+n+")").append("<input type='text' name='prod_name"+a+"' value='"+prod_name+"' readonly/>")
 										$("#table1 >tbody >tr >td:eq("+q+")").append("<input type='text' name='prod_quantity"+a+"' value='1' onblur='count_total_prod_price(ordmain.prod_quantity"+a+",ordmain.prod_price"+a+",ordmain.total_prod_price"+a+")'/>")
 									//	$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='text' name='prod_price"+a+"' value='"+prod_price+"' />")
 										//$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='hidden' id='total_prod_price"+a+"' name='total_prod_price"+a+"' value='"+prod_price+"'/>")
-										$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='text' name='prod_price"+a+"' value='"+prod_price+"' /><input type='hidden' name='total_prod_price"+a+"' name='total_prod_price"+a+"' value='"+prod_price+"' />")
+										$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='text' name='prod_price"+a+"' value='"+prod_price+"' readonly/><input type='hidden' name='total_prod_price"+a+"' name='total_prod_price"+a+"' value='"+prod_price+"' />")
 									
 										$("#table1 >tbody >tr >td:eq("+del+")").append("<input type='button' value='刪除' class='btn btn-danger'></input>")
 										a = a + 1;

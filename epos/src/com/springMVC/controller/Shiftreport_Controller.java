@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -97,10 +98,17 @@ public class Shiftreport_Controller {
 	public String insertShiftre(ModelMap model,HttpServletRequest request) throws Exception, Exception {
 		
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
-
+		HttpSession session = request.getSession();
+		
+		
+		EmpVO empVO = (EmpVO)session.getAttribute("LoginOK");
+		String shift = (String)session.getAttribute("SHIFT");
+		if(empVO!=null&&shift!=null){
+		String emp_id=empVO.getEmp_id();
+		System.out.println("emp_id="+emp_id);
+		System.out.println("shift="+shift);
 //		Date date = Date.valueOf(request.getParameter("Date"));
-		String shift=request.getParameter("shift");
-		String emp_id=request.getParameter("emp_id");
+//		String shift=request.getParameter("shift");
 //		int cash=Integer.parseInt(request.getParameter("cash"));
 //		int coupon=Integer.parseInt(request.getParameter("coupon"));
 //		int discount=Integer.parseInt(request.getParameter("discount"));
@@ -178,6 +186,7 @@ public class Shiftreport_Controller {
 		shiftreSrv.insertOne(shiftreVO);
 		List list = shiftreSrv.getAll();
 		request.getSession().setAttribute("list", list);
+		}
 
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 

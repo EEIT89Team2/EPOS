@@ -121,14 +121,14 @@ var Script = function () {
 		var hour = insertTime.getHours();
 		var minutes = insertTime.getMinutes();
 		var seconds = insertTime.getSeconds();
-		if((hour==14||hour==20)&&(minutes==0)&&(seconds==0)){
+		if((hour==11||hour==20)&&(minutes==25)&&(seconds==0)){
 			alert(1);
 			$.ajax({
 				type : "post",
 				url : "insertShiftre.do",
-				data : {"shift":$("input[name='shift']").val(),
-						"emp_id":$("input[name='emp_id']").val()
-				}					
+//				data : {"shift":$("input[name='shift']").val(),
+//						"emp_id":$("input[name='emp_id']").val()
+//				}					
 			});
 		}else{
 

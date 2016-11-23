@@ -112,4 +112,10 @@ public class Order_detailHibernateDAO implements Order_Detail_Interface{
 		
 	}
 
+	@Override
+	public List<Order_DetailVO> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

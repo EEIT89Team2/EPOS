@@ -131,6 +131,9 @@
 				<input type="hidden" name="ord_id" value="${ordVO.ord_id}">
 				<input type="hidden" name="action" value="toShip">			  
 			</form>
+			<c:if test="${not empty oldOrd_id}">
+				<a href="<%=request.getContextPath()%>/INVO/select_page.jsp">作廢發票 ${oldOrd_id} </a>
+			</c:if>
 		</center>
 
 </body>

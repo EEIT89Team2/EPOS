@@ -230,19 +230,19 @@
 			<FORM id="invoform" METHOD="post" ACTION="insertInvo.do" class="form-inline">
 				<div class="form-group">
 					<label for="exampleInputName2">　發票編號:</label> <input type="text"
-						name="invoice_id" class="form-control">
+						name="invoice_id" class="form-control" value="${oldInvoice_id}" readonly>
 				</div> 　　
 				<div class="form-group">
 					<label for="exampleInputName2">訂單編號:</label> <input type="text"
-						name="ord_id" class="form-control">
+						name="ord_id" class="form-control" value="${oldOrd_id}" readonly>
 				</div>　　
 				<div class="form-group">
 					<label for="exampleInputEmail2">新發票編號：</label> <input type="text"
-						name="new_invoice_number" class="form-control">
+						name="new_invoice_number" class="form-control" value="${newInvoice_id}" readonly>
 				</div>　　
 				<div class="form-group">
 					<label for="exampleInputName2">新訂單編號：</label> <input type="text"
-						name="new_ord_id" class="form-control">
+						name="new_ord_id" class="form-control" value="${newOrd_id}" readonly>
 				</div>
 				<div>
 					<input type="hidden" name="shift" value="${SHIFT}" >
@@ -251,6 +251,8 @@
 			</FORM>
 
 		</div>
+		
+		
 		<!-- -----------------------------------------------------------表格----------------------------------------------------------- -->
 		<div>
 			<div class="titleinvo">發票作廢</div>

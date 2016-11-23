@@ -13,6 +13,7 @@ public interface Order_Detail_Interface {
 	public void insert(Order_DetailVO order_detailVO,OrderVO orderVO) throws Exception;//insert該筆訂單的商品
 	public void update_Detail(Order_DetailVO order_detailVO ,OrderVO orderVO) throws Exception;//update該筆訂單的商品
 	public void delete(String order_id,String prod_id) throws Exception;//delete該筆訂單的某筆商品
-	//public List<Order_DetailVO> getAll();
+	public List<Order_DetailVO> getAll();
+	
 	
 }

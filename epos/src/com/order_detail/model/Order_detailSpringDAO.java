@@ -100,4 +100,14 @@ public class Order_detailSpringDAO implements Order_Detail_Interface{
 		hibernateTemplate.bulkUpdate("DELETE Order_DetailVO WHERE ord_id=? AND prod_id=?",new Object[]{order_id,prod_id});	
 	}
 
+	private static final String GET_ALL_STMT = "from Order_DetailVO";
+
+	@Override
+	public List<Order_DetailVO> getAll() {
+
+		List<Order_DetailVO> list = null;
+		list = hibernateTemplate.find(GET_ALL_STMT);
+
+		return list;
+	}
 }

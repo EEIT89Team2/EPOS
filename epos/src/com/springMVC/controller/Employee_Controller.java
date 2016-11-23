@@ -432,7 +432,7 @@ public class Employee_Controller {
 
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 			
-		return "redirect:/EMPLOYEE/getPassCode.jsp";
+		return "redirect:/EMPLOYEE/AllEmp.jsp";
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/ANDROID/Login.do")

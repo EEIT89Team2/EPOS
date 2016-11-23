@@ -68,7 +68,7 @@
 	}
 	
 	.my-error-class{
-		color:#1dc489;
+		color:red;
 	}
 
 </style>
@@ -116,8 +116,8 @@
 									</button>
 								</td>
 								<td class="numeric">
-									<button type="button" class="btn btn-danger">
-										<i class="fa fa-trash-o" target="${discVO.dis_id}"></i>
+									<button type="button" class="btn btn-danger"  target="${discVO.dis_id}">
+										<i class="fa fa-trash-o"></i>
 									</button>
 								</td>
 							</tr>
@@ -128,11 +128,11 @@
 <script type="text/JavaScript">
 
 	$(document).ready(function() {
-//hide		
+//初始hide		
 		$('.btn-primary').hide();
 		$('.chg_price').hide();
 		
-//datatable
+//datatable設定
 		var oLanguage	= {
 		//"sUrl": "cn.txt",//從配置文件中讀取語言包
 		"sLengthMenu": "每頁顯示 _MENU_ 筆記錄",
@@ -165,7 +165,7 @@
 	})
 
 //刪除		
-		$('.fa-trash-o').click(function() {
+		$('.btn-danger').click(function() {
 			var id = $(this).attr("target");
 			$.ajax({
 				"type" : "post",

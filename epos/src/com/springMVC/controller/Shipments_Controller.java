@@ -284,9 +284,7 @@ public class Shipments_Controller {
 		shipVO.setShipdetails(set);
 		/*************************** 2.永續層存取 ***************************************/
 		shipSrv.insertOne(shipVO, list);
-
 		List<ShipVO> listAll = shipSrv.getAll();
-
 		request.getSession().setAttribute("list", listAll);
 
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/

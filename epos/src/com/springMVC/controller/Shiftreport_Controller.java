@@ -286,22 +286,22 @@ public class Shiftreport_Controller {
 	}
 	/*************************** * 圖表json區 ***********/
 	//日期範圍+班別查詢全部(json)
-	@RequestMapping(method = RequestMethod.GET, value = "/SHIFTREPORT/alljson.do")
+	@RequestMapping(method = RequestMethod.POST, value = "/SHIFTREPORT/alljson.do")
 	public void getAllDiscJson(ModelMap model,HttpServletRequest request,
 			@RequestParam("shift") String shift,
 			@RequestParam("date1") Date date1,
 			@RequestParam("date2") Date date2, HttpServletResponse resp) throws Exception {	
 
-		System.out.println("here");
 		List<ShiftreVO> list = shiftreSrv.getByJson(date1, date2, shift);
 		List l1 = new LinkedList();
 		for(ShiftreVO vo:list){
 			Map m1 = new HashMap();
 			m1.put("Date", vo.getDate());
 			m1.put("Shift", vo.getShift());
+			m1.put("cash", vo.getCash());			
 			m1.put("deal_sum", vo.getDeal_sum());
 			m1.put("discount", vo.getDiscount());
-			m1.put("shift_sum", vo.getShift_sum());
+			m1.put("deal_num", vo.getDeal_num());
 			l1.add(m1);
 		}
 		resp.setHeader("content-type","text/html;charset=utf-8");

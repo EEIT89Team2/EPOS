@@ -38,6 +38,8 @@ import com.valuation.model.ValuationService;
 import com.valuation.model.ValuationVO;
 import com.valuation_detail.model.Valuation_DetailVO;
 
+import gvjava.org.json.JSONArray;
+
 @Controller
 public class Order_Controller extends HttpServlet implements Runnable {
 
@@ -209,6 +211,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 			int i = 1;
 			while (true) {
 				try {
+//					Thread thread1 = new Thread(this);
 					Thread thread = new Thread(this);
 					threadList.add(thread);
 					

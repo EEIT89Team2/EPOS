@@ -161,11 +161,11 @@
 		<div class="row mt">
 			<div class="col-lg-12">
 			<div class="nav navbar-default">
-				<div class="container-fluid" style="float: right; left: -50%; position: relative">
-					<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">
+				<div class="container-fluid">
+					<ul class="nav navbar-nav">
 						<li id="sea_cou"><a id="r_coup" target="search_cpon.jsp" href="#search_Cou"  data-toggle="tab"><span class="glyphicon glyphicon-search"></span>範圍查詢</a></li>
 						<li id="ins_cou"><a id="c_coup" target="addCpon.jsp"  href="#new_Cou"  data-toggle="tab"><span class="glyphicon glyphicon-file"></span>新增</a></li>
-						<li id="rel_cou"><a id="a_coup" href="#resolution_Cou"  data-toggle="tab"><span class="glyphicon glyphicon-list-alt" ></span>查詢全部</a></li>
+						<li id="rel_cou"><a id="a_coup" href="#resolution_Cou"  data-toggle="tab"><span class="glyphicon glyphicon-list-alt" ></span>查詢結果</a></li>
 						<li><a id="print" href="#print"  data-toggle="tab"><span class="glyphicon glyphicon-print" ></span>列印</a></li>
 					</ul>
 				</div>	

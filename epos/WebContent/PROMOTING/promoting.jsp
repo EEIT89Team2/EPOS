@@ -194,9 +194,8 @@
 		<div class="row mt">
 			<div class="col-lg-12">
 				<div class="nav navbar-default">
-					<div class="container-fluid"
-						style="float: right; left: -50%; position: relative">
-						<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">
+				<div class="container-fluid">
+					<ul class="nav navbar-nav">
 							<li id="search_prom"><a id="r_prom" target="searchProm.jsp" data-toggle="tab" href="#search_Pro"><span class="glyphicon glyphicon-search"></span>搜尋</a></li>
 							<li id="insert_prom"><a id="c_prom" target="addProm.jsp" data-toggle="tab" href="#new_Pro"><span class="glyphicon glyphicon-file"></span>新增</a></li>
 							<li id="result_prom"><a data-toggle="tab" href="#result_Pro"><span class="glyphicon glyphicon-list-alt" ></span>查詢結果</a></li>			

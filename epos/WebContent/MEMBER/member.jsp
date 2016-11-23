@@ -1,4 +1,3 @@
-<%@page import="com.member.model.MemberService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -46,12 +45,15 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 
 <% MemberService memSrv=new MemberService();
  request.setAttribute("list", memSrv.getAll());
  
 %>
 
+=======
+>>>>>>> branch 'master' of https://github.com/EEIT89Team2/EPOS.git
 
 
 	<section id="container"> <!--header start--> <header
@@ -179,8 +181,8 @@
 			</nav>
 			<div class="tab-content">
 				<div>
-<%-- 					<jsp:useBean id="MemSvc" scope="page" --%>
-<%-- 						class="com.member.model.MemberService" /> --%>
+					<jsp:useBean id="MemSvc" scope="page"
+						class="com.member.model.MemberService" />
 					<div class="titlelist">查詢會員資料</div>
 					<div class="col-lg-12  main">
 						<p>
@@ -203,7 +205,7 @@
 								<label class="col-lg-2 control-label">依會員編號搜尋</label>
 								<div class="col-lg-2">
 									<select size="1" name="mem_id">
-										<c:forEach var="memVO" items="${list}">
+										<c:forEach var="memVO" items="${MemSvc.all}">
 											<option value="${memVO.mem_id}">${memVO.mem_id}
 										</c:forEach>
 									</select>
@@ -221,7 +223,7 @@
 								<label class="col-lg-2 control-label">依會員姓名搜尋</label>
 								<div class="col-lg-2">
 									<select size="1" name="mem_id">
-										<c:forEach var="memVO" items="${list}">
+										<c:forEach var="memVO" items="${MemSvc.all}">
 											<option value="${memVO.mem_id}">${memVO.mem_name}
 										</c:forEach>
 									</select>
@@ -239,11 +241,11 @@
 								<label class="col-lg-2 control-label">搜尋多筆會員</label>
 								<div class="col-lg-2">
 									<select size="1" name="mem_id_1">
-										<c:forEach var="memVO" items="${list}">
+										<c:forEach var="memVO" items="${MemSvc.all}">
 											<option value="${memVO.mem_id}">${memVO.mem_id}
 										</c:forEach>
 									</select> <select size="1" name="mem_id_2">
-										<c:forEach var="memVO" items="${list}">
+										<c:forEach var="memVO" items="${MemSvc.all}">
 											<option value="${memVO.mem_id}">${memVO.mem_id}
 										</c:forEach>
 									</select>

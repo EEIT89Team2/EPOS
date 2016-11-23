@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>shiftCharts</title>
+<title>shiftCharts2</title>
 <style>
 	.navbar-default .navbar-nav > li > a{
 		color:#56ad7b;
@@ -57,74 +57,67 @@
 </style>
 </head>
 <body>
-<div class="titlelist">營業額分析</div>
+<div class="titlelist">來客數分析</div>
 	<div class="col-lg-12 main">
 	<p class="distance">
 		<form method="post" action="alljson.do" class="oneshift form-horizontal style-form">
 		<div class="form-group">
 			<label class="col-lg-1 col-lg-offset-4 control-label">日期(起):</label>
 			<div class="col-lg-1">
-				<input type="Date" name="date1">
+				<input type="Date" name="date3">
 			</div>
 			
 			<label class="col-lg-1 control-label">日期(訖):</label>
 			<div class="col-lg-1">
-				<input type="Date" name="date2">
+				<input type="Date" name="date4">
 			</div>
 			<div class="col-lg-1">
 
-				<input type="button" value="A班" name='A' class="btn btn-theme02">
-				<input type="button" value="B班" name='B' class="btn btn-theme02">
+				<input type="button" value="A班" name='C' class="btn btn-theme02">
+				<input type="button" value="B班" name='D' class="btn btn-theme02">
 			</div>
 
 		</div>
 		</form>
 	<p class="distance">
 <!-- 早班 -->
-	<div id="A_charts"></div>
+	<div id="C_charts"></div>
 	<p class="distance">
 <!-- 晚班 -->
-	<div id="B_charts"></div>
+	<div id="D_charts"></div>
 	</div>
 </body>
 <script>
 
 	$(":button").click(function(){ 
-			if('A'==$(this).attr('name')){
+			if('C'==$(this).attr('name')){
 //抓資料			
 				$.ajax({
 					"type" : "post",
 					"url" : "alljson.do",
 					"data" : {
 						shift:"A",
-						date1:$('input[name="date1"]').val(),
-						date2:$('input[name="date2"]').val()						
+						date1:$('input[name="date3"]').val(),
+						date2:$('input[name="date4"]').val()						
 					},
 //成功的話執行以下					
 					"success" : function(data) {
 //新增空陣列來裝各個資料
+						var people_sum =[];
 						var day_data =[];
-						var cash_data =[];
-						var A_deal_sum=[];
-						var A_discount=[];
 						$.each($.parseJSON(data), function() {
 							var Date = this.Date;
-							var cash = this.cash;
-							var deal_sum = this.deal_sum;
-							var discount = this.discount;
-// 							var shift_sum = this.shift_sum;
+							var deal_num = this.deal_num;
 							day_data.push(Date);
-							cash_data.push(cash);
-							A_deal_sum.push(deal_sum);
-							A_discount.push(discount);
+							people_sum.push(deal_num);
 							})
-//圖表塞入div_A
-							$("#A_charts").highcharts({                   
+//圖表塞入div_C
+							$("#C_charts").highcharts({                   
 						        chart: {
-						            type: 'column'                         
+						            type: 'line'                         
 						        },
 						        title: {
-						            text: '每日早班營業表'     
+						            text: '每日早班來客數'     
 						        },
 						        subtitle: {
 				 				  text: '範圍 :'+ $('input[name="date1"]').val() +'~' + $('input[name="date2"]').val()
@@ -137,7 +130,7 @@
 				 				},
 						        yAxis: {
 						        	title: {
-					 				      text: '金額 '
+					 				      text: '人 '
 					 				   },
 					 				   plotLines: [{
 					 				      value: 0,
@@ -146,7 +139,7 @@
 					 				   }]
 						        },
 								tooltip: {
-				 				   valueSuffix: '$'
+				 				   valueSuffix: '人'
 				 				},
 								legend: {
 				 				   layout: 'vertical',
@@ -159,57 +152,43 @@
 				 				},
 						        series: [                               
 						           {
-			 		                  name: '營業額',
-			 		                  data:A_deal_sum
-			 		               }, 
-			 		               {
-			 		                  name: '折讓',
-			 		                  data: A_discount
-			 		               }, 
-			 		               {
-			 		                  name: '現金',
-			 		                  data: cash_data
-			 		               }, 
+			 		                  name: '來客數',
+			 		                  data:people_sum
+			 		               } 	 
 				               ]
 						    });
 					}
 				});
 			}
-			if('B'==$(this).attr('name')){
+			if('D'==$(this).attr('name')){
 //抓資料			
 				$.ajax({
 					"type" : "post",
 					"url" : "alljson.do",
 					"data" : {
 						shift:"B",
-						date1:$('input[name="date1"]').val(),
-						date2:$('input[name="date2"]').val()						
+						date1:$('input[name="date3"]').val(),
+						date2:$('input[name="date4"]').val()						
 					},
 //成功的話執行以下					
 					"success" : function(data) {
 //新增空陣列來裝各個資料
+						var people_sum =[];
 						var day_data =[];
-						var cash_data =[];
-						var A_deal_sum=[];
-						var A_discount=[];
 						$.each($.parseJSON(data), function() {
 							var Date = this.Date;
-							var cash = this.cash;
-							var deal_sum = this.deal_sum;
-							var discount = this.discount;
-// 							var shift_sum = this.shift_sum;
+							var deal_num = this.deal_num;
 							day_data.push(Date);
-							cash_data.push(cash);
-							A_deal_sum.push(deal_sum);
-							A_discount.push(discount);
+							people_sum.push(deal_num);
+
 							})
-//圖表塞入div_B
-							$("#B_charts").highcharts({                   
+//圖表塞入div_D
+							$("#D_charts").highcharts({                   
 						        chart: {
-						            type: 'column'                         
+						            type: 'line'                         
 						        },
 						        title: {
-						            text: '每日晚班營業表'     
+						            text: '每日晚班來客數'     
 						        },
 						        subtitle: {
 				 				  text: '範圍 :'+ $('input[name="date1"]').val() +'~' + $('input[name="date2"]').val()
@@ -222,7 +201,7 @@
 				 				},
 						        yAxis: {
 						        	title: {
-					 				      text: '金額 '
+					 				      text: '人 '
 					 				   },
 					 				   plotLines: [{
 					 				      value: 0,
@@ -231,7 +210,7 @@
 					 				   }]
 						        },
 								tooltip: {
-				 				   valueSuffix: '$'
+				 				   valueSuffix: '人'
 				 				},
 								legend: {
 				 				   layout: 'vertical',
@@ -244,17 +223,10 @@
 				 				},
 						        series: [                               
 						           {
-			 		                  name: '營業額',
-			 		                  data:A_deal_sum
+			 		                  name: '來客數',
+			 		                  data:people_sum
 			 		               }, 
-			 		               {
-			 		                  name: '折讓',
-			 		                  data: A_discount
-			 		               }, 
-			 		               {
-			 		                  name: '現金',
-			 		                  data: cash_data
-			 		               }, 
+ 
 				               ]
 						    });
 					}

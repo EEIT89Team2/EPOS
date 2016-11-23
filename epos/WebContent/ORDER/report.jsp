@@ -11,10 +11,10 @@
 <script type="text/javascript">
     
 	$(function () {
-	    alert(1);
+	    
 	    var processed_json = new Array();   
 	    $.getJSON("getdateprice.do",{}, function(data) {
-	    	alert(2);
+
 // 	    	$.each($.parseJSON(data), function() {
 // 					var n = this.ord_date;
 // 					var vp = this.total_price;

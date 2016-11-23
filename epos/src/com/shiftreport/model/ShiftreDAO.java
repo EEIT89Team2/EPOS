@@ -68,7 +68,7 @@ public class ShiftreDAO implements ShiftreDAO_interface {
 	public List<ShiftreVO> getSumJson(Date Date1,Date Date2,String shift) {
 		List<ShiftreVO> list = new ArrayList<ShiftreVO>();
 		
-		 list = hibernateTemplate.find("select * from ShiftreVO where Date between ? and ? and shift = ?",Date1,Date2,shift);
+		 list = hibernateTemplate.find("from ShiftreVO where Date between ? and ? and shift = ?",Date1,Date2,shift);
 			
 		return list;
 

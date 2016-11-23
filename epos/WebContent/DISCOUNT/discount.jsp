@@ -252,7 +252,7 @@
 			}else{
 				timer = true;
 			}
-		},60*1000*60);
+		},5000);
 
 	</script>
 </body>

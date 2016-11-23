@@ -3,24 +3,22 @@ package com.springMVC.controller;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.json.simple.JSONValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.coupon.model.CouponService;
 import com.coupon.model.CouponVO;
 import com.discount.model.DiscountService;
@@ -34,7 +32,6 @@ import com.order.model.OrderVO;
 import com.order_detail.model.Order_DetailVO;
 import com.product.model.ProdService;
 import com.product.model.ProdVO;
-import com.shiftreport.model.ShiftreVO;
 import com.valuation.model.ValuationService;
 import com.valuation.model.ValuationVO;
 import com.valuation_detail.model.Valuation_DetailVO;
@@ -57,6 +54,60 @@ public class Order_Controller extends HttpServlet implements Runnable {
 	LinkedList<ProdVO> prodVOList;
 	LinkedList<Integer> quayList;
 	int x;
+	Boolean flag;
+	
+	List<Order_DetailVO> ordDtls2;
+	
+	
+	//json
+	@RequestMapping(method = RequestMethod.POST, value = { "/getOrdByWeather.do", "/ORDER/getOrdByWeather.do" })
+	public void getOrdByWeather(ModelMap model, HttpServletRequest request,
+			@RequestParam("weather") String weather,HttpServletResponse resp) throws Exception {
+
+		List<Order_DetailVO> ordDetailList = ordSvc.getAllOrderDetail();
+		List<OrderVO> ordList = ordSvc.getAll();
+		List<String> weatherOrdList=new LinkedList();
+		Set<String> prodNameSet=new HashSet();
+		int prodCount=0;
+		List l1 = new LinkedList();
+
+		
+		for (OrderVO orderVO : ordList) {
+			if (orderVO.getWeather() != null) {
+
+				if (orderVO.getWeather().equals(weather)) {
+					weatherOrdList.add(orderVO.getOrd_id());
+				}
+			}
+		}
+		
+		for(Order_DetailVO order_DetailVO:ordDetailList){
+			for(String weather1:weatherOrdList){
+				
+				if(order_DetailVO.getOrderVO().getOrd_id().equals(weather1)){
+					prodNameSet.add(order_DetailVO.getProd_name());
+				}
+			}
+		}
+		
+		for(String prodName:prodNameSet){
+			prodCount=0;
+			Map map = new HashMap();
+			for(Order_DetailVO order_DetailVO:ordDetailList){
+				if(prodName.equals(order_DetailVO.getProd_name())){
+					prodCount=order_DetailVO.getProd_quantity()+prodCount;
+				}
+			}
+			map.put("prod_name",prodName);
+			map.put("prod_quantity", prodCount);
+			l1.add(map);
+		}
+		
+		resp.setHeader("content-type","text/html;charset=utf-8");
+		JSONArray jsonall = new JSONArray(l1);
+		PrintWriter out = resp.getWriter();
+		out.print(jsonall);
+	}	
 	
 	@RequestMapping(method = RequestMethod.POST, value = { "/getOrdPrice.do", "/ORDER/getOrdPrice.do" })
 	public void getOrdPrice(ModelMap model, HttpServletRequest request,HttpServletResponse resp) throws Exception {
@@ -260,6 +311,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 			List<Thread> threadList = new LinkedList<Thread>();
 			prodVOList=new LinkedList<ProdVO>();
 			quayList=new LinkedList<Integer>();
+			flag=true;
 			int i = 1;
 			while (true) {
 				try {
@@ -358,6 +410,8 @@ public class Order_Controller extends HttpServlet implements Runnable {
 	
 	@Override
 	public synchronized void run() {
+		
+		if(flag){
 		try{
 		
 		String prod_id = prodVOList.get(x).getProd_id();
@@ -373,6 +427,19 @@ public class Order_Controller extends HttpServlet implements Runnable {
 		x++;
 		}catch(Exception e){
 			System.out.println("error");
+		}
+		}else{
+			System.out.println("註銷執行緒");
+			for(Order_DetailVO order_DetailVO :ordDtls2 ){
+				String prod_id = order_DetailVO.getProdVO().getProd_id();
+				int prod_quy = order_DetailVO.getProd_quantity();
+				ProdVO prodVO = prodSrv.getOne(prod_id);
+				int quay=(prodVO.getProd_stock())+(order_DetailVO.getProd_quantity());
+				prodVO.setProd_stock(quay);
+				prodSrv.update(prodVO);
+
+		
+			}
 		}
 	}
 
@@ -393,6 +460,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 		/*************************** 2.開始查詢資料 *****************************************/
 		try {
 			List<OrderVO> list = ordSvc.getOneOrderDate(dateBegin, dateEnd);
+			System.out.println("----"+list.size());
 			request.setAttribute("list", list);
 
 			/*************************** 其他可能的錯誤處理 **********************************/
@@ -405,7 +473,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/Querydetail_DeleteOrd.do",
 			"/ORDER/Querydetail_DeleteOrd.do" })
-	public String Querydetail_DeleteOrd(ModelMap model, HttpServletRequest request,
+	public synchronized String Querydetail_DeleteOrd(ModelMap model, HttpServletRequest request,
 			/***************************
 			 * * 1.接收請求參數 - 輸入格式的錯誤處理
 			 *************************/
@@ -456,6 +524,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 		if ("Revoke".equals(action)) {
 			// OrderService ordSvc = new OrderService();
 			try {
+				flag=false;
 				
 				String invoice_id=request.getParameter("invoice_id");
 				ordSvc.setStatus("D", ord_id);	
@@ -468,23 +537,24 @@ public class Order_Controller extends HttpServlet implements Runnable {
 //				Set<Order_DetailVO> ordDtls = ordVO.getOrderdetails();
 				List<Order_DetailVO> ordDtls = ordSvc.getOrderDetailALL(ord_id);
 				
-				
-				for(Order_DetailVO order_DetailVO :ordDtls ){
-					String prod_id = order_DetailVO.getProdVO().getProd_id();
-					int prod_quy = order_DetailVO.getProd_quantity();
-					ProdVO prodVO = prodSrv.getOne(prod_id);
-					int quay=(prodVO.getProd_stock())+(order_DetailVO.getProd_quantity());
-					prodVO.setProd_stock(quay);
-					prodSrv.update(prodVO);
-
-			
-				}
+				ordDtls2=ordDtls;
+				new Thread(this).start();
+//				for(Order_DetailVO order_DetailVO :ordDtls ){
+//					String prod_id = order_DetailVO.getProdVO().getProd_id();
+//					int prod_quy = order_DetailVO.getProd_quantity();
+//					ProdVO prodVO = prodSrv.getOne(prod_id);
+//					int quay=(prodVO.getProd_stock())+(order_DetailVO.getProd_quantity());
+//					prodVO.setProd_stock(quay);
+//					prodSrv.update(prodVO);
+//
+//			
+//				}
 				
 				OrderVO ordVO1 = ordSvc.getOneOrder(ord_id);
 				List<OrderVO> list = new LinkedList<OrderVO>();
 				list.add(ordVO1);
-				model.addAttribute("list",list);
-			
+//				model.addAttribute("list",list);
+				request.getSession().setAttribute("list",list);
 
 			} catch (Exception e) {
 
@@ -493,7 +563,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 			/***************************
 			 * * 3.完成,準備轉交(Send the Success view)
 			 ***********/
-			return "/ORDER/SelectOrd";
+			return "redirect:/ORDER/SelectOrd.jsp";
 		}
 		
 		return null;

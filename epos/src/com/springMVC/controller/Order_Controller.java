@@ -553,8 +553,8 @@ public class Order_Controller extends HttpServlet implements Runnable {
 				OrderVO ordVO1 = ordSvc.getOneOrder(ord_id);
 				List<OrderVO> list = new LinkedList<OrderVO>();
 				list.add(ordVO1);
-				model.addAttribute("list",list);
-			
+//				model.addAttribute("list",list);
+				request.getSession().setAttribute("list",list);
 
 			} catch (Exception e) {
 
@@ -563,7 +563,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 			/***************************
 			 * * 3.完成,準備轉交(Send the Success view)
 			 ***********/
-			return "/ORDER/SelectOrd";
+			return "redirect:/ORDER/SelectOrd.jsp";
 		}
 		
 		return null;

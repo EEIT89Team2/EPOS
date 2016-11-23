@@ -141,7 +141,7 @@
 			<c:if test="${list.status=='D' && not empty oldOrd_id}" >
 						<a href="<%=request.getContextPath()%>/ORDER/order.jsp" class="btn btn-success">部分退貨</a>
 						
-						<a href="<%=request.getContextPath()%>/INVO/select_page.jsp" class="btn btn-info">全部退貨</a>
+						<a href="<%=request.getContextPath()%>/ORDER/removeSession2.jsp" class="btn btn-info">全部退貨</a>
 					
 		</c:if>
 <%-- 							<a href="<c:url value="order.jsp" />">新增訂單</a> --%>

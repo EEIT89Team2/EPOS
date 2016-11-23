@@ -64,7 +64,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 		List<OrderVO> orderList = ordSvc.getOrdPrice();
 		Date date1;
 		Date date2=null;
-		Double totalPrice=null;
+		Double totalPrice1=0.0;
 //		Map m1 = new HashMap();
 		List<Map> l1 = new LinkedList();
 		
@@ -78,25 +78,24 @@ public class Order_Controller extends HttpServlet implements Runnable {
 			if(i==0){
 				date2=date1;
 			}
+			double totalPrice;
 			if(date1.toString().equals(date2.toString())){
 				System.out.println("if");
-
 			totalPrice=orderVO.getTotal_price();
-			totalPrice+=totalPrice;
+			totalPrice1=totalPrice+totalPrice1;				
+
 			}else{
 				System.out.println("else");
 				Map m1 = new HashMap();
-				m1.put("Date", date1);
-				System.out.println(date1);
-				m1.put("Price", totalPrice);
-				System.out.println(totalPrice);
+				m1.put("Date", date2);
+				System.out.println(date2);
+				m1.put("Price", totalPrice1);
 
 				l1.add(m1);
-				totalPrice=(double)0;
+				totalPrice1=(double)0;
 				date2=date1;
 				totalPrice=orderVO.getTotal_price();
-				totalPrice+=totalPrice;
-				
+				totalPrice1=totalPrice+totalPrice1;					
 			}
 			
 			i++;

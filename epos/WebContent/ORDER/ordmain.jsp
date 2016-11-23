@@ -188,7 +188,6 @@
 </div>
 </div>
 
-<a href="<%=request.getContextPath()%>/ORDER/report.jsp">班別報表維護</a>	
 </section> </section> </section>
 <!---------------------------------------------------- JS -------------------------------------------------------------------->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

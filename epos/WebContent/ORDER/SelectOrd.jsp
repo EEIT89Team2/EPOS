@@ -134,7 +134,7 @@
 				</form>
 			</td>	
 		</tr>
-		<c:if test="${list.status=='D'}" >
+		<c:if test="${list.status=='D' && not empty oldOrd_id}" >
 					<a href="<%=request.getContextPath()%>/ORDER/order.jsp">新增訂單</a>
 		</c:if>
 <%-- 							<a href="<c:url value="order.jsp" />">新增訂單</a> --%>
@@ -142,7 +142,8 @@
 </c:forEach>
 	</table>
 
-		<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>
+<!-- 		<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a> -->
+		<a href="<%=request.getContextPath()%>/ORDER/removeSession.jsp"><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>
 
 
 	

@@ -132,7 +132,7 @@
 				<input type="hidden" name="action" value="toShip">			  
 			</form>
 			<c:if test="${not empty oldOrd_id}">
-				<a href="<%=request.getContextPath()%>/INVO/select_page.jsp">作廢發票 ${oldOrd_id} </a>
+				<a href="<%=request.getContextPath()%>/INVO/select_page.jsp"><i class="glyphicon glyphicon-th-list"></i>作廢發票 ${oldOrd_id} </a>
 			</c:if>
 		</center>
 

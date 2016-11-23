@@ -8,19 +8,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.json.simple.JSONValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.coupon.model.CouponService;
 import com.coupon.model.CouponVO;
 import com.discount.model.DiscountService;
@@ -31,10 +28,10 @@ import com.member.model.MemberService;
 import com.member.model.MemberVO;
 import com.order.model.OrderService;
 import com.order.model.OrderVO;
+import com.order.model.Order_ChartsVO;
 import com.order_detail.model.Order_DetailVO;
 import com.product.model.ProdService;
 import com.product.model.ProdVO;
-import com.shiftreport.model.ShiftreVO;
 import com.valuation.model.ValuationService;
 import com.valuation.model.ValuationVO;
 import com.valuation_detail.model.Valuation_DetailVO;
@@ -57,6 +54,26 @@ public class Order_Controller extends HttpServlet implements Runnable {
 	LinkedList<ProdVO> prodVOList;
 	LinkedList<Integer> quayList;
 	int x;
+	//json
+	@RequestMapping(method = RequestMethod.POST, value = { "/getOrdByWeather.do", "/ORDER/getOrdByWeather.do" })
+	public void getOrdByWeather(ModelMap model, HttpServletRequest request,
+			@RequestParam("weather") String weather,HttpServletResponse resp) throws Exception {
+		
+		List<Order_DetailVO> orderpro = ordSvc.getOrdByWeather(weather);
+		List l1 = new LinkedList();
+		for(Order_DetailVO vo:orderpro){
+			System.out.println("1");
+			Map m1 = new HashMap();
+			m1.put("prod_name", vo.getProd_name());
+			m1.put("prod_quantity", vo.getProd_quantity());
+			l1.add(m1);
+		}
+		
+		resp.setHeader("content-type","text/html;charset=utf-8");
+		JSONArray jsonall = new JSONArray(l1);
+		PrintWriter out = resp.getWriter();
+		out.print(jsonall);
+	}	
 	
 	@RequestMapping(method = RequestMethod.POST, value = { "/getOrdPrice.do", "/ORDER/getOrdPrice.do" })
 	public void getOrdPrice(ModelMap model, HttpServletRequest request,HttpServletResponse resp) throws Exception {

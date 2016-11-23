@@ -128,7 +128,9 @@
 			</td>
 			<td>
 				<form method="post" action="Querydetail_DeleteOrd.do">
+				<c:if test="${list.status!='D'}" >
 					<button type="submit" name="action" class="btn btn-danger" value="Revoke"><i class="glyphicon glyphicon-tags"></i></button>
+				</c:if>
 					<input type="hidden" name="ord_id" value="${list.ord_id}">
 					<input type="hidden" name="invoice_id" value="${list.invoice_id}">
 				</form>

@@ -366,51 +366,7 @@ public class ShiftreJDBCDAO implements ShiftreDAO_interface {
 		return list;
 
 	}
-	@Override
-	public List<ShiftreVO> getTotal() {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		List<ShiftreVO> list = new ArrayList<ShiftreVO>();
-		ShiftreVO shiftreVO=null;
-		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-		
-			pstmt = con.prepareStatement(GET_TOTAL_STMT);
-			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()){
-				shiftreVO = new ShiftreVO();				
-				shiftreVO.setDeal_sum(rs.getInt("deal_sum"));			
-				list.add(shiftreVO);							
-			}
-
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-		return list;
-
-	}
 	public static void main(String[] args) {
 		
 		ShiftreJDBCDAO dao = new ShiftreJDBCDAO();

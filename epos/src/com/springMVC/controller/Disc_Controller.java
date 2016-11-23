@@ -150,7 +150,7 @@ public class Disc_Controller  {
 //				JSONArray jsonall = new JSONArray(l1);
 //				PrintWriter out = resp.getWriter();
 //				out.print(jsonall);
-//						
+//			}	
 //			/*************************** * 完成,準備轉交(Send the Success view) ***********/
 //						return "/DISCOUNT/listAllDic";
 			

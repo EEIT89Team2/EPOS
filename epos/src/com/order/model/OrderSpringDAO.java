@@ -44,7 +44,6 @@ public class OrderSpringDAO implements Order_Interface {
 
 	@Override
 	public OrderVO addOrder(OrderVO orderVO, List<Order_DetailVO> order_detailVO_list) throws Exception {
-
 		hibernateTemplate.save(orderVO);
 
 		return orderVO;
@@ -164,19 +163,25 @@ public class OrderSpringDAO implements Order_Interface {
 		return i;
 	}
 
-	private static final String GET_ONE_TOP_ORDID = "select ord_id from OrderVO order by ord_id desc";
+	private static final String GET_ONE_TOP_ORDID = "from OrderVO order by ord_id desc";
 
 	@Override
-	public String getOneTopOrdId() throws Exception {
+	public OrderVO getOneTopOrdId() throws Exception {
 
-		List list = null;
-		String str = null; 
+		List<OrderVO> list = null;
+		OrderVO orderVO = null; 
 		list = hibernateTemplate.find(GET_ONE_TOP_ORDID);
 		
-		if (list.get(0) != null)
-			str = String.valueOf((String) list.get(0));
+		if (list!= null){
+			for(OrderVO orderVO1: list){
+				orderVO=orderVO1;
+				break;
+			}
+		}
+			
+			
 		
-		return str;
+		return orderVO;
 
 	}
 	

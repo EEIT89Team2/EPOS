@@ -147,7 +147,36 @@
 				});
 			}
 		});
-		$("#prom").dataTable();
+
+		//datatable設定
+		var oLanguage	= {
+		//"sUrl": "cn.txt",//從配置文件中讀取語言包
+		"sLengthMenu": "每頁顯示 _MENU_ 筆記錄",
+		"sZeroRecords": "抱歉， 沒有找到",
+		"sInfo": "目前記錄：_START_ 至 _END_, 總筆數：_TOTAL_",
+		"sInfoEmpty": "沒有數據資料",
+		//"sInfoFiltered": "(從 _MAX_ 項結果過濾)",
+		"oPaginate": {
+			"sFirst": "首頁",
+			"sPrevious": "上頁",
+			"sNext": "下頁",
+			"sLast": "尾頁"
+			},
+		"sZeroRecords": "無符合資料"
+		};
+		
+		$("#prom").dataTable({
+			"bPaginate" : true, //翻頁功能
+			"bLengthChange" : false, //改變每頁顯示數據數量
+			"bFilter" : true, //過濾功能
+			"bSort" : true, //排序功能
+			"bInfo" : true,//頁腳信息
+			"bAutoWidth" : true,//自動寬度
+			"oLanguage" : oLanguage,
+			"bDestroy" : false,
+			"bProcessing" : false,
+			"bServerSide" : false}
+		);
 	});
 
 	</script>	

@@ -35,7 +35,7 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO"); //若輸入錯誤可�
 	}
 	
 	.my-error-class{
-		color:#1dc489;
+		color:red;
 	}
 </style>
 </head>

@@ -147,7 +147,12 @@
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
 				</ul></li>
-
+<li class="sub-menu"><a href="javascript:;"> <i
+     class="fa fa-users"></i> <span>顧客關係</span>
+   </a>
+    <ul class="sub">
+     <li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+    </ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
@@ -158,8 +163,8 @@
 			<div class="row mt">
 				<div class="col-md-12">
 				<div class="nav navbar-default">
-				<div class="container-fluid" style="float: right; left: -50%; position: relative">
-					<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">
+				<div class="container-fluid">
+					<ul class="nav navbar-nav">
 						<li id="search1"><a id="r_disc" target="search_disc.jsp" data-toggle="tab" href="#search_Dic" class="nav_a"><span class="glyphicon glyphicon-search"></span>搜尋</a></li>
 						<li id="import"><a id="c_disc" target="insertDic.jsp" data-toggle="tab" href="#new_Dic" class="nav_a"><span class="glyphicon glyphicon-file"></span>新增</a></li>
 						<li id="result"><a data-toggle="tab" href="#resolution_Dic" class="nav_a"><span class="glyphicon glyphicon-list-alt"></span>查詢結果</a></li>
@@ -183,7 +188,7 @@
 				</div>
 			</div>
 		</section> </section>
-
+<input type="hidden" name="shift" value="${SHIFT}"><input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 	</section>
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

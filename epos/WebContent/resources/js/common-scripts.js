@@ -121,14 +121,14 @@ var Script = function () {
 		var hour = insertTime.getHours();
 		var minutes = insertTime.getMinutes();
 		var seconds = insertTime.getSeconds();
-		if((hour==14||hour==20)&&(minutes==0)&&(seconds==0)){
-			alert(1);
+		if((hour==15||hour==20)&&(minutes==24)&&(seconds==0)){
+			alert("班別報表新增完成");
 			$.ajax({
 				type : "post",
 				url : "insertShiftre.do",
-				data : {"shift":$("input[name='shift']").val(),
-						"emp_id":$("input[name='emp_id']").val()
-				}					
+//				data : {"shift":$("input[name='shift']").val(),
+//						"emp_id":$("input[name='emp_id']").val()
+//				}					
 			});
 		}else{
 

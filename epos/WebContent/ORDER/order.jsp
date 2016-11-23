@@ -40,15 +40,13 @@
 			total_prod_price = 0;
 		}
 
-		//total_prod_price=新增的商品金額
-		//計算總計金額
-		document.getElementById("total_price_temp").value = parseInt(document
+		document.getElementById("total_price_temp").value = Math.floor(parseInt(document
 				.getElementById("total_price_temp").value)
-				+ parseInt(total_prod_price);
-		document.getElementById("total_price").value = (document
+				+ parseInt(total_prod_price));
+		document.getElementById("total_price").value = Math.floor((document
 				.getElementById("total_price_temp").value * document
 				.getElementById("dis_price").value)
-				- document.getElementById("cpon_dollar").value;
+				- document.getElementById("cpon_dollar").value);
 	}
 
 	//計算應付金額(現金)
@@ -61,6 +59,19 @@
 		var total_price = document.getElementById("total_price").value;
 		document.getElementById("cash").value = total_price - cpon_dollar;
 	}
+	
+	function check(value) {  
+// 	    var f = document.forms[0];  
+	    var re = /^\d+$/;  
+	    if (!re.test(value)) {  
+// 	       alert("欄位不能空白且只允許輸入數字");
+		   ordmain.cash_temp.value = '';
+	       ordmain.cash_temp.focus();  
+	       return false;  
+	    }  
+	    return true;  
+	} 
+	
 </script>
 
 <head>
@@ -344,12 +355,14 @@ print(text)
 						<div class="form-group">
 							<label for="exampleInputName2">　收銀員編號：</label> 
 							<input type="text" value="${LoginOK.emp_id}" name="key_id_txt" class="form-control" disabled="disabled">
-							<input type="hidden" value="${LoginOK.emp_id}" name="key_id">
+							<input type="hidden" name="key_id" value="${LoginOK.emp_id}">
+							<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputName2">　收銀員姓名：</label> 
 							<input type="text" value="${LoginOK.emp_name}" class="form-control" disabled="disabled">
 						</div>
+						
 						<div class="form-group">
 							<label for="exampleInputName2">　班別：</label> 
 							<input type="text" value="${SHIFT}" name="shift_txt" class="form-control" disabled="disabled">
@@ -406,7 +419,7 @@ print(text)
 							</div>　　
 							<div class="form-group">
 									<label>現　　金：</label>
-									<input type="text" id="cash_temp" name="cash_temp" value="" class="form-control"/>　
+									<input type="text" id="cash_temp" name="cash_temp" value="" class="form-control" onkeyup="check(this.value)"/>　
 									<input type="hidden" id="cash" name="cash" value="" />
 							</div>
 							<div class="form-group">
@@ -552,12 +565,12 @@ print(text)
 										p = count + 3;
 										del = count + 4;
 // 										$("#table1 >tbody >tr >td:eq("+id+")").append("<input type='text' name='prod_id"+a+"' value='"+$('#prod_id').val()+"' />")
-										$("#table1 >tbody >tr >td:eq("+count+")").append("<input type='text' name='prod_id"+a+"' value='"+$('#prod_id').val()+"' />")
-										$("#table1 >tbody >tr >td:eq("+n+")").append("<input type='text' name='prod_name"+a+"' value='"+prod_name+"'/>")
+										$("#table1 >tbody >tr >td:eq("+count+")").append("<input type='text' name='prod_id"+a+"' value='"+$('#prod_id').val()+"' readonly />")
+										$("#table1 >tbody >tr >td:eq("+n+")").append("<input type='text' name='prod_name"+a+"' value='"+prod_name+"' readonly/>")
 										$("#table1 >tbody >tr >td:eq("+q+")").append("<input type='text' name='prod_quantity"+a+"' value='1' onblur='count_total_prod_price(ordmain.prod_quantity"+a+",ordmain.prod_price"+a+",ordmain.total_prod_price"+a+")'/>")
 									//	$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='text' name='prod_price"+a+"' value='"+prod_price+"' />")
 										//$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='hidden' id='total_prod_price"+a+"' name='total_prod_price"+a+"' value='"+prod_price+"'/>")
-										$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='text' name='prod_price"+a+"' value='"+prod_price+"' /><input type='hidden' name='total_prod_price"+a+"' name='total_prod_price"+a+"' value='"+prod_price+"' />")
+										$("#table1 >tbody >tr >td:eq("+p+")").append("<input type='text' name='prod_price"+a+"' value='"+prod_price+"' readonly/><input type='hidden' name='total_prod_price"+a+"' name='total_prod_price"+a+"' value='"+prod_price+"' />")
 									
 										$("#table1 >tbody >tr >td:eq("+del+")").append("<input type='button' value='刪除' class='btn btn-danger'></input>")
 										a = a + 1;

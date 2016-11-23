@@ -94,7 +94,7 @@
 <!-- 			<th class="numeric">交易淨利</th> -->
 			<th class="numeric">交易次數</th>
 			<th class="numeric">修改</th>
-			<th class="numeric">刪除</th>
+<!-- 			<th class="numeric">刪除</th> -->
 		</tr></thead>
 		
 <c:forEach var="list" items="${list}" varStatus="count">
@@ -120,13 +120,13 @@
 				</button>
 	
 			</td>
-			<td class="numeric" data-title="刪除">
+<!-- 			<td class="numeric" data-title="刪除"> -->
 <%-- 				<input type="button" name="action" value="delete" target1="${list.date}" target2="${list.shift}"> --%>
-				<button type="button" class="btn btn-danger">
-					<i class="fa fa-trash-o" action="delete" target1="${list.date}" target2="${list.shift}"></i>
-				</button>
-			</td>
-					<%-- 			<input type="hidden" name="Date" value="${list.date}"> --%>
+<!-- 				<button type="button" class="btn btn-danger"> -->
+<%-- 					<i class="fa fa-trash-o" action="delete" target1="${list.date}" target2="${list.shift}"></i> --%>
+<!-- 				</button> -->
+<!-- 			</td> -->
+					<%--<input type="hidden" name="Date" value="${list.date}"> --%>
 <%-- 			<input type="hidden" name="shift" value="${list.shift}"> --%>
 			
 		</tr>
@@ -141,27 +141,27 @@
 	<script type="text/JavaScript">
 
 	$(document).ready(function() {
-		
-		$('.fa-trash-o').click(function() {
-			var date = $(this).attr("target1");
-			var shift = $(this).attr("target2");
-			$.ajax({
-				type : "post",
-				url : "updateDeleteShiftre.do",
-				data : {
-					Date : date,
-					shift : shift,
-					action : "delete"
-				},
-				success : function(data) {
-					$(".rul").html(data);
-				}
-			});
+//刪除功能(班別報表不能刪除)		
+// 		$('.fa-trash-o').click(function() {
+// 			var date = $(this).attr("target1");
+// 			var shift = $(this).attr("target2");
+// 			$.ajax({
+// 				type : "post",
+// 				url : "updateDeleteShiftre.do",
+// 				data : {
+// 					Date : date,
+// 					shift : shift,
+// 					action : "delete"
+// 				},
+// 				success : function(data) {
+// 					$(".rul").html(data);
+// 				}
+// 			});
 
-		})
+// 		})
 		
 		$("button").on('click',function(){
-
+//修改
 			if($(this).val()=="update"){
 				$.ajax({
 					type : "post",
@@ -178,7 +178,35 @@
 			}
 		});
 		
-		$("#allshif").dataTable();
+		//datatable設定
+		var oLanguage	= {
+		//"sUrl": "cn.txt",//從配置文件中讀取語言包
+		"sLengthMenu": "每頁顯示 _MENU_ 筆記錄",
+		"sZeroRecords": "抱歉， 沒有找到",
+		"sInfo": "目前記錄：_START_ 至 _END_, 總筆數：_TOTAL_",
+		"sInfoEmpty": "沒有數據資料",
+		//"sInfoFiltered": "(從 _MAX_ 項結果過濾)",
+		"oPaginate": {
+			"sFirst": "首頁",
+			"sPrevious": "上頁",
+			"sNext": "下頁",
+			"sLast": "尾頁"
+			},
+		"sZeroRecords": "無符合資料"
+		};
+		
+		$("#allshif").dataTable({
+			"bPaginate" : true, //翻頁功能
+			"bLengthChange" : false, //改變每頁顯示數據數量
+			"bFilter" : true, //過濾功能
+			"bSort" : true, //排序功能
+			"bInfo" : true,//頁腳信息
+			"bAutoWidth" : true,//自動寬度
+			"oLanguage" : oLanguage,
+			"bDestroy" : false,
+			"bProcessing" : false,
+			"bServerSide" : false}
+		);
 	});
 	
 	</script>	

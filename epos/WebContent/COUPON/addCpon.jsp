@@ -36,7 +36,7 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO");	//若輸入錯誤可�
 	}
 	
 	.my-error-class{
-		color:#1dc489;
+		color:red;
 	}
 </style>
 </head>
@@ -98,7 +98,7 @@ CouponVO copVO = (CouponVO) request.getAttribute("copVO");	//若輸入錯誤可�
 			</div>
 				<p class="distance">
 				<div class="form-group">
-					<div class="col-lg-1 col-lg-offset-5">
+					<div class="col-lg-offset-5 col-lg-1">
 						<input type="button" value="送出新增" name="c_promoting" class="btn btn-theme03">
 					</div>
 					<div class="col-lg-5">

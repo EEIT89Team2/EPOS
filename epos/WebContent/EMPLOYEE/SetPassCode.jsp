@@ -153,6 +153,12 @@ if(request.getMethod().toUpperCase().equals("POST")){
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
 				</ul></li>
+				<li class="sub-menu"><a href="javascript:;"> <i
+     class="fa fa-users"></i> <span>顧客關係</span>
+   </a>
+    <ul class="sub">
+     <li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+    </ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>

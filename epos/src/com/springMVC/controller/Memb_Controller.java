@@ -344,8 +344,6 @@ public class Memb_Controller {
 					} else {
 						key_date_2 = Date.valueOf(req.getParameter("key_date_2"));
 					}
-					
-	
 					/*************************** 2.永續層存取 ***************************************/
 					
 					List<MemberVO> list = MemSvc.getKdateRge(key_date_1,key_date_2);
@@ -353,14 +351,13 @@ public class Memb_Controller {
 					
 					req.setAttribute("list", list);
 
-//					if (list == null) {
-//						errorMsgs.add("資料不存在");
-//					}
-//					if (!errorMsgs.isEmpty()) {
-//						RequestDispatcher failureView = req.getRequestDispatcher("/member/member.jsp");
-//						failureView.forward(req, res);
-//						return;
-//					}
+					if (list == null) {
+						errorMsgs.add("資料不存在");
+					}
+					if (!errorMsgs.isEmpty()) {
+						model.addAttribute("errorMsgs", errorMsgs);				
+						return"/MEMBER/member";
+					}
 					return "/MEMBER/listAllMem";
 
 		}		

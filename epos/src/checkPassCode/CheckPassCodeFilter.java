@@ -19,7 +19,8 @@ import com.employee.model.EmpVO;
 @WebFilter(urlPatterns = {
 		"/REQUISITION/addReq.jsp",
 		"/REQUISITION/SelectReq.jsp",
-		"/DISCOUNT/updateDisc.do"
+		"/DISCOUNT/updateDisc.do",
+		"/MEMBER/deleteMem.do"
 })
 //@WebFilter(urlPatterns = {"/*"})
 public class CheckPassCodeFilter implements Filter {

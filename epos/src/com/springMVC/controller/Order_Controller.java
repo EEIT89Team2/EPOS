@@ -61,7 +61,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 	@RequestMapping(method = RequestMethod.POST, value = { "/getOrdPrice.do", "/ORDER/getOrdPrice.do" })
 	public void getOrdPrice(ModelMap model, HttpServletRequest request,HttpServletResponse resp) throws Exception {
 		
-		List<OrderVO> orderList = ordSvc.getAll();
+		List<OrderVO> orderList = ordSvc.getOrdPrice();
 		Date date1;
 		Date date2=null;
 		Double totalPrice=null;

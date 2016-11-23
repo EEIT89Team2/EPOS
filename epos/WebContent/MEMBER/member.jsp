@@ -1,3 +1,4 @@
+<%@page import="com.member.model.MemberService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -45,15 +46,13 @@
 </head>
 
 <body>
-<<<<<<< HEAD
 
-<% MemberService memSrv=new MemberService();
- request.setAttribute("list", memSrv.getAll());
+<% 
+MemberService memSrv=new MemberService();
+request.setAttribute("list", memSrv.getAll());
  
 %>
 
-=======
->>>>>>> branch 'master' of https://github.com/EEIT89Team2/EPOS.git
 
 
 	<section id="container"> <!--header start--> <header

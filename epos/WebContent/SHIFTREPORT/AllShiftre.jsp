@@ -94,7 +94,7 @@
 <!-- 			<th class="numeric">交易淨利</th> -->
 			<th class="numeric">交易次數</th>
 			<th class="numeric">修改</th>
-<!-- 			<th class="numeric">刪除</th> -->
+			<th class="numeric">刪除</th>
 		</tr></thead>
 		
 <c:forEach var="list" items="${list}" varStatus="count">
@@ -120,12 +120,12 @@
 				</button>
 	
 			</td>
-<!-- 			<td class="numeric" data-title="刪除"> -->
-<%-- 				<input type="button" name="action" value="delete" target1="${list.date}" target2="${list.shift}"> --%>
-<!-- 				<button type="button" class="btn btn-danger"> -->
-<%-- 					<i class="fa fa-trash-o" action="delete" target1="${list.date}" target2="${list.shift}"></i> --%>
-<!-- 				</button> -->
-<!-- 			</td> -->
+			<td class="numeric" data-title="刪除">
+				<input type="button" name="action" value="delete" target1="${list.date}" target2="${list.shift}">
+				<button type="button" class="btn btn-danger">
+					<i class="fa fa-trash-o" action="delete" target1="${list.date}" target2="${list.shift}"></i>
+				</button>
+			</td>
 					<%--<input type="hidden" name="Date" value="${list.date}"> --%>
 <%-- 			<input type="hidden" name="shift" value="${list.shift}"> --%>
 			
@@ -142,23 +142,23 @@
 
 	$(document).ready(function() {
 //刪除功能(班別報表不能刪除)		
-// 		$('.fa-trash-o').click(function() {
-// 			var date = $(this).attr("target1");
-// 			var shift = $(this).attr("target2");
-// 			$.ajax({
-// 				type : "post",
-// 				url : "updateDeleteShiftre.do",
-// 				data : {
-// 					Date : date,
-// 					shift : shift,
-// 					action : "delete"
-// 				},
-// 				success : function(data) {
-// 					$(".rul").html(data);
-// 				}
-// 			});
+		$('.fa-trash-o').click(function() {
+			var date = $(this).attr("target1");
+			var shift = $(this).attr("target2");
+			$.ajax({
+				type : "post",
+				url : "updateDeleteShiftre.do",
+				data : {
+					Date : date,
+					shift : shift,
+					action : "delete"
+				},
+				success : function(data) {
+					$(".rul").html(data);
+				}
+			});
 
-// 		})
+		})
 		
 		$("button").on('click',function(){
 //修改

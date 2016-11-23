@@ -42,6 +42,14 @@
 .glyphicon {
 	top: auto;
 }
+
+.my-valid-class {
+	color: #3a51e8;
+}
+
+.my-error-class {
+	color: red;
+}
 </style>
 </head>
 
@@ -67,7 +75,7 @@ request.setAttribute("list", memSrv.getAll());
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
 			<li><a class="logout"
-				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
+				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -83,7 +91,7 @@ request.setAttribute("list", memSrv.getAll());
 			<h5 class="centered">ePOS</h5>
 
 			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp">
-					<i class="fa fa-dashboard"></i> <span>index</span>
+					<i class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
 
 			<li class="sub-menu"><a href="javascript:;" class="active">
@@ -155,12 +163,12 @@ request.setAttribute("list", memSrv.getAll());
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
 				</ul></li>
-<li class="sub-menu"><a href="javascript:;"> <i
-     class="fa fa-users"></i> <span>顧客關係</span>
-   </a>
-    <ul class="sub">
-     <li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
-    </ul></li>
+			<li class="sub-menu"><a href="javascript:;"> <i
+					class="fa fa-users"></i> <span>顧客關係</span>
+			</a>
+				<ul class="sub">
+					<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+				</ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
@@ -189,11 +197,9 @@ request.setAttribute("list", memSrv.getAll());
 							<c:if test="${not empty param.message}">
 								<font color='red'>請修正以下錯誤:
 									<ul>
-
 										<c:forEach var="message" items="${param.message}">
 											<li>${message}</li>
 										</c:forEach>
-
 									</ul>
 								</font>
 							</c:if>
@@ -255,7 +261,7 @@ request.setAttribute("list", memSrv.getAll());
 							</div>
 						</form>
 						<form method="post" action="datesMem.do"
-							class="form-horizontal style-form">
+							class="form-horizontal style-form" id="searchDate">
 							<div class="form-group">
 								<div class="col-lg-3"></div>
 								<label class="col-lg-2 control-label">依新增日期搜尋</label>
@@ -285,7 +291,8 @@ request.setAttribute("list", memSrv.getAll());
 		</div>
 	</div>
 	</section> </section> </section>
-<input type="hidden" name="shift" value="${SHIFT}"><input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
+	<input type="hidden" name="shift" value="${SHIFT}">
+	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
@@ -295,13 +302,39 @@ request.setAttribute("list", memSrv.getAll());
 	</script>
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
+	<script src="<c:url value='../resources/js/jquery.validate.min.js' />"></script>
 	<script class="include" type="text/javascript"
 		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"
 		type="text/javascript"></script>
-
+	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
+		type="text/javascript"></script>
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
+
+	<script>
+			// -----------------------------------驗證-------------------------------------------
+			$("#searchDate").validate({
+				// 				success : function(label) {
+				// 					label.text("【正確】")
+				// 				},
+				errorClass : "my-error-class",
+				validClass : "my-valid-class",
+
+				rules : {
+					key_date_1 : {required : true},
+					key_date_2 : {required : true}
+				},
+				messages : {
+					key_date_1 : {
+						required : "【請輸入日期】"
+					},
+					key_date_2 : {
+						required : "【請輸入日期】"
+					}
+				}
+			})
+	</script>
 </body>
 </html>

@@ -124,15 +124,16 @@
 	</table>
 		<center>
 			<form method="post" action="../ORDER/OrdToShip.do">
-<!-- 				<button type="button" name="action" class="btn btn-success" value="返回" onclick="history.back();">← 回訂單</button>-->
+<!-- 				<button type="button" name="action" class="btn btn-success" value="返回" onclick="history.back();">← 回訂單</button> -->
 
-				<a href="../ORDER/order.jsp"><i class="glyphicon glyphicon-th-list"></i>　回訂單</a></br>
+				<a href="../ORDER/order.jsp" class="btn btn-success">← 回訂單</a>
 				<button type="submit" class="btn btn-danger">$轉出貨</button>
 				<input type="hidden" name="ord_id" value="${ordVO.ord_id}">
 				<input type="hidden" name="action" value="toShip">			  
 			</form>
+			<br>
 			<c:if test="${not empty oldOrd_id}">
-				<a href="<%=request.getContextPath()%>/INVO/select_page.jsp"><i class="glyphicon glyphicon-th-list"></i>作廢發票 ${oldOrd_id} </a>
+				<a href="<%=request.getContextPath()%>/INVO/select_page.jsp" class="btn btn-info">作廢發票 ${oldOrd_id} </a>
 			</c:if>
 		</center>
 

@@ -3,6 +3,7 @@ package com.springMVC.controller;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -58,16 +59,54 @@ public class Order_Controller extends HttpServlet implements Runnable {
 	@RequestMapping(method = RequestMethod.POST, value = { "/getOrdByWeather.do", "/ORDER/getOrdByWeather.do" })
 	public void getOrdByWeather(ModelMap model, HttpServletRequest request,
 			@RequestParam("weather") String weather,HttpServletResponse resp) throws Exception {
-		
-		List<Order_DetailVO> orderpro = ordSvc.getOrdByWeather(weather);
+		System.out.println("weather="+weather);
+		List<Order_DetailVO> ordDetailList = ordSvc.getAllOrderDetail();
+		List<OrderVO> ordList = ordSvc.getAll();
+		List<String> weatherOrdList=new LinkedList();
+		Set<String> prodNameSet=new HashSet();
+		int prodCount=0;
 		List l1 = new LinkedList();
-		for(Order_DetailVO vo:orderpro){
-			System.out.println("1");
-			Map m1 = new HashMap();
-			m1.put("prod_name", vo.getProd_name());
-			m1.put("prod_quantity", vo.getProd_quantity());
-			l1.add(m1);
+
+		
+		for (OrderVO orderVO : ordList) {
+			if (orderVO.getWeather() != null) {
+
+				if (orderVO.getWeather().equals(weather)) {
+					weatherOrdList.add(orderVO.getOrd_id());
+				}
+			}
 		}
+		
+		for(Order_DetailVO order_DetailVO:ordDetailList){
+			for(String weather1:weatherOrdList){
+				
+				if(order_DetailVO.getOrderVO().getOrd_id().equals(weather1)){
+					prodNameSet.add(order_DetailVO.getProd_name());
+				}
+			}
+		}
+		
+		for(String prodName:prodNameSet){
+			prodCount=0;
+			Map map = new HashMap();
+			for(Order_DetailVO order_DetailVO:ordDetailList){
+				if(prodName.equals(order_DetailVO.getProd_name())){
+					prodCount=order_DetailVO.getProd_quantity()+prodCount;
+				}
+			}
+			map.put("prod_name",prodName);
+			map.put("prod_quantity", prodCount);
+			l1.add(map);
+		}
+		
+		
+//		for(Order_DetailVO vo:orderpro){
+//			System.out.println("1");
+//			Map m1 = new HashMap();
+//			m1.put("prod_name", vo.getProd_name());
+//			m1.put("prod_quantity", vo.getProd_quantity());
+//			l1.add(m1);
+//		}
 		
 		resp.setHeader("content-type","text/html;charset=utf-8");
 		JSONArray jsonall = new JSONArray(l1);

@@ -66,7 +66,8 @@ if(request.getMethod().toUpperCase().equals("POST")){
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="login.html">Logout</a>Hi , ${LoginOK.emp_name}</li>
+			<li><a class="logout" href="login.html">Logout</a>Hi ,
+				${LoginOK.emp_name}</li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -153,12 +154,12 @@ if(request.getMethod().toUpperCase().equals("POST")){
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
 				</ul></li>
-				<li class="sub-menu"><a href="javascript:;"> <i
-     class="fa fa-users"></i> <span>顧客關係</span>
-   </a>
-    <ul class="sub">
-     <li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
-    </ul></li>
+			<li class="sub-menu"><a href="javascript:;"> <i
+					class="fa fa-users"></i> <span>顧客關係</span>
+			</a>
+				<ul class="sub">
+					<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+				</ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
@@ -181,7 +182,7 @@ if(request.getMethod().toUpperCase().equals("POST")){
 			<div class="tab-content">
 				<div>
 					<div class="titlelist">員工權限管理</div>
-					<div class="col-lg-12  main">
+					<div class="col-lg-12  main" id="psDiv">
 						<p>
 							<jsp:useBean id="empSvc" scope="page"
 								class="com.employee.model.EmpService" />
@@ -200,7 +201,7 @@ if(request.getMethod().toUpperCase().equals("POST")){
 								<%--   				<% else %> --%>
 								<!--   				<input type="checkbox" name="checkbox" value="ALL" />通行無阻<br> -->
 
-								<input type="checkbox" name="pass_code" value="All" checked>通行無阻<br>
+								<input type="checkbox" name="pass_code" value="ALL" checked>通行無阻<br>
 
 								<h4>會員資料維護</h4>
 								<input type="checkbox" name="pass_code" value="/insertMemb.do">新增會員<br>
@@ -366,10 +367,18 @@ if(request.getMethod().toUpperCase().equals("POST")){
 								<input type="checkbox" name="pass_code" value="/updateDisc.do">修改折扣<br>
 								<input type="checkbox" name="pass_code" value="/disc.do">依折扣身分、%數搜尋<br>
 								<input type="checkbox" name="pass_code" value="/allDisc.do">查詢全部<br>
-								<input type="submit" value="修改權限"
-									class="btn btn-theme03" id="button Toggle">
+								<input type="submit" value="修改權限" class="btn btn-theme03"
+									id="button Toggle">
 
 							</form>
+							<table id="passTable" class="table table-bordered">
+								<thead>
+									<tr>
+										<th>權限</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
 						</center>
 					</div>
 				</div>
@@ -378,7 +387,11 @@ if(request.getMethod().toUpperCase().equals("POST")){
 	<script>
 		!window.jQuery
 				&& document
-						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
+						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>");
+		
+// 		$("input[name='pass_code']").prop("checked",true);
+						
+						
 	</script>
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
@@ -432,6 +445,43 @@ if(request.getMethod().toUpperCase().equals("POST")){
 		//             });
 
 		// 	})
+ 		
+
+		$('select').change(
+				function() {
+					$("input[name='pass_code']").prop("checked",false);
+					var myBody = $('#passTable>tbody');
+					myBody.empty();
+					$.getJSON('getPassCode.do', {
+						emp_id : $(this).val()
+					}, function(datas) {
+						console.log(datas);
+						
+					
+						$.each(datas, function(idx, passCode) {
+							$.each(passCode,function(key,value){
+// 					 			console.log( value);
+								if(value=="ALL"){
+									$("input[value='ALL']").prop("checked",true);
+								}else{
+
+					 			var psCodeArray= value.split(",");
+					 			for(i=0;i<psCodeArray.length;i++){
+					 				var x=psCodeArray[i];
+					 				$("input[value='"+x+"']").prop("checked",true);
+					 			}
+								}
+					 		})
+
+// 							var cell = $("<td></td>").text(passCode.value);
+
+// 							var row = $("<tr></tr>").append(cell);
+
+// 							myBody.append(row);
+						});
+					})
+				})
+			
 	</script>
 
 </body>

@@ -41,6 +41,7 @@ import com.valuation_detail.model.Valuation_DetailVO;
 @Controller
 public class Order_Controller extends HttpServlet implements Runnable {
 
+	
 	private final static OrderService ordSvc = new OrderService();
 	private final static MemberService memSvc = new MemberService();
 	private final static DiscountService disSvc = new DiscountService();

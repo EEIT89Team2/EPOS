@@ -49,7 +49,9 @@
 
 <% MemberService memSrv=new MemberService();
  request.setAttribute("list", memSrv.getAll());
+ 
 %>
+
 
 
 	<section id="container"> <!--header start--> <header

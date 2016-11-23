@@ -7,6 +7,7 @@
 			    <generator class="generator.Ship_Generator"/> 	
 		</id>
 
+
 		<property name="ord_id" column="ord_id" />
 		<property name="ship_date" column="ship_date" />
 		<property name="rec_addr" column="rec_addr" />

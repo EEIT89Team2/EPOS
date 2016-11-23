@@ -19,6 +19,7 @@ import com.employee.model.EmpVO;
 import com.order_detail.model.Order_DetailVO;
 import com.product.model.ProdVO;
 import com.returns.model.RtnItemsVO;
+import com.shiftreport.model.ShiftreVO;
 
 import hibernate.util.HibernateUtil;
 
@@ -203,6 +204,16 @@ public class OrderSpringDAO implements Order_Interface {
 		list = hibernateTemplate.find(GET_ONE_STMT_ORDERDATEANDSHIFT,new Object[]{s_ord_date,shift});
 
 		return list;
+	}
+	
+	@Override
+	public List<OrderVO> getOrdPrice() {
+		List<OrderVO> list = new ArrayList<OrderVO>();
+		
+		 list = hibernateTemplate.find("from OrderVO where ord_date between '2016-10-01' and '2016-10-31'");
+			
+		return list;
+
 	}
 
 }

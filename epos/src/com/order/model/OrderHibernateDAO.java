@@ -215,5 +215,11 @@ public class OrderHibernateDAO implements Order_Interface {
 		return null;
 	}
 
+	@Override
+	public List<OrderVO> getOrdPrice() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

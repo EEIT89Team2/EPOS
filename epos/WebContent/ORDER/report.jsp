@@ -11,55 +11,72 @@
 <script type="text/javascript">
     
 	$(function () {
-	    
-	    var processed_json = new Array();   
-	    $.getJSON("getdateprice.do",{}, function(data) {
-
-// 	    	$.each($.parseJSON(data), function() {
-// 					var n = this.ord_date;
-// 					var vp = this.total_price;
-// 					var opt = $("<option>");
-// 	    			opt.append(vp);
-// 	    			opt.val(n);
-// 	    			sel.append(opt);
-// 	    	})
-	
-// 	        // Populate series
-	        for (i = 0; i < data.total_price.length; i++){
-	            processed_json.push([data.total_price[i].key, parseInt(data.total_price[i].value)]);
-	        }
-	     
-	        // draw chart
-	        $('#container').highcharts({
-	        chart: {
-	            type: "column"
-	        },
-	        title: {
-	            text: "Student data"
-	        },
-	        xAxis: {
-	            allowDecimals: false,
-	            title: {
-	                text: "Branch of studies"
-	            }
-	        },
-	        yAxis: {
-	            title: {
-	                text: "Number of students"
-	            }
-	        },
-	        series: [{
-	            data: processed_json
-	        }]
-	    }); 
-	});
+		
+		//抓資料			
+		$.ajax({
+			"type" : "post",
+			"url" : "getOrdPrice.do",
+			"data" : {},
+//成功的話執行以下					
+			"success" : function(data) {
+//新增空陣列來裝各個資料
+				var Date =[];
+				var Price =[];
+				$.each($.parseJSON(data), function() {
+					var Date1 = this.Date;
+					var Price1 = this.Price;
+					
+					Date.push(Date1);
+					Price.push(Price1);
+					})
+//圖表塞入div_A
+					$('#container').highcharts({
+				        chart: {
+				            type: 'column'
+				        },
+				        title: {
+				            text: '十月份營業額'
+				        },
+				        xAxis: {
+				            categories: Date
+				        },
+				        yAxis: {
+				            title: {
+				                text: '營業額'
+				            }
+				        },
+				        credits:{
+		 					enabled:false	
+		 				},
+				        series: [{
+				            name: '十月',
+				            data: Price
+				        }]
+					})
+		}
+	})
 });
+
+
 </script>
 <title>折線圖</title>
+
+<style type="text/css">
+
+body{
+	background: gray;
+}
+
+#container{
+	margin-top: 200px;
+}
+
+</style>
 </head>
 <body>
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
+<center>
+<div id="container" style="min-width: 310px; height: 400px;"></div>
+</center>
 <form action="getdatprice.do">
 	
 </form>

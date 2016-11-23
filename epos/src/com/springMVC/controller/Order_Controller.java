@@ -34,6 +34,7 @@ import com.order.model.OrderVO;
 import com.order_detail.model.Order_DetailVO;
 import com.product.model.ProdService;
 import com.product.model.ProdVO;
+import com.shiftreport.model.ShiftreVO;
 import com.valuation.model.ValuationService;
 import com.valuation.model.ValuationVO;
 import com.valuation_detail.model.Valuation_DetailVO;
@@ -55,6 +56,58 @@ public class Order_Controller extends HttpServlet implements Runnable {
 	LinkedList<ProdVO> prodVOList;
 	LinkedList<Integer> quayList;
 	int x;
+	
+	@RequestMapping(method = RequestMethod.POST, value = { "/getOrdPrice.do", "/ORDER/getOrdPrice.do" })
+	public void getOrdPrice(ModelMap model, HttpServletRequest request,HttpServletResponse resp) throws Exception {
+		
+		List<OrderVO> orderList = ordSvc.getAll();
+		Date date1;
+		Date date2=null;
+		Double totalPrice=null;
+//		Map m1 = new HashMap();
+		List<Map> l1 = new LinkedList();
+		
+		int i=0;
+		for(OrderVO orderVO : orderList){
+			System.out.println("i="+i);
+			date1=orderVO.getOrd_date();
+			
+			System.out.println("date1="+date1);
+			System.out.println("date2="+date2);
+			if(i==0){
+				date2=date1;
+			}
+			if(date1.toString().equals(date2.toString())){
+				System.out.println("if");
+
+			totalPrice=orderVO.getTotal_price();
+			totalPrice+=totalPrice;
+			}else{
+				System.out.println("else");
+				Map m1 = new HashMap();
+				m1.put("Date", date1);
+				System.out.println(date1);
+				m1.put("Price", totalPrice);
+				System.out.println(totalPrice);
+
+				l1.add(m1);
+				totalPrice=(double)0;
+				date2=date1;
+				totalPrice=orderVO.getTotal_price();
+				totalPrice+=totalPrice;
+				
+			}
+			
+			i++;
+			
+		}
+		
+		resp.setHeader("content-type","text/html;charset=utf-8");
+		JSONArray jsonall = new JSONArray(l1);
+		PrintWriter out = resp.getWriter();
+		out.print(jsonall);
+	}
+
 
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/addOrder.do", "/ORDER/addOrder.do" })

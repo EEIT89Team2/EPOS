@@ -142,4 +142,12 @@ public class OrderService {
 		return ord_dao.Select_ord_date_shift(s_ord_date, shift);
 	}
 	
+	public List<OrderVO> getOrdPrice(){
+		return ord_dao.getOrdPrice();
+	}
+	
+	public List<Order_DetailVO> getAllOrderDetail(){
+		return ordDtail_dao.getAll();
+	}
+	
 }

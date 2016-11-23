@@ -183,13 +183,13 @@
 						<div class="chg2_content main"></div>
 					</div>
 				</div>
-				
+			
 <!----------  class="row mt"      class="col-sm-12"	-------------->
 </div>
 </div>
 
+<a href="<%=request.getContextPath()%>/ORDER/report.jsp">班別報表維護</a>	
 </section> </section> </section>
-	
 <!---------------------------------------------------- JS -------------------------------------------------------------------->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>

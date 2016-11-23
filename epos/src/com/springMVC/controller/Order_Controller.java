@@ -37,6 +37,8 @@ import com.valuation.model.ValuationService;
 import com.valuation.model.ValuationVO;
 import com.valuation_detail.model.Valuation_DetailVO;
 
+import gvjava.org.json.JSONArray;
+
 @Controller
 public class Order_Controller extends HttpServlet {
 

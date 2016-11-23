@@ -140,5 +140,6 @@ public class OrderService {
 	public List<OrderVO> getDateAndShift(Date s_ord_date,String shift) throws Exception{
 		
 		return ord_dao.Select_ord_date_shift(s_ord_date, shift);
-	}	
+	}
+	
 }

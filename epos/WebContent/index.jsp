@@ -111,7 +111,7 @@
 							class=" fa fa-bar-chart-o"></i> <span>報表分析</span>
 					</a>
 						<ul class="sub">
-							<li><a href="morris.html">Morris</a></li>
+							<li><a href="REPORT/report.jsp">Report</a></li>
 						</ul></li>
 
 				</ul>

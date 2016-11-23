@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -22,9 +23,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.discount.model.DiscountVO;
 import com.employee.model.EmpService;
 import com.employee.model.EmpVO;
 
+import gvjava.org.json.JSONArray;
 import gvjava.org.json.JSONObject;
 
 
@@ -434,6 +437,48 @@ public class Employee_Controller {
 			
 		return "redirect:/EMPLOYEE/AllEmp.jsp";
 	}
+	
+	
+	
+	@RequestMapping(method = RequestMethod.GET, value = {"/EMPLOYEE/getPassCode.do","/getPassCode.do"})
+	public void getJsonPassCode(ModelMap model,HttpServletRequest request,HttpServletResponse resp) throws IOException {
+		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
+		String emp_id=request.getParameter("emp_id");
+		
+		List<EmpVO> list=null;
+		try {
+			EmpVO empVO = empSrv.getOne(emp_id);
+			List l1 = new LinkedList();
+			Map m1 = new HashMap();
+			m1.put("pass_code[i]", empVO.getPass_code());
+			l1.add(m1);
+			
+			resp.setHeader("content-type","text/html;charset=utf-8");
+			JSONArray jsonArray = new JSONArray(l1);
+			PrintWriter out = resp.getWriter();
+			out.print(jsonArray);
+			System.out.println("-----------3------------------");
+			System.out.println(jsonArray);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+//		List l1 = new LinkedList();
+//		for(EmpVO vo:list){
+//			Map m1 = new HashMap();
+//			m1.put("pass_code[i]", vo.getPass_code());
+//			l1.add(m1);
+//		}
+		
+// 		jsonArray=[{key,value},{,},...]
+//		[{"pass_code[i]":"ALL"},{"pass_code[i]":"ALL"},{"pass_code[i]":"/insertPur.do"},{"pass_code[i]":"/updateDeleteCom.do,/updateCom.do"},{"pass_code[i]":""},{"pass_code[i]":""},{"pass_code[i]":null}]
+		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
+			
+//		return "redirect:/EMPLOYEE/AllEmp.jsp";
+//		return JSONArray.toJSONString(jsonArray);
+	}
+	
+	
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/ANDROID/Login.do")
 	public void androidLogin(@RequestParam("emp_id") String emp_id,@RequestParam("emp_pwd") String emp_pwd, ModelMap model,HttpServletRequest request,HttpServletResponse response) throws Exception, Exception {

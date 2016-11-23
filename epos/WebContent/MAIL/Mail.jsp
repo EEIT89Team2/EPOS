@@ -263,8 +263,8 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 		</div>
 	</div>
 	</section> </section></section>
-<%-- 	<input type="hidden" name="shift" value="${SHIFT}"> --%>
-<%-- 	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}"> --%>
+	<input type="hidden" name="shift" value="${SHIFT}">
+	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>

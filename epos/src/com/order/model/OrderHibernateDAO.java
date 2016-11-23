@@ -221,5 +221,11 @@ public class OrderHibernateDAO implements Order_Interface {
 		return null;
 	}
 
+	@Override
+	public List<Order_DetailVO> getOrdByWeather(String weather) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

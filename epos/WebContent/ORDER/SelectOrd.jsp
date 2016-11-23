@@ -135,7 +135,10 @@
 			</td>	
 		</tr>
 		<c:if test="${list.status=='D' && not empty oldOrd_id}" >
-					<a href="<%=request.getContextPath()%>/ORDER/order.jsp">新增訂單</a>
+					<a href="<%=request.getContextPath()%>/ORDER/order.jsp">部分退貨</a>
+					<br>
+					<a href="<%=request.getContextPath()%>/INVO/select_page.jsp">全部退貨</a>
+					
 		</c:if>
 <%-- 							<a href="<c:url value="order.jsp" />">新增訂單</a> --%>
 		
@@ -144,7 +147,7 @@
 
 <!-- 		<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a> -->
 		<a href="<%=request.getContextPath()%>/ORDER/removeSession.jsp"><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>
-
+		
 
 	
 <script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>

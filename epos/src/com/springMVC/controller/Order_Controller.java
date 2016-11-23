@@ -777,11 +777,5 @@ public class Order_Controller extends HttpServlet implements Runnable {
 		}
 		return null;
 	}
-<<<<<<< HEAD
-	
-=======
 
-	
-
->>>>>>> branch 'master' of https://github.com/EEIT89Team2/EPOS.git
 }

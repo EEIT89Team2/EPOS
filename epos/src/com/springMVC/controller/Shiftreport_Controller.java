@@ -2,8 +2,10 @@ package com.springMVC.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -31,7 +34,7 @@ import com.product.model.ProdService;
 import com.product.model.ProdVO;
 import com.shiftreport.model.ShiftreService;
 import com.shiftreport.model.ShiftreVO;
-
+import gvjava.org.json.JSONArray;
 
 /**
  * Servlet implementation class Shiftreport_Servlet
@@ -97,10 +100,17 @@ public class Shiftreport_Controller {
 	public String insertShiftre(ModelMap model,HttpServletRequest request) throws Exception, Exception {
 		
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
-
+		HttpSession session = request.getSession();
+		
+		
+		EmpVO empVO = (EmpVO)session.getAttribute("LoginOK");
+		String shift = (String)session.getAttribute("SHIFT");
+		if(empVO!=null&&shift!=null){
+		String emp_id=empVO.getEmp_id();
+		System.out.println("emp_id="+emp_id);
+		System.out.println("shift="+shift);
 //		Date date = Date.valueOf(request.getParameter("Date"));
-		String shift=request.getParameter("shift");
-		String emp_id=request.getParameter("emp_id");
+//		String shift=request.getParameter("shift");
 //		int cash=Integer.parseInt(request.getParameter("cash"));
 //		int coupon=Integer.parseInt(request.getParameter("coupon"));
 //		int discount=Integer.parseInt(request.getParameter("discount"));
@@ -134,12 +144,6 @@ public class Shiftreport_Controller {
 		int coins = 20000;
 		//來客數
 		int deal_num = (int)ordSvc.GetDayTotalPeople();
-		//折扣身分
-//		String dis_id = "";
-		//折扣%數
-//		Float dis_price = 0f;
-		//原價
-//		int original_price = 0;
 		
 		List<OrderVO> listAll = ordSvc.getDateAndShift(date, shift);
 
@@ -147,13 +151,6 @@ public class Shiftreport_Controller {
 			cash += (int)orderVO.getCash();
 			coupon += orderVO.getCpon_dollar();
 			deal_sum += (int)orderVO.getTotal_price();
-			
-			//以下都是要算折讓
-//			dis_id = orderVO.getDiscount();
-//			DiscountVO discountVO;
-//			discountVO = disSvc.getOneDisc(dis_id);
-//			dis_price = discountVO.getDis_price();
-//			original_price = original_price+(int) (((int)orderVO.getTotal_price() + orderVO.getCpon_dollar())/dis_price);
 		}
 		//折讓
 		int discount = deal_sum-cash;
@@ -178,6 +175,7 @@ public class Shiftreport_Controller {
 		shiftreSrv.insertOne(shiftreVO);
 		List list = shiftreSrv.getAll();
 		request.getSession().setAttribute("list", list);
+		}
 
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 
@@ -286,8 +284,31 @@ public class Shiftreport_Controller {
 		return "redirect:/SHIFTREPORT/AllShiftre.jsp";
 	
 	}
-	
+	/*************************** * 圖表json區 ***********/
+	//日期範圍+班別查詢全部(json)
+	@RequestMapping(method = RequestMethod.POST, value = "/SHIFTREPORT/alljson.do")
+	public void getAllDiscJson(ModelMap model,HttpServletRequest request,
+			@RequestParam("shift") String shift,
+			@RequestParam("date1") Date date1,
+			@RequestParam("date2") Date date2, HttpServletResponse resp) throws Exception {	
 
+		List<ShiftreVO> list = shiftreSrv.getByJson(date1, date2, shift);
+		List l1 = new LinkedList();
+		for(ShiftreVO vo:list){
+			Map m1 = new HashMap();
+			m1.put("Date", vo.getDate());
+			m1.put("Shift", vo.getShift());
+			m1.put("cash", vo.getCash());			
+			m1.put("deal_sum", vo.getDeal_sum());
+			m1.put("discount", vo.getDiscount());
+			m1.put("deal_num", vo.getDeal_num());
+			l1.add(m1);
+		}
+		resp.setHeader("content-type","text/html;charset=utf-8");
+		JSONArray jsonall = new JSONArray(l1);
+		PrintWriter out = resp.getWriter();
+		out.print(jsonall);
+	}
 	
 }
 

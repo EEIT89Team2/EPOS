@@ -40,6 +40,11 @@
 	.form-horizontal .control-label {
 	    text-align: right;
 	}
+	
+	.update_text{
+		font-family: 微軟正黑體; 
+		color:blue;
+	}
 </style>
 </head>
 <body>
@@ -61,7 +66,7 @@
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-2 control-label">日期:</label>
 				<div class="col-lg-1">
-					<input type="date" name="Date" value="${shiftreVO.date}" readonly="readonly" class="form-control">
+					<input type="date" name="Date" value="${shiftreVO.date}" readonly="readonly" size="20">
 				</div>
 				<label class="col-lg-1 control-label">班別:</label>
 				<div class="col-lg-1">
@@ -72,13 +77,13 @@
 					<input type="text" name="emp_id" value="${shiftreVO.emp_id}" readonly="readonly" class="form-control">
 				</div>
 				<label class="col-lg-1 control-label">現金:</label>			
-				<div class="col-lg-3">			
+				<div class="col-lg-1">			
 					<input type="text" name="cash" value="${shiftreVO.cash}" readonly="readonly" class="form-control">
-				</div>
+				</div><div class="col-lg-2"></div>	
 			</div>
 			
 			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-2 control-label">實收現金:</label>
+				<label class="col-lg-1 col-lg-offset-2 control-label update_text">實收現金:</label>
 				<div class="col-lg-1">			
 					<input type="text" name="deal_cost" value="${shiftreVO.real_cash}" class="form-control">
 				</div>
@@ -86,14 +91,14 @@
 				<div class="col-lg-1">			
 					<input type="text" name="coupon" value="${shiftreVO.coupon}" readonly="readonly" class="form-control">
 				</div>
-				<label class="col-lg-1 control-label">實收禮卷:</label>
+				<label class="col-lg-1 control-label update_text">實收禮卷:</label>
 				<div class="col-lg-1">		
 					<input type="text" name="deal_profit" value="${shiftreVO.real_coupon}" class="form-control">
 				</div>
 				<label class="col-lg-1 control-label">折讓:</label>
-				<div class="col-lg-3">		
+				<div class="col-lg-1">		
 					<input type="text" name="discount" value="${shiftreVO.discount}" readonly="readonly" class="form-control">
-				</div>
+				</div><div class="col-lg-2"></div>
 			</div>
 			
 			<div class="form-group">
@@ -105,14 +110,14 @@
 				<div class="col-lg-1">			
 					<input type="text" name="deal_sum" value="${shiftreVO.deal_sum}" readonly="readonly" class="form-control">
 				</div>
-				<label class="col-lg-1 control-label">實收交易額:</label>
+				<label class="col-lg-1 control-label update_text">實收交易額:</label>
 				<div class="col-lg-1">			
 					<input type="text" name="shift_sum" value="${shiftreVO.shift_sum}" class="form-control">
 				</div>
 				<label class="col-lg-1 control-label">交易次數:</label>
-				<div class="col-lg-3">			
+				<div class="col-lg-1">			
 					<input type="text" name="deal_num" value="${shiftreVO.deal_num}" readonly="readonly" class="form-control">
-				</div>
+				</div><div class="col-lg-2"></div>
 			</div>
 
 			<p class="distance">			

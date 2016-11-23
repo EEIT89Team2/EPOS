@@ -21,7 +21,7 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>修改員工資料</title>
+<title>新增廠商資料</title>
 <style>
 .navbar-default {
 	background: #D2E9FF;
@@ -151,7 +151,12 @@
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
 				</ul></li>
-
+<li class="sub-menu"><a href="javascript:;"> <i
+     class="fa fa-users"></i> <span>顧客關係</span>
+   </a>
+    <ul class="sub">
+     <li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+    </ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
@@ -245,6 +250,7 @@
 		</div>
 	</div>
 	</section> </section> </section>
+	<input type="hidden" name="shift" value="${SHIFT}"><input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>

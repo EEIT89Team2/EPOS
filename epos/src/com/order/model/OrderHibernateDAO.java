@@ -204,7 +204,7 @@ public class OrderHibernateDAO implements Order_Interface {
 	}
 
 	@Override
-	public String getOneTopOrdId() throws Exception {
+	public OrderVO getOneTopOrdId() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

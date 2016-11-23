@@ -224,7 +224,12 @@ print(text)
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
 				</ul></li>
-
+			<li class="sub-menu"><a href="javascript:;"> <i
+					class="fa fa-users"></i> <span>顧客關係</span>
+			</a>
+				<ul class="sub">
+					<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+				</ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
@@ -254,7 +259,7 @@ print(text)
 		<div class="form-group">
 			<label for="exampleInputName2">　退貨日期：</label>
 <!-- 			<input type="date" class="form-control" name="ret_date" /> -->
-				<input type = "date" name="ret_date" id="ret_date" class="form-control" value="${nowDate}" />
+				<input type = "TEXT" name="ret_date" id="ret_date" class="form-control" value="${nowDate}" readonly />
 		</div>
 		<div id="aa" class="form-group">
 			<label for="exampleInputName2">廠商名稱：</label>
@@ -270,7 +275,7 @@ print(text)
 		</div>
 		<div id="aa" class="form-group">
 			<label for="exampleInputName2">　修 改 日 期 ：</label>
-			<input type="Date" class="form-control" name="key_date" value="${nowDate}" />
+			<input type="TEXT" class="form-control" name="key_date" value="${nowDate}"  readonly/>
 		</div>
 		<div style="height: 20px;"></div>
 		<div id="bb" class="form-group">　
@@ -281,7 +286,10 @@ print(text)
 			<label for="exampleInputName2">備　註：</label>
 
 			<input type="TEXT" class="form-control" name="remark" value="" />
-
+		</div>
+		<div>
+		<input type="hidden" name="shift" value="${SHIFT}" >
+		<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 		</div>
 	</tr>
 </table>
@@ -303,7 +311,7 @@ print(text)
 	
 		<td><select type="TEXT" name="prod_name_select1" id="prod_name_select1"><option value="">請選擇商品</option></select><input type="hidden" id="prod_id1"  name="prod_id1" /><input type="hidden" id="prod_name1"  name="prod_name1" /></td>
 		<td><input type="TEXT" name="prod_quantity1"  id="prod_quantity1" value="0" readonly/></td>
-		<td><input type="TEXT" name="ret_reason1"  value="不能照相"/></td>
+		<td><input type="TEXT" name="ret_reason1"  value=""/></td>
 		<td><button type='sumit' class='btn btn-danger'><i class='fa fa-trash-o'></button></td>
 	</tr>
 		
@@ -368,13 +376,17 @@ print(text)
 			})		
 		
 		$('#prod_name_select1').change(function(){
-								
+				
+			if($('#prod_name_select1').val() != ''){
 				var values = $('#prod_name_select1').val().split("^");
 				document.getElementById('prod_name1').value=values[0];
 				document.getElementById('prod_quantity1').value=values[1];
 // 				document.getElementById('prod_id1').value=values[0];
-				
-			})
+			}else{
+				document.getElementById('prod_quantity1').value='0';
+			}
+
+		})
 		
 		
 // 		var a = 2;
@@ -398,10 +410,13 @@ print(text)
 				})		
 			
 			$('#prod_name_select'+a).change(function(){
-									
+				if($('#prod_name_select'+b).val() != ''){				
 					var values = $('#prod_name_select'+b).val().split("^");
 					document.getElementById('prod_name'+b).value=values[0];
-					document.getElementById('prod_quantity'+b).value=values[1];					
+					document.getElementById('prod_quantity'+b).value=values[1];	
+				}else{
+					document.getElementById('prod_quantity'+b).value='0';	
+				}
 				})
 			})		
 		})

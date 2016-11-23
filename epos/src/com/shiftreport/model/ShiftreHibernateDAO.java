@@ -131,4 +131,10 @@ public class ShiftreHibernateDAO implements ShiftreDAO_interface {
 		return list;
 	}
 
+	@Override
+	public List getSumJson(Date date1, Date date2, String shift) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

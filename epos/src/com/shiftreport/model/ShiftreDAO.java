@@ -2,6 +2,7 @@ package com.shiftreport.model;
 
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -62,6 +63,15 @@ public class ShiftreDAO implements ShiftreDAO_interface {
 		list=hibernateTemplate.find("from ShiftreVO where Date ='"+Date+"'");
 			
 		return list;
+	}
+	@Override
+	public List<ShiftreVO> getSumJson(Date Date1,Date Date2,String shift) {
+		List<ShiftreVO> list = new ArrayList<ShiftreVO>();
+		
+		 list = hibernateTemplate.find("from ShiftreVO where Date between ? and ? and shift = ?",Date1,Date2,shift);
+			
+		return list;
+
 	}
 
 }

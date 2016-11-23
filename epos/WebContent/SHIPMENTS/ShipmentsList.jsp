@@ -241,7 +241,12 @@ print(text)
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
 				</ul></li>
-
+			<li class="sub-menu"><a href="javascript:;"> <i
+					class="fa fa-users"></i> <span>顧客關係</span>
+			</a>
+				<ul class="sub">
+					<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+				</ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
@@ -291,6 +296,10 @@ print(text)
 		<div id="group" class="form-group">
 			<label for="exampleInputName2">備　註：</label>
 			<input type="text" class="form-control" name="remark" value="" />
+		</div>
+		<div>
+		<input type="hidden" name="shift" value="${SHIFT}" >
+		<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 		</div>
 	</tr>
 </table>

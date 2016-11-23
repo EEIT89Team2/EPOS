@@ -21,7 +21,7 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>company</title>
+<title>搜尋廠商</title>
 <style>
 .navbar-default {
 	background: #D2E9FF;
@@ -143,7 +143,12 @@
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
 				</ul></li>
-
+			<li class="sub-menu"><a href="javascript:;"> <i
+					class="fa fa-users"></i> <span>顧客關係</span>
+			</a>
+				<ul class="sub">
+					<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+				</ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
@@ -155,7 +160,8 @@
 			<nav class="nav navbar-default">
 			<div class="tab-content">
 				<ul class="nav navbar-nav">
-					<li><a style="background-color: rgba(172, 214, 255, 0.6);" class="glyphicon glyphicon-search">搜尋</a></li>
+					<li><a style="background-color: rgba(172, 214, 255, 0.6);"
+						class="glyphicon glyphicon-search">搜尋</a></li>
 					<li><a href="addCom.jsp" class="glyphicon glyphicon-file">新增</a></li>
 					<li><a href="#" class="glyphicon glyphicon-list-alt">查詢結果</a></li>
 				</ul>
@@ -178,38 +184,38 @@
 							</c:if>
 						<form method="post" action="getOneCom.do"
 							class="form-horizontal style-form">
-							<div class="form-group"><div class="col-lg-3"></div>
+							<div class="form-group">
+								<div class="col-lg-3"></div>
 								<label class="col-lg-2 control-label">依廠商編號搜尋</label>
 								<div class="col-lg-2">
 									<input type="text" name="com_id">
 								</div>
 								<div class="col-lg-2">
-									<input type="submit" value="依廠商編號搜尋"
-										class="btn  btn-theme03">
+									<input type="submit" value="依廠商編號搜尋" class="btn  btn-theme03">
 								</div>
 							</div>
 						</form>
 						<form method="post" action="getComByName.do"
 							class="form-horizontal style-form">
-							<div class="form-group"><div class="col-lg-3"></div>
+							<div class="form-group">
+								<div class="col-lg-3"></div>
 								<label class="col-lg-2 control-label">依廠商名稱搜尋</label>
 								<div class="col-lg-2">
 									<input type="text" name="com_name"><br>
 								</div>
 								<div class="col-lg-2">
-									<input type="submit" value="依廠商名稱搜尋"
-										class="btn  btn-theme03">
+									<input type="submit" value="依廠商名稱搜尋" class="btn  btn-theme03">
 								</div>
 							</div>
 						</form>
 						<form method="post" action="getAllCom.do"
 							class="form-horizontal style-form">
-							<div class="form-group"><div class="col-lg-3"></div>
+							<div class="form-group">
+								<div class="col-lg-3"></div>
 								<label class="col-lg-2 control-label">查詢全部</label>
 								<div class="col-lg-2"></div>
 								<div class="col-lg-2">
-									<input type="submit" value="查詢全部"
-										class="btn  btn-theme03">
+									<input type="submit" value="查詢全部" class="btn  btn-theme03">
 								</div>
 							</div>
 						</form>
@@ -219,7 +225,7 @@
 		</div>
 	</div>
 	</section> </section> </section>
-
+<input type="hidden" name="shift" value="${SHIFT}"><input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

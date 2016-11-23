@@ -216,7 +216,12 @@ print(text)
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
 				</ul></li>
-
+		<li class="sub-menu"><a href="javascript:;"> <i
+					class="fa fa-users"></i> <span>顧客關係</span>
+			</a>
+				<ul class="sub">
+					<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+				</ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
@@ -245,7 +250,7 @@ print(text)
 	<tr>
 		<div class="form-group">
 			<label for="exampleInputName2">　　報價日期 ：</label>
-			<input type="date" class="form-control" name="vlt_date" value="${nowDate}" />	
+			<input type="text" class="form-control" name="vlt_date" value="${nowDate}" readonly />	
 		</div>　　
 		<div class="form-group">
 			<label for="exampleInputName2">交貨日期 ：</label>
@@ -261,7 +266,7 @@ print(text)
 		</div>　　
 		<div class="form-group">
 			<label for="exampleInputName2"> 修改日期 ：</label>
-			<input type="date" class="form-control" name="key_date" value="${nowDate}" />
+			<input type="text" class="form-control" name="key_date" value="${nowDate}"  readonly/>
 		</div>
 		<div style="height: 10px;"></div>
 		<div class="form-group">
@@ -275,6 +280,10 @@ print(text)
 		<div class="form-group">
 			<label for="exampleInputName2">備　　註：</label>
 			<input type="text" class="form-control" name="remark" value="" />
+		</div>
+		<div>
+		<input type="hidden" name="shift" value="${SHIFT}" >
+		<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 		</div>
 	</tr>
 </table>
@@ -371,15 +380,23 @@ print(text)
 				
 				form1.total_price.value = parseInt(form1.total_price.value) - parseInt(document.getElementById('total_prod_price1').value);
 				
-				var values = $('#prod_name_select1').val().split("^");
-				document.getElementById('prod_id1').value=values[0];
-				document.getElementById('prod_quantity1').value='1';
-				document.getElementById('prod_name1').value=values[1];
-				document.getElementById('prod_price1').value=values[2];
-				document.getElementById('total_prod_price1').value=values[2];
+				if($('#prod_name_select1').val() != ''){
+					var values = $('#prod_name_select1').val().split("^");
+					document.getElementById('prod_id1').value=values[0];
+					document.getElementById('prod_quantity1').value='1';
+					document.getElementById('prod_name1').value=values[1];
+					document.getElementById('prod_price1').value=values[2];
+					document.getElementById('total_prod_price1').value=values[2];
+					
+					form1.total_price.value = parseInt(form1.total_price.value) + parseInt(values[2]);
+				}else{
+					document.getElementById('prod_id1').value='';
+					document.getElementById('prod_quantity1').value='0';
+					document.getElementById('prod_name1').value='';
+					document.getElementById('prod_price1').value='0';
+					document.getElementById('total_prod_price1').value='0';
+				}
 				
-				
-				form1.total_price.value = parseInt(form1.total_price.value) + parseInt(values[2]);
 				
 			})	
 			
@@ -418,14 +435,23 @@ print(text)
 				
 				form1.total_price.value = parseInt(form1.total_price.value) - parseInt(document.getElementById('total_prod_price'+b).value);
 				
-				var values = $("#prod_name_select"+b).val().split("^");
-				document.getElementById('prod_id'+b).value=values[0];
-				document.getElementById('prod_quantity'+b).value='1';
-				document.getElementById('prod_name'+b).value=values[1];
-				document.getElementById('prod_price'+b).value=values[2];
-				document.getElementById('total_prod_price'+b).value=values[2];
+				if($('#prod_name_select'+b).val() != ''){
+					var values = $("#prod_name_select"+b).val().split("^");
+					document.getElementById('prod_id'+b).value=values[0];
+					document.getElementById('prod_quantity'+b).value='1';
+					document.getElementById('prod_name'+b).value=values[1];
+					document.getElementById('prod_price'+b).value=values[2];
+					document.getElementById('total_prod_price'+b).value=values[2];
+					
+					form1.total_price.value = parseInt(form1.total_price.value) + parseInt(values[2]);
+				}else{
+					document.getElementById('prod_id'+b).value='';
+					document.getElementById('prod_quantity'+b).value='0';
+					document.getElementById('prod_name'+b).value='';
+					document.getElementById('prod_price'+b).value='0';
+					document.getElementById('total_prod_price'+b).value='0';
+				}
 				
-				form1.total_price.value = parseInt(form1.total_price.value) + parseInt(values[2]);
 				
 			})
 				

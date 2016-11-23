@@ -135,8 +135,7 @@
 					<li><a
 						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i
-					class="fa fa-book"></i> <span>存貨作業</span>
+			<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-book"></i> <span>存貨作業</span>
 			</a>
 				<ul class="sub">
 					<li><a
@@ -169,7 +168,12 @@
 				<ul class="sub">
 					<li><a href="morris.html">Morris</a></li>
 				</ul></li>
-
+<li class="sub-menu"><a href="javascript:;"> <i
+     class="fa fa-users"></i> <span>顧客關係</span>
+   </a>
+    <ul class="sub">
+     <li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+    </ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
@@ -180,18 +184,13 @@
 	<div class="row mt">
 		<div class="col-lg-12">
 			<div class="nav navbar-default">
-				<div class="container-fluid"
-					style="float: right; left: -50%; position: relative">
-					<ul class="nav navbar-nav" style="float: left; left: 50%; position: relative">
-						<li id="shi_search"><a data-toggle="tab" href="#search"><span
-								class="glyphicon glyphicon-search"></span>搜尋</a></li>
-<!-- 						<li id="shi_new"><a id="c_shift" target="insertShiftre.jsp" -->
-<!-- 							data-toggle="tab" href="#new"><span -->
-<!-- 								class="glyphicon glyphicon-file"></span>新增</a></li> -->
-						<li id="shi_rel"><a data-toggle="tab" href="#result" id="test"><span
-								class="glyphicon glyphicon-list-alt"></span>查詢結果</a></li>
-						<li><a data-toggle="tab" href="#print" class="print"><span
-								class="glyphicon glyphicon-print"></span>列印</a></li>
+				<div class="container-fluid">
+					<ul class="nav navbar-nav">
+						<li id="shi_search"><a data-toggle="tab" href="#search"><span class="glyphicon glyphicon-search"></span>搜尋</a></li>
+						<li id="shi_new"><a id="c_shift" target="shiftCharts.jsp" data-toggle="tab" href="#new"><span class="fa fa-bar-chart-o"></span>營業額分析</a></li>
+						<li id="shi_analysis"><a id="analysis_shift" target="shiftCharts2.jsp" data-toggle="tab" href="#analysis"><span class="fa fa-bar-chart-o"></span>來客數分析</a></li>
+						<li id="shi_rel"><a data-toggle="tab" href="#result" id="test"><span class="glyphicon glyphicon-list-alt"></span>查詢結果</a></li>
+						<li><a data-toggle="tab" href="#print" class="print"><span class="glyphicon glyphicon-print"></span>列印</a></li>
 					</ul>
 				</div>
 			</div>
@@ -260,9 +259,12 @@
 					</div>
 
 				</div>
-<!-- 				<div id="new" class="tab-pane fade"> -->
-<!-- 					<div class="insert-content main"></div> -->
-<!-- 				</div> -->
+				<div id="new" class="tab-pane fade">
+					<div class="insert-content main"></div>
+				</div>
+				<div id="analysis" class="tab-pane fade">
+					<div class="analysis-content main"></div>
+				</div>
 				<div id="result" class="tab-pane fade">
 					<div class="rul main"></div>
 				</div>
@@ -277,7 +279,9 @@
 	<script> 
 	!window.jQuery && document.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
  	</script>
+
 	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
+   	<script src="http://code.highcharts.com/highcharts.js"></script>
 	<script src="<c:url value="../resources/js/jquery.validate.min.js" />"></script>
     <script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
 	<script class="include" type="text/javascript" src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
@@ -290,34 +294,42 @@
 	$(document).ready(function() {
 
 // -------------------------------自動新增----------------------------------
-		setInterval(function(){
-			insertTime = new Date();
-			var hour = insertTime.getHours();
-			var minutes = insertTime.getMinutes();
-			var seconds = insertTime.getSeconds();
-			if((hour==14||hour==20)&&(minutes==0)&&(seconds==0)){
-				alert(1);
-				$.ajax({
-					type : "post",
-					url : "insertShiftre.do",
-					data : {"shift":$("input[name='shift']").val(),
-							"emp_id":$("input[name='emp_id']").val()
-					}					
-				});
-			}else{
+// 		setInterval(function(){
+// 			insertTime = new Date();
+// 			var hour = insertTime.getHours();
+// 			var minutes = insertTime.getMinutes();
+// 			var seconds = insertTime.getSeconds();
+// 			if((hour==14||hour==20)&&(minutes==0)&&(seconds==0)){
+// 				alert(1);
+// 				$.ajax({
+// 					type : "post",
+// 					url : "insertShiftre.do",
+// 					data : {"shift":$("input[name='shift']").val(),
+// 							"emp_id":$("input[name='emp_id']").val()
+// 					}					
+// 				});
+// 			}else{
 
-			}
-		},1000);
+// 			}
+// 		},1000);
 		
 		
-// -------------------------------載入新增----------------------------------
-// 		$('#c_shift').on('click', function() {							
-// 				var insertWeb = $(this).attr('target');
-// 				$.get(insertWeb, function(data) {
-// 					$('.insert-content').html(data);
-// 				})
+// -------------------------------載入報表1.2----------------------------------
+		$('#c_shift').on('click', function() {							
+				var insertWeb = $(this).attr('target');
+				$.get(insertWeb, function(data) {
+					$('.insert-content').html(data);
+				})
 					
-// 		})		
+		})
+		
+		$('#analysis_shift').on('click', function() {							
+				var insertWeb = $(this).attr('target');
+				$.get(insertWeb, function(data) {
+					$('.analysis-content').html(data);
+				})
+					
+		})	
 			
 // -------------------------------查詢----------------------------------
 			$(":button").click(function() {

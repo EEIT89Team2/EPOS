@@ -351,4 +351,10 @@ public class ShiftreJNDIDAO implements ShiftreDAO_interface {
 
 	}
 
+	@Override
+	public List getSumJson(Date date1, Date date2, String shift) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

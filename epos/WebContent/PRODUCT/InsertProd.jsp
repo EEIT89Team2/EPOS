@@ -33,7 +33,7 @@
 	}
 	
 	.my-error-class{
-		color:#1dc489;
+		color:red;
 	}	
 </style>
 <body>

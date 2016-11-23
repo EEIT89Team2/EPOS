@@ -84,8 +84,8 @@
 			<p class="distance">
 			<div class="form-group">
 
-				<label class="col-lg-1 col-lg-offset-3 control-label">促銷商品編號:</label>
-				<div class="col-lg-1">
+				<label class="col-lg-1 col-lg-offset-2 control-label">促銷商品編號:</label>
+				<div class="col-lg-2">
 					<select size="1" name="pro_prod_id" id="pro_prod_id" class="form-control">
 						<c:forEach var="prodVO" items="${ProdSvc.all}">
 							<option value="${prodVO.prod_id}">${prodVO.prod_id}</option>
@@ -93,26 +93,26 @@
 					</select>
 				</div>
 				<label class="col-lg-1 control-label">促銷商品名稱:</label>
-				<div class="col-lg-1">
+				<div class="col-lg-2">
 					<input type="text" name="pro_prod_name" size="20" maxlength="20"
 						value="<%=(promVO == null) ? "" : promVO.getPro_prod_name()%>" />
 				</div>
 				<label class="col-lg-1 control-label">促銷商品起始日期:</label>
-				<div class="col-lg-4">
+				<div class="col-lg-3">
 					<input type="date" name="pro_begin" size="20"
 						value="<%=(promVO == null) ? "" : promVO.getPro_begin()%>" />
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-3 control-label">促銷商品截止日:</label>
-				<div class="col-lg-1">
+				<label class="col-lg-1 col-lg-offset-2 control-label">促銷商品截止日:</label>
+				<div class="col-lg-2">
 					<input type="date" name="pro_end" size="20"
 						value="<%=(promVO == null) ? "" : promVO.getPro_end()%>" />
 				</div>
 				<label class="col-lg-1 control-label">備註:</label>
 				<div class="col-lg-6">
-					<textarea name="pro_neirong" rows='5' cols="30"
+					<textarea name="pro_neirong" rows='5' cols="50"
 						value="<%=(promVO == null) ? "" : promVO.getPro_neirong()%>">
 					</textarea>
 				</div>

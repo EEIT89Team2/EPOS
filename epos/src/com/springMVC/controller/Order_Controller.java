@@ -44,6 +44,7 @@ import gvjava.org.json.JSONArray;
 @Controller
 public class Order_Controller extends HttpServlet implements Runnable {
 
+	
 	private final static OrderService ordSvc = new OrderService();
 	private final static MemberService memSvc = new MemberService();
 	private final static DiscountService disSvc = new DiscountService();
@@ -324,12 +325,17 @@ public class Order_Controller extends HttpServlet implements Runnable {
 			if(vlt_id!=null)
 			vltSvc.setStatus("Y", vlt_id);
 
+			HttpSession session = request.getSession();
+
+			
 			OrderVO ordVO1 = ordSvc.getOneTopOrdId();
+			session.setAttribute("newOrd_id", ordVO1.getOrd_id());
+			session.setAttribute("newInvoice_id", ordVO1.getInvoice_id());
+			
 
 			LinkedList<OrderVO> list1 = new LinkedList<OrderVO>();
 			
 			list1.add(ordVO1);
-			HttpSession session = request.getSession();
 			session.setAttribute("list", list1);
 
 
@@ -451,10 +457,17 @@ public class Order_Controller extends HttpServlet implements Runnable {
 		if ("Revoke".equals(action)) {
 			// OrderService ordSvc = new OrderService();
 			try {
+				
+				String invoice_id=request.getParameter("invoice_id");
 				ordSvc.setStatus("D", ord_id);	
-				OrderVO ordVO = ordSvc.Select_order_id(ord_id);
+				HttpSession session = request.getSession();
+				session.setAttribute("oldOrd_id", ord_id);
+				session.setAttribute("oldInvoice_id", invoice_id);
+				
+//				OrderVO ordVO = ordSvc.Select_order_id(ord_id);
 				ProdService prodSrv = new ProdService();
-				Set<Order_DetailVO> ordDtls = ordVO.getOrderdetails();
+//				Set<Order_DetailVO> ordDtls = ordVO.getOrderdetails();
+				List<Order_DetailVO> ordDtls = ordSvc.getOrderDetailALL(ord_id);
 				
 				
 				for(Order_DetailVO order_DetailVO :ordDtls ){

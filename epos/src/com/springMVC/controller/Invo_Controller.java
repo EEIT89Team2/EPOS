@@ -4,6 +4,8 @@ package com.springMVC.controller;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +37,7 @@ public class Invo_Controller {
 			InvoVO invoVO = invoSvc.getOneInvo(invoice_id);
 			if (invoVO == null) {
 				errorMsgs.add("資料不存在");
-			return "/INVO/listOneInvo";
+			return "/INVO/searchinvo";
 			}
 			/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 			
@@ -175,13 +177,17 @@ public class Invo_Controller {
 				errorMsgs.add("新訂單編號不可為空值");
 			}
 		/*************************** 2.永續層存取 ***************************************/
-				
+				HttpSession session = req.getSession();
+				session.removeAttribute("oldInvoice_id");
+				session.removeAttribute("oldOrd_id");
+				session.removeAttribute("newInvoice_id");
+				session.removeAttribute("newOrd_id");
 		
 			InvoVO invoVO = invoSvc.addInvo(invoice_id, ord_id, new_invoice_number, new_ord_id);
 			List<InvoVO> list = invoSvc.getAll();
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 			
-			req.getSession().setAttribute("list", list);
+			session.setAttribute("list", list);
 			return "redirect:/INVO/listAllInvo.jsp";
 
 		}

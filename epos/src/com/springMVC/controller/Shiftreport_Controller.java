@@ -97,30 +97,12 @@ public class Shiftreport_Controller {
 	
 
 	@RequestMapping(method = RequestMethod.POST,value = "/SHIFTREPORT/insertShiftre.do")
-	public String insertShiftre(ModelMap model,HttpServletRequest request) throws Exception, Exception {
+	public void insertShiftre(ModelMap model,HttpServletRequest request) throws Exception, Exception {
 		
 		/*************************** * 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
-		HttpSession session = request.getSession();
 		
-		
-		EmpVO empVO = (EmpVO)session.getAttribute("LoginOK");
-		String shift = (String)session.getAttribute("SHIFT");
-		if(empVO!=null&&shift!=null){
-		String emp_id=empVO.getEmp_id();
-		System.out.println("emp_id="+emp_id);
-		System.out.println("shift="+shift);
-//		Date date = Date.valueOf(request.getParameter("Date"));
-//		String shift=request.getParameter("shift");
-//		int cash=Integer.parseInt(request.getParameter("cash"));
-//		int coupon=Integer.parseInt(request.getParameter("coupon"));
-//		int discount=Integer.parseInt(request.getParameter("discount"));
-//		int coins=Integer.parseInt(request.getParameter("coins"));
-//		int deal_sum=Integer.parseInt(request.getParameter("deal_sum"));
-//		int deal_cost=Integer.parseInt(request.getParameter("deal_cost"));
-//		int deal_profit=Integer.parseInt(request.getParameter("deal_profit"));
-//		int deal_num=Integer.parseInt(request.getParameter("deal_num"));
-//		int shift_sum=Integer.parseInt(request.getParameter("shift_sum"));
-//		ProdService prodSrv = new ProdService();
+		String emp_id=request.getParameter("emp_id");
+		String shift=request.getParameter("shift");
 		//日期
 		Long now = new java.util.Date().getTime();
 		Date date = new Date(now);
@@ -173,13 +155,13 @@ public class Shiftreport_Controller {
 		shiftreVO.setReal_coupon(real_coupon);
 		/*************************** 2.永續層存取 ***************************************/
 		shiftreSrv.insertOne(shiftreVO);
-		List list = shiftreSrv.getAll();
-		request.getSession().setAttribute("list", list);
-		}
+//		List list = shiftreSrv.getAll();
+//		request.getSession().setAttribute("list", list);
+//		}
 
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 
-		return "redirect:/SHIFTREPORT/AllShiftre.jsp";
+//		return "redirect:/SHIFTREPORT/AllShiftre.jsp";
 	}
 
 

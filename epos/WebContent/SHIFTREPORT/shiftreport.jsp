@@ -62,7 +62,27 @@
  	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
  		background: #fbe4c3;
  	}
+ 	
+ 	
+ 	#label{
+		margin-left: 27%;
+ 	}
+ 	
+ 	#date{
+		margin-left: 70px;
+ 	}
+ 	
+ 	#date1{
+		margin-left: 30px;
+ 	}
+ 	
+ 	#ss{
+ 		margin-left: 30px;
+ 	}
   
+  	#search{
+ 		margin-left: 50px;
+  	}
 </style>
 </head>
 <body>
@@ -214,20 +234,18 @@
 
 						<form method="post" action="getOneShiftre.do" class="oneshift form-horizontal style-form">
 							<div class="form-group">
-								<label class="col-lg-offset-3 col-lg-1 control-label">依班別報表搜尋</label>
-								<label class="col-lg-1 control-label" for="date1">日期</label> 
-								<div class="col-lg-1">
+								<div>
+									<label id="label">依班別報表搜尋</label>
+									<label id="date" for="date1">日期</label> 
 									<input type="date" name="Date" id="date1">
-								</div>
-								<label class="control-label col-lg-1" for="shift"> 班別</label>
-								<div class="col-lg-1">	
-									<Select name="shift" id="shift" class="form-control">
-										<option value="A">A</option>
-										<option value="B">B</option>
+<!-- 								</div> -->
+<!-- 								<div>	 -->
+								<label id="ss" for="shift"> 班別　</label>
+									<Select id="sss" name="shift" id="shift" style="width: 80px; height: 35px;">
+										<option value="A">早班</option>
+										<option value="B">晚班</option>
 									</Select>
-								</div>
-								<div class="col-lg-4">
-									<input type="button" value="搜尋" name='getOne' class="btn btn-theme02">
+									<input id="search" type="button" value="搜尋" name='getOne' class="btn btn-theme02">
 								</div>
 							</div>
 						</form>

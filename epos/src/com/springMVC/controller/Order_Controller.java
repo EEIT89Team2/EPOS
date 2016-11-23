@@ -29,7 +29,6 @@ import com.member.model.MemberService;
 import com.member.model.MemberVO;
 import com.order.model.OrderService;
 import com.order.model.OrderVO;
-import com.order.model.Order_ChartsVO;
 import com.order_detail.model.Order_DetailVO;
 import com.product.model.ProdService;
 import com.product.model.ProdVO;
@@ -59,7 +58,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 	@RequestMapping(method = RequestMethod.POST, value = { "/getOrdByWeather.do", "/ORDER/getOrdByWeather.do" })
 	public void getOrdByWeather(ModelMap model, HttpServletRequest request,
 			@RequestParam("weather") String weather,HttpServletResponse resp) throws Exception {
-		System.out.println("weather="+weather);
+
 		List<Order_DetailVO> ordDetailList = ordSvc.getAllOrderDetail();
 		List<OrderVO> ordList = ordSvc.getAll();
 		List<String> weatherOrdList=new LinkedList();
@@ -98,15 +97,6 @@ public class Order_Controller extends HttpServlet implements Runnable {
 			map.put("prod_quantity", prodCount);
 			l1.add(map);
 		}
-		
-		
-//		for(Order_DetailVO vo:orderpro){
-//			System.out.println("1");
-//			Map m1 = new HashMap();
-//			m1.put("prod_name", vo.getProd_name());
-//			m1.put("prod_quantity", vo.getProd_quantity());
-//			l1.add(m1);
-//		}
 		
 		resp.setHeader("content-type","text/html;charset=utf-8");
 		JSONArray jsonall = new JSONArray(l1);

@@ -150,8 +150,4 @@ public class OrderService {
 		return ordDtail_dao.getAll();
 	}
 	
-	public List<Order_DetailVO> getOrdByWeather(String weather){
-		return ord_dao.getOrdByWeather(weather);
-	}
-	
 }

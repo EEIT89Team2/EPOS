@@ -215,41 +215,5 @@ public class OrderSpringDAO implements Order_Interface {
 		return list;
 
 	}
-	
-	public List<Order_DetailVO> getOrdByWeather(String weather){
-		List<Order_DetailVO> list = new ArrayList<Order_DetailVO>();
-		Order_DetailVO orDetail = null;
-		List temp = null;
-		temp = hibernateTemplate.find("select prod_name,sum(prod_quantity) from Order_DetailVO where ord_id in(select ord_id from OrderVO where weather=?) group by prod_name",weather);
-		//temp裡面是String,int的排序
-		
-		System.out.println(temp.get(0));
-		System.out.println(temp.get(1));
-		
-//		Iterator iterator =	temp.iterator();
-//		int i = 0;
-//		while(iterator.hasNext()) {
-//			orDetail = new Order_DetailVO();
-//			if(i%2==0){
-//				orDetail.setProd_name(iterator.next().toString());	
-//			}else{
-////				orDetail.setProd_quantity((int) iterator.next());
-////				orDetail.setProd_quantity((Integer) iterator.next());
-////				orDetail.setProd_quantity(Integer.valueOf((String) iterator.next()));	
-////				System.out.println(iterator.next().toString());
-//				System.out.println(iterator.next().toString());
-//				System.out.println(1111111);
-////				orDetail.setProd_quantity(Integer.valueOf(iterator.next().toString()));				
-//			}
-//			i++;
-//			System.out.println(iterator.next());
-//			System.out.println(2222222);
-//			
-//			
-////			System.out.println((int)iterator.next());
-//			list.add(orDetail);
-//		}
-		return list;
-	}
 
 }

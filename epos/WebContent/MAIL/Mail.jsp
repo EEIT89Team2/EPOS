@@ -234,7 +234,8 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 						<div class="form-group">
 							<div class="col-lg-offset-4">
 								<input type="submit" value="寄送單一會員" name="howMany"
-									class="btn  btn-theme01" id="one"> <input type="submit"
+									class="btn  btn-theme01" id="one"> 
+								<input type="submit"
 									value="寄送全部會員" name="howMany" class="btn  btn-theme01">
 								<input type="submit" value="寄送優惠訊息" name="howMany"
 									class="btn  btn-theme01">

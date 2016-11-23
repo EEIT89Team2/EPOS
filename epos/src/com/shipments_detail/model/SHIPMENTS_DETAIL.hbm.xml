@@ -4,6 +4,7 @@
 <hibernate-mapping>
 	<class name="com.shipments_detail.model.ShipdetailVO" table="dbo.SHIPMENTS_DETAIL">
 	
+	
 		<composite-id>
 		
 			<key-many-to-one name="shipVO" class="com.shipments.model.ShipVO" lazy="false">

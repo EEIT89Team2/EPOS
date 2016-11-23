@@ -38,9 +38,12 @@ import com.valuation.model.ValuationService;
 import com.valuation.model.ValuationVO;
 import com.valuation_detail.model.Valuation_DetailVO;
 
+import gvjava.org.json.JSONArray;
+
 @Controller
 public class Order_Controller extends HttpServlet implements Runnable {
 
+	
 	private final static OrderService ordSvc = new OrderService();
 	private final static MemberService memSvc = new MemberService();
 	private final static DiscountService disSvc = new DiscountService();

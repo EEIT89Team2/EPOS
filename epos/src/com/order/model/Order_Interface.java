@@ -32,6 +32,5 @@ public interface Order_Interface {
 	public List<OrderVO> Select_ord_date_shift(Date s_ord_date, String shift) throws Exception;
 	
 	public List<OrderVO> getOrdPrice();
-	public List<Order_DetailVO> getOrdByWeather(String weather);
 	
 }

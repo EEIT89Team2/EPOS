@@ -12,7 +12,7 @@
     
 	$(function () {
 		
-		//抓資料			
+//抓資料			
 		$.ajax({
 			"type" : "post",
 			"url" : "getOrdByWeather.do",
@@ -34,10 +34,10 @@
 //圖表塞入div_A
 					$('#container').highcharts({
 				        chart: {
-				            type: 'column'
+				            type: 'line'
 				        },
 				        title: {
-				            text: 'test'
+				            text: '雨天的商品排行'
 				        },
 				        xAxis: {
 				            categories: pro_name
@@ -63,7 +63,7 @@
 
 
 </script>
-<title>折線圖</title>
+<title>weather</title>
 
 <style type="text/css">
 

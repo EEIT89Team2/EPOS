@@ -8,11 +8,11 @@
 		
 	<composite-id>
 	
-		<key-many-to-one name="rtnListVO" class="com.returns.model.RtnListVO" lazy="false">
+		<key-many-to-one name="rtnListVO" class="com.returns.model.RtnListVO" >
 			<column name="ret_id"/>
 		</key-many-to-one>
 		
-		<key-many-to-one name="rtnItemsVO" class="com.returns.model.RtnItemsVO" lazy="false">
+		<key-many-to-one name="rtnItemsVO" class="com.returns.model.RtnItemsVO">
 			<column name="prod_name"/>
 		</key-many-to-one>
 		

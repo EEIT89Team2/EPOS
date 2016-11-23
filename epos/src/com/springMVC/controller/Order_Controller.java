@@ -593,7 +593,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 			}
 
 			if (!errorMsgs.isEmpty()) {
-				return "/ORDER/searchList";
+				return "/ORDER/ordmain";
 			}
 			List<OrderVO> list = new LinkedList<OrderVO>();
 			list.add(ordVO);

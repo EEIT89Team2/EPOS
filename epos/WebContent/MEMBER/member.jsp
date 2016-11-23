@@ -42,27 +42,10 @@
 .glyphicon {
 	top: auto;
 }
-
-.my-valid-class {
-	color: #3a51e8;
-}
-
-.my-error-class {
-	color: red;
-}
 </style>
 </head>
 
 <body>
-
-<% 
-MemberService memSrv=new MemberService();
-request.setAttribute("list", memSrv.getAll());
- 
-%>
-
-
-
 	<section id="container"> <!--header start--> <header
 		class="header black-bg">
 	<div class="sidebar-toggle-box">
@@ -179,116 +162,13 @@ request.setAttribute("list", memSrv.getAll());
 			<nav class="nav navbar-default">
 			<div class="tab-content">
 				<ul class="nav navbar-nav">
-					<li><a style="background-color: rgba(172, 214, 255, 0.6);"
+					<li><a href="searchMem.jsp"
 						class="glyphicon glyphicon-search">搜尋</A></li>
 					<li><a href="addMem.jsp" class="glyphicon glyphicon-file">新增</a></li>
 					<li><a href="#" class="glyphicon glyphicon-list-alt">查詢結果</a></li>
 				</ul>
 			</div>
 			</nav>
-			<div class="tab-content">
-				<div>
-					<jsp:useBean id="MemSvc" scope="page"
-						class="com.member.model.MemberService" />
-					<div class="titlelist">查詢會員資料</div>
-					<div class="col-lg-12  main">
-						<p>
-							<%-- 錯誤表列 --%>
-							<c:if test="${not empty param.message}">
-								<font color='red'>請修正以下錯誤:
-									<ul>
-										<c:forEach var="message" items="${param.message}">
-											<li>${message}</li>
-										</c:forEach>
-									</ul>
-								</font>
-							</c:if>
-						<form method="post" action="Memb.do"
-							class="form-horizontal style-form">
-							<div class="form-group">
-								<div class="col-lg-3"></div>
-								<label class="col-lg-2 control-label">依會員編號搜尋</label>
-								<div class="col-lg-2">
-									<select size="1" name="mem_id">
-										<c:forEach var="memVO" items="${MemSvc.all}">
-											<option value="${memVO.mem_id}">${memVO.mem_id}
-										</c:forEach>
-									</select>
-								</div>
-								<div class="col-lg-2">
-									<input type="submit" value="依會員編號搜尋" class="btn  btn-theme03">
-									<input type="hidden" name="action" value="getOne_For_Display">
-								</div>
-							</div>
-						</form>
-						<form method="post" action="Memb.do"
-							class="form-horizontal style-form">
-							<div class="form-group">
-								<div class="col-lg-3"></div>
-								<label class="col-lg-2 control-label">依會員姓名搜尋</label>
-								<div class="col-lg-2">
-									<select size="1" name="mem_id">
-										<c:forEach var="memVO" items="${MemSvc.all}">
-											<option value="${memVO.mem_id}">${memVO.mem_name}
-										</c:forEach>
-									</select>
-								</div>
-								<div class="col-lg-2">
-									<input type="submit" value="依會員姓名搜尋" class="btn  btn-theme03">
-									<input type="hidden" name="action" value="getOne_For_Display">
-								</div>
-							</div>
-						</form>
-						<form method="post" action="idsMemb.do"
-							class="form-horizontal style-form">
-							<div class="form-group">
-								<div class="col-lg-3"></div>
-								<label class="col-lg-2 control-label">搜尋多筆會員</label>
-								<div class="col-lg-2">
-									<select size="1" name="mem_id_1">
-										<c:forEach var="memVO" items="${MemSvc.all}">
-											<option value="${memVO.mem_id}">${memVO.mem_id}
-										</c:forEach>
-									</select> <select size="1" name="mem_id_2">
-										<c:forEach var="memVO" items="${MemSvc.all}">
-											<option value="${memVO.mem_id}">${memVO.mem_id}
-										</c:forEach>
-									</select>
-								</div>
-								<div class="col-lg-3">
-									<input type="submit" value="搜尋多筆會員" class="btn  btn-theme03">
-								</div>
-							</div>
-						</form>
-						<form method="post" action="datesMem.do"
-							class="form-horizontal style-form" id="searchDate">
-							<div class="form-group">
-								<div class="col-lg-3"></div>
-								<label class="col-lg-2 control-label">依新增日期搜尋</label>
-								<div class="col-lg-2">
-									<input type="date" name="key_date_1"> <input
-										type="date" name="key_date_2">
-								</div>
-								<div class="col-lg-2">
-									<input type="submit" value="依新增日期搜尋" class="btn  btn-theme03">
-								</div>
-							</div>
-						</form>
-						<form method="post" action="allMemb.do"
-							class="form-horizontal style-form">
-							<div class="form-group">
-								<div class="col-lg-3"></div>
-								<label class="col-lg-2 control-label">查詢全部</label>
-								<div class="col-lg-2"></div>
-								<div class="col-lg-2">
-									<input type="submit" value="查詢全部" class="btn  btn-theme03">
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 	</section> </section> </section>
 	<input type="hidden" name="shift" value="${SHIFT}">
@@ -313,28 +193,5 @@ request.setAttribute("list", memSrv.getAll());
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
 
-	<script>
-			// -----------------------------------驗證-------------------------------------------
-			$("#searchDate").validate({
-				// 				success : function(label) {
-				// 					label.text("【正確】")
-				// 				},
-				errorClass : "my-error-class",
-				validClass : "my-valid-class",
-
-				rules : {
-					key_date_1 : {required : true},
-					key_date_2 : {required : true}
-				},
-				messages : {
-					key_date_1 : {
-						required : "【請輸入日期】"
-					},
-					key_date_2 : {
-						required : "【請輸入日期】"
-					}
-				}
-			})
-	</script>
 </body>
 </html>

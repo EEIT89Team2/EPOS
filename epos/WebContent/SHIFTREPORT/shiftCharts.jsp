@@ -62,19 +62,19 @@
 	<p class="distance">
 		<form method="post" action="alljson.do" class="oneshift form-horizontal style-form">
 		<div class="form-group">
-			<label class="col-lg-1 col-lg-offset-4 control-label">日期(起):</label>
-			<div class="col-lg-1">
+			<label class="col-lg-1 col-lg-offset-2 control-label">日期(起):</label>
+			<div class="col-lg-2">
 				<input type="Date" name="date1">
 			</div>
 			
 			<label class="col-lg-1 control-label">日期(訖):</label>
-			<div class="col-lg-1">
+			<div class="col-lg-2">
 				<input type="Date" name="date2">
 			</div>
-			<div class="col-lg-1">
+			<div class="col-lg-2">
 
-				<input type="button" value="A班" name='A' class="btn btn-theme02">
-				<input type="button" value="B班" name='B' class="btn btn-theme02">
+				<input type="button" value="早班" name='A' class="btn btn-theme02">
+				<input type="button" value="晚班" name='B' class="btn btn-theme02">
 			</div>
 
 		</div>

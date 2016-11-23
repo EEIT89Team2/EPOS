@@ -66,7 +66,7 @@
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
 			<li><a class="logout"
-				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
+				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -82,7 +82,7 @@
 			<h5 class="centered">ePOS</h5>
 
 			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp">
-					<i class="fa fa-dashboard"></i> <span>index</span>
+					<i class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
 
 			<li class="sub-menu"><a href="javascript:;" class="active">

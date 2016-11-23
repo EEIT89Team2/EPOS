@@ -39,32 +39,6 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 	input[type="month"] {
 	line-height: normal;
 }
-/* 	表格標題 */
-.table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>th,
-	.table>thead:first-child>tr:first-child>th, .table>caption+thead>tr:first-child>td,
-	.table>colgroup+thead>tr:first-child>td, .table>thead:first-child>tr:first-child>td
-	{
-	font-weight: bold;
-	text-align: center;
-	background: steelblue;
-}
-
-/* 	表格內容偶數 */
-.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th,
-	.table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td,
-	.table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
-	background: lightgray;
-}
-/* 	表格內容單數 */
-.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th
-	{
-	background: lightgray;
-}
-
-/* 	表格偶數滑鼠指向 */
-.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
-	background-color: lightsteelblue;
-}
 
 .my-valid-class {
 	color: #3a51e8;
@@ -88,7 +62,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 		<ul class="nav pull-right top-menu">
 
 			<li><a class="logout"
-				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>歡迎使用ePOS</li>
+				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -204,13 +178,13 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 						</font>
 					</c:if>
 				<form method="post" action="email.do" name="form2"
-					class="form-horizontal style-form" id="send_mail">
+					class="form-horizontal style-form">
 					<div class="col-lg-12">
-
 						<div class="form-group">
 							<label class="col-lg-1 col-lg-offset-4 control-label">收件者信箱:</label>
 							<div class="col-lg-6">
-								<input type="text" name="addres">
+								<input type="text" name="addres" id="addres"><span
+									id="span1"></span>
 							</div>
 						</div>
 						<div class="form-group">
@@ -268,8 +242,8 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 				<div class="col-lg-6" id="allMem">
 					<!-----------------------寄送全部會員--------------- -->
 					<form method="post" action="allMail.do">
-						<input type="submit" value="查詢全部會員" class="btn  btn-theme01">
-						<table border='1' width='500'>
+						<input type="submit" value="查詢全部會員" class="btn  btn-theme01" >
+						<table border='1' width='500' id="table1">
 							<tr>
 								<th>會員編號</th>
 								<th>信箱</th>
@@ -290,8 +264,8 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 		</div>
 	</div>
 	</section> </section></section>
-	<input type="hidden" name="shift" value="${SHIFT}">
-	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
+<%-- 	<input type="hidden" name="shift" value="${SHIFT}"> --%>
+<%-- 	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}"> --%>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
@@ -314,31 +288,19 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 	<script src="<c:url value="/resources/js/common-scripts.js" />"></script>
 	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
 		type="text/javascript"></script>
-	<script>
+<!-- 	<script>
 		$(document).ready(function() {
-			$("#send_mail").validate({
-				errorClass : "my-error-class",
-				validClass : "my-valid-class",
-
-				rules : {
-
-					from : {
-						required : true
-					},
-					subject : {
-						required : true
+			var name = $('#addres');
+			name.blur(function() {
+				$.get('email.do', {
+					name : name.val()
+				}, function(data) {
+					if (data == "") {
+						$('#span1').append("Hello");
 					}
-				},
-				messages : {
-					from : {
-						required : "【請輸入標題】"
-					},
-					subject : {
-						required : "【請輸入主旨】"
-					}
-				}
+				})
 			})
-		})
-	</script>
+		});
+	</script> -->
 </body>
 </html>

@@ -491,17 +491,21 @@ System.out.println("1");
 			/***************************2.開始新增資料***************************************/
 			rtnListVO.setRtnDetail(setDetail);
 			//ReturnListService rtnListSvc = new ReturnListService();
+			System.out.println("-----insert begain-----");
 			rtnListSvc.addRtnList(rtnListVO, list);
-			List<RtnListVO> all = rtnListSvc.getAll();
+			System.out.println("-----insert end & select begain -----");
+//			List<RtnListVO> all = rtnListSvc.getAll();
+			System.out.println("-----select end-----");
+
 System.out.println("2");		
-			req.getSession().setAttribute("list", all);
-			req.setAttribute("list", list);
+//			req.getSession().setAttribute("list", all);
+//			req.setAttribute("list", list);
 			/***************************3.新增完成,準備轉交(Send the Success view)***********/
 //			String url = "/returns/ReturnList.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url); 
 //			successView.forward(req, res);	
 System.out.println("3");
-			return "/RETURNS/AllList";
+			return "redirect:/RETURNS/AllList.jsp";
 			/***************************其他可能的錯誤處理**********************************/
 		} catch (Exception e) {
 			errorMsgs.add(e.getMessage());

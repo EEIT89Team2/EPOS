@@ -79,9 +79,9 @@
 			<div class="form-group">
 				<label class="col-lg-2 col-lg-offset-3 control-label">輸入促銷商品編號(如P00001):</label>
 				<div class="col-lg-2">
-					<input type="text" name="pro_prod_name" size="10">
+					<input type="text" name="pro_prod_name" size="20" maxlength="6">
 				</div>
-				<div class="col-lg-5">
+				<div class="col-lg-3  col-lg-offset-2">
 					<input type="button" value="送出" class="r_prom1 btn btn-success">
 				</div>
 			</div>
@@ -94,13 +94,13 @@
 		<FORM METHOD="post" ACTION="datesProm.do" name="r_prom2" class="form-horizontal" role="form" id="r_prom2">
 			<div class="form-group">
 				<label class="col-lg-2 col-lg-offset-3 control-label">選擇促銷日期區間:</label>
-				<div class="col-lg-1">
+				<div class="col-lg-2">
 					<input type="date" name="pro_begin">
 				</div>
-				<div class="col-lg-1">
+				<div class="col-lg-2">
 					<input type="date" name="pro_end">
 				</div>
-				<div class="col-lg-5">
+				<div class="col-lg-3">
 					<input type="button" value="送出" class="r_prom2 btn btn-success">
 				</div>
 
@@ -111,21 +111,21 @@
 		<FORM METHOD="post" ACTION="idsProm.do" name="r_prom3" class="form-horizontal" role="form" id="r_prom3">
 			<div class="form-group">
 				<label class="col-lg-2 col-lg-offset-3 control-label">選擇促銷編號範圍:</label>
-				<div class="col-lg-1">
+				<div class="col-lg-2">
 					<select size="1" name="pro_prod_id1" class="form-control">
 						<c:forEach var="promVO" items="${PromSvc.GroupByIDs()}">
 							<option value="${promVO.pro_prod_id}">${promVO.pro_prod_id}
 						</c:forEach>
 					</select>
 				</div>
-				<div class="col-lg-1">
+				<div class="col-lg-2">
 					<select size="1" name="pro_prod_id2" class="form-control">
 						<c:forEach var="promVO" items="${PromSvc.GroupByIDs()}">
 							<option value="${promVO.pro_prod_id}">${promVO.pro_prod_id}
 						</c:forEach>
 					</select>
 				</div>
-				<div class="col-lg-5">
+				<div class="col-lg-3">
 					<input type="button" value="送出" class="r_prom3 btn btn-success">
 				</div>
 					<input type="hidden" name="action" value="getIds_For_Display">
@@ -133,10 +133,12 @@
 		</FORM>
 
 		<%-- 查詢全部 --%>
+		<div class="form-group">
 		<label class="col-lg-2 col-lg-offset-3 control-label">查詢全部:</label>
-			<div class="col-lg-5 col-lg-offset-2">
+			<div class="col-lg-3 col-lg-offset-4">
 				<input type="button" value="送出" class="r_prom4 btn btn-success">
 			</div>
+		</div>	
 	</div>
 
 

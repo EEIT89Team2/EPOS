@@ -17,7 +17,7 @@
 		<property name="remark" column="remark" />
 		<property name="status" column="status" />
 
-		<set name="rtnDetail" table="RETRUN_DETAIL" lazy="false" cascade="all"  inverse="true"  order-by="ret_id asc">			
+		<set name="rtnDetail" table="RETRUN_DETAIL" cascade="all"  inverse="true"  order-by="ret_id asc">			
 			<key>
 				<column name="ret_id" />
 			</key>

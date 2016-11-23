@@ -35,6 +35,13 @@
 	.my-error-class{
 		color:red;
 	}
+	.move{
+		margin-left:20px;
+	}
+	
+	.col-lg-offset-1 {
+    	margin-left: 100px;
+    }
 </style>
 </head>
 <body>
@@ -134,10 +141,10 @@
 					<div class="col-lg-1">
 						<input type="date" name="release_date">
 					</div>
-					<div class="col-lg-2">
-						<input type="date" name="cpon_period"> 
+					<div class="col-lg-1 move">
+						<input class="move" type="date" name="cpon_period"> 
 					</div>
-					<div class="col-lg-4">
+					<div class="col-lg-4 col-lg-offset-1">
 						<input type="button" value="送出" id="search_5" class="btn btn-theme03">
 					</div>
 					<input type="hidden" name="action" value="getDates_For_Display">

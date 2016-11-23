@@ -59,6 +59,11 @@
 	
 	.my-error-class{
 		color:red;
+	}
+
+	.update_text{
+		font-family: 微軟正黑體; 
+		color:blue;
 	} 
 </style>
 </head>
@@ -83,32 +88,28 @@
 
 				<label class="col-lg-1 col-lg-offset-2 control-label">促銷商品編號:</label>
 				<div class="col-lg-2">
-					<input type="text" name="pro_prod_id" size="20"
-						value="${promVO.pro_prod_id}" readonly="readonly"
-						style="color: gray" />
+					<input type="text" name="pro_prod_id" size="20" value="${promVO.pro_prod_id}" readonly="readonly"
+						 class="form-control" />
 				</div>
-				<label class="col-lg-1 control-label">促銷商品名稱:</label>
-				<div class="col-lg-1">
+				<label class="col-lg-1 control-label update_text">促銷商品名稱:</label>
+				<div class="col-lg-2">
 					<input type="text" name="pro_prod_name" size="20" maxlength="20"
 						value="${promVO.pro_prod_name}" />
 				</div>
 				<label class="col-lg-1 control-label">促銷商品起始日期:</label>
-				<div class="col-lg-4">
-					<input type="date" name="pro_begin" size="20"
-						value="${promVO.pro_begin}" readonly="readonly"
-						style="color: gray" />
+				<div class="col-lg-2">
+					<input type="date" name="pro_begin" size="20" value="${promVO.pro_begin}" readonly="readonly"
+						class="form-control" /><div class="col-lg-1"></div>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-2 control-label">促銷商品截止日:</label>
+				<label class="col-lg-1 col-lg-offset-2 control-label update_text">促銷商品截止日:</label>
 				<div class="col-lg-2">
-					<input type="date" name="pro_end" size="20"
-						value="${promVO.pro_end}" />
+					<input type="date" name="pro_end" size="20" value="${promVO.pro_end}" />
 				</div>
-				<label class="col-lg-1 control-label">備註:</label>
+				<label class="col-lg-1 control-label update_text">備註:</label>
 				<div class="col-lg-6">
-					<input type="text" name="pro_neirong" size="100"
-						value="${promVO.pro_neirong}" />
+					<textarea name="pro_neirong" rows='5' cols="50" value="${promVO.pro_neirong}"></textarea>
 				</div>
 
 			</div>

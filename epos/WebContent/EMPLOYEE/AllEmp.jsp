@@ -192,7 +192,7 @@ table {
 		<nav class="nav navbar-default">
 		<div class="tab-content">
 			<ul class="nav navbar-nav">
-				<li><a href="employee.jsp" class="glyphicon glyphicon-search">搜尋</a></li>
+				<li><a href="searchEmp.jsp" class="glyphicon glyphicon-search">搜尋</a></li>
 				<li><a href="addEmp.jsp" class="glyphicon glyphicon-file">新增</a></li>
 				<li><a href="SetPassCode.jsp" class="glyphicon glyphicon-lock">修改權限</a></li>
 				<li><a style="background-color: rgba(172, 214, 255, 0.6);"
@@ -220,7 +220,6 @@ table {
 						<th>照片</th>
 						<th>修改人</th>
 						<th>修改時間</th>
-						<th>權限</th>
 						<th>修改</th>
 						<th>刪除</th>
 					</tr>
@@ -243,7 +242,6 @@ table {
 								src="data:image/gif;base64,${list.picture}"></td>
 							<td>${list.key_id}</td>
 							<td>${list.key_date}</td>
-							<td>${list.pass_code}</td>
 							<td><input type="submit" name="action"
 								class="btn btn btn-xs" value="update"></td>
 							<td><input type="submit" name="action"
@@ -256,6 +254,8 @@ table {
 		</center>
 	</div></div>
 	</section> </section> </section>
+		<input type="hidden" name="shift" value="${SHIFT}">
+	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>

@@ -1,7 +1,7 @@
-<%@page import="com.member.model.MemberService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,8 +21,7 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-
-<title>會員</title>
+<title>搜尋廠商</title>
 <style>
 .navbar-default {
 	background: #D2E9FF;
@@ -42,9 +41,15 @@
 .glyphicon {
 	top: auto;
 }
+.my-valid-class {
+	color: #3a51e8;
+}
+
+.my-error-class {
+	color: red;
+}
 </style>
 </head>
-
 <body>
 	<section id="container"> <!--header start--> <header
 		class="header black-bg">
@@ -81,11 +86,10 @@
 					<i class="fa fa-desktop"></i> <span>基本資料維護</span>
 			</a>
 				<ul class="sub">
-					<li class="active"><a
-						href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
+					<li><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/EMPLOYEE/employee.jsp">員工資料維護</a></li>
-					<li><a
+					<li class="active"><a
 						href="<%=request.getContextPath()%>/COMPANY/company.jsp">廠商資料維護</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
@@ -158,22 +162,79 @@
 	</div>
 	</aside> <!--sidebar end--> <section id="main-content"> <section
 		class="wrapper">
+
 	<div class="row mt">
 		<div class="col-lg-12">
 			<nav class="nav navbar-default">
 			<div class="tab-content">
 				<ul class="nav navbar-nav">
-					<li><a href="searchMem.jsp"
-						class="glyphicon glyphicon-search">搜尋</A></li>
-					<li><a href="addMem.jsp" class="glyphicon glyphicon-file">新增</a></li>
+					<li><a style="background-color: rgba(172, 214, 255, 0.6);"
+						class="glyphicon glyphicon-search">搜尋</a></li>
+					<li><a href="addCom.jsp" class="glyphicon glyphicon-file">新增</a></li>
 					<li><a href="#" class="glyphicon glyphicon-list-alt">查詢結果</a></li>
 				</ul>
 			</div>
 			</nav>
+			<div class="tab-content">
+				<div>
+					<div class="titlelist">查詢廠商資料</div>
+					<div class="col-lg-12  main">
+						<p>
+							<%-- 錯誤表列 --%>
+							<c:if test="${not empty param.message}">
+								<font color='red'>請修正以下錯誤:
+									<ul>
+										<c:forEach var="message" items="${param.message}">
+											<li>${message}</li>
+										</c:forEach>
+									</ul>
+								</font>
+							</c:if>
+						<form method="post" action="getOneCom.do" id="com_id"
+							class="form-horizontal style-form">
+							<div class="form-group">
+								<div class="col-lg-3"></div>
+								<label class="col-lg-2 control-label">依廠商編號搜尋</label>
+								<div class="col-lg-2">
+									<input type="text" name="com_id">
+								</div>
+								<div class="col-lg-2">
+									<input type="submit" value="依廠商編號搜尋" class="btn  btn-theme03">
+								</div>
+							</div>
+						</form>
+						<form method="post" action="getComByName.do" id="com_name"
+							class="form-horizontal style-form">
+							<div class="form-group">
+								<div class="col-lg-3"></div>
+								<label class="col-lg-2 control-label">依廠商名稱搜尋</label>
+								<div class="col-lg-2">
+									<input type="text" name="com_name"><br>
+								</div>
+								<div class="col-lg-2">
+									<input type="submit" value="依廠商名稱搜尋" class="btn  btn-theme03">
+								</div>
+							</div>
+						</form>
+						<form method="post" action="getAllCom.do"
+							class="form-horizontal style-form">
+							<div class="form-group">
+								<div class="col-lg-3"></div>
+								<label class="col-lg-2 control-label">查詢全部</label>
+								<div class="col-lg-2"></div>
+								<div class="col-lg-2">
+									<input type="submit" value="查詢全部" class="btn  btn-theme03">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	</section> </section> </section>
-	<input type="hidden" name="shift" value="${SHIFT}">
-	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
+<input type="hidden" name="shift" value="${SHIFT}"><input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
+
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
@@ -191,8 +252,43 @@
 		type="text/javascript"></script>
 	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
 		type="text/javascript"></script>
+
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
+	<script>
+			// -----------------------------------驗證-------------------------------------------
+			$("#com_id").validate({
+				// 				success : function(label) {
+				// 					label.text("【正確】")
+				// 				},
+				errorClass : "my-error-class",
+				validClass : "my-valid-class",
 
+				rules : {
+					com_id : {required : true}
+				},
+				messages : {
+					com_id : {
+						required : "【請輸入廠商編號】"
+					}
+				}
+			})
+			$("#com_name").validate({
+				// 				success : function(label) {
+				// 					label.text("【正確】")
+				// 				},
+				errorClass : "my-error-class",
+				validClass : "my-valid-class",
+
+				rules : {
+					com_name : {required : true}
+				},
+				messages : {
+					com_name : {
+						required : "【請輸入廠商名稱】"
+					}
+				}
+			})
+	</script>
 </body>
 </html>

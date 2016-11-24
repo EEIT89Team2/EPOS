@@ -65,7 +65,14 @@
 			<div class="form-group">					
 				<label id="label" class="col-lg-1 col-lg-offset-2 control-label">十月:　</label>
 				<div class="col-lg-2">
-				<input type="button" name="open" value="開啟"  class="btn btn-theme02">
+<!-- 				<input type="button" name="open" value="開啟"  class="btn btn-theme02"> -->
+				<select id="sel">
+
+	<option >請選擇月份</option>
+	<option value="9">9月</option>
+	<option value="10">10月</option>
+	<option value="11">11月</option>
+</select>
 				</div><div class="col-lg-７"></div>
 			</div>
 		</form>
@@ -76,14 +83,16 @@
 </div>
 
 <script type="text/javascript">
-$(":button").click(function(){ 
-	if('open'==$(this).attr('name')){   
+$("#sel").change(function(){ 
+// 	if('open'==$(this).attr('name')){   
+		
+		var mon=$("#sel").val();
 		
 		//抓資料			
 		$.ajax({
 			"type" : "post",
 			"url" : "getOrdPrice.do",
-			"data" : {},
+			"data" : {"mon":mon},
 //成功的話執行以下					
 			"success" : function(data) {
 //新增空陣列來裝各個資料
@@ -97,12 +106,12 @@ $(":button").click(function(){
 					Price.push(Price1);
 					})
 //圖表塞入div_A
-					$('#ten').highcharts({
+					$('#container').highcharts({
 				        chart: {
 				            type: 'column'
 				        },
 				        title: {
-				            text: '十月份營業額'
+				            text: mon+'月份營業額'
 				        },
 				        xAxis: {
 				            categories: Date
@@ -116,13 +125,13 @@ $(":button").click(function(){
 		 					enabled:false	
 		 				},
 				        series: [{
-				            name: '十月',
+				            name: mon+'月',
 				            data: Price
 				        }]
 					})
-			}
-		})
-	}
+		}
+	})
+	
 })
 
 </script>

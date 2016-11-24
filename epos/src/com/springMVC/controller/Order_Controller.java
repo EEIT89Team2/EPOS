@@ -111,8 +111,32 @@ public class Order_Controller extends HttpServlet implements Runnable {
 	
 	@RequestMapping(method = RequestMethod.POST, value = { "/getOrdPrice.do", "/ORDER/getOrdPrice.do" })
 	public void getOrdPrice(ModelMap model, HttpServletRequest request,HttpServletResponse resp) throws Exception {
+		int mon=Integer.parseInt(request.getParameter("mon"));
+		System.out.println("mon"+mon);
+		Date dateMon;
+		Date s_ord_date=null;
+		Date e_ord_date = null;
 		
-		List<OrderVO> orderList = ordSvc.getOrdPrice();
+		switch (mon) {
+		case 9:
+			s_ord_date=Date.valueOf("2016-09-01");
+			e_ord_date=Date.valueOf("2016-09-30");
+			break;
+		case 10:
+			s_ord_date=Date.valueOf("2016-10-01");
+			e_ord_date=Date.valueOf("2016-10-31");
+			break;
+		case 11:
+			s_ord_date=Date.valueOf("2016-11-01");
+			e_ord_date=Date.valueOf("2016-11-30");
+			break;
+
+		default:
+			break;
+		}
+		
+		
+		List<OrderVO> orderList = ordSvc.getOneOrderDate(s_ord_date, e_ord_date);
 		Date date1;
 		Date date2=null;
 		Double totalPrice1=0.0;

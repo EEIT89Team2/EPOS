@@ -93,10 +93,10 @@
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/VALUATION/valuation.jsp">報價單維護</a></li>
+						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
 					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/SHIPMENTS/shipments.jsp">出貨單維護</a></li>
+						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
 					class="fa fa-book"></i> <span>存貨作業</span>
@@ -114,7 +114,7 @@
 					<li><a
 						href="<%=request.getContextPath()%>/RETURNS/Return_Items.jsp">退貨品管理</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/RETURNS/returns.jsp">退貨單管理</a></li>
+						href="<%=request.getContextPath()%>/RETURNS/ReturnList.jsp">退貨單管理</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/INVO/select_page.jsp">作廢發票管理</a></li>
 				</ul></li>

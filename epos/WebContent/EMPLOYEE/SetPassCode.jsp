@@ -113,10 +113,10 @@ if(request.getMethod().toUpperCase().equals("POST")){
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/VALUATION/valuation.jsp">報價單維護</a></li>
+						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
 					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/SHIPMENTS/shipments.jsp">出貨單維護</a></li>
+						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
 					class="fa fa-book"></i> <span>存貨作業</span>
@@ -134,7 +134,7 @@ if(request.getMethod().toUpperCase().equals("POST")){
 					<li><a
 						href="<%=request.getContextPath()%>/RETURNS/Return_Items.jsp">退貨品管理</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/RETURNS/returns.jsp">退貨單管理</a></li>
+						href="<%=request.getContextPath()%>/RETURNS/ReturnList.jsp">退貨單管理</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/INVO/select_page.jsp">作廢發票管理</a></li>
 				</ul></li>
@@ -218,54 +218,42 @@ if(request.getMethod().toUpperCase().equals("POST")){
 								<input type="checkbox" name="pass_code" value="/updateDeleteCom.do">刪除修改廠商<br>
 
 								<h4>請購單維護</h4>
-								<input type="checkbox" name="pass_code" value="/insertReq.do">新增請購單<br>
+								<input type="checkbox" name="pass_code" value="/addReq.jsp">新增請購單<br>
+								<input type="checkbox" name="pass_code" value="/SelectReq.jsp">單筆查詢請購單<br>
 								<input type="checkbox" name="pass_code" value="/getAllReq.do">查詢全部請購單<br>
-								<input type="checkbox" name="pass_code" value="/getByReq_id.do">依請購單編號、日期搜詢<br>
+								<input type="checkbox" name="pass_code" value="/SelectbyDate.jsp">依日期查詢請購單<br>
 								<input type="checkbox" name="pass_code" value="/selectOfN.do">審核請購單<br>
-								<input type="checkbox" name="pass_code"
-									value="/DetailDeleteReq.do">刪除修改顯示請購單明細<br>
 								<h4>詢價單維護</h4>
-								<input type="checkbox" name="pass_code" value="/insertQuo.do">新增詢價單<br>
+								<input type="checkbox" name="pass_code" value="/addQuo0.do">新增詢價單<br>
+								<input type="checkbox" name="pass_code" value="/SelectQuo.jsp">查詢單筆詢價單<br>
 								<input type="checkbox" name="pass_code" value="/getAllQuo.do">查詢全部詢價單<br>
-								<input type="checkbox" name="pass_code" value="/getByQuo_id.do">依詢價單編號、日期搜詢<br>
+								<input type="checkbox" name="pass_code" value="/SelectbyDate.jsp">依詢價單日期查詢<br>
 								<input type="checkbox" name="pass_code" value="/selectOfN.do">審核詢價單<br>
-								<input type="checkbox" name="pass_code"
-									value="/DetailDeleteQuo.do">刪除、修改顯示詢價單明細<br>
+								<input type="checkbox" name="pass_code" value="/selectOfY.do">新增商品目錄<br>
 								<h4>採購單維護</h4>
-								<input type="checkbox" name="pass_code" value="/insertPur.do">新增採購單<br>
+								<input type="checkbox" name="pass_code" value="/insertPur00.do">新增採購單<br>
+								<input type="checkbox" name="pass_code" value="/SelectPur.jsp">單筆查詢採購單<br>
 								<input type="checkbox" name="pass_code" value="/getAllPur.do">查詢全部採購單<br>
-								<input type="checkbox" name="pass_code"
-									value="/getOnePurforDisplay.do">依採購單編號搜詢<br> <input
-									type="checkbox" name="pass_code" value="/selectOfN.do">審核採購單<br>
-								<input type="checkbox" name="pass_code" value="/updateQuo.do">修改採購單<br>
-								<input type="checkbox" name="pass_code"
-									value="/DetailUpdateDeletePur.do">刪除修改顯示採購單明細<br>
-								<input type="checkbox" name="pass_code"
-									value="/deleteDetailPur.do">刪除採購單明細<br> <input
-									type="checkbox" name="pass_code" value="/updatePur.do">修改採購單<br>
+								<input type="checkbox" name="pass_code" value="/SelectbyDate.jsp">依日期搜尋採購單<br> 
+								<input type="checkbox" name="pass_code" value="/selectOfN.do">審核採購單<br>
 								<h4>進貨單維護</h4>
-								<input type="checkbox" name="pass_code" value="/insertBOP.do">新增進貨單<br>
-								<input type="checkbox" name="pass_code" value="/updateBOP.do">修改進貨單
-								<br> <input type="checkbox" name="pass_code"
-									value="/getOneBopforDisplay.do">依照進貨單編號搜詢 <br> <input
-									type="checkbox" name="pass_code" value="/getAllBop.do">查詢全部進貨單
-								<br> <input type="checkbox" name="pass_code"
-									value="/deleteDetailBOP.do">刪除進貨單明細 <br> <input
-									type="checkbox" name="pass_code"
-									value="/DetailUpdateDeleteBOP.do">查詢刪除修改進貨單 <br>
+								<input type="checkbox" name="pass_code" value="/selectOfY.do">新增進貨單<br>
+								<input type="checkbox" name="pass_code" value="/SelectBOP0.jsp">單筆查詢進貨單<br>
+								<input type="checkbox" name="pass_code" value="/getAllBop.do">查詢全部進貨單<br> 
+								<input type="checkbox" name="pass_code" value="/SelectbyDate.jsp">依日期查詢進貨單<br> 
+								<input type="checkbox" name="pass_code" value="/selectOfN.do">審核進貨單 <br> 
+								<input type="checkbox" name="pass_code" value="/selectOfY2.do">到貨現況<br> 
 								<h4>報價單維護</h4>
-								<input type="checkbox" name="pass_code" value="/addVltList.do">新增報價單
-								<br> <input type="checkbox" name="pass_code"
-									value="/VltListServlet.do">修改報價單 <br> <input
-									type="checkbox" name="pass_code" value="/getAllVlt.do">查詢全部報價單
-								<br> <input type="checkbox" name="pass_code"
-									value="/getVltDate.do">依報價單日期搜詢 <br> <input
-									type="checkbox" name="pass_code" value="/getByVlt_id.do">依報價單編號搜詢
-								<br> <input type="checkbox" name="pass_code"
-									value="/Querydetail_DeleteVlt.do">刪除顯示報價單明細 <br>
+								<input type="checkbox" name="pass_code" value="/addVltList.do">新增報價單<br> 
+								<input type="checkbox" name="pass_code" value="/searchList.jsp">單筆查詢報價單 <br> 
+								<input type="checkbox" name="pass_code" value="/SelectVltAll.jsp">全部查詢報價單 <br> 
+								<input type="checkbox" name="pass_code" value="/SelectVltAllForCHK.jsp">審核報價單<br>
 								<h4>訂單維護</h4>
-								<!-- 								<input type="checkbox" name="pass_code" value="/Order.do" >新增訂單<br> -->
-								<!-- 								<input type="checkbox" name="pass_code" value="/Order.do" >修改訂單<br> -->
+								<input type="checkbox" name="pass_code" value="/order.jsp" >新增訂單<br>
+								<input type="checkbox" name="pass_code" value="/OrdsearchList.jsp" >查詢訂單<br>
+								<input type="checkbox" name="pass_code" value="/SelectOrdAll.jsp" >查詢全部訂單<br>
+								<input type="checkbox" name="pass_code" value="/Querydetail_DeleteOrd.do" >註銷訂單<br>
+								<input type="checkbox" name="pass_code" value="/OrdToShip.do" >訂單轉出貨單<br>
 								<h4>出貨單維護</h4>
 								<input type="checkbox" name="pass_code" value="/insertShip.do">新增出貨單
 								<br> <input type="checkbox" name="pass_code"

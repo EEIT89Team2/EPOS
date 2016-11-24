@@ -37,8 +37,8 @@
 		border-radius: 2px;
 	}
 
-	.distance{
-		margin: 20px;	
+	.distance {
+		margin: 20px;
 	}
 	
 	.form-horizontal .control-label { 
@@ -50,9 +50,6 @@
 	    background-color: #229abd;
 	    border-color: #31535d;
 	}
- 	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
- 		background: #fbe4c3;
- 	}
   
 </style>
 

@@ -88,7 +88,7 @@
 				</div>	
 			</div>	
 			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-5 control-label">庫存:</label>
+				<label class="col-lg-1 col-lg-offset-5 control-label">庫存(勿填):</label>
 				<div class="col-lg-6">
 					<input type="text" name="prod_stock" value="0" readonly="readonly">
 				</div>	

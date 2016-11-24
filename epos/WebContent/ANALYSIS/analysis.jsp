@@ -286,7 +286,21 @@
 		$(".print").click(function() {
 			window.print();
 		})
+			//自定義驗證		
+		$.validator.addMethod("compareDate",function(value,element,param){
+			
+            var date1 = jQuery(param).val();
+            var date2 = value;
+            date1 = new Date(parseInt(Date.parse(date1),10));
+            date2 = new Date(parseInt(Date.parse(date2),10));
+            if(date1>date1){
+                return false;
+            }else{
+                return true;
+            }
+        });	
 	})
+	
 </script>
 
 </body>

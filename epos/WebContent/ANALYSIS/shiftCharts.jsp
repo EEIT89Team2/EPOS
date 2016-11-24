@@ -9,23 +9,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>shiftCharts</title>
 <style>
-	.navbar-default .navbar-nav > li > a{
-		color:#56ad7b;
-	}
-
-/* nav */
-	.navbar-default{
-		background: #E6F9AF;
-		border-color:#E6F9AF;
-		border-radius: 8px;
-	}
-/* background */
- 	.main{ 
-  		height: 800px;  
- 		border-radius: 8px; 
- 		background:	#A0DBB9; 
- 	}
-/*  title	 */
  	.titlelist {
 		font-family: '微軟正黑體';
 		font-weight: bold;
@@ -36,31 +19,36 @@
 		font-size: 23px;
 		border-radius: 2px;
 	}
-
-	.distance{
-		margin: 20px;	
+	
+	.distance {
+		margin: 20px;
 	}
 	
-	.form-horizontal .control-label { 
-	     text-align: right; 
-	 }
-	 
-	 .btn-theme02 {
+	.form-horizontal .control-label {
+		text-align: right;
+	}
+	
+	.btn-theme02 {
 	    color: #fff;
 	    background-color: #229abd;
 	    border-color: #31535d;
 	}
- 	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
- 		background: #fbe4c3;
- 	}
-  
+
+	.my-valid-class{
+		color:#3a51e8;
+	}
+	
+	.my-error-class{
+		color:red;
+	}
+
 </style>
 </head>
 <body>
 <div class="titlelist">營業額分析</div>
 	<div class="col-lg-12 main">
 	<p class="distance">
-		<form method="post" action="alljson.do" class="oneshift form-horizontal style-form">
+		<form method="post" action="alljson.do" class="oneshift form-horizontal style-form" id="money_analysis">
 		<div class="form-group">
 			<label class="col-lg-1 col-lg-offset-2 control-label">日期(起):</label>
 			<div class="col-lg-2">
@@ -88,8 +76,29 @@
 	</div>
 </body>
 <script>
+//驗證
+	$("#money_analysis").validate({
+		errorClass:"my-error-class",
+		validClass:"my-valid-class",
+		
+		rules:{
+			date1:{required:true},
+			date2:{compareDate:$("input[name='date1']"),required:true},
+		},
+		messages:{
+			date1:{
+				required:"【請輸入起始日】"
+			},
+			date2:{
+				required:"【請輸入結束日】",
+				compareDate:"【結束日必须大於起始日】"
+			}
+		}				
+	})
+$(document).ready(function() {
 
 	$(":button").click(function(){ 
+		if($("#money_analysis").valid()){
 			if('A'==$(this).attr('name')){
 //抓資料			
 				$.ajax({
@@ -175,6 +184,7 @@
 					}
 				});
 			}
+			//A end
 			if('B'==$(this).attr('name')){
 //抓資料			
 				$.ajax({
@@ -202,7 +212,7 @@
 							cash_data.push(cash);
 							A_deal_sum.push(deal_sum);
 							A_discount.push(discount);
-							})
+						})
 //圖表塞入div_B
 							$("#B_charts").highcharts({                   
 						        chart: {
@@ -260,7 +270,9 @@
 					}
 				});
 			}
-		
+				//B end
+		}
 	})
+})	
 </script>	
 </html>

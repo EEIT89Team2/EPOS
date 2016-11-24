@@ -131,6 +131,56 @@ $(":button").click(function(){
 				}
 			})
 		}
+	if('sunny'==$(this).attr('name')){
+		
+		//抓資料			
+				$.ajax({
+					"type" : "post",
+					"url" : "getOrdByWeather.do",
+					"data" : {
+						weather:'晴'
+					},
+		//成功的話執行以下					
+					"success" : function(data) {
+		//新增空陣列來裝各個資料
+						var pro_name =[];
+						var pro_quantity =[];
+						$.each($.parseJSON(data), function() {
+							var prod_name = this.prod_name;
+							var prod_quantity = this.prod_quantity;
+							
+							pro_name.push(prod_name);
+							pro_quantity.push(prod_quantity);
+							})
+		//圖表塞入div_A
+							$('#sunny').highcharts({
+						        chart: {
+						            type: 'line'
+						        },
+						        title: {
+						            text: '晴天的商品排行'
+						        },
+						        xAxis: {
+						            categories: pro_name
+						        },
+						        yAxis: {
+						            title: {
+						                text: '數量'
+						            }
+						        },
+						        credits:{
+				 					enabled:false	
+				 				},
+						        series: [
+						                 {
+						            name: '品項',
+						            data: pro_quantity
+						        }
+						        ]
+							})
+						}
+					})
+				}
 	})
 
 </script>

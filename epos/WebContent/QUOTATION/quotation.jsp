@@ -21,7 +21,7 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>quotation</title>
+<title>詢價作業</title>
 </head>
 <style>
 body {
@@ -40,7 +40,8 @@ body {
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
+			<li><a class="logout"
+				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -55,9 +56,8 @@ body {
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a 
-				href="<%=request.getContextPath()%>/index.jsp"> <i
-					class="fa fa-dashboard"></i> <span>index</span>
+			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp">
+					<i class="fa fa-dashboard"></i> <span>index</span>
 			</a></li>
 
 			<li class="sub-menu"><a href="javascript:;"> <i
@@ -70,8 +70,8 @@ body {
 					<li><a
 						href="<%=request.getContextPath()%>/COMPANY/company.jsp">廠商資料維護</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;" class="active"> <i
-					class="fa fa-edit"></i> <span>進貨作業</span>
+			<li class="sub-menu"><a href="javascript:;" class="active">
+					<i class="fa fa-edit"></i> <span>進貨作業</span>
 			</a>
 				<ul class="sub">
 					<li><a
@@ -129,6 +129,12 @@ body {
 					<li><a href="<%=request.getContextPath()%>/ORDER/report.jsp">月營收</a></li>
 					<li><a href="<%=request.getContextPath()%>/ORDER/weatherCharts.jsp">商品排行榜</a></li>
 				</ul></li>
+			<li class="sub-menu"><a href="javascript:;"> <i
+					class="fa fa-users"></i> <span>顧客關係</span>
+			</a>
+				<ul class="sub">
+					<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+				</ul></li>
 
 		</ul>
 		<!-- sidebar menu end-->
@@ -137,19 +143,19 @@ body {
 		class="wrapper">
 	<div class="row mt">
 		<nav class="nav navbar-default">
-	<div class="container-fluid"
-		style="float: right; left: -50%; position: relative;">
-		<ul class="nav navbar-nav"
-			style="float: left; left: 50%; position: relative;">
-			<li><a id="quo1" target="addQuo0.do">新增詢價單</a></li>
-			<li><a id="quo2" target="SelectQuo.jsp">單筆查詢</a></li>
-			<li><a id="quo3" target="getAllQuo.do">全部查詢</a></li>
-			<li><a id="quo4" target="SelectbyDate.jsp">依日期查詢</a></li>
-			<li><a id="quo5" target="selectOfN.do">審核</a></li>
-			<li><a id="quo6" target="selectOfY.do">新增商品目錄</a></li>
-		</ul>
-	</div>
-	</nav>
+		<div class="container-fluid"
+			style="float: left;">
+			<ul class="nav navbar-nav"
+				style="float: left;">
+				<li><a id="quo1" target="addQuo0.do">新增詢價單</a></li>
+				<li><a id="quo2" target="SelectQuo.jsp">單筆查詢</a></li>
+				<li><a id="quo3" target="getAllQuo.do">全部查詢</a></li>
+				<li><a id="quo4" target="SelectbyDate.jsp">依日期查詢</a></li>
+				<li><a id="quo5" target="selectOfN.do">審核</a></li>
+				<li><a id="quo6" target="selectOfY.do">新增商品目錄</a></li>
+			</ul>
+		</div>
+		</nav>
 	</div>
 	</section> </section> </section>
 
@@ -168,6 +174,8 @@ body {
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"
 		type="text/javascript"></script>
+	<input type="hidden" name="shift" value="${SHIFT}">
+	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>

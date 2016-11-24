@@ -30,9 +30,9 @@ body {
 
 		<nav class="nav navbar-default">
 		<div class="container-fluid"
-			style="float: right; left: -50%; position: relative;">
+			style="float: left;">
 			<ul class="nav navbar-nav"
-				style="float: left; left: 50%; position: relative;">
+				style="float: left;">
 				<li style="background-color: rgba(221, 15, 15, 0.8);"><a
 					data-toggle="tab" style="color: white;">新增進貨單</a></li>
 				<li><a id="bop2" target="SelectBOP0.jsp">單筆查詢</a></li>
@@ -40,6 +40,7 @@ body {
 				<li><a id="bop4" target="SelectbyDate.jsp">依日期查詢</a></li>
 				<li><a id="bop5" target="selectOfN.do">審核</a></li>
 				<li><a id="bop6" target="selectOfY2.do">到貨確認</a></li>
+				<li><a id="bop7" target="analyze.do">單月進貨金額</a>
 			</ul>
 		</div>
 		</nav>
@@ -228,6 +229,12 @@ body {
 						$('#main-content').html(data);
 					})
 				})
+				$('#bop7').on('click', function() {
+						var t1 = $(this).attr('target');
+						$.post(t1, function(data) {
+							$('#main-content').html(data);
+						})
+					})
 
 			})
 			$("#table1").dataTable();

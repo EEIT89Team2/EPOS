@@ -4,14 +4,11 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.bop_detail.model.Bop_detailVO;
+import com.company.model.ComVO;
 import com.pur.model.PurVO;
-
-import hibernate.util.HibernateUtil;
 
 public class BopDAO implements Bop_Interface {
 	
@@ -20,6 +17,10 @@ public class BopDAO implements Bop_Interface {
 	private static final String FIND_BY_DATE ="from BopVO where key_date between ? and ? ";
 	private static final String SELECT_OF_N = "from BopVO where status = 'N'";
 	private static final String SELECT_OF_Y2 = "from BopVO where status = 'Y'";
+	private static final String GET_RATIO = "select com_id, sum(remark) from BopVO where bop_id like ? and status = 'S' group by com_id";
+	private static final String SELECT_OF_S = "from BopVO where status = 'S'";
+	private static final String GET_MONTH_COST = "select sum(remark) from BopVO where bop_id like ? and status = 'S'";
+	private static final String GET_COM_ID = "from ComVO where com_id = ?";
 	
 	private HibernateTemplate hibernateTemplate;
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
@@ -123,6 +124,44 @@ public class BopDAO implements Bop_Interface {
 		List<BopVO> list = null;
 		list = hibernateTemplate.find(SELECT_OF_Y2);
 		return list;
+	}
+
+	@Override
+	public List<Object[]> getRatio(String bop_month) {
+		// TODO Auto-generated method stub
+		
+		List<Object[]> list = null;
+		list = hibernateTemplate.find(GET_RATIO, bop_month);
+		return list;
+	}
+
+	@Override
+	public List<BopVO> selectOfS() {
+		// TODO Auto-generated method stub
+		List<BopVO> list = null;
+		list = hibernateTemplate.find(SELECT_OF_S);
+		return list;
+	}
+
+	@Override
+	public String getMonthCost(String bop_month) {
+		// TODO Auto-generated method stub
+		List<Object> list = null;
+		list = hibernateTemplate.find(GET_MONTH_COST, bop_month);
+		String co = null;
+		for(Object co0 : list){
+			co = String.valueOf(co0);
+		}
+		return co;
+	}
+
+	@Override
+	public String getComName(String com_id) {
+		// TODO Auto-generated method stub
+		List<ComVO> list = null;
+		list = hibernateTemplate.find(GET_COM_ID, com_id);
+		String comName = list.get(0).getCom_name();
+		return comName;
 	}
 	
 	

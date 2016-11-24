@@ -22,4 +22,9 @@ public interface Bop_Interface {
 	public List<BopVO> findByDate(Date begin_date, Date end_date);
 	public List<BopVO> selectOfN();
 	public List<BopVO> selectOfY2();
+	public List<Object[]> getRatio(String bop_month);
+	public List<BopVO> selectOfS();
+	public String getMonthCost(String bop_month);
+	public String getComName(String com_id);
+
 }

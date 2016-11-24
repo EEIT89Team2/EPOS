@@ -54,11 +54,12 @@ import com.employee.model.EmpVO;
 		"/VALUATION/searchList.jsp",
 		"/VALUATION/SelectVltAll.jsp",
 		"/VALUATION/SelectVltAllForCHK.jsp",
-		"/ORDER/order.jsp",
 		"/ORDER/OrdsearchList.jsp",
 		"/ORDER/SelectOrdAll.jsp",
 		"/ORDER/Querydetail_DeleteOrd.do",
-		"/ORDER/OrdToShip.do"
+		"/ORDER/OrdToShip.do",
+		"/SHIPMENTS//searchList.jsp",
+		"/SHIPMENTS/AllShip.jsp"
 		
 		
 		

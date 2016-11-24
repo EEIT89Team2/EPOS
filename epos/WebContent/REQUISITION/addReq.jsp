@@ -129,8 +129,8 @@ input {
 							function() {
 								$("#detailtable")
 										.append(
-												"<tr><td>商品名稱：<input type='text' id='ck"+a+"' class='ck' name='prod_name"+a+"'/ ></td>"
-														+ "<td>商品數量：<input type='text' name='prod_quantity"+a+"'/></td>"
+												"<tr><td>商品名稱：<input type='text' id='ck"+a+"' class='ck' name='prod_name"+a+"' required/ ></td>"
+														+ "<td>商品數量：<input type='text' name='prod_quantity"+a+"' required/></td>"
 														+ "<td><input type='button' value='刪除' class='dbt'/></td></tr>")
 								$('.dbt').on('click', function() {
 									$(this).parents('tr').remove();

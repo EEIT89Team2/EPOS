@@ -138,6 +138,9 @@ body {
 
 					rules : {
 						key_date : "required"
+					},
+					messages : {
+						key_date : {required:"【請輸入詢價日期】"}
 					}
 				})
 

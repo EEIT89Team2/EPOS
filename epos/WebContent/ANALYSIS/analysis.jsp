@@ -99,7 +99,7 @@
 
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="login.html">Logout</a></li>
+					<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
 				</ul>
 			</div>
 		</header>
@@ -182,7 +182,7 @@
 					<li><a href="<%=request.getContextPath()%>/COUPON/coupon.jsp">折價券</a></li>
 					<li><a href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">折扣管理</a></li>
 				</ul></li>
-		<li class="sub-menu"><a href="javascript:;"  class="active"> <i class="fa fa-usd"></i> <span>報表分析</span>
+		<li class="sub-menu"><a href="javascript:;"  class="active"> <i class="fa fa-bar-chart-o"></i> <span>報表分析</span>
 		</a>
 		<ul class="sub">
 			<li  class="active"><a href="<%=request.getContextPath()%>/ANALYSIS/analysis.jsp">銷售報表分析</a></li>

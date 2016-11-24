@@ -80,9 +80,9 @@
  		margin-left: 30px;
  	}
   
-  	#search{
- 		margin-left: 50px;
-  	}
+/*   	#search{ */
+/*  		margin-left: 30px; */
+/*   	} */
 </style>
 </head>
 <body>
@@ -99,7 +99,7 @@
 
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="login.html">Logout</a></li>
+					<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
 				</ul>
 			</div>
 		</header>
@@ -182,7 +182,7 @@
 					<li><a href="<%=request.getContextPath()%>/COUPON/coupon.jsp">折價券</a></li>
 					<li><a href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">折扣管理</a></li>
 				</ul></li>
-				<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-usd"></i> <span>報表分析</span>
+				<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-bar-chart-o"></i> <span>報表分析</span>
 				</a>
 				<ul class="sub">
 					<li><a href="<%=request.getContextPath()%>/ANALYSIS/analysis.jsp">銷售報表分析</a></li>
@@ -236,8 +236,7 @@
 									<label id="label">依班別報表搜尋</label>
 									<label id="date" for="date1">日期</label> 
 									<input type="date" name="Date" id="date1">
-<!-- 								</div> -->
-<!-- 								<div>	 -->
+
 								<label id="ss" for="shift"> 班別　</label>
 									<Select id="sss" name="shift" id="shift" style="width: 80px; height: 35px;">
 										<option value="A">早班</option>
@@ -252,7 +251,7 @@
 
 							<div class="form-group">
 								<label class="col-lg-offset-3 col-lg-1 control-label">查詢全部班別報表(修改)</label>
-								<div class="col-lg-offset-4 col-lg-4">
+								<div class="col-lg-offset-3 col-lg-5">
 									<input type="button" value="搜尋" name='getAll' class="btn btn-theme02">
 								</div>
 							</div>
@@ -267,7 +266,7 @@
 								<div class="col-lg-1">
 									<input type="date" name="Date" id="date2">
 								</div>
-								<div class="col-lg-offset-2 col-lg-4">
+								<div class="col-lg-offset-1 col-lg-4">
 									<input type="button" value="搜尋" name='getOneByDate' class="btn btn-theme02">
 								</div>
 							</div>

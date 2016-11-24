@@ -60,7 +60,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 	
 	
 	//json
-	@RequestMapping(method = RequestMethod.POST, value = { "/getOrdByWeather.do", "/ORDER/getOrdByWeather.do" })
+	@RequestMapping(method = RequestMethod.POST, value = { "/getOrdByWeather.do", "/ANALYSIS/getOrdByWeather.do" })
 	public void getOrdByWeather(ModelMap model, HttpServletRequest request,
 			@RequestParam("weather") String weather,HttpServletResponse resp) throws Exception {
 
@@ -109,7 +109,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 		out.print(jsonall);
 	}	
 	
-	@RequestMapping(method = RequestMethod.POST, value = { "/getOrdPrice.do", "/ORDER/getOrdPrice.do" })
+	@RequestMapping(method = RequestMethod.POST, value = { "/getOrdPrice.do", "/ANALYSIS/getOrdPrice.do" })
 	public void getOrdPrice(ModelMap model, HttpServletRequest request,HttpServletResponse resp) throws Exception {
 		int mon=Integer.parseInt(request.getParameter("mon"));
 		System.out.println("mon"+mon);

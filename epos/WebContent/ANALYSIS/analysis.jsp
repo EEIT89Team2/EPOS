@@ -16,7 +16,7 @@
 <link href="<c:url value="../resources/css/style.css" />" rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
-<title>shiftreport</title>
+<title>analysis</title>
 <style>
 	.navbar-default .navbar-nav > li > a{
 		color:#56ad7b;
@@ -81,7 +81,7 @@
  	}
   
   	#search{
- 		margin-left: 50px;
+ 		margin-left: ３0px;
   	}
 </style>
 </head>
@@ -174,18 +174,18 @@
 					<li><a
 						href="<%=request.getContextPath()%>/INVO/select_page.jsp">作廢發票管理</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;" class="active"> <i
+			<li class="sub-menu"><a href="javascript:;"> <i
 					class="fa fa-usd"></i> <span>金流管理</span>
 			</a>
 				<ul class="sub">
-					<li class="active"><a href="<%=request.getContextPath()%>/SHIFTREPORT/shiftreport.jsp">班別報表維護</a></li>
+					<li><a href="<%=request.getContextPath()%>/SHIFTREPORT/shiftreport.jsp">班別報表維護</a></li>
 					<li><a href="<%=request.getContextPath()%>/COUPON/coupon.jsp">折價券</a></li>
 					<li><a href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">折扣管理</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i
-					class=" fa fa-bar-chart-o"></i> <span>報表分析</span>
+			<li class="sub-menu"><a href="javascript:;" class="active"> <i class=" fa fa-bar-chart-o"></i> <span>報表分析</span>
 			</a>
 				<ul class="sub">
+					<li class="active"><a href="<%=request.getContextPath()%>/ANALYSIS/analysis.jsp">銷售報表分析<li>
 					<li><a href="<%=request.getContextPath()%>/ORDER/report.jsp">月營收</a></li>
 					<li><a href="<%=request.getContextPath()%>/ORDER/weatherCharts.jsp">商品排行榜</a></li>
 				</ul></li>
@@ -207,10 +207,10 @@
 			<div class="nav navbar-default">
 				<div class="container-fluid">
 					<ul class="nav navbar-nav">
-						<li id="shi_search"><a data-toggle="tab" href="#search"><span class="glyphicon glyphicon-search"></span>搜尋</a></li>
-<!-- 						<li id="shi_new"><a id="c_shift" target="shiftCharts.jsp" data-toggle="tab" href="#new"><span class="fa fa-bar-chart-o"></span>營業額分析</a></li> -->
-<!-- 						<li id="shi_analysis"><a id="analysis_shift" target="shiftCharts2.jsp" data-toggle="tab" href="#analysis"><span class="fa fa-bar-chart-o"></span>來客數分析</a></li> -->
-						<li id="shi_rel"><a data-toggle="tab" href="#result" id="test"><span class="glyphicon glyphicon-list-alt"></span>查詢結果</a></li>
+						<li id="shi_search"><a data-toggle="tab" href="#search" id="report" target="report.jsp" ><span class="fa fa-bar-chart-o"></span>月營收</a></li>
+						<li id="shi_new"><a id="c_shift" target="shiftCharts.jsp" data-toggle="tab" href="#new"><span class="fa fa-bar-chart-o"></span>營業額分析</a></li>
+						<li id="shi_analysis"><a id="analysis_shift" target="shiftCharts2.jsp" data-toggle="tab" href="#analysis"><span class="fa fa-bar-chart-o"></span>來客數分析</a></li>
+						<li id="shi_rel"><a data-toggle="tab" href="#result" id="weather" target="weatherCharts.jsp" ><span class="fa fa-bar-chart-o"></span>商品排行榜</a></li>
 						<li><a data-toggle="tab" href="#print" class="print"><span class="glyphicon glyphicon-print"></span>列印</a></li>
 					</ul>
 				</div>
@@ -218,74 +218,16 @@
 
 			<div class="tab-content">
 				<div id="search" class="tab-pane fade">
-					<%-- 錯誤表列 --%>
-					<c:if test="${not empty param.message}">
-						<font color='red'>請修正以下錯誤:
-							<ul>
-								<c:forEach var="message" items="${param.message}">
-									<li>${message}</li>
-								</c:forEach>
-							</ul>
-						</font>
-					</c:if>
-
-					<div class="titlelist">查詢</div>
-					<div class="col-lg-12 main">
-						<p class="distance">
-
-						<form method="post" action="getOneShiftre.do" class="oneshift form-horizontal style-form">
-							<div class="form-group">
-								<div>
-									<label id="label">依班別報表搜尋</label>
-									<label id="date" for="date1">日期</label> 
-									<input type="date" name="Date" id="date1">
-<!-- 								</div> -->
-<!-- 								<div>	 -->
-								<label id="ss" for="shift"> 班別　</label>
-									<Select id="sss" name="shift" id="shift" style="width: 80px; height: 35px;">
-										<option value="A">早班</option>
-										<option value="B">晚班</option>
-									</Select>
-									<input id="search" type="button" value="搜尋" name='getOne' class="btn btn-theme02">
-								</div>
-							</div>
-						</form>
-
-						<form method="post" action="getAllShiftre.do" class="form-horizontal style-form">
-
-							<div class="form-group">
-								<label class="col-lg-offset-3 col-lg-1 control-label">查詢全部班別報表(修改)</label>
-								<div class="col-lg-offset-4 col-lg-4">
-									<input type="button" value="搜尋" name='getAll' class="btn btn-theme02">
-								</div>
-							</div>
-						</form>
-
-						<form method="post" action="getShiftreByDate.do" class="shiftbydate form-horizontal style-form">
-
-							<div class="form-group">
-								<label class="col-lg-offset-3 col-lg-1 control-label">依照日期查詢</label>
-								<label class="col-lg-1 control-label" for="date2">日期</label>
-
-								<div class="col-lg-1">
-									<input type="date" name="Date" id="date2">
-								</div>
-								<div class="col-lg-offset-2 col-lg-4">
-									<input type="button" value="搜尋" name='getOneByDate' class="btn btn-theme02">
-								</div>
-							</div>
-						</form>
-					</div>
-
+					<div class="report-content main"></div>
 				</div>
-<!-- 				<div id="new" class="tab-pane fade"> -->
-<!-- 					<div class="insert-content main"></div> -->
-<!-- 				</div> -->
-<!-- 				<div id="analysis" class="tab-pane fade"> -->
-<!-- 					<div class="analysis-content main"></div> -->
-<!-- 				</div> -->
+				<div id="new" class="tab-pane fade">
+					<div class="insert-content main"></div>
+				</div>
+				<div id="analysis" class="tab-pane fade">
+					<div class="analysis-content main"></div>
+				</div>
 				<div id="result" class="tab-pane fade">
-					<div class="rul main"></div>
+					<div class="rul-content main"></div>
 				</div>
 			</div>
 		</div>
@@ -311,89 +253,39 @@
 	
 		<script type="text/JavaScript">
 	$(document).ready(function() {
-
-// -------------------------------自動新增----------------------------------
-// 		setInterval(function(){
-// 			insertTime = new Date();
-// 			var hour = insertTime.getHours();
-// 			var minutes = insertTime.getMinutes();
-// 			var seconds = insertTime.getSeconds();
-// 			if((hour==14||hour==20)&&(minutes==0)&&(seconds==0)){
-// 				alert(1);
-// 				$.ajax({
-// 					type : "post",
-// 					url : "insertShiftre.do",
-// 					data : {"shift":$("input[name='shift']").val(),
-// 							"emp_id":$("input[name='emp_id']").val()
-// 					}					
-// 				});
-// 			}else{
-
-// 			}
-// 		},1000);
-		
 		
 // -------------------------------載入報表1.2----------------------------------
-// 		$('#c_shift').on('click', function() {							
-// 				var insertWeb = $(this).attr('target');
-// 				$.get(insertWeb, function(data) {
-// 					$('.insert-content').html(data);
-// 				})
+		$('#report').on('click', function() {							
+				var insertWeb = $(this).attr('target');
+				$.get(insertWeb, function(data) {
+					$('.report-content').html(data);
+				})
 					
-// 		})
+		})
+		$('#c_shift').on('click', function() {							
+				var insertWeb = $(this).attr('target');
+				$.get(insertWeb, function(data) {
+					$('.insert-content').html(data);
+				})
+					
+		})
 		
-// 		$('#analysis_shift').on('click', function() {							
-// 				var insertWeb = $(this).attr('target');
-// 				$.get(insertWeb, function(data) {
-// 					$('.analysis-content').html(data);
-// 				})
+		$('#analysis_shift').on('click', function() {							
+				var insertWeb = $(this).attr('target');
+				$.get(insertWeb, function(data) {
+					$('.analysis-content').html(data);
+				})
 					
-// 		})	
-			
-// -------------------------------查詢----------------------------------
-			$(":button").click(function() {
-				if ('getOne'==$(this).attr('name')) {
-					$.ajax({
-						type : "post",
-						url : "getOneShiftre.do",
-						data : $(".oneshift").serialize(),
-						success : function(data) {
-							$(".rul").html(data);
-							$("#shi_search").removeAttr("class");
-							$("#shi_rel").attr("class","active");
-							$("#search").attr("class","tab-pane fade");
-							$("#result").attr("class","tab-pane active");
-						}
-					});
-				} else if ('getAll'==$(this).attr('name')) {
-					$.ajax({
-						type : "post",
-						url : "getAllShiftre.do",
-						data : {},
-						success : function(data) {
-							$(".rul").html(data);
-							$("#shi_search").removeAttr("class");
-							$("#shi_rel").attr("class","active");
-							$("#search").attr("class","tab-pane fade");
-							$("#result").attr("class","tab-pane active");
-						}
-					});
-				} else if ('getOneByDate'==$(this).attr('name')) {
-					$.ajax({
-						type : "post",
-						url : "getShiftreByDate.do",
-						data : $(".shiftbydate").serialize(),
-						success : function(data) {
-							$(".rul").html(data);
-							$("#shi_search").removeAttr("class");
-							$("#shi_rel").attr("class","active");
-							$("#search").attr("class","tab-pane fade");
-							$("#result").attr("class","tab-pane active");
-						}
-					});			
-				}
-			})
-
+		})	
+		
+		$('#weather').on('click', function() {
+				var insertWeb = $(this).attr('target');
+				$.get(insertWeb, function(data) {
+					$('.rul-content').html(data);
+				})
+					
+		})	
+		
 		$(".print").click(function() {
 			window.print();
 		})

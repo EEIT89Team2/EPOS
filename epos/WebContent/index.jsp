@@ -37,8 +37,8 @@
 
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-
-		<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>歡迎使用ePOS</li>						</ul>
+					<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>歡迎使用ePOS</li>
+				</ul>
 			</div>
 		</header>
 		<!--header end-->
@@ -107,16 +107,11 @@
 							<li><a href="COUPON/coupon.jsp">折價券</a></li>
 							<li><a href="DISCOUNT/discount.jsp">折扣管理</a></li>
 						</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa fa-bar-chart-o"></i> <span>報表分析</span>
-					</a>
+					<li class="sub-menu"><a href="javascript:;"> <i class=" fa fa-bar-chart-o"></i><span>報表分析</span></a>
 						<ul class="sub">
-							<li><a href="<%=request.getContextPath()%>/ORDER/report.jsp">月營收</a></li>
-							<li><a href="<%=request.getContextPath()%>/ORDER/weatherCharts.jsp">商品排行榜</a></li>
+							<li><a href="<%=request.getContextPath()%>/ANALYSIS/analysis.jsp">銷售報表分析<li>
 						</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-users"></i> <span>顧客關係</span>
-					</a>
+					<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-users"></i> <span>顧客關係</span></a>
 						<ul class="sub">
 							<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
 						</ul></li>

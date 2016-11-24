@@ -66,7 +66,7 @@ if(request.getMethod().toUpperCase().equals("POST")){
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="login.html">Logout</a>Hi ,
+			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi ,
 				${LoginOK.emp_name}</li>
 		</ul>
 	</div>
@@ -170,12 +170,11 @@ if(request.getMethod().toUpperCase().equals("POST")){
 			<nav class="nav navbar-default">
 			<div class="tab-content">
 				<ul class="nav navbar-nav ">
-					<li><a href="employee.jsp" class="glyphicon glyphicon-search">搜尋</a></li>
+					<li><a href="searchEmp.jsp" class="glyphicon glyphicon-search">搜尋</a></li>
 					<li><a href="addEmp.jsp" class="glyphicon glyphicon-file">新增</a></li>
 					<li><a style="background-color: rgba(172, 214, 255, 0.6);"
 						class="glyphicon glyphicon-lock">修改權限</a></li>
 					<li><a href="#" class="glyphicon glyphicon-list-alt">查詢結果</a></li>
-					<li><a href="getPassCode.jsp">查詢權限</a></li>
 				</ul>
 			</div>
 			</nav>
@@ -204,29 +203,19 @@ if(request.getMethod().toUpperCase().equals("POST")){
 								<input type="checkbox" name="pass_code" value="ALL" checked>通行無阻<br>
 
 								<h4>會員資料維護</h4>
-								<input type="checkbox" name="pass_code" value="/insertMemb.do">新增會員<br>
-								<input type="checkbox" name="pass_code" value="/allMemb.do">查詢全部會員<br>
-								<input type="checkbox" name="pass_code" value="/Memb.do">依照會員編號、姓名搜詢<br>
-								<input type="checkbox" name="pass_code" value="/datesMem.do">依新增日期搜詢<br>
-								<input type="checkbox" name="pass_code" value="/updateMem.do">修改員工<br>
-								<input type="checkbox" name="pass_code" value="/deleteMem.do">刪除員工<br>
-								<h4>員工維護</h4>
-								<input type="checkbox" name="pass_code" value="/getOneEmp.do">依照員工編號搜詢<br>
-								<input type="checkbox" name="pass_code" value="/getAllEmp.do">查詢全部員工<br>
-								<input type="checkbox" name="pass_code" value="/insertEmp.do">新增員工<br>
-								<input type="checkbox" name="pass_code" value="/getEmpByName.do">依照員工姓名搜詢
-								<br> <input type="checkbox" name="pass_code"
-									value="/updateDeleteEmp.do">修改刪除員工<br> <input
-									type="checkbox" name="pass_code" value="/updateEmp.do">修改員工<br>
-								<input type="checkbox" name="pass_code" value="/setPassCode.do">權限設定<br>
+								<input type="checkbox" name="pass_code" value="/addMem.jsp">新增會員<br>
+								<input type="checkbox" name="pass_code" value="/searchMem.jsp">搜尋會員<br>
+								<input type="checkbox" name="pass_code" value="/allForUpdateMem.do">修改會員<br>
+								<input type="checkbox" name="pass_code" value="/deleteMem.do">刪除會員<br>
+								<h4>員工資料維護</h4>
+								<input type="checkbox" name="pass_code" value="/searchEmp.jsp">查詢員工<br>
+								<input type="checkbox" name="pass_code" value="/addEmp.jsp">新增員工<br>
+								<input type="checkbox" name="pass_code" value="/SetPassCode.jsp">權限設定<br>
+								<input type="checkbox" name="pass_code" value="/updateDeleteEmp.do">修改刪除員工<br>
 								<h4>廠商資料維護</h4>
-								<input type="checkbox" name="pass_code" value="/getOneCom.do">依廠商編號搜尋<br>
-								<input type="checkbox" name="pass_code" value="/getComByName.do">依廠商名稱搜尋<br>
-								<input type="checkbox" name="pass_code" value="/getAllCom.do">搜尋全部廠商<br>
-								<input type="checkbox" name="pass_code" value="/insertCom.do">新增廠商<br>
-								<input type="checkbox" name="pass_code"
-									value="/updateDeleteCom.do">刪除修改廠商<br> <input
-									type="checkbox" name="pass_code" value="/updateCom.do">修改廠商<br>
+								<input type="checkbox" name="pass_code" value="/searchCom.jsp">搜尋廠商<br>
+								<input type="checkbox" name="pass_code" value="/addCom.jsp">新增廠商<br>
+								<input type="checkbox" name="pass_code" value="/updateDeleteCom.do">刪除修改廠商<br>
 
 								<h4>請購單維護</h4>
 								<input type="checkbox" name="pass_code" value="/insertReq.do">新增請購單<br>
@@ -371,27 +360,17 @@ if(request.getMethod().toUpperCase().equals("POST")){
 									id="button Toggle">
 
 							</form>
-							<table id="passTable" class="table table-bordered">
-								<thead>
-									<tr>
-										<th>權限</th>
-									</tr>
-								</thead>
-								<tbody></tbody>
-							</table>
 						</center>
 					</div>
 				</div>
 			</div>
 	</section> </section> </section>
+		<input type="hidden" name="shift" value="${SHIFT}">
+	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 	<script>
 		!window.jQuery
 				&& document
 						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>");
-		
-// 		$("input[name='pass_code']").prop("checked",true);
-						
-						
 	</script>
 
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
@@ -409,44 +388,6 @@ if(request.getMethod().toUpperCase().equals("POST")){
 	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
 		type="text/javascript"></script>
 	<script>
-		// 		$(function() {
-		// 			$('select').change(function() {
-		// 				var id = $(this).val()
-		// 				$.ajax({
-		// 					type : "post",
-		// 					url : "getOneEmp.do",
-		// 					data : {
-		// 						emp_id : id
-		// 					},
-		// 					success : function(data) {
-		// 						$.ajax({
-		// 							type: "post",
-		// 							url: "getOnePass.do",
-		// 							data: {},
-		// 							success: function(data) {
-		// 								$.each($.parseJSON(data), function() {
-		// 									alert($(this).pass_code.val());
-		// 								})						
-
-		// 							}
-		// 						});
-		// 					}
-		// 				});
-		// 			})
-		// 		});
-
-		//               				<c:forEach var="list" items="$(this).val()" varStatus="count">
-		//             alert(pass_code);
-		//               				</c:forEach>        	
-		//切換各自checkbox的勾選狀態
-		//             $(':checkbox[name="pass_code"]').each(function(){
-		//             	var b = !$(this).prop('checked');
-		//             	$(this).prop('checked',b);
-		//             });
-
-		// 	})
- 		
-
 		$('select').change(
 				function() {
 					$("input[name='pass_code']").prop("checked",false);
@@ -463,7 +404,7 @@ if(request.getMethod().toUpperCase().equals("POST")){
 // 					 			console.log( value);
 								if(value=="ALL"){
 									$("input[value='ALL']").prop("checked",true);
-								}else{
+								}else if(value!=null){
 
 					 			var psCodeArray= value.split(",");
 					 			for(i=0;i<psCodeArray.length;i++){
@@ -472,12 +413,6 @@ if(request.getMethod().toUpperCase().equals("POST")){
 					 			}
 								}
 					 		})
-
-// 							var cell = $("<td></td>").text(passCode.value);
-
-// 							var row = $("<tr></tr>").append(cell);
-
-// 							myBody.append(row);
 						});
 					})
 				})

@@ -435,7 +435,7 @@ public class Employee_Controller {
 
 		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
 			
-		return "redirect:/EMPLOYEE/AllEmp.jsp";
+		return "redirect:/EMPLOYEE/SetPassCode.jsp";
 	}
 	
 	
@@ -463,19 +463,6 @@ public class Employee_Controller {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//		List l1 = new LinkedList();
-//		for(EmpVO vo:list){
-//			Map m1 = new HashMap();
-//			m1.put("pass_code[i]", vo.getPass_code());
-//			l1.add(m1);
-//		}
-		
-// 		jsonArray=[{key,value},{,},...]
-//		[{"pass_code[i]":"ALL"},{"pass_code[i]":"ALL"},{"pass_code[i]":"/insertPur.do"},{"pass_code[i]":"/updateDeleteCom.do,/updateCom.do"},{"pass_code[i]":""},{"pass_code[i]":""},{"pass_code[i]":null}]
-		/*************************** * 3.完成,準備轉交(Send the Success view) ***********/
-			
-//		return "redirect:/EMPLOYEE/AllEmp.jsp";
-//		return JSONArray.toJSONString(jsonArray);
 	}
 	
 	

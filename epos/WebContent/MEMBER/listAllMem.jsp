@@ -91,7 +91,7 @@ table {
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="login.html">Logout</a>Hi , ${LoginOK.emp_name}</li>
+			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -193,7 +193,7 @@ table {
 		<nav class="nav navbar-default">
 		<div class="tab-content">
 			<ul class="nav navbar-nav">
-				<li><a href="member.jsp" class="glyphicon glyphicon-search">搜尋</A></li>
+				<li><a href="searchMem.jsp" class="glyphicon glyphicon-search">搜尋</A></li>
 				<li><a href="addMem.jsp" class="glyphicon glyphicon-file">新增</a></li>
 				<li><a style="background-color: rgba(172, 214, 255, 0.6);" class="glyphicon glyphicon-list-alt">查詢結果</a></li>
 			</ul>

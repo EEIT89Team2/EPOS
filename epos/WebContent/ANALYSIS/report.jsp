@@ -61,19 +61,18 @@
 <div class="titlelist">月總營業額分析</div>
 	<div class="col-lg-12 main">
 	<p class="distance">
-		<form method="post" class="oneshift form-horizontal style-form">
+		<form method="post" class="form-horizontal" role="form">
 			<div class="form-group">					
-				<label id="label" class="col-lg-1 col-lg-offset-2 control-label">十月:　</label>
+				<label id="label" class="col-lg-1 col-lg-offset-2 control-label">月份:　</label>
 				<div class="col-lg-2">
-<!-- 				<input type="button" name="open" value="開啟"  class="btn btn-theme02"> -->
-				<select id="sel">
-
-	<option >請選擇月份</option>
-	<option value="9">9月</option>
-	<option value="10">10月</option>
-	<option value="11">11月</option>
-</select>
-				</div><div class="col-lg-７"></div>
+					<select id="sel" class="form-control">
+						<option >請選擇月份</option>
+						<option value="9">9月</option>
+						<option value="10">10月</option>
+						<option value="11">11月</option>
+					</select>
+				</div>
+				<div class="col-lg-７"></div>
 			</div>
 		</form>
 	<p class="distance">
@@ -106,7 +105,7 @@ $("#sel").change(function(){
 					Price.push(Price1);
 					})
 //圖表塞入div_A
-					$('#container').highcharts({
+					$('#ten').highcharts({
 				        chart: {
 				            type: 'column'
 				        },

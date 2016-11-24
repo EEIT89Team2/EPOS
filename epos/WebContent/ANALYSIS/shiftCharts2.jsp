@@ -120,7 +120,7 @@
 						            text: '每日早班來客數'     
 						        },
 						        subtitle: {
-				 				  text: '範圍 :'+ $('input[name="date1"]').val() +'~' + $('input[name="date2"]').val()
+				 				  text: '範圍 :'+ $('input[name="date3"]').val() +'~' + $('input[name="date4"]').val()
 				 				},
 						        xAxis: {
 						        	title: {

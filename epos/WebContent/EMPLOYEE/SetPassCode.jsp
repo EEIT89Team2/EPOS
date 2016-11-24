@@ -257,81 +257,60 @@ if(request.getMethod().toUpperCase().equals("POST")){
 								<input type="checkbox" name="pass_code" value="/searchList.jsp">單筆查詢出貨單 <br> 
 								<input type="checkbox" name="pass_code" value="/AllShip.jsp">查詢全部出貨單<br> 
 								<h4>商品管理</h4>
-								<input type="checkbox" name="pass_code" value="/insertProd.do">新增商品<br> 
-								<input type="checkbox" name="pass_code" value="/updateDeleteProd.do">刪除修改商品 <br> 
-								<input type="checkbox" name="pass_code" value="/updateProd.do">修改商品<br> 
+								<input type="checkbox" name="pass_code" value="/InsertProd.jsp">新增商品<br> 
 								<input type="checkbox" name="pass_code" value="/getAllProd.do">查詢全部商品 <br> 
 								<input type="checkbox" name="pass_code" value="/getOneProd.do">依商品編號搜尋<br> 
 								<input type="checkbox" name="pass_code" value="/getProdByName.do">依商品名稱搜尋 <br> 
 								<input type="checkbox" name="pass_code" value="/getProdByGroup.do">依商品類別搜尋<br>
+								<input type="checkbox" name="pass_code" value="/updateDeleteProd.do">刪除修改商品 <br>
 								<h4>促銷商品管理</h4>
-								<input type="checkbox" name="pass_code" value="/insertProm.do">新增促銷品
-								<br> <input type="checkbox" name="pass_code"
-									value="/deleteProm.do">刪除促銷品 <br> <input
-									type="checkbox" name="pass_code" value="/updateProm.do">修改促銷品
-								<br> <input type="checkbox" name="pass_code"
-									value="/allProm.do">查尋全部促銷品 <br> <input
-									type="checkbox" name="pass_code" value="/namesProm.do">依促銷品編號搜尋
-								<br> <input type="checkbox" name="pass_code"
-									value="/datesProm.do">依促銷日期搜尋 <br> <input
-									type="checkbox" name="pass_code" value="/idsProm.do">依促銷編號範圍搜尋
-								<br>
+								<input type="checkbox" name="pass_code" value="/searchProm.jsp">查詢促銷品 <br> 
+								<input type="checkbox" name="pass_code" value="/addProm.jsp">新增促銷品<br> 
+								<input type="checkbox" name="pass_code"value="/deleteProm.do">刪除促銷品 <br> 
+								<input type="checkbox" name="pass_code" value="allForUpdateProm.do">修改促銷品<br>
 								<h4>退貨品管理</h4>
-								<input type="checkbox" name="pass_code" value="/insert_Item.do">新增退貨品
-								<br> <input type="checkbox" name="pass_code"
-									value="/delete_Item.do">刪除退貨品 <br> <input
-									type="checkbox" name="pass_code" value="/update_Item.do">修改退貨品
-								<br> <input type="checkbox" name="pass_code"
-									value="/getName_Item.do">依退貨品名稱搜尋 <br> <input
-									type="checkbox" name="pass_code" value="/getComId.do">依廠商編號搜尋
-								<br>
+								<input type="checkbox" name="pass_code" value="/insert_Item.do">新增退貨品<br> 
+								<input type="checkbox" name="pass_code" value="/searchItem.jsp">搜尋退貨品 <br> 
+								<input type="checkbox" name="pass_code" value="/delete_Item.do">刪除退貨品 <br> 
+								<input type="checkbox" name="pass_code" value="/update_Item.do">修改退貨品<br>
 								<h4>退貨單管理</h4>
-								<input type="checkbox" name="pass_code" value="/insert.do">新增退貨單
-								<br> <input type="checkbox" name="pass_code"
-									value="/delete.do">刪除退貨單 <br> <input
-									type="checkbox" name="pass_code" value="/update.do">修改退貨單
-								<br> <input type="checkbox" name="pass_code"
-									value="/getOne.do">依退貨單編號搜尋 <br> <input
-									type="checkbox" name="pass_code" value="/getOne.do">依退貨單編號搜尋
-								<br> <input type="checkbox" name="pass_code"
-									value="/getDate.do">依退貨單日期搜尋 <br> <input
-									type="checkbox" name="pass_code" value="/getDate.do">依退貨單日期搜尋
-								<br> <input type="checkbox" name="pass_code"
-									value="/getComName.do">依廠商名稱搜尋<br> <input
-									type="checkbox" name="pass_code" value="/getDetail.do">顯示退貨單明細<br>
+								<input type="checkbox" name="pass_code" value="/insert.do">新增退貨單<br> 
+								<input type="checkbox" name="pass_code" value="/searchList.jsp">單筆搜尋退貨單<br>
+								<input type="checkbox" name="pass_code" value="/AllList.jsp">搜尋全部退貨單<br> 
+								<input type="checkbox" name="pass_code" value="/Return_Detail.jsp">查看退貨單明細<br>
+								<input type="checkbox" name="pass_code" value="/delete.do">刪除退貨單 <br> 
+								<input type="checkbox" name="pass_code" value="/update.do">修改退貨單<br>
 								<h4>作廢發票管理</h4>
 								<input type="checkbox" name="pass_code" value="/insertInvo.do">新增作廢發票<br>
+								<input type="checkbox" name="pass_code" value="/searchinvo.jsp">依發票編號搜尋<br>
+								<input type="checkbox" name="pass_code" value="/listAllInvo.jsp">搜群全部作廢發票<br>
 								<input type="checkbox" name="pass_code" value="/deleteInvo.do">刪除作廢發票<br>
 								<input type="checkbox" name="pass_code" value="/updateInvo.do">修改作廢發票<br>
-								<input type="checkbox" name="pass_code" value="/updateInvo.do">搜群全部作廢發票<br>
-								<input type="checkbox" name="pass_code" value="/getOneinvo.do">依發票編號搜尋<br>
-								<input type="checkbox" name="pass_code" value="/getOneinvo.do">依發票編號搜尋<br>
 								<h4>班別報表維護</h4>
-								<input type="checkbox" name="pass_code"
-									value="/insertShiftre.do">新增班別報表<br> <input
-									type="checkbox" name="pass_code"
-									value="/updateDeleteShiftre.do">刪除班別報表<br> <input
-									type="checkbox" name="pass_code" value="/updateShiftre.do">修改班別報表<br>
-								<input type="checkbox" name="pass_code"
-									value="/updateShiftre.do">依班別報表搜尋<br> <input
-									type="checkbox" name="pass_code" value="/getAllShiftre.do">查詢全部<br>
-								<input type="checkbox" name="pass_code"
-									value="/getShiftreByDate.do">依日期搜尋<br>
+								<input type="checkbox" name="pass_code" value="/updateShiftre.do">依班別報表搜尋<br> 
+								<input type="checkbox" name="pass_code" value="/getAllShiftre.do">查詢全部<br>
+								<input type="checkbox" name="pass_code" value="/getShiftreByDate.do">依日期搜尋<br>
+								<input type="checkbox" name="pass_code" value="/insertShiftre.do">新增班別報表<br> 
+								<input type="checkbox" name="pass_code" value="/updateShiftre.do">修改班別報表<br>
+								<input type="checkbox" name="pass_code" value="/updateDeleteShiftre.do">刪除班別報表<br> 
 								<h4>折價券</h4>
-								<input type="checkbox" name="pass_code" value="/insertCpon.do">新增折價券<br>
-								<input type="checkbox" name="pass_code" value="/deleteCpon.do">刪除折價券<br>
-								<input type="checkbox" name="pass_code" value="/updateCpon.do">修改折價券<br>
 								<input type="checkbox" name="pass_code" value="/coupon.do">依折價券編號搜尋<br>
 								<input type="checkbox" name="pass_code" value="/namesCpon.do">依折價券名稱搜尋<br>
 								<input type="checkbox" name="pass_code" value="/dollarCpon.do">依折價券金額搜尋<br>
 								<input type="checkbox" name="pass_code" value="/datesCpon.do">依折價券日期搜尋<br>
 								<input type="checkbox" name="pass_code" value="/allCpon.do">查詢全部<br>
+								<input type="checkbox" name="pass_code" value="/insertCpon.do">新增折價券<br>
+								<input type="checkbox" name="pass_code" value="/updateCpon.do">修改折價券<br>
+								<input type="checkbox" name="pass_code" value="/deleteCpon.do">刪除折價券<br>
 								<h4>折扣管理</h4>
-								<input type="checkbox" name="pass_code" value="/insertDisc.do">新增折扣<br>
+								<input type="checkbox" name="pass_code" value="/search_disc.jsp">搜尋折扣<br>
+								<input type="checkbox" name="pass_code" value="/insertDic.jsp">新增折扣<br>
 								<input type="checkbox" name="pass_code" value="/deleteDisc.do">刪除折扣<br>
 								<input type="checkbox" name="pass_code" value="/updateDisc.do">修改折扣<br>
-								<input type="checkbox" name="pass_code" value="/disc.do">依折扣身分、%數搜尋<br>
-								<input type="checkbox" name="pass_code" value="/allDisc.do">查詢全部<br>
+								<h4>報表分析</h4>
+								<input type="checkbox" name="pass_code" value="/analysis.jsp">銷售報表分析<br>
+								<h4>顧客關係</h4>
+								<input type="checkbox" name="pass_code" value="/Mail.jsp">寄送系統<br>
 								<input type="submit" value="修改權限" class="btn btn-theme03"
 									id="button Toggle">
 

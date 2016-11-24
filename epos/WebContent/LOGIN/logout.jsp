@@ -11,8 +11,10 @@
 
 <c:set var="memberName" value="${ LoginOK.emp_name }" />
 
-<c:remove var="LoginOK" scope="session" />
-<c:remove var="SHIFT" scope="session" />
+<%-- <c:remove var="LoginOK" scope="session" /> --%>
+<%-- <c:remove var="SHIFT" scope="session" /> --%>
+
+<%session.invalidate(); %>
 
 <c:redirect url="index.jsp"/>
 </body> 

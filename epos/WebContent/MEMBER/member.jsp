@@ -57,8 +57,7 @@
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout"
-				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
+			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>

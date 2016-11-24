@@ -148,7 +148,8 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 					class=" fa fa-bar-chart-o"></i> <span>報表分析</span>
 			</a>
 				<ul class="sub">
-					<li><a href="morris.html">Morris</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/report.jsp">月營收</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/weatherCharts.jsp">商品排行榜</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
 					class="fa fa-users"></i> <span>顧客關係</span>
@@ -263,8 +264,8 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 		</div>
 	</div>
 	</section> </section></section>
-<%-- 	<input type="hidden" name="shift" value="${SHIFT}"> --%>
-<%-- 	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}"> --%>
+	<input type="hidden" name="shift" value="${SHIFT}">
+	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>

@@ -128,22 +128,30 @@
 			</td>
 			<td>
 				<form method="post" action="Querydetail_DeleteOrd.do">
+				<c:if test="${list.status!='D'}" >
 					<button type="submit" name="action" class="btn btn-danger" value="Revoke"><i class="glyphicon glyphicon-tags"></i></button>
+				</c:if>
 					<input type="hidden" name="ord_id" value="${list.ord_id}">
 					<input type="hidden" name="invoice_id" value="${list.invoice_id}">
 				</form>
 			</td>	
 		</tr>
-		<c:if test="${list.status=='D'}" >
-					<a href="<%=request.getContextPath()%>/ORDER/order.jsp">新增訂單</a>
+		<center>
+			<br>
+			<c:if test="${list.status=='D' && not empty oldOrd_id}" >
+						<a href="<%=request.getContextPath()%>/ORDER/order.jsp" class="btn btn-success">部分退貨</a>
+						
+						<a href="<%=request.getContextPath()%>/ORDER/removeSession2.jsp" class="btn btn-info">全部退貨</a>
+					
 		</c:if>
 <%-- 							<a href="<c:url value="order.jsp" />">新增訂單</a> --%>
-		
+		</center>
 </c:forEach>
 	</table>
 
-		<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>
-
+<!-- 		<a href="javascript:" onclick="history.back(); "><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a> -->
+		<a href="<%=request.getContextPath()%>/ORDER/removeSession.jsp"><i class="glyphicon glyphicon-arrow-left"></i>　回上頁</a>
+		
 
 	
 <script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>

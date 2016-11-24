@@ -228,12 +228,14 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 								<th>會員編號</th>
 								<th>信箱</th>
 							</tr>
+						<c:if test="${not empty list1}">	
 							<c:forEach var="list" items="${list1}">
 								<tr align='center' valign='middle'>
 									<td>${list.key}</td>
 									<td>${list.value.mem_mail}</td>
 								</tr>
 							</c:forEach>
+							</c:if>
 						</table>
 						<a
 							href="<c:out value='${pageContext.request.contextPath}' />/MAIL/Mail.jsp">回上頁</a>
@@ -248,12 +250,14 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 								<th>會員編號</th>
 								<th>信箱</th>
 							</tr>
-							<c:forEach var="list" items="${list}">
+							<c:if test="${not empty listMail}">
+							<c:forEach var="list" items="${listMail}">
 								<tr align='center' valign='middle'>
 									<td>${list.mem_id}</td>
 									<td>${list.mem_mail}</td>
 								</tr>
 							</c:forEach>
+							</c:if>
 						</table>
 						<a
 							href="<c:out value='${pageContext.request.contextPath}' />/MAIL/Mail.jsp">回上頁</a>

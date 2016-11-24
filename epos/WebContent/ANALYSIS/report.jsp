@@ -63,7 +63,7 @@
 	<p class="distance">
 		<form method="post" class="form-horizontal" role="form">
 			<div class="form-group">					
-				<label id="label" class="col-lg-1 col-lg-offset-2 control-label">十月:　</label>
+				<label id="label" class="col-lg-1 col-lg-offset-2 control-label">月份:　</label>
 				<div class="col-lg-2">
 					<select id="sel" class="form-control">
 						<option >請選擇月份</option>

@@ -94,7 +94,7 @@ input {
 							id="theDate" style="width: 200px;"></td>
 					</tr>
 					<tr>
-						<td>&nbsp;&nbsp;廠商名稱：<input type="text" name="com_id"
+						<td>&nbsp;&nbsp;廠商編號：<input type="text" name="com_id"
 							value="${ComVO.com_id }" readonly="readonly" />
 						</td>
 					</tr>

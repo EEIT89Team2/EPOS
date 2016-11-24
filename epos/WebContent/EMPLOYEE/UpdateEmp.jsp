@@ -167,7 +167,7 @@
 			<nav class="nav navbar-default">
 			<div class="tab-content">
 				<ul class="nav navbar-nav">
-					<li><a href="employee.jsp" class="glyphicon glyphicon-search">搜尋</a></li>
+					<li><a href="searchEmp.jsp" class="glyphicon glyphicon-search">搜尋</a></li>
 					<li><a href="addEmp.jsp" class="glyphicon glyphicon-file">新增</a></li>
 					<li><a href="SetPassCode.jsp" class="glyphicon glyphicon-lock">修改權限</a></li>
 					<li><a style="background-color: rgba(172, 214, 255, 0.6);"
@@ -287,7 +287,10 @@
 			</div>
 		</div>
 	</div>
-	</section> </section> <script
+	</section> </section> 
+		<input type="hidden" name="shift" value="${SHIFT}">
+	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
+	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
 		!window.jQuery

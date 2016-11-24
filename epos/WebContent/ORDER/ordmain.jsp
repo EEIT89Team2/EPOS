@@ -152,7 +152,8 @@
 					class=" fa fa-bar-chart-o"></i> <span>報表分析</span>
 			</a>
 				<ul class="sub">
-					<li><a href="morris.html">Morris</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/report.jsp">月營收</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/weatherCharts.jsp">商品排行榜</a></li>
 				</ul></li>
 
 		</ul>
@@ -188,7 +189,6 @@
 </div>
 </div>
 
-<a href="<%=request.getContextPath()%>/ORDER/report.jsp">班別報表維護</a>	
 </section> </section> </section>
 <!---------------------------------------------------- JS -------------------------------------------------------------------->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

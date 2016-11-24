@@ -37,6 +37,7 @@ public class login_Servlet extends HttpServlet {
 		System.out.println("login.do");
 
 		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(86400);
 		Map<String, String> errorMsgMap = new HashMap<String, String>();
 		request.setAttribute("ErrorMsgKey", errorMsgMap);
 

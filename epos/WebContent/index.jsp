@@ -37,8 +37,8 @@
 
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-
-		<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>歡迎使用ePOS</li>						</ul>
+					<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>歡迎使用ePOS</li>
+				</ul>
 			</div>
 		</header>
 		<!--header end-->
@@ -54,21 +54,17 @@
 					</p>
 					<h5 class="centered">ePOS</h5>
 
-					<li class="mt"><a class="active"
-				href="<%=request.getContextPath()%>/ORDER/order.jsp"> <i
-					class="fa fa-dashboard"></i> <span>收銀結帳</span>
-			</a></li>
+					<li class="mt"><a class="active" href="<%=request.getContextPath()%>/ORDER/order.jsp"> <i
+					class="fa fa-dashboard"></i> <span>收銀結帳</span></a></li>
 
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-desktop"></i> <span>基本資料維護</span>
+					<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-desktop"></i> <span>基本資料維護</span>
 					</a>
 						<ul class="sub">
 							<li><a href="MEMBER/member.jsp">會員資料維護</a></li>
 							<li><a href="EMPLOYEE/employee.jsp">員工資料維護</a></li>
 							<li><a href="COMPANY/company.jsp">廠商資料維護</a></li>
 						</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-edit"></i> <span>進貨作業</span>
+					<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-edit"></i> <span>進貨作業</span>
 					</a>
 						<ul class="sub">
 							<li><a href="REQUISITION/requisition.jsp">請購單維護</a></li>
@@ -84,37 +80,32 @@
 							<li><a href="ORDER/ordmain.jsp">訂單維護</a></li>
 							<li><a href="SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 						</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-book"></i> <span>存貨作業</span>
+					<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-book"></i> <span>存貨作業</span>
 					</a>
 						<ul class="sub">
 							<li><a href="PRODUCT/product.jsp">商品管理</a></li>
 							<li><a href="PROMOTING/promoting.jsp">促銷商品管理</a></li>
 						</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="glyphicon glyphicon-log-out"></i> <span>退貨作業</span>
+					<li class="sub-menu"><a href="javascript:;"> <i class="glyphicon glyphicon-log-out"></i> <span>退貨作業</span>
 					</a>
 						<ul class="sub">
 							<li><a href="RETURNS/Return_Items.jsp">退貨品管理</a></li>
 							<li><a href="RETURNS/ReturnList.jsp">退貨單管理</a></li>
 							<li><a href="INVO/select_page.jsp">作廢發票管理</a></li>
 						</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-usd"></i> <span>金流管理</span>
+					<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-usd"></i> <span>金流管理</span>
 					</a>
 						<ul class="sub">
 							<li><a href="SHIFTREPORT/shiftreport.jsp">班別報表維護</a></li>
 							<li><a href="COUPON/coupon.jsp">折價券</a></li>
 							<li><a href="DISCOUNT/discount.jsp">折扣管理</a></li>
 						</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa fa-bar-chart-o"></i> <span>報表分析</span>
+					<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-usd"></i> <span>報表分析</span>
 					</a>
-						<ul class="sub">
-							<li><a href="ORDER/report.jsp">Report</a></li>
-						</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-users"></i> <span>顧客關係</span>
+					<ul class="sub">
+						<li><a href="<%=request.getContextPath()%>/ANALYSIS/analysis.jsp">銷售報表分析</a></li>
+					</ul></li>
+					<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-users"></i> <span>顧客關係</span>
 					</a>
 						<ul class="sub">
 							<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>

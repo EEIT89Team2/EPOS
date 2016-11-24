@@ -26,18 +26,6 @@
 .navbar-default {
 	background: #D2E9FF;
 }
-
-.titlelist {
-	font-family: '微軟正黑體';
-	font-weight: bold;
-	color: white;
-	height: 35px;
-	background: #66B3FF;
-	padding-left: 10px;
-	font-size: 23px;
-	border-radius: 2px;
-}
-
 .glyphicon {
 	top: auto;
 }
@@ -144,7 +132,8 @@
 					class=" fa fa-bar-chart-o"></i> <span>報表分析</span>
 			</a>
 				<ul class="sub">
-					<li><a href="morris.html">Morris</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/report.jsp">月營收</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/weatherCharts.jsp">商品排行榜</a></li>
 				</ul></li>
 <li class="sub-menu"><a href="javascript:;"> <i
      class="fa fa-users"></i> <span>顧客關係</span>
@@ -162,7 +151,7 @@
 			<nav class="nav navbar-default">
 			<div class="tab-content">
 				<ul class="nav navbar-nav">
-					<li><a style="background-color: rgba(172, 214, 255, 0.6);"
+					<li><a href="searchEmp.jsp"
 						class="glyphicon glyphicon-search">搜尋</a></li>
 					<li><a href="addEmp.jsp" class="glyphicon glyphicon-file">新增</a></li>
 					<li><a href="SetPassCode.jsp" class="glyphicon glyphicon-lock">修改權限</a></li>
@@ -170,65 +159,11 @@
 				</ul>
 			</div>
 			</nav>
-			<div class="tab-content">
-				<div>
-					<div class="titlelist">查詢員工資料</div>
-					<div class="col-lg-12  main">
-						<p>
-					<%-- 錯誤表列 --%>
-					<c:if test="${not empty errorMsgs}">
-						<font color='red'>
-							<ul>
-								<c:forEach var="message" items="${errorMsgs}">
-									<li>${message}</li>
-								</c:forEach>
-							</ul>
-						</font>
-					</c:if>
-						<form method="post" action="getOneEmp.do" id="empId"
-							class="form-horizontal style-form" role="form">
-							<div class="form-group">
-								<div class="col-lg-3"></div>
-								<label class="col-lg-2 control-label">依員工編號搜尋</label>
-								<div class="col-lg-2">
-									<input type="text" name="emp_id">
-								</div>
-								<div class="col-lg-2">
-									<input type="submit" value="依員工編號搜尋" class="btn btn-theme03">
-								</div>
-							</div>
-						</form>
-						<form METHOD="post" ACTION="getEmpByName.do" id="name"
-							class="form-horizontal style-form">
-							<div class="form-group">
-								<div class="col-lg-3"></div>
-								<label class="col-lg-2 control-label">姓名關鍵字查詢</label>
-								<div class="col-lg-2">
-									<input type="text" name="emp_name"><br>
-								</div>
-								<div class="col-lg-2">
-									<input type="submit" value="姓名關鍵字查詢" class="btn btn-theme03">
-								</div>
-							</div>
-						</form>
-						<form METHOD="post" ACTION="getAllEmp.do" id="all"
-							class="form-horizontal style-form">
-							<div class="form-group">
-								<div class="col-lg-3"></div>
-								<label class="col-lg-2 control-label">查詢全部</label>
-								<div class="col-lg-2"></div>
-								<div class="col-lg-2">
-									<input type="submit" value="查詢全部" class="btn btn-theme03">
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	</section> </section> </section>
-
+	<input type="hidden" name="shift" value="${SHIFT}">
+	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>

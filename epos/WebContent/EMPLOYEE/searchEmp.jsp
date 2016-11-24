@@ -1,7 +1,7 @@
-<%@page import="com.member.model.MemberService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,8 +21,7 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-
-<title>會員</title>
+<title>員工</title>
 <style>
 .navbar-default {
 	background: #D2E9FF;
@@ -42,10 +41,18 @@
 .glyphicon {
 	top: auto;
 }
+.my-valid-class {
+	color: #3a51e8;
+}
+
+.my-error-class {
+	color: red;
+}
 </style>
 </head>
-
 <body>
+	<jsp:useBean id="empSvc" scope="page"
+		class="com.employee.model.EmpService" />
 	<section id="container"> <!--header start--> <header
 		class="header black-bg">
 	<div class="sidebar-toggle-box">
@@ -81,9 +88,8 @@
 					<i class="fa fa-desktop"></i> <span>基本資料維護</span>
 			</a>
 				<ul class="sub">
+					<li><a href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
 					<li class="active"><a
-						href="<%=request.getContextPath()%>/MEMBER/member.jsp">會員資料維護</a></li>
-					<li><a
 						href="<%=request.getContextPath()%>/EMPLOYEE/employee.jsp">員工資料維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/COMPANY/company.jsp">廠商資料維護</a></li>
@@ -147,12 +153,12 @@
 					<li><a href="<%=request.getContextPath()%>/ORDER/report.jsp">月營收</a></li>
 					<li><a href="<%=request.getContextPath()%>/ORDER/weatherCharts.jsp">商品排行榜</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i
-					class="fa fa-users"></i> <span>顧客關係</span>
-			</a>
-				<ul class="sub">
-					<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
-				</ul></li>
+<li class="sub-menu"><a href="javascript:;"> <i
+     class="fa fa-users"></i> <span>顧客關係</span>
+   </a>
+    <ul class="sub">
+     <li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+    </ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
@@ -163,13 +169,70 @@
 			<nav class="nav navbar-default">
 			<div class="tab-content">
 				<ul class="nav navbar-nav">
-					<li><a href="searchMem.jsp"
-						class="glyphicon glyphicon-search">搜尋</A></li>
-					<li><a href="addMem.jsp" class="glyphicon glyphicon-file">新增</a></li>
+					<li><a style="background-color: rgba(172, 214, 255, 0.6);"
+						class="glyphicon glyphicon-search">搜尋</a></li>
+					<li><a href="addEmp.jsp" class="glyphicon glyphicon-file">新增</a></li>
+					<li><a href="SetPassCode.jsp" class="glyphicon glyphicon-lock">修改權限</a></li>
 					<li><a href="#" class="glyphicon glyphicon-list-alt">查詢結果</a></li>
 				</ul>
 			</div>
 			</nav>
+			<div class="tab-content">
+				<div>
+					<div class="titlelist">查詢員工資料</div>
+					<div class="col-lg-12  main">
+						<p>
+					<%-- 錯誤表列 --%>
+					<c:if test="${not empty errorMsgs}">
+						<font color='red'>
+							<ul>
+								<c:forEach var="message" items="${errorMsgs}">
+									<li>${message}</li>
+								</c:forEach>
+							</ul>
+						</font>
+					</c:if>
+						<form method="post" action="getOneEmp.do" id="empId"
+							class="form-horizontal style-form" role="form">
+							<div class="form-group">
+								<div class="col-lg-3"></div>
+								<label class="col-lg-2 control-label">依員工編號搜尋</label>
+								<div class="col-lg-2">
+									<input type="text" name="emp_id">
+								</div>
+								<div class="col-lg-2">
+									<input type="submit" value="依員工編號搜尋" class="btn btn-theme03">
+								</div>
+							</div>
+						</form>
+						<form METHOD="post" ACTION="getEmpByName.do" id="name"
+							class="form-horizontal style-form">
+							<div class="form-group">
+								<div class="col-lg-3"></div>
+								<label class="col-lg-2 control-label">姓名關鍵字查詢</label>
+								<div class="col-lg-2">
+									<input type="text" name="emp_name"><br>
+								</div>
+								<div class="col-lg-2">
+									<input type="submit" value="姓名關鍵字查詢" class="btn btn-theme03">
+								</div>
+							</div>
+						</form>
+						<form METHOD="post" ACTION="getAllEmp.do" id="all"
+							class="form-horizontal style-form">
+							<div class="form-group">
+								<div class="col-lg-3"></div>
+								<label class="col-lg-2 control-label">查詢全部</label>
+								<div class="col-lg-2"></div>
+								<div class="col-lg-2">
+									<input type="submit" value="查詢全部" class="btn btn-theme03">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	</section> </section> </section>
 	<input type="hidden" name="shift" value="${SHIFT}">
@@ -189,10 +252,46 @@
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"
 		type="text/javascript"></script>
-	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
-		type="text/javascript"></script>
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
+	<!------------------------------------------------ 程式 --------------------------------------------------------------->
+	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
+		type="text/javascript"></script>
+		<script>
+			// -----------------------------------驗證-------------------------------------------
+			$("#empId").validate({
+				// 				success : function(label) {
+				// 					label.text("【正確】")
+				// 				},
+				errorClass : "my-error-class",
+				validClass : "my-valid-class",
 
+				rules : {
+					emp_id : {required : true}
+				},
+				messages : {
+					emp_id : {
+						required : "【請輸入員工編號】"
+					}
+				}
+			})
+			$("#name").validate({
+				// 				success : function(label) {
+				// 					label.text("【正確】")
+				// 				},
+				errorClass : "my-error-class",
+				validClass : "my-valid-class",
+
+				rules : {
+					emp_name : {required : true}
+				},
+				messages : {
+					emp_name : {
+						required : "【請輸入員工姓名】"
+					}
+				}
+			})
+			
+	</script>
 </body>
 </html>

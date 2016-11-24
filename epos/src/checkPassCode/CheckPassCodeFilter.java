@@ -20,7 +20,17 @@ import com.employee.model.EmpVO;
 		"/REQUISITION/addReq.jsp",
 		"/REQUISITION/SelectReq.jsp",
 		"/DISCOUNT/updateDisc.do",
-		"/MEMBER/deleteMem.do"
+		"/MEMBER/deleteMem.do",
+		"/MEMBER/addMem.jsp",
+		"/MEMBER/searchMem.jsp",
+		"/MEMBER/allForUpdateMem.do",
+		"/EMPLOYEE/searchEmp.jsp",
+		"/EMPLOYEE/addEmp.jsp",
+		"/EMPLOYEE/SetPassCode.jsp",
+		"/EMPLOYEE/updateDeleteEmp.do",
+		"/COMPANY/searchCom.jsp",
+		"/COMPANY/addCom.jsp",
+		"/COMPANY/updateDeleteCom.do"
 })
 //@WebFilter(urlPatterns = {"/*"})
 public class CheckPassCodeFilter implements Filter {
@@ -50,7 +60,7 @@ public class CheckPassCodeFilter implements Filter {
 				requestURI = (String) req.getSession().getAttribute("requestURI");
 				System.out.println(requestURI);
 				
-				resp.sendRedirect("index.jsp");
+				resp.sendRedirect("javascript:'onclick='history.back(); ");
 				System.out.println("沒有權限");
 			}						
 		}		

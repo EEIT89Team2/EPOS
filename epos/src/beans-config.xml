@@ -214,6 +214,7 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
             <tx:method name="getIds" read-only="true"/>
             <tx:method name="getDates" read-only="true"/>
             <tx:method name="getNames" read-only="true"/>
+        
 <!--             ===================================================== -->
 
        </tx:attributes>

@@ -206,6 +206,7 @@ public class OrderSpringDAO implements Order_Interface {
 		return list;
 	}
 	
+
 	@Override
 	public List<OrderVO> getOrdPrice() {
 		List<OrderVO> list = new ArrayList<OrderVO>();
@@ -215,5 +216,6 @@ public class OrderSpringDAO implements Order_Interface {
 		return list;
 
 	}
+	
 
 }

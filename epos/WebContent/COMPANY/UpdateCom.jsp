@@ -168,7 +168,7 @@
 			<nav class="nav navbar-default">
 			<div class="tab-content">
 				<ul class="nav navbar-nav">
-					<li><a href="company.jsp" class="glyphicon glyphicon-search">搜尋</a></li>
+					<li><a href="searchCom.jsp" class="glyphicon glyphicon-search">搜尋</a></li>
 					<li><a href="addCom.jsp" class="glyphicon glyphicon-file">新增</a></li>
 					<li><a style="background-color: rgba(172, 214, 255, 0.6);"
 						class="glyphicon glyphicon-list-alt">查詢結果</a></li>

@@ -21,23 +21,11 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>搜尋廠商</title>
+<title>廠商</title>
 <style>
 .navbar-default {
 	background: #D2E9FF;
 }
-
-.titlelist {
-	font-family: '微軟正黑體';
-	font-weight: bold;
-	color: white;
-	height: 35px;
-	background: #66B3FF;
-	padding-left: 10px;
-	font-size: 23px;
-	border-radius: 2px;
-}
-
 .glyphicon {
 	top: auto;
 }
@@ -141,7 +129,8 @@
 					class=" fa fa-bar-chart-o"></i> <span>報表分析</span>
 			</a>
 				<ul class="sub">
-					<li><a href="morris.html">Morris</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/report.jsp">月營收</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/weatherCharts.jsp">商品排行榜</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
 					class="fa fa-users"></i> <span>顧客關係</span>
@@ -160,68 +149,13 @@
 			<nav class="nav navbar-default">
 			<div class="tab-content">
 				<ul class="nav navbar-nav">
-					<li><a style="background-color: rgba(172, 214, 255, 0.6);"
+					<li><a href="searchCom.jsp"
 						class="glyphicon glyphicon-search">搜尋</a></li>
 					<li><a href="addCom.jsp" class="glyphicon glyphicon-file">新增</a></li>
 					<li><a href="#" class="glyphicon glyphicon-list-alt">查詢結果</a></li>
 				</ul>
 			</div>
 			</nav>
-			<div class="tab-content">
-				<div>
-					<div class="titlelist">查詢廠商資料</div>
-					<div class="col-lg-12  main">
-						<p>
-							<%-- 錯誤表列 --%>
-							<c:if test="${not empty param.message}">
-								<font color='red'>請修正以下錯誤:
-									<ul>
-										<c:forEach var="message" items="${param.message}">
-											<li>${message}</li>
-										</c:forEach>
-									</ul>
-								</font>
-							</c:if>
-						<form method="post" action="getOneCom.do"
-							class="form-horizontal style-form">
-							<div class="form-group">
-								<div class="col-lg-3"></div>
-								<label class="col-lg-2 control-label">依廠商編號搜尋</label>
-								<div class="col-lg-2">
-									<input type="text" name="com_id">
-								</div>
-								<div class="col-lg-2">
-									<input type="submit" value="依廠商編號搜尋" class="btn  btn-theme03">
-								</div>
-							</div>
-						</form>
-						<form method="post" action="getComByName.do"
-							class="form-horizontal style-form">
-							<div class="form-group">
-								<div class="col-lg-3"></div>
-								<label class="col-lg-2 control-label">依廠商名稱搜尋</label>
-								<div class="col-lg-2">
-									<input type="text" name="com_name"><br>
-								</div>
-								<div class="col-lg-2">
-									<input type="submit" value="依廠商名稱搜尋" class="btn  btn-theme03">
-								</div>
-							</div>
-						</form>
-						<form method="post" action="getAllCom.do"
-							class="form-horizontal style-form">
-							<div class="form-group">
-								<div class="col-lg-3"></div>
-								<label class="col-lg-2 control-label">查詢全部</label>
-								<div class="col-lg-2"></div>
-								<div class="col-lg-2">
-									<input type="submit" value="查詢全部" class="btn  btn-theme03">
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	</section> </section> </section>

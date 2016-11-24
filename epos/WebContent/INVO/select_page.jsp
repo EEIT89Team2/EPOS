@@ -198,7 +198,8 @@
 					class=" fa fa-bar-chart-o"></i> <span>報表分析</span>
 			</a>
 				<ul class="sub">
-					<li><a href="morris.html">Morris</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/report.jsp">月營收</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/weatherCharts.jsp">商品排行榜</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
 					class="fa fa-users"></i> <span>顧客關係</span>
@@ -229,11 +230,11 @@
 
 			<FORM id="invoform" METHOD="post" ACTION="insertInvo.do" class="form-inline">
 				<div class="form-group">
-					<label for="exampleInputName2">　發票編號:</label> <input type="text"
+					<label for="exampleInputName2">　作廢發票編號:</label> <input type="text"
 						name="invoice_id" class="form-control" value="${oldInvoice_id}" readonly>
 				</div> 　　
 				<div class="form-group">
-					<label for="exampleInputName2">訂單編號:</label> <input type="text"
+					<label for="exampleInputName2">註銷訂單編號:</label> <input type="text"
 						name="ord_id" class="form-control" value="${oldOrd_id}" readonly>
 				</div>　　
 				<div class="form-group">
@@ -259,8 +260,8 @@
 			<table id="table1" class="table table-bordered table-striped table-hover">
 				<thead>
 					<tr>
-						<td align='center'>發票編號</td>
-						<td align='center'>訂單編號</td>
+						<td align='center'>作廢發票編號</td>
+						<td align='center'>註銷訂單編號</td>
 						<td align='center'>新發票號碼</td>
 						<td align='center'>新訂單編號</td>
 						<td align='center'>修改</td>

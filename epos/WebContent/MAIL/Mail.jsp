@@ -56,7 +56,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 		<div class="fa fa-bars tooltips" data-placement="right"
 			data-original-title="Toggle Navigation"></div>
 	</div>
-	<!--logo start--> <a href="index.jsp" class="logo"><b>ePOS</b></a> <!--logo end-->
+	<!--logo start--> <a href="<%=request.getContextPath()%>/index.jsp" class="logo"><b>ePOS</b></a> <!--logo end-->
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">

@@ -268,7 +268,7 @@ public class Shiftreport_Controller {
 	}
 	/*************************** * 圖表json區 ***********/
 	//日期範圍+班別查詢全部(json)
-	@RequestMapping(method = RequestMethod.POST, value = "/SHIFTREPORT/alljson.do")
+	@RequestMapping(method = RequestMethod.POST, value = "/ANALYSIS/alljson.do")
 	public void getAllDiscJson(ModelMap model,HttpServletRequest request,
 			@RequestParam("shift") String shift,
 			@RequestParam("date1") Date date1,

@@ -260,7 +260,7 @@ print(text)
 			<h5 class="centered">ePOS</h5>
 
 			<li class="mt"><a
-				href="<%=request.getContextPath()%>/ORDER/order.jsp"> <i
+				href="<%=request.getContextPath()%>/ORDER/order.jsp" class="active"> <i
 					class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
 
@@ -286,7 +286,7 @@ print(text)
 					<li><a
 						href="<%=request.getContextPath()%>/BILL_OF_PURCHASE/bop.jsp">進貨單維護</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;" class="active"> <i
+			<li class="sub-menu"><a href="javascript:;"> <i
 					class="glyphicon glyphicon-shopping-cart"></i> <span>銷貨系統</span>
 			</a>
 				<ul class="sub">

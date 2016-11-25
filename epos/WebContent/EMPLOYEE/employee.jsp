@@ -128,13 +128,11 @@
 					<li><a
 						href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">折扣管理</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i
-					class=" fa fa-bar-chart-o"></i> <span>報表分析</span>
-			</a>
-				<ul class="sub">
-					<li><a href="<%=request.getContextPath()%>/ORDER/report.jsp">月營收</a></li>
-					<li><a href="<%=request.getContextPath()%>/ORDER/weatherCharts.jsp">商品排行榜</a></li>
-				</ul></li>
+			<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-usd"></i> <span>報表分析</span>
+					</a>
+					<ul class="sub">
+						<li><a href="<%=request.getContextPath()%>/ANALYSIS/analysis.jsp">銷售報表分析</a></li>
+					</ul></li>
 <li class="sub-menu"><a href="javascript:;"> <i
      class="fa fa-users"></i> <span>顧客關係</span>
    </a>

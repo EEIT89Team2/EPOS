@@ -96,7 +96,7 @@ body {
 						<td>金額小計</td>
 
 					</tr>
-					<c:forEach var="detailVO" items="${bopVO.bops}" varStatus="status">
+					<c:forEach var="detailVO" items="${bopDeatil}" varStatus="status">
 						<tr>
 							<td>${status.count}</td>
 							<td><input type="text" name="prod_id${status.count }"

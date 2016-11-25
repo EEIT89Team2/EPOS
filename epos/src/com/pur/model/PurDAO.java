@@ -14,6 +14,7 @@ import com.pur_detail.model.Pur_detailVO;
 public class PurDAO implements Pur_Interface {
 	
 	private static final String GETALL = "from PurVO order by pur_id";
+	private static final String GET_DETAIL_ALL = "from Pur_detailVO where pur_id=?";
 	
 	private static final String GET_ALL_COM = "from ComVO order by com_id";
 	
@@ -70,9 +71,10 @@ public class PurDAO implements Pur_Interface {
 	}
 
 	@Override
-	public Set<Pur_detailVO> findDetailByPrimaryKey(String pur_id) {
+	public List<Pur_detailVO> findDetailByPrimaryKey(String pur_id) {
 		// TODO Auto-generated method stub
-		Set<Pur_detailVO> set = findByPrimaryKey(pur_id).getPurs();
+//		Set<Pur_detailVO> set = findByPrimaryKey(pur_id).getPurs();
+		List<Pur_detailVO> set = hibernateTemplate.find(GET_DETAIL_ALL,pur_id);
 		return set;
 	}
 

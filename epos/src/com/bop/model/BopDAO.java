@@ -13,6 +13,7 @@ import com.pur.model.PurVO;
 public class BopDAO implements Bop_Interface {
 	
 	private static final String GETALL = "from BopVO order by bop_id";
+	private static final String GET_DETAIL_BOPID = "from Bop_detailVO where bop_id=?";
 	private static final String SELECT_OF_Y = "from PurVO where status = 'Y'";
 	private static final String FIND_BY_DATE ="from BopVO where key_date between ? and ? ";
 	private static final String SELECT_OF_N = "from BopVO where status = 'N'";
@@ -63,9 +64,10 @@ public class BopDAO implements Bop_Interface {
 	}
 
 	@Override
-	public Set<Bop_detailVO> findDetailByPrimaryKey(String bop_id) {
+	public List<Bop_detailVO> findDetailByPrimaryKey(String bop_id) {
 		// TODO Auto-generated method stub
-		Set<Bop_detailVO> set = findByPrimaryKey(bop_id).getBops();
+//		Set<Bop_detailVO> set = findByPrimaryKey(bop_id).getBops();
+		List<Bop_detailVO> set=hibernateTemplate.find(GET_DETAIL_BOPID,bop_id);
 		return set;
 	}
 

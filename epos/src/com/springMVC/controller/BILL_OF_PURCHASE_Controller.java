@@ -22,7 +22,9 @@ import com.bop.model.BopVO;
 import com.bop_detail.model.Bop_detailVO;
 import com.product.model.ProdService;
 import com.product.model.ProdVO;
+import com.pur.model.PurService;
 import com.pur.model.PurVO;
+import com.pur_detail.model.Pur_detailVO;
 
 import gvjava.org.json.JSONArray;
 import gvjava.org.json.JSONObject;
@@ -32,6 +34,7 @@ public class BILL_OF_PURCHASE_Controller {
 
 	private final static BopService bopSvc = new BopService();
 	private final static ProdService prodSvc = new ProdService();
+	private final static PurService purSvc=new PurService();
 	
 	@RequestMapping(method = RequestMethod.POST, value = {"/BILL_OF_PURCHASE/analyze.do"})
 	public String selectOfS(ModelMap model) throws Exception {
@@ -174,31 +177,41 @@ public class BILL_OF_PURCHASE_Controller {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/BILL_OF_PURCHASE/getOneBop.do" })
-	public String getOneBop(ModelMap model, String bop_id) throws Exception {
+	public String getOneBop(ModelMap model, String bop_id,HttpServletRequest request) throws Exception {
 		BopVO bopVO = bopSvc.getOneBop(bop_id);
-		model.addAttribute("bopVO", bopVO);
+		List<Bop_detailVO> bopDeatil = bopSvc.getBopDetail(bop_id);
+		request.setAttribute("bopVO", bopVO);
+		request.setAttribute("bopDeatil", bopDeatil);
 		return "BILL_OF_PURCHASE/SelectBOP";
 
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/BILL_OF_PURCHASE/getOneBopOfN.do" })
-	public String getOneBopOfN(ModelMap model, String bop_id) throws Exception {
+	public String getOneBopOfN(ModelMap model, String bop_id,HttpServletRequest request) throws Exception {
 		BopVO bopVO = bopSvc.getOneBop(bop_id);
-		model.addAttribute("bopVO", bopVO);
+		List<Bop_detailVO> bopDeatil = bopSvc.getBopDetail(bop_id);
+		request.setAttribute("bopVO", bopVO);
+		request.setAttribute("bopDeatil", bopDeatil);
 		return "BILL_OF_PURCHASE/selectOfN";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/BILL_OF_PURCHASE/getOneBopOfY.do" })
-	public String getOneBopOfY(ModelMap model, String bop_id) throws Exception {
+	public String getOneBopOfY(ModelMap model, String bop_id,HttpServletRequest request) throws Exception {
 		BopVO bopVO = bopSvc.getOneBop(bop_id);
-		model.addAttribute("bopVO", bopVO);
+		List<Bop_detailVO> bopDeatil = bopSvc.getBopDetail(bop_id);
+		request.setAttribute("bopVO", bopVO);
+		request.setAttribute("bopDeatil", bopDeatil);		
 		return "BILL_OF_PURCHASE/SelectOfY";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/BILL_OF_PURCHASE/getThePur.do" })
-	public String getThePur(ModelMap model, String pur_id) throws Exception {
+	public String getThePur(ModelMap model, String pur_id,HttpServletRequest request) throws Exception {
 		PurVO purVO = bopSvc.getThePur(pur_id);
-		model.addAttribute("purVO", purVO);
+		List<Pur_detailVO> purDetail = purSvc.getPurDetail(pur_id);
+		
+		request.setAttribute("purVO", purVO);
+		request.setAttribute("purDetail", purDetail);
+
 		return "BILL_OF_PURCHASE/addBOP1";
 	}
 
@@ -481,7 +494,7 @@ public class BILL_OF_PURCHASE_Controller {
 			@RequestParam("prod_id") String prod_id, @RequestParam("bop_id") String bop_id) {
 		/*************************** 2.開始查詢資料 ***************************************/
 		bopSvc.deleteDetail(bop_id, prod_id);
-		Set<Bop_detailVO> detailList = bopSvc.getBopDetail(bop_id);
+		List<Bop_detailVO> detailList = bopSvc.getBopDetail(bop_id);
 		BopVO bopVO = bopSvc.getOneBop(bop_id);
 		List<BopVO> list = new LinkedList<BopVO>();
 		list.add(bopVO);
@@ -498,7 +511,7 @@ public class BILL_OF_PURCHASE_Controller {
 			@RequestParam("bop_id") String bop_id, @RequestParam("action") String action) {
 
 		if ("Detail".equals(action)) {
-			Set<Bop_detailVO> detailList = bopSvc.getBopDetail(bop_id);
+			List<Bop_detailVO> detailList = bopSvc.getBopDetail(bop_id);
 			BopVO bopVO = bopSvc.getOneBop(bop_id);
 			LinkedList<BopVO> list = new LinkedList<BopVO>();
 			list.add(bopVO);
@@ -533,7 +546,7 @@ public class BILL_OF_PURCHASE_Controller {
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("content-type", "text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		Set<Bop_detailVO> set=null;
+		List<Bop_detailVO> set=null;
 		
 		try{
 		 set = bopSvc.getBopDetail(bop_id);
@@ -616,7 +629,7 @@ public class BILL_OF_PURCHASE_Controller {
 		String bop_id = request.getParameter("bop_id");
 		String status = "S";
 
-		Set<Bop_detailVO> set = bopSvc.getBopDetail(bop_id);
+		List<Bop_detailVO> set = bopSvc.getBopDetail(bop_id);
 		for(Bop_detailVO bop_detailVO:set){
 			String prod_id =bop_detailVO.getProd_id();
 			int prod_quantity=bop_detailVO.getProd_quantity();

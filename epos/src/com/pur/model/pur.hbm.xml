@@ -18,7 +18,8 @@
 		<property name="remark" column="remark" />
 		<property name="status" column="status" />
 		
-		<set name="purs" table="PURCHASE_DETAIL" lazy="false" cascade="all" inverse="true" order-by="pur_id asc">
+<!-- 		<set name="purs" table="PURCHASE_DETAIL" lazy="false" cascade="all" inverse="true" order-by="pur_id asc"> -->
+		<set name="purs" table="PURCHASE_DETAIL" lazy="true" cascade="all" inverse="true" order-by="pur_id asc">
 			<key><column name="pur_id" /></key>
 			<one-to-many class="com.pur_detail.model.Pur_detailVO" />					
 		</set>

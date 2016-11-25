@@ -54,7 +54,11 @@ public class Purchase_Controller {
 	@RequestMapping(method = RequestMethod.POST, value = { "/PURCHASE/selectOfN2.do" })
 	public String selectOfN2(ModelMap model, HttpServletRequest request, String pur_id) {
 		PurVO purVO = purSvc.getOnePur(pur_id);
-		model.addAttribute("purVO", purVO);
+		List<Pur_detailVO> purDetail = purSvc.getPurDetail(pur_id);
+		request.setAttribute("purVO", purVO);
+		request.setAttribute("purDetail", purDetail);
+
+//		model.addAttribute("purVO", purVO);
 		return "PURCHASE/selectOfN2";
 	}
 
@@ -338,13 +342,17 @@ public class Purchase_Controller {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/getOnePurforDisplay.do", "/PURCHASE/getByPur_id.do" })
-	public String getOnePurforDisplay(@RequestParam("pur_id") String pur_id, ModelMap model) {
-
+	public String getOnePurforDisplay(@RequestParam("pur_id") String pur_id, ModelMap model,HttpServletRequest request) {
+System.out.println("pur_id"+pur_id);
 		PurVO purVO = purSvc.getOnePur(pur_id);
+		List<Pur_detailVO> purDetail = purSvc.getPurDetail(pur_id);
 		// List list = new LinkedList<PurVO>();
 		// list.add(purVO);
 		// model.addAttribute("list",list);
-		model.addAttribute("purVO", purVO);
+		
+
+		request.setAttribute("purVO", purVO);
+		request.setAttribute("purDetail", purDetail);
 
 		return "/PURCHASE/SelectPur1";
 
@@ -365,7 +373,7 @@ public class Purchase_Controller {
 			@RequestParam("prod_id") String prod_id, @RequestParam("pur_id") String pur_id) {
 		/*************************** 2.開始查詢資料 ***************************************/
 		purSvc.deleteDetail(pur_id, prod_id);
-		Set<Pur_detailVO> detailList = purSvc.getPurDetail(pur_id);
+		List<Pur_detailVO> detailList = purSvc.getPurDetail(pur_id);
 		PurVO purVO = purSvc.getOnePur(pur_id);
 		List<PurVO> list = new LinkedList<PurVO>();
 		list.add(purVO);
@@ -382,7 +390,7 @@ public class Purchase_Controller {
 			@RequestParam("pur_id") String pur_id, @RequestParam("action") String action) {
 
 		if ("Detail".equals(action)) {
-			Set<Pur_detailVO> detailList = purSvc.getPurDetail(pur_id);
+			List<Pur_detailVO> detailList = purSvc.getPurDetail(pur_id);
 			PurVO purVO = purSvc.getOnePur(pur_id);
 			LinkedList<PurVO> list = new LinkedList<PurVO>();
 			list.add(purVO);

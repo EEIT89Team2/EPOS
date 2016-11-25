@@ -58,8 +58,8 @@ public class PurService {
 		dao.setStatus(status, pur_id);
 	}
 	
-	public Set<Pur_detailVO> getPurDetail(String pur_id) {
-		Set<Pur_detailVO> set = dao.findDetailByPrimaryKey(pur_id);
+	public List<Pur_detailVO> getPurDetail(String pur_id) {
+		List<Pur_detailVO> set = dao.findDetailByPrimaryKey(pur_id);
 		return set;
 	}
 	

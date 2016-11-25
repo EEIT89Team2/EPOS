@@ -82,8 +82,8 @@ public class BopService {
 			dao.setStatus(status, bop_id);
 		}
 		
-		public Set<Bop_detailVO> getBopDetail(String bop_id) {
-			Set<Bop_detailVO> set = dao.findDetailByPrimaryKey(bop_id);
+		public List<Bop_detailVO> getBopDetail(String bop_id) {
+			List<Bop_detailVO> set = dao.findDetailByPrimaryKey(bop_id);
 			return set;
 		}
 		

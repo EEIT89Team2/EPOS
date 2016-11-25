@@ -20,7 +20,10 @@ import com.quotation.model.QuoService;
 import com.quotation.model.QuoVO;
 import com.quotation_detail.model.QuoDetailService;
 import com.quotation_detail.model.QuoDetailVO;
+import com.requisition.model.ReqService;
 import com.requisition.model.ReqVO;
+import com.requisition_detail.model.ReqDetailService;
+import com.requisition_detail.model.ReqDetailVO;
 
 //@WebServlet(
 //		urlPatterns= {"/Quotation.do","/QUOTATION/Quotation.do"})
@@ -43,26 +46,26 @@ public class Quotation_Controller {
 	public String selectByDate(ModelMap model, Date begin_date, Date end_date) {
 		List<QuoVO> list = null;
 		list = quoSrv.getByDate(begin_date, end_date);
-		model.addAttribute("list",list);
+		model.addAttribute("list", list);
 		return "QUOTATION/SelectbyDate2";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "QUOTATION/selectOfN.do")
 	public String selectOfN(ModelMap model) {
 		List<QuoVO> list = new LinkedList<QuoVO>();
 		list = quoSrv.selectOfN();
-		model.addAttribute("list",list);
+		model.addAttribute("list", list);
 		return "QUOTATION/SelectOfN";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "QUOTATION/selectOfY.do")
 	public String selectOfY(ModelMap model) {
 		List<QuoVO> list = new LinkedList<QuoVO>();
 		list = quoSrv.selectOfY();
-		model.addAttribute("list",list);
+		model.addAttribute("list", list);
 		return "QUOTATION/SelectOfY";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "QUOTATION/addQuo0.do")
 	public String addQuo0(ModelMap model) {
 		List<ReqVO> list = new LinkedList<ReqVO>();
@@ -82,11 +85,13 @@ public class Quotation_Controller {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "QUOTATION/getTheReq.do")
-	public String getTheReq(@RequestParam("req_id") String req_id, ModelMap model) {
+	public String getTheReq(@RequestParam("req_id") String req_id, ModelMap model, HttpServletRequest request) {
 		ReqVO reqVO = quoSrv.findByReqKey(req_id);
 		List<ComVO> list = quoSrv.getAllCom();
-		model.addAttribute("reqVO", reqVO);
-		model.addAttribute("list",list);
+		List<ReqDetailVO> reqDetailVO = new ReqDetailService().getByReqId(req_id);
+		request.setAttribute("reqDetailVO", reqDetailVO);
+		request.setAttribute("reqVO", reqVO);
+		request.setAttribute("list", list);
 		return "QUOTATION/addQuo1";
 	}
 
@@ -102,7 +107,7 @@ public class Quotation_Controller {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/QUOTATION/getByQuo_id.do")
-	public String getByQuo_id(@RequestParam("quo_id") String quo_id, ModelMap model) {
+	public String getByQuo_id(@RequestParam("quo_id") String quo_id, ModelMap model,HttpServletRequest request) {
 		/***************************
 		 * * 1.接收請求參數 - 輸入格式的錯誤處理
 		 *************************/
@@ -120,29 +125,32 @@ public class Quotation_Controller {
 
 		try {
 			quoVO = quoSrv.getByQuoId(quo_id);
+			List<QuoDetailVO> quoDetailVO = quoDetailSrv.getByQuoId(quo_id);
 
 			if (quoVO == null) {
 				model.addAttribute("errorMsgs", "查無資料");
 				return "redirect:/SelectQuo.jsp";
 			}
+			
 			/***************************
 			 * * 3.完成,準備轉交(Send the Success view)
 			 ***********/
+			
 			list.add(quoVO);
 
+			request.setAttribute("list", list);
+			request.setAttribute("quoVO", quoVO);
+			request.setAttribute("quoDetailVO", quoDetailVO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("list", list);
-		model.addAttribute("quoVO", quoVO);
+		
 
 		return "/QUOTATION/selectQuo1";
 	}
-	
-	
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "/QUOTATION/getByQuo_id2.do")
-	public String getByQuo_id2(@RequestParam("quo_id") String quo_id, ModelMap model) {
+	public String getByQuo_id2(@RequestParam("quo_id") String quo_id, ModelMap model,HttpServletRequest request) {
 		/***************************
 		 * * 1.接收請求參數 - 輸入格式的錯誤處理
 		 *************************/
@@ -160,7 +168,7 @@ public class Quotation_Controller {
 
 		try {
 			quoVO = quoSrv.getByQuoId(quo_id);
-
+			List<QuoDetailVO> quoDetailVO = quoDetailSrv.getByQuoId(quo_id);
 			if (quoVO == null) {
 				model.addAttribute("errorMsgs", "查無資料");
 				return "redirect:/SelectQuo.jsp";
@@ -169,18 +177,20 @@ public class Quotation_Controller {
 			 * * 3.完成,準備轉交(Send the Success view)
 			 ***********/
 			list.add(quoVO);
+			request.setAttribute("list", list);
+			request.setAttribute("quoVO", quoVO);
+			request.setAttribute("quoDetailVO", quoDetailVO);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("list", list);
-		model.addAttribute("quoVO", quoVO);
+		
 
 		return "/QUOTATION/selectQuo2";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "/QUOTATION/getByQuo_id3.do")
-	public String getByQuo_id3(@RequestParam("quo_id") String quo_id, ModelMap model) {
+	public String getByQuo_id3(@RequestParam("quo_id") String quo_id, ModelMap model,HttpServletRequest request) {
 		/***************************
 		 * * 1.接收請求參數 - 輸入格式的錯誤處理
 		 *************************/
@@ -200,8 +210,10 @@ public class Quotation_Controller {
 
 		try {
 			quoVO = quoSrv.getByQuoId(quo_id);
-			Set<QuoDetailVO> set = quoVO.getQuoDetails();
-			for(QuoDetailVO s: set){
+//			Set<QuoDetailVO> set = quoVO.getQuoDetails();
+			List<QuoDetailVO> quoDetailVO = quoDetailSrv.getByQuoId(quo_id);
+
+			for (QuoDetailVO s : quoDetailVO) {
 				com_name = s.getCom_name();
 			}
 			com_id = quoSrv.getComId(com_name);
@@ -213,14 +225,16 @@ public class Quotation_Controller {
 			 * * 3.完成,準備轉交(Send the Success view)
 			 ***********/
 			list.add(quoVO);
+			request.setAttribute("list", list);
+			request.setAttribute("quoVO", quoVO);
+			request.setAttribute("com_id", com_id);
+			request.setAttribute("com_name", com_name);
+			request.setAttribute("quoDetailVO", quoDetailVO);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("list", list);
-		model.addAttribute("quoVO", quoVO);
-		model.addAttribute("com_id",com_id);
-		model.addAttribute("com_name",com_name);
+	
 
 		return "/QUOTATION/selectQuo3";
 	}
@@ -285,10 +299,10 @@ public class Quotation_Controller {
 		return "/QUOTATION/AllQuo";
 
 	}
-	
-	@RequestMapping(method = RequestMethod.POST, value = {"/QUOTATION/insertProd.do"})
-	public String insertProd(ModelMap model, HttpServletRequest req) throws Exception{
-		
+
+	@RequestMapping(method = RequestMethod.POST, value = { "/QUOTATION/insertProd.do" })
+	public String insertProd(ModelMap model, HttpServletRequest req) throws Exception {
+
 		Integer i = 1;
 
 		while (true) {
@@ -298,18 +312,17 @@ public class Quotation_Controller {
 				prodVO.setProd_name(req.getParameter("prod_name" + x));
 				prodVO.setCom_id(req.getParameter("com_id" + x));
 				prodVO.setProd_group(req.getParameter("prod_group" + x));
-				prodVO.setProd_cost(Integer.valueOf(req.getParameter("prod_cost"+x)));
-				prodVO.setProd_mkprice(Integer.valueOf(req.getParameter("prod_mkprice"+x)));
+				prodVO.setProd_cost(Integer.valueOf(req.getParameter("prod_cost" + x)));
+				prodVO.setProd_mkprice(Integer.valueOf(req.getParameter("prod_mkprice" + x)));
 				prodVO.setProd_stock(Integer.valueOf(req.getParameter("prod_stock" + x)));
-				prodVO.setProd_q_safty(Integer.valueOf(req.getParameter("prod_q_safty"+x)));
-				prodVO.setProd_spec(req.getParameter("prod_spec"+x));
-				prodVO.setRemark(req.getParameter("remark"+x));
+				prodVO.setProd_q_safty(Integer.valueOf(req.getParameter("prod_q_safty" + x)));
+				prodVO.setProd_spec(req.getParameter("prod_spec" + x));
+				prodVO.setRemark(req.getParameter("remark" + x));
 				prodVO.setPicture(null);
 				prodVO.setStatus("Y");
-				
+
 				quoSrv.addProd(prodVO);
 
-				
 				i++;
 
 			} catch (Exception e) {
@@ -325,11 +338,9 @@ public class Quotation_Controller {
 		quoSrv.setStatus(status, quo_id);
 		List<ProdVO> list = new LinkedList<ProdVO>();
 		list = quoSrv.getAllProd();
-		model.addAttribute("list",list);
+		model.addAttribute("list", list);
 		return "QUOTATION/allProd";
 	}
-	
-	
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/insertQuo.do", "/QUOTATION/insertQuo.do" })
 	public String insertQuo(ModelMap model, HttpServletRequest req, String status2) throws Exception, Exception {
@@ -340,9 +351,9 @@ public class Quotation_Controller {
 		if (req_id == null || req_id.trim().length() == 0) {
 			errorMsgs.add("請購單編號請勿空白");
 		}
-		
+
 		String key_id = req.getParameter("key_id");
-		
+
 		Date key_date = Date.valueOf(req.getParameter("key_date"));
 
 		String remark = req.getParameter("remark");
@@ -381,10 +392,10 @@ public class Quotation_Controller {
 				quoDetailVO.setProd_quantity(Integer.parseInt(req.getParameter("prod_quantity" + x)));
 				quoDetailVO.setProd_cost(Integer.parseInt(req.getParameter("prod_cost" + x)));
 				quoDetailVO.setCom_name(req.getParameter("com_name"));
-//				quoDetailVO.setDelivery_date(Date.valueOf(req.getParameter("delivery_date")));
+				// quoDetailVO.setDelivery_date(Date.valueOf(req.getParameter("delivery_date")));
 				quoDetailVO.setRemark(req.getParameter("remark" + x));
-//				quoDetailVO.setKey_id(req.getParameter("key_id"));
-//				quoDetailVO.setKey_date(Date.valueOf(req.getParameter("key_date")));
+				// quoDetailVO.setKey_id(req.getParameter("key_id"));
+				// quoDetailVO.setKey_date(Date.valueOf(req.getParameter("key_date")));
 				quoDetailVO.setQuoVO(quoVO);
 
 				set.add(quoDetailVO);
@@ -480,7 +491,7 @@ public class Quotation_Controller {
 		model.addAttribute("list", list);
 		return "/QUOTATION/AllQuo";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = { "/QUOTATION/updateQuo3.do" })
 	public String updateQuo3(ModelMap model, HttpServletRequest req, String quo_id, String status) {
 		try {
@@ -509,9 +520,9 @@ public class Quotation_Controller {
 		if (req_id == null || req_id.trim().length() == 0) {
 			errorMsgs.add("請購單編號請勿空白");
 		}
-		
+
 		String key_id = req.getParameter("key_id");
-		
+
 		Date key_date = Date.valueOf(req.getParameter("key_date"));
 
 		String remark = req.getParameter("remark");
@@ -547,10 +558,12 @@ public class Quotation_Controller {
 				quoDetailVO.setProd_quantity(Integer.parseInt(req.getParameter("prod_quantity" + x)));
 				quoDetailVO.setProd_cost(Integer.parseInt(req.getParameter("prod_cost" + x)));
 				quoDetailVO.setCom_name(req.getParameter("com_name" + x));
-//				quoDetailVO.setDelivery_date(Date.valueOf(req.getParameter("delivery_date" + x)));
+				// quoDetailVO.setDelivery_date(Date.valueOf(req.getParameter("delivery_date"
+				// + x)));
 				quoDetailVO.setRemark(req.getParameter("remark" + x));
-//				quoDetailVO.setKey_id(req.getParameter("key_id" + x));
-//				quoDetailVO.setKey_date(Date.valueOf(req.getParameter("key_date" + x)));
+				// quoDetailVO.setKey_id(req.getParameter("key_id" + x));
+				// quoDetailVO.setKey_date(Date.valueOf(req.getParameter("key_date"
+				// + x)));
 				quoDetailVO.setQuoVO(quoVO);
 
 				set.add(quoDetailVO);

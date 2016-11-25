@@ -89,7 +89,6 @@ public class Requisition_Controller {
 	@RequestMapping(method = RequestMethod.POST, value = "/REQUISITION/getByReq_id2.do")
 	public String getByReq_id2(@RequestParam("req_id") String req_id, ModelMap model,HttpServletRequest request) {
 
-		System.out.println("123");
 		ReqVO reqVO = reqSrv.getByReqId(req_id);
 		List<ReqDetailVO> reqDetailVO = reqDetailSrv.getByReqId(req_id);
 		request.setAttribute("reqVO", reqVO);

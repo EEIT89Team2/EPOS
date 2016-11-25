@@ -101,7 +101,7 @@ body {
 						<td>廠商編號</td>
 						<td>備註</td>
 					</tr>
-					<c:forEach var="detailVO" items="${quoVO.quoDetails}"
+					<c:forEach var="detailVO" items="${quoDetailVO}"
 						varStatus="status">
 						<tr>
 							<td>${status.count}</td>

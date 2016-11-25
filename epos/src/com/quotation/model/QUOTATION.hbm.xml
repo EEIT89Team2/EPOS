@@ -15,7 +15,7 @@
 		<property name="remark" column="remark" />
 		<property name="status" column="status" />
 		
-		<set name="quoDetails" table="QUOTATION_DETAIL" lazy="false" cascade="all" inverse="true" order-by="quo_id asc">
+		<set name="quoDetails" table="QUOTATION_DETAIL" lazy="true" cascade="all" inverse="true" order-by="quo_id asc">
 			<key>
 				<column name="quo_id"></column>
 			</key>

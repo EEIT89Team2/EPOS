@@ -101,7 +101,7 @@ body {
 						<td>商品成本</td>
 						<td>備註</td>
 					</tr>
-					<c:forEach var="detailVO" items="${reqVO.reqDetails}"
+					<c:forEach var="detailVO" items="${reqDetailVO}"
 						varStatus="status">
 						<tr>
 							<td>${status.count}</td>

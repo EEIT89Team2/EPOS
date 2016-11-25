@@ -110,7 +110,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 				<ul class="sub">
 					<li><a
 						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
-					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/ordmain.jsp">訂單維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
@@ -207,7 +207,8 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 						<div class="form-group">
 							<div class="col-lg-offset-4">
 								<input type="submit" value="寄送單一會員" name="howMany"
-									class="btn  btn-theme01" id="one"> <input type="submit"
+									class="btn  btn-theme01" id="one"> 
+								<input type="submit"
 									value="寄送全部會員" name="howMany" class="btn  btn-theme01">
 								<input type="submit" value="寄送優惠訊息" name="howMany"
 									class="btn  btn-theme01">

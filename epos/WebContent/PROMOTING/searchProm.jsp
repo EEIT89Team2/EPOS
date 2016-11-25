@@ -196,7 +196,7 @@
 					});
 				}	
 			} else if ($(this).attr("class") == 'r_prom2 btn btn-success') {
-				 
+				var r_prom2 = $("form[name='r_prom2']");
 				if(r_prom2.valid()){
 					$.ajax({
 						"type" : r_prom2.attr("method"),

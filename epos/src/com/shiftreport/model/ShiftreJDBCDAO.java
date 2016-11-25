@@ -32,8 +32,7 @@ public class ShiftreJDBCDAO implements ShiftreDAO_interface {
 	private static final String GET_STMT_ByDate = "SELECT * FROM SHIFTREPORT where Date=?";
 
 	private static final String GET_ALL_STMT = "SELECT * FROM SHIFTREPORT order by Date";
-
-	
+									     	
 	@Override
 	public void insert(ShiftreVO shiftreVO) {
 		
@@ -44,8 +43,8 @@ public class ShiftreJDBCDAO implements ShiftreDAO_interface {
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(INSERT_STMT);
-
+			pstmt = con.prepareStatement(INSERT_STMT);		
+			
 			pstmt.setDate(1, shiftreVO.getDate());
 			pstmt.setString(2, shiftreVO.getShift());
 			pstmt.setString(3, shiftreVO.getEmp_id());
@@ -275,6 +274,7 @@ public class ShiftreJDBCDAO implements ShiftreDAO_interface {
 				shiftreVO.setDeal_num(rs.getInt("deal_num"));
 				shiftreVO.setShift_sum(rs.getInt("shift_sum"));
 				list.add(shiftreVO);
+			
 				
 			}
 
@@ -425,27 +425,27 @@ public class ShiftreJDBCDAO implements ShiftreDAO_interface {
 //		--------------------------------------------------------------------------
 //      �j�M�����Z�O����
 
-		list=dao.getAll();
+//		list=dao.getAll();
 		
 //		--------------------------------------------------------------------------
 //		�@����d�߳���
-		list=dao.findByDate(Date.valueOf("2016-10-10"));
+//		list=dao.findByDate(Date.valueOf("2016-10-10"));
 		
 		
 		for(ShiftreVO shiftreVO2 :list){
-			System.out.println(shiftreVO2.getDate());
-			System.out.println(shiftreVO2.getShift());
-			System.out.println(shiftreVO2.getEmp_id());
-			System.out.println(shiftreVO2.getCash());
-			System.out.println(shiftreVO2.getCoupon());
-			System.out.println(shiftreVO2.getDiscount());
-			System.out.println(shiftreVO2.getCoins());
+//			System.out.println(shiftreVO2.getDate());
+//			System.out.println(shiftreVO2.getShift());
+//			System.out.println(shiftreVO2.getEmp_id());
+//			System.out.println(shiftreVO2.getCash());
+//			System.out.println(shiftreVO2.getCoupon());
+//			System.out.println(shiftreVO2.getDiscount());
+//			System.out.println(shiftreVO2.getCoins());
 			System.out.println(shiftreVO2.getDeal_sum());
-			System.out.println(shiftreVO2.getDeal_cost());
-			System.out.println(shiftreVO2.getDeal_profit());
-			System.out.println(shiftreVO2.getDeal_num());
-			System.out.println(shiftreVO2.getShift_sum());
-			System.out.println("---------------------------");
+//			System.out.println(shiftreVO2.getDeal_cost());
+//			System.out.println(shiftreVO2.getDeal_profit());
+//			System.out.println(shiftreVO2.getDeal_num());
+//			System.out.println(shiftreVO2.getShift_sum());
+//			System.out.println("---------------------------");
 		}
 		
 	}
@@ -456,4 +456,5 @@ public class ShiftreJDBCDAO implements ShiftreDAO_interface {
 		return null;
 	}
 
+	
 }

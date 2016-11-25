@@ -145,22 +145,22 @@ public class Order_Controller extends HttpServlet implements Runnable {
 		
 		int i=0;
 		for(OrderVO orderVO : orderList){
-			System.out.println("i="+i);
+//			System.out.println("i="+i);
 			date1=orderVO.getOrd_date();
 			
-			System.out.println("date1="+date1);
-			System.out.println("date2="+date2);
+//			System.out.println("date1="+date1);
+//			System.out.println("date2="+date2);
 			if(i==0){
 				date2=date1;
 			}
 			double totalPrice;
 			if(date1.toString().equals(date2.toString())){
-				System.out.println("if");
+//				System.out.println("if");
 			totalPrice=orderVO.getTotal_price();
 			totalPrice1=totalPrice+totalPrice1;				
 
 			}else{
-				System.out.println("else");
+//				System.out.println("else");
 				Map m1 = new HashMap();
 				m1.put("Date", date2);
 				System.out.println(date2);

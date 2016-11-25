@@ -21,9 +21,9 @@ body {
 	<div class="row mt">
 		<nav class="nav navbar-default">
 		<div class="container-fluid"
-			style="float: right; left: -50%; position: relative;">
+			style="float: left;">
 			<ul class="nav navbar-nav"
-				style="float: left; left: 50%; position: relative;">
+				style="float: left;">
 				<li style="background-color: rgba(221, 15, 15, 0.8);"><a
 					style="color: white;">新增採購單</a></li>
 				<li><a id="pur2" target="SelectPur.jsp">單筆查詢</a></li>

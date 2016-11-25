@@ -154,7 +154,7 @@ public class Mail_Controller {
 	public String getAll(ModelMap model, HttpServletRequest request) throws Exception {
 
 		List<MemberVO> list = new MemberService().getAll();
-		model.addAttribute("list", list);
+		model.addAttribute("listMail", list);
 		return "/MAIL/Mail";
 	}
 }

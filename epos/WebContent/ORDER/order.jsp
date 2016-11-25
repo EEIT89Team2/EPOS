@@ -247,19 +247,19 @@ print(text)
 	
 <li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>		</ul>
 	</div>
-	</header> <!--header end--> <!--sidebar start--> <aside>
+	</header> <!--header end--> <!--sidebar start--><aside>
 	<div id="sidebar" class="nav-collapse ">
 		<!-- sidebar menu start-->
 		<ul class="sidebar-menu" id="nav-accordion">
 
 			<p class="centered">
-				<a href="<%=request.getContextPath()%>/ORDER/order.jsp"><img
+				<a href="<%=request.getContextPath()%>/index.jsp"><img
 					src="<c:url value="../resources/img/ui-sam.jpg"/>"
 					class="img-circle" width="60"></a>
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a class="active"
+			<li class="mt"><a
 				href="<%=request.getContextPath()%>/ORDER/order.jsp"> <i
 					class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
@@ -286,13 +286,13 @@ print(text)
 					<li><a
 						href="<%=request.getContextPath()%>/BILL_OF_PURCHASE/bop.jsp">進貨單維護</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i
+			<li class="sub-menu"><a href="javascript:;" class="active"> <i
 					class="glyphicon glyphicon-shopping-cart"></i> <span>銷貨系統</span>
 			</a>
 				<ul class="sub">
 					<li><a
 						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
-					<li><a href="<%=request.getContextPath()%>/ORDER/ordmain.jsp">訂單維護</a></li>
+					<li class="active"><a href="<%=request.getContextPath()%>/ORDER/ordmain.jsp">訂單維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
@@ -326,18 +326,17 @@ print(text)
 					<li><a
 						href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">折扣管理</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i
-					class=" fa fa-bar-chart-o"></i> <span>報表分析</span>
-			</a>
-				<ul class="sub">
-					<li><a href="morris.html">Morris</a></li>
-				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i
-					class="fa fa-users"></i> <span>顧客關係</span>
-			</a>
-				<ul class="sub">
-					<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
-				</ul></li>
+			<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-usd"></i> <span>報表分析</span>
+					</a>
+					<ul class="sub">
+						<li><a href="<%=request.getContextPath()%>/ANALYSIS/analysis.jsp">銷售報表分析</a></li>
+					</ul></li>
+					<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-users"></i> <span>顧客關係</span>
+					</a>
+						<ul class="sub">
+							<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+						</ul></li>
+
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
@@ -356,7 +355,7 @@ print(text)
 							<label for="exampleInputName2">　收銀員編號：</label> 
 							<input type="text" value="${LoginOK.emp_id}" name="key_id_txt" class="form-control" disabled="disabled">
 							<input type="hidden" name="key_id" value="${LoginOK.emp_id}">
-							<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
+<%-- 							<input type="hidden" name="emp_id" value="${LoginOK.emp_id}"> --%>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputName2">　收銀員姓名：</label> 

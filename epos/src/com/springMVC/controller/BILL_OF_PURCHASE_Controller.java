@@ -2,6 +2,7 @@ package com.springMVC.controller;
 
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,6 +32,95 @@ public class BILL_OF_PURCHASE_Controller {
 
 	private final static BopService bopSvc = new BopService();
 	private final static ProdService prodSvc = new ProdService();
+	
+	@RequestMapping(method = RequestMethod.POST, value = {"/BILL_OF_PURCHASE/analyze.do"})
+	public String selectOfS(ModelMap model) throws Exception {
+		
+		List<BopVO> list = bopSvc.selectOfS();
+		Set<String> set = new LinkedHashSet<String>();
+		for(BopVO bo : list){
+			String st = String.valueOf(bo.getBop_id());
+			String st2 = st.substring(1, 5);
+			String st3 = st.substring(5, 7);
+			String st4 = st2 + " 年 " + st3 + " 月 "; 
+			set.add(st4);
+		}
+		
+		model.addAttribute("set",set);
+		
+		return "BILL_OF_PURCHASE/Ratio";
+		
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = {"/BILL_OF_PURCHASE/getMonthCost.do"})
+	public void getMonthCost(ModelMap model, String bop_month, HttpServletResponse response) throws Exception {
+		String co = bopSvc.getMonthCost(bop_month);
+		response.setContentType("text/html");
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out = null;
+		out = response.getWriter();
+		out.println(co);
+		
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = {"/BILL_OF_PURCHASE/getRatio.do"})
+	public void getRatio(ModelMap model, String bop_month,HttpServletResponse response) throws Exception {
+		List<Object[]> list = bopSvc.getRatio(bop_month);
+//		for(Object[] ob : list ) {
+//			for(Object ob1 : ob) {
+//				System.out.println(ob1.getClass());
+//			}
+//		}
+		double sum = 0;
+//		String str = "{}";
+//		int i = 1;
+		double k = 1;
+		JSONArray jarray = new JSONArray();
+//		JSONArray jarray2 = new JSONArray();
+		for(Object[] array : list) {
+
+			sum += ((Long)array[1]);
+			
+		}
+		for(Object[] array : list) {
+//			jarray.put(array[0]);
+			JSONObject jsonobj1 = new JSONObject();
+//			jsonobj1.put("com_id"+i, array[0]);
+//			jarray1.put(jsonobj1);
+//			
+//			JSONObject jsonobj2 = new JSONObject(str);
+			Double d = (((Long)array[1]/sum)*k);
+			DecimalFormat df = new DecimalFormat("#.##");
+			String ss = df.format(d);
+			Double ds = Double.parseDouble(ss);
+			
+//			jsonobj2.put("ratio"+i, ss);
+//			jarray.put(ss);
+//			jarray2.put(jsonobj2);
+//			String json = "{\""+(String)array[0]+"\":\""+ss+"\"}";
+			String com_id = (String)array[0];
+			String comName = bopSvc.getComName(com_id);
+			jsonobj1.put("name", comName);
+			jsonobj1.put("y", ds);
+			jarray.put(jsonobj1);
+//			i++;
+		}
+//		JSONObject jsonobj3 = new JSONObject(str);
+//		jsonobj3.put("jarray1", jarray1);
+//		jsonobj3.put("jarray2", jarray2);
+		
+		System.out.println(jarray.toString());
+		
+		response.setContentType("text/html");
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out = null;
+		out = response.getWriter();
+		out.println(jarray.toString());
+
+		
+	}
+	
+	
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/BILL_OF_PURCHASE/selectOfY2.do" })
 	public String selectOfY2(ModelMap model) throws Exception {
@@ -151,7 +241,7 @@ public class BILL_OF_PURCHASE_Controller {
 			errorMsgs.add("請輸入建檔日期");
 		}
 
-		String remark = request.getParameter("remark");
+		Integer remark = Integer.parseInt(request.getParameter("remark"));
 
 		String status = "N";
 
@@ -295,7 +385,7 @@ public class BILL_OF_PURCHASE_Controller {
 			errorMsgs.add("請輸入建檔日期");
 		}
 
-		String remark = request.getParameter("remark");
+		Integer remark = Integer.parseInt(request.getParameter("remark"));
 
 		String status = "N";
 

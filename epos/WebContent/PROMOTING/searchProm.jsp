@@ -75,7 +75,7 @@
 		</c:if>
 
 		<p class="distance">
-		<FORM METHOD="post" ACTION="namesProm.do" name="r_prom1" class="form-horizontal" role="form">
+		<FORM METHOD="post" ACTION="namesProm.do" name="r_prom1" class="form-horizontal" role="form" id="r_prom1">
 			<div class="form-group">
 				<label class="col-lg-2 col-lg-offset-3 control-label">輸入促銷商品編號(如P00001):</label>
 				<div class="col-lg-2">
@@ -145,6 +145,18 @@
 	<!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->			
 <script type="text/JavaScript">
 //----------------------------------------	驗證----------------------------------------	
+	$("#r_prom1").validate({
+		errorClass:"my-error-class",
+		validClass:"my-valid-class",
+		
+		rules:{
+			pro_prod_name:{required:true}
+		},
+		messages:{
+			pro_prod_name:{required:"【請輸入促銷商品關鍵字】"}
+		}
+	})	
+
 	$("#r_prom2").validate({
 		errorClass:"my-error-class",
 		validClass:"my-valid-class",
@@ -169,20 +181,22 @@
 		$(":button").click(function() {
 			if ($(this).attr("class") == 'r_prom1 btn btn-success') {
 				var r_prom1 = $("form[name='r_prom1']");
-				$.ajax({
-					"type" : r_prom1.attr("method"),
-					"url" : r_prom1.attr("action"),
-					"data" : r_prom1.serialize(),
-					"success" : function(data) {
-						$(".result_content").html(data);
-						$("#result_prom").attr("class", "active");
-						$("#search_prom").removeAttr("class");
-						$("#search_Pro").attr("class", "tab-pane fade");
-						$("#result_Pro").attr("class", "tab-pane active");
-					},
-				});
+				if(r_prom1.valid()){
+					$.ajax({
+						"type" : r_prom1.attr("method"),
+						"url" : r_prom1.attr("action"),
+						"data" : r_prom1.serialize(),
+						"success" : function(data) {
+							$(".result_content").html(data);
+							$("#result_prom").attr("class", "active");
+							$("#search_prom").removeAttr("class");
+							$("#search_Pro").attr("class", "tab-pane fade");
+							$("#result_Pro").attr("class", "tab-pane active");
+						},
+					});
+				}	
 			} else if ($(this).attr("class") == 'r_prom2 btn btn-success') {
-				var r_prom2 = $("form[name='r_prom2']");
+				 
 				if(r_prom2.valid()){
 					$.ajax({
 						"type" : r_prom2.attr("method"),

@@ -30,9 +30,9 @@ body {
 
 		<nav class="nav navbar-default">
 		<div class="container-fluid"
-			style="float: right; left: -50%; position: relative;">
+			style="float: left;">
 			<ul class="nav navbar-nav"
-				style="float: left; left: 50%; position: relative;">
+				style="float: left;">
 				<li><a id="quo1" target="addQuo0.do">新增詢價單</a></li>
 				<li><a id="quo2" target="SelectQuo.jsp">單筆查詢</a></li>
 				<li><a id="quo3" target="getAllQuo.do">全部查詢</a></li>

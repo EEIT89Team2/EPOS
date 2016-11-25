@@ -30,9 +30,9 @@ body {
 
 		<nav class="nav navbar-default">
 		<div class="container-fluid"
-			style="float: right; left: -50%; position: relative;">
+			style="float: left;">
 			<ul class="nav navbar-nav"
-				style="float: left; left: 50%; position: relative;">
+				style="float: left;">
 				<li style="background-color: rgba(221, 15, 15, 0.8);"><a
 					data-toggle="tab" style="color: white;">新增詢價單</a></li>
 				<li><a id="quo2" target="SelectQuo.jsp">單筆查詢</a></li>
@@ -138,6 +138,9 @@ body {
 
 					rules : {
 						key_date : "required"
+					},
+					messages : {
+						key_date : {required:"【請輸入詢價日期】"}
 					}
 				})
 

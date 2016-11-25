@@ -13,7 +13,7 @@ public class BopVO implements java.io.Serializable {
 	private String com_id;
 	private String key_id;
 	private Date key_date;
-	private String remark;
+	private Integer remark;
 	private String status;
 	private Set<Bop_detailVO> bops = new LinkedHashSet<Bop_detailVO>();
 	
@@ -53,10 +53,10 @@ public class BopVO implements java.io.Serializable {
 	public void setKey_date(Date key_date) {
 		this.key_date = key_date;
 	}
-	public String getRemark() {
+	public Integer getRemark() {
 		return remark;
 	}
-	public void setRemark(String remark) {
+	public void setRemark(Integer remark) {
 		this.remark = remark;
 	}
 	public String getStatus() {

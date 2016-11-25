@@ -29,9 +29,9 @@ body {
 	<div class="row mt">
 		<nav class="nav navbar-default">
 		<div class="container-fluid"
-			style="float: right; left: -50%; position: relative;">
+			style="float: left;">
 			<ul class="nav navbar-nav"
-				style="float: left; left: 50%; position: relative;">
+				style="float: left;">
 				<li><a id="req1" target="addReq.jsp">新增請購單</a></li>
 				<li style="background-color: rgba(221, 15, 15, 0.8);"><a
 					style="color: white;">單筆查詢</a></li>

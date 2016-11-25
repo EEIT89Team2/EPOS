@@ -61,9 +61,9 @@ input {
 		<%-- </c:if> --%>
 		<nav class="nav navbar-default">
 		<div class="container-fluid"
-			style="float: right; left: -50%; position: relative;">
+			style="float: left;">
 			<ul class="nav navbar-nav"
-				style="float: left; left: 50%; position: relative;">
+				style="float: left;">
 				<li style="background-color: rgba(221, 15, 15, 0.8);"><a
 					style="color: white;">新增請購單</a></li>
 				<li><a id="req2" target="SelectReq.jsp">單筆查詢</a></li>
@@ -129,8 +129,8 @@ input {
 							function() {
 								$("#detailtable")
 										.append(
-												"<tr><td>商品名稱：<input type='text' id='ck"+a+"' class='ck' name='prod_name"+a+"'/ ></td>"
-														+ "<td>商品數量：<input type='text' name='prod_quantity"+a+"'/></td>"
+												"<tr><td>商品名稱：<input type='text' id='ck"+a+"' class='ck' name='prod_name"+a+"' required/ ></td>"
+														+ "<td>商品數量：<input type='text' name='prod_quantity"+a+"' required/></td>"
 														+ "<td><input type='button' value='刪除' class='dbt'/></td></tr>")
 								$('.dbt').on('click', function() {
 									$(this).parents('tr').remove();

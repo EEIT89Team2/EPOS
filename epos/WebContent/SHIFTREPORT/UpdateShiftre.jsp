@@ -45,6 +45,15 @@
 		font-family: 微軟正黑體; 
 		color:blue;
 	}
+	
+	.my-valid-class{
+		color:#3a51e8;
+	}
+	
+	.my-error-class{
+		color:red;
+	}
+	
 </style>
 </head>
 <body>
@@ -60,7 +69,7 @@
 			</font>
 		</c:if>
 		
-		<form method="post" action="updateShiftre.do" class="updateShi form-horizontal" role="form">
+		<form method="post" action="updateShiftre.do" class="updateShi form-horizontal" role="form" id="upd_shiftreport" name="upd_shiftreport">
 		<p class="distance">
 			
 			<div class="form-group">
@@ -85,7 +94,7 @@
 			<div class="form-group">
 				<label class="col-lg-1 col-lg-offset-2 control-label update_text">實收現金:</label>
 				<div class="col-lg-1">			
-					<input type="text" name="deal_cost" value="${shiftreVO.real_cash}" class="form-control">
+					<input type="text" name="real_cash" value="${shiftreVO.real_cash}" class="form-control">
 				</div>
 				<label class="col-lg-1 control-label">禮卷:</label>
 				<div class="col-lg-1">			
@@ -93,7 +102,7 @@
 				</div>
 				<label class="col-lg-1 control-label update_text">實收禮卷:</label>
 				<div class="col-lg-1">		
-					<input type="text" name="deal_profit" value="${shiftreVO.real_coupon}" class="form-control">
+					<input type="text" name="real_coupon" value="${shiftreVO.real_coupon}" class="form-control">
 				</div>
 				<label class="col-lg-1 control-label">折讓:</label>
 				<div class="col-lg-1">		
@@ -133,21 +142,50 @@
 		</form>
 </div>
 <!-- --------------------------------------------------------------程式開始處---------------------------------------------------------- -->
-	<script type="text/JavaScript">
+<script type="text/JavaScript">
+//----------------------------------------	驗證----------------------------------------	
+$("#upd_shiftreport").validate({
+	errorClass:"my-error-class",
+	validClass:"my-valid-class",
+	
+	rules:{
+		real_cash:{required:true,digits:true},		
+		real_coupon:{required:true,digits:true},
+		shift_sum:{required:true,digits:true}
+	},
+	messages:{
+		real_cash:{
+			required:"【請輸入金額】",
+			digits:	"【請輸入數字】"
+		},
+		real_coupon:{
+			required:"【請輸入金額】",
+			digits:	"【請輸入數字】"
+			},
+		shift_sum:{
+			required:"【請輸入金額】",
+			digits:	"【請輸入數字】"
+			}
+	}
+})
+	
 		$(document).ready(function() {
 			$(":button").on('click', function() {
-				$.ajax({
-					type : "post",
-					url : "updateShiftre.do",
-					data : $(".updateShi").serialize(),
-					success : function(data) {
-						$(".rul").html(data);
-
-					}
-				});
+				var upd_shiftreport = $("form[name='upd_shiftreport']");
+				if(upd_shiftreport.valid()){
+					$.ajax({
+						type : "post",
+						url : "updateShiftre.do",
+						data : $(".updateShi").serialize(),
+						success : function(data) {
+							$(".rul").html(data);
+	
+						}
+					});
+				}
 			});
 		});
-	</script>	
+	</script>
 
 </body>
 </html>

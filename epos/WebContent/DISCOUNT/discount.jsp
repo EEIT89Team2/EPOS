@@ -55,7 +55,7 @@
 
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="login.html">Logout</a></li>
+					<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
 				</ul>
 			</div>
 		</header>
@@ -107,7 +107,7 @@
 				<ul class="sub">
 					<li><a
 						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
-					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/ordmain.jsp">訂單維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
@@ -141,16 +141,16 @@
 					<li class="active"><a
 						href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">折扣管理</a></li>
 				</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-usd"></i> <span>報表分析</span>
-					</a>
-					<ul class="sub">
-						<li><a href="<%=request.getContextPath()%>/ANALYSIS/analysis.jsp">銷售報表分析</a></li>
-					</ul></li>
-					<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-users"></i> <span>顧客關係</span>
-					</a>
-						<ul class="sub">
-							<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
-						</ul></li>
+			<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-bar-chart-o"></i> <span>報表分析</span>
+			</a>
+			<ul class="sub">
+				<li><a href="<%=request.getContextPath()%>/ANALYSIS/analysis.jsp">銷售報表分析</a></li>
+			</ul></li>
+			<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-users"></i> <span>顧客關係</span>
+			</a>
+			<ul class="sub">
+				<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+			</ul></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>

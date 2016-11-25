@@ -91,5 +91,27 @@ public class BopService {
 			List<BopVO> list = dao.getAll();
 			return list;
 		}
+		
+		public List<Object[]> getRatio(String bop_month) {
+			bop_month = "%"+bop_month+"%";
+			List<Object[]> list = dao.getRatio(bop_month);
+			return list;
+		}
+		
+		public List<BopVO> selectOfS() {
+			List<BopVO> list = dao.selectOfS();
+			return list;
+		}
+		
+		public String getMonthCost(String bop_month) {
+			bop_month = "%"+bop_month+"%";
+			String co = dao.getMonthCost(bop_month);
+			return co;
+		}
+		
+		public String getComName(String com_id) {
+			String comName = dao.getComName(com_id);
+			return comName;
+		}
 	
 }

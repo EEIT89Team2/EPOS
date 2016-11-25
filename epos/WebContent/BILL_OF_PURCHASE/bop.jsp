@@ -21,7 +21,7 @@
 	rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />"
 	rel="stylesheet">
-<title>bill_of_purchase</title>
+<title>進貨作業</title>
 </head>
 <style>
 body {
@@ -56,9 +56,8 @@ body {
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a 
-				href="<%=request.getContextPath()%>/index.jsp"> <i
-					class="fa fa-dashboard"></i> <span>index</span>
+			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp">
+					<i class="fa fa-dashboard"></i> <span>index</span>
 			</a></li>
 
 			<li class="sub-menu"><a href="javascript:;"> <i
@@ -71,8 +70,8 @@ body {
 					<li><a
 						href="<%=request.getContextPath()%>/COMPANY/company.jsp">廠商資料維護</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;" class="active"> <i
-					class="fa fa-edit"></i> <span>進貨作業</span>
+			<li class="sub-menu"><a href="javascript:;" class="active">
+					<i class="fa fa-edit"></i> <span>進貨作業</span>
 			</a>
 				<ul class="sub">
 					<li><a
@@ -130,6 +129,12 @@ body {
 					<li><a href="<%=request.getContextPath()%>/ORDER/report.jsp">月營收</a></li>
 					<li><a href="<%=request.getContextPath()%>/ORDER/weatherCharts.jsp">商品排行榜</a></li>
 				</ul></li>
+			<li class="sub-menu"><a href="javascript:;"> <i
+					class="fa fa-users"></i> <span>顧客關係</span>
+			</a>
+				<ul class="sub">
+					<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+				</ul></li>
 
 		</ul>
 		<!-- sidebar menu end-->
@@ -139,15 +144,16 @@ body {
 	<div class="row mt">
 		<nav class="nav navbar-default">
 		<div class="container-fluid"
-			style="float: right; left: -50%; position: relative;">
+			style="float: left;">
 			<ul class="nav navbar-nav"
-				style="float: left; left: 50%; position: relative;">
+				style="float: left;">
 				<li><a id="bop1" target="selectOfY.do">新增進貨單</a></li>
 				<li><a id="bop2" target="SelectBOP0.jsp">單筆查詢</a></li>
 				<li><a id="bop3" target="getAllBop.do">全部查詢</a></li>
 				<li><a id="bop4" target="SelectbyDate.jsp">依日期查詢</a></li>
 				<li><a id="bop5" target="selectOfN.do">審核</a></li>
 				<li><a id="bop6" target="selectOfY2.do">到貨確認</a></li>
+				<li><a id="bop7" target="analyze.do">單月進貨金額</a>
 			</ul>
 		</div>
 		</nav>
@@ -163,12 +169,18 @@ body {
 						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
 	</script>
 	<script src="<c:url value='../resources/js/jquery.validate.min.js' />"></script>
+	<%-- 	<script src="<c:url value='../resources/js/highcharts.js' />"></script> --%>
+	<%-- 	<script src="<c:url value='../resources/js/exporting.js' />"></script> --%>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
 	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
 	<script class="include" type="text/javascript"
 		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"
 		type="text/javascript"></script>
+	<input type="hidden" name="shift" value="${SHIFT}">
+	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 
 	<!--common script for all pages-->
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
@@ -212,6 +224,13 @@ body {
 				})
 			})
 			$('#bop6').on('click', function() {
+				var t1 = $(this).attr('target');
+				$.post(t1, function(data) {
+					$('#main-content').html(data);
+				})
+			})
+
+			$('#bop7').on('click', function() {
 				var t1 = $(this).attr('target');
 				$.post(t1, function(data) {
 					$('#main-content').html(data);

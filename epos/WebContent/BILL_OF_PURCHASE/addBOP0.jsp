@@ -23,10 +23,8 @@ body {
 	<div class="row mt">
 
 		<nav class="nav navbar-default">
-		<div class="container-fluid"
-			style="float: right; left: -50%; position: relative;">
-			<ul class="nav navbar-nav"
-				style="float: left; left: 50%; position: relative;">
+		<div class="container-fluid" style="float: left;">
+			<ul class="nav navbar-nav" style="float: left;">
 				<li style="background-color: rgba(221, 15, 15, 0.8);"><a
 					style="color: white;">新增進貨單</a></li>
 				<li><a id="bop2" target="SelectBOP0.jsp">單筆查詢</a></li>
@@ -34,14 +32,16 @@ body {
 				<li><a id="bop4" target="SelectbyDate.jsp">依日期查詢</a></li>
 				<li><a id="bop5" target="selectOfN.do">審核</a></li>
 				<li><a id="bop6" target="selectOfY2.do">到貨確認</a></li>
+				<li><a id="bop7" target="analyze.do">單月進貨金額</a>
 			</ul>
 		</div>
 		</nav>
 		<div
 			style="background-color: rgba(66, 134, 244, 0.3); position: relativve; height: 750px; overflow: auto;">
 			<div align=center>
-			<hr>
-				<table border="0" id="table1" class="table table-bordered table-striped table-hover">
+				<hr>
+				<table border="0" id="table1"
+					class="table table-bordered table-striped table-hover">
 					<tr>
 						<th>採購單編號</th>
 						<th>採購日期</th>
@@ -133,6 +133,12 @@ body {
 						})
 					})
 					$('#bop6').on('click', function() {
+						var t1 = $(this).attr('target');
+						$.post(t1, function(data) {
+							$('#main-content').html(data);
+						})
+					})
+					$('#bop7').on('click', function() {
 						var t1 = $(this).attr('target');
 						$.post(t1, function(data) {
 							$('#main-content').html(data);

@@ -33,28 +33,36 @@
  		background: #BFD1E5;
  	}
 
-.navbar-default {
-	background: #CCFFCC;
-	border-color: #CCFF99;
-	border-radius: 8px;
-}
+	.navbar-default {
+		background: #CCFFCC;
+		border-color: #CCFF99;
+		border-radius: 8px;
+	}
+	
+	.main {
+		height: 750px;
+		border-radius: 8px;
+		background: #FFFFCC;
+	}
+	
+	.titlelist {
+		font-family: '微軟正黑體';
+		font-weight: bold;
+		color: white;
+		height: 35px;
+		background: #99CCCC;
+		padding-left: 10px;
+		font-size: 23px;
+		border-radius: 2px;
+	}
 
-.main {
-	height: 750px;
-	border-radius: 8px;
-	background: #FFFFCC;
-}
-
-.titlelist {
-	font-family: '微軟正黑體';
-	font-weight: bold;
-	color: white;
-	height: 35px;
-	background: #99CCCC;
-	padding-left: 10px;
-	font-size: 23px;
-	border-radius: 2px;
-}
+	.my-valid-class{
+		color:#3a51e8;
+	}
+	
+	.my-error-class{
+		color:red;
+	}
 </style>
 <title>product</title>
 </head>
@@ -70,8 +78,7 @@
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout"
-				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
+			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
 		</ul>
 	</div>
 	</header>
@@ -123,7 +130,7 @@
 				<ul class="sub">
 					<li><a
 						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
-					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/ordmain.jsp">訂單維護</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
@@ -157,7 +164,7 @@
 					<li><a
 						href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">折扣管理</a></li>
 				</ul></li>
-				<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-usd"></i> <span>報表分析</span>
+				<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-bar-chart-o"></i> <span>報表分析</span>
 				</a>
 				<ul class="sub">
 					<li><a href="<%=request.getContextPath()%>/ANALYSIS/analysis.jsp">銷售報表分析</a></li>
@@ -191,21 +198,21 @@
 			<div class="tab-content">
 				<div id="search_Prod" class="tab-pane fade">
 					<%-- 錯誤表列 --%>
-					<c:if test="${not empty param.message}">
-						<font color='red'>請修正以下錯誤:
-							<ul>
-								<c:forEach var="message" items="${param.message}">
-									<li>${message}</li>
-								</c:forEach>
-							</ul>
-						</font>
-					</c:if>
+<%-- 					<c:if test="${not empty param.message}"> --%>
+<!-- 						<font color='red'>請修正以下錯誤: -->
+<!-- 							<ul> -->
+<%-- 								<c:forEach var="message" items="${param.message}"> --%>
+<%-- 									<li>${message}</li> --%>
+<%-- 								</c:forEach> --%>
+<!-- 							</ul> -->
+<!-- 						</font> -->
+<%-- 					</c:if> --%>
 
 	<jsp:useBean id="ProdSvc" scope="page" class="com.product.model.ProdService" />
 					<div class="titlelist">查詢</div>
 					<div class="col-lg-12  main">
 						<p>
-						<form class="form-horizontal style-form" role="form">
+						<FORM class="form-horizontal style-form" role="form">
 							<div class="form-group">
 								<div class="col-lg-3"></div>
 								<label class="col-lg-2 control-label" for="prod_id">商品編號搜尋</label>
@@ -220,7 +227,8 @@
 									<input type="button" value="商品編號搜尋" class="btn btn-warning">
 								</div>
 							</div>
-
+						</FORM>	
+						<FORM class="form-horizontal style-form" role="form">
 							<p>
 							<div class="form-group">
 								<div class="col-lg-3"></div>
@@ -232,19 +240,22 @@
 							</div>
 
 							<p>
+						</FORM>
+						<FORM class="form-horizontal style-form" role="form" name="prod_keyword" id="prod_keyword">	
 							<div class="form-group">
 								<div class="col-lg-3"></div>
 								<label class="col-lg-2 control-label" for="prod_name">商品名稱關鍵字查詢</label>
 								<div class="col-lg-2">
-									<input type="text" class="form-control" name="prod_name"
-										id="prod_name">
+									<input type="text" class="form-control" name="prod_name" id="prod_name">
 								</div>
 								<div class="col-lg-2">
 									<input type="button" value="商品名稱關鍵字查詢" class="btn btn-warning">
 								</div>
 							</div>
+						</FORM>
 
 							<p>
+						<FORM class="form-horizontal style-form" role="form">	
 							<div class="form-group">
 								<div class="col-lg-3"></div>
 								<label class="col-lg-2 control-label" for="prod_group">商品分類查詢</label>
@@ -260,7 +271,7 @@
 									<input type="button" value="商品分類關鍵字查詢" class="btn btn-warning">
 								</div>
 							</div>
-						</form>
+						</FORM>
 					</div>
 				</div>
 				<div id="new_Prod" class="tab-pane fade">
@@ -295,6 +306,18 @@
 	<script src="<c:url value="../resources/js/common-scripts.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.form.js" />"></script>
 	<script type="text/JavaScript">
+	$("#prod_keyword").validate({
+		errorClass:"my-error-class",
+		validClass:"my-valid-class",
+		
+		rules:{
+			prod_name:{required:true}
+		},
+		messages:{
+			prod_name:{required:"【請輸入商品關鍵字】"}
+		}
+	})	
+	
 		$(document).ready(function() {
 // 載入新增網頁
 
@@ -340,21 +363,24 @@
 							}
 						});
 					} else if ("商品名稱關鍵字查詢" == $(this).val()) {
-						$.ajax({
-							type : "post",
-							url : "getProdByName.do",
-							data : {
-								action : "getProdByName.do",
-								prod_name : $("#prod_name").val()
-							},
-							success : function(data) {
-								$(".result_content").html(data);
-								$("#chg_search").removeAttr("class");
-								$("#chg_result").attr("class", "active");
-								$("#search_Prod").attr("class", "tab-pane fade");
-								$("#result_Prod").attr("class", "tab-pane active");
-							}
-						});
+						var prod_keyword = $("form[name='prod_keyword']");
+						if(prod_keyword.valid()){
+							$.ajax({
+								type : "post",
+								url : "getProdByName.do",
+								data : {
+									action : "getProdByName.do",
+									prod_name : $("#prod_name").val()
+								},
+								success : function(data) {
+									$(".result_content").html(data);
+									$("#chg_search").removeAttr("class");
+									$("#chg_result").attr("class", "active");
+									$("#search_Prod").attr("class", "tab-pane fade");
+									$("#result_Prod").attr("class", "tab-pane active");
+								}
+							});
+						}
 					} else if ("商品分類關鍵字查詢" == $(this).val()) {
 						$.ajax({
 							type : "post",

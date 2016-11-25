@@ -235,11 +235,13 @@ public class Shiftreport_Controller {
 		int discount=Integer.parseInt(request.getParameter("discount"));
 		int coins=Integer.parseInt(request.getParameter("coins"));
 		int deal_sum=Integer.parseInt(request.getParameter("deal_sum"));
-		int deal_cost=Integer.parseInt(request.getParameter("deal_cost"));
-		int deal_profit=Integer.parseInt(request.getParameter("deal_profit"));
+		int real_cash=Integer.parseInt(request.getParameter("real_cash"));
+		int real_coupon=Integer.parseInt(request.getParameter("real_coupon"));
 		int deal_num=Integer.parseInt(request.getParameter("deal_num"));
 		int shift_sum=Integer.parseInt(request.getParameter("shift_sum"));
-
+		
+		int deal_cost=0;
+		int deal_profit=0;
 		ShiftreVO shiftreVO = new ShiftreVO();
 		
 		shiftreVO.setDate(date);
@@ -251,6 +253,8 @@ public class Shiftreport_Controller {
 		shiftreVO.setCoins(coins);
 		shiftreVO.setDeal_sum(deal_sum);
 		shiftreVO.setDeal_cost(deal_cost);
+		shiftreVO.setReal_cash(real_cash);
+		shiftreVO.setReal_coupon(real_coupon);
 		shiftreVO.setDeal_profit(deal_profit);
 		shiftreVO.setDeal_num(deal_num);
 		shiftreVO.setShift_sum(shift_sum);

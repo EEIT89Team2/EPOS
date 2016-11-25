@@ -9,16 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>shiftCharts2</title>
 <style>
-	.navbar-default .navbar-nav > li > a{
-		color:#56ad7b;
-	}
 
-/* nav */
-	.navbar-default{
-		background: #E6F9AF;
-		border-color:#E6F9AF;
-		border-radius: 8px;
-	}
 /* background */
  	.main{ 
   		height: 800px;  
@@ -50,9 +41,13 @@
 	    background-color: #229abd;
 	    border-color: #31535d;
 	}
- 	.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
- 		background: #fbe4c3;
- 	}
+ 	.my-valid-class{
+		color:#3a51e8;
+	}
+	
+	.my-error-class{
+		color:red;
+	}
   
 </style>
 </head>
@@ -60,7 +55,7 @@
 <div class="titlelist">來客數分析</div>
 	<div class="col-lg-12 main">
 	<p class="distance">
-		<form method="post" action="alljson.do" class="oneshift form-horizontal style-form">
+		<form method="post" class="oneshift form-horizontal style-form" id="people_analysis">
 		<div class="form-group">
 			<label class="col-lg-1 col-lg-offset-2 control-label">日期(起):</label>
 			<div class="col-lg-2">
@@ -88,8 +83,28 @@
 	</div>
 </body>
 <script>
-
+//驗證
+$("#people_analysis").validate({
+	errorClass:"my-error-class",
+	validClass:"my-valid-class",
+	
+	rules:{
+		date3:{required:true},
+		date4:{compareDate:$("input[name='date3']"),required:true},
+	},
+	messages:{
+		date3:{
+			required:"【請輸入起始日】"
+		},
+		date4:{
+			required:"【請輸入結束日】",
+			compareDate:"【結束日必须大於起始日】"
+		}
+	}				
+})
+$(document).ready(function() {
 	$(":button").click(function(){ 
+		if($("#people_analysis").valid()){
 			if('C'==$(this).attr('name')){
 //抓資料			
 				$.ajax({
@@ -120,7 +135,7 @@
 						            text: '每日早班來客數'     
 						        },
 						        subtitle: {
-				 				  text: '範圍 :'+ $('input[name="date1"]').val() +'~' + $('input[name="date2"]').val()
+				 				  text: '範圍 :'+ $('input[name="date3"]').val() +'~' + $('input[name="date4"]').val()
 				 				},
 						        xAxis: {
 						        	title: {
@@ -232,7 +247,8 @@
 					}
 				});
 			}
-		
-	})
+		}
+	})				
+})
 </script>	
 </html>

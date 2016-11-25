@@ -125,8 +125,8 @@
 		<center>
 			<form method="post" action="../ORDER/OrdToShip.do">
 <!-- 				<button type="button" name="action" class="btn btn-success" value="返回" onclick="history.back();">← 回訂單</button> -->
-				<a href="../ORDER/order.jsp" class="btn btn-info">← 繼續收銀結帳</a>
-				<a href="../ORDER/ordmain.jsp" class="btn btn-success">← 回訂單</a>
+				<a href="../ORDER/order.jsp" class="btn btn-info">← 繼續收銀結帳</a>　　
+				<a href="../ORDER/ordmain.jsp" class="btn btn-success">回訂單</a>
 				<button type="submit" class="btn btn-danger">$轉出貨</button>
 				<input type="hidden" name="ord_id" value="${ordVO.ord_id}">
 				<input type="hidden" name="action" value="toShip">			  

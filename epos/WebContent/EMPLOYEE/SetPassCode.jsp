@@ -79,7 +79,7 @@
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp">
+			<li class="mt"><a href="<%=request.getContextPath()%>/ORDER/order.jsp">
 					<i class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
 
@@ -145,7 +145,7 @@
 					<li><a
 						href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">折扣管理</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-usd"></i> <span>報表分析</span>
+			<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-bar-chart-o"></i> <span>報表分析</span>
 					</a>
 					<ul class="sub">
 						<li><a href="<%=request.getContextPath()%>/ANALYSIS/analysis.jsp">銷售報表分析</a></li>
@@ -189,15 +189,15 @@
 									</c:forEach>
 								</select>
 								<div class="panel-heading">
-										<div class="pull-left"><h3><i class="fa fa-tasks"></i>最大權限</h3></div><br>
+										<div class="pull-left"><h3><i class="fa fa-eye"></i>選擇權限</h3></div><br>
 									</div>
 									<div class="custom-check goleft mt">
 										<table id="todo" class="table table-hover custom-check">
 											<tbody>
 												<tr>
 													<td><span class="check"><input type="checkbox" name="pass_code" value="ALL" checked>通行無阻</span></td>
-													<td><span class="check"></span></td>
-													<td><span class="check"></span></td>
+													<td><span class="check"><input type="checkbox" id="empPass" />一般員工</span></td>
+													<td><span class="check"><input type="checkbox" id="Toggle" />清除全部</span></td>
 													<td></td>
 												</tr>
 												<tr><td></td><td></td><td></td><td></td></tr>
@@ -205,7 +205,7 @@
 										</table>
 									</div>
 									<div class="panel-heading">
-										<div class="pull-left"><h3><i class="fa fa-tasks"></i> 基本資料維護</h3></div><br>
+										<div class="pull-left"><h3><i class="fa fa-desktop"></i> 基本資料維護</h3></div><br>
 									</div>
 									<div class="custom-check goleft mt">
 										<table id="todo" class="table table-hover custom-check">
@@ -214,7 +214,7 @@
 													<th>會員資料維護</th>
 													<th>員工資料維護</th>
 													<th>廠商資料維護</th>
-													<th></th>
+													<th>         </th>
 												</tr>
 												<tr>
 													<td><span class="check"><input type="checkbox"
@@ -260,7 +260,7 @@
 										</table>
 									</div>
 									<div class="panel-heading">
-										<div class="pull-left"><h3><i class="fa fa-tasks"></i> 進貨系統</h3></div><br>
+										<div class="pull-left"><h3><i class="fa fa-edit"></i> 進貨系統</h3></div><br>
 									</div>
 									<div class="custom-check goleft mt">
 										<table id="todo" class="table table-hover custom-check">
@@ -312,7 +312,7 @@
 										</table>
 									</div>
 									<div class="panel-heading">
-										<div class="pull-left"><h3><i class="fa fa-tasks"></i> 銷貨系統</h3></div><br>
+										<div class="pull-left"><h3><i class="glyphicon glyphicon-shopping-cart"></i> 銷貨系統</h3></div><br>
 									</div>
 									<div class="custom-check goleft mt">
 										<table id="todo" class="table table-hover custom-check">
@@ -350,7 +350,7 @@
 										</table>
 									</div>
 									<div class="panel-heading">
-										<div class="pull-left"><h3><i class="fa fa-tasks"></i> 存貨系統</h3></div><br>
+										<div class="pull-left"><h3><i class="fa fa-book"></i> 存貨系統</h3></div><br>
 									</div>
 									<div class="custom-check goleft mt">
 										<table id="todo" class="table table-hover custom-check">
@@ -398,7 +398,7 @@
 										</table>
 									</div>
 									<div class="panel-heading">
-										<div class="pull-left"><h3><i class="fa fa-tasks"></i> 退貨系統</h3></div><br>
+										<div class="pull-left"><h3><i class="glyphicon glyphicon-log-out"></i> 退貨系統</h3></div><br>
 									</div>
 									<div class="custom-check goleft mt">
 										<table id="todo" class="table table-hover custom-check">
@@ -446,7 +446,7 @@
 										</table>
 									</div>
 									<div class="panel-heading">
-										<div class="pull-left"><h3><i class="fa fa-tasks"></i> 金流管理</h3></div><br>
+										<div class="pull-left"><h3><i class="fa fa-usd"></i> 金流管理</h3></div><br>
 									</div>
 									<div class="custom-check goleft mt">
 										<table id="todo" class="table table-hover custom-check">
@@ -507,7 +507,7 @@
 										</table>
 									</div>
 									<div class="panel-heading">
-										<div class="pull-left"><h3><i class="fa fa-tasks"></i> 報表分析</h3></div><br>
+										<div class="pull-left"><h3><i class="fa fa-bar-chart-o"></i> 報表分析</h3></div><br>
 									</div>
 									<div class="custom-check goleft mt">
 										<table id="todo" class="table table-hover custom-check">
@@ -523,7 +523,7 @@
 										</table>
 									</div>
 									<div class="panel-heading">
-										<div class="pull-left"><h3><i class="fa fa-tasks"></i>顧客關係</h3></div><br>
+										<div class="pull-left"><h3><i class="fa fa-users"></i>顧客關係</h3></div><br>
 									</div>
 									<div class="custom-check goleft mt">
 										<table id="todo" class="table table-hover custom-check">
@@ -605,6 +605,74 @@
 						});
 					})
 				})
+		$('#Toggle').change(function(){
+		   $(':checkbox[name="pass_code"]').prop('checked',false);
+	   });
+		//員工
+		$('#empPass').change(function(){
+		   var b = $(this).prop('checked');
+		   $(':checkbox[value="/addMem.jsp"]').prop('checked',b);//新增會員
+		   $(':checkbox[value="/searchMem.jsp"]').prop('checked',b);//搜尋會員
+		   $(':checkbox[value="/searchEmp.jsp"]').prop('checked',b);//搜尋員工
+		   $(':checkbox[value="/addEmp.jsp"]').prop('checked',b);//新增員工
+		   $(':checkbox[value="/searchCom.jsp"]').prop('checked',b);//搜尋廠商
+		   $(':checkbox[value="/addCom.jsp"]').prop('checked',b);//新增廠商
+		   $(':checkbox[value="/addReq.jsp"]').prop('checked',b);//新增請購單
+		   $(':checkbox[value="/SelectReq.jsp"]').prop('checked',b);//單筆查詢請購單
+		   $(':checkbox[value="/getAllReq.do"]').prop('checked',b);//查詢全部請購單
+		   $(':checkbox[value="SelectbyDate.jsp"]').prop('checked',b);//依日期查詢請購單
+		   $(':checkbox[value="/addQuo0.do"]').prop('checked',b);//新增詢價單
+		   $(':checkbox[value="/SelectQuo.jsp"]').prop('checked',b);//查詢單筆詢價單
+		   $(':checkbox[value="/getAllQuo.do"]').prop('checked',b);//查詢全部詢價單
+		   $(':checkbox[value="/SelectbyDate.jsp"]').prop('checked',b);//依詢價單日期查詢
+		   $(':checkbox[value="/selectOfY.do"]').prop('checked',b);//新增商品目錄
+		   $(':checkbox[value="/insertPur00.do"]').prop('checked',b);//新增採購單
+		   $(':checkbox[value="/SelectPur.jsp"]').prop('checked',b);//單筆查詢採購單
+		   $(':checkbox[value="/getAllPur.do"]').prop('checked',b);//查詢全部採購單
+		   $(':checkbox[value="/SelectbyDate.jsp"]').prop('checked',b);//依日期搜尋採購單
+		   $(':checkbox[value="/selectOfY.do"]').prop('checked',b);//新增進貨單
+		   $(':checkbox[value="/SelectBOP0.jsp"]').prop('checked',b);//單筆查詢進貨單
+		   $(':checkbox[value="/getAllBop.do"]').prop('checked',b);//查詢全部進貨單
+		   $(':checkbox[value="/SelectbyDate.jsp"]').prop('checked',b);//依日期查詢進貨單
+		   $(':checkbox[value="/selectOfY2.do"]').prop('checked',b);//到貨現況
+		   $(':checkbox[value="/addVltList.do"]').prop('checked',b);//新增報價單
+		   $(':checkbox[value="/searchList.jsp"]').prop('checked',b);//單筆查詢報價單
+		   $(':checkbox[value="/SelectVltAll.jsp"]').prop('checked',b);//全部查詢報價單
+		   $(':checkbox[value="/OrdsearchList.jsp"]').prop('checked',b);//查詢訂單
+		   $(':checkbox[value="/SelectOrdAll.jsp"]').prop('checked',b);//查詢全部訂單
+		   $(':checkbox[value="/OrdToShip.do"]').prop('checked',b);//訂單轉出貨單
+		   $(':checkbox[value="/searchList.jsp"]').prop('checked',b);//單筆查詢出貨單
+		   $(':checkbox[value="/AllShip.jsp"]').prop('checked',b);//查詢全部出貨單
+		   $(':checkbox[value="/InsertProd.jsp"]').prop('checked',b);//新增商品
+		   $(':checkbox[value="/getAllProd.do"]').prop('checked',b);//查詢全部商品
+		   $(':checkbox[value="/getOneProd.do"]').prop('checked',b);//依商品編號搜尋
+		   $(':checkbox[value="/getProdByName.do"]').prop('checked',b);//依商品名稱搜尋
+		   $(':checkbox[value="/getProdByGroup.do"]').prop('checked',b);//依商品類別搜尋
+		   $(':checkbox[value="/searchProm.jsp"]').prop('checked',b);//查詢促銷品
+		   $(':checkbox[value="/addProm.jsp"]').prop('checked',b);//新增促銷品
+		   $(':checkbox[value="/insert_Item.do"]').prop('checked',b);//新增退貨品
+		   $(':checkbox[value="/searchItem.jsp"]').prop('checked',b);//搜尋退貨品
+		   $(':checkbox[value="/insert.do"]').prop('checked',b);//新增退貨單
+		   $(':checkbox[value="/searchList.jsp"]').prop('checked',b);//單筆搜尋退貨單
+		   $(':checkbox[value="/AllList.jsp"]').prop('checked',b);//搜尋全部退貨單
+		   $(':checkbox[value="/Return_Detail.jsp"]').prop('checked',b);//查看退貨單明細
+		   $(':checkbox[value="/insertInvo.do"]').prop('checked',b);//新增作廢發票
+		   $(':checkbox[value="/searchinvo.jsp"]').prop('checked',b);//依發票編號搜尋
+		   $(':checkbox[value="/listAllInvo.jsp"]').prop('checked',b);//搜群全部作廢發票
+		   $(':checkbox[value="/updateShiftre.do"]').prop('checked',b);//依班別報表搜尋
+		   $(':checkbox[value="/getAllShiftre.do"]').prop('checked',b);//查詢全部
+		   $(':checkbox[value="/getShiftreByDate.do"]').prop('checked',b);//依日期搜尋
+		   $(':checkbox[value="/insertShiftre.do"]').prop('checked',b);//新增班別報表
+		   $(':checkbox[value="/coupon.do"]').prop('checked',b);//依折價券編號搜尋
+		   $(':checkbox[value="/namesCpon.do"]').prop('checked',b);//依折價券名稱搜尋
+		   $(':checkbox[value="/dollarCpon.do"]').prop('checked',b);//依折價券金額搜尋
+		   $(':checkbox[value="/datesCpon.do"]').prop('checked',b);//依折價券日期搜尋
+		   $(':checkbox[value="/allCpon.do"]').prop('checked',b);//查詢全部
+		   $(':checkbox[value="/insertCpon.do"]').prop('checked',b);//新增折價券
+		   $(':checkbox[value="/search_disc.jsp"]').prop('checked',b);//搜尋折扣
+		   $(':checkbox[value="/insertDic.jsp"]').prop('checked',b);//新增折扣
+		   $(':checkbox[value="/Mail.jsp"]').prop('checked',b);//寄送系統
+	   });
 	</script>
 
 </body>

@@ -87,10 +87,13 @@ public class Requisition_Controller {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/REQUISITION/getByReq_id2.do")
-	public String getByReq_id2(@RequestParam("req_id") String req_id, ModelMap model) {
+	public String getByReq_id2(@RequestParam("req_id") String req_id, ModelMap model,HttpServletRequest request) {
 
+		System.out.println("123");
 		ReqVO reqVO = reqSrv.getByReqId(req_id);
-		model.addAttribute("reqVO", reqVO);
+		List<ReqDetailVO> reqDetailVO = reqDetailSrv.getByReqId(req_id);
+		request.setAttribute("reqVO", reqVO);
+		request.setAttribute("reqDetailVO", reqDetailVO);
 
 		return "/REQUISITION/updateReq2";
 	}
@@ -289,7 +292,6 @@ public class Requisition_Controller {
 			 *******************/
 			@RequestParam("prod_name") String prod_name, @RequestParam("req_id") String req_id) {
 		/*************************** 2.開始查詢資料 ***************************************/
-		System.out.println("===========================================================");
 		reqDetailSrv.delete(req_id, prod_name);
 		List<ReqDetailVO> detailList = reqDetailSrv.getByReqId(req_id);
 		ReqVO reqVO = reqSrv.getByReqId(req_id);
@@ -312,6 +314,7 @@ public class Requisition_Controller {
 		/*************************** 2.開始查詢資料 ***************************************/
 
 		if ("Detail".equals(action)) {
+			System.out.println("=====");
 			List<ReqDetailVO> detailList = reqDetailSrv.getByReqId(req_id);
 			ReqVO reqVO = reqSrv.getByReqId(req_id);
 			LinkedList<ReqVO> list = new LinkedList<ReqVO>();

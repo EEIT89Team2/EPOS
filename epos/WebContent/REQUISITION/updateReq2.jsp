@@ -70,7 +70,7 @@ body {
 						<td>商品名稱</td>
 						<td>商品數量</td>
 					</tr>
-					<c:forEach var="detailVO" items="${reqVO.reqDetails}"
+					<c:forEach var="detailVO" items="${reqDetailVO}"
 						varStatus="status">
 						<tr>
 							<td>${status.count}</td>

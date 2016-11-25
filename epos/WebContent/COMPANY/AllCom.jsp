@@ -106,7 +106,7 @@ table {
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp">
+			<li class="mt"><a href="<%=request.getContextPath()%>/ORDER/order.jsp">
 					<i class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
 
@@ -172,7 +172,7 @@ table {
 					<li><a
 						href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">折扣管理</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-usd"></i> <span>報表分析</span>
+			<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-bar-chart-o"></i> <span>報表分析</span>
 					</a>
 					<ul class="sub">
 						<li><a href="<%=request.getContextPath()%>/ANALYSIS/analysis.jsp">銷售報表分析</a></li>

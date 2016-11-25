@@ -18,7 +18,7 @@ public interface Order_Interface {
 	public void update(OrderVO orderVO,Order_DetailVO order_detailVO) throws Exception;
 	public void delete(String order_id) throws Exception;
 	public List<OrderVO> getAll() throws Exception;
-	public List GetProdNameCount(String prod_id) throws Exception;
+	public List GetProdNameCount(String prod_id) throws Exception; //商品名稱總數
 	public void setStatus(String status,String ord_id) throws Exception;
 	
 	public ProdVO getOneProdid(String prod_id)throws Exception;

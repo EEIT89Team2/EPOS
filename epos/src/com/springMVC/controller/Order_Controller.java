@@ -939,6 +939,4 @@ public class Order_Controller extends HttpServlet implements Runnable {
 		return null;
 	}
 
-	
-
 }

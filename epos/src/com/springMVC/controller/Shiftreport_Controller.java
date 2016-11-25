@@ -296,6 +296,8 @@ public class Shiftreport_Controller {
 		out.print(jsonall);
 	}
 	
+	
+	
 }
 
 

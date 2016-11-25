@@ -17,5 +17,6 @@ public interface ShiftreDAO_interface {
 	public List<ShiftreVO> findByDate(Date Date);
 
 	public List getSumJson(Date date1, Date date2, String shift);
+
 	
 }

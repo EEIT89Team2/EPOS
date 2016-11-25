@@ -197,7 +197,6 @@
 												<tr>
 													<td><span class="check"><input type="checkbox" name="pass_code" value="ALL" checked>通行無阻</span></td>
 													<td><span class="check"><input type="checkbox" id="empPass" />一般員工</span></td>
-													<td><span class="check"><input type="checkbox" id="Toggle" />清除全部</span></td>
 													<td></td>
 												</tr>
 												<tr><td></td><td></td><td></td><td></td></tr>
@@ -541,8 +540,8 @@
 									<!-- /table-responsive -->
 								<!--/ White-panel -->
 								<!-- /table-responsive -->
-								<input type="submit" value="修改權限" class="btn btn-theme03"
-									id="button Toggle">
+								<input type="submit" value="修改權限" class="btn btn-theme03">
+								<input type="button" value="清除全部" id="Toggle" class="btn btn-theme03">
 
 							</form>
 						</center>
@@ -605,7 +604,7 @@
 						});
 					})
 				})
-		$('#Toggle').change(function(){
+		$('#Toggle').click(function(){
 		   $(':checkbox[name="pass_code"]').prop('checked',false);
 	   });
 		//員工

@@ -193,15 +193,21 @@
 						<form METHOD="post" ACTION="insertEmp.do" id="create_emp"
 							enctype="multipart/form-data" class="form-horizontal style-form">
 							<div class="form-group">
-								<label class="col-lg-1 col-lg-offset-4 control-label">密碼:</label>
-								<div class="col-lg-6">
-									<input type="text" name="emp_pwd" value="3310">
-								</div>
-							</div>
-							<div class="form-group">
 								<label class="col-lg-1 col-lg-offset-4 control-label">姓名:</label>
 								<div class="col-lg-6">
 									<input type="text" name="emp_name" value="柯大中">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">密碼:</label>
+								<div class="col-lg-6">
+									<input type="password" name="emp_pwd" id="pwd" value="3310">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-1 col-lg-offset-4 control-label">確認密碼:</label>
+								<div class="col-lg-6">
+									<input type="password" name="emp_chkpwd" value="3310">
 								</div>
 							</div>
 							<div class="form-group">
@@ -327,6 +333,11 @@
 						required : true,
 						minlength : 4
 					},
+					emp_chkpwd : {
+						equalTo:"#pwd",
+						required : true,
+						minlength : 4
+					},
 					emp_name : {
 						required : true
 					},
@@ -354,6 +365,11 @@
 					emp_pwd : {
 						required : "【請輸入密碼】",
 						minlength : "【密碼長度必須大於4位數】"
+					},
+					emp_chkpwd : {
+						equalTo:"【密碼不相符】",
+						required : "【請輸入密碼】",
+						minlength : "【密碼必須大於4位數】"
 					},
 					emp_name : {
 						required : "【請輸入員工姓名】"

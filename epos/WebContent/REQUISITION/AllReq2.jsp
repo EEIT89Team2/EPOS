@@ -14,23 +14,7 @@
 
 </head>
 <style>
-body {
-	font-size: 16px;
-}
 
-/* 	th { */
-/* 		padding: 20px 10px;  */
-/*  		margin: 10px 2px;  */
-/* 		line-height: 30px;  */
-/* 		width:200px; */
-/* 	} */
-
-/*  	td {  */
-/* 		padding: 20px 10px;  */
-/*  		margin: 10px 2px;  */
-/* 		line-height: 30px;  */
-/*  		width:500px;  */
-/*  	}  */
 </style>
 <body>
 	<section id="container"> <section class="wrapper">

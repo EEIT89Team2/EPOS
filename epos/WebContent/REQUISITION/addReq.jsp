@@ -12,9 +12,7 @@
 
 </head>
 <style type="text/css">
-body {
-	font-size: 16px;
-}
+
 
 table {
 	margin: 10px 2px;

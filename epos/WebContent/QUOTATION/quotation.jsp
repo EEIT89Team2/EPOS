@@ -24,9 +24,7 @@
 <title>詢價作業</title>
 </head>
 <style>
-body {
-	font-size: 16px;
-}
+
 </style>
 <body>
 	<section id="container"> <!--header start--> <header
@@ -41,7 +39,8 @@ body {
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
 			<li><a class="logout"
-				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a></li>
+				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi ,
+				${LoginOK.emp_name}</li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -56,8 +55,8 @@ body {
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a href="<%=request.getContextPath()%>/index.jsp">
-					<i class="fa fa-dashboard"></i> <span>index</span>
+			<li class="mt"><a href="<%=request.getContextPath()%>/ORDER/order.jsp">
+					<i class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
 
 			<li class="sub-menu"><a href="javascript:;"> <i
@@ -87,10 +86,10 @@ body {
 			</a>
 				<ul class="sub">
 					<li><a
-						href="<%=request.getContextPath()%>/VALUATION/valuation.jsp">報價單維護</a></li>
-					<li><a href="<%=request.getContextPath()%>/ORDER/order.jsp">訂單維護</a></li>
+						href="<%=request.getContextPath()%>/VALUATION/ValuationList.jsp">報價單維護</a></li>
+					<li><a href="<%=request.getContextPath()%>/ORDER/ordmain.jsp">訂單維護</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/SHIPMENTS/shipments.jsp">出貨單維護</a></li>
+						href="<%=request.getContextPath()%>/SHIPMENTS/ShipmentsList.jsp">出貨單維護</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
 					class="fa fa-book"></i> <span>存貨作業</span>
@@ -108,7 +107,7 @@ body {
 					<li><a
 						href="<%=request.getContextPath()%>/RETURNS/Return_Items.jsp">退貨品管理</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/RETURNS/returns.jsp">退貨單管理</a></li>
+						href="<%=request.getContextPath()%>/RETURNS/ReturnList.jsp">退貨單管理</a></li>
 					<li><a
 						href="<%=request.getContextPath()%>/INVO/select_page.jsp">作廢發票管理</a></li>
 				</ul></li>
@@ -123,11 +122,11 @@ body {
 						href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">折扣管理</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
-					class=" fa fa-bar-chart-o"></i> <span>報表分析</span>
+					class="fa fa-bar-chart-o"></i> <span>報表分析</span>
 			</a>
 				<ul class="sub">
-					<li><a href="<%=request.getContextPath()%>/ORDER/report.jsp">月營收</a></li>
-					<li><a href="<%=request.getContextPath()%>/ORDER/weatherCharts.jsp">商品排行榜</a></li>
+					<li><a
+						href="<%=request.getContextPath()%>/ANALYSIS/analysis.jsp">銷售報表分析</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
 					class="fa fa-users"></i> <span>顧客關係</span>
@@ -143,10 +142,8 @@ body {
 		class="wrapper">
 	<div class="row mt">
 		<nav class="nav navbar-default">
-		<div class="container-fluid"
-			style="float: left;">
-			<ul class="nav navbar-nav"
-				style="float: left;">
+		<div class="container-fluid" style="float: left;">
+			<ul class="nav navbar-nav" style="float: left;">
 				<li><a id="quo1" target="addQuo0.do">新增詢價單</a></li>
 				<li><a id="quo2" target="SelectQuo.jsp">單筆查詢</a></li>
 				<li><a id="quo3" target="getAllQuo.do">全部查詢</a></li>
@@ -158,8 +155,9 @@ body {
 		</nav>
 	</div>
 	</section> </section> </section>
+	<input type="hidden" name="shift" value="${SHIFT}">
+	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 
-	<
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
@@ -174,7 +172,7 @@ body {
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.nicescroll.js" />"
 		type="text/javascript"></script>
-	<input type="hidden" name="shift" value="${SHIFT}">
+<%-- 	<input type="hidden" name="shift" value="${SHIFT}"> --%>
 	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">
 
 	<!--common script for all pages-->

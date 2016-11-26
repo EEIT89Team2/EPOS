@@ -24,9 +24,7 @@
 <title>詢價作業</title>
 </head>
 <style>
-body {
-	font-size: 16px;
-}
+
 </style>
 <body>
 	<section id="container"> <!--header start--> <header

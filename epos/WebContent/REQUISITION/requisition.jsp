@@ -24,9 +24,7 @@
 	rel="stylesheet">
 </head>
 <style>
-body {
-	font-size: 16px;
-}
+
 </style>
 <body>
 

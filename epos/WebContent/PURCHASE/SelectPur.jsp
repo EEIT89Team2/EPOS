@@ -13,9 +13,6 @@
 
 </head>
 <style>
-body {
-	font-size: 16px;
-}
 
 .my-error-class {
 	color: #1dc489;

@@ -123,7 +123,8 @@
 					</div>
 					<div id="group" class="form-group">
 						<label for="exampleInputName2">修改人員：</label>
-						<input type="text" name="key_id" class="form-control" value="${LoginOK.emp_id}"/>	
+						<input type="text" name="key_id" class="form-control" value="${LoginOK.emp_id}"/>
+<!-- 						<input type="hidden" name="key_id" class="form-control" value=""/>	 -->
 					</div>
 					<div id="group" class="form-group">
 						<label for="exampleInputName2">建檔日期：</label>
@@ -145,6 +146,7 @@
 						<input type="hidden" name="ord_um" value="" />
 						<input type="hidden" name="cpon_id" value="" />
 						<input type="hidden" name="cpon_dollar" value="" />		
+						<input type="hidden" name="emp_id" value="" />		
 					</div>
 				</tr>
 			</c:forEach>

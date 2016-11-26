@@ -63,14 +63,13 @@
 				</table>
 				<hr>
 				<table border=0 class="table table-bordered table-striped table-hover">
-					<c:forEach var="list" items="${list}" varStatus="count">
+<%-- 					<c:forEach var="list" items="${list}" varStatus="count"> --%>
 						<tr>
 							<td>#</td>
 							<td>商品名稱</td>
 							<td>商品數量</td>
 						</tr>
-						<c:forEach var="detailVO" items="${reqDetaolList}"
-							varStatus="status">
+						<c:forEach var="detailVO" items="${reqDetaolList}" varStatus="status">
 							<tr>
 								<td>${status.count}</td>
 							<td><input type="text" name="prod_name${status.count }"
@@ -80,7 +79,7 @@
 							</tr>
 
 						</c:forEach>
-					</c:forEach>
+<%-- 					</c:forEach> --%>
 				</table>
 			</div>
 		</div>

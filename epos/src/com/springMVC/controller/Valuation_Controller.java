@@ -331,9 +331,9 @@ public class Valuation_Controller extends HttpServlet {
 		try {
 			vltSvc.setStatus("D", vlt_id);
 
-			List list = vltSvc.getAllByN();
+//			List list = vltSvc.getAllByN();
 
-			request.getSession().setAttribute("list", list);
+//			request.getSession().setAttribute("list", list);
 			// request.setAttribute("list", list);
 
 		} catch (Exception e) {
@@ -341,7 +341,7 @@ public class Valuation_Controller extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		return "/VALUATION/SelectVlt";
+		return "redirect:/VALUATION/SelectVltAllForCHK.jsp";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/forVltCHK.do", "/VALUATION/forVltCHK.do" })

@@ -200,8 +200,12 @@ public class Requisition_Controller {
 		/***************************
 		 * * 3.完成,準備轉交(Send the Success view)
 		 ***********/
+		List<ReqDetailVO> reqDetailVO = reqDetailSrv.getByReqId(req_id);
 
-		model.addAttribute("list", list2);
+		req.setAttribute("reqDetaolList", reqDetailVO);
+		System.out.println(reqDetailVO.get(0).getProd_name());
+		req.setAttribute("list", list2);
+//		model.addAttribute("list", list2);
 
 		return "/REQUISITION/AllReq2";
 	}
@@ -330,7 +334,10 @@ public class Requisition_Controller {
 		}
 		if ("update".equals(action)) {
 			ReqVO reqVO = reqSrv.getByReqId(req_id);
-			model.addAttribute("reqVO", reqVO);
+			List<ReqDetailVO> reqDetailVO = reqDetailSrv.getByReqId(req_id);
+
+			request.getSession().setAttribute("reqVO", reqVO);
+			request.getSession().setAttribute("reqDetailVO", reqDetailVO);
 			// model.addAttribute("hello","Hello");
 			return "/REQUISITION/updateReq";
 		}

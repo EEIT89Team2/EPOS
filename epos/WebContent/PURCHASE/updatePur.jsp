@@ -104,7 +104,7 @@
 						<td>金額小計</td>
 
 					</tr>
-					<c:forEach var="detailVO" items="${purVO.purs}" varStatus="status">
+					<c:forEach var="detailVO" items="${detailList}" varStatus="status">
 						<tr>
 							<td>${status.count}</td>
 							<td><input type="text" name="prod_id${status.count }"

@@ -457,7 +457,12 @@ public class BILL_OF_PURCHASE_Controller {
 		bopSvc.update(bopVO);
 		BopVO bopVO2 = null;
 		bopVO2 = bopSvc.getOneBop(bop_id);
-		model.addAttribute("bopVO", bopVO2);
+		List<Bop_detailVO> detailList = bopSvc.getBopDetail(bop_id);
+		request.setAttribute("bopDeatil", detailList);
+
+		request.setAttribute("bopVO", bopVO);
+		
+		request.setAttribute("bopVO", bopVO2);
 
 		/***************************
 		 * 3.新增完成,準備轉交(Send the Success view)
@@ -529,7 +534,10 @@ public class BILL_OF_PURCHASE_Controller {
 
 		if ("update".equals(action)) {
 			BopVO bopVO = bopSvc.getOneBop(bop_id);
-			model.addAttribute("bopVO", bopVO);
+			List<Bop_detailVO> detailList = bopSvc.getBopDetail(bop_id);
+			request.setAttribute("detailList", detailList);
+
+			request.setAttribute("bopVO", bopVO);
 			return "/BILL_OF_PURCHASE/updateBOP";
 		}
 		return null;

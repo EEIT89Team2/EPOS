@@ -336,7 +336,9 @@ public class Purchase_Controller {
 		// List list = new LinkedList<PurVO>();
 		// list.add(purVO);
 		// model.addAttribute("list",list);
-		model.addAttribute("purVO", purVO2);
+		List<Pur_detailVO> detailList = purSvc.getPurDetail(pur_id);
+		request.setAttribute("purDetail", detailList);
+		request.setAttribute("purVO", purVO2);
 
 		return "/PURCHASE/SelectPur1";
 	}
@@ -408,7 +410,10 @@ System.out.println("pur_id"+pur_id);
 
 		if ("update".equals(action)) {
 			PurVO purVO = purSvc.getOnePur(pur_id);
-			model.addAttribute("purVO", purVO);
+			List<Pur_detailVO> detailList = purSvc.getPurDetail(pur_id);
+			request.setAttribute("detailList", detailList);
+
+			request.setAttribute("purVO", purVO);
 			return "/PURCHASE/updatePur";
 		}
 		return null;

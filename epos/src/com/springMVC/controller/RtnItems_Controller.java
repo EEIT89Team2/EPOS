@@ -301,7 +301,7 @@ public class RtnItems_Controller extends HttpServlet {
 			System.out.println("P_name="+P_name);
 			if(prod_name.equals(P_name)&&re_quantity>=0){
 				int P_quantity = ProdVO.getProd_stock();
-				ProdVO.setProd_stock(P_quantity-Integer.parseInt((req.getParameter("re_quantity"))));
+				ProdVO.setProd_stock(P_quantity+Integer.parseInt((req.getParameter("re_quantity"))));
 				prodsiv.update(ProdVO);
 			}
 			

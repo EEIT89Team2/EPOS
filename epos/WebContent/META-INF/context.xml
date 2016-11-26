@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+
+    <Resource 
+        name="jdbc/TestDB" 
+        type="javax.sql.DataSource" 
+        auth="Container" 
+        driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+        url="jdbc:sqlserver://starbooksdb8930.database.windows.net:1433;databaseName=pos" 
+        username="starbooksuser@starbooksdb8930"
+        password="P@ssw0rd" />
+
+</Context>

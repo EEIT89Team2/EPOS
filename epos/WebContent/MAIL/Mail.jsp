@@ -77,7 +77,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a class="active"
+			<li class="mt"><a 
 				href="<%=request.getContextPath()%>/ORDER/order.jsp"> <i
 					class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
@@ -149,11 +149,10 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 					<ul class="sub">
 						<li><a href="<%=request.getContextPath()%>/ANALYSIS/analysis.jsp">銷售報表分析</a></li>
 					</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i
-					class="fa fa-users"></i> <span>顧客關係</span>
+			<li class="sub-menu"><a href="javascript:;" class="active"> <i class="fa fa-users"></i><span>顧客關係</span>
 			</a>
 				<ul class="sub">
-					<li><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
+					<li class="active"><a href="<%=request.getContextPath()%>/MAIL/Mail.jsp">寄送系統</a></li>
 				</ul></li>
 		</ul>
 		<!-- sidebar menu end-->

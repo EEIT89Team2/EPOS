@@ -57,7 +57,9 @@
 
 	<div class="top-menu">
 		<ul class="nav pull-right top-menu">
-			<li><a class="logout" href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi , ${LoginOK.emp_name}</li>
+			<li><a class="logout"
+				href="<%=request.getContextPath()%>/LOGIN/logout.jsp">Logout</a>Hi ,
+				${LoginOK.emp_name}</li>
 		</ul>
 	</div>
 	</header> <!--header end--> <!--sidebar start--> <aside>
@@ -72,8 +74,9 @@
 			</p>
 			<h5 class="centered">ePOS</h5>
 
-			<li class="mt"><a href="<%=request.getContextPath()%>/ORDER/order.jsp">
-					<i class="fa fa-dashboard"></i> <span>收銀結帳</span>
+			<li class="mt"><a
+				href="<%=request.getContextPath()%>/ORDER/order.jsp"> <i
+					class="fa fa-dashboard"></i> <span>收銀結帳</span>
 			</a></li>
 
 			<li class="sub-menu"><a href="javascript:;" class="active">
@@ -139,11 +142,13 @@
 					<li><a
 						href="<%=request.getContextPath()%>/DISCOUNT/discount.jsp">折扣管理</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:;"> <i class="fa fa-bar-chart-o"></i> <span>報表分析</span>
-					</a>
-					<ul class="sub">
-						<li><a href="<%=request.getContextPath()%>/ANALYSIS/analysis.jsp">銷售報表分析</a></li>
-					</ul></li>
+			<li class="sub-menu"><a href="javascript:;"> <i
+					class="fa fa-bar-chart-o"></i> <span>報表分析</span>
+			</a>
+				<ul class="sub">
+					<li><a
+						href="<%=request.getContextPath()%>/ANALYSIS/analysis.jsp">銷售報表分析</a></li>
+				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
 					class="fa fa-users"></i> <span>顧客關係</span>
 			</a>
@@ -160,14 +165,13 @@
 			<nav class="nav navbar-default">
 			<div class="tab-content">
 				<ul class="nav navbar-nav">
-					<li><a href="searchMem.jsp"
-						class="glyphicon glyphicon-search">搜尋</A></li>
+					<li><a href="searchMem.jsp" class="glyphicon glyphicon-search">搜尋</A></li>
 					<li><a href="addMem.jsp" class="glyphicon glyphicon-file">新增</a></li>
 					<li><a href="#" class="glyphicon glyphicon-list-alt">查詢結果</a></li>
 				</ul>
 			</div>
 			</nav>
-	</div>
+		</div>
 	</section> </section> </section>
 	<input type="hidden" name="shift" value="${SHIFT}">
 	<input type="hidden" name="emp_id" value="${LoginOK.emp_id}">

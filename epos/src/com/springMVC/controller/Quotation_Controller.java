@@ -468,7 +468,10 @@ public class Quotation_Controller {
 		}
 		if ("update".equals(action)) {
 			QuoVO quoVO = quoSrv.getByQuoId(quo_id);
-			model.addAttribute("quoVO", quoVO);
+			List<QuoDetailVO> detailList = quoDetailSrv.getByQuoId(quo_id);
+			request.setAttribute("detailList", detailList);
+
+			request.setAttribute("quoVO", quoVO);
 			return "/QUOTATION/updateQuo";
 		}
 
@@ -581,6 +584,9 @@ public class Quotation_Controller {
 			quoVO.setQuoDetails(set);
 			quoSrv.updateQuo(quoVO);
 			QuoVO quoVO2 = quoSrv.getByQuoId(quo_id);
+			List<QuoDetailVO> detailList = quoDetailSrv.getByQuoId(quo_id);
+
+			req.setAttribute("quoDetailVO", detailList);
 			req.setAttribute("quoVO", quoVO2);
 
 		} catch (Exception e) {

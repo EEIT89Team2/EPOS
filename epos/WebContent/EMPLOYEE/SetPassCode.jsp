@@ -612,8 +612,6 @@
 		   var b = $(this).prop('checked');
 		   $(':checkbox[value="/addMem.jsp"]').prop('checked',b);//新增會員
 		   $(':checkbox[value="/searchMem.jsp"]').prop('checked',b);//搜尋會員
-		   $(':checkbox[value="/searchEmp.jsp"]').prop('checked',b);//搜尋員工
-		   $(':checkbox[value="/addEmp.jsp"]').prop('checked',b);//新增員工
 		   $(':checkbox[value="/searchCom.jsp"]').prop('checked',b);//搜尋廠商
 		   $(':checkbox[value="/addCom.jsp"]').prop('checked',b);//新增廠商
 		   $(':checkbox[value="/addReq.jsp"]').prop('checked',b);//新增請購單

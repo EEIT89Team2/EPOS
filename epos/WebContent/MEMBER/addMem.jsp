@@ -204,17 +204,24 @@
 								<%-- 					value="<%=(memVO == null) ? "M00001" : memVO.getMem_id()%>" /></td> --%>
 								<!-- 			</tr> -->
 								<div class="form-group">
-									<label class="col-lg-1 col-lg-offset-4 control-label">密碼:</label>
-									<div class="col-lg-6">
-										<input type="text" name="mem_pwd" size="20"
-											value="<%=(memVO == null) ? "9527" : memVO.getMem_pwd()%>" />
-									</div>
-								</div>
-								<div class="form-group">
 									<label class="col-lg-1 col-lg-offset-4 control-label">姓名:</label>
 									<div class="col-lg-6">
 										<input type="text" name="mem_name" size="20"
 											value="<%=(memVO == null) ? "華安" : memVO.getMem_name()%>" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-1 col-lg-offset-4 control-label">密碼:</label>
+									<div class="col-lg-6">
+										<input type="password" name="mem_pwd" size="20" id="pwd"
+											value="<%=(memVO == null) ? "9527" : memVO.getMem_pwd()%>" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-1 col-lg-offset-4 control-label">確認密碼:</label>
+									<div class="col-lg-6">
+										<input type="password" name="mem_chkpwd" size="20"
+											value="<%=(memVO == null) ? "9527" : memVO.getMem_pwd()%>" />
 									</div>
 								</div>
 								<div class="form-group">
@@ -333,6 +340,11 @@
 						required : true,
 						minlength : 4
 					},
+					mem_chkpwd : {
+						equalTo:"#pwd",
+						required : true,
+						minlength : 4
+					},
 					mem_idnum : {
 						required : true,
 						rangelength : [ 10, 10 ],
@@ -362,6 +374,11 @@
 						required : "【請輸入會員姓名】"
 					},
 					mem_pwd : {
+						required : "【請輸入密碼】",
+						minlength : "【密碼必須大於4位數】"
+					},
+					mem_chkpwd : {
+						equalTo:"【密碼不相符】",
 						required : "【請輸入密碼】",
 						minlength : "【密碼必須大於4位數】"
 					},

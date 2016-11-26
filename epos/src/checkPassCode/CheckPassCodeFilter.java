@@ -85,7 +85,7 @@ import com.employee.model.EmpVO;
 		"/INVO/listAllInvo.jsp",
 		"/INVO/deleteInvo.do",
 		"/INVO/updateInvo.do",
-		"/SHIFTREPORT/updateShiftre.do",
+		"/SHIFTREPORT/getOneShiftre.do",
 		"/SHIFTREPORT/getAllShiftre.do",
 		"/SHIFTREPORT/getShiftreByDate.do",
 		"/SHIFTREPORT/insertShiftre.do",

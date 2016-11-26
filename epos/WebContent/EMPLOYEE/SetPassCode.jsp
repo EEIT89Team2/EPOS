@@ -457,7 +457,7 @@
 													<th> </th>
 												</tr>
 												<tr>
-													<td><span class="check"><input type="checkbox" name="pass_code" value="/updateShiftre.do">依班別報表搜尋</span></td>
+													<td><span class="check"><input type="checkbox" name="pass_code" value="/getOneShiftre.do">依班別報表搜尋</span></td>
 													<td><span class="check"><input type="checkbox" name="pass_code" value="/coupon.do">依折價券編號搜尋</span></td>
 													<td><span class="check"><input type="checkbox" name="pass_code" value="/search_disc.jsp">搜尋折扣</span></td>
 													<td></td>
@@ -658,7 +658,7 @@
 		   $(':checkbox[value="/insertInvo.do"]').prop('checked',b);//新增作廢發票
 		   $(':checkbox[value="/searchinvo.jsp"]').prop('checked',b);//依發票編號搜尋
 		   $(':checkbox[value="/listAllInvo.jsp"]').prop('checked',b);//搜群全部作廢發票
-		   $(':checkbox[value="/updateShiftre.do"]').prop('checked',b);//依班別報表搜尋
+		   $(':checkbox[value="/getOneShiftre.do"]').prop('checked',b);//依班別報表搜尋
 		   $(':checkbox[value="/getAllShiftre.do"]').prop('checked',b);//查詢全部
 		   $(':checkbox[value="/getShiftreByDate.do"]').prop('checked',b);//依日期搜尋
 		   $(':checkbox[value="/insertShiftre.do"]').prop('checked',b);//新增班別報表

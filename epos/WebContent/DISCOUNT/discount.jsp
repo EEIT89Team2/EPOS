@@ -250,7 +250,7 @@
 			}else{
 				timer = true;
 			}
-		},5000);
+		},10000);
 
 	</script>
 </body>

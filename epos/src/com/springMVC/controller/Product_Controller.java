@@ -136,7 +136,7 @@ System.out.println(u);
 		}
 		if (!errorMsgs.isEmpty()) {
 		model.addAttribute("message", errorMsgs);
-		return "redirect:/PRODUCT/product.jsp";  //導回首頁顯示錯誤資訊
+		return "redirect:/PRODUCT/AllProd.jsp";  //導回首頁顯示錯誤資訊
 		}
 		/*************************** 2.永續層存取 ***************************************/
 		List list = prodSrv.getByName(prod_name);
@@ -147,7 +147,7 @@ System.out.println(u);
 		// Send the use back to the form, if there were errors
 		if (!errorMsgs.isEmpty()) {
 			model.addAttribute("message", errorMsgs);
-			return "redirect:/PRODUCT/product.jsp";
+			return "redirect:/PRODUCT/AllProd.jsp";
 			}
 		
 		request.getSession().setAttribute("list", list);

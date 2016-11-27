@@ -28,12 +28,13 @@ public class LoginFilter implements Filter {
 				&& response instanceof HttpServletResponse) {
 			HttpServletRequest req = (HttpServletRequest) request;
 			HttpServletResponse resp = (HttpServletResponse) response;
-//System.out.println("req.getServletPath()===="+req.getServletPath());
+System.out.println("Login_req.getServletPath()===="+req.getServletPath());
 			servletPath=req.getServletPath();
 			boolean flag=false;
 			if (servletPath.length() > 10) {
 				if (servletPath.substring(0, 10).equals("/resources")) {
 					flag = true;
+					
 				}
 			}
 

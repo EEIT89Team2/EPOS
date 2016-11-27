@@ -144,12 +144,18 @@ public class CheckPassCodeFilter implements Filter {
 	private boolean checkPCode(HttpServletRequest req){
 		HttpSession session = req.getSession();
 		EmpVO empVO = (EmpVO) session.getAttribute("LoginOK");
+		if(empVO.getPass_code()==null){
+			return false;
+		}
+		if(empVO.getPass_code().equals("ALL")){
+			return true;
+		}
+		
 		String[] passCode = (empVO.getPass_code()).split(",");
 
 		if(checkPCode2(passCode,req)){
 			return true;
 		}
-	
 		return false;
 	}
 	

@@ -67,7 +67,9 @@ public class login_Servlet extends HttpServlet {
 		if (empVO != null) {
 			if (checkPassword(empVO, emp_pwd)) {
 				session.setAttribute("LoginOK", empVO);
-
+				
+				System.out.println("emp_psC="+empVO.getPass_code());
+				
 				long nowD = new java.util.Date().getTime();
 				Date nowdate = new Date(nowD);
 				String x = (nowdate.toString().split(" "))[3].split(":")[0];

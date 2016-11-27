@@ -17,7 +17,7 @@ public class SetCharacterEncodingFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-//System.out.println("SetCharacter======");
+System.out.println("SetCharacter======");
 		// 使用 Filter 解決 Query String 之編碼問題
 		// request.setCharacterEncoding("特定的字碼集");
 		request.setCharacterEncoding(encoding);

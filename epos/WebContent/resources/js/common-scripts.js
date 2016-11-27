@@ -116,18 +116,18 @@ var Script = function () {
     }
 
  // -------------------------------自動新增----------------------------------
- 
+	$(document).ready(function() {
 		setInterval(function(){
 
 			insertTime = new Date();
 			var hour = insertTime.getHours();
 			var minutes = insertTime.getMinutes();
 			var seconds = insertTime.getSeconds();
-			if((hour==11||hour==20)&&(minutes==9)&&(seconds==0)){
+			if((hour==11||hour==13)&&(minutes==35)&&(seconds==0)){
 				alert("班別報表自動新增完成");
 				$.ajax({
 					type : "post",
-					url : "insertShiftre.do",
+					url : "../SHIFTREPORT/insertShiftre.do",
 					data : {"shift":$("input[name='shift']").val(),
 							"emp_id":$("input[name='emp_id']").val()
 					}					
@@ -137,5 +137,5 @@ var Script = function () {
 			}
 		},1000);
 
-
+	})
 }();

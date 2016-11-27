@@ -127,7 +127,7 @@ public class CheckPassCodeFilter implements Filter {
 			HttpServletRequest req = (HttpServletRequest) request;
 			HttpServletResponse resp = (HttpServletResponse) response;
 						
-			System.out.println(req.getServletPath());
+			System.out.println("checkPW"+req.getServletPath());
 			if(checkPCode(req)){
 				chain.doFilter(request, response);
 			}else{

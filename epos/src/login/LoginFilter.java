@@ -10,7 +10,7 @@ import javax.servlet.http.*;
 
 import com.employee.model.EmpVO;
 
-@WebFilter(urlPatterns = { "/*" })
+//@WebFilter(urlPatterns = { "/*" })
 public class LoginFilter implements Filter {
 	Collection<String> url = new ArrayList<String>();
 	String servletPath;
@@ -28,7 +28,7 @@ public class LoginFilter implements Filter {
 				&& response instanceof HttpServletResponse) {
 			HttpServletRequest req = (HttpServletRequest) request;
 			HttpServletResponse resp = (HttpServletResponse) response;
-
+//System.out.println("req.getServletPath()===="+req.getServletPath());
 			servletPath=req.getServletPath();
 			boolean flag=false;
 			if (servletPath.length() > 10) {

@@ -213,7 +213,6 @@ table {
 					<thead>
 					<tr>
 						<th>會員編號</th>
-						<th>密碼</th>
 						<th>姓名</th>
 						<th>身分證</th>
 						<th>生日</th>
@@ -231,7 +230,6 @@ table {
 					<c:forEach var="memVO" items="${list}">
 						<tr align='center' valign='middle'>
 							<td>${memVO.mem_id}</td>
-							<td>${memVO.mem_pwd}</td>
 							<td>${memVO.mem_name}</td>
 							<td>${memVO.mem_idnum}</td>
 							<td>${memVO.mem_bday}</td>

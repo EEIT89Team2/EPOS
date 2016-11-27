@@ -119,14 +119,15 @@
 				<div class="col-lg-1">			
 					<input type="text" name="deal_sum" value="${shiftreVO.deal_sum}" readonly="readonly" class="form-control">
 				</div>
-				<label class="col-lg-1 control-label update_text">實收交易額:</label>
-				<div class="col-lg-1">			
-					<input type="text" name="shift_sum" value="${shiftreVO.shift_sum}" class="form-control">
-				</div>
-				<label class="col-lg-1 control-label">交易次數:</label>
+				<label class="col-lg-1 control-label">來客數:</label>
 				<div class="col-lg-1">			
 					<input type="text" name="deal_num" value="${shiftreVO.deal_num}" readonly="readonly" class="form-control">
-				</div><div class="col-lg-2"></div>
+				</div>	
+				<label class="col-lg-1 control-label update_text">備註:</label>
+				<div class="col-lg-1">			
+					<input type="text" name="shift_remark" value="${shiftreVO.remark}" class="form-control">
+				</div>
+				<div class="col-lg-2"></div>
 			</div>
 
 			<p class="distance">			

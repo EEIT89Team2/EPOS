@@ -89,12 +89,12 @@
 			<th class="numeric">折讓</th>
 			<th class="numeric">零用金</th>
 			<th class="numeric">交易額</th>
-			<th class="numeric">實收交易額</th>
 <!-- 			<th class="numeric">交易成本</th> -->
 <!-- 			<th class="numeric">交易淨利</th> -->
-			<th class="numeric">交易次數</th>
+			<th class="numeric">來客數</th>
+			<th class="numeric">備註</th>
 			<th class="numeric">修改</th>
-<!-- 			<th class="numeric">刪除</th> -->
+			<th class="numeric">刪除</th>
 		</tr></thead>
 		
 <c:forEach var="list" items="${list}" varStatus="count">
@@ -110,22 +110,21 @@
 			<td class="numeric" data-title="折讓">${list.discount}</td>
 			<td class="numeric" data-title="零用金">${list.coins}</td>
 			<td class="numeric" data-title="交易額">${list.deal_sum}</td>
-			<td class="numeric" data-title="實收交易額">${list.shift_sum}</td>
+			<td class="numeric" data-title="來客數">${list.deal_num}</td>
 <%-- 			<td class="numeric" data-title="交易成本">${list.deal_cost}</td> --%>
 <%-- 			<td class="numeric" data-title="交易淨利">${list.deal_profit}</td> --%>
-			<td class="numeric" data-title="交易次數">${list.deal_num}</td>
+			<td class="numeric" data-title="備註">${list.remark}</td>
 			<td class="numeric" data-title="修改">
 				<button type="button" class="btn btn-theme02" name="action" value="update" target1="${list.date}" target2="${list.shift}">
 					<i class="fa fa-pencil"></i>
 				</button>
 	
 			</td>
-<!-- 			<td class="numeric" data-title="刪除"> -->
-<%-- 				<input type="button" name="action" value="delete" target1="${list.date}" target2="${list.shift}"> --%>
-<!-- 				<button type="button" class="btn btn-danger"> -->
-<%-- 					<i class="fa fa-trash-o" action="delete" target1="${list.date}" target2="${list.shift}"></i> --%>
-<!-- 				</button> -->
-<!-- 			</td> -->
+			<td class="numeric" data-title="刪除">
+				<button type="button" class="btn btn-danger">
+					<i class="fa fa-trash-o" action="delete" target1="${list.date}" target2="${list.shift}"></i>
+				</button>
+			</td>
 					<%--<input type="hidden" name="Date" value="${list.date}"> --%>
 <%-- 			<input type="hidden" name="shift" value="${list.shift}"> --%>
 			
@@ -141,24 +140,24 @@
 	<script type="text/JavaScript">
 
 	$(document).ready(function() {
-//刪除功能(班別報表不能刪除)		
-// 		$('.fa-trash-o').click(function() {
-// 			var date = $(this).attr("target1");
-// 			var shift = $(this).attr("target2");
-// 			$.ajax({
-// 				type : "post",
-// 				url : "updateDeleteShiftre.do",
-// 				data : {
-// 					Date : date,
-// 					shift : shift,
-// 					action : "delete"
-// 				},
-// 				success : function(data) {
-// 					$(".rul").html(data);
-// 				}
-// 			});
+// 刪除功能(班別報表不能刪除)		
+		$('.fa-trash-o').click(function() {
+			var date = $(this).attr("target1");
+			var shift = $(this).attr("target2");
+			$.ajax({
+				type : "post",
+				url : "updateDeleteShiftre.do",
+				data : {
+					Date : date,
+					shift : shift,
+					action : "delete"
+				},
+				success : function(data) {
+					$(".rul").html(data);
+				}
+			});
 
-// 		})
+		})
 		
 //修改
 		$("button").on('click',function(){

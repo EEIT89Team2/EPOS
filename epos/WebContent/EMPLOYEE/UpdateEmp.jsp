@@ -200,7 +200,7 @@
 							<div class="form-group">
 								<label class="col-lg-1 col-lg-offset-4 control-label">±K½X:</label>
 								<div class="col-lg-6">
-									<input type="text" name="emp_pwd" value="${empVO.emp_pwd}">
+									<input type="password" style="background-color: white;" name="emp_pwd" value="${empVO.emp_pwd}">
 								</div>
 							</div>
 							<div class="form-group">

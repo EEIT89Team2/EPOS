@@ -227,7 +227,8 @@ table {
 					<form method="post" action="updateDeleteEmp.do">
 						<tr>
 							<td>${list.emp_id}</td>
-							<td>${list.emp_pwd}</td>
+<%-- 							<td>${list.emp_pwd}</td> --%>
+							<td><input type="password" style="width:4em;background-color:#d3d3d3;" value="${list.emp_pwd}" readonly="readonly"></td>
 							<td>${list.emp_name}</td>
 							<td>${list.emp_sex}</td>
 							<td>${list.emp_idnum}</td>

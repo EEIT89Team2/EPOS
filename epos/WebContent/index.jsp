@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ePOS</title>
 
+
 <!-- Bootstrap core CSS -->
 <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
 <!--external css-->
@@ -144,7 +145,7 @@
 	</script>
 	<script type="text/javascript" src="<c:url value="resources/js/jquery.backstretch.min.js" />"></script>
 	<script>
- 		$.backstretch("resources/img/Information.png", {
+ 		$.backstretch("resources/img/designer.jpg", {
   			speed : 500
   		});
 

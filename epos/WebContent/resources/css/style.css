@@ -94,8 +94,8 @@ a, a:hover, a:focus {
 
 .btn-theme {
   color: #fff;
-  background-color: #51c8e0;
-  border-color: #2c2f2f;
+  background-color: #354a81;
+  border-color: #354a81;
 }
 .btn-theme:hover,
 .btn-theme:focus,
@@ -103,7 +103,7 @@ a, a:hover, a:focus {
 .btn-theme.active,
 .open .dropdown-toggle.btn-theme {
   color: #fff;
-  background-color: #51c8e0; /* #48bcb4 */
+  background-color: #15358a; /* #48bcb4 */
   border-color: #ac92ec;
 }
 
@@ -1940,13 +1940,14 @@ label {
 	margin: 0;
 	padding: 25px 20px;
 	text-align: center;
-	background: #51c8e0;
+	background: #354a81;
 	border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	color: #fff;
 	font-size: 20px;
 	text-transform: uppercase;
 	font-weight: 300;
+	font-family:微軟正黑體;
 }
 .login-wrap {
 	padding: 20px;

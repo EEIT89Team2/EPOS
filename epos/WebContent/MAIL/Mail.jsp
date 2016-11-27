@@ -188,13 +188,13 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 						<div class="form-group">
 							<label class="col-lg-1 col-lg-offset-4 control-label">標題:</label>
 							<div class="col-lg-6">
-								<input type="text" name="from">
+								<input type="text" name="from" value="ePos">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-1 col-lg-offset-4 control-label">主旨:</label>
 							<div class="col-lg-6">
-								<input type="text" name="subject">
+								<input type="text" name="subject" value="聖誕節優惠">
 							</div>
 						</div>
 						<div class="form-group">

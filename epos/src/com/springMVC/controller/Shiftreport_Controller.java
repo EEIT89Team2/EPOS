@@ -126,6 +126,8 @@ public class Shiftreport_Controller {
 		int coins = 20000;
 		//來客數
 		int deal_num = (int)ordSvc.GetDayTotalPeople();
+		//備註
+		String remark ="";
 		
 		List<OrderVO> listAll = ordSvc.getDateAndShift(date, shift);
 
@@ -153,6 +155,7 @@ public class Shiftreport_Controller {
 		shiftreVO.setShift_sum(shift_sum);
 		shiftreVO.setReal_cash(real_cash);
 		shiftreVO.setReal_coupon(real_coupon);
+		shiftreVO.setRemark(remark);
 		/*************************** 2.永續層存取 ***************************************/
 		shiftreSrv.insertOne(shiftreVO);
 //		List list = shiftreSrv.getAll();
@@ -238,8 +241,8 @@ public class Shiftreport_Controller {
 		int real_cash=Integer.parseInt(request.getParameter("real_cash"));
 		int real_coupon=Integer.parseInt(request.getParameter("real_coupon"));
 		int deal_num=Integer.parseInt(request.getParameter("deal_num"));
-		int shift_sum=Integer.parseInt(request.getParameter("shift_sum"));
-		
+		int shift_sum= 0;
+		String remark = request.getParameter("remark");
 		int deal_cost=0;
 		int deal_profit=0;
 		ShiftreVO shiftreVO = new ShiftreVO();
@@ -258,6 +261,7 @@ public class Shiftreport_Controller {
 		shiftreVO.setDeal_profit(deal_profit);
 		shiftreVO.setDeal_num(deal_num);
 		shiftreVO.setShift_sum(shift_sum);
+		shiftreVO.setRemark(remark);
 		
 		/*************************** 2.永續層存取 ***************************************/
 

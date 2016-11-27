@@ -145,7 +145,7 @@
 	</script>
 	<script type="text/javascript" src="<c:url value="resources/js/jquery.backstretch.min.js" />"></script>
 	<script>
- 		$.backstretch("resources/img/designer.jpg", {
+ 		$.backstretch("resources/img/baground.png", {
   			speed : 500
   		});
 

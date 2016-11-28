@@ -17,6 +17,7 @@
 
 </style>
 <body>
+
 	<section id="container"> <section class="wrapper">
 	<div class="row mt">
 		
@@ -130,7 +131,7 @@
 				})
 			})
 		})
-		$("#table1").dataTable();
+// 		$("#table1").dataTable();
 	</script>
 </body>
 </html>

@@ -210,7 +210,6 @@ table {
 						<th>電話</th>
 						<th>地址</th>
 						<th>電子信箱</th>
-						<th>名片</th>
 						<th>修改人</th>
 						<th>修改時間</th>
 						<th>修改</th>
@@ -227,8 +226,6 @@ table {
 							<td>${list.com_phone}</td>
 							<td>${list.com_addr}</td>
 							<td>${list.com_mail}</td>
-							<td><img alt="尚無名片"
-								src="data:image/gif;base64,${list.picture}"></td>
 							<td>${list.key_id}</td>
 							<td>${list.key_date}</td>
 							<td><input type="submit" name="action" value="update"

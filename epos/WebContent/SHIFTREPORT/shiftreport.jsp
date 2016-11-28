@@ -205,7 +205,7 @@
 				<div class="container-fluid">
 					<ul class="nav navbar-nav">
 						<li id="shi_search"><a data-toggle="tab" href="#search"><span class="glyphicon glyphicon-search"></span>搜尋</a></li>
-<!-- 						<li id="shi_new"><a id="c_shift" target="shiftCharts.jsp" data-toggle="tab" href="#new"><span class="fa fa-bar-chart-o"></span>營業額分析</a></li> -->
+						<li id="shi_cofg"><a id="c_cofg" target="shiftCofg.jsp" data-toggle="tab" href="#new"><span class="fa fa-bar-chart-o"></span>設定</a></li>
 <!-- 						<li id="shi_analysis"><a id="analysis_shift" target="shiftCharts2.jsp" data-toggle="tab" href="#analysis"><span class="fa fa-bar-chart-o"></span>來客數分析</a></li> -->
 						<li id="shi_rel"><a data-toggle="tab" href="#result" id="test"><span class="glyphicon glyphicon-list-alt"></span>查詢結果</a></li>
 						<li><a data-toggle="tab" href="#print" class="print"><span class="glyphicon glyphicon-print"></span>列印</a></li>
@@ -215,16 +215,16 @@
 
 			<div class="tab-content">
 				<div id="search" class="tab-pane fade">
-					<%-- 錯誤表列 --%>
-					<c:if test="${not empty param.message}">
-						<font color='red'>請修正以下錯誤:
-							<ul>
-								<c:forEach var="message" items="${param.message}">
-									<li>${message}</li>
-								</c:forEach>
-							</ul>
-						</font>
-					</c:if>
+<%-- 					錯誤表列 --%>
+<%-- 					<c:if test="${not empty param.message}"> --%>
+<!-- 						<font color='red'>請修正以下錯誤: -->
+<!-- 							<ul> -->
+<%-- 								<c:forEach var="message" items="${param.message}"> --%>
+<%-- 									<li>${message}</li> --%>
+<%-- 								</c:forEach> --%>
+<!-- 							</ul> -->
+<!-- 						</font> -->
+<%-- 					</c:if> --%>
 
 					<div class="titlelist">查詢</div>
 					<div class="col-lg-12 main">
@@ -274,9 +274,9 @@
 					</div>
 
 				</div>
-<!-- 				<div id="new" class="tab-pane fade"> -->
-<!-- 					<div class="insert-content main"></div> -->
-<!-- 				</div> -->
+				<div id="new" class="tab-pane fade">
+					<div class="insert-content main"></div>
+				</div>
 <!-- 				<div id="analysis" class="tab-pane fade"> -->
 <!-- 					<div class="analysis-content main"></div> -->
 <!-- 				</div> -->
@@ -330,13 +330,13 @@
 		
 		
 // -------------------------------載入報表1.2----------------------------------
-// 		$('#c_shift').on('click', function() {							
-// 				var insertWeb = $(this).attr('target');
-// 				$.get(insertWeb, function(data) {
-// 					$('.insert-content').html(data);
-// 				})
+		$('#c_cofg').on('click', function() {							
+				var insertWeb = $(this).attr('target');
+				$.get(insertWeb, function(data) {
+					$('.insert-content').html(data);
+				})
 					
-// 		})
+		})
 		
 // 		$('#analysis_shift').on('click', function() {							
 // 				var insertWeb = $(this).attr('target');

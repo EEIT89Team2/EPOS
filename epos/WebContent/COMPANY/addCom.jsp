@@ -193,7 +193,7 @@
 							<div class="form-group">
 								<label class="col-lg-1 col-lg-offset-4 control-label">廠商名稱:</label>
 								<div class="col-lg-6">
-									<input type="text" name="com_name" value="龍祥電子">
+									<input type="text" name="com_name" value="龍祥水果行">
 								</div>
 							</div>
 							<div class="form-group">
@@ -218,12 +218,6 @@
 								<label class="col-lg-1 col-lg-offset-4 control-label">電話:</label>
 								<div class="col-lg-6">
 									<input type="text" name="com_phone" value="0988456877">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-1 col-lg-offset-4 control-label">名片:</label>
-								<div class="col-lg-6">
-									<input type="file" name="picture">
 								</div>
 							</div>
 							<div class="form-group">

@@ -597,7 +597,7 @@ print(text)
 										                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 										//筆數+1
 										ordmain.count.value=parseInt(ordmain.count.value)+1;
-										
+										document.getElementById("prod_id").value="";
 									})
 									
 									

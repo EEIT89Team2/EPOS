@@ -29,6 +29,12 @@
 .glyphicon {
 	top: auto;
 }
+body {
+    font-size: 16px;
+}
+label {
+    font-weight: 900;
+}
 </style>
 </head>
 <body>

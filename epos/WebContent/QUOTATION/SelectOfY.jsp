@@ -48,7 +48,7 @@
 					<th>建檔日期</th>
 					<th>備註</th>
 					<th>狀態</th>
-					<th>明細</th>
+<!-- 					<th>明細</th> -->
 
 				</tr>
 				<%
@@ -63,14 +63,14 @@
 				<c:forEach var="list" items="<%=list%>" varStatus="count">
 					<form method="post">
 						<tr>
-							<td>${list.quo_id}</td>
+							<td><a class="detail" target="${list.quo_id}">${list.quo_id}</a></td>
 							<td>${list.req_id}</td>
 							<td>${list.key_id}</td>
 							<td>${list.key_date}</td>
 							<td>${list.remark}</td>
 							<td>${list.status}</td>
-							<td><input type="submit" class="detail"
-								target="${list.quo_id}" value="Detail"></td>
+<!-- 							<td><input type="submit" class="detail" -->
+<%-- 								target="${list.quo_id}" value="Detail"></td> --%>
 
 							<%-- 							<input type="hidden" name="req_id" value="${list.req_id}"> --%>
 

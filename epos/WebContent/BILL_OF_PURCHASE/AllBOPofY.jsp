@@ -51,7 +51,7 @@
 						<th>送貨日期</th>
 						<th>金額</th>
 						<th>狀態</th>
-						<th>明細</th>
+<!-- 						<th>明細</th> -->
 
 					</tr>
 					<%
@@ -65,7 +65,7 @@
 					<c:forEach var="list" items="<%=list%>" varStatus="count">
 						<form method="post" action="DetailDeleteReq.do">
 							<tr>
-								<td>${list.bop_id}</td>
+								<td><a class="detail" target="${list.bop_id}">${list.bop_id}</a></td>
 								<td>${list.pur_id}</td>
 								<td>${list.com_id}</td>
 								<td>${list.key_id}</td>
@@ -73,8 +73,8 @@
 								<td>${list.bop_date}</td>
 								<td>${list.remark}</td>
 								<td>${list.status}</td>
-								<td><input type="submit" class="detail"
-									target="${list.bop_id}" value="Detail"></td>
+<!-- 								<td><input type="submit" class="detail" -->
+<%-- 									target="${list.bop_id}" value="Detail"></td> --%>
 
 								<%-- 							<input type="hidden" name="req_id" value="${list.req_id}"> --%>
 

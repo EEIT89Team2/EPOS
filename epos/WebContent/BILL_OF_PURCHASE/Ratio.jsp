@@ -37,7 +37,7 @@
 		</div>
 		</nav>
 		<div
-			style="background-image: url(../resources/img/afds.jpg); background-size: cover;">
+			style="background-image: url(../resources/img/anonymous-dark.jpg); background-size: cover;">
 			<div
 				style="background-color: rgba(0, 0, 0, 0.1); position: relativve; height: 750px; overflow: auto;">
 				<div align=center>
@@ -50,7 +50,7 @@
 							</c:forEach></select>
 					</div>
 					<div id="container2" 
-						style="height: 500px; width: 750px; margin:0 auto;top:25%;left:36%;position:absolute; "></div>
+						style="height: 700px; width: 1050px; margin:0 auto;top:15%;left:27%;position:absolute; "></div>
 					<div id="costdiv" style="padding:10px;background-color: rgba(0, 0, 0, 0.5);color:white;font-size:24px;position:absolute;right:20px; bottom:120px;">
 						總金額：<span id="cost"></span>元
 						</div>
@@ -140,7 +140,8 @@
 						                    enabled: true,
 						                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
 						                    style: {
-						                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+						                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'white',
+						                        fontSize: '24px'
 						                    }
 						                }
 						            }

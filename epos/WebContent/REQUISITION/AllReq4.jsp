@@ -43,7 +43,7 @@
 						<th>修改人員</th>
 						<th>修改日期</th>
 						<th>狀態</th>
-						<th>明細</th>
+<!-- 						<th>明細</th> -->
 
 					</tr>
 					<%
@@ -57,12 +57,12 @@
 					<c:forEach var="list" items="<%=list%>" varStatus="count">
 						<form method="post" action="DetailDeleteReq.do">
 							<tr>
-								<td>${list.req_id}</td>
+								<td><a class="detail" target="${list.req_id}">${list.req_id}</a></td>
 								<td>${list.key_id}</td>
 								<td>${list.key_date}</td>
 								<td>${list.status}</td>
-								<td><input type="submit" class="detail"
-									target="${list.req_id}" value="Detail"></td>
+<!-- 								<td><input type="submit" class="detail" -->
+<%-- 									target="${list.req_id}" value="Detail"></td> --%>
 								<%--<input type="hidden" name="req_id" value="${list.req_id}"> --%>
 							</tr>
 

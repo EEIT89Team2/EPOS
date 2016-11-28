@@ -166,12 +166,13 @@
 				&& document
 						.write("<script src='<c:url value='../resources/js/jquery-3.1.1.min.js'/>'><\/script>")
 	</script>
+	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
 	<script src="<c:url value='../resources/js/jquery.validate.min.js' />"></script>
 	<%-- 	<script src="<c:url value='../resources/js/highcharts.js' />"></script> --%>
 	<%-- 	<script src="<c:url value='../resources/js/exporting.js' />"></script> --%>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
-	<script src="<c:url value="../resources/js/bootstrap.min.js" />"></script>
 	<script class="include" type="text/javascript"
 		src="<c:url value="../resources/js/jquery.dcjqaccordion.2.7.js" />"></script>
 	<script src="<c:url value="../resources/js/jquery.scrollTo.min.js" />"></script>

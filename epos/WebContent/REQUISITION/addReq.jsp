@@ -271,7 +271,7 @@ input {
 				})
 			})
 
-			$("#table1").dataTable();
+// 			$("#table1").dataTable();
 
 			// 			$('#form1').validate({
 			// 				rules : {

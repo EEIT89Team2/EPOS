@@ -222,7 +222,7 @@
 				})
 
 			})
-			$("#table1").dataTable();
+// 			$("#table1").dataTable();
 		</script>
 </body>
 </html>

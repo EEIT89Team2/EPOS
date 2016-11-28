@@ -51,7 +51,7 @@
 					</div>
 					<div id="container2" 
 						style="height: 500px; width: 750px; margin:0 auto;top:25%;left:36%;position:absolute; "></div>
-					<div id="costdiv" style="padding:10px;background-color: rgba(0, 0, 0, 0.5);color:white;font-size:24px;position:absolute;right:20px; bottom:80px;">
+					<div id="costdiv" style="padding:10px;background-color: rgba(0, 0, 0, 0.5);color:white;font-size:24px;position:absolute;right:20px; bottom:120px;">
 						總金額：<span id="cost"></span>元
 						</div>
 

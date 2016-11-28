@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%		
+ 		Date nowDate =new java.sql.Date(System.currentTimeMillis());
+ 		pageContext.setAttribute("nowDate",nowDate);
+ 		
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -91,8 +97,8 @@ input {
 							value="${sessionScope.LoginOK.emp_id }" readonly="readonly"></td>
 					</tr>
 					<tr>
-						<td>&nbsp;&nbsp;建檔日期：<input type="date" name="key_date"
-							id="theDate" style="width: 200px;" required></td>
+						<td>&nbsp;&nbsp;建檔日期：<input type="text" name="key_date"
+							id="theDate" style="width: 200px;" value="${nowDate}" readonly></td>
 					</tr>
 					<tr>
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;狀&nbsp;&nbsp;&nbsp;態&nbsp;&nbsp;：<input
@@ -211,21 +217,6 @@ input {
 
 							})
 
-				
-							
-			$('#form1').validate({
-				
-				errorClass:"my-error-class",
-				validClass:"my-valid-class",
-				
-				rules : {
-					key_date : "required"
-				},
-				messages : {
-					key_date : {required:"請輸入請購日期"}
-				}
-			})
-
 			$('#sbt').on('click', function() {
 
 				var $form = $('#form1');
@@ -270,6 +261,7 @@ input {
 					$('#main-content').html(data);
 				})
 			})
+			$("input[readonly]").css("background-color","lightgray");
 
 // 			$("#table1").dataTable();
 

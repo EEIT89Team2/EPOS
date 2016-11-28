@@ -74,7 +74,13 @@
 }
 
 table {
-	font-size: small;
+	font-size: large;
+}
+body {
+    font-size: 16px;
+}
+label {
+    font-weight: 900;
 }
 </style>
 </head>

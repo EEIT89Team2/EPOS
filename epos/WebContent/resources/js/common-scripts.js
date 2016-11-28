@@ -116,26 +116,26 @@ var Script = function () {
     }
 
  // -------------------------------自動新增----------------------------------
-	$(document).ready(function() {
-		setInterval(function(){
-
-			insertTime = new Date();
-			var hour = insertTime.getHours();
-			var minutes = insertTime.getMinutes();
-			var seconds = insertTime.getSeconds();
-			if((hour==15||hour==11)&&(minutes==45)&&(seconds==0)){
-				alert("班別報表自動新增完成");
-				$.ajax({
-					type : "post",
-					url : "../SHIFTREPORT/insertShiftre.do",
-					data : {"shift":$("input[name='shift']").val(),
-							"emp_id":$("input[name='emp_id']").val()
-					}					
-				});
-			}else{
-	
-			}
-		},1000);
-
-	})
+//	$(document).ready(function() {
+//		setInterval(function(){
+//
+//			insertTime = new Date();
+//			var hour = insertTime.getHours();
+//			var minutes = insertTime.getMinutes();
+//			var seconds = insertTime.getSeconds();
+//			if((hour==15||hour==11)&&(minutes==45)&&(seconds==0)){
+//				alert("班別報表自動新增完成");
+//				$.ajax({
+//					type : "post",
+//					url : "../SHIFTREPORT/insertShiftre.do",
+//					data : {"shift":$("input[name='shift']").val(),
+//							"emp_id":$("input[name='emp_id']").val()
+//					}					
+//				});
+//			}else{
+//	
+//			}
+//		},1000);
+//
+//	})
 }();

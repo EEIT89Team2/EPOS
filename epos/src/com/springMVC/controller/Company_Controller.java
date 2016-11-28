@@ -97,10 +97,10 @@ public class Company_Controller {
 		String com_addr = request.getParameter("com_addr");
 		String com_mail = request.getParameter("com_mail");
 
-		Part filePart1 = request.getPart("picture");
-		InputStream in = filePart1.getInputStream();
-		byte[] picture = new byte[in.available()];
-		in.read(picture);
+//		Part filePart1 = request.getPart("picture");
+//		InputStream in = filePart1.getInputStream();
+//		byte[] picture = new byte[in.available()];
+//		in.read(picture);
 		
 		String key_id = request.getParameter("key_id");
 
@@ -114,7 +114,7 @@ public class Company_Controller {
 		comVO.setCom_phone(com_phone);
 		comVO.setCom_addr(com_addr);
 		comVO.setCom_mail(com_mail);
-		comVO.setPicture(Base64.getEncoder().encodeToString(picture));
+//		comVO.setPicture(Base64.getEncoder().encodeToString(picture));
 		comVO.setKey_id(key_id);
 		comVO.setKey_date(key_date);
 

@@ -40,14 +40,14 @@ public class OrderSpringDAO implements Order_Interface {
 		return orderVO;
 	}
 
-	private static final String GET_ONE_STMT_ORDERDATE = "from OrderVO where ord_date between ? and ?";
+	private static final String GET_ONE_STMT_ORDERDATE = "from OrderVO where ord_date between ? and ? order by ord_date ";
 
 	@Override
 	public List Select_ord_date(Date s_ord_date, Date e_ord_date) throws Exception {
 
 		List<OrderVO> list = null;
 		list = hibernateTemplate.find(GET_ONE_STMT_ORDERDATE, new Object[] { s_ord_date, e_ord_date });
-
+//		System.out.println("list size="+list.size());
 		return list;
 	}
 

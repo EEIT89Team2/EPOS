@@ -125,6 +125,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 		case 10:
 			s_ord_date=Date.valueOf("2016-10-01");
 			e_ord_date=Date.valueOf("2016-10-31");
+			System.out.println("case 10");
 			break;
 		case 11:
 			s_ord_date=Date.valueOf("2016-11-01");
@@ -148,7 +149,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 //			System.out.println("i="+i);
 			date1=orderVO.getOrd_date();
 			
-//			System.out.println("date1="+date1);
+			System.out.println("date1="+date1);
 //			System.out.println("date2="+date2);
 			if(i==0){
 				date2=date1;
@@ -163,7 +164,7 @@ public class Order_Controller extends HttpServlet implements Runnable {
 //				System.out.println("else");
 				Map m1 = new HashMap();
 				m1.put("Date", date2);
-				System.out.println(date2);
+//				System.out.println(date2);
 				m1.put("Price", totalPrice1);
 
 				l1.add(m1);
@@ -176,7 +177,9 @@ public class Order_Controller extends HttpServlet implements Runnable {
 			i++;
 			
 		}
-		
+		for(Map m1:l1){
+			System.out.println(m1.get("Date"));
+		}
 		resp.setHeader("content-type","text/html;charset=utf-8");
 		JSONArray jsonall = new JSONArray(l1);
 		PrintWriter out = resp.getWriter();

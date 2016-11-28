@@ -38,14 +38,18 @@
 	}
 	
 	 .form-horizontal .control-label { 
-	     text-align: right; 
+	     text-align: left;
 	 }
 	 
 	 .btn-theme02 {
     color: #fff;
     background-color: #229abd;
     border-color: #31535d;
-} 
+	}
+	
+	.text{
+	font-size: 18px; 
+	} 
 </style>
 </head>
 <body>
@@ -55,22 +59,23 @@
 		<form method="post" action="insertShiftre.do" class="insertShift form-horizontal" role="form">
 
 			<div class="form-group">
-				<label class="col-lg-1 col-lg-offset-2 control-label">自動新增時間:</label>
-				<label class="col-lg-1 control-label">時:</label>
+				<label class="col-lg-2 col-lg-offset-2 control-label text">自動新增時間:</label>
 				<div class="col-lg-1">
 					<select size="1" name="hours" id="hours" class="form-control refresh">
 					</select>
 				</div>
-				<label class="col-lg-1 control-label">分:</label>
+				<label class="col-lg-1 control-label text">時</label>
 				<div class="col-lg-1">	
 					<select size="1" name="minutes" id="minutes" class="form-control refresh">
 					</select>
 				</div>	
-				<label class="col-lg-1 control-label">秒:</label>
+				<label class="col-lg-1 control-label text">分</label>
 				<div class="col-lg-1">
 					<select size="1" name="seconds" id="seconds" class="form-control refresh">
 					</select>
-				</div><div class="col-lg-3"></div>
+				</div>
+				<label class="col-lg-1 control-label text">秒</label>
+				<div class="col-lg-2"></div>
 			</div>
 
 			<p class="distance">

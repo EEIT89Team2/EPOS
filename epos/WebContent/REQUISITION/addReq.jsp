@@ -43,10 +43,11 @@ input {
 }
 
 .my-error-class {
-	color:#1dc489;
+	color: #1dc489;
 }
+
 .my-valid-class {
-	color:#3a51e8;
+	color: #3a51e8;
 }
 </style>
 <body>
@@ -97,8 +98,8 @@ input {
 							value="${sessionScope.LoginOK.emp_id }" readonly="readonly"></td>
 					</tr>
 					<tr>
-						<td>&nbsp;&nbsp;建檔日期：<input type="text" name="key_date"
-							id="theDate" style="width: 200px;" value="${nowDate}" readonly></td>
+						<td>&nbsp;&nbsp;建檔日期：<input type="date" name="key_date"
+							id="theDate" style="width: 200px;" value="${nowDate}" ></td>
 					</tr>
 					<tr>
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;狀&nbsp;&nbsp;&nbsp;態&nbsp;&nbsp;：<input
@@ -216,6 +217,13 @@ input {
 								a = a + 1;
 
 							})
+			$('#form1').validate({
+
+				errorClass : "my-error-class",
+				validClass : "my-valid-class"
+
+				
+			})
 
 			$('#sbt').on('click', function() {
 

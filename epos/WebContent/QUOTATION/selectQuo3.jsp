@@ -73,7 +73,7 @@
 					<tr>
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;備&nbsp;&nbsp;&nbsp;註&nbsp;&nbsp;：<input
 							type="text" name="remark" value="${quoVO.remark }"
-							readonly="readonly" /></td>
+							 /></td>
 					</tr>
 					<tr>
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;狀&nbsp;&nbsp;&nbsp;態&nbsp;&nbsp;：<input
@@ -90,9 +90,9 @@
 					<tr>
 						<td>#</td>
 						<td>商品名稱</td>
-						<td>商品類別</td>
+						<td>商品類別<span style="font-size:11px;color:red;">*必填</span></td>
 						<td>商品成本</td>
-						<td>商品售價</td>
+						<td>商品售價<span style="font-size:11px;color:red;">*必填</span></td>
 						<td>商品規格</td>
 						<td>商品庫存</td>
 						<td>安全庫存</td>
@@ -120,7 +120,7 @@
 								value="" /></td>
 
 							<td><input type="text" name="prod_stock${status.count }"
-								value="0" required/></td>
+								value="0" required readonly="readonly"/></td>
 
 							<td><input type="text" name="prod_q_safty${status.count }"
 								value="5" required/></td>
@@ -232,6 +232,7 @@
 				})
 
 			})
+			$("input[readonly]").css("background-color","lightgray");
 // 			$("#table1").dataTable();
 		</script>
 </body>

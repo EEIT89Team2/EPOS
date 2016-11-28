@@ -2,6 +2,12 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
+<%		
+ 		Date nowDate =new java.sql.Date(System.currentTimeMillis());
+ 		pageContext.setAttribute("nowDate",nowDate);
+ 		
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -89,7 +95,7 @@ input {
 					</tr>
 					<tr>
 						<td>&nbsp;&nbsp;採購日期：<input type="date" name="pur_date"
-							id="theDate" style="width: 200px;"></td>
+							value=${nowDate } id="theDate" style="width: 200px;"></td>
 					</tr>
 					<tr>
 						<td>&nbsp;&nbsp;廠商編號：<input type="text" name="com_id"
@@ -102,7 +108,7 @@ input {
 					</tr>
 					<tr>
 						<td>&nbsp;&nbsp;建檔日期：<input type="date" name="key_date"
-							id="theDate2" style="width: 200px;"></td>
+							value=${nowDate } id="theDate2" style="width: 200px;"></td>
 					</tr>
 					<tr>
 						<td>&nbsp;&nbsp;送貨日期：<input type="date" name="delivery_date"
@@ -146,8 +152,10 @@ input {
 							function() {
 								$("#detailtable")
 										.append(
-												"<tr><td>商品編號：&nbsp;<select id='w"+a+"' class='item' name='prod_id"+a+"'style='width: 199px; height: 30px;'><c:forEach var='prodVO' items='${list2 }' varStatus='status'><option>${prodVO.prod_id }</option></c:forEach></select></td>"
-														+ "<td>商品名稱：<input type='text' id='x"+a+"' name='prod_name"+a+"' readonly='readonly' /></td>"
+// 												"<tr><td>商品編號：&nbsp;<select id='w"+a+"' class='item' name='prod_id"+a+"'style='width: 199px; height: 30px;'><c:forEach var='prodVO' items='${list2 }' varStatus='status'><option>${prodVO.prod_id}</option></c:forEach></select></td>"
+														"<tr><td>商品編號：<input type='text' class='id' id='x"+a+"' name='prod_id"+a+"'  /></td>"
+// 														+ "<td>商品名稱：<input type='text' id='x"+a+"' name='prod_name"+a+"' readonly='readonly' /></td>"
+														+ "<td>商品名稱：&nbsp;<select id='w"+a+"' class='item' name='prod_name"+a+"'style='width: 199px; height: 30px;'><c:forEach var='prodVO' items='${list2 }' varStatus='status'><option>${prodVO.prod_name}</option></c:forEach></select></td>"
 														+ "<td>商品數量：<input type='text' id='y"+a+"' name='prod_quantity"+a+"'/></td>"
 														+ "<td>商品單價：<input type='text' id='z"+a+"' name='prod_price"+a+"' readonly='readonly' /></td>"
 														+ "<td>金額小計：<input type='text' id='r"+a+"' class='lsum' name='prod_lsum"+a+"' readonly='readonly' /></td>"
@@ -170,7 +178,7 @@ input {
 								$('#w' + a)
 										.change(
 												function() {
-													var prod_id = $(this).val();
+													var prod_name = $(this).val();
 													var element = this;
 													var url = "getOneProd1.do";
 													$
@@ -178,17 +186,18 @@ input {
 																type : 'POST',
 																url : url,
 																data : {
-																	"prod_id" : prod_id
+																	"prod_name" : prod_name
 																},
 																success : function(
 																		data) {
 
-																	$(element)
-																			.parent()
-																			.next()
+																	$(element).parent().parent()
 																			.children()
+																			.children(".id")
 																			.val(
-																					data);
+																					data)                
+// 																	alert(data);
+																
 
 																}
 
@@ -199,7 +208,7 @@ input {
 																type : 'POST',
 																url : url,
 																data : {
-																	"prod_id" : prod_id
+																	"prod_name" : prod_name
 																},
 																success : function(
 																		data) {
@@ -208,30 +217,29 @@ input {
 																			.parent()
 																			.next()
 																			.next()
-																			.next()
 																			.children()
 																			.val(
 																					data);
-																	//  											alert(data);
+// 																	 											alert(data);
 
 																}
 															})
 
-													$(this).parent().next()
-															.next().children()
-															.val("");
+// 													$(this).parent().next()
+// 															.next().children()
+// 															.val("");
 
 													var y1 = $(this).parent()
-															.next().next()
+															.next()
 															.children().val();
 													var y2 = $(this).parent()
-															.next().next()
+															.next()
 															.next().children()
 															.val();
 
 													var ysum = y1 * y2;
 													$(this).parent().next()
-															.next().next()
+															.next()
 															.next().children()
 															.val(ysum);
 
@@ -428,6 +436,7 @@ input {
 				})
 			})
 		})
+		$("input[readonly]").css("background-color","lightgray");
 // 		$("#table1").dataTable();
 	</script>
 

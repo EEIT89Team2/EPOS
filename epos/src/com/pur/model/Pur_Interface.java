@@ -19,7 +19,7 @@ public interface Pur_Interface {
 	public void  setStatus(String status, String pur_id);
 	public List<ComVO> getCom();
 	public List<ProdVO> getProd(String com_id);
-	public ProdVO getPordById(String prod_id);
+	public List<ProdVO> getProdById(String prod_name);
 	public List<PurVO> findByDate(Date begin_date, Date end_date);
 	public List<PurVO> selectOfN();
 	public List<ComVO> getOneCom(String com_name);

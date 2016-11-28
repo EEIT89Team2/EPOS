@@ -256,6 +256,7 @@
 				})
 
 			})
+			$("input[readonly]").css("background-color","lightgray");
 // 			$("#table1").dataTable();
 		</script>
 </body>

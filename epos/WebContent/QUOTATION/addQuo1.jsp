@@ -135,6 +135,13 @@
 		</div>
 		<script>
 			$(function() {
+				$('#form1').validate({
+
+					errorClass : "my-error-class",
+					validClass : "my-valid-class"
+
+					
+				})
 
 				$('#sbt').on('click', function() {
 					var $form = $('#form1');
@@ -198,7 +205,8 @@
 						$('#main-content').html(data);
 					})
 				})
-				$("input[readonly]").css("background-color","#eee");
+				$("input[readonly]").css("background-color","lightgray");
+// 				$("input[readonly]").css("border",1);
 			})
 // 			$("#table1").dataTable();
 		</script>

@@ -14,6 +14,7 @@ import com.pur_detail.model.Pur_detailVO;
 public class PurDAO implements Pur_Interface {
 	
 	private static final String GETALL = "from PurVO order by pur_id";
+	
 	private static final String GET_DETAIL_ALL = "from Pur_detailVO where pur_id=?";
 	
 	private static final String GET_ALL_COM = "from ComVO order by com_id";
@@ -25,6 +26,8 @@ public class PurDAO implements Pur_Interface {
 	private static final String SELECT_OF_N = "from PurVO where status = 'N'";
 	
 	private static final String GET_ONE_COM = "from ComVO where com_name = ?";
+	
+	private static final String GET_PROD = "from ProdVO where prod_name = ?";
 	
 	
 
@@ -110,11 +113,11 @@ public class PurDAO implements Pur_Interface {
 	
 	
 	@Override
-	public ProdVO getPordById(String prod_id) {
+	public List<ProdVO> getProdById(String prod_name) {
 		// TODO Auto-generated method stub
-		ProdVO prodVO = null;
-		prodVO = hibernateTemplate.get(ProdVO.class, prod_id);
-		return prodVO;
+		List<ProdVO> list = null;
+		list = hibernateTemplate.find(GET_PROD, prod_name);
+		return list;
 	}
 
 	@Override

@@ -83,8 +83,9 @@ public class PurService {
 		return list;
 	}
 	
-	public ProdVO getOneProd(String prod_id){
-		ProdVO prodVO = dao.getPordById(prod_id);
+	public ProdVO getOneProd(String prod_name){
+		List<ProdVO> list = dao.getProdById(prod_name);
+		ProdVO prodVO = list.get(0);
 		return prodVO;
 	}
 

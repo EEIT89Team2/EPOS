@@ -50,7 +50,7 @@
 							</c:forEach></select>
 					</div>
 					<div id="container2" 
-						style="height: 700px; width: 1050px; margin:0 auto;top:15%;left:27%;position:absolute; "></div>
+						style="height: 700px; width: 1050px; margin:0 auto;top:15%;left:26%;position:absolute; "></div>
 					<div id="costdiv" style="padding:10px;background-color: rgba(0, 0, 0, 0.5);color:white;font-size:24px;position:absolute;right:20px; bottom:120px;">
 						總金額：<span id="cost"></span>元
 						</div>

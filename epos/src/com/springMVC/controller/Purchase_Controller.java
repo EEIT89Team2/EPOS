@@ -90,22 +90,22 @@ public class Purchase_Controller {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/PURCHASE/getOneProd1.do" })
-	public void getOneProd1(ModelMap mode, HttpServletResponse response, String prod_id) throws Exception {
-		ProdVO prodVO = purSvc.getOneProd(prod_id);
-		String prod_name = prodVO.getProd_name();
+	public void getOneProd1(ModelMap mode, HttpServletResponse response, String prod_name) throws Exception {
+		ProdVO prodVO = purSvc.getOneProd(prod_name);
+		String prod_id = prodVO.getProd_id();
 		String prod_cost = Integer.toString(prodVO.getProd_cost());
 		response.setContentType("text/html");
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = null;
 		out = response.getWriter();
-		out.println(prod_name);
+		out.println(prod_id);
 
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/PURCHASE/getOneProd2.do" })
-	public void getOneProd2(ModelMap mode, HttpServletResponse response, String prod_id) throws Exception {
-		ProdVO prodVO = purSvc.getOneProd(prod_id);
-		String prod_name = prodVO.getProd_name();
+	public void getOneProd2(ModelMap mode, HttpServletResponse response, String prod_name) throws Exception {
+		ProdVO prodVO = purSvc.getOneProd(prod_name);
+//		String prod_name = prodVO.getProd_name();
 		String prod_cost = Integer.toString(prodVO.getProd_cost());
 		response.setContentType("text/html");
 		response.setCharacterEncoding("utf-8");
@@ -117,12 +117,12 @@ public class Purchase_Controller {
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/insertPur.do", "/PURCHASE/insertPur.do" })
 	public String insertPur(ModelMap model, HttpServletRequest request) throws Exception {
-		/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 ******************/
+		/*************************** 1.��隢�� - 頛詨�撘�隤方��� ******************/
 		List<String> errorMsgs = new LinkedList<String>();
 		request.setAttribute("errorMsgs", errorMsgs);
 		// String quo_id = request.getParameter("quo_id");
 		// if(quo_id == null || quo_id.trim().length()==0){
-		// errorMsgs.add("詢價單編號請勿空白");
+		// errorMsgs.add("閰Ｗ�蝺刻��蝛箇");
 		// }
 
 		Date pur_date = null;
@@ -131,7 +131,7 @@ public class Purchase_Controller {
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			pur_date = new Date(System.currentTimeMillis());
-			errorMsgs.add("請輸入採購日期");
+			errorMsgs.add("隢撓��鞈潭���");
 		}
 
 		Date delivery_date = null;
@@ -139,17 +139,17 @@ public class Purchase_Controller {
 			delivery_date = Date.valueOf(request.getParameter("delivery_date"));
 		} catch (IllegalArgumentException e) {
 			delivery_date = new Date(System.currentTimeMillis());
-			errorMsgs.add("請輸入送貨日期");
+			errorMsgs.add("隢撓��疏����");
 		}
 
 		String com_id = request.getParameter("com_id");
 		if (com_id == null || com_id.trim().length() == 0) {
-			errorMsgs.add("請輸入廠商編號");
+			errorMsgs.add("隢撓�撱�楊���");
 		}
 
 		String key_id = request.getParameter("key_id");
 		if (key_id == null || key_id.trim().length() == 0) {
-			errorMsgs.add("請輸入建檔人員編號");
+			errorMsgs.add("隢撓�撱箸�犖�蝺刻��");
 		}
 
 		Date key_date = null;
@@ -157,7 +157,7 @@ public class Purchase_Controller {
 			key_date = Date.valueOf(request.getParameter("key_date"));
 		} catch (IllegalArgumentException e) {
 			key_date = new Date(System.currentTimeMillis());
-			errorMsgs.add("請輸入建檔日期");
+			errorMsgs.add("隢撓�撱箸����");
 		}
 
 		String remark = request.getParameter("remark");
@@ -213,24 +213,24 @@ public class Purchase_Controller {
 		purVO.setStatus(status);
 		purVO.setPurs(set);
 
-		/*************************** 2.開始新增資料 ***************************************/
+		/*************************** 2.���憓��� ***************************************/
 		purSvc.insert(purVO);
 		List<PurVO> listAll = purSvc.getAll();
 		request.getSession().setAttribute("list", listAll);
 		/***************************
-		 * 3.新增完成,準備轉交(Send the Success view)
+		 * 3.�憓���,皞��漱(Send the Success view)
 		 ***********/
-		return "PURCHASE/AllPur"; // 新增成功後轉交output_page.jsp
+		return "PURCHASE/AllPur"; // �憓����漱output_page.jsp
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = { "/updatePur.do", "/PURCHASE/updatePur.do" })
 	public String updatePur(ModelMap model, HttpServletRequest request) throws Exception {
-		/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 ******************/
+		/*************************** 1.��隢�� - 頛詨�撘�隤方��� ******************/
 		List<String> errorMsgs = new LinkedList<String>();
 		request.setAttribute("errorMsgs", errorMsgs);
 		// String quo_id = request.getParameter("quo_id");
 		// if(quo_id == null || quo_id.trim().length()==0){
-		// errorMsgs.add("詢價單編號請勿空白");
+		// errorMsgs.add("閰Ｗ�蝺刻��蝛箇");
 		// }
 		String pur_id = request.getParameter("pur_id");
 
@@ -240,7 +240,7 @@ public class Purchase_Controller {
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			pur_date = new Date(System.currentTimeMillis());
-			errorMsgs.add("請輸入採購日期");
+			errorMsgs.add("隢撓��鞈潭���");
 		}
 
 		Date delivery_date = null;
@@ -248,17 +248,17 @@ public class Purchase_Controller {
 			delivery_date = Date.valueOf(request.getParameter("delivery_date"));
 		} catch (IllegalArgumentException e) {
 			delivery_date = new Date(System.currentTimeMillis());
-			errorMsgs.add("請輸入送貨日期");
+			errorMsgs.add("隢撓��疏����");
 		}
 
 		String com_id = request.getParameter("com_id");
 		if (com_id == null || com_id.trim().length() == 0) {
-			errorMsgs.add("請輸入廠商編號");
+			errorMsgs.add("隢撓�撱�楊���");
 		}
 
 		String key_id = request.getParameter("key_id");
 		if (key_id == null || key_id.trim().length() == 0) {
-			errorMsgs.add("請輸入建檔人員編號");
+			errorMsgs.add("隢撓�撱箸�犖�蝺刻��");
 		}
 
 		Date key_date = null;
@@ -266,7 +266,7 @@ public class Purchase_Controller {
 			key_date = Date.valueOf(request.getParameter("key_date"));
 		} catch (IllegalArgumentException e) {
 			key_date = new Date(System.currentTimeMillis());
-			errorMsgs.add("請輸入建檔日期");
+			errorMsgs.add("隢撓�撱箸����");
 		}
 
 		String remark = request.getParameter("remark");
@@ -329,7 +329,7 @@ public class Purchase_Controller {
 		purVO.setStatus(status);
 		purVO.setPurs(set);
 
-		/*************************** 2.開始新增資料 ***************************************/
+		/*************************** 2.���憓��� ***************************************/
 		purSvc.update(purVO);
 
 		PurVO purVO2 = purSvc.getOnePur(pur_id);
@@ -370,21 +370,21 @@ System.out.println("pur_id"+pur_id);
 	@RequestMapping(method = RequestMethod.POST, value = { "/PURCHASE/deleteDetailPur.do", "/deleteDetailPur.do" })
 	public String deleteDetail(ModelMap model, HttpServletRequest request,
 			/***************************
-			 * 1.接收請求參數 - 輸入格式的錯誤處理
+			 * 1.��隢�� - 頛詨�撘�隤方���
 			 *******************/
 			@RequestParam("prod_id") String prod_id, @RequestParam("pur_id") String pur_id) {
-		/*************************** 2.開始查詢資料 ***************************************/
+		/*************************** 2.���閰Ｚ��� ***************************************/
 		purSvc.deleteDetail(pur_id, prod_id);
 		List<Pur_detailVO> detailList = purSvc.getPurDetail(pur_id);
 		PurVO purVO = purSvc.getOnePur(pur_id);
 		List<PurVO> list = new LinkedList<PurVO>();
 		list.add(purVO);
 		/***************************
-		 * 3.查詢完成,準備轉交(Send the Success view)
+		 * 3.�閰Ｗ���,皞��漱(Send the Success view)
 		 ***********/
 		request.getSession().setAttribute("detailList", detailList);
 		request.getSession().setAttribute("list", list);
-		return "PURCHASE/AllPur"; // 查詢完成後轉交AllQuo.jsp
+		return "PURCHASE/AllPur"; // �閰Ｗ����漱AllQuo.jsp
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/PURCHASE/DetailUpdateDeletePur.do")

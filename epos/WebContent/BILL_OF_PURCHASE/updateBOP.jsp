@@ -72,7 +72,7 @@
 					</tr>
 					<tr>
 						<td>&nbsp;&nbsp;建檔日期：<input type="date" name="key_date"
-							id="key_date" style="width: 199px;" value="${bopVO.key_date}" /></td>
+							id="key_date" style="width: 199px;" value="${bopVO.key_date}" readonly="readonly" /></td>
 					</tr>
 					<tr>
 						<td>&nbsp;&nbsp;送貨日期：<input type="date" name="bop_date"
@@ -243,6 +243,7 @@
 					})
 
 			})
+			$("input[readonly]").css("background-color","lightgray");
 // 			$("#table1").dataTable();
 		</script>
 </body>

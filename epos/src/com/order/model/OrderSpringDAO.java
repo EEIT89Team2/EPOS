@@ -80,6 +80,17 @@ public class OrderSpringDAO implements Order_Interface {
 
 		return list;
 	}
+	
+	private static final String GET_ALL_STMT_WEATHER = "from OrderVO where weather=? order by ord_date ";
+
+	@Override
+	public List<OrderVO> getAllWeather(String weather) throws Exception {
+
+		List<OrderVO> list = null;
+		list = hibernateTemplate.find(GET_ALL_STMT_WEATHER,weather);
+
+		return list;
+	}
 
 	private static final String GET_PROD_NAME_COUNT = "select prod_id,prod_name,sum(prod_quantity) as quantity from Order_DetailVO where prod_id= ? group by prod_id,prod_name";
 
@@ -215,6 +226,12 @@ public class OrderSpringDAO implements Order_Interface {
 			
 		return list;
 
+	}
+
+	@Override
+	public List<OrderVO> getAllWeather() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

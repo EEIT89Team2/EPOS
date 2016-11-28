@@ -221,4 +221,18 @@ public class OrderHibernateDAO implements Order_Interface {
 		return null;
 	}
 
+	@Override
+	public List<OrderVO> getAllWeather(String weather) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderVO> getAllWeather() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
 }

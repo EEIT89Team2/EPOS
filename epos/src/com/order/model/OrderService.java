@@ -89,6 +89,10 @@ public class OrderService {
 
 		return ord_dao.getAll();
 	}
+	public List<OrderVO> getAllWeather(String weather) throws Exception {
+		
+		return ord_dao.getAllWeather(weather);
+	}
 
 	public List Select_order_detailALL(String ord_id) throws Exception {
 

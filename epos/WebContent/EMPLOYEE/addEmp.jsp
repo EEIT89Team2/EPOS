@@ -51,6 +51,12 @@
 .my-error-class {
 	color: red;
 }
+body {
+    font-size: 16px;
+}
+label {
+    font-weight: 900;
+}
 </style>
 </head>
 <body>
@@ -397,6 +403,7 @@
 				}
 			})
 		})
+		$("input[readonly]").css("background-color","#eee");
 	</script>
 </body>
 </html>

@@ -63,43 +63,54 @@ public class Order_Controller extends HttpServlet implements Runnable {
 	@RequestMapping(method = RequestMethod.POST, value = { "/getOrdByWeather.do", "/ANALYSIS/getOrdByWeather.do" })
 	public void getOrdByWeather(ModelMap model, HttpServletRequest request,
 			@RequestParam("weather") String weather,HttpServletResponse resp) throws Exception {
-
 		List<Order_DetailVO> ordDetailList = ordSvc.getAllOrderDetail();
-		List<OrderVO> ordList = ordSvc.getAll();
+		List<OrderVO> ordList = ordSvc.getAllWeather(weather);
+		System.out.println("ordList size="+ordList.size());
 		List<String> weatherOrdList=new LinkedList();
 		Set<String> prodNameSet=new HashSet();
 		int prodCount=0;
 		List l1 = new LinkedList();
 
-		
+		System.out.println("weather="+weather);
+		int count=0;
 		for (OrderVO orderVO : ordList) {
 			if (orderVO.getWeather() != null) {
 
-				if (orderVO.getWeather().equals(weather)) {
+//				if (orderVO.getWeather().equals(weather)) {
 					weatherOrdList.add(orderVO.getOrd_id());
+					System.out.println(orderVO.getOrd_id());
 				}
-			}
+//			}
+			count++;
 		}
-		
+		System.out.println("count="+count);
 		for(Order_DetailVO order_DetailVO:ordDetailList){
-			for(String weather1:weatherOrdList){
-				
-				if(order_DetailVO.getOrderVO().getOrd_id().equals(weather1)){
+			for(String ord_id:weatherOrdList){
+				if(order_DetailVO.getOrderVO().getOrd_id().equals(ord_id)){
+					System.out.println(order_DetailVO.getOrderVO().getOrd_id()+","+ord_id);
 					prodNameSet.add(order_DetailVO.getProd_name());
 				}
 			}
+//			System.out.println(order_DetailVO.getOrderVO().getOrd_id());
 		}
+		System.out.println(prodNameSet);
 		
 		for(String prodName:prodNameSet){
 			prodCount=0;
 			Map map = new HashMap();
 			for(Order_DetailVO order_DetailVO:ordDetailList){
+				for(String ord_id:weatherOrdList){
+					if(order_DetailVO.getOrderVO().getOrd_id().equals(ord_id)){
 				if(prodName.equals(order_DetailVO.getProd_name())){
 					prodCount=order_DetailVO.getProd_quantity()+prodCount;
+				}
+					}
 				}
 			}
 			map.put("prod_name",prodName);
 			map.put("prod_quantity", prodCount);
+			System.out.print(prodName+",");
+			System.out.println(prodCount);
 			l1.add(map);
 		}
 		

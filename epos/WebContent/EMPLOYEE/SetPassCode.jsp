@@ -43,7 +43,9 @@
 .glyphicon {
 	top: auto;
 }
-
+table {
+    font-size: large;
+}
 /* .pn { */
 /* 	height: auto; */
 /* 	box-shadow: inherit; */

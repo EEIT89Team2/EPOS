@@ -49,6 +49,12 @@
 .my-error-class {
 	color: red;
 }
+body {
+    font-size: 16px;
+}
+label {
+    font-weight: 900;
+}
 </style>
 </head>
 <body>
@@ -238,7 +244,7 @@
 								<label class="col-lg-1 col-lg-offset-4 control-label">­×§ï¤H:</label>
 								<div class="col-lg-6">
 									<input type="text" name="key_id" value="${comVO.key_id}"
-										style="color: gray;">
+										style="color: gray;" readonly="readonly">
 								</div>
 							</div>
 							<!-- <input type="hidden" name="action" value="updateToDB"> -->
@@ -328,6 +334,7 @@
 				}
 			})
 		})
+		$("input[readonly]").css("background-color","#eee");
 	</script>
 </body>
 </html>

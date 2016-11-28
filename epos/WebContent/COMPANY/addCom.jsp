@@ -221,12 +221,6 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-1 col-lg-offset-4 control-label">名片:</label>
-								<div class="col-lg-6">
-									<input type="file" name="picture">
-								</div>
-							</div>
-							<div class="form-group">
 								<label class="col-lg-1 col-lg-offset-4 control-label">修改人:</label>
 								<div class="col-lg-6">
 									<input type="text" name="key_id"

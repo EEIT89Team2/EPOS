@@ -239,7 +239,7 @@ table {
 							<td>${list.emp_reg}</td>
 							<td>${list.emp_due}</td>
 							<td><img alt="尚無大頭照"
-								src="data:image/gif;base64,${list.picture}"></td>
+								src="data:image/gif;base64,${list.picture}" width="50" height="50"></td>
 							<td>${list.key_id}</td>
 							<td>${list.key_date}</td>
 							<td><input type="submit" name="action"

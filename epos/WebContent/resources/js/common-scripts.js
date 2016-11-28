@@ -123,7 +123,7 @@ var Script = function () {
 			var hour = insertTime.getHours();
 			var minutes = insertTime.getMinutes();
 			var seconds = insertTime.getSeconds();
-			if((hour==11||hour==13)&&(minutes==41)&&(seconds==0)){
+			if((hour==15||hour==11)&&(minutes==45)&&(seconds==0)){
 				alert("班別報表自動新增完成");
 				$.ajax({
 					type : "post",

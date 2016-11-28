@@ -39,7 +39,7 @@
 		<div
 			style="background-image: url(../resources/img/afds.jpg); background-size: cover;">
 			<div
-				style="background-color: rgba(0, 0, 0, 0.3); position: relativve; height: 750px; overflow: auto;">
+				style="background-color: rgba(0, 0, 0, 0.1); position: relativve; height: 750px; overflow: auto;">
 				<div align=center>
 
 					<div style="position: absolute; right: 10px; padding: 20px;">

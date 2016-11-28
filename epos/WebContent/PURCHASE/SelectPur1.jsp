@@ -39,7 +39,7 @@
 		<!-- 	<br> -->
 		<!-- 		<h1>詢價單</h1> -->
 		<!-- 		<hr> -->
-		<h1>詢價單查詢</h1>
+		<h1>採購單查詢</h1>
 		<hr>
 		<form method="post" action="REQUISITION/insertReq.do" id="form1">
 

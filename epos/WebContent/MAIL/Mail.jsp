@@ -218,7 +218,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 					<hr>
 					<div class="col-lg-6">
 						<input type="date" name="s_ord_date" value="2016-09-14"> <input
-							type="date" name="e_ord_date" value="2016-10-16"> <input
+							type="date" name="e_ord_date" value="2016-10-25"> <input
 							type="submit" value="查詢未下訂單會員" name="howMany"
 							class="btn  btn-theme01">
 						<table border='1' width='500'>

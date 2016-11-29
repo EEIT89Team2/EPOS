@@ -563,18 +563,19 @@ System.out.println("3");
 		List<Map> prodlist = new LinkedList();
 		try {
 			
-//			ProdService prodSvc = new  ProdService();
+
 			ReturnItemsService rtnItmSvc = new ReturnItemsService();
 			
-//			list = prodSvc.getAll();
+
 			list = rtnItmSvc.getAll();
 			
 			for(RtnItemsVO rtnVO : list){
 				Map map = new HashMap();
-				map.put("SelectValue",rtnVO.getProd_name()+"^"+rtnVO.getRe_quantity());
+				map.put("SelectValue",rtnVO.getProd_name()+"^"+rtnVO.getRe_quantity()+"^"+rtnVO.getRemark());
 				map.put("SelectText", rtnVO.getProd_name());
 				prodlist.add(map);
 			}
+
 			
 			String jsonString = JSONValue.toJSONString(prodlist);
 			out.println(jsonString);

@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>promoting</title>
+<title>促銷商品管理</title>
 <!-- Bootstrap core CSS -->
 <link href="<c:url value="../resources/css/bootstrap.css" />"
 	rel="stylesheet">

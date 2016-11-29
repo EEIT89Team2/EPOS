@@ -64,7 +64,7 @@
 		color:red;
 	}
 </style>
-<title>product</title>
+<title>商品管理</title>
 </head>
 <body>
 	<!--header start-->

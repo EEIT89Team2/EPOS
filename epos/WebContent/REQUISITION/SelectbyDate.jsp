@@ -34,7 +34,7 @@
 				<li><a id="req2" target="SelectReq.jsp" href="javascript: void(0)">單筆查詢</a></li>
 				<li><a id="req3" target="getAllReq.do" href="javascript: void(0)">全部查詢</a></li>
 				<li style="background-color: rgba(221, 15, 15, 0.8);"><a
-					style="color: white;" href="javascript: void(0)">依日期查詢</a></li>
+					style="color: white;">依日期查詢</a></li>
 				<li><a id="req5" target="selectOfN.do" href="javascript: void(0)">審核</a></li>
 			</ul>
 		</div>

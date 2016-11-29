@@ -24,12 +24,12 @@
 			style="float: left;">
 			<ul class="nav navbar-nav"
 				style="float: left;">
-				<li><a id="req1" target="addReq.jsp">新增請購單</a></li>
+				<li><a id="req1" target="addReq.jsp" href="javascript: void(0)">新增請購單</a></li>
 				<li style="background-color: rgba(221, 15, 15, 0.8);"><a
-					style="color: white;">單筆查詢</a></li>
-				<li><a id="req3" target="getAllReq.do">全部查詢</a></li>
-				<li><a id="req4" target="SelectbyDate.jsp">依日期查詢</a></li>
-				<li><a id="req5" target="selectOfN.do">審核</a></li>
+					style="color: white;" href="javascript: void(0)">單筆查詢</a></li>
+				<li><a id="req3" target="getAllReq.do" href="javascript: void(0)">全部查詢</a></li>
+				<li><a id="req4" target="SelectbyDate.jsp" href="javascript: void(0)">依日期查詢</a></li>
+				<li><a id="req5" target="selectOfN.do" href="javascript: void(0)">審核</a></li>
 			</ul>
 		</div>
 		</nav>

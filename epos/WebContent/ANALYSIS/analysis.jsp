@@ -16,7 +16,7 @@
 <link href="<c:url value="../resources/css/style.css" />" rel="stylesheet">
 <link href="<c:url value="../resources/css/style-responsive.css" />" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/bs/jq-2.2.3,dt-1.10.12/datatables.min.css" />
-<title>analysis</title>
+<title>銷售報表分析</title>
 <style>
 	.navbar-default .navbar-nav > li > a{
 		color:#56ad7b;

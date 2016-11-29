@@ -320,6 +320,10 @@ label {
 				});
 				// -----------------------------------≈Á√“-------------------------------------------
 				$("#create_emp").validate({
+					success: function(label) {
+						label.text("°i•øΩT°j"),
+						label.css('color','#1dc489')
+						},
 					errorClass : "my-error-class",
 					validClass : "my-valid-class",
 

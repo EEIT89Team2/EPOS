@@ -328,9 +328,10 @@ label {
 			});
 			// -----------------------------------驗證-------------------------------------------
 			$("#create_emp").validate({
-				// 				success: function(label) {
-				// 					label.text("【正確】")
-				// 					},
+								success: function(label) {
+									label.text("【正確】"),
+									label.css('color','#1dc489')
+									},
 				errorClass : "my-error-class",
 				validClass : "my-valid-class",
 

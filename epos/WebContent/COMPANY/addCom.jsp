@@ -273,9 +273,10 @@ label {
 	<script>
 		$(document).ready(function() {
 			$("#create_com").validate({
-				// 				success: function(label) {
-				// 					label.text("¡i¥¿½T¡j")
-				// 					},
+				success: function(label) {
+					label.text("¡i¥¿½T¡j"),
+					label.css('color','#1dc489')
+					},
 				errorClass : "my-error-class",
 				validClass : "my-valid-class",
 

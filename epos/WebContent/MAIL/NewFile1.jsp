@@ -191,7 +191,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 			}else{
 				timer = true;
 			}
-		},5000);
+		},3000);
 	</script>
 </body>
 </html>

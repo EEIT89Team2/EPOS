@@ -179,5 +179,19 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 
 	<!--common script for all pages-->
 	<script src="<c:url value="/resources/js/common-scripts.js" />"></script>
+	
+		<script type="text/JavaScript">
+		var timer = true;
+		$(document).keydown(function(e){timer=false;});
+		$(document).mouseover(function(e){timer=false;});
+		
+		setInterval(function(){
+			if(timer){
+				location.assign("<%=request.getContextPath()%>/lock_screen.jsp");
+			}else{
+				timer = true;
+			}
+		},5000);
+	</script>
 </body>
 </html>

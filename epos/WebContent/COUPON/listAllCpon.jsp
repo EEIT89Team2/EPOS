@@ -173,8 +173,11 @@
 				"oLanguage" : oLanguage,
 				"bDestroy" : false,
 				"bProcessing" : false,
-				"bServerSide" : false}
-			);		
+				"bServerSide" : false,
+				"order" : [[ 0, "desc" ]]
+				
+			});		
+// 			$("#allcpon").DefaultView.Sort = "折價券編號  DESC";
 	</script>
 </body>
 </html>

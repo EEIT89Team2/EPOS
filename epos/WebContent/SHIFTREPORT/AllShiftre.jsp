@@ -204,8 +204,9 @@
 			"oLanguage" : oLanguage,
 			"bDestroy" : false,
 			"bProcessing" : false,
-			"bServerSide" : false}
-		);
+			"bServerSide" : false,
+			"order" : [[ 0, "desc" ]]
+		});
 	});
 	
 	</script>	

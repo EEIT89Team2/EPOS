@@ -31,12 +31,12 @@
 			style="float: left;">
 			<ul class="nav navbar-nav"
 				style="float: left;">
-				<li><a id="pur1" target="insertPur00.do">新增採購單</a></li>
+				<li><a id="pur1" target="insertPur00.do" href="javascript: void(0)">新增採購單</a></li>
 				<li style="background-color: rgba(221, 15, 15, 0.8);"><a
 					style="color: white;">單筆查詢</a></li>
-				<li><a id="pur3" target="getAllPur.do">全部查詢</a></li>
-				<li><a id="pur4" target="SelectbyDate.jsp">依日期查詢</a></li>
-				<li><a id="pur5" target="selectOfN.do">審核</a></li>
+				<li><a id="pur3" target="getAllPur.do" href="javascript: void(0)">全部查詢</a></li>
+				<li><a id="pur4" target="SelectbyDate.jsp" href="javascript: void(0)">依日期查詢</a></li>
+				<li><a id="pur5" target="selectOfN.do" href="javascript: void(0)">審核</a></li>
 
 			</ul>
 		</div>

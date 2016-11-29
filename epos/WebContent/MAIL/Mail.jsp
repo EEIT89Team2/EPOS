@@ -290,19 +290,6 @@ input[type="date"], input[type="time"], input[type="datetime-local"],
 	<script src="<c:url value="../resources/js/gen_validatorv4.js" />"
 		type="text/javascript"></script>
 		
-	<script type="text/JavaScript">
-		var timer = true;
-		$(document).keydown(function(e){timer=false;});
-		$(document).mouseover(function(e){timer=false;});
-		
-		setInterval(function(){
-			if(timer){
-				location.assign("<%=request.getContextPath()%>/lock_screen.jsp");
-			}else{
-				timer = true;
-			}
-		},7000);
-	</script>
 <!-- 	<script>
 		$(document).ready(function() {
 			var name = $('#addres');

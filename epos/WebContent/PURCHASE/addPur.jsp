@@ -71,10 +71,10 @@ input {
 				style="float: left;">
 				<li style="background-color: rgba(221, 15, 15, 0.8);"><a
 					id="pur1" target="insertPur00.do" style="color: white;">新增採購單</a></li>
-				<li><a id="pur2" target="SelectPur.jsp">單筆查詢</a></li>
-				<li><a id="pur3" target="getAllPur.do">全部查詢</a></li>
-				<li><a id="pur4" target="SelectbyDate.jsp">依日期查詢</a></li>
-				<li><a id="pur5" target="selectOfN.do">審核</a></li>
+				<li><a id="pur2" target="SelectPur.jsp" href="javascript: void(0)">單筆查詢</a></li>
+				<li><a id="pur3" target="getAllPur.do" href="javascript: void(0)">全部查詢</a></li>
+				<li><a id="pur4" target="SelectbyDate.jsp" href="javascript: void(0)">依日期查詢</a></li>
+				<li><a id="pur5" target="selectOfN.do" href="javascript: void(0)">審核</a></li>
 			</ul>
 		</div>
 		</nav>

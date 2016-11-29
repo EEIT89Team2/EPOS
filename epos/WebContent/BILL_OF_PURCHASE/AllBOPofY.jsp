@@ -25,14 +25,14 @@
 			style="float: left;">
 			<ul class="nav navbar-nav"
 				style="float: left;">
-				<li><a id="bop1" target="selectOfY.do">新增進貨單</a></li>
-				<li><a id="bop2" target="SelectBOP0.jsp">單筆查詢</a></li>
-				<li><a id="bop3" target="getAllBop.do">全部查詢</a></li>
-				<li><a id="bop4" target="SelectbyDate.jsp">依日期查詢</a></li>
-				<li><a id="bop5" target="selectOfN.do">審核</a></li>
+				<li><a id="bop1" target="selectOfY.do" href="javascript: void(0)">新增進貨單</a></li>
+				<li><a id="bop2" target="SelectBOP0.jsp" href="javascript: void(0)">單筆查詢</a></li>
+				<li><a id="bop3" target="getAllBop.do" href="javascript: void(0)">全部查詢</a></li>
+				<li><a id="bop4" target="SelectbyDate.jsp" href="javascript: void(0)">依日期查詢</a></li>
+				<li><a id="bop5" target="selectOfN.do" href="javascript: void(0)">審核</a></li>
 				<li style="background-color: rgba(221, 15, 15, 0.8);"><a
 					style="color: white;">到貨確認</a></li>
-				<li><a id="bop7" target="analyze.do">單月進貨金額</a>
+				<li><a id="bop7" target="analyze.do" href="javascript: void(0)">單月進貨金額</a>
 
 			</ul>
 		</div>
